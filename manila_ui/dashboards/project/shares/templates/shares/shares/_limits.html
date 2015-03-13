@@ -1,0 +1,41 @@
+{% load i18n horizon humanize %}
+
+<h3>{% trans "Description" %}:</h3>
+
+<p>{% trans "Select parameters of share you want to create. " %}</p>
+
+<h3>{% trans "Metadata" %}:</h3>
+  <p>
+    {% trans "One line - one action. Empty strings will be ignored." %}<br />
+    {% trans "To add metadata use:" %}
+    <pre>key=value</pre>
+  </p>
+
+<h3>{% trans "Share Limits" %}</h3>
+
+<div class="quota_title clearfix">
+  <strong>{% trans "Total Gigabytes" %} <span>({{ usages.totalGigabytesUsed|intcomma }} {% trans "GB" %})</span></strong>
+  <p>{{ usages.maxTotalShareGigabytes|quota:_("GB")|intcomma }}</p>
+</div>
+
+<div id="quota_size" data-progress-indicator-for="id_size" data-quota-limit="{{ usages.maxTotalShareGigabytes }}" data-quota-used="{{ usages.totalGigabytesUsed }}" class="quota_bar">
+</div>
+
+<div class="quota_title clearfix">
+  <strong>{% trans "Number of Shares" %} <span>({{ usages.totalSharesUsed|intcomma }})</span></strong>
+  <p>{{ usages.maxTotalShares|quota|intcomma }}</p>
+</div>
+
+<div id="quota_shares" data-progress-indicator-step-by="1" data-quota-limit="{{ usages.maxTotalShares}}" data-quota-used="{{ usages.totalSharesUsed }}" class="quota_bar">
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  if(typeof horizon.Quota !== 'undefined') {
+    horizon.Quota.init();
+  } else {
+    addHorizonLoadEvent(function() {
+      horizon.Quota.init();
+    });
+  }
+</script>

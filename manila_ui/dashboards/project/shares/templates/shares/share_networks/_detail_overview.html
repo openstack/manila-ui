@@ -1,0 +1,54 @@
+{% load i18n sizeformat parse_date %}
+{% load url from future %}
+
+<h3>{% trans "Share Network Overview" %}</h3>
+
+<div class="info row-fluid detail">
+  <h4>{% trans "Info" %}</h4>
+  <hr class="header_rule">
+  <dl>
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ share_network.name }}</dd>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ share_network.id }}</dd>
+    {% if share_network.description %}
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ share_network.description }}</dd>
+    {% endif %}
+    {% if share_network.share_servers %}
+    <dt>{% trans "Share Servers on this network" %}</dt>
+    {% for server in share_network.share_servers %}
+    {% url 'horizon:admin:shares:share_server_detail' server.id as server_url %}
+    <dd><a href="{{ server_url }}">{{ server.id }}</a></dd>
+    {% endfor %}
+    {% endif %}
+  </dl>
+</div>
+
+<div class="specs row-fluid detail">
+  <h4>{% trans "Neutron Net Details" %}</h4>
+  <hr class="header_rule">
+  <dl>
+    <dt>{% trans "Network" %}</dt>
+    <dd>{{ share_network.neutron_net }}</dd>
+    <dt>{% trans "Subnet" %}</dt>
+    <dd>{{ share_network.neutron_subnet}}</dd>
+  </dl>
+</div>
+
+<div class="status row-fluid detail">
+  <h4>{% trans "Security Services" %}</h4>
+  <hr class="header_rule">
+  {% for sec_service in share_network.sec_services %}
+        {% url 'horizon:project:shares:security_service_detail' sec_service.id as sec_service_url%}
+  <dl>
+        <dt>{% trans "Id" %}</dt>
+        <dd><a href="{{ sec_service_url }}">{{ sec_service.id }}</a></dd>
+        <dt>{% trans "Name" %}</dt>
+        <dd><a href="{{ sec_service_url }}">{{ sec_service.name }}</a></dd>
+        <dt>{% trans "Type" %}</dt>
+        <dd>{{ sec_service.type }}</dd>
+  </dl>
+  <br />
+  {% endfor %}
+</div>

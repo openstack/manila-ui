@@ -1,0 +1,34 @@
+{% load i18n horizon humanize %}
+
+<h3>{% trans "Description" %}:</h3>
+
+<p>{% trans "Share Snapshots are used for storing share changes and creating shares. " %}</p>
+
+<h3>{% trans "Share Limits" %}</h3>
+
+<div class="quota_title clearfix">
+  <strong>{% trans "Total Gigabytes" %} <span>({{ usages.totalShareGigabytesUsed|intcomma }} {% trans "GB" %})</span></strong>
+  <p>{{ usages.maxTotalShareGigabytes|quota:_("GB")|intcomma }}</p>
+</div>
+
+<div id="quota_size" data-progress-indicator-for="id_size" data-quota-limit="{{ usages.maxTotalShareGigabytes }}" data-quota-used="{{ usages.totalShareGigabytesUsed }}" class="quota_bar">
+</div>
+
+<div class="quota_title clearfix">
+  <strong>{% trans "Number of Share Snapshots" %} <span>({{ usages.totalShareSnapshotsUsed|intcomma }})</span></strong>
+  <p>{{ usages.maxTotalShareSnapshots|quota|intcomma }}</p>
+</div>
+
+<div id="quota_snapshots" data-progress-indicator-step-by="1" data-quota-limit="{{ usages.maxTotalShareSnapshots}}" data-quota-used="{{ usages.totalShareSnapshotsUsed }}" class="quota_bar">
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  if(typeof horizon.Quota !== 'undefined') {
+    horizon.Quota.init();
+  } else {
+    addHorizonLoadEvent(function() {
+      horizon.Quota.init();
+    });
+  }
+</script>

@@ -1,0 +1,31 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block form_id %}{% endblock %}
+{% block form_action %}{% url 'horizon:project:shares:rule_add' share.id %}{% endblock %}
+
+{% block modal_id %}rule_add_modal{% endblock %}
+{% block modal-header %}{% trans "Add Rule" %}{% endblock %}
+
+{% block modal-body %}
+<div class="left">
+  <fieldset>
+  {% include "horizon/common/_form_fields.html" %}
+  </fieldset>
+</div>
+<div class="right">
+  <h3>{% trans "Description" %}:</h3>
+  <p>{% blocktrans %}
+       Add policy rule to share,
+       'ip' rule represents ipv4 address,
+       'user' rule represents username or usergroup.
+    {% endblocktrans %}</p>
+</div>
+
+{% endblock %}
+
+{% block modal-footer %}
+  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Add Rule" %}" />
+  <a href="{% url 'horizon:project:shares:manage_rules' share.id %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
+{% endblock %}

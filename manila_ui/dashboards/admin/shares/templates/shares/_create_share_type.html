@@ -1,0 +1,34 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block form_id %}{% endblock %}
+{% block form_action %}{% url 'horizon:admin:shares:create_type' %}{% endblock %}
+
+{% block modal_id %}create_share_type_modal{% endblock %}
+{% block modal-header %}{% trans "Create Share Type" %}{% endblock %}
+
+{% block modal-body %}
+<div class="left">
+  <fieldset>
+  {% include "horizon/common/_form_fields.html" %}
+  </fieldset>
+</div>
+<div class="right">
+  <h3>{% trans "Description" %}:</h3>
+  <p>{% blocktrans %}
+    The share type defines the characteristics of a share backend.
+    {% endblocktrans %}
+    <br /><br /><strong>Extra specs</strong> field:<br />
+    {% trans "One line - one action. Empty strings will be ignored." %}<br />
+    {% trans "To add extra-specs use:" %}
+    <pre>key=value</pre>
+    {% trans "Extra spec 'driver_handles_share_servers'  is required and should have boolean value." %}<br />
+  </p>
+</div>
+{% endblock %}
+
+{% block modal-footer %}
+  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Create Share Type" %}" />
+  <a href="{% url 'horizon:admin:shares:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
+{% endblock %}

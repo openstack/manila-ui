@@ -1,0 +1,35 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block form_id %}form_update_share_type{% endblock %}
+{% block form_action %}{% url 'horizon:admin:shares:update_type' share_type.id %}{% endblock %}
+
+{% block modal_id %}update_share_type_modal{% endblock %}
+{% block modal-header %}{% trans "Update Share type" %}{% endblock %}
+
+{% block modal-body %}
+  <div class="left">
+    <fieldset>
+    {% include "horizon/common/_form_fields.html" %}
+    </fieldset>
+  </div>
+  <div class="right">
+    <h3>{% trans "Description" %}:</h3>
+    <p>
+      {% trans "Here can be modified extra-specs for share type." %}<br />
+      {% trans "One line - one action. Empty strings will be ignored." %}<br />
+      {% trans "To add extra-specs use:" %}
+      <pre>key=value</pre>
+      {% trans "To unset extra-specs use:" %}
+      <pre>key</pre>
+      {% trans "All pairs that are in field for left are set for this share type." %}
+    {% trans "Extra spec 'driver_handles_share_servers'  is required and should have boolean value." %}<br />
+    </p>
+  </div>
+{% endblock %}
+
+{% block modal-footer %}
+  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Update Share Type" %}" />
+  <a href="{% url 'horizon:admin:shares:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
+{% endblock %}

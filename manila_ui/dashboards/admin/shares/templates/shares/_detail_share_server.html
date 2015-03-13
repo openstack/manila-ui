@@ -1,0 +1,42 @@
+{% load i18n sizeformat parse_date %}
+{% load url from future %}
+
+<h3>{% trans "Share Server Overview" %}</h3>
+
+<div class="info row-fluid detail">
+  <h4>{% trans "Info" %}</h4>
+  <hr class="header_rule">
+  <dl>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ share_server.id }}</dd>
+    <dt>{% trans "Status" %}</dt>
+    <dd>{{ share_server.status|capfirst }}</dd>
+    <dt>{% trans "Host" %}</dt>
+    <dd>{{ share_server.host}}</dd>
+    <dt>{% trans "Share Network" %}</dt>
+    {% if share_server.share_network_id %}
+    {% url 'horizon:admin:shares:share_network_detail' share_server.share_network_id as share_net_url %}
+    <dd><a href="{{ share_net_url }}">{{ share_server.share_network_name }}</a></dd>
+    {% else %}
+    <dd>{{ share_server.share_network_name }}</dd>
+    {% endif %}
+    {% if share_server.shares_list %}
+    <dt>{% trans "List Shares on this server" %}</dt>
+    {% for share in share_server.shares_list %}
+    {% url 'horizon:admin:shares:detail' share.id as share_url %}
+    <dd><a href="{{ share_url }}">{{ share.name_or_id }}</a></dd>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<div class="info row-fluid detail">
+  <h4>{% trans "Specs" %}</h4>
+  <hr class="header_rule">
+  <dl>
+  {% for key in share_server.backend_details %}
+    <dt>{{ key }}</dt>
+    <dd>{{ share_server.backend_details|get_item:key }}</dd>
+  {% endfor %}
+  </dl>
+</div>
+
