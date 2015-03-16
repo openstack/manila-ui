@@ -23,11 +23,10 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import messages
 from horizon import tables
-
-from openstack_dashboard.api import manila
-from openstack_dashboard.dashboards.project.shares.snapshots \
+from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.snapshots \
     import tables as snapshot_tables
-from openstack_dashboard.dashboards import utils
+from manila_ui.dashboards import utils
 from openstack_dashboard.usage import quotas
 
 

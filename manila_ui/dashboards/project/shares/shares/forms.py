@@ -28,8 +28,8 @@ from horizon import forms
 from horizon import messages
 from horizon.utils.memoized import memoized  # noqa
 
-from openstack_dashboard.api import manila
-from openstack_dashboard.dashboards import utils
+from manila_ui.api import manila
+from manila_ui.dashboards import utils
 #from openstack_dashboard.usage import quotas
 
 

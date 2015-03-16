@@ -17,7 +17,7 @@ from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
-from openstack_dashboard.api import manila
+from manila_ui.api import manila
 
 
 class UpdateShareNetworkInfoAction(workflows.Action):

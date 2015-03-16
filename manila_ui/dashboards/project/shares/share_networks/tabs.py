@@ -16,11 +16,11 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import tabs
 
-from openstack_dashboard.api import manila
-from openstack_dashboard.api import neutron
-
-from openstack_dashboard.dashboards.project.shares.share_networks\
+from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.share_networks\
     import tables as share_net_tables
+
+from openstack_dashboard.api import neutron
 
 
 class ShareNetworkTab(tabs.TableTab):

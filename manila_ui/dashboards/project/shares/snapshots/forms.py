@@ -28,7 +28,7 @@ from horizon import forms
 from horizon import messages
 from horizon.utils.memoized import memoized  # noqa
 
-from openstack_dashboard.api import manila
+from manila_ui.api import manila
 
 
 class CreateSnapshotForm(forms.SelfHandlingForm):

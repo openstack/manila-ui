@@ -17,15 +17,15 @@
 from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
-from openstack_dashboard.dashboards.project.shares.security_services \
+from manila_ui.dashboards.project.shares.security_services \
     import views as security_services_views
-from openstack_dashboard.dashboards.project.shares.share_networks \
+from manila_ui.dashboards.project.shares.share_networks \
     import views as share_networks_views
-from openstack_dashboard.dashboards.project.shares.shares \
+from manila_ui.dashboards.project.shares.shares \
     import views as shares_views
-from openstack_dashboard.dashboards.project.shares.snapshots\
+from manila_ui.dashboards.project.shares.snapshots\
     import views as snapshot_views
-from openstack_dashboard.dashboards.project.shares import views
+from manila_ui.dashboards.project.shares import views
 
 
 urlpatterns = patterns('openstack_dashboard.dashboards.project.shares.views',

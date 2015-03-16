@@ -15,8 +15,8 @@
 from django.core.urlresolvers import reverse
 import mock
 
-from openstack_dashboard import api
-from openstack_dashboard.dashboards.project.shares import test_data
+from manila_ui import api
+from manila_ui.dashboards.project.shares import test_data
 from openstack_dashboard.test import helpers as test
 
 

@@ -20,10 +20,11 @@ from horizon import exceptions
 from horizon import forms
 from horizon import messages
 
+from manila_ui.api import manila
+from manila_ui.dashboards import utils
+
 from openstack_dashboard.api import keystone
-from openstack_dashboard.api import manila
 from openstack_dashboard.api import neutron
-from openstack_dashboard.dashboards import utils
 
 
 ST_EXTRA_SPECS_FORM_ATTRS = {

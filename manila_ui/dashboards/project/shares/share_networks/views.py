@@ -18,14 +18,14 @@ from horizon import exceptions
 from horizon import forms
 from horizon import tabs
 from horizon import workflows
-from openstack_dashboard.api import manila
-from openstack_dashboard.api import neutron
-from openstack_dashboard.dashboards.project.shares.share_networks import forms\
+from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.share_networks import forms \
     as share_net_forms
-from openstack_dashboard.dashboards.project.shares.share_networks import tabs\
+from manila_ui.dashboards.project.shares.share_networks import tabs \
     as share_net_tabs
-from openstack_dashboard.dashboards.project.shares.share_networks \
+from manila_ui.dashboards.project.shares.share_networks \
     import workflows as share_net_workflows
+from openstack_dashboard.api import neutron
 
 
 class Update(workflows.WorkflowView):

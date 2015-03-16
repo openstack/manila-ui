@@ -21,13 +21,13 @@ Views for managing shares.
 
 from horizon import tabs
 
-from openstack_dashboard.dashboards.project.shares.security_services \
+from manila_ui.dashboards.project.shares.security_services \
     import tabs as security_services_tabs
-from openstack_dashboard.dashboards.project.shares.share_networks \
+from manila_ui.dashboards.project.shares.share_networks \
     import tabs as share_networks_tabs
-from openstack_dashboard.dashboards.project.shares.shares \
+from manila_ui.dashboards.project.shares.shares \
     import tabs as shares_tabs
-from openstack_dashboard.dashboards.project.shares.snapshots \
+from manila_ui.dashboards.project.shares.snapshots \
     import tabs as snapshots_tabs
 
 

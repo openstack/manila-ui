@@ -18,22 +18,16 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import tabs
 
-from openstack_dashboard.api import manila
 from openstack_dashboard.api import neutron
 
-from openstack_dashboard.dashboards.admin.\
-    shares.tables import SharesTable
-from openstack_dashboard.dashboards.admin.\
-    shares.tables import SnapshotsTable
-from openstack_dashboard.dashboards.admin.\
-    shares.tables import SecurityServiceTable
-from openstack_dashboard.dashboards.admin.\
-    shares.tables import ShareNetworkTable
-from openstack_dashboard.dashboards.admin.\
-    shares.tables import ShareServerTable
-from openstack_dashboard.dashboards.admin.\
-    shares.tables import ShareTypesTable
-from openstack_dashboard.dashboards.admin.shares import utils
+from manila_ui.api import manila
+from manila_ui.dashboards.admin.shares.tables import SharesTable
+from manila_ui.dashboards.admin.shares.tables import SnapshotsTable
+from manila_ui.dashboards.admin.shares.tables import SecurityServiceTable
+from manila_ui.dashboards.admin.shares.tables import ShareNetworkTable
+from manila_ui.dashboards.admin.shares.tables import ShareServerTable
+from manila_ui.dashboards.admin.shares.tables import ShareTypesTable
+from manila_ui.dashboards.admin.shares import utils
 
 
 class SnapshotsTab(tabs.TableTab):

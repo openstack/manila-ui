@@ -26,14 +26,10 @@ from horizon import exceptions
 from horizon import forms
 from horizon import tabs
 
-from openstack_dashboard.api import manila
-from openstack_dashboard.dashboards.admin.shares \
-    import forms as project_forms
-from openstack_dashboard.dashboards.admin.shares \
-    import tabs as project_tabs
-
-from openstack_dashboard.dashboards.project.shares.shares \
-    import views as share_views
+from manila_ui.api import manila
+from manila_ui.dashboards.admin.shares import forms as project_forms
+from manila_ui.dashboards.admin.shares import tabs as project_tabs
+from manila_ui.dashboards.project.shares.shares import views as share_views
 
 
 class IndexView(tabs.TabbedTableView, share_views.ShareTableMixIn):
@@ -107,7 +103,7 @@ class ShareServDetail(tabs.TabView):
             share_serv.shares_list = shares_list
             if not hasattr(share_serv, 'share_network_id'):
                 share_serv.share_network_id = None
-                                                  
+
         except Exception:
             redirect = reverse('horizon:project:shares:index')
             exceptions.handle(self.request,

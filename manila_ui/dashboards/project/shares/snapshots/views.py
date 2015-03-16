@@ -22,10 +22,10 @@ from horizon import forms
 from horizon import tabs
 from horizon.utils import memoized
 
-from openstack_dashboard.api import manila
-from openstack_dashboard.dashboards.project.shares.snapshots import forms \
+from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.snapshots import forms \
     as snapshot_forms
-from openstack_dashboard.dashboards.project.shares.snapshots\
+from manila_ui.dashboards.project.shares.snapshots\
     import tabs as snapshot_tabs
 from openstack_dashboard.usage import quotas
 

@@ -16,11 +16,11 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import tabs
 
-from openstack_dashboard.api import manila
+from manila_ui.api import manila
 
-from openstack_dashboard.dashboards.project.shares.shares \
+from manila_ui.dashboards.project.shares.shares \
     import tables as share_tables
-from openstack_dashboard.dashboards import utils
+from manila_ui.dashboards import utils
 
 
 class SharesTab(tabs.TableTab):

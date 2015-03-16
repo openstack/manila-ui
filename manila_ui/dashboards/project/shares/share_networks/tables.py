@@ -22,7 +22,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
 
-from openstack_dashboard.api import manila
+from manila_ui.api import manila
+
 from openstack_dashboard.api import neutron
 from openstack_dashboard.usage import quotas
 

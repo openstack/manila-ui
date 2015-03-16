@@ -16,9 +16,9 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import tabs
 
-from openstack_dashboard.api import manila
+from manila_ui.api import manila
 
-from openstack_dashboard.dashboards.project.shares.security_services \
+from manila_ui.dashboards.project.shares.security_services \
     import tables as security_services_tables
 
 

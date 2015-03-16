@@ -28,12 +28,12 @@ from horizon import tables
 from horizon import tabs
 from horizon.utils import memoized
 
-from openstack_dashboard.api import manila
-from openstack_dashboard.dashboards.project.shares.shares import forms \
+from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.shares import forms \
     as share_form
-from openstack_dashboard.dashboards.project.shares.shares \
+from manila_ui.dashboards.project.shares.shares \
     import tables as shares_tables
-from openstack_dashboard.dashboards.project.shares.shares \
+from manila_ui.dashboards.project.shares.shares \
     import tabs as shares_tabs
 from openstack_dashboard.usage import quotas
 
