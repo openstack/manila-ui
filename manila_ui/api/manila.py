@@ -97,8 +97,9 @@ def share_rules_list(request, share_id):
     return manilaclient(request).shares.access_list(share_id)
 
 
-def share_allow(request, share_id, access_type, access):
-    return manilaclient(request).shares.allow(share_id, access_type, access)
+def share_allow(request, share_id, access_type, access_to, access_level):
+    return manilaclient(request).shares.allow(
+        share_id, access_type, access_to, access_level)
 
 
 def share_deny(request, share_id, rule_id):

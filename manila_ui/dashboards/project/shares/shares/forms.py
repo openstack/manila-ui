@@ -284,23 +284,28 @@ class UpdateMetadataForm(forms.SelfHandlingForm):
 
 
 class AddRule(forms.SelfHandlingForm):
-    type = forms.ChoiceField(label=_("Type"),
-                             required=True,
-                             choices=(('ip', 'ip'), ('user', 'user')))
-    access_to = forms.CharField(label=_("Access To"), max_length="255",
-                                required=True)
+    access_type = forms.ChoiceField(
+        label=_("Access Type"), required=True,
+        choices=(('ip', 'ip'), ('user', 'user'), ('cert', 'cert')))
+    access_level = forms.ChoiceField(
+        label=_("Access Level"), required=True,
+        choices=(('rw', 'read-write'), ('ro', 'read-only'),))
+    access_to = forms.CharField(
+        label=_("Access To"), max_length="255", required=True)
 
     def handle(self, request, data):
         share_id = self.initial['share_id']
         try:
-            manila.share_allow(request, share_id, access=data['access_to'],
-                               access_type=data['type'])
+            manila.share_allow(
+                request, share_id,
+                access_to=data['access_to'],
+                access_type=data['access_type'],
+                access_level=data['access_level'])
             message = _('Creating rule for "%s"') % data['access_to']
             messages.success(request, message)
             return True
         except Exception:
             redirect = reverse("horizon:project:shares:manage_rules",
                                args=[self.initial['share_id']])
-            exceptions.handle(request,
-                              _('Unable to add rule.'),
-                              redirect=redirect)
+            exceptions.handle(
+                request, _('Unable to add rule.'), redirect=redirect)
