@@ -249,8 +249,13 @@ class SharesTable(SharesTableBase):
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:project:shares:detail")
-    proto = tables.Column("share_proto",
-                          verbose_name=_("Protocol"))
+    visibility = tables.Column(
+        "is_public", verbose_name=_("Visibility"),
+        help_text=("Whether this share visible to all tenants (public) or "
+                   "only for owner (private)."),
+        filters=(lambda d: 'public' if d is True else 'private', ),
+    )
+    proto = tables.Column("share_proto", verbose_name=_("Protocol"))
     share_network = tables.Column("share_network",
                                   verbose_name=_("Share Network"),
                                   empty_value="-")

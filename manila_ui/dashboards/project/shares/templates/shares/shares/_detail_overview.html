@@ -26,6 +26,12 @@
     {% url 'horizon:project:shares:snapshot-detail' share.snapshot_id as snapshot_url%}
     <dd><a href="{{ snapshot_url }}">{{ share.snapshot_id }}</a></dd>
     {% endif %}
+    <dt>{% trans "Visibility" %}</dt>
+    {% if share.is_public == True %}
+    <dd>{{ 'public' }}</dd>
+    {% else %}
+    <dd>{{ 'private' }}</dd>
+    {% endif %}
   </dl>
 </div>
 

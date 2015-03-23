@@ -122,8 +122,10 @@ class SharesTable(shares_tables.SharesTable):
         row_class = shares_tables.UpdateRow
         table_actions = (shares_tables.DeleteShare, SharesFilterAction)
         row_actions = (shares_tables.DeleteShare,)
-        columns = ('tenant', 'host', 'name', 'size', 'status', 'share_type',
-                   'protocol', 'share_server')
+        columns = (
+            'tenant', 'host', 'name', 'size', 'status', 'visibility',
+            'share_type', 'protocol', 'share_server',
+        )
 
 
 class SnapshotShareNameColumn(tables.Column):

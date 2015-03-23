@@ -60,6 +60,9 @@ class CreateForm(forms.SelfHandlingForm):
             data_attrs=('size', 'name'),
             transform=lambda x: "%s (%sGB)" % (x.name, x.size)),
         required=False)
+    is_public = forms.BooleanField(
+        label=_("Make visible for all"), required=False,
+        help_text=("If set then all tenants will be able to see this share."))
 
     def __init__(self, request, *args, **kwargs):
         super(CreateForm, self).__init__(request, *args, **kwargs)
@@ -214,6 +217,7 @@ class CreateForm(forms.SelfHandlingForm):
                                         share_network=share_network,
                                         snapshot_id=snapshot_id,
                                         share_type=data['share_type'],
+                                        is_public=data['is_public'],
                                         metadata=metadata)
             message = _('Creating share "%s"') % data['name']
             messages.success(request, message)
@@ -235,13 +239,20 @@ class UpdateForm(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Share Name"))
     description = forms.CharField(widget=forms.Textarea,
                                   label=_("Description"), required=False)
+    is_public = forms.ChoiceField(
+        choices=((None, 'Do not change share visibility'),
+                 (False, "Make it 'Private'"), (True, "Make it 'Public'")),
+        label=_("Visibility"), required=False,
+        widget=forms.Select(
+            attrs={'class': 'switched','data-slug': 'sharetype'}))
 
     def handle(self, request, data):
         share_id = self.initial['share_id']
         try:
             share = manila.share_get(self.request, share_id)
-            manila.share_update(request, share, data['name'],
-                                data['description'])
+            manila.share_update(
+                request, share, data['name'], data['description'],
+                is_public=data['is_public'])
             message = _('Updating share "%s"') % data['name']
             messages.success(request, message)
             return True

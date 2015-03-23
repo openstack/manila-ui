@@ -25,6 +25,7 @@ from __future__ import absolute_import
 import logging
 
 from django.conf import settings
+import six
 
 from manilaclient.v1 import client as manila_client
 from manilaclient.v1.contrib import list_extensions as manila_list_extensions
@@ -75,11 +76,12 @@ def share_get(request, share_id):
 
 
 def share_create(request, size, name, description, proto, snapshot_id=None,
-                 metadata=None, share_network=None, share_type=None):
+                 metadata=None, share_network=None, share_type=None,
+                 is_public=None):
     return manilaclient(request).shares.create(
         proto, size, name=name, description=description,
         share_network=share_network, snapshot_id=snapshot_id,
-        metadata=metadata, share_type=share_type,
+        metadata=metadata, share_type=share_type, is_public=is_public,
     )
 
 
@@ -87,9 +89,12 @@ def share_delete(request, share_id):
     return manilaclient(request).shares.delete(share_id)
 
 
-def share_update(request, share_id, name, description):
-    share_data = {'display_name': name,
-                  'display_description': description}
+def share_update(request, share_id, name, description, is_public=''):
+    share_data = {'display_name': name, 'display_description': description}
+    if not isinstance(is_public, six.string_types):
+        is_public = six.text_type(is_public)
+    if is_public and is_public.lower() != 'none':
+        share_data['is_public'] = is_public
     return manilaclient(request).shares.update(share_id, **share_data)
 
 
