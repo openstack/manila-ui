@@ -59,12 +59,19 @@ def parse_str_meta(meta_s):
 
 def metadata_to_str(metadata):
     meta_visible_limit = 4
+    text_length_limit = 25
     meta = []
     meta_keys = metadata.keys()
     meta_keys.sort()
     meta_keys = meta_keys[:meta_visible_limit]
     for k in meta_keys:
-        meta.append("%s=%s" % (k, metadata[k]))
+        k_shortenned = k
+        if len(k) > text_length_limit:
+            k_shortenned = k[:text_length_limit] + '...'
+        v = metadata[k]
+        if len(v) > text_length_limit:
+            v = v[:text_length_limit] + '...'
+        meta.append("%s = %s" % (k_shortenned, v))
     meta_str = "<br/>".join(meta)
     if len(metadata.keys()) > meta_visible_limit:
         meta_str += '...'
