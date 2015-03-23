@@ -17,8 +17,10 @@
     {% endif %}
     <dt>{% trans "Status" %}</dt>
     <dd>{{ share.status|capfirst }}</dd>
-    <dt>{% trans "Export location" %}</dt>
-    <dd>{{ share.export_location }}</dd>
+    <dt>{% trans "Export locations" %}</dt>
+    {% for el in share.export_locations %}
+    <dd>{{ el }}</dd>
+    {% endfor %}
     {% if share.snapshot_id %}
     <dt>{% trans "Snapshot ID" %}</dt>
     {% url 'horizon:project:shares:snapshot-detail' share.snapshot_id as snapshot_url%}
