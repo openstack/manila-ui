@@ -21,7 +21,8 @@
     <dd>{{ share.export_location }}</dd>
     {% if share.snapshot_id %}
     <dt>{% trans "Snapshot ID" %}</dt>
-    <dd>{{ share.snapshot_id }}</dd>
+    {% url 'horizon:project:shares:snapshot-detail' share.snapshot_id as snapshot_url%}
+    <dd><a href="{{ snapshot_url }}">{{ share.snapshot_id }}</a></dd>
     {% endif %}
   </dl>
 </div>
@@ -40,7 +41,8 @@
     {% endif %}
     {% if share.share_network_id %}
     <dt>{% trans "Share network" %}</dt>
-    <dd>{{ share.share_network_id }}</dd>
+    {% url 'horizon:project:shares:share_network_detail' share.share_network_id as sn_url%}
+    <dd><a href="{{ sn_url }}">{{ share.share_network_id }}</a></dd>
     {% endif %}
     <dt>{% trans "Created" %}</dt>
     <dd>{{ share.created_at|parse_date }}</dd>
