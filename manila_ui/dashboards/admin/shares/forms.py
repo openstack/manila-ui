@@ -41,11 +41,16 @@ class CreateShareType(forms.SelfHandlingForm):
     extra_specs = forms.CharField(
         required=False, label=_("Extra specs"),
         widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
+    is_public = forms.BooleanField(
+        label=_("Public"), required=False, initial=True,
+        help_text=("Defines whether this share type is available for all "
+                   "or not. List of allowed tenants should be set "
+                   "separately."))
 
     def handle(self, request, data):
         try:
             spec_dhss = data['spec_driver_handles_share_servers'].lower()
-            allowed_dhss_values = ['true', 'false']
+            allowed_dhss_values = ('true', 'false')
             if spec_dhss not in allowed_dhss_values:
                 msg = _("Improper value set to required extra spec "
                         "'spec_driver_handles_share_servers'. "
@@ -59,8 +64,13 @@ class CreateShareType(forms.SelfHandlingForm):
                 raise ValidationError(message=msg)
 
             share_type = manila.share_type_create(
-                request, data["name"], spec_dhss)
+                request, data["name"], spec_dhss, data["is_public"])
             if set_dict:
+                # NOTE(vponomaryov): remove following when
+                # bug #1435819 is fixed.
+                if "driver_handles_share_servers" not in set_dict.keys():
+                    set_dict["driver_handles_share_servers"] = spec_dhss
+
                 manila.share_type_set_extra_specs(
                     request, share_type.id, set_dict)
 

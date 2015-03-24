@@ -251,10 +251,12 @@ def share_type_get(request, share_type_id):
     return manilaclient(request).share_types.get(share_type_id)
 
 
-def share_type_create(request, name, spec_driver_handles_share_servers):
+def share_type_create(request, name, spec_driver_handles_share_servers,
+                      is_public=True):
     return manilaclient(request).share_types.create(
         name=name,
-        spec_driver_handles_share_servers=spec_driver_handles_share_servers)
+        spec_driver_handles_share_servers=spec_driver_handles_share_servers,
+        is_public=is_public)
 
 
 def share_type_delete(request, share_type_id):

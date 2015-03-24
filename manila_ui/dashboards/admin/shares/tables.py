@@ -73,6 +73,9 @@ class ShareTypesFilterAction(tables.FilterAction):
 class ShareTypesTable(tables.DataTable):
     name = tables.Column("name", verbose_name=_("Name"))
     extra_specs = tables.Column("extra_specs", verbose_name=_("Extra specs"), )
+    visibility = tables.Column(
+        "is_public", verbose_name=_("Visibility"),
+        filters=(lambda d: 'public' if d is True else 'private', ),)
 
     def get_object_display(self, share_type):
         return share_type.name
