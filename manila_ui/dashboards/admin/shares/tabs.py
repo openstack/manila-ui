@@ -79,7 +79,7 @@ class SharesTab(tabs.TableTab):
 
 class ShareTypesTab(tabs.TableTab):
     table_classes = (ShareTypesTable, )
-    name = _("Share types")
+    name = _("Share Types")
     slug = "share_types_tab"
     template_name = "horizon/common/_detail_table.html"
 
