@@ -277,6 +277,20 @@ def share_type_unset_extra_specs(request, share_type_id, key):
         share_type_id).unset_keys(key)
 
 
+def share_type_access_list(request, share_type_id):
+    return manilaclient(request).share_type_access.list(share_type_id)
+
+
+def share_type_access_add(request, share_type_id, project_id):
+    return manilaclient(request).share_type_access.add_project_access(
+        share_type_id, project_id)
+
+
+def share_type_access_remove(request, share_type_id, project_id):
+    return manilaclient(request).share_type_access.remove_project_access(
+        share_type_id, project_id)
+
+
 def tenant_absolute_limits(request):
     limits = manilaclient(request).limits.get().absolute
     limits_dict = {}

@@ -1,0 +1,60 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block form_id %}{% endblock %}
+{% block form_action %}{% url 'horizon:admin:shares:manage_share_type_access' share_type.id %}{% endblock %}
+
+{% block modal_id %}add_security_service_modal{% endblock %}
+{% block modal-header %}{% trans "Manage Share Type Access" %}{% endblock %}
+
+
+{% block modal-body %}
+<div class="left">
+  <fieldset>
+  {% include "horizon/common/_form_fields.html" %}
+  </fieldset>
+</div>
+<div class="right">
+  <h3>{% trans "Description" %}:</h3>
+  <p>{% blocktrans %}
+    Placeholder for description of share type access managing form.
+    {% endblocktrans %}</p>
+</div>
+    <table class="table-fixed" id="projectListSortContainer">
+  <tbody>
+    <tr>
+      <td class="actions">
+        <label id="selected_project_label">{% trans "Selected Projects" %}</label>
+        <ul id="selected_project" class="projectlist">
+        </ul>
+        <label>{% trans "Available projects" %}</label>
+        <ul id="available_project" class="projectlist">
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table-fixed" id="projectListIdContainer">
+  <tbody>
+    <tr>
+      <td class="actions">
+          <div id="projectListId">
+            {% include "horizon/common/_form_fields.html" %}
+          </div>
+      </td>
+      <td class="help_text">
+          {{ step.get_help_text }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+{% endblock %}
+
+{% block modal-footer %}
+  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Submit" %}" />
+  <a href="{% url 'horizon:admin:shares:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
+{% endblock %}

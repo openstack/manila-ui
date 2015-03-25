@@ -48,6 +48,25 @@ class DeleteShareType(tables.DeleteAction):
         manila.share_type_delete(request, obj_id)
 
 
+class ManageShareTypeAccess(tables.LinkAction):
+    name = "manage"
+    verbose_name = _("Manage Share Type Access")
+    url = "horizon:admin:shares:manage_share_type_access"
+    classes = ("ajax-modal", "btn-create")
+    policy_rules = (("share", "share_extension:share_type_access"),)
+
+    def allowed(self, request, obj_id):
+        st = manila.share_type_get(request, obj_id)
+        # Enable it only for private share types
+        return not st.is_public
+
+    def get_policy_target(self, request, datum=None):
+        project_id = None
+        if datum:
+            project_id = getattr(datum, "os-share-tenant-attr:tenant_id", None)
+        return {"project_id": project_id}
+
+
 class UpdateShareType(tables.LinkAction):
     name = "update share type"
     verbose_name = _("Update Share Type")
@@ -88,7 +107,10 @@ class ShareTypesTable(tables.DataTable):
         verbose_name = _("Share Types")
         table_actions = (CreateShareType, DeleteShareType,
                          ShareTypesFilterAction, )
-        row_actions = (UpdateShareType, DeleteShareType, )
+        row_actions = (
+            UpdateShareType, DeleteShareType,
+            ManageShareTypeAccess,
+        )
 
 
 class SharesFilterAction(tables.FilterAction):

@@ -25,11 +25,13 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import forms
 from horizon import tabs
+from horizon import workflows
 
 from manila_ui.api import manila
 from manila_ui.dashboards.admin.shares import forms as project_forms
 from manila_ui.dashboards.admin.shares import tabs as project_tabs
 from manila_ui.dashboards.project.shares.shares import views as share_views
+import manila_ui.dashboards.admin.shares.workflows as share_workflows
 from manila_ui.utils import filters
 
 filters = (filters.get_item,)
@@ -51,6 +53,21 @@ class CreateShareTypeView(forms.ModalFormView):
 
     def get_success_url(self):
         return reverse(self.success_url)
+
+
+class ManageShareTypeAccessView(workflows.WorkflowView):
+    workflow_class = share_workflows.ManageShareTypeAccessWorkflow
+    template_name = "admin/shares/manage_share_type_access.html"
+    success_url = 'horizon:project:shares:index'
+
+    def get_initial(self):
+        return {'id': self.kwargs["share_type_id"]}
+
+    def get_context_data(self, **kwargs):
+        context = super(ManageShareTypeAccessView, self).get_context_data(
+            **kwargs)
+        context['id'] = self.kwargs['share_type_id']
+        return context
 
 
 class UpdateShareTypeView(forms.ModalFormView):
