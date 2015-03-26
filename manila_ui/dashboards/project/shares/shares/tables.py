@@ -30,7 +30,10 @@ from manila_ui.dashboards import utils
 from openstack_dashboard.usage import quotas
 
 
-DELETABLE_STATES = ("available", "error")
+DELETABLE_STATES = (
+    "AVAILABLE", "ERROR",
+    "MANAGE_ERROR",
+)
 
 
 class DeleteShare(tables.DeleteAction):
@@ -54,7 +57,7 @@ class DeleteShare(tables.DeleteAction):
 
     def allowed(self, request, share=None):
         if share:
-            return share.status in DELETABLE_STATES
+            return share.status.upper() in DELETABLE_STATES
         return True
 
 
@@ -138,10 +141,13 @@ def get_size(share):
 
 class SharesTableBase(tables.DataTable):
     STATUS_CHOICES = (
-        ("in-use", True),
-        ("available", True),
-        ("creating", None),
-        ("error", False),
+        ("available", True), ("AVAILABLE", True),
+        ("creating", None), ("CREATING", None),
+        ("deleting", None), ("DELETING", None),
+        ("error", False), ("ERROR", False),
+        ("error_deleting", False), ("ERROR_DELETING", False),
+        ("MANAGE_ERROR", False),
+        ("UNMANAGE_ERROR", False),
     )
     name = tables.Column("name",
                          verbose_name=_("Name"),

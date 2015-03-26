@@ -111,6 +111,25 @@ def share_deny(request, share_id, rule_id):
     return manilaclient(request).shares.deny(share_id, rule_id)
 
 
+def share_manage(request, service_host, protocol, export_path,
+                 driver_options=None, share_type=None,
+                 name=None, description=None):
+    return manilaclient(request).shares.manage(
+        service_host=service_host,
+        protocol=protocol,
+        export_path=export_path,
+        driver_options=driver_options,
+        share_type=share_type,
+        name=name,
+        description=description,
+    )
+
+
+def share_unmanage(request, share):
+    # Param 'share' can be either string with ID or object with attr 'id'.
+    return manilaclient(request).shares.unmanage(share)
+
+
 def share_snapshot_get(request, snapshot_id):
     return manilaclient(request).share_snapshots.get(snapshot_id)
 
@@ -119,8 +138,16 @@ def share_snapshot_update(request, snapshot_id, **kwargs):
     return manilaclient(request).share_snapshots.update(snapshot_id, **kwargs)
 
 
-def share_snapshot_list(request):
-    return manilaclient(request).share_snapshots.list()
+def share_snapshot_list(request, detailed=True, search_opts=None,
+                        sort_key=None, sort_dir=None):
+    # Example of 'search_opts' value:
+    # {'share_id': 'id_of_existing_share'}
+    return manilaclient(request).share_snapshots.list(
+        detailed=detailed,
+        search_opts=search_opts,
+        sort_key=sort_key,
+        sort_dir=sort_dir,
+    )
 
 
 def share_snapshot_create(request, share_id, name=None,

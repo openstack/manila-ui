@@ -25,6 +25,7 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import forms
 from horizon import tabs
+from horizon.utils import memoized
 from horizon import workflows
 
 from manila_ui.api import manila
@@ -44,6 +45,57 @@ class IndexView(tabs.TabbedTableView, share_views.ShareTableMixIn):
 
 class DetailView(share_views.DetailView):
     template_name = "admin/shares/detail.html"
+
+
+class ManageShareView(forms.ModalFormView):
+    form_class = project_forms.ManageShare
+    template_name = 'admin/shares/manage_share.html'
+    modal_header = _("Manage Share")
+    form_id = "manage_share_modal"
+    submit_label = _("Manage")
+    success_url = reverse_lazy('horizon:admin:shares:index')
+    submit_url = reverse_lazy('horizon:admin:shares:manage')
+    cancel_url = reverse_lazy('horizon:admin:shares:index')
+
+    def get_context_data(self, **kwargs):
+        context = super(ManageShareView, self).get_context_data(**kwargs)
+        return context
+
+
+class UnmanageShareView(forms.ModalFormView):
+    form_class = project_forms.UnmanageShare
+    template_name = 'admin/shares/unmanage_share.html'
+    modal_header = _("Confirm Unmanage Share")
+    form_id = "unmanage_share_modal"
+    submit_label = _("Unmanage")
+    success_url = reverse_lazy('horizon:admin:shares:index')
+    submit_url = 'horizon:admin:shares:unmanage'
+    cancel_url = reverse_lazy('horizon:admin:shares:index')
+
+    def get_context_data(self, **kwargs):
+        context = super(UnmanageShareView, self).get_context_data(**kwargs)
+        args = (self.kwargs['share_id'],)
+        context['submit_url'] = reverse(self.submit_url, args=args)
+        return context
+
+    @memoized.memoized_method
+    def get_data(self):
+        try:
+            share_id = self.kwargs['share_id']
+            share = manila.share_get(self.request, share_id)
+        except Exception:
+            exceptions.handle(
+                self.request, _('Unable to retrieve volume details.'),
+                redirect=self.success_url)
+        return share
+
+    def get_initial(self):
+        share = self.get_data()
+        return {
+            'share_id': self.kwargs["share_id"],
+            'name': share.name,
+            'host': getattr(share, "host"),
+        }
 
 
 class CreateShareTypeView(forms.ModalFormView):

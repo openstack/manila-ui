@@ -1,0 +1,14 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+
+{% block modal-body-right %}
+  <h3>{% trans "Description:" %}</h3>
+  <p>{% blocktrans %}
+    When a share is "unmanaged", the share will no longer be visible within OpenStack.
+    Note that the share will not be deleted.
+    <br>
+    <br>
+    This is equivalent to the <tt>'manila unmanage'</tt> command.
+    {% endblocktrans %}
+  </p>
+{% endblock %}

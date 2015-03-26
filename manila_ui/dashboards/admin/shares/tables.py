@@ -24,8 +24,6 @@ from manila_ui.dashboards.project.shares.snapshots \
     import tables as snapshot_tables
 from openstack_dashboard.api import neutron
 
-DELETABLE_STATES = ("available", "error")
-
 
 def get_size(share):
     return _("%sGB") % share.size
@@ -65,6 +63,42 @@ class ManageShareTypeAccess(tables.LinkAction):
         if datum:
             project_id = getattr(datum, "os-share-tenant-attr:tenant_id", None)
         return {"project_id": project_id}
+
+
+class ManageShareAction(tables.LinkAction):
+    name = "manage"
+    verbose_name = _("Manage Share")
+    url = "horizon:admin:shares:manage"
+    classes = ("ajax-modal",)
+    icon = "plus"
+    policy_rules = (("share", "share_extension:share_manage"),)
+    ajax = True
+
+
+class UnmanageShareAction(tables.LinkAction):
+    name = "unmanage"
+    verbose_name = _("Unmanage Share")
+    url = "horizon:admin:shares:unmanage"
+    classes = ("ajax-modal",)
+    icon = "pencil"
+    policy_rules = (("share", "share_extension:share_unmanage"),)
+
+    def allowed(self, request, share=None):
+        if (not share or share.share_server_id or
+                share.status.upper() not in shares_tables.DELETABLE_STATES):
+            return False
+        try:
+            # TODO(vponomaryov): replace it with dedicated attr that says
+            # whether share has snapshots or not. Because existing approach is
+            # not scalable and causes need to make one separate request per
+            # each share that satisfies other criteria.
+            dependent_snapshots = manila.share_snapshot_list(
+                request, detailed=False, search_opts={'share_id': share.id})
+            return not dependent_snapshots
+        except Exception:
+            exceptions.handle(
+                request, _("Unable to retrieve snapshot data."))
+        return False
 
 
 class UpdateShareType(tables.LinkAction):
@@ -145,8 +179,15 @@ class SharesTable(shares_tables.SharesTable):
         verbose_name = _("Shares")
         status_columns = ["status"]
         row_class = shares_tables.UpdateRow
-        table_actions = (shares_tables.DeleteShare, SharesFilterAction)
-        row_actions = (shares_tables.DeleteShare,)
+        table_actions = (
+            shares_tables.DeleteShare,
+            ManageShareAction,
+            SharesFilterAction,
+        )
+        row_actions = (
+            shares_tables.DeleteShare,
+            UnmanageShareAction,
+        )
         columns = (
             'tenant', 'host', 'name', 'size', 'status', 'visibility',
             'share_type', 'protocol', 'share_server',
@@ -183,7 +224,7 @@ class DeleteSnapshot(tables.DeleteAction):
 
     def allowed(self, request, snapshot=None):
         if snapshot:
-            return snapshot.status in DELETABLE_STATES
+            return snapshot.status.upper() in shares_tables.DELETABLE_STATES
         return True
 
 

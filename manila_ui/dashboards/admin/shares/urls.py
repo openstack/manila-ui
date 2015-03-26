@@ -45,4 +45,7 @@ urlpatterns = patterns(
     url(r'^share_servers/(?P<share_server_id>[^/]+)$',
         views.ShareServDetail.as_view(),
         name='share_server_detail'),
+    url(r'^manage$', views.ManageShareView.as_view(), name='manage'),
+    url(r'^unmanage/(?P<share_id>[^/]+)$', views.UnmanageShareView.as_view(),
+        name='unmanage'),
 )
