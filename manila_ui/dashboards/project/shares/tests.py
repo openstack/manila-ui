@@ -17,8 +17,10 @@ import mock
 
 from mox import IsA  # noqa
 
+from manila_ui.api import manila as api_manila
+from manila_ui.dashboards.project.shares import test_data
+
 from openstack_dashboard import api
-from openstack_dashboard.dashboards.project.shares import test_data
 from openstack_dashboard.test import helpers as test
 from openstack_dashboard.usage import quotas
 
@@ -36,12 +38,12 @@ class SharesTests(test.TestCase):
                           test_data.active_share_network]
         security_services = [test_data.sec_service]
 
-        api.manila.share_list = mock.Mock(return_value=shares)
-        api.manila.share_snapshot_list = mock.Mock(return_value=snaps)
-        api.manila.share_network_list = mock.Mock(return_value=share_networks)
-        api.manila.security_service_list = mock.Mock(
+        api_manila.share_list = mock.Mock(return_value=shares)
+        api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
+        api_manila.share_network_list = mock.Mock(return_value=share_networks)
+        api_manila.security_service_list = mock.Mock(
             return_value=security_services)
-        api.manila.share_network_get = mock.Mock()
+        api_manila.share_network_get = mock.Mock()
         api.neutron.network_list = mock.Mock(return_value=[])
         api.neutron.subnet_list = mock.Mock(return_value=[])
         quotas.tenant_limit_usages = mock.Mock(

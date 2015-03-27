@@ -17,6 +17,7 @@ import mock
 
 from mox import IsA  # noqa
 
+from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 from openstack_dashboard import api
 from openstack_dashboard.test import helpers as test
@@ -37,12 +38,12 @@ class SharesTests(test.BaseAdminViewTests):
         security_services = [test_data.sec_service]
 
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api.manila.share_list = mock.Mock(return_value=shares)
-        api.manila.share_snapshot_list = mock.Mock(return_value=snaps)
-        api.manila.share_network_list = mock.Mock(return_value=share_networks)
-        api.manila.security_service_list = mock.Mock(
+        api_manila.share_list = mock.Mock(return_value=shares)
+        api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
+        api_manila.share_network_list = mock.Mock(return_value=share_networks)
+        api_manila.security_service_list = mock.Mock(
             return_value=security_services)
-        api.manila.share_network_get = mock.Mock()
+        api_manila.share_network_get = mock.Mock()
         api.neutron.network_list = mock.Mock(return_value=[])
         api.neutron.subnet_list = mock.Mock(return_value=[])
         quotas.tenant_limit_usages = mock.Mock(
@@ -60,14 +61,14 @@ class SharesTests(test.BaseAdminViewTests):
                     'shares__delete__%s' % share.id}
 
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api.manila.share_delete = mock.Mock()
-        api.manila.share_get = mock.Mock(
+        api_manila.share_delete = mock.Mock()
+        api_manila.share_get = mock.Mock(
             return_value=test_data.share)
-        api.manila.share_list = mock.Mock(
+        api_manila.share_list = mock.Mock(
             return_value=[test_data.share])
         url = reverse('horizon:admin:shares:index')
         res = self.client.post(url, formData)
-        api.manila.share_delete.assert_called_with(
+        api_manila.share_delete.assert_called_with(
             mock.ANY, test_data.share.id)
 
         self.assertRedirectsNoFollow(res, INDEX_URL)
@@ -81,15 +82,15 @@ class SharesTests(test.BaseAdminViewTests):
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
         api.neutron.network_list = mock.Mock(return_value=[])
         api.neutron.subnet_list = mock.Mock(return_value=[])
-        api.manila.share_network_delete = mock.Mock()
-        api.manila.share_network_get = mock.Mock(
+        api_manila.share_network_delete = mock.Mock()
+        api_manila.share_network_get = mock.Mock(
             return_value=[test_data.inactive_share_network])
-        api.manila.share_network_list = mock.Mock(
+        api_manila.share_network_list = mock.Mock(
             return_value=[test_data.active_share_network,
                           test_data.inactive_share_network])
         url = reverse('horizon:admin:shares:index')
         res = self.client.post(url, formData)
-        api.manila.share_network_delete.assert_called_with(
+        api_manila.share_network_delete.assert_called_with(
             mock.ANY, test_data.inactive_share_network.id)
 
         self.assertRedirectsNoFollow(res, INDEX_URL)
@@ -102,16 +103,16 @@ class SharesTests(test.BaseAdminViewTests):
                     'snapshots__delete__%s' % snapshot.id}
 
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api.manila.share_snapshot_delete = mock.Mock()
-        api.manila.share_snapshot_get = mock.Mock(
+        api_manila.share_snapshot_delete = mock.Mock()
+        api_manila.share_snapshot_get = mock.Mock(
             return_value=snapshot)
-        api.manila.share_snapshot_list = mock.Mock(
+        api_manila.share_snapshot_list = mock.Mock(
             return_value=[snapshot])
-        api.manila.share_list = mock.Mock(
+        api_manila.share_list = mock.Mock(
             return_value=[share])
         url = reverse('horizon:admin:shares:index')
         res = self.client.post(url, formData)
-        api.manila.share_snapshot_delete.assert_called_with(
+        api_manila.share_snapshot_delete.assert_called_with(
             mock.ANY, test_data.snapshot.id)
 
         self.assertRedirectsNoFollow(res, INDEX_URL)
@@ -123,11 +124,11 @@ class SharesTests(test.BaseAdminViewTests):
                     'security_services__delete__%s' % security_service.id}
 
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api.manila.security_service_delete = mock.Mock()
-        api.manila.security_service_list = mock.Mock(
+        api_manila.security_service_delete = mock.Mock()
+        api_manila.security_service_list = mock.Mock(
             return_value=[test_data.sec_service])
         url = reverse('horizon:admin:shares:index')
         res = self.client.post(url, formData)
-        api.manila.security_service_delete.assert_called_with(
+        api_manila.security_service_delete.assert_called_with(
             mock.ANY, test_data.sec_service.id)
         self.assertRedirectsNoFollow(res, INDEX_URL)

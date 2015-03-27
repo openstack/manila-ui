@@ -17,9 +17,10 @@ import mock
 
 from neutronclient.client import exceptions
 
-from manila_ui import api
+from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 
+from openstack_dashboard import api
 from openstack_dashboard.test import helpers as test
 
 
@@ -37,13 +38,13 @@ class ShareNetworksViewTests(test.TestCase):
                     }
         for net in self.networks.list():
             formData['subnet-choices-%s' % net.id] = net.subnets[0].id
-        api.manila.share_network_create = mock.Mock()
+        api_manila.share_network_create = mock.Mock()
         api.neutron.network_list = mock.Mock(return_value=self.networks.list())
         api.neutron.subnet_list = mock.Mock(return_value=self.subnets.list())
-        api.manila.share_network_create = mock.Mock()
+        api_manila.share_network_create = mock.Mock()
         url = reverse('horizon:project:shares:create_share_network')
         self.client.post(url, formData)
-        api.manila.share_network_create.assert_called_with(
+        api_manila.share_network_create.assert_called_with(
             mock.ANY, name=formData['name'], neutron_net_id=neutron_net_id,
             neutron_subnet_id=formData['subnet-choices-%s' % neutron_net_id],
             description=formData['description'])
@@ -54,15 +55,15 @@ class ShareNetworksViewTests(test.TestCase):
         formData = {'action':
                     'share_networks__delete__%s' % share_network.id}
 
-        api.manila.share_network_delete = mock.Mock()
-        api.manila.share_network_get = mock.Mock(
+        api_manila.share_network_delete = mock.Mock()
+        api_manila.share_network_get = mock.Mock(
             return_value=[test_data.inactive_share_network])
-        api.manila.share_network_list = mock.Mock(
+        api_manila.share_network_list = mock.Mock(
             return_value=[test_data.active_share_network,
                           test_data.inactive_share_network])
         url = reverse('horizon:project:shares:index')
         res = self.client.post(url, formData)
-        api.manila.share_network_delete.assert_called_with(
+        api_manila.share_network_delete.assert_called_with(
             mock.ANY, test_data.inactive_share_network.id)
 
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
@@ -70,8 +71,8 @@ class ShareNetworksViewTests(test.TestCase):
     def test_detail_view(self):
         share_net = test_data.active_share_network
         sec_service = test_data.sec_service
-        api.manila.share_network_get = mock.Mock(return_value=share_net)
-        api.manila.share_network_security_service_list = mock.Mock(
+        api_manila.share_network_get = mock.Mock(return_value=share_net)
+        api_manila.share_network_security_service_list = mock.Mock(
             return_value=[sec_service])
         network = self.networks.first()
         subnet = self.subnets.first()
@@ -97,8 +98,8 @@ class ShareNetworksViewTests(test.TestCase):
     def test_detail_view_network_not_found(self):
         share_net = test_data.active_share_network
         sec_service = test_data.sec_service
-        api.manila.share_network_get = mock.Mock(return_value=share_net)
-        api.manila.share_network_security_service_list = mock.Mock(
+        api_manila.share_network_get = mock.Mock(return_value=share_net)
+        api_manila.share_network_security_service_list = mock.Mock(
             return_value=[sec_service])
 
         def raise_neutron_exc(*args, **kwargs):
@@ -129,10 +130,10 @@ class ShareNetworksViewTests(test.TestCase):
     def test_update_share_network(self):
         share_net = test_data.inactive_share_network
 
-        api.manila.share_network_get = mock.Mock(return_value=share_net)
-        api.manila.share_network_update = mock.Mock()
-        api.manila.share_network_security_service_remove = mock.Mock()
-        api.manila.security_service_list = mock.Mock(
+        api_manila.share_network_get = mock.Mock(return_value=share_net)
+        api_manila.share_network_update = mock.Mock()
+        api_manila.share_network_security_service_remove = mock.Mock()
+        api_manila.security_service_list = mock.Mock(
             return_value=[test_data.sec_service])
 
         formData = {'method': 'UpdateForm',

@@ -15,7 +15,7 @@
 from django.core.urlresolvers import reverse
 import mock
 
-from manila_ui import api
+from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 from openstack_dashboard.test import helpers as test
 
@@ -35,12 +35,12 @@ class SnapshotSnapshotViewTests(test.TestCase):
                     'share_id': share.id
                     }
 
-        api.manila.share_snapshot_create = mock.Mock()
-        api.manila.share_get = mock.Mock(return_value=share)
+        api_manila.share_snapshot_create = mock.Mock()
+        api_manila.share_get = mock.Mock(return_value=share)
         url = reverse('horizon:project:shares:create_snapshot',
                       args=[share.id])
         self.client.post(url, formData)
-        api.manila.share_snapshot_create.assert_called_with(
+        api_manila.share_snapshot_create.assert_called_with(
             mock.ANY, share.id, formData['name'], formData['description'],
             force=False)
 
@@ -51,16 +51,16 @@ class SnapshotSnapshotViewTests(test.TestCase):
         formData = {'action':
                     'snapshots__delete__%s' % snapshot.id}
 
-        api.manila.share_snapshot_delete = mock.Mock()
-        api.manila.share_snapshot_get = mock.Mock(
+        api_manila.share_snapshot_delete = mock.Mock()
+        api_manila.share_snapshot_get = mock.Mock(
             return_value=snapshot)
-        api.manila.share_snapshot_list = mock.Mock(
+        api_manila.share_snapshot_list = mock.Mock(
             return_value=[snapshot])
-        api.manila.share_list = mock.Mock(
+        api_manila.share_list = mock.Mock(
             return_value=[share])
         url = reverse('horizon:project:shares:index')
         res = self.client.post(url, formData)
-        api.manila.share_snapshot_delete.assert_called_with(
+        api_manila.share_snapshot_delete.assert_called_with(
             mock.ANY, test_data.snapshot.id)
 
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
@@ -68,8 +68,8 @@ class SnapshotSnapshotViewTests(test.TestCase):
     def test_detail_view(self):
         snapshot = test_data.snapshot
         share = test_data.share
-        api.manila.snapshot_get = mock.Mock(return_value=snapshot)
-        api.manila.share_get = mock.Mock(return_value=share)
+        api_manila.snapshot_get = mock.Mock(return_value=snapshot)
+        api_manila.share_get = mock.Mock(return_value=share)
 
         url = reverse('horizon:project:shares:snapshot-detail',
                       args=[snapshot.id])
@@ -87,8 +87,8 @@ class SnapshotSnapshotViewTests(test.TestCase):
     def test_update_snapshot(self):
         snapshot = test_data.snapshot
 
-        api.manila.share_snapshot_get = mock.Mock(return_value=snapshot)
-        api.manila.share_snapshot_update = mock.Mock()
+        api_manila.share_snapshot_get = mock.Mock(return_value=snapshot)
+        api_manila.share_snapshot_update = mock.Mock()
 
         formData = {'method': 'UpdateForm',
                     'name': snapshot.name,
@@ -99,6 +99,6 @@ class SnapshotSnapshotViewTests(test.TestCase):
         res = self.client.post(url, formData)
         self.assertRedirectsNoFollow(
             res, SHARE_INDEX_URL + '?tab=share_tabs__snapshots_tab')
-        api.manila.share_snapshot_update.assert_called_once_with(
+        api_manila.share_snapshot_update.assert_called_once_with(
             mock.ANY, snapshot, display_name=formData['name'],
             display_description=formData['description'])

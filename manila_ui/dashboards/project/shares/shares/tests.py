@@ -15,7 +15,7 @@
 from django.core.urlresolvers import reverse
 import mock
 
-from manila_ui import api
+from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 from openstack_dashboard.test import helpers as test
 
@@ -36,12 +36,12 @@ class ShareViewTests(test.TestCase):
                     'type': 'NFS'
                     }
 
-        api.manila.share_create = mock.Mock()
-        api.manila.share_snapshot_list = mock.Mock(return_value=[])
-        api.manila.share_network_list = mock.Mock(return_value=share_nets)
+        api_manila.share_create = mock.Mock()
+        api_manila.share_snapshot_list = mock.Mock(return_value=[])
+        api_manila.share_network_list = mock.Mock(return_value=share_nets)
         url = reverse('horizon:project:shares:create')
         self.client.post(url, formData)
-        api.manila.share_create.assert_called_with(
+        api_manila.share_create.assert_called_with(
             mock.ANY, formData['size'], formData['name'],
             formData['description'], formData['type'], snapshot_id=None,
             share_network_id=share_net.id, metadata={})
@@ -60,15 +60,15 @@ class ShareViewTests(test.TestCase):
                     'snapshot': snapshot.id
                     }
 
-        api.manila.share_create = mock.Mock()
-        api.manila.share_snapshot_list = mock.Mock(
+        api_manila.share_create = mock.Mock()
+        api_manila.share_snapshot_list = mock.Mock(
             return_value=[snapshot])
-        api.manila.share_snapshot_get = mock.Mock(
+        api_manila.share_snapshot_get = mock.Mock(
             return_value=snapshot)
-        api.manila.share_network_list = mock.Mock(return_value=share_nets)
+        api_manila.share_network_list = mock.Mock(return_value=share_nets)
         url = reverse('horizon:project:shares:create')
         res = self.client.post(url, formData)
-        api.manila.share_create.assert_called_with(
+        api_manila.share_create.assert_called_with(
             mock.ANY, formData['size'], formData['name'],
             formData['description'], formData['type'],
             snapshot_id=snapshot.id,
@@ -87,15 +87,15 @@ class ShareViewTests(test.TestCase):
                     'type': 'NFS'
                     }
 
-        api.manila.share_create = mock.Mock()
-        api.manila.share_snapshot_list = mock.Mock(return_value=[])
-        api.manila.share_snapshot_get = mock.Mock(
+        api_manila.share_create = mock.Mock()
+        api_manila.share_snapshot_list = mock.Mock(return_value=[])
+        api_manila.share_snapshot_get = mock.Mock(
             return_value=snapshot)
-        api.manila.share_network_list = mock.Mock(return_value=share_nets)
+        api_manila.share_network_list = mock.Mock(return_value=share_nets)
         url = reverse('horizon:project:shares:create')
         url = url + '?snapshot_id=%s' % snapshot.id
         self.client.post(url, formData)
-        api.manila.share_create.assert_called_with(
+        api_manila.share_create.assert_called_with(
             mock.ANY, formData['size'], formData['name'],
             formData['description'], formData['type'], snapshot_id=None,
             share_network_id=share_net.id, metadata={})
@@ -106,14 +106,14 @@ class ShareViewTests(test.TestCase):
         formData = {'action':
                     'shares__delete__%s' % share.id}
 
-        api.manila.share_delete = mock.Mock()
-        api.manila.share_get = mock.Mock(
+        api_manila.share_delete = mock.Mock()
+        api_manila.share_get = mock.Mock(
             return_value=test_data.share)
-        api.manila.share_list = mock.Mock(
+        api_manila.share_list = mock.Mock(
             return_value=[test_data.share])
         url = reverse('horizon:project:shares:index')
         res = self.client.post(url, formData)
-        api.manila.share_delete.assert_called_with(
+        api_manila.share_delete.assert_called_with(
             mock.ANY, test_data.share.id)
 
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
@@ -122,9 +122,9 @@ class ShareViewTests(test.TestCase):
         share_net = test_data.active_share_network
         share = test_data.share
         rules = [test_data.ip_rule, test_data.user_rule]
-        api.manila.share_get = mock.Mock(return_value=share)
-        api.manila.share_network_get = mock.Mock(return_value=share_net)
-        api.manila.share_rules_list = mock.Mock(return_value=rules)
+        api_manila.share_get = mock.Mock(return_value=share)
+        api_manila.share_network_get = mock.Mock(return_value=share_net)
+        api_manila.share_rules_list = mock.Mock(return_value=rules)
 
         url = reverse('horizon:project:shares:detail',
                       args=[share.id])
@@ -147,8 +147,8 @@ class ShareViewTests(test.TestCase):
     def test_update_share(self):
         share = test_data.share
 
-        api.manila.share_get = mock.Mock(return_value=share)
-        api.manila.share_update = mock.Mock()
+        api_manila.share_get = mock.Mock(return_value=share)
+        api_manila.share_update = mock.Mock()
 
         formData = {'method': 'UpdateForm',
                     'name': share.name,
@@ -161,7 +161,7 @@ class ShareViewTests(test.TestCase):
     def test_list_rules(self):
         share = test_data.share
         rules = [test_data.ip_rule, test_data.user_rule]
-        api.manila.share_rules_list = mock.Mock(return_value=rules)
+        api_manila.share_rules_list = mock.Mock(return_value=rules)
 
         url = reverse('horizon:project:shares:manage_rules', args=[share.id])
         res = self.client.get(url)
@@ -171,13 +171,13 @@ class ShareViewTests(test.TestCase):
     def test_create_rule(self):
         share = test_data.share
         url = reverse('horizon:project:shares:rule_add', args=[share.id])
-        api.manila.share_get = mock.Mock(return_value=share)
-        api.manila.share_allow = mock.Mock()
+        api_manila.share_get = mock.Mock(return_value=share)
+        api_manila.share_allow = mock.Mock()
         formData = {'type': 'user',
                     'method': u'CreateForm',
                     'access_to': 'someuser'}
         res = self.client.post(url, formData)
-        api.manila.share_allow.assert_called_once_with(
+        api_manila.share_allow.assert_called_once_with(
             mock.ANY, share.id, access_type=formData['type'],
             access=formData['access_to'])
         self.assertRedirectsNoFollow(
@@ -190,12 +190,12 @@ class ShareViewTests(test.TestCase):
         formData = {'action':
                     'rules__delete__%s' % rule.id}
 
-        api.manila.share_deny = mock.Mock()
-        api.manila.share_get = mock.Mock(
+        api_manila.share_deny = mock.Mock()
+        api_manila.share_get = mock.Mock(
             return_value=test_data.share)
-        api.manila.share_rules_list = mock.Mock(
+        api_manila.share_rules_list = mock.Mock(
             return_value=[rule])
         url = reverse('horizon:project:shares:manage_rules', args=[share.id])
         self.client.post(url, formData)
-        api.manila.share_deny.assert_called_with(
+        api_manila.share_deny.assert_called_with(
             mock.ANY, test_data.share.id, rule.id)
