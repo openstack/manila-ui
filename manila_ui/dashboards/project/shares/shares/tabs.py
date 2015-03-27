@@ -47,6 +47,16 @@ class SharesTab(tabs.TableTab):
                     share.share_network_id
                 meta_str = utils.metadata_to_str(share.metadata)
                 share.metadata = mark_safe(meta_str)
+
+            snapshots = manila.share_snapshot_list(self.request, detailed=True)
+            share_ids_with_snapshots = []
+            for snapshot in snapshots:
+                share_ids_with_snapshots.append(snapshot.to_dict()['share_id'])
+            for share in shares:
+                if share.to_dict()['id'] in share_ids_with_snapshots:
+                    setattr(share, 'has_snapshot', True)
+                else:
+                    setattr(share, 'has_snapshot', False)
         except Exception:
             exceptions.handle(self.request,
                               _('Unable to retrieve share list.'))
