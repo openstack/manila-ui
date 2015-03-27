@@ -56,9 +56,12 @@ class DeleteShare(tables.DeleteAction):
             messages.error(request, msg)
 
     def allowed(self, request, share=None):
-        if share:
-            return share.status.upper() in DELETABLE_STATES
-        return True
+        if not share:
+            return False
+        elif hasattr(share, 'has_snapshot'):
+            return (not share.has_snapshot and
+                share.status.upper() in DELETABLE_STATES)
+        return share.status.upper() in DELETABLE_STATES
 
 
 class CreateShare(tables.LinkAction):

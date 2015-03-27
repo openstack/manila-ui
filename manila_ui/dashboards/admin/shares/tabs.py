@@ -42,6 +42,7 @@ class SnapshotsTab(tabs.TableTab):
                 snap.name = snap.id
 
     def get_snapshots_data(self):
+        snapshots = []
         try:
             snapshots = manila.share_snapshot_list(self.request)
             shares = manila.share_list(self.request)
@@ -52,9 +53,10 @@ class SnapshotsTab(tabs.TableTab):
         except Exception:
             msg = _("Unable to retrieve snapshot list.")
             exceptions.handle(self.request, msg)
-            return []
+
         # Gather our tenants to correlate against IDs
         utils.set_tenant_name_to_objects(self.request, snapshots)
+
         return snapshots
 
 
@@ -65,15 +67,24 @@ class SharesTab(tabs.TableTab):
     template_name = "horizon/common/_detail_table.html"
 
     def get_shares_data(self):
+        shares = []
         try:
-            shares = manila.share_list(self.request,
-                                       search_opts={'all_tenants': True})
+            shares = manila.share_list(self.request, search_opts={'all_tenants': True})
+            snapshots = manila.share_snapshot_list(self.request, detailed=True)
+            share_ids_with_snapshots = []
+            for snapshot in snapshots:
+                share_ids_with_snapshots.append(snapshot.to_dict()['share_id'])
+            for share in shares:
+                if share.to_dict()['id'] in share_ids_with_snapshots:
+                    setattr(share, 'has_snapshot', True)
+                else:
+                    setattr(share, 'has_snapshot', False)
         except Exception:
-            exceptions.handle(self.request,
-                              _('Unable to retrieve share list.'))
-            return []
+            exceptions.handle(self.request, _('Unable to retrieve share list.'))
+
         # Gather our tenants to correlate against IDs
         utils.set_tenant_name_to_objects(self.request, shares)
+
         return shares
 
 

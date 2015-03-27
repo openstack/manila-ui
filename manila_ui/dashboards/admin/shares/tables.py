@@ -87,17 +87,8 @@ class UnmanageShareAction(tables.LinkAction):
         if (not share or share.share_server_id or
                 share.status.upper() not in shares_tables.DELETABLE_STATES):
             return False
-        try:
-            # TODO(vponomaryov): replace it with dedicated attr that says
-            # whether share has snapshots or not. Because existing approach is
-            # not scalable and causes need to make one separate request per
-            # each share that satisfies other criteria.
-            dependent_snapshots = manila.share_snapshot_list(
-                request, detailed=False, search_opts={'share_id': share.id})
-            return not dependent_snapshots
-        except Exception:
-            exceptions.handle(
-                request, _("Unable to retrieve snapshot data."))
+        elif hasattr(share, 'has_snapshot'):
+            return not share.has_snapshot
         return False
 
 
