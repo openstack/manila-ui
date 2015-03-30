@@ -25,9 +25,6 @@ import mock
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 
-from mox import IsA  # noqa
-
-from openstack_dashboard import api
 from openstack_dashboard.test import helpers as test
 
 

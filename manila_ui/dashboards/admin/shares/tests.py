@@ -15,8 +15,6 @@
 from django.core.urlresolvers import reverse
 import mock
 
-from mox import IsA  # noqa
-
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 from openstack_dashboard import api
