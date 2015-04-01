@@ -48,9 +48,6 @@ class CreateForm(forms.SelfHandlingForm):
         label=_("Share Source"), required=False,
         widget=forms.Select(
             attrs={'class': 'switchable', 'data-slug': 'source'}))
-    metadata = forms.CharField(
-        label=_("Metadata"), required=False,
-        widget=forms.Textarea(attrs={'rows': 4}))
     snapshot = forms.ChoiceField(
         label=_("Use snapshot as a source"),
         widget=forms.fields.SelectWidget(
@@ -60,6 +57,9 @@ class CreateForm(forms.SelfHandlingForm):
             data_attrs=('size', 'name'),
             transform=lambda x: "%s (%sGB)" % (x.name, x.size)),
         required=False)
+    metadata = forms.CharField(
+        label=_("Metadata"), required=False,
+        widget=forms.Textarea(attrs={'rows': 4}))
     is_public = forms.BooleanField(
         label=_("Make visible for all"), required=False,
         help_text=("If set then all tenants will be able to see this share."))
