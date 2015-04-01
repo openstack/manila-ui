@@ -57,7 +57,7 @@ class AddProjectAction(workflows.MembershipAction):
 
     class Meta:
         name = _("Projects with access to share type")
-        slug = "add_project_to_share_type"
+        slug = "update_members"
 
     def handle(self, request, context):
         context.update({
