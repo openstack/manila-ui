@@ -44,7 +44,8 @@ class SnapshotsTab(tabs.TableTab):
     def get_snapshots_data(self):
         snapshots = []
         try:
-            snapshots = manila.share_snapshot_list(self.request)
+            snapshots = manila.share_snapshot_list(
+                self.request, search_opts={'all_tenants': True})
             shares = manila.share_list(self.request)
             share_names = dict([(share.id, share.name or share.id)
                                 for share in shares])
@@ -69,8 +70,10 @@ class SharesTab(tabs.TableTab):
     def get_shares_data(self):
         shares = []
         try:
-            shares = manila.share_list(self.request, search_opts={'all_tenants': True})
-            snapshots = manila.share_snapshot_list(self.request, detailed=True)
+            shares = manila.share_list(
+                self.request, search_opts={'all_tenants': True})
+            snapshots = manila.share_snapshot_list(
+                self.request, detailed=True, search_opts={'all_tenants': True})
             share_ids_with_snapshots = []
             for snapshot in snapshots:
                 share_ids_with_snapshots.append(snapshot.to_dict()['share_id'])
