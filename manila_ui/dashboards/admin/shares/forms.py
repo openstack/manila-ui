@@ -144,9 +144,10 @@ class UnmanageShare(forms.SelfHandlingForm):
 
 
 class CreateShareType(forms.SelfHandlingForm):
-    name = forms.CharField(max_length="255", label=_("Name"))
-    spec_driver_handles_share_servers = forms.CharField(
-        max_length="5", label=_("Driver handles share servers"))
+    name = forms.CharField(max_length="255", label=_("Name"), required=True)
+    spec_driver_handles_share_servers = forms.ChoiceField(
+        label=_("Driver handles share servers"), required=True,
+        choices=(('False', 'False'), ('True', 'True')))
     extra_specs = forms.CharField(
         required=False, label=_("Extra specs"),
         widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
