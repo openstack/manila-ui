@@ -38,7 +38,7 @@ ST_EXTRA_SPECS_FORM_ATTRS = {
 
 class ManageShare(forms.SelfHandlingForm):
     name = forms.CharField(
-        max_length=255, label=_("Share Name"), required=True,
+        max_length=255, label=_("Share Name"), required=False,
         help_text=_("Share name to be assigned"))
     description = forms.CharField(
         max_length=255, label=_("Description"), required=False,
