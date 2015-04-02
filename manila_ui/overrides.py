@@ -1,12 +1,26 @@
 import functools
 import sys
 
-from horizon import exceptions
+from django.utils.translation import ugettext_lazy as _
+
+import horizon
 
 from manila_ui.api import manila
 
-from openstack_dashboard.usage import quotas
 from openstack_dashboard.api import base
+from openstack_dashboard.dashboards.admin.defaults import tables as quota_tbl
+from openstack_dashboard.dashboards.admin.defaults import views \
+    as default_views
+from openstack_dashboard.dashboards.admin.defaults import workflows \
+    as default_workflows
+from openstack_dashboard.dashboards.identity.projects import workflows \
+    as project_workflows
+from openstack_dashboard.dashboards.identity.projects import views \
+    as project_views
+from openstack_dashboard.dashboards.project.overview import views \
+    as overview_views
+from openstack_dashboard.usage import base as usage_base
+from openstack_dashboard.usage import quotas
 
 
 def wrap(orig_func):
@@ -47,8 +61,13 @@ MANILA_QUOTA_FIELDS = (
     "gigabytes",
     "share_networks",
 )
+MANILA_QUOTA_NAMES = {
+    'shares': _('Shares'),
+    'share_networks': _('Shares Networks'),
+}
 
 quotas.QUOTA_FIELDS = quotas.QUOTA_FIELDS + MANILA_QUOTA_FIELDS
+
 
 def _get_manila_disabled_quotas(request):
     disabled_quotas = []
@@ -62,10 +81,13 @@ def _get_manila_quota_data(request, method_name, disabled_quotas=None,
                            tenant_id=None):
     if not tenant_id:
         tenant_id = request.user.tenant_id
+    if disabled_quotas is None:
+        disabled_quotas = _get_manila_disabled_quotas(request)
     if 'shares' not in disabled_quotas:
         return getattr(manila, method_name)(request, tenant_id)
     else:
         return None
+
 
 @wrap(quotas.get_default_quota_data)
 def get_default_quota_data(f, request, disabled_quotas=None, tenant_id=None):
@@ -132,6 +154,167 @@ def tenant_limit_usages(f, request):
             limits['totalSnapshotsUsed'] = len(snapshots)
         except Exception:
             msg = _("Unable to retrieve share limit information.")
-            exceptions.handle(request, msg)
+            horizon.exceptions.handle(request, msg)
 
     return limits
+
+
+@wrap(quota_tbl.get_quota_name)
+def get_quota_name(f, quota):
+    if quota.name in MANILA_QUOTA_NAMES:
+        return MANILA_QUOTA_NAMES.get(quota.name)
+    else:
+        return f(quota)
+
+
+#
+# Add manila fields to Admin/Defaults/Update Defaults
+#
+
+
+class ManilaUpdateDefaultQuotaAction(
+        default_workflows.UpdateDefaultQuotasAction):
+    shares = horizon.forms.IntegerField(min_value=-1, label=_("Shares"))
+    share_networks = horizon.forms.IntegerField(min_value=-1,
+                                                label=_("Share Networks"))
+
+    class Meta(object):
+        name = _("Default Quota")
+        slug = 'update_default_quotas'
+        help_text = _("From here you can update the default quotas "
+                      "(max limits).")
+
+
+class ManilaUpdateDefaultQuotasStep(default_workflows.UpdateDefaultQuotasStep):
+    action_class = ManilaUpdateDefaultQuotaAction
+    contributes = quotas.QUOTA_FIELDS
+
+
+class ManilaUpdateDefaultQuotas(default_workflows.UpdateDefaultQuotas):
+    default_steps = (ManilaUpdateDefaultQuotasStep,)
+
+    def handle(self, request, data):
+        try:
+            super(ManilaUpdateDefaultQuotas, self).handle(request, data)
+
+            if base.is_service_enabled(request, 'share'):
+                manila_data = dict([(key, data[key]) for key in
+                                    MANILA_QUOTA_FIELDS])
+                manila.default_quota_update(request, **manila_data)
+
+        except Exception:
+            horizon.exceptions.handle(request,
+                                      _('Unable to update default quotas.'))
+
+        return True
+
+
+default_views.UpdateDefaultQuotasView.workflow_class = \
+    ManilaUpdateDefaultQuotas
+
+#
+# Add manila fields to Identity/Projects/Modify Quotas
+#
+
+
+class ManilaUpdateProjectQuotaAction(
+        project_workflows.UpdateProjectQuotaAction):
+    shares = horizon.forms.IntegerField(min_value=-1, label=_("Shares"))
+    share_networks = horizon.forms.IntegerField(min_value=-1,
+                                                label=_("Share Networks"))
+
+    class Meta(object):
+        name = _("Quota")
+        slug = 'update_quotas'
+        help_text = _("Set maximum quotas for the project.")
+
+project_workflows.UpdateProjectQuota.action_class = \
+    ManilaUpdateProjectQuotaAction
+project_workflows.UpdateProjectQuota.contributes = quotas.QUOTA_FIELDS
+
+
+class ManilaUpdateProject(project_workflows.UpdateProject):
+    def handle(self, request, data):
+        try:
+            super(ManilaUpdateProject, self).handle(request, data)
+
+            if base.is_service_enabled(request, 'share'):
+                manila_data = dict([(key, data[key]) for key in
+                                    MANILA_QUOTA_FIELDS])
+                manila.tenant_quota_update(request,
+                                           data['project_id'],
+                                           **manila_data)
+
+        except Exception:
+            horizon.exceptions.handle(request,
+                                      _('Modified project information and '
+                                        'members, but unable to modify '
+                                        'project quotas.'))
+        return True
+
+project_views.UpdateProjectView.workflow_class = ManilaUpdateProject
+
+#
+# Add manila fields to Identity/Projects/Create Project
+#
+
+
+class ManilaCreateProjectQuotaAction(
+        project_workflows.CreateProjectQuotaAction):
+    shares = horizon.forms.IntegerField(min_value=-1, label=_("Shares"))
+    share_networks = horizon.forms.IntegerField(min_value=-1,
+                                                label=_("Share Networks"))
+
+    class Meta(object):
+        name = _("Quota")
+        slug = 'create_quotas'
+        help_text = _("Set maximum quotas for the project.")
+
+project_workflows.CreateProjectQuota.action_class = \
+    ManilaCreateProjectQuotaAction
+project_workflows.CreateProjectQuota.contributes = quotas.QUOTA_FIELDS
+
+
+class ManilaCreateProject(project_workflows.CreateProject):
+    def handle(self, request, data):
+        try:
+            super(ManilaCreateProject, self).handle(request, data)
+
+            if base.is_service_enabled(request, 'share'):
+                manila_data = dict([(key, data[key]) for key in
+                                    MANILA_QUOTA_FIELDS])
+                manila.tenant_quota_update(request,
+                                           self.object.id,
+                                           **manila_data)
+
+        except Exception:
+            horizon.exceptions.handle(request,
+                                      _('Unable to set project quotas.'))
+        return True
+
+project_views.CreateProjectView.workflow_class = ManilaCreateProject
+
+#
+# Add extra pie charts to Project/Compute Overview
+#
+
+
+class ManilaBaseUsage(usage_base.BaseUsage):
+
+    def get_manila_limits(self):
+        """Get share limits if manila is enabled."""
+        if not base.is_service_enabled(self.request, 'share'):
+            return
+        try:
+            self.limits.update(manila.tenant_absolute_limits(self.request))
+        except Exception:
+            msg = _("Unable to retrieve share limit information.")
+            horizon.exceptions.handle(self.request, msg)
+        return
+
+    def get_limits(self):
+        super(ManilaBaseUsage, self).get_limits()
+        self.get_manila_limits()
+
+overview_views.ProjectOverview.template_name = "usage.html"
+overview_views.ProjectOverview.usage_class = ManilaBaseUsage
