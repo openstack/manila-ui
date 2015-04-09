@@ -30,6 +30,9 @@ from manila_ui.api import manila
 from manila_ui.dashboards.admin.shares import forms as project_forms
 from manila_ui.dashboards.admin.shares import tabs as project_tabs
 from manila_ui.dashboards.project.shares.shares import views as share_views
+from manila_ui.utils import filters
+
+filters = (filters.get_item,)
 
 
 class IndexView(tabs.TabbedTableView, share_views.ShareTableMixIn):
