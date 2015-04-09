@@ -45,7 +45,7 @@ class SnapshotsTab(tabs.TableTab):
             msg = _("Unable to retrieve share snapshots list.")
             exceptions.handle(self.request, msg)
             return []
-        #Gather our tenants to correlate against IDs
+        # Gather our tenants to correlate against IDs
         return snapshots
 
 

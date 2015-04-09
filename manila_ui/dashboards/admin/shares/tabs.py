@@ -21,12 +21,12 @@ from horizon import tabs
 from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
-from manila_ui.dashboards.admin.shares.tables import SharesTable
-from manila_ui.dashboards.admin.shares.tables import SnapshotsTable
 from manila_ui.dashboards.admin.shares.tables import SecurityServiceTable
 from manila_ui.dashboards.admin.shares.tables import ShareNetworkTable
 from manila_ui.dashboards.admin.shares.tables import ShareServerTable
+from manila_ui.dashboards.admin.shares.tables import SharesTable
 from manila_ui.dashboards.admin.shares.tables import ShareTypesTable
+from manila_ui.dashboards.admin.shares.tables import SnapshotsTable
 from manila_ui.dashboards.admin.shares import utils
 
 
@@ -53,7 +53,7 @@ class SnapshotsTab(tabs.TableTab):
             msg = _("Unable to retrieve snapshot list.")
             exceptions.handle(self.request, msg)
             return []
-        #Gather our tenants to correlate against IDs
+        # Gather our tenants to correlate against IDs
         utils.set_tenant_name_to_objects(self.request, snapshots)
         return snapshots
 
@@ -72,7 +72,7 @@ class SharesTab(tabs.TableTab):
             exceptions.handle(self.request,
                               _('Unable to retrieve share list.'))
             return []
-        #Gather our tenants to correlate against IDs
+        # Gather our tenants to correlate against IDs
         utils.set_tenant_name_to_objects(self.request, shares)
         return shares
 
@@ -131,7 +131,7 @@ class ShareNetworkTab(tabs.TableTab):
             neutron_net_names = dict([(net.id, net.name) for net in
                                       neutron.network_list(self.request)])
             neutron_subnet_names = dict([(net.id, net.name) for net in
-                                      neutron.subnet_list(self.request)])
+                                        neutron.subnet_list(self.request)])
             for share in share_networks:
                 share.neutron_net = neutron_net_names.get(
                     share.neutron_net_id) or share.neutron_net_id

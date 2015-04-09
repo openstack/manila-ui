@@ -62,6 +62,7 @@ def timesince_sortable(dt):
     return mark_safe("<span data-seconds=\"%d\">%s</span>" %
                      (seconds, timesince(dt)))
 
+
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)

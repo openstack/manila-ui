@@ -15,7 +15,6 @@
 #    under the License.
 
 from django.core.urlresolvers import NoReverseMatch  # noqa
-from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
 from django.utils.translation import string_concat  # noqa
 from django.utils.translation import ugettext_lazy as _
@@ -25,7 +24,6 @@ from horizon import tables
 from manila_ui.api import manila
 
 from openstack_dashboard.api import neutron
-from openstack_dashboard.usage import quotas
 
 
 DELETABLE_STATES = ("INACTIVE", "ERROR")
@@ -51,7 +49,7 @@ class Delete(tables.DeleteAction):
     def allowed(self, request, obj=None):
         if obj:
             # NOTE: leave it True until statuses become used
-            #return obj.status in DELETABLE_STATES
+            # return obj.status in DELETABLE_STATES
             return True
         return True
 
@@ -64,8 +62,8 @@ class EditShareNetwork(tables.LinkAction):
     policy_rules = (("share", "share_network:update"),)
 
     def allowed(self, request, obj_id):
-        sn = manila.share_network_get(request, obj_id)
-        #return sn.status in EDITABLE_STATES
+        # sn = manila.share_network_get(request, obj_id)
+        # return sn.status in EDITABLE_STATES
         # NOTE: leave it always True, until statuses become used
         return True
 
@@ -102,7 +100,7 @@ class ShareNetworkTable(tables.DataTable):
     segmentation_id = tables.Column("segmentation_id",
                                     verbose_name=_("Segmentation Id"))
     # NOTE: disable status column until it become used
-    #status = tables.Column("status", verbose_name=_("Status"),
+    # status = tables.Column("status", verbose_name=_("Status"),
     #                       status=True,
     #                       status_choices=STATUS_CHOICES)
 
@@ -112,10 +110,10 @@ class ShareNetworkTable(tables.DataTable):
     def get_object_id(self, share_network):
         return str(share_network.id)
 
-    class Meta:
+    class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
         table_actions = (Create, Delete, )
-        #status_columns = ["status"]
+        # status_columns = ["status"]
         row_class = UpdateRow
         row_actions = (EditShareNetwork, Delete, )

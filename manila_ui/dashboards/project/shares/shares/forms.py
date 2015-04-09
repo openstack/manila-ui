@@ -30,7 +30,7 @@ from horizon.utils.memoized import memoized  # noqa
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
-#from openstack_dashboard.usage import quotas
+# from openstack_dashboard.usage import quotas
 
 
 class CreateForm(forms.SelfHandlingForm):
@@ -43,7 +43,7 @@ class CreateForm(forms.SelfHandlingForm):
     share_type = forms.ChoiceField(
         label=_("Share Type"), required=True,
         widget=forms.Select(
-            attrs={'class': 'switchable','data-slug': 'sharetype'}))
+            attrs={'class': 'switchable', 'data-slug': 'sharetype'}))
     share_source_type = forms.ChoiceField(
         label=_("Share Source"), required=False,
         widget=forms.Select(
@@ -82,9 +82,9 @@ class CreateForm(forms.SelfHandlingForm):
                     self.fields['share_type'].initial = orig_share.share_type
                 except Exception:
                     pass
-                self.fields['size'].help_text = _('Share size must be equal '
-                            'to or greater than the snapshot size (%sGB)') \
-                            % snapshot.size
+                self.fields['size'].help_text = _(
+                    'Share size must be equal to or greater than the snapshot '
+                    'size (%sGB)') % snapshot.size
                 del self.fields['share_source_type']
             except Exception:
                 exceptions.handle(request,
@@ -95,7 +95,7 @@ class CreateForm(forms.SelfHandlingForm):
             try:
                 snapshot_list = manila.share_snapshot_list(request)
                 snapshots = [s for s in snapshot_list
-                              if s.status == 'available']
+                             if s.status == 'available']
                 if snapshots:
                     source_type_choices.append(("snapshot",
                                                 _("Snapshot")))
@@ -106,12 +106,12 @@ class CreateForm(forms.SelfHandlingForm):
                     del self.fields['snapshot']
             except Exception:
                 exceptions.handle(request, _("Unable to retrieve "
-                        "share snapshots."))
+                                  "share snapshots."))
 
             if source_type_choices:
                 choices = ([('no_source_type',
                              _("No source, empty share"))] +
-                            source_type_choices)
+                           source_type_choices)
                 self.fields['share_source_type'].choices = choices
             else:
                 del self.fields['share_source_type']
@@ -129,7 +129,8 @@ class CreateForm(forms.SelfHandlingForm):
                     [(sn.id, sn.name or sn.id) for sn in share_networks])
                 sn_field_name = self.sn_field_name_prefix + st.name
                 sn_field = forms.ChoiceField(
-                    label=_("Share Network"), required=True, choices=sn_choices,
+                    label=_("Share Network"), required=True,
+                    choices=sn_choices,
                     widget=forms.Select(attrs={
                         'class': 'switched',
                         'data-switch-on': 'sharetype',
@@ -158,36 +159,36 @@ class CreateForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         try:
-            #usages = quotas.tenant_limit_usages(self.request)
-            #availableGB = usages['maxTotalShareGigabytes'] - \
+            # usages = quotas.tenant_limit_usages(self.request)
+            # availableGB = usages['maxTotalShareGigabytes'] - \
             #    usages['gigabytesUsed']
-            #availableVol = usages['maxTotalShares'] - usages['sharesUsed']
+            # availableVol = usages['maxTotalShares'] - usages['sharesUsed']
 
             snapshot_id = None
             source_type = data.get('share_source_type', None)
             share_network = data.get('share_network', None)
             if (data.get("snapshot", None) and
-                  source_type in [None, 'snapshot']):
+                    source_type in [None, 'snapshot']):
                 # Create from Snapshot
                 snapshot = self.get_snapshot(request,
                                              data["snapshot"])
                 snapshot_id = snapshot.id
                 if (data['size'] < snapshot.size):
-                    error_message = _('The share size cannot be less than '
-                        'the snapshot size (%sGB)') % snapshot.size
+                    error_message = _('The share size cannot be less than the '
+                                      'snapshot size (%sGB)') % snapshot.size
                     raise ValidationError(error_message)
             else:
                 if type(data['size']) is str:
                     data['size'] = int(data['size'])
             #
-            #if availableGB < data['size']:
+            # if availableGB < data['size']:
             #    error_message = _('A share of %(req)iGB cannot be created as '
             #                      'you only have %(avail)iGB of your quota '
             #                      'available.')
             #    params = {'req': data['size'],
             #              'avail': availableGB}
             #    raise ValidationError(error_message % params)
-            #elif availableVol <= 0:
+            # elif availableVol <= 0:
             #    error_message = _('You are already using all of your '
             #                      'available'
             #                      ' shares.')

@@ -38,7 +38,8 @@ class CreateShareType(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Name"))
     spec_driver_handles_share_servers = forms.CharField(
         max_length="5", label=_("Driver handles share servers"))
-    extra_specs = forms.CharField(required=False, label=_("Extra specs"),
+    extra_specs = forms.CharField(
+        required=False, label=_("Extra specs"),
         widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
 
     def handle(self, request, data):
@@ -86,7 +87,8 @@ class UpdateShareType(forms.SelfHandlingForm):
             es_str += "%s=%s\r\n" % (k, v)
         self.initial["extra_specs"] = es_str
 
-    extra_specs = forms.CharField(required=False, label=_("Extra specs"),
+    extra_specs = forms.CharField(
+        required=False, label=_("Extra specs"),
         widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
 
     def handle(self, request, data):
@@ -152,7 +154,7 @@ class CreateShareNetworkForm(forms.SelfHandlingForm):
     neutron_net_id = forms.ChoiceField(choices=(), label=_("Neutron Net ID"))
     neutron_subnet_id = forms.ChoiceField(choices=(),
                                           label=_("Neutron Subnet ID"))
-    #security_service = forms.MultipleChoiceField(
+    # security_service = forms.MultipleChoiceField(
     #    widget=forms.SelectMultiple,
     #    label=_("Security Service"))
     project = forms.ChoiceField(choices=(), label=_("Project"))
@@ -173,9 +175,9 @@ class CreateShareNetworkForm(forms.SelfHandlingForm):
                                                     choice in subnet_choices]
         tenants, has_more = keystone.tenant_list(request)
         self.fields['project'].choices = [(' ', ' ')] + \
-                                                   [(choice.id,
-                                                     choice.name) for
-                                                    choice in tenants]
+                                         [(choice.id,
+                                           choice.name) for
+                                          choice in tenants]
 
     def handle(self, request, data):
         try:

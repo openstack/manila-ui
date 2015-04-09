@@ -28,7 +28,8 @@ from manila_ui.dashboards.project.shares.snapshots\
 from manila_ui.dashboards.project.shares import views
 
 
-urlpatterns = patterns('openstack_dashboard.dashboards.project.shares.views',
+urlpatterns = patterns(
+    'openstack_dashboard.dashboards.project.shares.views',
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^create/$', shares_views.CreateView.as_view(), name='create'),
     url(r'^create_security_service$',

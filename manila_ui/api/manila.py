@@ -156,8 +156,8 @@ def share_network_get(request, share_net_id):
 
 
 def share_network_update(request, share_net_id, name=None, description=None):
-    return manilaclient(request).share_networks.update(share_net_id,
-        name=name, description=description)
+    return manilaclient(request).share_networks.update(
+        share_net_id, name=name, description=description)
 
 
 def share_network_delete(request, share_network_id):
@@ -165,7 +165,8 @@ def share_network_delete(request, share_network_id):
 
 
 def security_service_list(request, search_opts=None):
-    return manilaclient(request).security_services.list(detailed=True,
+    return manilaclient(request).security_services.list(
+        detailed=True,
         search_opts=search_opts)
 
 

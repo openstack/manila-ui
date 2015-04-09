@@ -33,8 +33,9 @@ from manila_ui.api import manila
 
 class CreateSnapshotForm(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Snapshot Name"))
-    description = forms.CharField(widget=forms.Textarea,
-            label=_("Description"), required=False)
+    description = forms.CharField(
+        widget=forms.Textarea,
+        label=_("Description"), required=False)
 
     def __init__(self, request, *args, **kwargs):
         super(CreateSnapshotForm, self).__init__(request, *args, **kwargs)
@@ -46,8 +47,7 @@ class CreateSnapshotForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         try:
-            share = manila.share_get(request,
-                                       data['share_id'])
+            share = manila.share_get(request, data['share_id'])
             force = False
             message = _('Creating share snapshot "%s".') % data['name']
             if share.status == 'in-use':
@@ -55,10 +55,10 @@ class CreateSnapshotForm(forms.SelfHandlingForm):
                 message = _('Forcing to create snapshot "%s" '
                             'from attached share.') % data['name']
             snapshot = manila.share_snapshot_create(request,
-                                                     data['share_id'],
-                                                     data['name'],
-                                                     data['description'],
-                                                     force=force)
+                                                    data['share_id'],
+                                                    data['name'],
+                                                    data['description'],
+                                                    force=force)
 
             messages.success(request, message)
             return snapshot

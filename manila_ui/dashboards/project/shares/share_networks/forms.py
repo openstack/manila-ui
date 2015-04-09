@@ -96,7 +96,7 @@ class Create(forms.SelfHandlingForm):
 class Update(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Share Name"))
     description = forms.CharField(widget=forms.Textarea,
-            label=_("Description"), required=False)
+                                  label=_("Description"), required=False)
 
     def handle(self, request, data, *args, **kwargs):
         share_net_id = self.initial['share_network_id']

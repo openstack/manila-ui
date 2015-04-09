@@ -39,7 +39,7 @@ class SnapshotSnapshotViewTests(test.TestCase):
         api.manila.share_get = mock.Mock(return_value=share)
         url = reverse('horizon:project:shares:create_snapshot',
                       args=[share.id])
-        res = self.client.post(url, formData)
+        self.client.post(url, formData)
         api.manila.share_snapshot_create.assert_called_with(
             mock.ANY, share.id, formData['name'], formData['description'],
             force=False)

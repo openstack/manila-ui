@@ -36,7 +36,7 @@ class UpdateShareNetworkInfoAction(workflows.Action):
         self.fields['name'].initial = share_network.name
         self.fields['description'].initial = share_network.description
 
-    class Meta:
+    class Meta(object):
         name = _("Share Network Info")
         help_text = _("From here you can update share network info. ")
         slug = "update-share_network_info"
@@ -83,7 +83,7 @@ class AddSecurityServiceAction(workflows.MembershipAction):
         self.fields[field_name].choices = sec_services_choices
         self.fields[field_name].initial = sec_services_initial
 
-    class Meta:
+    class Meta(object):
         name = _("Security services within share network")
         slug = "add_security_service"
 
@@ -125,7 +125,8 @@ class UpdateShareNetworkWorkflow(workflows.Workflow):
                                         name=context['name'])
             sec_services = manila.security_service_list(request, search_opts={
                 'share_network_id': context['id']})
-            sec_services_old = set([sec_service.id for sec_service in sec_services])
+            sec_services_old = set([sec_service.id
+                                   for sec_service in sec_services])
             sec_services_new = set(context['security_service'])
             for sec_service in sec_services_new - sec_services_old:
                 manila.share_network_security_service_add(request,

@@ -79,6 +79,7 @@ class UpdateShareTypeView(forms.ModalFormView):
             "extra_specs": share_type.extra_specs,
         }
 
+
 class ShareServDetail(tabs.TabView):
     tab_group_class = project_tabs.ShareServerDetailTabs
     template_name = 'admin/shares/detail_share_server.html'

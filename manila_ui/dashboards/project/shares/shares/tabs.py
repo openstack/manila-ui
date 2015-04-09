@@ -51,7 +51,7 @@ class SharesTab(tabs.TableTab):
             exceptions.handle(self.request,
                               _('Unable to retrieve share list.'))
             return []
-        #Gather our tenants to correlate against IDs
+        # Gather our tenants to correlate against IDs
         return shares
 
 

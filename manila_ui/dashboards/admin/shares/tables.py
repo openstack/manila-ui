@@ -80,7 +80,7 @@ class ShareTypesTable(tables.DataTable):
     def get_object_id(self, share_type):
         return str(share_type.id)
 
-    class Meta:
+    class Meta(object):
         name = "share_types"
         verbose_name = _("Share Types")
         table_actions = (CreateShareType, DeleteShareType,
@@ -115,7 +115,7 @@ class SharesTable(shares_tables.SharesTable):
                                  verbose_name=_("Share Server"),
                                  link=get_share_server_link)
 
-    class Meta:
+    class Meta(object):
         name = "shares"
         verbose_name = _("Shares")
         status_columns = ["status"]
@@ -188,7 +188,7 @@ class SnapshotsTable(tables.DataTable):
     def get_object_display(self, obj):
         return obj.name
 
-    class Meta:
+    class Meta(object):
         name = "snapshots"
         verbose_name = _("Snapshots")
         status_columns = ["status"]
@@ -217,7 +217,7 @@ class DeleteShareNetwork(tables.DeleteAction):
     def allowed(self, request, obj):
         if obj:
             # NOTE: set always True until statuses become used
-            #return obj.status in ["INACTIVE", "ERROR"]
+            # return obj.status in ["INACTIVE", "ERROR"]
             return True
         return True
 
@@ -257,7 +257,7 @@ class SecurityServiceTable(tables.DataTable):
     def get_object_id(self, security_service):
         return str(security_service.id)
 
-    class Meta:
+    class Meta(object):
         name = "security_services"
         verbose_name = _("Security Services")
         table_actions = (DeleteSecurityService,)
@@ -295,11 +295,11 @@ class ShareNetworkTable(tables.DataTable):
     neutron_net_id = tables.Column("neutron_net",
                                    verbose_name=_("Neutron Net"))
     neutron_subnet_id = tables.Column("neutron_subnet",
-                                   verbose_name=_("Neutron Subnet"))
+                                      verbose_name=_("Neutron Subnet"))
     segmentation_id = tables.Column("segmentation_id",
                                     verbose_name=_("Segmentation Id"))
     # NOTE: removed statuses until it become used
-    #status = tables.Column("status", verbose_name=_("Status"))
+    # status = tables.Column("status", verbose_name=_("Status"))
 
     def get_object_display(self, share_network):
         return share_network.name or str(share_network.id)
@@ -307,12 +307,13 @@ class ShareNetworkTable(tables.DataTable):
     def get_object_id(self, share_network):
         return str(share_network.id)
 
-    class Meta:
+    class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
         table_actions = (DeleteShareNetwork, )
         row_class = UpdateShareNetworkRow
         row_actions = (DeleteShareNetwork, )
+
 
 class SharesServersFilterAction(tables.FilterAction):
 
@@ -355,7 +356,7 @@ class ShareServerTable(tables.DataTable):
     def get_object_id(self, share_server):
         return six.text_type(share_server.id)
 
-    class Meta:
+    class Meta(object):
         name = "share_servers"
         status_columns = ["status"]
         verbose_name = _("Share Server")

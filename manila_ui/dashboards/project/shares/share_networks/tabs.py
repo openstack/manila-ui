@@ -36,7 +36,7 @@ class ShareNetworkTab(tabs.TableTab):
             neutron_net_names = dict([(net.id, net.name) for net in
                                       neutron.network_list(self.request)])
             neutron_subnet_names = dict([(net.id, net.name) for net in
-                                      neutron.subnet_list(self.request)])
+                                        neutron.subnet_list(self.request)])
             for sn in share_networks:
                 sn.neutron_net = neutron_net_names.get(
                     sn.neutron_net_id) or sn.neutron_net_id or "-"

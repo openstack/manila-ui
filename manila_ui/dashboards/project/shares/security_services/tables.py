@@ -58,7 +58,7 @@ class SecurityServiceTable(tables.DataTable):
     def get_object_id(self, security_service):
         return str(security_service.id)
 
-    class Meta:
+    class Meta(object):
         name = "security_services"
         verbose_name = _("Security Services")
         table_actions = (Create, Delete)

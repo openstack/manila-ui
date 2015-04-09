@@ -121,7 +121,8 @@ class UpdateRow(tables.Row):
         if not share.name:
             share.name = share_id
         if share.share_network_id:
-            share_net = manila.share_network_get(request, share.share_network_id)
+            share_net = manila.share_network_get(request,
+                                                 share.share_network_id)
             share.share_network = share_net.name or share_net.id
         else:
             share.share_network = None
@@ -229,7 +230,7 @@ class RulesTable(tables.DataTable):
     def get_object_display(self, obj):
         return obj.id
 
-    class Meta:
+    class Meta(object):
         name = "rules"
         verbose_name = _("Rules")
         status_columns = ["status"]
@@ -253,7 +254,7 @@ class SharesTable(SharesTableBase):
                                   verbose_name=_("Share Network"),
                                   empty_value="-")
 
-    class Meta:
+    class Meta(object):
         name = "shares"
         verbose_name = _("Shares")
         status_columns = ["status"]

@@ -42,7 +42,7 @@ class ShareNetworksViewTests(test.TestCase):
         api.neutron.subnet_list = mock.Mock(return_value=self.subnets.list())
         api.manila.share_network_create = mock.Mock()
         url = reverse('horizon:project:shares:create_share_network')
-        res = self.client.post(url, formData)
+        self.client.post(url, formData)
         api.manila.share_network_create.assert_called_with(
             mock.ANY, name=formData['name'], neutron_net_id=neutron_net_id,
             neutron_subnet_id=formData['subnet-choices-%s' % neutron_net_id],

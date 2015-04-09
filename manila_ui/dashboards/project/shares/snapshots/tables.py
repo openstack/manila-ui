@@ -157,7 +157,7 @@ class SnapshotsTable(tables.DataTable):
     def get_object_display(self, obj):
         return obj.name
 
-    class Meta:
+    class Meta(object):
         name = "snapshots"
         verbose_name = _("Snapshots")
         status_columns = ["status"]

@@ -21,7 +21,8 @@ from manila_ui.dashboards.project.shares.share_networks\
 from manila_ui.dashboards.project.shares.snapshots\
     import views as project_snapshot_views
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<share_id>[^/]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^snapshots/(?P<snapshot_id>[^/]+)$',

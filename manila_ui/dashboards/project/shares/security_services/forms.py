@@ -66,8 +66,7 @@ class Create(forms.SelfHandlingForm):
             security_service = manila.security_service_create(
                 request, **data)
             messages.success(request, _('Successfully created security '
-                                        'service: %s')
-                                      % data['name'])
+                                        'service: %s') % data['name'])
             return security_service
         except Exception:
             exceptions.handle(request,
@@ -77,8 +76,8 @@ class Create(forms.SelfHandlingForm):
 
 class Update(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Share Name"))
-    description = forms.CharField(widget=forms.Textarea,
-            label=_("Description"), required=False)
+    description = forms.CharField(
+        widget=forms.Textarea, label=_("Description"), required=False)
 
     def handle(self, request, data):
         sec_service_id = self.initial['sec_service_id']
@@ -87,8 +86,8 @@ class Update(forms.SelfHandlingForm):
                                            name=data['name'],
                                            description=data['description'])
 
-            message = _('Successfully updated security service "%s"')\
-                      % data['name']
+            message = _('Successfully updated security service '
+                        '"%s"') % data['name']
             messages.success(request, message)
             return True
         except Exception:
