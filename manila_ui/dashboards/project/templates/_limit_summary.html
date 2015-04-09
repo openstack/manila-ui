@@ -68,7 +68,7 @@
 
     <div class="d3_quota_bar">
       <div class="d3_pie_chart_usage" data-used="{% widthratio usage.limits.totalShareNetworksUsed usage.limits.maxTotalShareNetworks 100 %}"></div>
-      <strong>{% trans "Share-networks" %} <br />
+      <strong>{% trans "Share Networks" %} <br />
         {% blocktrans with used=usage.limits.totalShareNetworksUsed|intcomma available=usage.limits.maxTotalShareNetworks|quotainf|intcomma %}Used <span> {{ used }} </span> of <span> {{ available  }} </span>{% endblocktrans %}
       </strong>
     </div>
