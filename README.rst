@@ -17,10 +17,13 @@ Begin by cloning the Horizon and Manila UI repositories::
     git clone https://github.com/openstack/horizon
     git clone https://github.com/hp-storage/manila-ui
 
-Go into ``horizon`` and have pip create a virtual environment and install
-Horizon dependencies::
+Apply a patch to horizon since it currently fails to load plugins correctly::
 
     cd horizon
+    git review -d 128133
+
+Create a virtual environment and install Horizon dependencies::
+
     ./run_tests.sh -8
 
 Set up your ``local_settings.py`` file::
@@ -30,11 +33,6 @@ Set up your ``local_settings.py`` file::
 Open up the copied ``local_settings.py`` file in your preferred text
 editor. You will want to customize several settings:
 
--  ``OPENSTACK_HOST`` should be configured with the hostname of your
-   OpenStack server. Verify that the ``OPENSTACK_KEYSTONE_URL`` and
-   ``OPENSTACK_KEYSTONE_DEFAULT_ROLE`` settings are correct for your
-   environment. (They should be correct unless you modified your
-   OpenStack server to change them.)
 -  ``HORIZON_CONFIG`` requires, an entry, ``customization_module``,
    that refers to ``manila_ui.overrides``::
 
@@ -43,6 +41,12 @@ editor. You will want to customize several settings:
         'js_spec_files': [],
         'customization_module': 'manila_ui.overrides',
     }
+
+-  ``OPENSTACK_HOST`` should be configured with the hostname of your
+   OpenStack server. Verify that the ``OPENSTACK_KEYSTONE_URL`` and
+   ``OPENSTACK_KEYSTONE_DEFAULT_ROLE`` settings are correct for your
+   environment. (They should be correct unless you modified your
+   OpenStack server to change them.)
 
 
 Install Manila UI with all dependencies in your virtual environment::
