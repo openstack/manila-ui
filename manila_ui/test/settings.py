@@ -11,13 +11,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import importlib
 import os
-
-from django.utils.translation import ugettext_lazy as _
+import six
 
 from horizon.test.settings import *  # noqa
-from horizon.utils import secret_key as secret_key_utils
-
+from horizon.utils import secret_key
 from openstack_dashboard import exceptions
 
 
@@ -32,9 +31,9 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.abspath(os.path.join(ROOT_PATH, '..', 'static'))
 STATIC_URL = '/static/'
 
-SECRET_KEY = secret_key_utils.generate_or_read_from_file(
+SECRET_KEY = secret_key.generate_or_read_from_file(
     os.path.join(TEST_DIR, '.secret_key_store'))
-ROOT_URLCONF = 'manila_ui.test.urls'
+ROOT_URLCONF = 'openstack_dashboard.test.urls'
 TEMPLATE_DIRS = (
     os.path.join(TEST_DIR, 'templates'),
 )
@@ -55,10 +54,6 @@ INSTALLED_APPS = (
     'compressor',
     'horizon',
     'openstack_dashboard',
-    'openstack_dashboard.dashboards.project',
-    'openstack_dashboard.dashboards.admin',
-    'openstack_dashboard.dashboards.identity',
-    'openstack_dashboard.dashboards.settings',
     'manila_ui.dashboards',
 )
 
@@ -67,18 +62,36 @@ AUTHENTICATION_BACKENDS = ('openstack_auth.backend.KeystoneBackend',)
 SITE_BRANDING = 'OpenStack'
 
 HORIZON_CONFIG = {
-    'dashboards': ('project', 'admin', 'identity', 'settings'),
-    'default_dashboard': 'project',
     "password_validator": {
         "regex": '^.{8,18}$',
-        "help_text": _("Password must be between 8 and 18 characters.")
+        "help_text": "Password must be between 8 and 18 characters."
     },
     'user_home': None,
     'help_url': "http://docs.openstack.org",
     'exceptions': {'recoverable': exceptions.RECOVERABLE,
                    'not_found': exceptions.NOT_FOUND,
                    'unauthorized': exceptions.UNAUTHORIZED},
+    'angular_modules': [],
+    'js_files': [],
 }
+
+# Load the pluggable dashboard settings
+from openstack_dashboard.utils import settings
+dashboard_module_names = [
+    'openstack_dashboard.enabled',
+    'openstack_dashboard.local.enabled',
+]
+dashboard_modules = []
+# All dashboards must be enabled for the namespace to get registered, which is
+# needed by the unit tests.
+for module_name in dashboard_module_names:
+    module = importlib.import_module(module_name)
+    dashboard_modules.append(module)
+    for submodule in six.itervalues(settings.import_submodules(module)):
+        if getattr(submodule, 'DISABLED', None):
+            delattr(submodule, 'DISABLED')
+INSTALLED_APPS = list(INSTALLED_APPS)  # Make sure it's mutable
+settings.update_dashboards(dashboard_modules, HORIZON_CONFIG, INSTALLED_APPS)
 
 # Set to True to allow users to upload images to glance via Horizon server.
 # When enabled, a file form field will appear on the create image form.
@@ -90,8 +103,12 @@ AVAILABLE_REGIONS = [
     ('http://remote:5000/v2.0', 'remote'),
 ]
 
+OPENSTACK_API_VERSIONS = {
+    "identity": 3
+}
+
 OPENSTACK_KEYSTONE_URL = "http://localhost:5000/v2.0"
-OPENSTACK_KEYSTONE_DEFAULT_ROLE = "Member"
+OPENSTACK_KEYSTONE_DEFAULT_ROLE = "_member_"
 
 OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
 OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = 'test_domain'
@@ -103,6 +120,10 @@ OPENSTACK_KEYSTONE_BACKEND = {
     'can_edit_project': True,
     'can_edit_domain': True,
     'can_edit_role': True
+}
+
+OPENSTACK_CINDER_FEATURES = {
+    'enable_backup': True,
 }
 
 OPENSTACK_NEUTRON_NETWORK = {
@@ -152,3 +173,12 @@ NOSE_ARGS = ['--nocapture',
              '--cover-package=openstack_dashboard',
              '--cover-inclusive',
              '--all-modules']
+
+POLICY_FILES_PATH = os.path.join(ROOT_PATH, "conf")
+POLICY_FILES = {
+    'identity': 'keystone_policy.json',
+    'compute': 'nova_policy.json'
+}
+
+# The openstack_auth.user.Token object isn't JSON-serializable ATM
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
