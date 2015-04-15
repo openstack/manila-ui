@@ -51,3 +51,7 @@ ChangeLog
 *~
 .*.swp
 .*sw?
+
+# Unit test artifacts
+*.secret_key_store.lock
+.secret_key_store
