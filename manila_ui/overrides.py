@@ -1,3 +1,15 @@
+#    Licensed under the Apache License, Version 2.0 (the "License"); you may
+#    not use this file except in compliance with the License. You may obtain
+#    a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#    License for the specific language governing permissions and limitations
+#    under the License.
+
 import functools
 import sys
 
@@ -13,10 +25,10 @@ from openstack_dashboard.dashboards.admin.defaults import views \
     as default_views
 from openstack_dashboard.dashboards.admin.defaults import workflows \
     as default_workflows
-from openstack_dashboard.dashboards.identity.projects import workflows \
-    as project_workflows
 from openstack_dashboard.dashboards.identity.projects import views \
     as project_views
+from openstack_dashboard.dashboards.identity.projects import workflows \
+    as project_workflows
 from openstack_dashboard.dashboards.project.overview import views \
     as overview_views
 from openstack_dashboard.usage import base as usage_base
@@ -24,19 +36,19 @@ from openstack_dashboard.usage import quotas
 
 
 def wrap(orig_func):
-    """ decorator to wrap an existing function
-        Modified post from http://downgra.de/2009/05/16/python-monkey-patching/
-        to work with functions
-        e.g.
+    """decorator to wrap an existing function
+       Modified post from http://downgra.de/2009/05/16/python-monkey-patching/
+       to work with functions
+       e.g.
 
-        @wrap(quotas.tenant_limit_usages)
-        def tenant_limit_usages(orig, self):
-            limits = orig(request)
-            limits['disksUsed'] = 100
-            return limits
+       @wrap(quotas.tenant_limit_usages)
+       def tenant_limit_usages(orig, self):
+           limits = orig(request)
+           limits['disksUsed'] = 100
+           return limits
 
-        the first parameter of the new function is the the original,
-        overwritten function ('orig').
+       the first parameter of the new function is the the original,
+       overwritten function ('orig').
     """
 
     def outer(new_func):

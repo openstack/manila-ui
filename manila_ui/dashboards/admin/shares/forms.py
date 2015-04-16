@@ -98,7 +98,7 @@ class ManageShare(forms.SelfHandlingForm):
                 self.api_error(driver_options_error_msg)
                 return False
 
-            sh = manila.share_manage(
+            manila.share_manage(
                 request,
                 service_host=data['host'],
                 protocol=data['protocol'],

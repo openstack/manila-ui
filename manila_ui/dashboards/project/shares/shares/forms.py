@@ -244,7 +244,7 @@ class UpdateForm(forms.SelfHandlingForm):
                  (False, "Make it 'Private'"), (True, "Make it 'Public'")),
         label=_("Visibility"), required=False,
         widget=forms.Select(
-            attrs={'class': 'switched','data-slug': 'sharetype'}))
+            attrs={'class': 'switched', 'data-slug': 'sharetype'}))
 
     def handle(self, request, data):
         share_id = self.initial['share_id']
