@@ -28,62 +28,67 @@ from horizon import messages
 from horizon.utils.memoized import memoized  # noqa
 
 from manila_ui.api import manila
+from manila_ui.api import network
 
+from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 
 class Create(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Name"))
-    neutron_net_id = forms.ChoiceField(choices=(),
-                                       label=_("Neutron Net"),
-                                       widget=forms.Select(attrs={
-                                           'class': 'switchable',
-                                           'data-slug': 'net'
-                                       }))
-    description = forms.CharField(widget=forms.Textarea,
-                                  label=_("Description"), required=False)
+    description = forms.CharField(
+        widget=forms.Textarea, label=_("Description"), required=False)
 
     def __init__(self, request, *args, **kwargs):
-        super(Create, self).__init__(
-            request, *args, **kwargs)
-        net_choices = neutron.network_list(request)
-        self.fields['neutron_net_id'].choices = [(' ', ' ')] + \
-                                                [(choice.id, choice.name_or_id)
-                                                 for choice in net_choices]
-        for net in net_choices:
-            # For each network create switched choice field with
-            # the its subnet choices
-            subnet_field_name = 'subnet-choices-%s' % net.id
-            subnet_field = forms.ChoiceField(
-                choices=(), label=_("Neutron Subnet"),
-                widget=forms.Select(attrs={
-                    'class': 'switched',
-                    'data-switch-on': 'net',
-                    'data-net-%s' % net.id: _("Neutron Subnet")
-                }))
-            # Insert subnet choice field under network choice field
-            # (before Description field that has index 2)
-            self.fields.insert(2, subnet_field_name, subnet_field)
-            subnet_choices = neutron.subnet_list(request, network_id=net.id)
-            self.fields[subnet_field_name].choices = [(' ', ' ')] + \
-                                                     [(choice.id,
-                                                       choice.name_or_id) for
-                                                      choice in subnet_choices]
+        super(Create, self).__init__(request, *args, **kwargs)
+        self.neutron_enabled = base.is_service_enabled(request, 'network')
+        net_choices = network.network_list(request)
+        if self.neutron_enabled:
+            self.fields['neutron_net_id'] = forms.ChoiceField(
+                choices=[(' ', ' ')] + [(choice.id, choice.name_or_id)
+                                        for choice in net_choices],
+                label=_("Neutron Net"), widget=forms.Select(
+                    attrs={'class': 'switchable', 'data-slug': 'net'}))
+            for net in net_choices:
+                # For each network create switched choice field with
+                # the its subnet choices
+                subnet_field_name = 'subnet-choices-%s' % net.id
+                subnet_field = forms.ChoiceField(
+                    choices=(), label=_("Neutron Subnet"),
+                    widget=forms.Select(attrs={
+                        'class': 'switched',
+                        'data-switch-on': 'net',
+                        'data-net-%s' % net.id: _("Neutron Subnet")
+                    }))
+                # Insert subnet choice field under network choice field
+                # (before Description field that has index 3)
+                self.fields.insert(3, subnet_field_name, subnet_field)
+                subnet_choices = neutron.subnet_list(
+                    request, network_id=net.id)
+                self.fields[subnet_field_name].choices = [
+                    (' ', ' ')] + [(choice.id, choice.name_or_id)
+                                   for choice in subnet_choices]
+        else:
+            self.fields['nova_net_id'] = forms.ChoiceField(
+                choices=[(' ', ' ')] + [(choice.id, choice.name_or_id)
+                                        for choice in net_choices],
+                label=_("Nova Net"), widget=forms.Select(
+                    attrs={'class': 'switched', 'data-slug': 'net'}))
 
     def handle(self, request, data):
         try:
-            # Remove any new lines in the public key
-            share_net_id = data['neutron_net_id']
-            subnet_key = 'subnet-choices-%s' % share_net_id
-            send_data = {
-                'name': data['name'],
-            }
-            if subnet_key in data:
-                send_data['neutron_subnet_id'] = data[subnet_key]
-            if data['neutron_net_id'].strip():
-                send_data['neutron_net_id'] = data['neutron_net_id']
+            send_data = {'name': data['name']}
             if data['description']:
                 send_data['description'] = data['description']
+            share_net_id = data.get('neutron_net_id', data.get('nova_net_id'))
+            share_net_id = share_net_id.strip()
+            if self.neutron_enabled and share_net_id:
+                send_data['neutron_net_id'] = share_net_id
+                subnet_key = 'subnet-choices-%s' % share_net_id
+                if subnet_key in data:
+                    send_data['neutron_subnet_id'] = data[subnet_key]
+            elif not self.neutron_enabled and share_net_id:
+                send_data['nova_net_id'] = data['nova_net_id']
             share_network = manila.share_network_create(request, **send_data)
             messages.success(request, _('Successfully created share'
                                         ' network: %s') % send_data['name'])

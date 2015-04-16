@@ -18,20 +18,17 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import tabs
 
+from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
-from manila_ui.dashboards.admin.shares.tables import SecurityServiceTable
-from manila_ui.dashboards.admin.shares.tables import ShareNetworkTable
-from manila_ui.dashboards.admin.shares.tables import ShareServerTable
-from manila_ui.dashboards.admin.shares.tables import SharesTable
-from manila_ui.dashboards.admin.shares.tables import ShareTypesTable
-from manila_ui.dashboards.admin.shares.tables import SnapshotsTable
+from manila_ui.api import network
+from manila_ui.dashboards.admin.shares import tables
 from manila_ui.dashboards.admin.shares import utils
 
 
 class SnapshotsTab(tabs.TableTab):
-    table_classes = (SnapshotsTable, )
+    table_classes = (tables.SnapshotsTable, )
     name = _("Snapshots")
     slug = "snapshots_tab"
     template_name = "horizon/common/_detail_table.html"
@@ -62,7 +59,7 @@ class SnapshotsTab(tabs.TableTab):
 
 
 class SharesTab(tabs.TableTab):
-    table_classes = (SharesTable, )
+    table_classes = (tables.SharesTable, )
     name = _("Shares")
     slug = "shares_tab"
     template_name = "horizon/common/_detail_table.html"
@@ -83,7 +80,8 @@ class SharesTab(tabs.TableTab):
                 else:
                     setattr(share, 'has_snapshot', False)
         except Exception:
-            exceptions.handle(self.request, _('Unable to retrieve share list.'))
+            exceptions.handle(
+                self.request, _('Unable to retrieve share list.'))
 
         # Gather our tenants to correlate against IDs
         utils.set_tenant_name_to_objects(self.request, shares)
@@ -92,7 +90,7 @@ class SharesTab(tabs.TableTab):
 
 
 class ShareTypesTab(tabs.TableTab):
-    table_classes = (ShareTypesTable, )
+    table_classes = (tables.ShareTypesTable, )
     name = _("Share Types")
     slug = "share_types_tab"
     template_name = "horizon/common/_detail_table.html"
@@ -114,7 +112,7 @@ class ShareTypesTab(tabs.TableTab):
 
 
 class SecurityServiceTab(tabs.TableTab):
-    table_classes = (SecurityServiceTable,)
+    table_classes = (tables.SecurityServiceTable,)
     name = _("Security Services")
     slug = "security_services_tab"
     template_name = "horizon/common/_detail_table.html"
@@ -133,24 +131,38 @@ class SecurityServiceTab(tabs.TableTab):
 
 
 class ShareNetworkTab(tabs.TableTab):
-    table_classes = (ShareNetworkTable,)
     name = _("Share Networks")
     slug = "share_networks_tab"
     template_name = "horizon/common/_detail_table.html"
+
+    def __init__(self, tab_group, request):
+        if base.is_service_enabled(request, 'network'):
+            self.table_classes = (tables.NeutronShareNetworkTable,)
+        else:
+            self.table_classes = (tables.NovaShareNetworkTable,)
+        super(ShareNetworkTab, self).__init__(tab_group, request)
 
     def get_share_networks_data(self):
         try:
             share_networks = manila.share_network_list(
                 self.request, detailed=True, search_opts={'all_tenants': True})
-            neutron_net_names = dict([(net.id, net.name) for net in
-                                      neutron.network_list(self.request)])
-            neutron_subnet_names = dict([(net.id, net.name) for net in
-                                        neutron.subnet_list(self.request)])
-            for share in share_networks:
-                share.neutron_net = neutron_net_names.get(
-                    share.neutron_net_id) or share.neutron_net_id
-                share.neutron_subnet = neutron_subnet_names.get(
-                    share.neutron_subnet_id) or share.neutron_net_id
+            if base.is_service_enabled(self.request, 'network'):
+                neutron_net_names = dict((net.id, net.name) for net in
+                                         neutron.network_list(self.request))
+                neutron_subnet_names = dict((net.id, net.name) for net in
+                                            neutron.subnet_list(self.request))
+                for sn in share_networks:
+                    sn.neutron_net = neutron_net_names.get(
+                        sn.neutron_net_id) or sn.neutron_net_id or "-"
+                    sn.neutron_subnet = neutron_subnet_names.get(
+                        sn.neutron_subnet_id) or sn.neutron_subnet_id or "-"
+            else:
+                nova_net_names = dict(
+                    [(net.id, net.label)
+                     for net in network.network_list(self.request)])
+                for sn in share_networks:
+                    sn.nova_net = nova_net_names.get(
+                        sn.nova_net_id) or sn.nova_net_id or "-"
         except Exception:
             share_networks = []
             exceptions.handle(self.request,
@@ -160,7 +172,7 @@ class ShareNetworkTab(tabs.TableTab):
 
 
 class ShareServerTab(tabs.TableTab):
-    table_classes = (ShareServerTable,)
+    table_classes = (tables.ShareServerTable,)
     name = _("Share Servers")
     slug = "share_servers_tab"
     template_name = "horizon/common/_detail_table.html"

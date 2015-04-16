@@ -178,10 +178,10 @@ def share_network_list(request, detailed=False, search_opts=None):
 
 
 def share_network_create(request, neutron_net_id=None, neutron_subnet_id=None,
-                         name=None, description=None):
+                         nova_net_id=None, name=None, description=None):
     return manilaclient(request).share_networks.create(
         neutron_net_id=neutron_net_id, neutron_subnet_id=neutron_subnet_id,
-        name=name, description=description)
+        nova_net_id=nova_net_id, name=name, description=description)
 
 
 def share_network_get(request, share_net_id):

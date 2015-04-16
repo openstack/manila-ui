@@ -22,7 +22,9 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import tables
 
 from manila_ui.api import manila
+from manila_ui.api import network
 
+from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 
@@ -73,30 +75,56 @@ class UpdateRow(tables.Row):
 
     def get_data(self, request, share_net_id):
         share_net = manila.share_network_get(request, share_net_id)
-        share_net.neutron_net = neutron.network_get(
-            request, share_net.neutron_net_id).name_or_id
-        share_net.neutron_subnet = neutron.subnet_get(
-            request, share_net.neutron_subnet_id).name_or_id
+        neutron_enabled = base.is_service_enabled(request, 'network')
+        if neutron_enabled:
+            share_net.neutron_net = neutron.network_get(
+                request, share_net.neutron_net_id).name_or_id
+            share_net.neutron_subnet = neutron.subnet_get(
+                request, share_net.neutron_subnet_id).name_or_id
+        else:
+            share_net.nova_net = network.network_get(
+                request, share_net.nova_net_id).name_or_id
         return share_net
 
 
-class ShareNetworkTable(tables.DataTable):
+class NovaShareNetworkTable(tables.DataTable):
+    name = tables.Column("name", verbose_name=_("Name"),
+                         link="horizon:project:shares:share_network_detail")
+    nova_net = tables.Column("nova_net", verbose_name=_("Nova Net"))
+    ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
+    network_type = tables.Column("network_type",
+                                 verbose_name=_("Network Type"))
+    segmentation_id = tables.Column("segmentation_id",
+                                    verbose_name=_("Segmentation Id"))
+
+    def get_object_display(self, share_network):
+        return share_network.name or str(share_network.id)
+
+    def get_object_id(self, share_network):
+        return str(share_network.id)
+
+    class Meta(object):
+        name = "share_networks"
+        verbose_name = _("Share Networks")
+        table_actions = (Create, Delete, )
+        row_class = UpdateRow
+        row_actions = (EditShareNetwork, Delete, )
+
+
+class NeutronShareNetworkTable(tables.DataTable):
     STATUS_CHOICES = (
         ("ACTIVE", True),
         ("INACTIVE", True),
-        ("ACTIVATING", None),
-        ("DEACTIVATING", None),
         ("ERROR", False),
     )
     name = tables.Column("name", verbose_name=_("Name"),
                          link="horizon:project:shares:share_network_detail")
+    neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
+    neutron_subnet = tables.Column(
+        "neutron_subnet", verbose_name=_("Neutron Subnet"))
     ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
     network_type = tables.Column("network_type",
                                  verbose_name=_("Network Type"))
-    neutron_net = tables.Column("neutron_net",
-                                verbose_name=_("Neutron Net"))
-    neutron_subnet = tables.Column("neutron_subnet",
-                                   verbose_name=_("Neutron Subnet"))
     segmentation_id = tables.Column("segmentation_id",
                                     verbose_name=_("Segmentation Id"))
     # NOTE: disable status column until it become used

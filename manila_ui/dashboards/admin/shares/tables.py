@@ -19,10 +19,11 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import tables
 from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.share_networks \
+    import tables as share_networks_tables
 from manila_ui.dashboards.project.shares.shares import tables as shares_tables
 from manila_ui.dashboards.project.shares.snapshots \
     import tables as snapshot_tables
-from openstack_dashboard.api import neutron
 
 
 def get_size(share):
@@ -265,22 +266,6 @@ class DeleteSecurityService(tables.DeleteAction):
         manila.security_service_delete(request, obj_id)
 
 
-class DeleteShareNetwork(tables.DeleteAction):
-    data_type_singular = _("Share Network")
-    data_type_plural = _("Share Networks")
-    policy_rules = (("share", "share_network:delete"),)
-
-    def delete(self, request, obj_id):
-        manila.share_network_delete(request, obj_id)
-
-    def allowed(self, request, obj):
-        if obj:
-            # NOTE: set always True until statuses become used
-            # return obj.status in ["INACTIVE", "ERROR"]
-            return True
-        return True
-
-
 class DeleteShareServer(tables.DeleteAction):
     data_type_singular = _("Share Server")
     data_type_plural = _("Share Server")
@@ -323,18 +308,6 @@ class SecurityServiceTable(tables.DataTable):
         row_actions = (DeleteSecurityService,)
 
 
-class UpdateShareNetworkRow(tables.Row):
-    ajax = True
-
-    def get_data(self, request, share_net_id):
-        share_net = manila.share_network_get(request, share_net_id)
-        share_net.neutron_net = neutron.network_get(
-            request, share_net.neutron_net_id).name_or_id
-        share_net.neutron_subnet = neutron.subnet_get(
-            request, share_net.neutron_subnet_id).name_or_id
-        return share_net
-
-
 class UpdateShareServerRow(tables.Row):
     ajax = True
 
@@ -343,22 +316,17 @@ class UpdateShareServerRow(tables.Row):
         return share_serv
 
 
-class ShareNetworkTable(tables.DataTable):
+class NovaShareNetworkTable(tables.DataTable):
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:admin:shares:share_network_detail")
     tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    nova_net = tables.Column("nova_net", verbose_name=_("Nova Net"))
     ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
     network_type = tables.Column("network_type",
                                  verbose_name=_("Network Type"))
-    neutron_net_id = tables.Column("neutron_net",
-                                   verbose_name=_("Neutron Net"))
-    neutron_subnet_id = tables.Column("neutron_subnet",
-                                      verbose_name=_("Neutron Subnet"))
     segmentation_id = tables.Column("segmentation_id",
                                     verbose_name=_("Segmentation Id"))
-    # NOTE: removed statuses until it become used
-    # status = tables.Column("status", verbose_name=_("Status"))
 
     def get_object_display(self, share_network):
         return share_network.name or str(share_network.id)
@@ -369,9 +337,36 @@ class ShareNetworkTable(tables.DataTable):
     class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
-        table_actions = (DeleteShareNetwork, )
-        row_class = UpdateShareNetworkRow
-        row_actions = (DeleteShareNetwork, )
+        table_actions = (share_networks_tables.Delete, )
+        row_class = share_networks_tables.UpdateRow
+        row_actions = (share_networks_tables.Delete, )
+
+
+class NeutronShareNetworkTable(tables.DataTable):
+    name = tables.Column("name", verbose_name=_("Name"),
+                         link="horizon:project:shares:share_network_detail")
+    tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
+    neutron_subnet = tables.Column(
+        "neutron_subnet", verbose_name=_("Neutron Subnet"))
+    ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
+    network_type = tables.Column("network_type",
+                                 verbose_name=_("Network Type"))
+    segmentation_id = tables.Column("segmentation_id",
+                                    verbose_name=_("Segmentation Id"))
+
+    def get_object_display(self, share_network):
+        return share_network.name or str(share_network.id)
+
+    def get_object_id(self, share_network):
+        return str(share_network.id)
+
+    class Meta(object):
+        name = "share_networks"
+        verbose_name = _("Share Networks")
+        table_actions = (share_networks_tables.Delete, )
+        row_class = share_networks_tables.UpdateRow
+        row_actions = (share_networks_tables.Delete, )
 
 
 class SharesServersFilterAction(tables.FilterAction):

@@ -17,6 +17,7 @@ from horizon import forms
 from horizon import workflows
 
 from openstack_dashboard.api import keystone
+
 from manila_ui.api import manila
 
 
@@ -55,7 +56,7 @@ class AddProjectAction(workflows.MembershipAction):
             pr.project_id for pr in projects_initial]
         self.projects_initial = set(self.fields[field_name].initial)
 
-    class Meta:
+    class Meta(object):
         name = _("Projects with access to share type")
         slug = "update_members"
 
