@@ -31,6 +31,7 @@ share = shares.Share(
      'name': 'Share name',
      'description': 'Share description',
      'share_proto': 'NFS',
+     'metadata': {},
      'created_at': '2014-01-27 10:30:00',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d'})
 
@@ -43,6 +44,7 @@ nameless_share = shares.Share(
      'description': '',
      'share_proto': 'NFS',
      'export_location': "/dev/hda",
+     'metadata': {},
      'created_at': '2010-11-21 18:34:25',
      'share_type': 'vol_type_1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d'})
@@ -55,6 +57,7 @@ other_share = shares.Share(
      'name': u'my_share',
      'description': '',
      'share_proto': 'NFS',
+     'metadata': {},
      'created_at': '2013-04-01 10:30:00',
      'share_type': None,
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d'})
