@@ -101,9 +101,9 @@ class SecurityServicesViewTests(test.TestCase):
 
         url = reverse('horizon:project:shares:security_service_detail',
                       args=[sec_service.id])
-        res = self.client.get(url)
-
-        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        with self.assertRaises(manila_client_exc.NotFound):
+            res = self.client.get(url)
+            self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_update_security_service(self):
         sec_service = test_data.sec_service
