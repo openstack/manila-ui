@@ -234,7 +234,8 @@ class UpdateRuleRow(tables.Row):
 class RulesTable(tables.DataTable):
     access_type = tables.Column("access_type", verbose_name=_("Access Type"))
     access_to = tables.Column("access_to", verbose_name=_("Access to"))
-    access_level = tables.Column("access_level", verbose_name=_("Access Level"))
+    access_level = tables.Column(
+        "access_level", verbose_name=_("Access Level"))
     status = tables.Column("state", verbose_name=_("Status"))
 
     def get_object_display(self, obj):
