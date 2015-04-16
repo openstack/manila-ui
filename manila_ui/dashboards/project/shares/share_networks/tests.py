@@ -19,9 +19,9 @@ from neutronclient.client import exceptions
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
+from manila_ui.test import helpers as test
 
 from openstack_dashboard import api
-from openstack_dashboard.test import helpers as test
 
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
