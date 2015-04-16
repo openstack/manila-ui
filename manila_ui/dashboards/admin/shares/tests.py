@@ -39,9 +39,12 @@ class SharesTests(test.BaseAdminViewTests):
         api_manila.share_list = mock.Mock(return_value=shares)
         api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
         api_manila.share_network_list = mock.Mock(return_value=share_networks)
+        api_manila.share_type_list = mock.Mock(return_value=[])
+        api_manila.share_server_list = mock.Mock(return_value=[])
         api_manila.security_service_list = mock.Mock(
             return_value=security_services)
         api_manila.share_network_get = mock.Mock()
+        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
         api.neutron.network_list = mock.Mock(return_value=[])
         api.neutron.subnet_list = mock.Mock(return_value=[])
         quotas.tenant_limit_usages = mock.Mock(
@@ -58,6 +61,8 @@ class SharesTests(test.BaseAdminViewTests):
         formData = {'action':
                     'shares__delete__%s' % share.id}
 
+        snaps = [test_data.snapshot]
+        api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
         api_manila.share_delete = mock.Mock()
         api_manila.share_get = mock.Mock(
