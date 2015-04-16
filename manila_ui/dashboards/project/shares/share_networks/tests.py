@@ -85,7 +85,7 @@ class ShareNetworksViewTests(test.TestCase):
         url = reverse('horizon:project:shares:share_network_detail',
                       args=[share_net.id])
         res = self.client.get(url)
-        self.assertContains(res, "<h2>Share Network Details: %s</h2>"
+        self.assertContains(res, "<h1>Share Network Details: %s</h1>"
                                  % share_net.name,
                             1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
@@ -115,7 +115,7 @@ class ShareNetworksViewTests(test.TestCase):
         url = reverse('horizon:project:shares:share_network_detail',
                       args=[share_net.id])
         res = self.client.get(url)
-        self.assertContains(res, "<h2>Share Network Details: %s</h2>"
+        self.assertContains(res, "<h1>Share Network Details: %s</h1>"
                                  % share_net.name,
                             1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
