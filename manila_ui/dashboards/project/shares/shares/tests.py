@@ -139,7 +139,7 @@ class ShareViewTests(test.TestCase):
         url = reverse('horizon:project:shares:detail',
                       args=[share.id])
         res = self.client.get(url)
-        self.assertContains(res, "<h2>Share Details: %s</h2>"
+        self.assertContains(res, "<h1>Share Details: %s</h1>"
                                  % share.name,
                             1, 200)
 

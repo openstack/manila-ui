@@ -74,12 +74,14 @@ class SnapshotSnapshotViewTests(test.TestCase):
         url = reverse('horizon:project:shares:snapshot-detail',
                       args=[snapshot.id])
         res = self.client.get(url)
-        self.assertContains(res, "<h2>Snapshot Details: %s</h2>"
+        self.assertContains(res, "<h1>Snapshot Details: %s</h1>"
                                  % snapshot.name,
                             1, 200)
         self.assertContains(res, "<dd>%s</dd>" % snapshot.name, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % snapshot.id, 1, 200)
-        self.assertContains(res, "<dd>%s</dd>" % snapshot.share_id, 1, 200)
+        self.assertContains(res,
+                            "<dd><a href=\"/admin/shares/%s/\">%s</a></dd>" %
+                            (snapshot.share_id, share.name), 1, 200)
         self.assertContains(res, "<dd>%s GB</dd>" % snapshot.size, 1, 200)
 
         self.assertNoMessages()

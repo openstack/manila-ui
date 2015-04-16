@@ -78,7 +78,7 @@ class SecurityServicesViewTests(test.TestCase):
                       args=[sec_service.id])
         res = self.client.get(url)
 
-        self.assertContains(res, "<h2>Security Service Details: %s</h2>"
+        self.assertContains(res, "<h1>Security Service Details: %s</h1>"
                                  % sec_service.name,
                             1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.name, 1, 200)
