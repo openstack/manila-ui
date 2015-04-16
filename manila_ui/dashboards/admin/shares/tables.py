@@ -85,7 +85,7 @@ class UnmanageShareAction(tables.LinkAction):
     policy_rules = (("share", "share_extension:share_unmanage"),)
 
     def allowed(self, request, share=None):
-        if (not share or share.share_server_id or
+        if (not share or getattr(share, 'share_server_id', None) or
                 share.status.upper() not in shares_tables.DELETABLE_STATES):
             return False
         elif hasattr(share, 'has_snapshot'):
