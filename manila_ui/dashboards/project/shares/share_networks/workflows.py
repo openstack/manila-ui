@@ -90,7 +90,7 @@ class AddSecurityServiceAction(workflows.MembershipAction):
 
 class AddSecurityServiceStep(workflows.UpdateMembersStep):
     action_class = AddSecurityServiceAction
-    help_text = _("Add security services to share netwrok.")
+    help_text = _("Add security services to share network.")
     available_list_title = _("Available security services")
     members_list_title = _("Selected security services")
     no_available_text = _("No security services found.")
@@ -111,7 +111,7 @@ class UpdateShareNetworkWorkflow(workflows.Workflow):
     name = _("Update Share Network")
     finalize_button_name = _("Update Share Network")
     success_message = _('Updated share network "%s".')
-    failure_message = _('Unable to update share netwrok "%s".')
+    failure_message = _('Unable to update share network "%s".')
     success_url = 'horizon:project:shares:index'
     default_steps = (UpdateShareNetworkInfoStep, AddSecurityServiceStep)
 
