@@ -15,10 +15,11 @@
 from django.core.urlresolvers import reverse
 import mock
 
+from openstack_dashboard import api
+from openstack_dashboard.usage import quotas
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 from manila_ui.test import helpers as test
-
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 
@@ -26,6 +27,10 @@ SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 class ShareViewTests(test.TestCase):
 
     def test_create_share(self):
+        usage_limit = {'maxTotalVolumeGigabytes': 250,
+                       'gigabytesUsed': 20,
+                       'volumesUsed': 0,
+                       'maxTotalVolumes': 6}
         share_net = test_data.active_share_network
         share_nets = [share_net]
         formData = {'name': u'new_share',
@@ -39,6 +44,9 @@ class ShareViewTests(test.TestCase):
         api_manila.share_create = mock.Mock()
         api_manila.share_snapshot_list = mock.Mock(return_value=[])
         api_manila.share_network_list = mock.Mock(return_value=share_nets)
+        api_manila.share_type_list = mock.Mock(return_value=[])
+        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
+        quotas.tenant_limit_usages = mock.Mock(return_value=[usage_limit])
         url = reverse('horizon:project:shares:create')
         self.client.post(url, formData)
         api_manila.share_create.assert_called_with(
@@ -65,6 +73,7 @@ class ShareViewTests(test.TestCase):
             return_value=[snapshot])
         api_manila.share_snapshot_get = mock.Mock(
             return_value=snapshot)
+        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
         api_manila.share_network_list = mock.Mock(return_value=share_nets)
         url = reverse('horizon:project:shares:create')
         res = self.client.post(url, formData)
@@ -91,6 +100,7 @@ class ShareViewTests(test.TestCase):
         api_manila.share_snapshot_list = mock.Mock(return_value=[])
         api_manila.share_snapshot_get = mock.Mock(
             return_value=snapshot)
+        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
         api_manila.share_network_list = mock.Mock(return_value=share_nets)
         url = reverse('horizon:project:shares:create')
         url = url + '?snapshot_id=%s' % snapshot.id
@@ -173,6 +183,7 @@ class ShareViewTests(test.TestCase):
         url = reverse('horizon:project:shares:rule_add', args=[share.id])
         api_manila.share_get = mock.Mock(return_value=share)
         api_manila.share_allow = mock.Mock()
+        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
         formData = {'type': 'user',
                     'method': u'CreateForm',
                     'access_to': 'someuser'}

@@ -18,6 +18,7 @@ import mock
 from neutronclient.client import exceptions
 
 from manila_ui.api import manila as api_manila
+from manila_ui.api import network as api_manila_network
 from manila_ui.dashboards.project.shares import test_data
 from manila_ui.test import helpers as test
 
@@ -41,6 +42,8 @@ class ShareNetworksViewTests(test.TestCase):
         api_manila.share_network_create = mock.Mock()
         api.neutron.network_list = mock.Mock(return_value=self.networks.list())
         api.neutron.subnet_list = mock.Mock(return_value=self.subnets.list())
+        api_manila_network.network_list = \
+            mock.Mock(return_value=self.networks.list())
         api_manila.share_network_create = mock.Mock()
         url = reverse('horizon:project:shares:create_share_network')
         self.client.post(url, formData)
