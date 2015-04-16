@@ -58,6 +58,11 @@ def parse_str_meta(meta_s):
 
 
 def metadata_to_str(metadata):
+
+    # Only convert dictionaries
+    if not hasattr(metadata, 'keys'):
+        return metadata
+
     meta_visible_limit = 4
     text_length_limit = 25
     meta = []
