@@ -10,4 +10,4 @@ django_compressor>=1.4
 django_openstack_auth>=1.1.7,!=1.1.8
 iso8601>=0.1.9
 python-keystoneclient>=1.1.0
-python-manilaclient>=1.0.2
+python-manilaclient>=1.0.4
