@@ -27,7 +27,7 @@ Apply a patch to horizon since it currently fails to load plugins correctly::
 
 Create a virtual environment and install Horizon dependencies::
 
-    ./run_tests.sh -8
+    python tools/install_venv.py
 
 Set up your ``local_settings.py`` file::
 
@@ -71,3 +71,11 @@ If everything has gone according to plan, you should be able to run::
 
 and have the application start on port 8080. The horizon dashboard will
 be located at http://localhost:8080/
+
+Unit testing
+------------
+
+After installing the plugin with the above instructions, the Manila UI unit tests
+can be executed from within horizon::
+
+    ./run_tests.sh manila_ui
