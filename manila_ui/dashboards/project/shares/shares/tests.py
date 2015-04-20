@@ -15,11 +15,12 @@
 from django.core.urlresolvers import reverse
 import mock
 
-from openstack_dashboard import api
-from openstack_dashboard.usage import quotas
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
 from manila_ui.test import helpers as test
+
+from openstack_dashboard import api
+from openstack_dashboard.usage import quotas
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 

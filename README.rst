@@ -58,8 +58,7 @@ Install Manila UI with all dependencies in your virtual environment::
 
 And enable it in Horizon::
 
-    cp ../manila-ui/_90_manila_admin_shares.py openstack_dashboard/local/enabled
-    cp ../manila-ui/_90_manila_project_shares.py openstack_dashboard/local/enabled
+    cp ../manila-ui/manila_ui/enabled/_90_manila_*.py openstack_dashboard/local/enabled
 
 
 Starting the app
