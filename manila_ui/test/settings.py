@@ -33,7 +33,7 @@ STATIC_URL = '/static/'
 
 SECRET_KEY = secret_key.generate_or_read_from_file(
     os.path.join(TEST_DIR, '.secret_key_store'))
-ROOT_URLCONF = 'openstack_dashboard.test.urls'
+ROOT_URLCONF = 'manila_ui.test.urls'
 TEMPLATE_DIRS = (
     os.path.join(TEST_DIR, 'templates'),
 )
@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'compressor',
     'horizon',
     'openstack_dashboard',
+    'openstack_dashboard.dashboards',
     'manila_ui.dashboards',
 )
 
@@ -73,6 +74,7 @@ HORIZON_CONFIG = {
                    'unauthorized': exceptions.UNAUTHORIZED},
     'angular_modules': [],
     'js_files': [],
+    'customization_module': 'manila_ui.overrides',
 }
 
 # Load the pluggable dashboard settings
@@ -80,6 +82,7 @@ from openstack_dashboard.utils import settings
 dashboard_module_names = [
     'openstack_dashboard.enabled',
     'openstack_dashboard.local.enabled',
+    'manila_ui.enabled',
 ]
 dashboard_modules = []
 # All dashboards must be enabled for the namespace to get registered, which is
