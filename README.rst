@@ -74,7 +74,11 @@ be located at http://localhost:8080/
 Unit testing
 ------------
 
-After installing the plugin with the above instructions, the Manila UI unit tests
-can be executed from within horizon::
+The unit tests can be executed directly from within this Manila UI plugin
+project directory by using::
 
-    ./run_tests.sh manila_ui
+    ./run_tests.sh
+
+This is made possible by the dependency in test-requirements.txt upon the
+horizon source, which pulls down all of the horizon and openstack_dashboard
+modules that the plugin uses.
