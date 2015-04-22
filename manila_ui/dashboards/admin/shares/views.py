@@ -41,10 +41,18 @@ filters = (filters.get_item,)
 class IndexView(tabs.TabbedTableView, share_views.ShareTableMixIn):
     tab_group_class = project_tabs.ShareTabs
     template_name = "admin/shares/index.html"
+    page_title = _("Shares")
 
 
 class DetailView(share_views.DetailView):
     template_name = "admin/shares/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context["page_title"] = _("Share Details: %(share_name)s" %
+                                  {'share_name':
+                                   context["share_display_name"]})
+        return context
 
 
 class ManageShareView(forms.ModalFormView):
@@ -56,6 +64,7 @@ class ManageShareView(forms.ModalFormView):
     success_url = reverse_lazy('horizon:admin:shares:index')
     submit_url = reverse_lazy('horizon:admin:shares:manage')
     cancel_url = reverse_lazy('horizon:admin:shares:index')
+    page_title = _("Manage a Share")
 
     def get_context_data(self, **kwargs):
         context = super(ManageShareView, self).get_context_data(**kwargs)
@@ -71,6 +80,7 @@ class UnmanageShareView(forms.ModalFormView):
     success_url = reverse_lazy('horizon:admin:shares:index')
     submit_url = 'horizon:admin:shares:unmanage'
     cancel_url = reverse_lazy('horizon:admin:shares:index')
+    page_title = _("Unmanage a Share")
 
     def get_context_data(self, **kwargs):
         context = super(UnmanageShareView, self).get_context_data(**kwargs)
@@ -102,6 +112,7 @@ class CreateShareTypeView(forms.ModalFormView):
     form_class = project_forms.CreateShareType
     template_name = 'admin/shares/create_share_type.html'
     success_url = 'horizon:admin:shares:index'
+    page_title = _("Create a Share Type")
 
     def get_success_url(self):
         return reverse(self.success_url)
@@ -111,6 +122,7 @@ class ManageShareTypeAccessView(workflows.WorkflowView):
     workflow_class = share_workflows.ManageShareTypeAccessWorkflow
     template_name = "admin/shares/manage_share_type_access.html"
     success_url = 'horizon:project:shares:index'
+    page_title = _("Manage Share Type Access")
 
     def get_initial(self):
         return {'id': self.kwargs["share_type_id"]}
@@ -126,6 +138,7 @@ class UpdateShareTypeView(forms.ModalFormView):
     form_class = project_forms.UpdateShareType
     template_name = "admin/shares/update_share_type.html"
     success_url = reverse_lazy("horizon:admin:shares:index")
+    page_title = _("Update Share Type")
 
     def get_object(self):
         if not hasattr(self, "_object"):
@@ -162,6 +175,10 @@ class ShareServDetail(tabs.TabView):
         share_server_display_name = share_server.id
         context["share_server"] = share_server
         context["share_server_display_name"] = share_server_display_name
+        context["page_title"] = _("Share Server Details: "
+                                  "%(share_server_name)s" %
+                                  {'share_server_name':
+                                   context["share_server_display_name"]})
         return context
 
     def get_data(self):
