@@ -2,10 +2,6 @@
 {% load i18n %}
 {% block title %}{% trans "Update Share Type" %}{% endblock %}
 
-{% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Update Share Type") %}
-{% endblock page_header %}
-
 {% block main %}
     {% include 'admin/shares/_update_share_type.html' %}
 {% endblock %}
