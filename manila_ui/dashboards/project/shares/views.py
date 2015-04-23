@@ -18,7 +18,7 @@
 Views for managing shares.
 """
 
-
+from django.utils.translation import ugettext_lazy as _
 from horizon import tabs
 
 from manila_ui.dashboards.project.shares.security_services \
@@ -43,3 +43,4 @@ class ShareTabs(tabs.TabGroup):
 class IndexView(tabs.TabbedTableView):
     tab_group_class = ShareTabs
     template_name = "project/shares/index.html"
+    page_title = _("Shares")

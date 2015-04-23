@@ -36,6 +36,7 @@ class Update(workflows.WorkflowView):
     workflow_class = share_net_workflows.UpdateShareNetworkWorkflow
     template_name = "project/shares/share_networks/share_network_update.html"
     success_url = 'horizon:project:shares:index'
+    page_title = _('Update Share Network')
 
     def get_initial(self):
         return {'id': self.kwargs["share_network_id"]}
@@ -50,6 +51,7 @@ class Create(forms.ModalFormView):
     form_class = share_net_forms.Create
     template_name = 'project/shares/share_networks/create_share_network.html'
     success_url = 'horizon:project:shares:index'
+    page_title = _('Create Share Network')
 
     def get_success_url(self):
         return reverse(self.success_url)
@@ -65,6 +67,9 @@ class Detail(tabs.TabView):
         share_network_display_name = share_network.name or share_network.id
         context["share_network"] = share_network
         context["share_network_display_name"] = share_network_display_name
+        context["page_title"] = _("Share Network Details: "
+                                  "%(network_display_name)s") % \
+            {'network_display_name': share_network_display_name}
         return context
 
     def get_data(self):

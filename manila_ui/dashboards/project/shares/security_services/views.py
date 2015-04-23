@@ -32,6 +32,7 @@ class UpdateView(forms.ModalFormView):
     template_name = "project/shares/security_services/update.html"
     form_class = sec_services_forms.Update
     success_url = 'horizon:project:shares:index'
+    page_title = _('Edit Security Service')
 
     def get_success_url(self):
         return reverse(self.success_url)
@@ -65,6 +66,7 @@ class CreateView(forms.ModalFormView):
     template_name = ('project/shares/security_services'
                      '/create_security_service.html')
     success_url = 'horizon:project:shares:index'
+    page_title = _('Create a Security Service')
 
     def get_success_url(self):
         return reverse(self.success_url)
@@ -75,6 +77,7 @@ class AddSecurityServiceView(forms.ModalFormView):
     template_name = ('project/shares/security_services'
                      '/add_security_service.html')
     success_url = 'horizon:project:shares:index'
+    page_title = _('Add Security Service')
 
     def get_object(self):
         if not hasattr(self, "_object"):
@@ -110,6 +113,9 @@ class Detail(tabs.TabView):
         context["sec_service"] = sec_service
         sec_service_display_name = sec_service.name or sec_service.id
         context["sec_service_display_name"] = sec_service_display_name
+        context["page_title"] = _("Security Service Details: "
+                                  "%(service_display_name)s") % \
+            {'service_display_name': sec_service_display_name}
         return context
 
     def get_data(self):

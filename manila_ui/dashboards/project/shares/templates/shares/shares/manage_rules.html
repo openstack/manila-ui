@@ -2,10 +2,6 @@
 {% load i18n %}
 {% block title %}{% trans "Share Rules" %}{% endblock %}
 
-{% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Share Rules: ")|add:share_display_name|default:_("Share Details:") %}
-{% endblock page_header %}
-
 {% block main %}
   {{ table.render }}
 {% endblock %}
