@@ -14,10 +14,10 @@
 
 from django.core.urlresolvers import reverse
 import mock
+import unittest
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
-from manila_ui.test import decorators
 from manila_ui.test import helpers as test
 
 from openstack_dashboard import api
@@ -57,7 +57,7 @@ class SharesTests(test.BaseAdminViewTests):
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'admin/shares/index.html')
 
-    @decorators.skip_broken_test()
+    @unittest.skip("broken unit test")
     def test_delete_share(self):
         share = test_data.share
 

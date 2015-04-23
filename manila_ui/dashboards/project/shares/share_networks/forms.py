@@ -60,9 +60,7 @@ class Create(forms.SelfHandlingForm):
                         'data-switch-on': 'net',
                         'data-net-%s' % net.id: _("Neutron Subnet")
                     }))
-                # Insert subnet choice field under network choice field
-                # (before Description field that has index 3)
-                self.fields.insert(3, subnet_field_name, subnet_field)
+                self.fields[subnet_field_name] = subnet_field
                 subnet_choices = neutron.subnet_list(
                     request, network_id=net.id)
                 self.fields[subnet_field_name].choices = [
