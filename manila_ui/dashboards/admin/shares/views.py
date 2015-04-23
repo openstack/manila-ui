@@ -49,9 +49,8 @@ class DetailView(share_views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        context["page_title"] = _("Share Details: %(share_name)s" %
-                                  {'share_name':
-                                   context["share_display_name"]})
+        context["page_title"] = _("Share Details: %(share_name)s") % \
+            {'share_name': context["share_display_name"]}
         return context
 
 
@@ -175,10 +174,8 @@ class ShareServDetail(tabs.TabView):
         share_server_display_name = share_server.id
         context["share_server"] = share_server
         context["share_server_display_name"] = share_server_display_name
-        context["page_title"] = _("Share Server Details: "
-                                  "%(share_server_name)s" %
-                                  {'share_server_name':
-                                   context["share_server_display_name"]})
+        context["page_title"] = _("Share Server Details: %(server_name)s") % \
+            {'server_name': share_server_display_name}
         return context
 
     def get_data(self):
