@@ -20,13 +20,9 @@ Begin by cloning the Horizon and Manila UI repositories::
     git clone https://github.com/openstack/horizon
     git clone https://github.com/hp-storage/manila-ui
 
-Apply a patch to horizon since it currently fails to load plugins correctly::
-
-    cd horizon
-    git review -d 128133
-
 Create a virtual environment and install Horizon dependencies::
 
+    cd horizon
     python tools/install_venv.py
 
 Set up your ``local_settings.py`` file::
@@ -77,6 +73,7 @@ Unit testing
 The unit tests can be executed directly from within this Manila UI plugin
 project directory by using::
 
+    cd ../manila-ui
     ./run_tests.sh
 
 This is made possible by the dependency in test-requirements.txt upon the
