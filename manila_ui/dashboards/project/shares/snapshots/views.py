@@ -40,6 +40,9 @@ class SnapshotDetailView(tabs.TabView):
         snapshot_display_name = snapshot.name or snapshot.id
         context["snapshot"] = snapshot
         context["snapshot_display_name"] = snapshot_display_name
+        context["page_title"] = _("Snapshot Details: "
+                                  "%(snapshot_display_name)s") % \
+            {'snapshot_display_name': snapshot_display_name}
         return context
 
     @memoized.memoized_method
@@ -65,6 +68,7 @@ class CreateSnapshotView(forms.ModalFormView):
     form_class = snapshot_forms.CreateSnapshotForm
     template_name = 'project/shares/snapshots/create_snapshot.html'
     success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Create Share Snapshot')
 
     def get_context_data(self, **kwargs):
         context = super(CreateSnapshotView, self).get_context_data(**kwargs)

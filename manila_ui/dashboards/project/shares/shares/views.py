@@ -64,6 +64,9 @@ class DetailView(tabs.TabView):
         share_display_name = share.name or share.id
         context["share"] = share
         context["share_display_name"] = share_display_name
+        context["page_title"] = _("Share Details: "
+                                  "%(share_display_name)s") % \
+            {'share_display_name': share_display_name}
         return context
 
     @memoized.memoized_method
@@ -88,6 +91,7 @@ class CreateView(forms.ModalFormView):
     form_class = share_form.CreateForm
     template_name = 'project/shares/shares/create.html'
     success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Create a Share')
 
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
@@ -102,6 +106,7 @@ class UpdateView(forms.ModalFormView):
     form_class = share_form.UpdateForm
     template_name = 'project/shares/shares/update.html'
     success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Edit Share')
 
     def get_object(self):
         if not hasattr(self, "_object"):
@@ -130,6 +135,7 @@ class UpdateMetadataView(forms.ModalFormView):
     form_class = share_form.UpdateMetadataForm
     template_name = 'project/shares/shares/update_metadata.html'
     success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Edit Share Metadata')
 
     def get_object(self):
         if not hasattr(self, "_object"):
@@ -156,6 +162,7 @@ class UpdateMetadataView(forms.ModalFormView):
 class AddRuleView(forms.ModalFormView):
     form_class = share_form.AddRule
     template_name = 'project/shares/shares/rule_add.html'
+    page_title = _('Add Rule')
 
     def get_object(self):
         if not hasattr(self, "_object"):
@@ -193,6 +200,9 @@ class ManageRulesView(tables.DataTableView):
         share = manila.share_get(self.request, self.kwargs['share_id'])
         context['share_display_name'] = share.name or share.id
         context["share"] = self.get_data()
+        context["page_title"] = _("Share Rules: "
+                                  "%(share_display_name)s") % \
+            {'share_display_name': context['share_display_name']}
         return context
 
     @memoized.memoized_method
