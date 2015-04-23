@@ -55,7 +55,6 @@ INSTALLED_APPS = (
     'horizon',
     'openstack_dashboard',
     'openstack_dashboard.dashboards',
-    'manila_ui.dashboards',
 )
 
 AUTHENTICATION_BACKENDS = ('openstack_auth.backend.KeystoneBackend',)
