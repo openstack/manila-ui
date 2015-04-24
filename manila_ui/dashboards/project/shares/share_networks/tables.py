@@ -16,8 +16,8 @@
 
 from django.core.urlresolvers import NoReverseMatch  # noqa
 from django.template.defaultfilters import title  # noqa
-from django.utils.translation import string_concat  # noqa
 from django.utils.translation import pgettext_lazy
+from django.utils.translation import string_concat  # noqa
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
