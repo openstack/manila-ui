@@ -14,6 +14,7 @@ import six
 
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -227,6 +228,13 @@ class SnapshotsTable(tables.DataTable):
         ("creating", None),
         ("error", False),
     )
+    STATUS_DISPLAY_CHOICES = (
+        ("in-use", pgettext_lazy("Current status of snapshot", u"In-use")),
+        ("available", pgettext_lazy("Current status of snapshot",
+                                    u"Available")),
+        ("creating", pgettext_lazy("Current status of snapshot", u"Creating")),
+        ("error", pgettext_lazy("Current status of snapshot", u"Error")),
+    )
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:admin:shares:snapshot-detail")
@@ -240,7 +248,8 @@ class SnapshotsTable(tables.DataTable):
                            filters=(title,),
                            verbose_name=_("Status"),
                            status=True,
-                           status_choices=STATUS_CHOICES)
+                           status_choices=STATUS_CHOICES,
+                           display_choices=STATUS_DISPLAY_CHOICES)
     source = SnapshotShareNameColumn("share",
                                      verbose_name=_("Source"),
                                      link="horizon:admin:shares:detail")
@@ -385,6 +394,14 @@ class ShareServerTable(tables.DataTable):
         ("creating", None),
         ("error", False),
     )
+    STATUS_DISPLAY_CHOICES = (
+        ("in-use", pgettext_lazy("Current status of share server", u"In-use")),
+        ("active", pgettext_lazy("Current status of share server", u"Active")),
+        ("creating", pgettext_lazy("Current status of share server",
+                                   u"Creating")),
+        ("error", pgettext_lazy("Current status of share server",
+                                u"Error")),
+    )
     uid = tables.Column("id", verbose_name=_("Id"),
                         link="horizon:admin:shares:share_server_detail")
     host = tables.Column("host", verbose_name=_("Host"))
@@ -402,7 +419,8 @@ class ShareServerTable(tables.DataTable):
                                    link=get_share_server_link)
     status = tables.Column("status", verbose_name=_("Status"),
                            status=True, filters=(title,),
-                           status_choices=STATUS_CHOICES)
+                           status_choices=STATUS_CHOICES,
+                           display_choices=STATUS_DISPLAY_CHOICES)
 
     def get_object_display(self, share_server):
         return six.text_type(share_server.id)

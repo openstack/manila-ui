@@ -19,6 +19,7 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
 from django.utils.safestring import mark_safe
 from django.utils.translation import string_concat, ugettext_lazy  # noqa
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import messages
@@ -152,6 +153,24 @@ class SharesTableBase(tables.DataTable):
         ("MANAGE_ERROR", False),
         ("UNMANAGE_ERROR", False),
     )
+    STATUS_DISPLAY_CHOICES = (
+        ("available", pgettext_lazy("Current status of share", u"Available")),
+        ("AVAILABLE", pgettext_lazy("Current status of share", u"Available")),
+        ("creating", pgettext_lazy("Current status of share", u"Creating")),
+        ("CREATING", pgettext_lazy("Current status of share", u"Creating")),
+        ("deleting", pgettext_lazy("Current status of share", u"Deleting")),
+        ("DELETING", pgettext_lazy("Current status of share", u"Deleting")),
+        ("error", pgettext_lazy("Current status of share", u"Error")),
+        ("ERROR", pgettext_lazy("Current status of share", u"Error")),
+        ("error_deleting", pgettext_lazy("Current status of share",
+                                         u"Deleting")),
+        ("ERROR_DELETING", pgettext_lazy("Current status of share",
+                                         u"Deleting")),
+        ("MANAGE_ERROR", pgettext_lazy("Current status of share",
+                                       u"Manage Error")),
+        ("UNMANAGE_ERROR", pgettext_lazy("Current status of share",
+                                         u"Unmanage Error")),
+    )
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:project:shares:detail")
@@ -167,7 +186,8 @@ class SharesTableBase(tables.DataTable):
                            filters=(title,),
                            verbose_name=_("Status"),
                            status=True,
-                           status_choices=STATUS_CHOICES)
+                           status_choices=STATUS_CHOICES,
+                           display_choices=STATUS_DISPLAY_CHOICES)
 
     def get_object_display(self, obj):
         return obj.name or obj.id

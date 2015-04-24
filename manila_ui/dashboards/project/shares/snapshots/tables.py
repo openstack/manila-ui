@@ -19,6 +19,7 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
 from django.utils.http import urlencode  # noqa
 from django.utils.translation import string_concat  # noqa
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -136,6 +137,13 @@ class SnapshotsTable(tables.DataTable):
         ("creating", None),
         ("error", False),
     )
+    STATUS_DISPLAY_CHOICES = (
+        ("in-use", pgettext_lazy("Current status of snapshot", u"In-use")),
+        ("available", pgettext_lazy("Current status of snapshot",
+                                    u"Available")),
+        ("creating", pgettext_lazy("Current status of snapshot", u"Creating")),
+        ("error", pgettext_lazy("Current status of snapshot", u"Error")),
+    )
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:project:shares:snapshot-detail")
@@ -149,7 +157,8 @@ class SnapshotsTable(tables.DataTable):
                            filters=(title,),
                            verbose_name=_("Status"),
                            status=True,
-                           status_choices=STATUS_CHOICES)
+                           status_choices=STATUS_CHOICES,
+                           display_choices=STATUS_DISPLAY_CHOICES)
     source = SnapshotShareNameColumn("share",
                                      verbose_name=_("Source"),
                                      link="horizon:project:shares:detail")
