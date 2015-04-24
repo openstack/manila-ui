@@ -17,6 +17,7 @@
 from django.core.urlresolvers import NoReverseMatch  # noqa
 from django.template.defaultfilters import title  # noqa
 from django.utils.translation import string_concat  # noqa
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
@@ -117,6 +118,13 @@ class NeutronShareNetworkTable(tables.DataTable):
         ("INACTIVE", True),
         ("ERROR", False),
     )
+    STATUS_DISPLAY_CHOICES = (
+        ("ACTIVE", pgettext_lazy("Current status of share network",
+                                 u"Active")),
+        ("INACTIVE", pgettext_lazy("Current status of share network",
+                                   u"Inactive")),
+        ("ERROR", pgettext_lazy("Current status of share network", u"Error")),
+    )
     name = tables.Column("name", verbose_name=_("Name"),
                          link="horizon:project:shares:share_network_detail")
     neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
@@ -131,6 +139,7 @@ class NeutronShareNetworkTable(tables.DataTable):
     # status = tables.Column("status", verbose_name=_("Status"),
     #                       status=True,
     #                       status_choices=STATUS_CHOICES)
+    #                       display_choices=STATUS_DISPLAY_CHOICES)
 
     def get_object_display(self, share_network):
         return share_network.name or str(share_network.id)
