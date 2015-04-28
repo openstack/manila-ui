@@ -44,25 +44,6 @@ class CreateForm(forms.SelfHandlingForm):
         label=_("Share Type"), required=True,
         widget=forms.Select(
             attrs={'class': 'switchable', 'data-slug': 'sharetype'}))
-    share_source_type = forms.ChoiceField(
-        label=_("Share Source"), required=False,
-        widget=forms.Select(
-            attrs={'class': 'switchable', 'data-slug': 'source'}))
-    snapshot = forms.ChoiceField(
-        label=_("Use snapshot as a source"),
-        widget=forms.fields.SelectWidget(
-            attrs={'class': 'switched',
-                   'data-switch-on': 'source',
-                   'data-source-snapshot': _('Snapshot')},
-            data_attrs=('size', 'name'),
-            transform=lambda x: "%s (%sGB)" % (x.name, x.size)),
-        required=False)
-    metadata = forms.CharField(
-        label=_("Metadata"), required=False,
-        widget=forms.Textarea(attrs={'rows': 4}))
-    is_public = forms.BooleanField(
-        label=_("Make visible for all"), required=False,
-        help_text=("If set then all tenants will be able to see this share."))
 
     def __init__(self, request, *args, **kwargs):
         super(CreateForm, self).__init__(request, *args, **kwargs)
@@ -71,6 +52,50 @@ class CreateForm(forms.SelfHandlingForm):
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (
             [("", "")] + [(st.name, st.name) for st in share_types])
+
+        self.sn_field_name_prefix = 'share-network-choices-'
+        for st in share_types:
+            extra_specs = st.get_keys()
+            dhss = extra_specs.get('driver_handles_share_servers')
+            # NOTE(vponomaryov): Set and tie share-network field only for
+            # share types with enabled handling of share servers.
+            if (isinstance(dhss, six.string_types) and
+                    dhss.lower() in ['true', '1']):
+                sn_choices = (
+                    [('', '')] +
+                    [(sn.id, sn.name or sn.id) for sn in share_networks])
+                sn_field_name = self.sn_field_name_prefix + st.name
+                sn_field = forms.ChoiceField(
+                    label=_("Share Network"), required=True,
+                    choices=sn_choices,
+                    widget=forms.Select(attrs={
+                        'class': 'switched',
+                        'data-switch-on': 'sharetype',
+                        'data-sharetype-%s' % st.name: _("Share Network"),
+                    }))
+                self.fields[sn_field_name] = sn_field
+
+        self.fields['share_source_type'] = forms.ChoiceField(
+            label=_("Share Source"), required=False,
+            widget=forms.Select(
+                attrs={'class': 'switchable', 'data-slug': 'source'}))
+        self.fields['snapshot'] = forms.ChoiceField(
+            label=_("Use snapshot as a source"),
+            widget=forms.fields.SelectWidget(
+                attrs={'class': 'switched',
+                       'data-switch-on': 'source',
+                       'data-source-snapshot': _('Snapshot')},
+                data_attrs=('size', 'name'),
+                transform=lambda x: "%s (%sGB)" % (x.name, x.size)),
+            required=False)
+        self.fields['metadata'] = forms.CharField(
+            label=_("Metadata"), required=False,
+            widget=forms.Textarea(attrs={'rows': 4}))
+        self.fields['is_public'] = forms.BooleanField(
+            label=_("Make visible for all"), required=False,
+            help_text=(
+                "If set then all tenants will be able to see this share."))
+
         self.fields['share_proto'].choices = [(sp, sp) for sp in share_protos]
         if "snapshot_id" in request.GET:
             try:
@@ -118,28 +143,6 @@ class CreateForm(forms.SelfHandlingForm):
                 self.fields['share_source_type'].choices = choices
             else:
                 del self.fields['share_source_type']
-
-        self.sn_field_name_prefix = 'share-network-choices-'
-        for st in share_types:
-            extra_specs = st.get_keys()
-            dhss = extra_specs.get('driver_handles_share_servers')
-            # NOTE(vponomaryov): Set and tie share-network field only for
-            # share types with enabled handling of share servers.
-            if (isinstance(dhss, six.string_types) and
-                    dhss.lower() in ['true', '1']):
-                sn_choices = (
-                    [('', '')] +
-                    [(sn.id, sn.name or sn.id) for sn in share_networks])
-                sn_field_name = self.sn_field_name_prefix + st.name
-                sn_field = forms.ChoiceField(
-                    label=_("Share Network"), required=True,
-                    choices=sn_choices,
-                    widget=forms.Select(attrs={
-                        'class': 'switched',
-                        'data-switch-on': 'sharetype',
-                        'data-sharetype-%s' % st.name: _("Share Network"),
-                    }))
-                self.fields.insert(5, sn_field_name, sn_field)
 
     def clean(self):
         cleaned_data = super(CreateForm, self).clean()
