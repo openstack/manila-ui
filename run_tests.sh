@@ -331,7 +331,7 @@ function run_tests {
 
 function run_tests_subset {
   project=`echo $testargs | awk -F. '{print $1}'`
-  ${command_wrapper} python $root/manage.py test --settings=$project.test.settings $testopts $testargs
+  ${command_wrapper} python $root/manage.py test --settings=$project.test.settings --verbosity 2 $testopts $testargs
 }
 
 function run_tests_all {
@@ -344,7 +344,7 @@ function run_tests_all {
     ${command_wrapper} python -m coverage.__main__ erase
     coverage_run="python -m coverage.__main__ run -p"
   fi
-  ${command_wrapper} ${coverage_run} $root/manage.py test manila_ui --settings=manila_ui.test.settings $testopts
+  ${command_wrapper} ${coverage_run} $root/manage.py test manila_ui --settings=manila_ui.test.settings --verbosity 2 $testopts
   # get results of the Horizon tests
   MANILA_RESULT=$?
 
