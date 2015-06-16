@@ -32,15 +32,6 @@ Set up your ``local_settings.py`` file::
 Open up the copied ``local_settings.py`` file in your preferred text
 editor. You will want to customize several settings:
 
--  ``HORIZON_CONFIG`` requires, an entry, ``customization_module``,
-   that refers to ``manila_ui.overrides``::
-
-    HORIZON_CONFIG = {
-        ...
-        'js_spec_files': [],
-        'customization_module': 'manila_ui.overrides',
-    }
-
 -  ``OPENSTACK_HOST`` should be configured with the hostname of your
    OpenStack server. Verify that the ``OPENSTACK_KEYSTONE_URL`` and
    ``OPENSTACK_KEYSTONE_DEFAULT_ROLE`` settings are correct for your

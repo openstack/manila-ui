@@ -73,7 +73,6 @@ HORIZON_CONFIG = {
                    'unauthorized': exceptions.UNAUTHORIZED},
     'angular_modules': [],
     'js_files': [],
-    'customization_module': 'manila_ui.overrides',
 }
 
 # Load the pluggable dashboard settings
