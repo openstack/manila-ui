@@ -14,7 +14,6 @@
 
 from django.core.urlresolvers import reverse
 import mock
-import unittest
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import test_data
@@ -57,15 +56,13 @@ class SharesTests(test.BaseAdminViewTests):
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'admin/shares/index.html')
 
-    @unittest.skip("broken unit test")
     def test_delete_share(self):
         share = test_data.share
 
         formData = {'action':
                     'shares__delete__%s' % share.id}
 
-        snaps = [test_data.snapshot]
-        api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
+        api_manila.share_snapshot_list = mock.Mock(return_value=[])
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
         api_manila.share_delete = mock.Mock()
         api_manila.share_get = mock.Mock(
