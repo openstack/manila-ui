@@ -12,9 +12,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from openstack_dashboard.api import keystone
-from openstack_dashboard.openstack.common._i18n import _
 
 
 def set_tenant_name_to_objects(request, objects):
