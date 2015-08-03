@@ -74,4 +74,7 @@ urlpatterns = patterns(
     url(r'^(?P<share_id>[^/]+)/update_metadata/$',
         shares_views.UpdateMetadataView.as_view(),
         name='update_metadata'),
+    url(r'^(?P<share_id>[^/]+)/extend/$',
+        shares_views.ExtendView.as_view(),
+        name='extend'),
 )

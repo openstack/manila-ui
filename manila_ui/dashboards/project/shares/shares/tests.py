@@ -207,3 +207,22 @@ class ShareViewTests(test.TestCase):
         self.client.post(url, formData)
         api_manila.share_deny.assert_called_with(
             mock.ANY, test_data.share.id, rule.id)
+
+    def test_extend_share(self):
+        share = test_data.share
+        formData = {'new_size': share.size + 1,
+                    'method': u'UpdateForm'}
+        usage_limit = {'maxTotalShareGigabytes': 250,
+                       'totalShareGigabytesUsed': 20}
+        url = reverse('horizon:project:shares:extend', args=[share.id])
+
+        api_manila.share_get = mock.Mock(return_value=share)
+        quotas.tenant_limit_usages = mock.Mock(return_value=usage_limit)
+        share_extend = mock.Mock()
+
+        with mock.patch('manila_ui.api.manila.share_extend', share_extend):
+            response = self.client.post(url, formData)
+
+            self.assertEqual(302, response.status_code)
+            share_extend.assert_called_once_with(
+                mock.ANY, share.id, formData['new_size'])

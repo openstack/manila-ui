@@ -30,7 +30,7 @@ from horizon.utils.memoized import memoized  # noqa
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
-# from openstack_dashboard.usage import quotas
+from openstack_dashboard.usage import quotas
 
 
 class CreateForm(forms.SelfHandlingForm):
@@ -325,3 +325,57 @@ class AddRule(forms.SelfHandlingForm):
                                args=[self.initial['share_id']])
             exceptions.handle(
                 request, _('Unable to add rule.'), redirect=redirect)
+
+
+class ExtendForm(forms.SelfHandlingForm):
+    name = forms.CharField(
+        max_length="255", label=_("Share Name"),
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}),
+        required=False,
+    )
+
+    orig_size = forms.IntegerField(
+        label=_("Current Size (GB)"),
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}),
+        required=False,
+    )
+
+    new_size = forms.IntegerField(
+        label=_("New Size (GB)"),
+    )
+
+    def clean(self):
+        cleaned_data = super(ExtendForm, self).clean()
+        new_size = cleaned_data.get('new_size')
+        orig_size = self.initial['orig_size']
+
+        if new_size <= orig_size:
+            message = _("New size must be greater than current size.")
+            self._errors["new_size"] = self.error_class([message])
+            return cleaned_data
+
+        usages = quotas.tenant_limit_usages(self.request)
+        availableGB = (usages['maxTotalShareGigabytes'] -
+                       usages['totalShareGigabytesUsed'])
+        if availableGB < (new_size - orig_size):
+            message = _('Share cannot be extended to %(req)iGB as '
+                        'you only have %(avail)iGB of your quota '
+                        'available.')
+            params = {'req': new_size, 'avail': availableGB + orig_size}
+            self._errors["new_size"] = self.error_class([message % params])
+        return cleaned_data
+
+    def handle(self, request, data):
+        share_id = self.initial['share_id']
+        try:
+            share = manila.share_get(self.request, share_id)
+            manila.share_extend(
+                request, share.id, data['new_size'])
+            message = _('Extend share "%s"') % data['name']
+            messages.success(request, message)
+            return True
+        except Exception:
+            redirect = reverse("horizon:project:shares:index")
+            exceptions.handle(request,
+                              _('Unable to extend share.'),
+                              redirect=redirect)

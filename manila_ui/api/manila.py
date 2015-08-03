@@ -130,6 +130,10 @@ def share_unmanage(request, share):
     return manilaclient(request).shares.unmanage(share)
 
 
+def share_extend(request, share_id, new_size):
+    return manilaclient(request).shares.extend(share_id, new_size)
+
+
 def share_snapshot_get(request, snapshot_id):
     return manilaclient(request).share_snapshots.get(snapshot_id)
 

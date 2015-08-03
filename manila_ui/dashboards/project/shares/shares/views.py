@@ -216,3 +216,40 @@ class ManageRulesView(tables.DataTableView):
                               _('Unable to retrieve share rules.'),
                               redirect=redirect)
         return rules
+
+
+class ExtendView(forms.ModalFormView):
+    form_class = share_form.ExtendForm
+    template_name = 'project/shares/shares/extend.html'
+    success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Extend Share')
+
+    def get_object(self):
+        if not hasattr(self, "_object"):
+            share_id = self.kwargs['share_id']
+            try:
+                self._object = manila.share_get(self.request, share_id)
+            except Exception:
+                msg = _('Unable to retrieve share.')
+                url = reverse('horizon:project:shares:index')
+                exceptions.handle(self.request, msg, redirect=url)
+        return self._object
+
+    def get_context_data(self, **kwargs):
+        context = super(ExtendView, self).get_context_data(**kwargs)
+        context['share'] = self.get_object()
+
+        try:
+            context['usages'] = quotas.tenant_limit_usages(self.request)
+        except Exception:
+            exceptions.handle(self.request)
+
+        return context
+
+    def get_initial(self):
+        share = self.get_object()
+        return {'share_id': self.kwargs["share_id"],
+                'name': share.name,
+                'orig_size': share.size,
+                'new_size': int(share.size) + 1
+                }
