@@ -70,7 +70,16 @@ class CreateSnapshot(tables.LinkAction):
             self.verbose_name = _("Create Snapshot")
             classes = [c for c in self.classes if c != "disabled"]
             self.classes = classes
-        return share.status in ("available", "in-use")
+
+        # NOTE(vponomaryov): Disable form with creation of a snapshot for
+        # shares that has attr 'snapshot_support' equal to False.
+        if hasattr(share, 'snapshot_support'):
+            snapshot_support = share.snapshot_support
+        else:
+            # NOTE(vponomaryov): Allow creation of a snapshot for shares that
+            # do not have such attr for backward compatibility.
+            snapshot_support = True
+        return share.status in ("available", "in-use") and snapshot_support
 
 
 class DeleteSnapshot(tables.DeleteAction):

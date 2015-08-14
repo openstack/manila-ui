@@ -13,10 +13,13 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import ddt
+
 from manila_ui.api import manila as api
 from manila_ui.test import helpers as base
 
 
+@ddt.ddt
 class ManilaApiTests(base.APITestCase):
 
     def setUp(self):
@@ -31,6 +34,42 @@ class ManilaApiTests(base.APITestCase):
         self.manilaclient.shares.extend.assert_called_once_with(
             self.id, new_size
         )
+
+    @ddt.data(True, False)
+    def test_share_type_create_with_default_values(self, dhss):
+        name = 'fake_share_type_name'
+
+        api.share_type_create(self.request, name, dhss)
+
+        self.manilaclient.share_types.create.assert_called_once_with(
+            name=name,
+            spec_driver_handles_share_servers=dhss,
+            spec_snapshot_support=True,
+            is_public=True)
+
+    @ddt.data(
+        (True, True, True),
+        (True, True, False),
+        (True, False, True),
+        (False, True, True),
+        (True, False, False),
+        (False, False, True),
+        (False, True, False),
+        (True, True, True),
+    )
+    @ddt.unpack
+    def test_share_type_create_with_custom_values(
+            self, dhss, snapshot_support, is_public):
+        name = 'fake_share_type_name'
+
+        api.share_type_create(
+            self.request, name, dhss, snapshot_support, is_public)
+
+        self.manilaclient.share_types.create.assert_called_once_with(
+            name=name,
+            spec_driver_handles_share_servers=dhss,
+            spec_snapshot_support=snapshot_support,
+            is_public=is_public)
 
     def test_share_type_set_extra_specs(self):
         data = {"foo": "bar"}
