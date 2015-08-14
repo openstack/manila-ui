@@ -220,11 +220,12 @@ class UpdateShareType(forms.SelfHandlingForm):
             if unset_list:
                 get = manila.share_type_get_extra_specs(
                     request, self.initial["id"])
-                for unset_key in unset_list:
-                    # NOTE(vponomaryov): skip keys that are already unset
-                    if unset_key in get.keys():
-                        manila.share_type_unset_extra_specs(
-                            request, self.initial["id"], unset_key)
+
+                # NOTE(vponomaryov): skip keys that are already unset
+                to_unset = set(unset_list).intersection(set(get.keys()))
+                if to_unset:
+                    manila.share_type_unset_extra_specs(
+                        request, self.initial["id"], to_unset)
             msg = _("Successfully updated extra specs for share type '%s'.")
             msg = msg % self.initial['name']
             messages.success(request, msg)

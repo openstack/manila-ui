@@ -303,9 +303,9 @@ def share_type_set_extra_specs(request, share_type_id, extra_specs):
         share_type_id).set_keys(extra_specs)
 
 
-def share_type_unset_extra_specs(request, share_type_id, key):
+def share_type_unset_extra_specs(request, share_type_id, keys):
     return manilaclient(request).share_types.get(
-        share_type_id).unset_keys(key)
+        share_type_id).unset_keys(keys)
 
 
 def share_type_access_list(request, share_type_id):

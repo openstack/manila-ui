@@ -19,12 +19,33 @@ from manila_ui.test import helpers as base
 
 class ManilaApiTests(base.APITestCase):
 
+    def setUp(self):
+        super(self.__class__, self).setUp()
+        self.id = "fake_id"
+
     def test_share_extend(self):
-        fake_share_id = "fake_id"
         new_size = "123"
 
-        api.share_extend(self.request, fake_share_id, new_size)
+        api.share_extend(self.request, self.id, new_size)
 
         self.manilaclient.shares.extend.assert_called_once_with(
-            fake_share_id, new_size
+            self.id, new_size
         )
+
+    def test_share_type_set_extra_specs(self):
+        data = {"foo": "bar"}
+
+        api.share_type_set_extra_specs(self.request, self.id, data)
+
+        share_types_get = self.manilaclient.share_types.get
+        share_types_get.assert_called_once_with(self.id)
+        share_types_get.return_value.set_keys.assert_called_once_with(data)
+
+    def test_share_type_unset_extra_specs(self):
+        keys = ["foo", "bar"]
+
+        api.share_type_unset_extra_specs(self.request, self.id, keys)
+
+        share_types_get = self.manilaclient.share_types.get
+        share_types_get.assert_called_once_with(self.id)
+        share_types_get.return_value.unset_keys.assert_called_once_with(keys)

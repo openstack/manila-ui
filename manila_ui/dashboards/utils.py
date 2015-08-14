@@ -28,28 +28,29 @@ def parse_str_meta(meta_s):
     unset_list = []
     msg = ""
     for string in strings:
-        if string.count("=") == 1:
-            pair = [p.strip() for p in string.split("=")]
+        if string.count("=") == 0:
+            # Key for unsetting
+            key = string.strip('\"\'\ ')
+            if len(key) not in range(1, 256):
+                msg = _("Key '%s' has inproper length.") % key
+            elif " " in key:
+                msg = _("Key can not contain spaces. See string '%s'.") % key
+            elif key not in unset_list:
+                unset_list.append(key)
+        else:
+            # Key-value pair for setting
+            pair = [p.strip('\"\'\ ') for p in string.split("=", 1)]
             if not all(len(p) in range(1, 256) for p in pair):
                 msg = _("All keys and values must be in range from 1 to 255.")
-            elif pair[0] in set_dict.keys():
+            elif pair[0] in list(set_dict.keys()):
                 msg = _("Duplicated keys '%s'.") % pair[0]
-            elif any(" " in p for p in pair):
-                msg = _("Keys and values should not contain spaces. "
+            elif " " in pair[0]:
+                msg = _("Keys should not contain spaces. "
                         "Error in '%s'.") % string
             else:
                 set_dict[pair[0]] = pair[1]
-        elif string.count("=") == 0:
-            s = string.strip()
-            if len(s) not in range(1, 256):
-                msg = _("Key '%s' has inproper length.") % s
-            elif " " in s:
-                msg = _("Key can not contain spaces. See string '%s'.") % s
-            elif s not in unset_list:
-                unset_list.append(s)
-        else:
-            msg = _("Wrong data provided in string '%s'.") % string
-    duplicated_keys = [uk for uk in unset_list if uk in set_dict.keys()]
+
+    duplicated_keys = [uk for uk in unset_list if uk in list(set_dict.keys())]
     if duplicated_keys:
         msg = _("Duplicated keys '%s'.") % str(duplicated_keys)
     if msg:

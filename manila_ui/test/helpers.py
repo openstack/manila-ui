@@ -42,15 +42,9 @@ class BaseAdminViewTests(ManilaTestsMixin, helpers.BaseAdminViewTests):
 
 
 class APITestCase(ManilaTestsMixin, helpers.APITestCase):
+
     def setUp(self):
         super(APITestCase, self).setUp()
-
+        self.manilaclient = mock.Mock()
         self._original_manilaclient = api.manila.manilaclient
-        api.manila.manilaclient = lambda request: self.stub_manilaclient()
-
-    def stub_manilaclient(self):
-        # NOTE(u_glide): Create empty mock if test case doesn't have
-        # predefined manilaclient
-        if not hasattr(self, "manilaclient"):
-            self.manilaclient = mock.Mock()
-        return self.manilaclient
+        api.manila.manilaclient = lambda request: self.manilaclient
