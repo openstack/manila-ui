@@ -30,6 +30,7 @@ from horizon.utils.memoized import memoized  # noqa
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
+from openstack_dashboard.api import nova
 from openstack_dashboard.usage import quotas
 
 
@@ -44,6 +45,9 @@ class CreateForm(forms.SelfHandlingForm):
         label=_("Share Type"), required=True,
         widget=forms.Select(
             attrs={'class': 'switchable', 'data-slug': 'sharetype'}))
+    availability_zone = forms.ChoiceField(
+        label=_("Availability Zone"),
+        required=False)
 
     def __init__(self, request, *args, **kwargs):
         super(CreateForm, self).__init__(request, *args, **kwargs)
@@ -52,6 +56,10 @@ class CreateForm(forms.SelfHandlingForm):
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (
             [("", "")] + [(st.name, st.name) for st in share_types])
+        availability_zones = nova.availability_zone_list(request)
+        self.fields['availability_zone'].choices = (
+            [("", "")] +
+            [(az.zoneName, az.zoneName) for az in availability_zones])
 
         self.sn_field_name_prefix = 'share-network-choices-'
         for st in share_types:
@@ -212,16 +220,18 @@ class CreateForm(forms.SelfHandlingForm):
             except ValidationError as e:
                 self.api_error(e.messages[0])
                 return False
-            share = manila.share_create(request,
-                                        size=data['size'],
-                                        name=data['name'],
-                                        description=data['description'],
-                                        proto=data['share_proto'],
-                                        share_network=share_network,
-                                        snapshot_id=snapshot_id,
-                                        share_type=data['share_type'],
-                                        is_public=data['is_public'],
-                                        metadata=metadata)
+            share = manila.share_create(
+                request,
+                size=data['size'],
+                name=data['name'],
+                description=data['description'],
+                proto=data['share_proto'],
+                share_network=share_network,
+                snapshot_id=snapshot_id,
+                share_type=data['share_type'],
+                is_public=data['is_public'],
+                metadata=metadata,
+                availability_zone=data['availability_zone'])
             message = _('Creating share "%s"') % data['name']
             messages.success(request, message)
             return share

@@ -20,12 +20,17 @@ from manila_ui.dashboards.project.shares import test_data
 from manila_ui.test import helpers as test
 
 from openstack_dashboard import api
+from openstack_dashboard.api import nova
 from openstack_dashboard.usage import quotas
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 
 
 class ShareViewTests(test.TestCase):
+
+    class FakeAZ(object):
+        def __init__(self, name):
+            self.zoneName = name
 
     def setUp(self):
         super(ShareViewTests, self).setUp()
@@ -35,7 +40,8 @@ class ShareViewTests(test.TestCase):
         self.fake_share_type.get_keys = mock.Mock(
             return_value={'driver_handles_share_servers': 'True'})
 
-    def test_create_share(self):
+    @mock.patch.object(nova, 'availability_zone_list')
+    def test_create_share(self, az_list):
         usage_limit = {'maxTotalVolumeGigabytes': 250,
                        'gigabytesUsed': 20,
                        'volumesUsed': 0,
@@ -50,8 +56,10 @@ class ShareViewTests(test.TestCase):
                     'share_proto': u'NFS',
                     'share_type': 'fake',
                     'share-network-choices-fake': share_net.id,
+                    'availability_zone': 'fake_az',
                     }
 
+        az_list.return_value = [self.FakeAZ('fake_az'), ]
         api_manila.share_create = mock.Mock()
         api_manila.share_snapshot_list = mock.Mock(return_value=[])
         api_manila.share_network_list = mock.Mock(return_value=share_nets)
@@ -66,9 +74,11 @@ class ShareViewTests(test.TestCase):
             mock.ANY, size=formData['size'], name=formData['name'],
             description=formData['description'], proto=formData['share_proto'],
             snapshot_id=None, is_public=False, share_network=share_net.id,
-            metadata={}, share_type=formData['share_type'])
+            metadata={}, share_type=formData['share_type'],
+            availability_zone=formData['availability_zone'])
 
-    def test_create_share_from_snapshot(self):
+    @mock.patch.object(nova, 'availability_zone_list')
+    def test_create_share_from_snapshot(self, az_list):
         share_net = test_data.active_share_network
         share_nets = [share_net]
         snapshot = test_data.snapshot
@@ -82,8 +92,10 @@ class ShareViewTests(test.TestCase):
                     'share_source_type': 'snapshot',
                     'snapshot': snapshot.id,
                     'share-network-choices-fake': share_net.id,
+                    'availability_zone': 'fake_az'
                     }
 
+        az_list.return_value = [self.FakeAZ('fake_az'), ]
         api_manila.share_create = mock.Mock()
         api_manila.share_snapshot_list = mock.Mock(
             return_value=[snapshot])
@@ -101,7 +113,8 @@ class ShareViewTests(test.TestCase):
             description=formData['description'], proto=formData['share_proto'],
             snapshot_id=snapshot.id, is_public=False,
             share_network=share_net.id, metadata={},
-            share_type=formData['share_type'])
+            share_type=formData['share_type'],
+            availability_zone=formData['availability_zone'])
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_delete_share(self):
@@ -142,6 +155,8 @@ class ShareViewTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % share.id, 1, 200)
         self.assertContains(res, "<dd>%s GB</dd>" % share.size, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share.share_proto, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share.availability_zone, 1,
+                            200)
         for rule in rules:
             self.assertContains(res, "<dt>%s</dt>" % rule.access_type,
                                 1, 200)

@@ -34,7 +34,8 @@ share = shares.Share(
      'metadata': {},
      'created_at': '2014-01-27 10:30:00',
      'share_server_id': '1',
-     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d'})
+     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
+     'availability_zone': 'Test AZ'})
 
 nameless_share = shares.Share(
     shares.ShareManager(None),
@@ -49,7 +50,8 @@ nameless_share = shares.Share(
      'created_at': '2010-11-21 18:34:25',
      'share_type': 'vol_type_1',
      'share_server_id': '1',
-     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d'})
+     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
+     'availability_zone': 'Test AZ'})
 
 other_share = shares.Share(
     shares.ShareManager(None),
@@ -63,7 +65,8 @@ other_share = shares.Share(
      'created_at': '2013-04-01 10:30:00',
      'share_type': None,
      'share_server_id': '1',
-     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d'})
+     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
+     'availability_zone': 'Test AZ'})
 
 rule = collections.namedtuple('Access', ['access_type', 'access_to', 'status',
                                          'id'])
