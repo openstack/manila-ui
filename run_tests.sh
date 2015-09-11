@@ -331,22 +331,22 @@ function run_tests {
 
 function run_tests_subset {
   project=`echo $testargs | awk -F. '{print $1}'`
-  ${command_wrapper} python $root/manage.py test --settings=$project.test.settings --verbosity 2 $testopts $testargs
+  ${command_wrapper} python $root/manage.py test --settings=$project.test.settings $testopts $testargs
 }
 
 function run_tests_all {
-  echo "Running application tests"
+  echo "Running Manila-UI application tests"
   export NOSE_XUNIT_FILE=manila_ui/nosetests.xml
   if [ "$NOSE_WITH_HTML_OUTPUT" = '1' ]; then
-    export NOSE_HTML_OUT_FILE='manila_nose_results.html'
+    export NOSE_HTML_OUT_FILE='manila_ui_nose_results.html'
   fi
   if [ $with_coverage -eq 1 ]; then
     ${command_wrapper} python -m coverage.__main__ erase
     coverage_run="python -m coverage.__main__ run -p"
   fi
-  ${command_wrapper} ${coverage_run} $root/manage.py test manila_ui --settings=manila_ui.test.settings --verbosity 2 $testopts
+  ${command_wrapper} ${coverage_run} $root/manage.py test manila_ui --settings=manila_ui.test.settings $testopts
   # get results of the Horizon tests
-  MANILA_RESULT=$?
+  MANILA_UI_RESULT=$?
 
   if [ $with_coverage -eq 1 ]; then
     echo "Generating coverage reports"
@@ -363,7 +363,7 @@ function run_tests_all {
       PEP8_RESULT=$?
   fi
 
-  TEST_RESULT=$(($MANILA_RESULT || $PEP8_RESULT))
+  TEST_RESULT=$(($MANILA_UI_RESULT || $PEP8_RESULT))
   if [ $TEST_RESULT -eq 0 ]; then
     echo "Tests completed successfully."
   else
