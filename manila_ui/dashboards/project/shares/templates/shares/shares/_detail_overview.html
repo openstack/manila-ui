@@ -31,6 +31,8 @@
     <dd>{{ 'public' }}</dd>
     {% else %}
     <dd>{{ 'private' }}</dd>
+    <dt>{% trans "Availability zone" %}</dt>
+    <dd>{{ share.availability_zone }}</dd>
     {% endif %}
   </dl>
 </div>

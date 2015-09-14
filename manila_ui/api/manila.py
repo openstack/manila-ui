@@ -77,12 +77,12 @@ def share_get(request, share_id):
 
 def share_create(request, size, name, description, proto, snapshot_id=None,
                  metadata=None, share_network=None, share_type=None,
-                 is_public=None):
+                 is_public=None, availability_zone=None):
     return manilaclient(request).shares.create(
         proto, size, name=name, description=description,
         share_network=share_network, snapshot_id=snapshot_id,
         metadata=metadata, share_type=share_type, is_public=is_public,
-    )
+        availability_zone=availability_zone)
 
 
 def share_delete(request, share_id):
