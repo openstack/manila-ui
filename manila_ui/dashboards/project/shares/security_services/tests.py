@@ -94,16 +94,17 @@ class SecurityServicesViewTests(test.TestCase):
         sec_service = test_data.sec_service
 
         def raise_exc(*args, **kwargs):
-            raise manila_client_exc.NotFound(500)
+            raise manila_client_exc.NotFound(404)
 
         api_manila.security_service_get = mock.Mock(
             side_effect=raise_exc)
 
         url = reverse('horizon:project:shares:security_service_detail',
                       args=[sec_service.id])
-        with self.assertRaises(manila_client_exc.NotFound):
-            res = self.client.get(url)
-            self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+
+        res = self.client.get(url)
+
+        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_update_security_service(self):
         sec_service = test_data.sec_service

@@ -125,10 +125,9 @@ class Detail(tabs.TabView):
                 self.request, sec_service_id)
         except Exception:
             redirect = reverse('horizon:project:shares:index')
-            exceptions.handle(
-                self.request,
-                _('Unable to retrieve security service details.'),
-                redirect=redirect)
+            message = _("Unable to retrieve security service "
+                        "'%s' details.") % sec_service_id
+            exceptions.handle(self.request, message, redirect=redirect)
         return sec_service
 
     def get_tabs(self, request, *args, **kwargs):
