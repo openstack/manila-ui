@@ -27,7 +27,7 @@ import logging
 from django.conf import settings
 import six
 
-from manilaclient.v1 import client as manila_client
+from manilaclient import client as manila_client
 from manilaclient.v1.contrib import list_extensions as manila_list_extensions
 
 from horizon import exceptions
@@ -37,6 +37,9 @@ from openstack_dashboard.api import base
 
 LOG = logging.getLogger(__name__)
 
+MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
+MANILA_VERSION = "2.5"  # requires manilaclient 1.3.0 or newer
+MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
 SHARE_STATE_AVAILABLE = "available"
@@ -48,19 +51,24 @@ def manilaclient(request):
     cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
     manila_url = ""
     try:
-        manila_url = base.url_for(request, 'share')
+        manila_url = base.url_for(request, MANILA_SERVICE_TYPE)
     except exceptions.ServiceCatalogException:
         LOG.debug('no share service configured.')
         return None
     LOG.debug('manilaclient connection created using token "%s" and url "%s"' %
               (request.user.token.id, manila_url))
-    c = manila_client.Client(request.user.username,
-                             input_auth_token=request.user.token.id,
-                             project_id=request.user.tenant_id,
-                             service_catalog_url=manila_url,
-                             insecure=insecure,
-                             cacert=cacert,
-                             http_log_debug=settings.DEBUG)
+    c = manila_client.Client(
+        MANILA_VERSION,
+        username=request.user.username,
+        input_auth_token=request.user.token.id,
+        project_id=request.user.tenant_id,
+        service_catalog_url=manila_url,
+        insecure=insecure,
+        cacert=cacert,
+        http_log_debug=settings.DEBUG,
+        user_agent=MANILA_UI_USER_AGENT_REPR,
+        api_version=MANILA_VERSION,
+    )
     c.client.auth_token = request.user.token.id
     c.client.management_url = manila_url
     return c
