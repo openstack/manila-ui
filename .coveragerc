@@ -4,4 +4,4 @@ source = manila_ui
 omit = manila_ui/tests/*,manila_ui/openstack/*
 
 [report]
-ignore-errors = True
+ignore_errors = True
