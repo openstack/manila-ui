@@ -12,6 +12,8 @@
 
 from django.conf.urls import url  # noqa
 
+from manila_ui.api import manila
+from manila_ui.dashboards.admin.shares.replicas import views as replica_views
 from manila_ui.dashboards.admin.shares import views
 
 urlpatterns = [
@@ -48,3 +50,22 @@ urlpatterns = [
     url(r'^unmanage/(?P<share_id>[^/]+)$', views.UnmanageShareView.as_view(),
         name='unmanage'),
 ]
+
+if manila.is_replication_enabled():
+    urlpatterns.extend([
+        url(r'^(?P<share_id>[^/]+)/replicas/$',
+            replica_views.ManageReplicasView.as_view(),
+            name='manage_replicas'),
+        url(r'^replica/(?P<replica_id>[^/]+)$',
+            replica_views.DetailReplicaView.as_view(),
+            name='replica_detail'),
+        url(r'^replica/(?P<replica_id>[^/]+)/resync_replica$',
+            replica_views.ResyncReplicaView.as_view(),
+            name='resync_replica'),
+        url(r'^replica/(?P<replica_id>[^/]+)/reset_replica_status$',
+            replica_views.ResetReplicaStatusView.as_view(),
+            name='reset_replica_status'),
+        url(r'^replica/(?P<replica_id>[^/]+)/reset_replica_state$',
+            replica_views.ResetReplicaStateView.as_view(),
+            name='reset_replica_state'),
+    ])

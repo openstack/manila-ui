@@ -14,6 +14,7 @@
 #    under the License.
 
 import ddt
+import mock
 
 from manila_ui.api import manila as api
 from manila_ui.tests import helpers as base
@@ -135,3 +136,87 @@ class ManilaApiTests(base.APITestCase):
         api.share_instance_get(self.request, self.id)
 
         self.manilaclient.share_instances.get.assert_called_once_with(self.id)
+
+    def test_share_replica_list(self):
+        api.share_replica_list(self.request)
+
+        self.manilaclient.share_replicas.list.assert_called_once_with(None)
+
+    def test_share_replica_list_with_filter_by_share(self):
+        api.share_replica_list(self.request, share="FOO")
+
+        self.manilaclient.share_replicas.list.assert_called_once_with("FOO")
+
+    @ddt.data(None, "foo_share_network")
+    def test_share_replica_create(self, share_network):
+        share = "FOO_share"
+        availability_zone = "BAR_availability_zone"
+
+        api.share_replica_create(
+            self.request, share, availability_zone, share_network)
+
+        self.manilaclient.share_replicas.create.assert_called_once_with(
+            share,
+            availability_zone=availability_zone,
+            share_network=share_network,
+        )
+
+    def test_share_replica_get(self):
+        api.share_replica_get(self.request, "fake")
+
+        self.manilaclient.share_replicas.get.assert_called_once_with("fake")
+
+    def test_share_replica_delete(self):
+        api.share_replica_delete(self.request, "fake")
+
+        self.manilaclient.share_replicas.delete.assert_called_once_with("fake")
+
+    def test_share_replica_promote(self):
+        api.share_replica_promote(self.request, "fake")
+
+        self.manilaclient.share_replicas.promote.assert_called_once_with(
+            "fake")
+
+    def test_share_replica_resync(self):
+        api.share_replica_resync(self.request, "fake")
+
+        self.manilaclient.share_replicas.resync.assert_called_once_with("fake")
+
+    def test_share_replica_reset_status(self):
+        replica = "fake_replica"
+        status = "fake_status"
+
+        api.share_replica_reset_status(self.request, replica, status)
+
+        self.manilaclient.share_replicas.reset_state.assert_called_once_with(
+            replica, status)
+
+    def test_share_replica_reset_state(self):
+        replica = "fake_replica"
+        state = "fake_state"
+
+        api.share_replica_reset_state(self.request, replica, state)
+
+        mock_reset_state = self.manilaclient.share_replicas.reset_replica_state
+        mock_reset_state.assert_called_once_with(replica, state)
+
+    def test_share_valid_availability_zones_for_new_replica(self):
+        availability_zones = [
+            type("FakeAZ", (object,), {"zoneName": zone_name})
+            for zone_name in ("foo", "bar", "quuz")
+        ]
+        self.mock_object(
+            api.nova,
+            "availability_zone_list",
+            mock.Mock(return_value=availability_zones))
+        self.manilaclient.share_replicas.list.return_value = [
+            type("FakeReplica", (object,), {"availability_zone": "foo"})]
+        share = "fake_share"
+        expected = set(("bar", "quuz"))
+
+        result = api.share_valid_availability_zones_for_new_replica(
+            self.request, share)
+
+        self.assertEqual(expected, result)
+        self.manilaclient.share_replicas.list.assert_called_once_with(share)
+        api.nova.availability_zone_list.assert_called_once_with(self.request)

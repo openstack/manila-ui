@@ -209,7 +209,7 @@ class ShareViewTests(test.TestCase):
                 res, "<div><b>Is admin only:</b> %s</div>" % el.is_admin_only,
                 1, 200)
         self.assertContains(
-            res, ("<div><b>Share Instance ID:</b> %s</div>" %
+            res, ("<div><b>Share Replica ID:</b> %s</div>" %
                   export_locations[0].share_instance_id),
             2, 200)
         for rule in rules:

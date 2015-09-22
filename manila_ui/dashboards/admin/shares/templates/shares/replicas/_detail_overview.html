@@ -1,0 +1,40 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Share Replica Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ replica.id }}</dd>
+    <dt>{% trans "Share" %}</dt>
+    {% url 'horizon:admin:shares:detail' replica.share_id as share_url%}
+    <dd><a href="{{ share_url }}">{{ replica.share_id }}</a></dd>
+    <dt>{% trans "Status" %}</dt>
+    <dd>{{ replica.status|capfirst }}</dd>
+    <dt>{% trans "Replica state" %}</dt>
+    <dd>{{ replica.replica_state|capfirst }}</dd>
+    <dt>{% trans "Export locations" %}</dt>
+    {% for el in replica.export_locations %}
+      <dd><p>
+        <div><b>Path:</b>
+            <input type="text" readonly="true"
+                   value="{{ el.path }}" size="{{ replica.el_size }}"
+                   onClick="this.setSelectionRange(0, this.value.length)">
+        </div>
+        <div><b>Preferred:</b> {{ el.preferred }}</div>
+        {% if el.is_admin_only == True or el.is_admin_only == False %}
+        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+        {% endif %}
+      </p></dd>
+    {% endfor %}
+    <dt>{% trans "Availability zone" %}</dt>
+    <dd>{{ replica.availability_zone }}</dd>
+
+    <dt>{% trans "Created" %}</dt>
+    <dd>{{ replica.created_at|parse_date }}</dd>
+    <dt>{% trans "Updated" %}</dt>
+    <dd>{{ replica.updated_at|parse_date }}</dd>
+    <dt>{% trans "Host" %}</dt>
+    <dd>{{ replica.host }}</dd>
+  </dl>
+</div>

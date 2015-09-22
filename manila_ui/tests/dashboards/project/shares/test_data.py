@@ -33,6 +33,7 @@ except ImportError:
 
 from manilaclient.v2 import share_export_locations
 from manilaclient.v2 import share_instances
+from manilaclient.v2 import share_replicas
 from manilaclient.v2 import share_servers
 
 from openstack_dashboard import api
@@ -101,6 +102,18 @@ other_share = shares.Share(
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ'})
+
+share_replica = share_replicas.ShareReplica(
+    share_replicas.ShareReplicaManager(FakeAPIClient),
+    {'id': '11023e92-8008-4c8b-8059-replicaf3887',
+     'availability_zone': share.availability_zone,
+     'host': 'fake_host_1',
+     'share_id': share.id,
+     'status': 'available',
+     'replica_state': 'active',
+     'created_at': '2016-07-19 19:46:13',
+     'updated_at': '2016-07-19 19:47:14'}
+)
 
 admin_export_location = share_export_locations.ShareExportLocation(
     share_export_locations.ShareExportLocationManager(FakeAPIClient),

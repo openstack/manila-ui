@@ -26,7 +26,10 @@ from manilaclient import client as manila_client
 import six
 
 from horizon import exceptions
+from horizon.utils.memoized import memoized  # noqa
 from openstack_dashboard.api import base
+from openstack_dashboard.api import nova
+
 
 LOG = logging.getLogger(__name__)
 
@@ -63,6 +66,7 @@ def manilaclient(request):
     )
     c.client.auth_token = request.user.token.id
     c.client.management_url = manila_url
+
     return c
 
 
@@ -336,6 +340,58 @@ def share_type_access_remove(request, share_type_id, project_id):
         share_type_id, project_id)
 
 
+def share_replica_list(request, share=None):
+    return manilaclient(request).share_replicas.list(share)
+
+
+def share_replica_create(request, share, availability_zone,
+                         share_network=None):
+    return manilaclient(request).share_replicas.create(
+        share,
+        availability_zone=availability_zone,
+        share_network=share_network)
+
+
+def share_replica_get(request, replica):
+    return manilaclient(request).share_replicas.get(replica)
+
+
+def share_replica_delete(request, replica):
+    return manilaclient(request).share_replicas.delete(replica)
+
+
+def share_replica_promote(request, replica):
+    return manilaclient(request).share_replicas.promote(replica)
+
+
+def share_replica_reset_status(request, replica, status):
+    return manilaclient(request).share_replicas.reset_state(
+        replica, status)
+
+
+def share_replica_reset_state(request, replica, state):
+    return manilaclient(request).share_replicas.reset_replica_state(
+        replica, state)
+
+
+def share_replica_resync(request, replica):
+    return manilaclient(request).share_replicas.resync(replica)
+
+
+def share_valid_availability_zones_for_new_replica(request, share):
+    availability_zones = (
+        set([az.zoneName
+             for az in nova.availability_zone_list(request)])
+    )
+
+    az_with_replicas = (
+        set([r.availability_zone
+             for r in share_replica_list(request, share)])
+    )
+
+    return availability_zones - az_with_replicas
+
+
 def tenant_absolute_limits(request):
     limits = manilaclient(request).limits.get().absolute
     limits_dict = {}
@@ -354,3 +410,9 @@ def share_instance_list(request):
 
 def share_instance_get(request, share_instance_id):
     return manilaclient(request).share_instances.get(share_instance_id)
+
+
+@memoized
+def is_replication_enabled():
+    manila_config = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+    return manila_config.get('enable_replication', True)

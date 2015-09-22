@@ -1,0 +1,7 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% block modal-body %}
+    <p>{% trans "Set share replica with ID" %}
+        <b>"{{ replica_id }}"</b> {% trans "as Active?" %}
+    </p>
+{% endblock %}

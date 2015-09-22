@@ -135,6 +135,17 @@ class ShareTypesTable(tables.DataTable):
             DeleteShareType)
 
 
+class ManageReplicas(tables.LinkAction):
+    name = "manage_replicas"
+    verbose_name = _("Manage Replicas")
+    url = "horizon:admin:shares:manage_replicas"
+    classes = ("btn-edit",)
+    policy_rules = (("share", "share:replica_get_all"),)
+
+    def allowed(self, request, *args, **kwargs):
+        return manila.is_replication_enabled()
+
+
 class SharesTable(shares_tables.SharesTable):
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
@@ -163,6 +174,7 @@ class SharesTable(shares_tables.SharesTable):
             ManageShareAction,
             shares_tables.DeleteShare)
         row_actions = (
+            ManageReplicas,
             UnmanageShareAction,
             shares_tables.DeleteShare)
         columns = (

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Reset Replica State" %}{% endblock %}
+
+{% block main %}
+    {% include 'admin/shares/replicas/_reset_replica_state.html' %}
+{% endblock %}

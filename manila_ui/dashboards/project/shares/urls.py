@@ -14,6 +14,9 @@
 
 from django.conf.urls import url  # noqa
 
+from manila_ui.api import manila
+from manila_ui.dashboards.project.shares.replicas\
+    import views as replica_views
 from manila_ui.dashboards.project.shares.security_services \
     import views as security_services_views
 from manila_ui.dashboards.project.shares.share_networks \
@@ -77,3 +80,19 @@ urlpatterns = [
         shares_views.ExtendView.as_view(),
         name='extend'),
 ]
+
+if manila.is_replication_enabled():
+    urlpatterns.extend([
+        url(r'^(?P<share_id>[^/]+)/create_replica/$',
+            replica_views.CreateReplicaView.as_view(),
+            name='create_replica'),
+        url(r'^(?P<share_id>[^/]+)/replicas/$',
+            replica_views.ManageReplicasView.as_view(),
+            name='manage_replicas'),
+        url(r'^replica/(?P<replica_id>[^/]+)$',
+            replica_views.DetailReplicaView.as_view(),
+            name='replica_detail'),
+        url(r'^replica/(?P<replica_id>[^/]+)/set_replica_as_active$',
+            replica_views.SetReplicaAsActiveView.as_view(),
+            name='set_replica_as_active'),
+    ])
