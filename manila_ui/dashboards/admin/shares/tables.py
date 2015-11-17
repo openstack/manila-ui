@@ -28,7 +28,7 @@ from manila_ui.dashboards.project.shares.snapshots \
 
 
 def get_size(share):
-    return _("%sGB") % share.size
+    return _("%sGiB") % share.size
 
 
 class CreateShareType(tables.LinkAction):

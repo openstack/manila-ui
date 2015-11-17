@@ -153,7 +153,7 @@ class ShareViewTests(test.TestCase):
 
         self.assertContains(res, "<dd>%s</dd>" % share.name, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share.id, 1, 200)
-        self.assertContains(res, "<dd>%s GB</dd>" % share.size, 1, 200)
+        self.assertContains(res, "<dd>%s GiB</dd>" % share.size, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share.share_proto, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share.availability_zone, 1,
                             200)
