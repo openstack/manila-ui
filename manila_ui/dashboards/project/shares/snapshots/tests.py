@@ -82,7 +82,7 @@ class SnapshotSnapshotViewTests(test.TestCase):
         self.assertContains(res,
                             "<dd><a href=\"/admin/shares/%s/\">%s</a></dd>" %
                             (snapshot.share_id, share.name), 1, 200)
-        self.assertContains(res, "<dd>%s GB</dd>" % snapshot.size, 1, 200)
+        self.assertContains(res, "<dd>%s GiB</dd>" % snapshot.size, 1, 200)
 
         self.assertNoMessages()
 

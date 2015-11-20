@@ -40,7 +40,7 @@ class CreateForm(forms.SelfHandlingForm):
         label=_("Description"), required=False,
         widget=forms.Textarea(attrs={'rows': 3}))
     share_proto = forms.ChoiceField(label=_("Share Protocol"), required=True)
-    size = forms.IntegerField(min_value=1, label=_("Size (GB)"))
+    size = forms.IntegerField(min_value=1, label=_("Size (GiB)"))
     share_type = forms.ChoiceField(
         label=_("Share Type"), required=True,
         widget=forms.Select(
@@ -94,7 +94,7 @@ class CreateForm(forms.SelfHandlingForm):
                        'data-switch-on': 'source',
                        'data-source-snapshot': _('Snapshot')},
                 data_attrs=('size', 'name'),
-                transform=lambda x: "%s (%sGB)" % (x.name, x.size)),
+                transform=lambda x: "%s (%sGiB)" % (x.name, x.size)),
             required=False)
         self.fields['metadata'] = forms.CharField(
             label=_("Metadata"), required=False,
@@ -120,7 +120,7 @@ class CreateForm(forms.SelfHandlingForm):
                     pass
                 self.fields['size'].help_text = _(
                     'Share size must be equal to or greater than the snapshot '
-                    'size (%sGB)') % snapshot.size
+                    'size (%sGiB)') % snapshot.size
                 del self.fields['share_source_type']
             except Exception:
                 exceptions.handle(request,
@@ -191,7 +191,7 @@ class CreateForm(forms.SelfHandlingForm):
                 snapshot_id = snapshot.id
                 if (data['size'] < snapshot.size):
                     error_message = _('The share size cannot be less than the '
-                                      'snapshot size (%sGB)') % snapshot.size
+                                      'snapshot size (%sGiB)') % snapshot.size
                     raise ValidationError(error_message)
             else:
                 if type(data['size']) is str:
@@ -345,13 +345,13 @@ class ExtendForm(forms.SelfHandlingForm):
     )
 
     orig_size = forms.IntegerField(
-        label=_("Current Size (GB)"),
+        label=_("Current Size (GiB)"),
         widget=forms.TextInput(attrs={'readonly': 'readonly'}),
         required=False,
     )
 
     new_size = forms.IntegerField(
-        label=_("New Size (GB)"),
+        label=_("New Size (GiB)"),
     )
 
     def clean(self):
@@ -368,8 +368,8 @@ class ExtendForm(forms.SelfHandlingForm):
         availableGB = (usages['maxTotalShareGigabytes'] -
                        usages['totalShareGigabytesUsed'])
         if availableGB < (new_size - orig_size):
-            message = _('Share cannot be extended to %(req)iGB as '
-                        'you only have %(avail)iGB of your quota '
+            message = _('Share cannot be extended to %(req)iGiB as '
+                        'you only have %(avail)iGiB of your quota '
                         'available.')
             params = {'req': new_size, 'avail': availableGB + orig_size}
             self._errors["new_size"] = self.error_class([message % params])

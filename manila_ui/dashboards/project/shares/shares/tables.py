@@ -157,7 +157,7 @@ class UpdateRow(tables.Row):
 
 
 def get_size(share):
-    return _("%sGB") % share.size
+    return _("%sGiB") % share.size
 
 
 class SharesTableBase(tables.DataTable):

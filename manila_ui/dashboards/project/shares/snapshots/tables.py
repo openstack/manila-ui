@@ -43,7 +43,7 @@ class UpdateRow(tables.Row):
 
 
 def get_size(snapshot):
-    return _("%sGB") % snapshot.size
+    return _("%sGiB") % snapshot.size
 
 
 class CreateSnapshot(tables.LinkAction):
