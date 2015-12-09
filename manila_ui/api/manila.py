@@ -67,7 +67,6 @@ def manilaclient(request):
         cacert=cacert,
         http_log_debug=settings.DEBUG,
         user_agent=MANILA_UI_USER_AGENT_REPR,
-        api_version=MANILA_VERSION,
     )
     c.client.auth_token = request.user.token.id
     c.client.management_url = manila_url
