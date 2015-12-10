@@ -16,31 +16,13 @@ from openstack_dashboard.test.test_data import utils
 
 def load_test_data(load_onto=None):
     from manila_ui.test.test_data import keystone_data as manila_keystone_data
-    from openstack_dashboard.test.test_data import ceilometer_data
-    from openstack_dashboard.test.test_data import cinder_data
     from openstack_dashboard.test.test_data import exceptions
-    from openstack_dashboard.test.test_data import glance_data
-    from openstack_dashboard.test.test_data import heat_data
     from openstack_dashboard.test.test_data import keystone_data
-    from openstack_dashboard.test.test_data import neutron_data
-    from openstack_dashboard.test.test_data import nova_data
-    from openstack_dashboard.test.test_data import sahara_data
-    from openstack_dashboard.test.test_data import swift_data
-    from openstack_dashboard.test.test_data import trove_data
 
     # The order of these loaders matters, some depend on others.
     loaders = (
         exceptions.data,
         keystone_data.data,
-        glance_data.data,
-        nova_data.data,
-        cinder_data.data,
-        neutron_data.data,
-        swift_data.data,
-        heat_data.data,
-        ceilometer_data.data,
-        trove_data.data,
-        sahara_data.data,
         manila_keystone_data.data,
     )
     if load_onto:
