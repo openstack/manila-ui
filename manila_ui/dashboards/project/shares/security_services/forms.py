@@ -36,10 +36,11 @@ class Create(forms.SelfHandlingForm):
     dns_ip = forms.CharField(max_length="15", label=_("DNS IP"))
     server = forms.CharField(max_length="255", label=_("Server"))
     domain = forms.CharField(max_length="255", label=_("Domain"))
-    user = forms.CharField(max_length="255", label=_("User"))
+    user = forms.CharField(max_length="255", label=_("User"), required=False)
     password = forms.CharField(
         label=_("Password"),
-        widget=forms.PasswordInput(render_value=False))
+        widget=forms.PasswordInput(render_value=False),
+        required=False)
     confirm_password = forms.CharField(
         label=_("Confirm Password"),
         widget=forms.PasswordInput(render_value=False))
