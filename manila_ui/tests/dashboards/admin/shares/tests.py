@@ -1,4 +1,5 @@
 # Copyright (c) 2014 NetApp, Inc.
+# Copyright (c) 2015 Mirantis, Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -12,7 +13,13 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+"""
+This module contains test suites that cover tabs from admin dashboard
+by getting generated pages and verifying results.
+"""
+
 from django.core.urlresolvers import reverse
+from manilaclient import exceptions as manila_client_exc
 import mock
 
 from manila_ui.api import manila as api_manila
@@ -21,7 +28,6 @@ from manila_ui.tests import helpers as test
 
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas
-
 
 INDEX_URL = reverse('horizon:admin:shares:index')
 
@@ -52,15 +58,16 @@ class SharesTests(test.BaseAdminViewTests):
             return_value=test_data.quota_usage)
         quotas.tenant_quota_usages = mock.Mock(
             return_value=test_data.quota_usage)
+
         res = self.client.get(INDEX_URL)
+
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'admin/shares/index.html')
 
     def test_delete_share(self):
         share = test_data.share
 
-        formData = {'action':
-                    'shares__delete__%s' % share.id}
+        formData = {'action': 'shares__delete__%s' % share.id}
 
         api_manila.share_snapshot_list = mock.Mock(return_value=[])
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
@@ -70,18 +77,16 @@ class SharesTests(test.BaseAdminViewTests):
         api_manila.share_list = mock.Mock(
             return_value=[test_data.share])
         url = reverse('horizon:admin:shares:index')
+
         res = self.client.post(url, formData)
+
         api_manila.share_delete.assert_called_with(
             mock.ANY, test_data.share.id)
-
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_share_network(self):
         share_network = test_data.inactive_share_network
-
-        formData = {'action':
-                    'share_networks__delete__%s' % share_network.id}
-
+        formData = {'action': 'share_networks__delete__%s' % share_network.id}
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
         api.neutron.network_list = mock.Mock(return_value=[])
         api.neutron.subnet_list = mock.Mock(return_value=[])
@@ -92,19 +97,17 @@ class SharesTests(test.BaseAdminViewTests):
             return_value=[test_data.active_share_network,
                           test_data.inactive_share_network])
         url = reverse('horizon:admin:shares:index')
+
         res = self.client.post(url, formData)
+
         api_manila.share_network_delete.assert_called_with(
             mock.ANY, test_data.inactive_share_network.id)
-
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_snapshot(self):
         share = test_data.share
         snapshot = test_data.snapshot
-
-        formData = {'action':
-                    'snapshots__delete__%s' % snapshot.id}
-
+        formData = {'action': 'snapshots__delete__%s' % snapshot.id}
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
         api_manila.share_snapshot_delete = mock.Mock()
         api_manila.share_snapshot_get = mock.Mock(
@@ -114,7 +117,9 @@ class SharesTests(test.BaseAdminViewTests):
         api_manila.share_list = mock.Mock(
             return_value=[share])
         url = reverse('horizon:admin:shares:index')
+
         res = self.client.post(url, formData)
+
         api_manila.share_snapshot_delete.assert_called_with(
             mock.ANY, test_data.snapshot.id)
 
@@ -122,16 +127,125 @@ class SharesTests(test.BaseAdminViewTests):
 
     def test_delete_security_service(self):
         security_service = test_data.sec_service
-
-        formData = {'action':
-                    'security_services__delete__%s' % security_service.id}
-
+        formData = {
+            'action': 'security_services__delete__%s' % security_service.id}
         api.keystone.tenant_list = mock.Mock(return_value=([], None))
         api_manila.security_service_delete = mock.Mock()
         api_manila.security_service_list = mock.Mock(
             return_value=[test_data.sec_service])
         url = reverse('horizon:admin:shares:index')
+
         res = self.client.post(url, formData)
+
         api_manila.security_service_delete.assert_called_with(
             mock.ANY, test_data.sec_service.id)
         self.assertRedirectsNoFollow(res, INDEX_URL)
+
+
+class ShareInstanceTests(test.BaseAdminViewTests):
+
+    def test_list_share_instances(self):
+        share_instances = [
+            test_data.share_instance,
+            test_data.share_instance_no_ss,
+        ]
+        url = reverse('horizon:admin:shares:share_instances_tab')
+        self.mock_object(
+            api_manila, "share_instance_list",
+            mock.Mock(return_value=share_instances))
+        self.mock_object(
+            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(
+            api.keystone, "tenant_list", mock.Mock(return_value=([], None)))
+
+        res = self.client.get(url)
+
+        self.assertContains(res, "<h1>Shares</h1>")
+        self.assertContains(
+            res,
+            '<a href="/admin/shares/share_servers/%s" >%s</a>' % (
+                share_instances[0].share_server_id,
+                share_instances[0].share_server_id),
+            1, 200)
+        self.assertContains(
+            res,
+            '<a href="/admin/shares/share_networks/%s" >%s</a>' % (
+                share_instances[0].share_network_id,
+                share_instances[0].share_network_id),
+            1, 200)
+        for si in share_instances:
+            self.assertContains(
+                res, '<a href="/admin/shares/share_instances/%s" >%s</a>' % (
+                    si.id, si.id))
+            self.assertContains(res, si.host)
+            self.assertContains(res, si.availability_zone)
+            self.assertContains(
+                res,
+                '<a href="/project/shares/%s/" >%s</a>' % (
+                    si.share_id, si.share_id),
+                1, 200)
+        api_manila.share_instance_list.assert_called_once_with(mock.ANY)
+        self.assertEqual(5, api.keystone.tenant_list.call_count)
+        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
+
+    def test_detail_view_share_instance(self):
+        share_instance = test_data.share_instance
+        share_id = share_instance.share_id
+        ss_id = share_instance.share_server_id
+        url = reverse('horizon:admin:shares:share_instance_detail',
+                      args=[share_instance.id])
+        self.mock_object(
+            api_manila, "share_instance_get",
+            mock.Mock(return_value=share_instance))
+        self.mock_object(
+            api_manila, "share_instance_export_location_list",
+            mock.Mock(return_value=test_data.export_locations))
+        self.mock_object(
+            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        self.assertContains(
+            res, "<h1>Share Instance Details: %s</h1>" % share_instance.id,
+            1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share_instance.id, 1, 200)
+        self.assertContains(res, "<dd>Available</dd>", 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share_instance.host, 1, 200)
+        self.assertContains(
+            res, "<dd>%s</dd>" % share_instance.availability_zone, 1, 200)
+        self.assertContains(
+            res,
+            "<dd><a href=\"/project/shares/%s/\">%s</a></dd>" % (
+                share_id, share_id),
+            1, 200)
+        self.assertContains(
+            res,
+            "<dd><a href=\"/project/shares/share_network/%s\">%s</a></dd>" % (
+                share_instance.share_network_id,
+                share_instance.share_network_id),
+            1, 200)
+        self.assertContains(
+            res,
+            "<dd><a href=\"/admin/shares/share_servers/%s\">%s</a></dd>" % (
+                ss_id, ss_id),
+            1, 200)
+        self.assertNoMessages()
+        api_manila.share_instance_get.assert_called_once_with(
+            mock.ANY, share_instance.id)
+        api_manila.share_instance_export_location_list.assert_called_once_with(
+            mock.ANY, share_instance.id)
+        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
+
+    def test_detail_view_share_instance_with_exception(self):
+        share_instance = test_data.share_instance
+        url = reverse('horizon:admin:shares:share_instance_detail',
+                      args=[share_instance.id])
+        self.mock_object(
+            api_manila, "share_instance_get",
+            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+
+        res = self.client.get(url)
+
+        self.assertRedirectsNoFollow(res, INDEX_URL)
+        api_manila.share_instance_get.assert_called_once_with(
+            mock.ANY, share_instance.id)

@@ -157,7 +157,7 @@ class SharesTable(shares_tables.SharesTable):
     tenant = tables.Column("tenant_name", verbose_name=_("Project"))
 
     def get_share_server_link(share):
-        if hasattr(share, 'share_server_id'):
+        if getattr(share, 'share_server_id', None):
             return reverse("horizon:admin:shares:share_server_detail",
                            args=(share.share_server_id,))
         else:
@@ -435,3 +435,78 @@ class ShareServerTable(tables.DataTable):
         table_actions = (DeleteShareServer, SharesServersFilterAction)
         row_class = UpdateShareServerRow
         row_actions = (DeleteShareServer, )
+
+
+class ShareInstancesTable(tables.DataTable):
+    STATUS_CHOICES = (
+        ("available", True),
+        ("creating", None),
+        ("deleting", None),
+        ("error", False),
+        ("error_deleting", False),
+    )
+    STATUS_DISPLAY_CHOICES = (
+        ("available", u"Available"),
+        ("creating", u"Creating"),
+        ("deleting", u"Deleting"),
+        ("error", u"Error"),
+        ("error_deleting", u"Error deleting"),
+    )
+    uuid = tables.Column(
+        "id", verbose_name=_("ID"),
+        link="horizon:admin:shares:share_instance_detail")
+    host = tables.Column("host", verbose_name=_("Host"))
+    status = tables.Column("status",
+                           verbose_name=_("Status"),
+                           status=True,
+                           status_choices=STATUS_CHOICES,
+                           display_choices=STATUS_DISPLAY_CHOICES)
+    availability_zone = tables.Column(
+        "availability_zone", verbose_name=_("Availability Zone"))
+
+    class Meta(object):
+        name = "share_instances"
+        verbose_name = _("Share Instances")
+        status_columns = ("status", )
+        table_actions = (shares_tables.SharesFilterAction, )
+        multi_select = False
+
+    def get_share_network_link(share_instance):
+        if getattr(share_instance, 'share_network_id', None):
+            return reverse("horizon:admin:shares:share_network_detail",
+                           args=(share_instance.share_network_id,))
+        else:
+            return None
+
+    def get_share_server_link(share_instance):
+        if getattr(share_instance, 'share_server_id', None):
+            return reverse("horizon:admin:shares:share_server_detail",
+                           args=(share_instance.share_server_id,))
+        else:
+            return None
+
+    def get_share_link(share_instance):
+        if getattr(share_instance, 'share_id', None):
+            return reverse("horizon:project:shares:detail",
+                           args=(share_instance.share_id,))
+        else:
+            return None
+
+    share_net_id = tables.Column(
+        "share_network_id",
+        verbose_name=_("Share Network"),
+        link=get_share_network_link)
+    share_server_id = tables.Column(
+        "share_server_id",
+        verbose_name=_("Share Server Id"),
+        link=get_share_server_link)
+    share_id = tables.Column(
+        "share_id",
+        verbose_name=_("Share ID"),
+        link=get_share_link)
+
+    def get_object_display(self, share_instance):
+        return six.text_type(share_instance.id)
+
+    def get_object_id(self, share_instance):
+        return six.text_type(share_instance.id)

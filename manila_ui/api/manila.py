@@ -108,6 +108,11 @@ def share_export_location_list(request, share_id):
     return manilaclient(request).share_export_locations.list(share_id)
 
 
+def share_instance_export_location_list(request, share_instance_id):
+    return manilaclient(request).share_instance_export_locations.list(
+        share_instance_id)
+
+
 def share_allow(request, share_id, access_type, access_to, access_level):
     return manilaclient(request).shares.allow(
         share_id, access_type, access_to, access_level)
@@ -340,3 +345,11 @@ def tenant_absolute_limits(request):
         else:
             limits_dict[limit.name] = limit.value
     return limits_dict
+
+
+def share_instance_list(request):
+    return manilaclient(request).share_instances.list()
+
+
+def share_instance_get(request, share_instance_id):
+    return manilaclient(request).share_instances.get(share_instance_id)

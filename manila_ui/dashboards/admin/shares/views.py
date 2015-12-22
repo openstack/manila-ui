@@ -202,3 +202,48 @@ class ShareServDetail(tabs.TabView):
         share_server = self.get_data()
         return self.tab_group_class(request, share_server=share_server,
                                     **kwargs)
+
+
+class ShareInstanceDetailView(tabs.TabView):
+    tab_group_class = project_tabs.ShareInstanceDetailTabs
+    template_name = 'admin/shares/share_instance_detail.html'
+
+    def _calculate_size_of_longest_export_location(self, export_locations):
+        size = 40
+        for export_location in export_locations:
+            if len(export_location["path"]) > size:
+                size = len(export_location["path"])
+        return size
+
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        share_instance = self.get_data()
+        context["share_instance"] = share_instance
+        context["page_title"] = (
+            _("Share Instance Details: %s") % share_instance.id)
+        return context
+
+    @memoized.memoized_method
+    def get_data(self):
+        try:
+            share_instance_id = self.kwargs['share_instance_id']
+            share_instance = manila.share_instance_get(
+                self.request, share_instance_id)
+            share_instance.export_locations = (
+                manila.share_instance_export_location_list(
+                    self.request, share_instance_id))
+            share_instance.el_size = (
+                self._calculate_size_of_longest_export_location(
+                    share_instance.export_locations))
+            return share_instance
+        except Exception:
+            redirect = reverse('horizon:admin:shares:index')
+            exceptions.handle(
+                self.request,
+                _('Unable to retrieve share instance details.'),
+                redirect=redirect)
+
+    def get_tabs(self, request, *args, **kwargs):
+        share_instance = self.get_data()
+        return self.tab_group_class(
+            request, share_instance=share_instance, **kwargs)
