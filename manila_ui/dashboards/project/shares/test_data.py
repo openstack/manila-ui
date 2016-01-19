@@ -13,11 +13,21 @@
 #    under the License.
 import collections
 
-from manilaclient.v1 import quotas
-from manilaclient.v1 import security_services
-from manilaclient.v1 import share_networks
-from manilaclient.v1 import share_snapshots
-from manilaclient.v1 import shares
+try:
+    # NOTE(vponomaryov): Try import latest modules, assuming we have
+    # manilaclient that is new enough and have v2 API support.
+    from manilaclient.v2 import quotas
+    from manilaclient.v2 import security_services
+    from manilaclient.v2 import share_networks
+    from manilaclient.v2 import share_snapshots
+    from manilaclient.v2 import shares
+except ImportError:
+    # NOTE(vponomaryov): If we got here then we have old manilaclient.
+    from manilaclient.v1 import quotas
+    from manilaclient.v1 import security_services
+    from manilaclient.v1 import share_networks
+    from manilaclient.v1 import share_snapshots
+    from manilaclient.v1 import shares
 
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas

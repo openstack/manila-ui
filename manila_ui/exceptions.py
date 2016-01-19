@@ -24,9 +24,7 @@ from manilaclient import exceptions as manilaclient
 from neutronclient.common import exceptions as neutronclient
 from novaclient import exceptions as novaclient
 from requests import exceptions as requests
-from saharaclient.api import base as saharaclient
 from swiftclient import client as swiftclient
-from troveclient import exceptions as troveclient
 
 
 UNAUTHORIZED = (
@@ -37,7 +35,6 @@ UNAUTHORIZED = (
     manilaclient.Unauthorized,
     neutronclient.Unauthorized,
     heatclient.HTTPUnauthorized,
-    troveclient.Unauthorized,
 )
 
 
@@ -49,7 +46,6 @@ NOT_FOUND = (
     manilaclient.NotFound,
     neutronclient.NotFound,
     heatclient.HTTPNotFound,
-    troveclient.NotFound,
 )
 
 
@@ -71,7 +67,5 @@ RECOVERABLE = (
     swiftclient.ClientException,
     heatclient.HTTPForbidden,
     heatclient.HTTPException,
-    troveclient.ClientException,
-    saharaclient.APIException,
     requests.RequestException,
 )
