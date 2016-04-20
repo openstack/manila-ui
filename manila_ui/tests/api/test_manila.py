@@ -16,7 +16,7 @@
 import ddt
 
 from manila_ui.api import manila as api
-from manila_ui.test import helpers as base
+from manila_ui.tests import helpers as base
 
 
 @ddt.ddt

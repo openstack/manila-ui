@@ -18,7 +18,7 @@ from django.core.handlers import wsgi
 import mock
 
 from manila_ui.dashboards.project.shares.snapshots import tables
-from manila_ui.test import helpers as base
+from manila_ui.tests import helpers as base
 
 
 @ddt.ddt

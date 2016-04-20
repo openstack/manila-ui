@@ -20,7 +20,7 @@ from horizon import forms as horizon_forms
 import mock
 
 from manila_ui.dashboards.admin.shares import forms
-from manila_ui.test import helpers as base
+from manila_ui.tests import helpers as base
 
 
 @ddt.ddt

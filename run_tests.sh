@@ -165,7 +165,7 @@ function warn_on_flake8_without_venv {
 function run_pep8 {
   echo "Running flake8 ..."
   warn_on_flake8_without_venv
-  DJANGO_SETTINGS_MODULE=manila_ui.test.settings ${command_wrapper} flake8
+  DJANGO_SETTINGS_MODULE=manila_ui.tests.settings ${command_wrapper} flake8
 }
 
 function run_pep8_changed {
@@ -178,13 +178,13 @@ function run_pep8_changed {
     files=$(git diff --name-only $base_commit | tr '\n' ' ')
     echo "Running flake8 on ${files}"
     warn_on_flake8_without_venv
-    diff -u --from-file /dev/null ${files} | DJANGO_SETTINGS_MODULE=manila_ui.test.settings ${command_wrapper} flake8 --diff
+    diff -u --from-file /dev/null ${files} | DJANGO_SETTINGS_MODULE=manila_ui.tests.settings ${command_wrapper} flake8 --diff
     exit
 }
 
 function run_sphinx {
     echo "Building sphinx..."
-    DJANGO_SETTINGS_MODULE=manila_ui.test.settings ${command_wrapper} python setup.py build_sphinx
+    DJANGO_SETTINGS_MODULE=manila_ui.tests.settings ${command_wrapper} python setup.py build_sphinx
     echo "Build complete."
 }
 
@@ -331,7 +331,7 @@ function run_tests {
 
 function run_tests_subset {
   project=`echo $testargs | awk -F. '{print $1}'`
-  ${command_wrapper} python $root/manage.py test --settings=$project.test.settings $testopts $testargs
+  ${command_wrapper} python $root/manage.py test --settings=$project.tests.settings $testopts $testargs
 }
 
 function run_tests_all {
@@ -344,7 +344,7 @@ function run_tests_all {
     ${command_wrapper} python -m coverage.__main__ erase
     coverage_run="python -m coverage.__main__ run -p"
   fi
-  ${command_wrapper} ${coverage_run} $root/manage.py test manila_ui --settings=manila_ui.test.settings $testopts
+  ${command_wrapper} ${coverage_run} $root/manage.py test manila_ui --settings=manila_ui.tests.settings $testopts
   # get results of the Horizon tests
   MANILA_UI_RESULT=$?
 

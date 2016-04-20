@@ -17,7 +17,7 @@ from django.utils import unittest
 import mock
 
 from manila_ui import api
-from manila_ui.test.test_data import utils
+from manila_ui.tests.test_data import utils
 from openstack_dashboard.test import helpers
 
 

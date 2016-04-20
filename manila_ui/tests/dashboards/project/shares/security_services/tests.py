@@ -23,9 +23,9 @@ from manilaclient import exceptions as manila_client_exc
 import mock
 
 from manila_ui.api import manila as api_manila
-from manila_ui.dashboards.project.shares import test_data
+from manila_ui.tests.dashboards.project.shares import test_data
 
-from manila_ui.test import helpers as test
+from manila_ui.tests import helpers as test
 
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')

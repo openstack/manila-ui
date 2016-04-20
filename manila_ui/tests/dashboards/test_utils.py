@@ -17,7 +17,7 @@ import ddt
 from django.forms import ValidationError  # noqa
 
 from manila_ui.dashboards import utils
-from manila_ui.test import helpers as base
+from manila_ui.tests import helpers as base
 
 
 @ddt.ddt

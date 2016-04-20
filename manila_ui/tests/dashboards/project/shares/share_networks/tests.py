@@ -19,8 +19,8 @@ from neutronclient.client import exceptions
 
 from manila_ui.api import manila as api_manila
 from manila_ui.api import network as api_manila_network
-from manila_ui.dashboards.project.shares import test_data
-from manila_ui.test import helpers as test
+from manila_ui.tests.dashboards.project.shares import test_data
+from manila_ui.tests import helpers as test
 
 from openstack_dashboard import api
 

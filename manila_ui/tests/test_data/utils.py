@@ -15,7 +15,7 @@ from openstack_dashboard.test.test_data import utils
 
 
 def load_test_data(load_onto=None):
-    from manila_ui.test.test_data import keystone_data as manila_keystone_data
+    from manila_ui.tests.test_data import keystone_data as manila_keystone_data
     from openstack_dashboard.test.test_data import exceptions
     from openstack_dashboard.test.test_data import keystone_data
 
