@@ -1,7 +1,8 @@
 [run]
 branch = True
 source = manila_ui
-omit = manila_ui/tests/*,manila_ui/openstack/*
+omit = manila_ui/enabled*,manila_ui/test*
 
 [report]
+precision = 2
 ignore_errors = True
