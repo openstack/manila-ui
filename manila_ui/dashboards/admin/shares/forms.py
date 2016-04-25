@@ -56,7 +56,7 @@ class ManageShare(forms.SelfHandlingForm):
     protocol = forms.ChoiceField(
         label=_("Share Protocol"), required=True,
         choices=(('NFS', 'NFS'), ('CIFS', 'CIFS'), ('GlusterFS', 'GlusterFS'),
-                 ('HDFS', 'HDFS')))
+                 ('HDFS', 'HDFS'), ('CephFS', 'CephFS')))
     share_type = forms.ChoiceField(label=_("Share Type"), required=True)
 
     driver_options = forms.CharField(
@@ -65,6 +65,9 @@ class ManageShare(forms.SelfHandlingForm):
         help_text=_("key=value pairs per line can be set"),
         widget=forms.Textarea(
             attrs={'class': 'modal-body-fixed-width', 'rows': 2}))
+    is_public = forms.BooleanField(
+        label=_("Public"), required=False, initial=False,
+        help_text=("Defines whether this share is available for all or not."))
 
     def __init__(self, request, *args, **kwargs):
         super(ManageShare, self).__init__(request, *args, **kwargs)
@@ -106,7 +109,8 @@ class ManageShare(forms.SelfHandlingForm):
                 driver_options=driver_options,
                 share_type=data['share_type'],
                 name=data['name'],
-                description=data['description'])
+                description=data['description'],
+                is_public=data['is_public'])
 
             share_name = data.get('name', data.get('id'))
             messages.success(

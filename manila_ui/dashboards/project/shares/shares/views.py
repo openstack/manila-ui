@@ -58,6 +58,14 @@ class DetailView(tabs.TabView):
     tab_group_class = shares_tabs.ShareDetailTabs
     template_name = 'project/shares/shares/detail.html'
 
+    def _calculate_size_of_longest_export_location(self, export_locations):
+        size = 40
+        for export_location in export_locations:
+            current_size = len(export_location["path"])
+            if current_size > size:
+                size = current_size
+        return size
+
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         share = self.get_data()
@@ -75,6 +83,10 @@ class DetailView(tabs.TabView):
             share_id = self.kwargs['share_id']
             share = manila.share_get(self.request, share_id)
             share.rules = manila.share_rules_list(self.request, share_id)
+            share.export_locations = manila.share_export_location_list(
+                self.request, share_id)
+            share.el_size = self._calculate_size_of_longest_export_location(
+                share.export_locations)
         except Exception:
             redirect = reverse('horizon:project:shares:index')
             exceptions.handle(self.request,

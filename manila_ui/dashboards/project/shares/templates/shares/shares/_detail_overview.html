@@ -2,11 +2,9 @@
 {% load url from future %}
 
 <h3>{% trans "Share Overview" %}</h3>
-
-<div class="info row-fluid detail">
-  <h4>{% trans "Info" %}</h4>
+<div class="detail">
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
     <dt>{% trans "Name" %}</dt>
     <dd>{{ share.name }}</dd>
     <dt>{% trans "ID" %}</dt>
@@ -19,7 +17,20 @@
     <dd>{{ share.status|capfirst }}</dd>
     <dt>{% trans "Export locations" %}</dt>
     {% for el in share.export_locations %}
-    <dd>{{ el }}</dd>
+      <dd><p>
+        <div><b>Path:</b>
+            <input type="text" readonly="true"
+                   value="{{ el.path }}" size="{{ share.el_size }}"
+                   onClick="this.setSelectionRange(0, this.value.length)">
+        </div>
+        <div><b>Preferred:</b> {{ el.preferred }}</div>
+        {% if el.is_admin_only == True or el.is_admin_only == False %}
+        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+        {% endif %}
+        {% if el.share_instance_id %}
+        <div><b>Share Instance ID:</b> {{ el.share_instance_id }}</div>
+        {% endif %}
+      </p></dd>
     {% endfor %}
     {% if share.snapshot_id %}
     <dt>{% trans "Snapshot ID" %}</dt>
@@ -34,20 +45,17 @@
     <dt>{% trans "Availability zone" %}</dt>
     <dd>{{ share.availability_zone }}</dd>
     {% endif %}
-  </dl>
-</div>
 
-<div class="specs row-fluid detail">
-  <h4>{% trans "Specs" %}</h4>
-  <hr class="header_rule">
-  <dl>
     <dt>{% trans "Size" %}</dt>
     <dd>{{ share.size }} {% trans "GiB" %}</dd>
     <dt>{% trans "Protocol" %}</dt>
     <dd>{{ share.share_proto }}</dd>
     {% if share.share_type %}
     <dt>{% trans "Share type" %}</dt>
-    <dd>{{ share.share_type }}</dd>
+    <dd><p>
+      <div><b>Name: </b>{{ share.share_type_name }}</div>
+      <div><b>ID: </b>{{ share.share_type }}</div>
+    </p></dd>
     {% endif %}
     {% if share.share_network_id %}
     <dt>{% trans "Share network" %}</dt>
@@ -64,7 +72,7 @@
 <div class="status row-fluid detail">
   <h4>{% trans "Access Rules" %}</h4>
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
   {% for rule in share.rules %}
     <dt>{{ rule.access_type }}</dt>
     <dd>{{ rule.access_to }}</dd>
@@ -75,7 +83,7 @@
 <div class="status row-fluid detail">
   <h4>{% trans "Metadata" %}</h4>
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
   {% for key, value in share.metadata.items %}
     <dt>{{ key }}</dt>
     <dd>{{ value }}</dd>

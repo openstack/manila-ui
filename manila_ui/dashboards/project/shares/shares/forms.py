@@ -51,7 +51,7 @@ class CreateForm(forms.SelfHandlingForm):
 
     def __init__(self, request, *args, **kwargs):
         super(CreateForm, self).__init__(request, *args, **kwargs)
-        share_protos = ('NFS', 'CIFS', 'GlusterFS', 'HDFS', )
+        share_protos = ('NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS')
         share_networks = manila.share_network_list(request)
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (

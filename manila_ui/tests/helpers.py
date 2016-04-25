@@ -30,6 +30,19 @@ class ManilaTestsMixin(object):
         super(ManilaTestsMixin, self)._setup_test_data()
         utils.load_test_data(self)
 
+    def mock_object(self, obj, attr_name, new_attr=None, **kwargs):
+        """Use python mock to mock an object attribute
+        Mocks the specified objects attribute with the given value.
+        Automatically performs 'addCleanup' for the mock.
+        """
+        if not new_attr:
+            new_attr = mock.Mock()
+        patcher = mock.patch.object(obj, attr_name, new_attr, **kwargs)
+        patcher.start()
+        # NOTE(vponomaryov): 'self.addCleanup(patcher.stop)' is not called
+        # here, because it is inherited from Horizon project's test class.
+        return new_attr
+
 
 @unittest.skipIf(os.environ.get('SKIP_UNITTESTS', False),
                  "The SKIP_UNITTESTS env variable is set.")
@@ -45,6 +58,5 @@ class APITestCase(ManilaTestsMixin, helpers.APITestCase):
 
     def setUp(self):
         super(APITestCase, self).setUp()
-        self.manilaclient = mock.Mock()
-        self._original_manilaclient = api.manila.manilaclient
-        api.manila.manilaclient = lambda request: self.manilaclient
+        self._manilaclient = self.mock_object(api.manila, "manilaclient")
+        self.manilaclient = self._manilaclient.return_value

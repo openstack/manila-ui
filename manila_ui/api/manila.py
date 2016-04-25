@@ -33,7 +33,7 @@ from openstack_dashboard.api import base
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.5"  # requires manilaclient 1.3.0 or newer
+MANILA_VERSION = "2.15"  # requires manilaclient 1.8.0 or newer
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -104,6 +104,10 @@ def share_rules_list(request, share_id):
     return manilaclient(request).shares.access_list(share_id)
 
 
+def share_export_location_list(request, share_id):
+    return manilaclient(request).share_export_locations.list(share_id)
+
+
 def share_allow(request, share_id, access_type, access_to, access_level):
     return manilaclient(request).shares.allow(
         share_id, access_type, access_to, access_level)
@@ -115,7 +119,7 @@ def share_deny(request, share_id, rule_id):
 
 def share_manage(request, service_host, protocol, export_path,
                  driver_options=None, share_type=None,
-                 name=None, description=None):
+                 name=None, description=None, is_public=False):
     return manilaclient(request).shares.manage(
         service_host=service_host,
         protocol=protocol,
@@ -124,6 +128,7 @@ def share_manage(request, service_host, protocol, export_path,
         share_type=share_type,
         name=name,
         description=description,
+        is_public=is_public,
     )
 
 

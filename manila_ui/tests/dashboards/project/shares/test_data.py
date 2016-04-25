@@ -29,6 +29,8 @@ except ImportError:
     from manilaclient.v1 import share_snapshots
     from manilaclient.v1 import shares
 
+from manilaclient.v2 import share_export_locations
+
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas
 
@@ -77,6 +79,26 @@ other_share = shares.Share(
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ'})
+
+admin_export_location = share_export_locations.ShareExportLocation(
+    share_export_locations.ShareExportLocationManager(None),
+    {'id': '6921e862-88bc-49a5-a2df-efeed9acd583',
+     'path': '1.1.1.1:/path/to/admin/share',
+     'preferred': False,
+     'is_admin_only': True,
+     'share_instance_id': 'e1c2d35e-fe67-4028-ad7a-45f668732b1d'}
+)
+
+user_export_location = share_export_locations.ShareExportLocation(
+    share_export_locations.ShareExportLocationManager(None),
+    {'id': 'b6bd76ce-12a2-42a9-a30a-8a43b503867d',
+     'path': '2.2.2.2:/path/to/user/share',
+     'preferred': True,
+     'is_admin_only': False,
+     'share_instance_id': 'e1c2d35e-fe67-4028-ad7a-45f668732b1d'}
+)
+
+export_locations = [admin_export_location, user_export_location]
 
 rule = collections.namedtuple('Access', ['access_type', 'access_to', 'status',
                                          'id'])

@@ -26,6 +26,36 @@ class ManilaApiTests(base.APITestCase):
         super(self.__class__, self).setUp()
         self.id = "fake_id"
 
+    def test_list_share_export_locations(self):
+        api.share_export_location_list(self.request, self.id)
+
+        self.manilaclient.share_export_locations.list.assert_called_once_with(
+            self.id)
+
+    def test_share_manage(self):
+        api.share_manage(
+            self.request,
+            service_host="fake_service_host",
+            protocol="fake_protocol",
+            export_path="fake_export_path",
+            driver_options={"fake_key": "fake_value"},
+            share_type="fake_share_type",
+            name="fake_name",
+            description="fake_description",
+            is_public="fake_is_public",
+        )
+
+        self.manilaclient.shares.manage.assert_called_once_with(
+            service_host="fake_service_host",
+            protocol="fake_protocol",
+            export_path="fake_export_path",
+            driver_options={"fake_key": "fake_value"},
+            share_type="fake_share_type",
+            name="fake_name",
+            description="fake_description",
+            is_public="fake_is_public",
+        )
+
     def test_share_extend(self):
         new_size = "123"
 
