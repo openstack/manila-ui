@@ -24,3 +24,9 @@ def data(TEST):
               "internalURL": "http://int.manila.example.com:8786/v1.0",
               "publicURL": "http://public.manila.example.com:8786/v1.0"}]},
     )
+
+projects = [
+    type("%sProject" % v, (object, ),
+         {'id': '%s_id' % v, 'name': '%s_name' % v})
+    for v in ('foo', 'bar', 'quuz')
+]

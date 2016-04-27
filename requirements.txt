@@ -9,5 +9,6 @@ Django<1.9,>=1.8 # BSD
 django-compressor>=2.0 # MIT
 django-openstack-auth>=2.2.0 # Apache-2.0
 iso8601>=0.1.11 # MIT
+oslo.utils>=3.5.0 # Apache-2.0
 python-keystoneclient!=1.8.0,!=2.1.0,>=1.7.0 # Apache-2.0
 python-manilaclient>=1.3.0 # Apache-2.0

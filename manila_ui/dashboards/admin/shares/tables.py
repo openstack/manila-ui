@@ -154,7 +154,7 @@ class SharesTable(shares_tables.SharesTable):
                          verbose_name=_("Name"),
                          link="horizon:admin:shares:detail")
     host = tables.Column("host", verbose_name=_("Host"))
-    tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    project = tables.Column("project_name", verbose_name=_("Project"))
 
     def get_share_server_link(share):
         if getattr(share, 'share_server_id', None):
@@ -298,7 +298,7 @@ class SecurityServiceTable(tables.DataTable):
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:admin:shares:security_service_detail")
-    tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    project = tables.Column("project_name", verbose_name=_("Project"))
     dns_ip = tables.Column("dns_ip", verbose_name=_("DNS IP"))
     server = tables.Column("server", verbose_name=_("Server"))
     domain = tables.Column("domain", verbose_name=_("Domain"))
@@ -329,7 +329,7 @@ class NovaShareNetworkTable(tables.DataTable):
     name = tables.Column("name",
                          verbose_name=_("Name"),
                          link="horizon:admin:shares:share_network_detail")
-    tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    project = tables.Column("project_name", verbose_name=_("Project"))
     nova_net = tables.Column("nova_net", verbose_name=_("Nova Net"))
     ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
     network_type = tables.Column("network_type",
@@ -354,7 +354,7 @@ class NovaShareNetworkTable(tables.DataTable):
 class NeutronShareNetworkTable(tables.DataTable):
     name = tables.Column("name", verbose_name=_("Name"),
                          link="horizon:project:shares:share_network_detail")
-    tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    project = tables.Column("project_name", verbose_name=_("Project"))
     neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
     neutron_subnet = tables.Column(
         "neutron_subnet", verbose_name=_("Neutron Subnet"))
@@ -405,7 +405,7 @@ class ShareServerTable(tables.DataTable):
     uid = tables.Column("id", verbose_name=_("Id"),
                         link="horizon:admin:shares:share_server_detail")
     host = tables.Column("host", verbose_name=_("Host"))
-    tenant = tables.Column("tenant_name", verbose_name=_("Project"))
+    project = tables.Column("project_name", verbose_name=_("Project"))
 
     def get_share_server_link(share_serv):
         if hasattr(share_serv, 'share_network_id'):

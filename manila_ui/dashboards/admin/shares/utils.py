@@ -12,21 +12,33 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from oslo_utils import timeutils
+
 from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from openstack_dashboard.api import keystone
 
+PROJECTS = {}
+TIME = None
 
-def set_tenant_name_to_objects(request, objects):
+
+def set_project_name_to_objects(request, objects):
+    global PROJECTS, TIME
     try:
-        tenants, has_more = keystone.tenant_list(request)
+        # NOTE(vponomaryov): we will use saved values making lots of requests
+        # in short period of time. 'memoized' is not suitable here
+        now = timeutils.now()
+        if TIME is None:
+            TIME = now
+        if not PROJECTS or now > TIME + 20:
+            projects, has_more = keystone.tenant_list(request)
+            PROJECTS = {t.id: t for t in projects}
+            TIME = now
     except Exception:
-        tenants = []
-        msg = _('Unable to retrieve share project information.')
+        msg = _('Unable to retrieve list of projects.')
         exceptions.handle(request, msg)
 
-    tenant_dict = dict([(t.id, t) for t in tenants])
     for obj in objects:
-        tenant_id = getattr(obj, "project_id", None)
-        tenant = tenant_dict.get(tenant_id, None)
-        obj.tenant_name = getattr(tenant, "name", None)
+        project_id = getattr(obj, "project_id", None)
+        project = PROJECTS.get(project_id, None)
+        obj.project_name = getattr(project, "name", None)

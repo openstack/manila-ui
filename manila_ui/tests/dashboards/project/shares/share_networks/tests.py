@@ -74,17 +74,26 @@ class ShareNetworksViewTests(test.TestCase):
     def test_detail_view(self):
         share_net = test_data.active_share_network
         sec_service = test_data.sec_service
-        api_manila.share_network_get = mock.Mock(return_value=share_net)
-        api_manila.share_network_security_service_list = mock.Mock(
-            return_value=[sec_service])
+        self.mock_object(
+            api_manila, "share_server_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_network_get", mock.Mock(return_value=share_net))
+        self.mock_object(
+            api_manila, "share_network_security_service_list",
+            mock.Mock(return_value=[sec_service]))
         network = self.networks.first()
         subnet = self.subnets.first()
-        api.neutron.network_get = mock.Mock(return_value=network)
-        api.neutron.subnet_get = mock.Mock(return_value=subnet)
-
+        self.mock_object(
+            api.neutron, "network_get", mock.Mock(return_value=network))
+        self.mock_object(
+            api.neutron, "subnet_get", mock.Mock(return_value=subnet))
         url = reverse('horizon:project:shares:share_network_detail',
                       args=[share_net.id])
+        self.mock_object(
+            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
         res = self.client.get(url)
+
         self.assertContains(res, "<h1>Share Network Details: %s</h1>"
                                  % share_net.name,
                             1, 200)
@@ -97,24 +106,33 @@ class ShareNetworksViewTests(test.TestCase):
                                                    sec_service.name), 1, 200)
 
         self.assertNoMessages()
+        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_detail_view_network_not_found(self):
         share_net = test_data.active_share_network
         sec_service = test_data.sec_service
-        api_manila.share_network_get = mock.Mock(return_value=share_net)
-        api_manila.share_network_security_service_list = mock.Mock(
-            return_value=[sec_service])
+        url = reverse('horizon:project:shares:share_network_detail',
+                      args=[share_net.id])
+        self.mock_object(
+            api_manila, "share_server_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_network_get", mock.Mock(return_value=share_net))
+        self.mock_object(
+            api_manila, "share_network_security_service_list",
+            mock.Mock(return_value=[sec_service]))
+        self.mock_object(
+            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         def raise_neutron_exc(*args, **kwargs):
             raise exceptions.NeutronClientException('fake', 500)
+
         api.neutron.network_get = mock.Mock(
             side_effect=raise_neutron_exc)
         api.neutron.subnet_get = mock.Mock(
             side_effect=raise_neutron_exc)
 
-        url = reverse('horizon:project:shares:share_network_detail',
-                      args=[share_net.id])
         res = self.client.get(url)
+
         self.assertContains(res, "<h1>Share Network Details: %s</h1>"
                                  % share_net.name,
                             1, 200)
@@ -127,17 +145,22 @@ class ShareNetworksViewTests(test.TestCase):
         self.assertContains(res, "<a href=\"/project/shares/security_service"
                                  "/%s\">%s</a>" % (sec_service.id,
                                                    sec_service.name), 1, 200)
-
         self.assertNoMessages()
+        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_update_share_network(self):
         share_net = test_data.inactive_share_network
-
-        api_manila.share_network_get = mock.Mock(return_value=share_net)
-        api_manila.share_network_update = mock.Mock()
-        api_manila.share_network_security_service_remove = mock.Mock()
-        api_manila.security_service_list = mock.Mock(
-            return_value=[test_data.sec_service])
+        self.mock_object(api_manila, "share_network_update")
+        self.mock_object(
+            api_manila, "share_network_get", mock.Mock(return_value=share_net))
+        self.mock_object(api_manila, "share_network_security_service_add")
+        self.mock_object(api_manila, "share_network_security_service_remove")
+        self.mock_object(
+            api_manila, "share_network_security_service_list",
+            mock.Mock(return_value=[test_data.sec_service]))
+        self.mock_object(
+            api_manila, "security_service_list",
+            mock.Mock(return_value=[test_data.sec_service]))
 
         formData = {'method': 'UpdateForm',
                     'name': share_net.name,
@@ -145,5 +168,7 @@ class ShareNetworksViewTests(test.TestCase):
 
         url = reverse('horizon:project:shares:update_share_network',
                       args=[share_net.id])
+
         res = self.client.post(url, formData)
+
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)

@@ -27,6 +27,7 @@ from manila_ui.tests.dashboards.project.shares import test_data
 
 from manila_ui.tests import helpers as test
 
+from openstack_dashboard import api
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 
@@ -72,10 +73,14 @@ class SecurityServicesViewTests(test.TestCase):
 
     def test_detail_view(self):
         sec_service = test_data.sec_service
-        api_manila.security_service_get = mock.Mock(return_value=sec_service)
-
         url = reverse('horizon:project:shares:security_service_detail',
                       args=[sec_service.id])
+        self.mock_object(
+            api_manila, "security_service_get",
+            mock.Mock(return_value=sec_service))
+        self.mock_object(
+            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
         res = self.client.get(url)
 
         self.assertContains(res, "<h1>Security Service Details: %s</h1>"
@@ -87,8 +92,9 @@ class SecurityServicesViewTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % sec_service.server, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.dns_ip, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.domain, 1, 200)
-
         self.assertNoMessages()
+        self.assertEqual(2, api_manila.security_service_get.call_count)
+        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_detail_view_with_exception(self):
         sec_service = test_data.sec_service

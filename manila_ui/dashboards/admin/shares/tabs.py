@@ -52,8 +52,8 @@ class SnapshotsTab(tabs.TableTab):
             msg = _("Unable to retrieve snapshot list.")
             exceptions.handle(self.request, msg)
 
-        # Gather our tenants to correlate against IDs
-        utils.set_tenant_name_to_objects(self.request, snapshots)
+        # Gather our projects to correlate against IDs
+        utils.set_project_name_to_objects(self.request, snapshots)
 
         return snapshots
 
@@ -83,8 +83,8 @@ class SharesTab(tabs.TableTab):
             exceptions.handle(
                 self.request, _('Unable to retrieve share list.'))
 
-        # Gather our tenants to correlate against IDs
-        utils.set_tenant_name_to_objects(self.request, shares)
+        # Gather our projects to correlate against IDs
+        utils.set_project_name_to_objects(self.request, shares)
 
         return shares
 
@@ -126,7 +126,7 @@ class SecurityServiceTab(tabs.TableTab):
             exceptions.handle(self.request,
                               _("Unable to retrieve security services"))
 
-        utils.set_tenant_name_to_objects(self.request, security_services)
+        utils.set_project_name_to_objects(self.request, security_services)
         return security_services
 
 
@@ -167,7 +167,7 @@ class ShareNetworkTab(tabs.TableTab):
             share_networks = []
             exceptions.handle(self.request,
                               _("Unable to retrieve share networks"))
-        utils.set_tenant_name_to_objects(self.request, share_networks)
+        utils.set_project_name_to_objects(self.request, share_networks)
         return share_networks
 
 
@@ -215,7 +215,7 @@ class ShareServerTab(tabs.TableTab):
             share_servers = []
             exceptions.handle(self.request,
                               _("Unable to retrieve share servers"))
-        utils.set_tenant_name_to_objects(self.request, share_servers)
+        utils.set_project_name_to_objects(self.request, share_servers)
         return share_servers
 
 

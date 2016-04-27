@@ -18,127 +18,185 @@ This module contains test suites that cover tabs from admin dashboard
 by getting generated pages and verifying results.
 """
 
+import ddt
 from django.core.urlresolvers import reverse
 from manilaclient import exceptions as manila_client_exc
 import mock
 
 from manila_ui.api import manila as api_manila
+from manila_ui.dashboards.admin.shares import utils
 from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
+from manila_ui.tests.test_data import keystone_data
 
-from openstack_dashboard import api
+from openstack_dashboard.api import keystone as api_keystone
+from openstack_dashboard.api import neutron as api_neutron
 from openstack_dashboard.usage import quotas
 
 INDEX_URL = reverse('horizon:admin:shares:index')
 
 
+@ddt.ddt
 class SharesTests(test.BaseAdminViewTests):
 
-    def test_index(self):
+    def setUp(self):
+        super(self.__class__, self).setUp()
+        self.mock_object(utils.timeutils, 'now', mock.Mock(return_value=1))
+        self.mock_object(
+            api_keystone, "tenant_list",
+            mock.Mock(return_value=(keystone_data.projects, None)))
+        # Reset taken list of projects to avoid test interference
+        utils.PROJECTS = {}
+
+    @ddt.data(True, False)
+    def test_index_with_all_tabs(self, single_time_slot):
         snaps = [test_data.snapshot]
         shares = [test_data.share, test_data.nameless_share,
                   test_data.other_share]
         share_networks = [test_data.inactive_share_network,
                           test_data.active_share_network]
         security_services = [test_data.sec_service]
+        if single_time_slot:
+            utils.timeutils.now.side_effect = [4] + [5 + i for i in range(4)]
+        else:
+            utils.timeutils.now.side_effect = [4] + [24 + i for i in range(4)]
 
-        api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api_manila.share_list = mock.Mock(return_value=shares)
-        api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
-        api_manila.share_network_list = mock.Mock(return_value=share_networks)
-        api_manila.share_type_list = mock.Mock(return_value=[])
-        api_manila.share_server_list = mock.Mock(return_value=[])
-        api_manila.security_service_list = mock.Mock(
-            return_value=security_services)
-        api_manila.share_network_get = mock.Mock()
-        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
-        api.neutron.network_list = mock.Mock(return_value=[])
-        api.neutron.subnet_list = mock.Mock(return_value=[])
-        quotas.tenant_limit_usages = mock.Mock(
-            return_value=test_data.quota_usage)
-        quotas.tenant_quota_usages = mock.Mock(
-            return_value=test_data.quota_usage)
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(return_value=shares))
+        self.mock_object(
+            api_manila, "share_snapshot_list", mock.Mock(return_value=snaps))
+        self.mock_object(
+            api_manila, "share_network_list",
+            mock.Mock(return_value=share_networks))
+        self.mock_object(
+            api_manila, "share_type_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_server_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "security_service_list",
+            mock.Mock(return_value=security_services))
+        self.mock_object(
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(
+            api_neutron, "network_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_neutron, "subnet_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            quotas, "tenant_limit_usages",
+            mock.Mock(return_value=test_data.quota_usage))
+        self.mock_object(
+            quotas, "tenant_quota_usages",
+            mock.Mock(return_value=test_data.quota_usage))
 
         res = self.client.get(INDEX_URL)
 
+        if single_time_slot:
+            api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        else:
+            api_keystone.tenant_list.assert_has_calls(
+                [mock.call(mock.ANY)] * 2)
+        api_neutron.network_list.assert_called_once_with(mock.ANY)
+        api_neutron.subnet_list.assert_called_once_with(mock.ANY)
+        api_manila.share_type_list.assert_called_once_with(mock.ANY)
+        api_manila.share_server_list.assert_called_once_with(mock.ANY)
+        api_manila.share_network_list.assert_called_once_with(
+            mock.ANY, detailed=True, search_opts={'all_tenants': True})
+        api_manila.security_service_list.assert_called_once_with(
+            mock.ANY, search_opts={'all_tenants': True})
+        api_manila.share_snapshot_list.assert_called_with(
+            mock.ANY, search_opts={'all_tenants': True})
+        api_manila.share_list.assert_called_with(mock.ANY)
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'admin/shares/index.html')
 
     def test_delete_share(self):
-        share = test_data.share
-
-        formData = {'action': 'shares__delete__%s' % share.id}
-
-        api_manila.share_snapshot_list = mock.Mock(return_value=[])
-        api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api_manila.share_delete = mock.Mock()
-        api_manila.share_get = mock.Mock(
-            return_value=test_data.share)
-        api_manila.share_list = mock.Mock(
-            return_value=[test_data.share])
         url = reverse('horizon:admin:shares:index')
+        share = test_data.share
+        formData = {'action': 'shares__delete__%s' % share.id}
+        self.mock_object(
+            api_manila, "share_snapshot_list", mock.Mock(return_value=[]))
+        self.mock_object(api_manila, "share_delete")
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(return_value=[share]))
 
         res = self.client.post(url, formData)
 
-        api_manila.share_delete.assert_called_with(
-            mock.ANY, test_data.share.id)
+        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        api_manila.share_delete.assert_called_once_with(mock.ANY, share.id)
+        api_manila.share_list.assert_called_once_with(
+            mock.ANY, search_opts={'all_tenants': True})
+        api_manila.share_snapshot_list.assert_called_once_with(
+            mock.ANY, detailed=True, search_opts={'all_tenants': True})
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_share_network(self):
+        url = reverse('horizon:admin:shares:index')
         share_network = test_data.inactive_share_network
         formData = {'action': 'share_networks__delete__%s' % share_network.id}
-        api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api.neutron.network_list = mock.Mock(return_value=[])
-        api.neutron.subnet_list = mock.Mock(return_value=[])
-        api_manila.share_network_delete = mock.Mock()
-        api_manila.share_network_get = mock.Mock(
-            return_value=[test_data.inactive_share_network])
-        api_manila.share_network_list = mock.Mock(
-            return_value=[test_data.active_share_network,
-                          test_data.inactive_share_network])
-        url = reverse('horizon:admin:shares:index')
+        self.mock_object(
+            api_neutron, "network_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_neutron, "subnet_list", mock.Mock(return_value=[]))
+        self.mock_object(api_manila, "share_network_delete")
+        self.mock_object(
+            api_manila, "share_network_list",
+            mock.Mock(return_value=[
+                test_data.active_share_network,
+                test_data.inactive_share_network]))
 
         res = self.client.post(url, formData)
 
-        api_manila.share_network_delete.assert_called_with(
+        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        api_manila.share_network_delete.assert_called_once_with(
             mock.ANY, test_data.inactive_share_network.id)
+        api_manila.share_network_list.assert_called_once_with(
+            mock.ANY, detailed=True, search_opts={'all_tenants': True})
+        api_neutron.network_list.assert_called_once_with(mock.ANY)
+        api_neutron.subnet_list.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_snapshot(self):
         share = test_data.share
         snapshot = test_data.snapshot
         formData = {'action': 'snapshots__delete__%s' % snapshot.id}
-        api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api_manila.share_snapshot_delete = mock.Mock()
-        api_manila.share_snapshot_get = mock.Mock(
-            return_value=snapshot)
-        api_manila.share_snapshot_list = mock.Mock(
-            return_value=[snapshot])
-        api_manila.share_list = mock.Mock(
-            return_value=[share])
+        self.mock_object(api_manila, "share_snapshot_delete")
+        self.mock_object(
+            api_manila, "share_snapshot_list",
+            mock.Mock(return_value=[snapshot]))
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(return_value=[share]))
         url = reverse('horizon:admin:shares:index')
 
         res = self.client.post(url, formData)
 
-        api_manila.share_snapshot_delete.assert_called_with(
+        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        api_manila.share_snapshot_delete.assert_called_once_with(
             mock.ANY, test_data.snapshot.id)
-
+        api_manila.share_snapshot_list.assert_called_once_with(
+            mock.ANY, search_opts={'all_tenants': True})
+        api_manila.share_list.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_security_service(self):
         security_service = test_data.sec_service
         formData = {
-            'action': 'security_services__delete__%s' % security_service.id}
-        api.keystone.tenant_list = mock.Mock(return_value=([], None))
-        api_manila.security_service_delete = mock.Mock()
-        api_manila.security_service_list = mock.Mock(
-            return_value=[test_data.sec_service])
+            'action': 'security_services__delete__%s' % security_service.id,
+        }
+        self.mock_object(api_manila, "security_service_delete")
+        self.mock_object(
+            api_manila, "security_service_list",
+            mock.Mock(return_value=[test_data.sec_service]))
         url = reverse('horizon:admin:shares:index')
 
         res = self.client.post(url, formData)
 
-        api_manila.security_service_delete.assert_called_with(
+        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        api_manila.security_service_delete.assert_called_once_with(
             mock.ANY, test_data.sec_service.id)
+        api_manila.security_service_list.assert_called_once_with(
+            mock.ANY, search_opts={'all_tenants': True})
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
 
@@ -154,9 +212,9 @@ class ShareInstanceTests(test.BaseAdminViewTests):
             api_manila, "share_instance_list",
             mock.Mock(return_value=share_instances))
         self.mock_object(
-            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
-            api.keystone, "tenant_list", mock.Mock(return_value=([], None)))
+            api_keystone, "tenant_list", mock.Mock(return_value=([], None)))
 
         res = self.client.get(url)
 
@@ -185,8 +243,8 @@ class ShareInstanceTests(test.BaseAdminViewTests):
                     si.share_id, si.share_id),
                 1, 200)
         api_manila.share_instance_list.assert_called_once_with(mock.ANY)
-        self.assertEqual(5, api.keystone.tenant_list.call_count)
-        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
+        self.assertEqual(5, api_keystone.tenant_list.call_count)
+        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_share_instance(self):
         share_instance = test_data.share_instance
@@ -201,7 +259,7 @@ class ShareInstanceTests(test.BaseAdminViewTests):
             api_manila, "share_instance_export_location_list",
             mock.Mock(return_value=test_data.export_locations))
         self.mock_object(
-            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
@@ -234,7 +292,7 @@ class ShareInstanceTests(test.BaseAdminViewTests):
             mock.ANY, share_instance.id)
         api_manila.share_instance_export_location_list.assert_called_once_with(
             mock.ANY, share_instance.id)
-        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
+        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_share_instance_with_exception(self):
         share_instance = test_data.share_instance
