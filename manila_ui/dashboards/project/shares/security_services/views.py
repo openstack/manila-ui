@@ -18,6 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import forms
 from horizon import tabs
+from horizon.utils import memoized
 
 from manila_ui.api import manila
 from manila_ui.dashboards.project.shares.security_services import\
@@ -118,6 +119,7 @@ class Detail(tabs.TabView):
             {'service_display_name': sec_service_display_name}
         return context
 
+    @memoized.memoized_method
     def get_data(self):
         try:
             sec_service_id = self.kwargs['sec_service_id']

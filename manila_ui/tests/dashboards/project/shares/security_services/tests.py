@@ -35,21 +35,23 @@ SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 class SecurityServicesViewTests(test.TestCase):
 
     def test_create_security_service(self):
-        formData = {'name': u'new_sec_service',
-                    'description': u'This is test security service',
-                    'method': u'CreateForm',
-                    'dns_ip': '1.2.3.4',
-                    'user': 'SomeUser',
-                    'password': 'safepass',
-                    'confirm_password': 'safepass',
-                    'type': 'ldap',
-                    'domain': 'TEST',
-                    'server': 'testserver'
-                    }
-
-        api_manila.security_service_create = mock.Mock()
+        formData = {
+            'name': u'new_sec_service',
+            'description': u'This is test security service',
+            'method': u'CreateForm',
+            'dns_ip': '1.2.3.4',
+            'user': 'SomeUser',
+            'password': 'safepass',
+            'confirm_password': 'safepass',
+            'type': 'ldap',
+            'domain': 'TEST',
+            'server': 'testserver',
+        }
         url = reverse('horizon:project:shares:create_security_service')
+        self.mock_object(api_manila, "security_service_create")
+
         res = self.client.post(url, formData)
+
         del formData['method']
         del formData['confirm_password']
         api_manila.security_service_create.assert_called_with(
@@ -57,29 +59,32 @@ class SecurityServicesViewTests(test.TestCase):
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_delete_security_service(self):
-        security_service = test_data.sec_service
-
-        formData = {'action':
-                    'security_services__delete__%s' % security_service.id}
-
-        api_manila.security_service_delete = mock.Mock()
-        api_manila.security_service_list = mock.Mock(
-            return_value=[test_data.sec_service])
         url = reverse('horizon:project:shares:index')
+        security_service = test_data.sec_service
+        formData = {
+            'action': 'security_services__delete__%s' % security_service.id,
+        }
+        self.mock_object(api_manila, "security_service_delete")
+        self.mock_object(
+            api_manila, "security_service_list",
+            mock.Mock(return_value=[security_service]))
+
         res = self.client.post(url, formData)
+
+        api_manila.security_service_list.assert_called_with(mock.ANY)
         api_manila.security_service_delete.assert_called_with(
-            mock.ANY, test_data.sec_service.id)
+            mock.ANY, security_service.id)
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_detail_view(self):
         sec_service = test_data.sec_service
-        url = reverse('horizon:project:shares:security_service_detail',
-                      args=[sec_service.id])
         self.mock_object(
             api_manila, "security_service_get",
             mock.Mock(return_value=sec_service))
         self.mock_object(
             api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        url = reverse('horizon:project:shares:security_service_detail',
+                      args=[sec_service.id])
 
         res = self.client.get(url)
 
@@ -93,36 +98,44 @@ class SecurityServicesViewTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % sec_service.dns_ip, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.domain, 1, 200)
         self.assertNoMessages()
-        self.assertEqual(2, api_manila.security_service_get.call_count)
+        api_manila.security_service_get.assert_called_once_with(
+            mock.ANY, sec_service.id)
         self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_detail_view_with_exception(self):
-        sec_service = test_data.sec_service
-
-        def raise_exc(*args, **kwargs):
-            raise manila_client_exc.NotFound(404)
-
-        api_manila.security_service_get = mock.Mock(
-            side_effect=raise_exc)
-
         url = reverse('horizon:project:shares:security_service_detail',
-                      args=[sec_service.id])
+                      args=[test_data.sec_service.id])
+        self.mock_object(
+            api_manila, "security_service_get",
+            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
 
         res = self.client.get(url)
 
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        api_manila.security_service_get.assert_called_once_with(
+            mock.ANY, test_data.sec_service.id)
 
     def test_update_security_service(self):
         sec_service = test_data.sec_service
-
-        api_manila.security_service_get = mock.Mock(return_value=sec_service)
-        api_manila.security_service_update = mock.Mock()
-
-        formData = {'method': 'UpdateForm',
-                    'name': sec_service.name,
-                    'description': sec_service.description}
-
         url = reverse('horizon:project:shares:update_security_service',
                       args=[sec_service.id])
+        formData = {
+            'method': 'UpdateForm',
+            'name': sec_service.name,
+            'description': sec_service.description,
+        }
+        self.mock_object(api_manila, "security_service_update")
+        self.mock_object(
+            api_manila, "security_service_get",
+            mock.Mock(return_value=sec_service))
+
         res = self.client.post(url, formData)
+
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        api_manila.security_service_get.assert_called_once_with(
+            mock.ANY, sec_service.id)
+        api_manila.security_service_update.assert_called_once_with(
+            mock.ANY,
+            sec_service.id,
+            name=formData['name'],
+            description=formData['description'])

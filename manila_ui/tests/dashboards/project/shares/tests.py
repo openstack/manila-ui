@@ -19,35 +19,54 @@ from manila_ui.api import manila as api_manila
 from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
-from openstack_dashboard import api
+from openstack_dashboard.api import neutron as api_neutron
 from openstack_dashboard.usage import quotas
-
 
 INDEX_URL = reverse('horizon:project:shares:index')
 
 
 class SharesTests(test.TestCase):
 
-    def test_index(self):
+    def test_index_with_all_tabs(self):
         snaps = [test_data.snapshot]
         shares = [test_data.share, test_data.nameless_share,
                   test_data.other_share]
         share_networks = [test_data.inactive_share_network,
                           test_data.active_share_network]
         security_services = [test_data.sec_service]
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(return_value=shares))
+        self.mock_object(
+            api_manila, "share_snapshot_list", mock.Mock(return_value=snaps))
+        self.mock_object(
+            api_manila, "share_network_list",
+            mock.Mock(return_value=share_networks))
+        self.mock_object(
+            api_manila, "security_service_list",
+            mock.Mock(return_value=security_services))
+        self.mock_object(
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(
+            api_neutron, "network_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_neutron, "subnet_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            quotas, "tenant_limit_usages",
+            mock.Mock(return_value=test_data.quota_usage))
+        self.mock_object(
+            quotas, "tenant_quota_usages",
+            mock.Mock(return_value=test_data.quota_usage))
 
-        api_manila.share_list = mock.Mock(return_value=shares)
-        api_manila.share_snapshot_list = mock.Mock(return_value=snaps)
-        api_manila.share_network_list = mock.Mock(return_value=share_networks)
-        api_manila.security_service_list = mock.Mock(
-            return_value=security_services)
-        api_manila.share_network_get = mock.Mock()
-        api.neutron.network_list = mock.Mock(return_value=[])
-        api.neutron.subnet_list = mock.Mock(return_value=[])
-        quotas.tenant_limit_usages = mock.Mock(
-            return_value=test_data.quota_usage)
-        quotas.tenant_quota_usages = mock.Mock(
-            return_value=test_data.quota_usage)
         res = self.client.get(INDEX_URL)
+
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'project/shares/index.html')
+        api_neutron.network_list.assert_called_once_with(mock.ANY)
+        api_neutron.subnet_list.assert_called_once_with(mock.ANY)
+        api_manila.security_service_list.assert_called_once_with(mock.ANY)
+        api_manila.share_snapshot_list.assert_called_with(mock.ANY)
+        api_manila.share_list.assert_called_with(mock.ANY)
+        api_manila.share_network_list.assert_has_calls([
+            mock.call(mock.ANY),
+            mock.call(mock.ANY, detailed=True),
+        ], any_order=True)

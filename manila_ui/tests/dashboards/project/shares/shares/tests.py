@@ -14,12 +14,13 @@
 
 from django.core.urlresolvers import reverse
 import mock
+import six
 
 from manila_ui.api import manila as api_manila
 from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
-from openstack_dashboard import api
+from openstack_dashboard.api import neutron
 from openstack_dashboard.api import nova
 from openstack_dashboard.usage import quotas
 
@@ -45,12 +46,7 @@ class ShareViewTests(test.TestCase):
 
     @mock.patch.object(nova, 'availability_zone_list')
     def test_create_share(self, az_list):
-        usage_limit = {
-            'maxTotalVolumeGigabytes': 250,
-            'gigabytesUsed': 20,
-            'volumesUsed': 0,
-            'maxTotalVolumes': 6,
-        }
+        url = reverse('horizon:project:shares:create')
         share_net = test_data.active_share_network
         share_nets = [share_net]
         formData = {
@@ -75,20 +71,21 @@ class ShareViewTests(test.TestCase):
         self.mock_object(
             api_manila, "share_type_list",
             mock.Mock(return_value=[self.fake_share_type, ]))
-        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
-        quotas.tenant_limit_usages = mock.Mock(return_value=[usage_limit])
-        url = reverse('horizon:project:shares:create')
+
         self.client.post(url, formData)
 
-        api_manila.share_create.assert_called_with(
+        api_manila.share_create.assert_called_once_with(
             mock.ANY, size=formData['size'], name=formData['name'],
             description=formData['description'], proto=formData['share_proto'],
             snapshot_id=None, is_public=False, share_network=share_net.id,
             metadata={}, share_type=formData['share_type'],
             availability_zone=formData['availability_zone'])
+        api_manila.share_snapshot_list.assert_called_once_with(mock.ANY)
+        api_manila.share_network_list.assert_called_once_with(mock.ANY)
+        api_manila.share_type_list.assert_called_once_with(mock.ANY)
 
     @mock.patch.object(nova, 'availability_zone_list')
-    def test_create_share_from_snapshot(self, az_list):
+    def test_create_share_from_snapshot(self, mock_az_list):
         share_net = test_data.active_share_network
         share_nets = [share_net]
         snapshot = test_data.snapshot
@@ -106,15 +103,13 @@ class ShareViewTests(test.TestCase):
             'share-network-choices-fake': share_net.id,
             'availability_zone': 'fake_az',
         }
-        az_list.return_value = [self.FakeAZ('fake_az'), ]
+        mock_az_list.return_value = [self.FakeAZ('fake_az'), ]
         self.mock_object(api_manila, "share_create")
         self.mock_object(
             api_manila, "share_snapshot_list",
             mock.Mock(return_value=[snapshot]))
         self.mock_object(
             api_manila, "share_snapshot_get", mock.Mock(return_value=snapshot))
-        self.mock_object(
-            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
             api_manila, "share_network_list",
             mock.Mock(return_value=share_nets))
@@ -124,6 +119,12 @@ class ShareViewTests(test.TestCase):
 
         res = self.client.post(url, formData)
 
+        mock_az_list.assert_called_once_with(mock.ANY)
+        api_manila.share_snapshot_list.assert_called_once_with(mock.ANY)
+        api_manila.share_snapshot_get.assert_called_once_with(
+            mock.ANY, snapshot.id)
+        api_manila.share_network_list.assert_called_once_with(mock.ANY)
+        api_manila.share_type_list.assert_called_once_with(mock.ANY)
         api_manila.share_create.assert_called_with(
             mock.ANY, size=formData['size'], name=formData['name'],
             description=formData['description'], proto=formData['share_proto'],
@@ -134,21 +135,24 @@ class ShareViewTests(test.TestCase):
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_delete_share(self):
+        formData = {'action': 'shares__delete__%s' % self.share.id}
         self.mock_object(
             api_manila, "share_snapshot_list", mock.Mock(return_value=[]))
-
-        formData = {'action': 'shares__delete__%s' % self.share.id}
-
-        api_manila.share_delete = mock.Mock()
-        api_manila.share_get = mock.Mock(
-            return_value=self.share)
-        api_manila.share_list = mock.Mock(
-            return_value=[self.share])
+        self.mock_object(
+            api_manila, "share_network_list", mock.Mock(return_value=[]))
+        self.mock_object(api_manila, "share_delete")
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(return_value=[self.share]))
         url = reverse('horizon:project:shares:index')
+
         res = self.client.post(url, formData)
+
+        api_manila.share_network_list.assert_called_once_with(mock.ANY)
+        api_manila.share_snapshot_list.assert_called_once_with(
+            mock.ANY, detailed=True)
+        api_manila.share_list.assert_called_with(mock.ANY)
         api_manila.share_delete.assert_called_with(
             mock.ANY, self.share.id)
-
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_detail_view(self):
@@ -156,9 +160,8 @@ class ShareViewTests(test.TestCase):
         rules = [test_data.ip_rule, test_data.user_rule, test_data.cephx_rule]
         export_locations = test_data.export_locations
         url = reverse('horizon:project:shares:detail', args=[self.share.id])
-
         self.mock_object(
-            api_manila, "share_get", mock.Mock(return_value=self.share))
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
             api_manila, "share_network_get", mock.Mock(return_value=share_net))
         self.mock_object(
@@ -197,6 +200,7 @@ class ShareViewTests(test.TestCase):
             mock.ANY, self.share.id)
         api_manila.share_export_location_list.assert_called_once_with(
             mock.ANY, self.share.id)
+        self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_update_share(self):
         self.mock_object(api_manila, "share_update")
@@ -204,17 +208,25 @@ class ShareViewTests(test.TestCase):
             'method': 'UpdateForm',
             'name': self.share.name,
             'description': self.share.description,
+            'is_public': False,
         }
         url = reverse('horizon:project:shares:update', args=[self.share.id])
 
         res = self.client.post(url, formData)
 
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        api_manila.share_update.assert_called_once_with(
+            mock.ANY, self.share, formData['name'], formData['description'],
+            is_public=six.text_type(formData['is_public']))
+        api_manila.share_get.assert_has_calls(
+            [mock.call(mock.ANY, self.share.id) for i in (1, 2)])
 
     def test_list_rules(self):
         rules = [test_data.ip_rule, test_data.user_rule, test_data.cephx_rule]
         self.mock_object(
             api_manila, "share_rules_list", mock.Mock(return_value=rules))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         url = reverse(
             'horizon:project:shares:manage_rules', args=[self.share.id])
 
@@ -222,11 +234,13 @@ class ShareViewTests(test.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'project/shares/shares/manage_rules.html')
+        api_manila.share_rules_list.assert_called_once_with(
+            mock.ANY, self.share.id)
+        self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_create_rule(self):
         url = reverse('horizon:project:shares:rule_add', args=[self.share.id])
         self.mock_object(api_manila, "share_allow")
-        api.neutron.is_service_enabled = mock.Mock(return_value=[True])
         formData = {
             'access_type': 'user',
             'method': u'CreateForm',
@@ -268,10 +282,7 @@ class ShareViewTests(test.TestCase):
             'totalShareGigabytesUsed': 20,
         }
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
-
         self.mock_object(api_manila, "share_extend")
-        self.mock_object(
-            api_manila, "share_get", mock.Mock(return_value=self.share))
         self.mock_object(
             quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
 

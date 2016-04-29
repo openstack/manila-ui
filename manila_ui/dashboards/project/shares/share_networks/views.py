@@ -17,6 +17,7 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import forms
 from horizon import tabs
+from horizon.utils import memoized
 from horizon import workflows
 
 from manila_ui.api import manila
@@ -72,6 +73,7 @@ class Detail(tabs.TabView):
             {'network_display_name': share_network_display_name}
         return context
 
+    @memoized.memoized_method
     def get_data(self):
         try:
             share_net_id = self.kwargs['share_network_id']

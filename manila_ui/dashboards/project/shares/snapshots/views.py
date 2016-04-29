@@ -98,6 +98,7 @@ class UpdateView(forms.ModalFormView):
     template_name = 'project/shares/snapshots/update.html'
     success_url = "horizon:project:shares:index"
 
+    @memoized.memoized_method
     def get_object(self):
         if not hasattr(self, "_object"):
             snap_id = self.kwargs['snapshot_id']

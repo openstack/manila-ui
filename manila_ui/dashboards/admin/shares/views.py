@@ -178,6 +178,7 @@ class ShareServDetail(tabs.TabView):
             {'server_name': share_server_display_name}
         return context
 
+    @memoized.memoized_method
     def get_data(self):
         try:
             share_serv_id = self.kwargs['share_server_id']
