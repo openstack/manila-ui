@@ -31,6 +31,7 @@ except ImportError:
 
 from manilaclient.v2 import share_export_locations
 from manilaclient.v2 import share_instances
+from manilaclient.v2 import share_servers
 
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas
@@ -175,6 +176,31 @@ share_instance_no_ss = share_instances.ShareInstance(
      'share_network_id': None,
      'share_server_id': None,
      'created_at': '2016-04-26 14:15:16'}
+)
+
+share_server = share_servers.ShareServer(
+    share_servers.ShareServerManager(None),
+    {'id': 'fake_share_server_id1',
+     'status': 'active',
+     'share_network_id': 'fake_share_network_id1',
+     'share_network_name': 'fake_share_network_name1',
+     'project_id': 'fake_project_id1',
+     'backend_details': {
+         'foo_key': 'foo_value',
+         'bar_key_foo': 'bar_value_foo',
+     },
+     'host': 'fakehost1@fakebackend1#fakepool1'}
+)
+
+share_server_errored = share_servers.ShareServer(
+    share_servers.ShareServerManager(None),
+    {'id': 'fake_share_server_id2',
+     'status': 'error',
+     'share_network_id': 'fake_share_network_id2',
+     'share_network_name': 'fake_share_network_name2',
+     'project_id': 'fake_project_id2',
+     'backend_details': {},
+     'host': 'fakehost2@fakebackend2#fakepool2'}
 )
 
 

@@ -193,7 +193,7 @@ class ShareServDetail(tabs.TabView):
                 share_serv.share_network_id = None
 
         except Exception:
-            redirect = reverse('horizon:project:shares:index')
+            redirect = reverse('horizon:admin:shares:index')
             exceptions.handle(self.request,
                               _('Unable to retrieve share server details.'),
                               redirect=redirect)

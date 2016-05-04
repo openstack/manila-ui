@@ -2,11 +2,9 @@
 {% load url from future %}
 
 <h3>{% trans "Share Server Overview" %}</h3>
-
-<div class="info row-fluid detail">
-  <h4>{% trans "Info" %}</h4>
+<div class="detail">
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
     <dt>{% trans "ID" %}</dt>
     <dd>{{ share_server.id }}</dd>
     <dt>{% trans "Status" %}</dt>
@@ -21,7 +19,7 @@
     <dd>{{ share_server.share_network_name }}</dd>
     {% endif %}
     {% if share_server.shares_list %}
-    <dt>{% trans "List Shares on this server" %}</dt>
+    <dt>{% trans "Shares on this server" %}</dt>
     {% for share in share_server.shares_list %}
     {% url 'horizon:admin:shares:detail' share.id as share_url %}
     <dd><a href="{{ share_url }}">{{ share.name_or_id }}</a></dd>
@@ -29,10 +27,10 @@
     {% endif %}
 </div>
 
-<div class="info row-fluid detail">
+<div class="detail">
   <h4>{% trans "Specs" %}</h4>
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
   {% for key in share_server.backend_details %}
     <dt>{{ key }}</dt>
     <dd>{{ share_server.backend_details|get_item:key }}</dd>
