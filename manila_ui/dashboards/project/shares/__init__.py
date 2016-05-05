@@ -311,7 +311,7 @@ project_views.CreateProjectView.workflow_class = ManilaCreateProject
 #
 
 
-class ManilaBaseUsage(usage_base.BaseUsage):
+class ManilaUsage(usage_base.ProjectUsage):
 
     def get_manila_limits(self):
         """Get share limits if manila is enabled."""
@@ -325,8 +325,33 @@ class ManilaBaseUsage(usage_base.BaseUsage):
         return
 
     def get_limits(self):
-        super(ManilaBaseUsage, self).get_limits()
+        super(self.__class__, self).get_limits()
         self.get_manila_limits()
 
-overview_views.ProjectOverview.template_name = "usage.html"
-overview_views.ProjectOverview.usage_class = ManilaBaseUsage
+
+def get_context_data(self, **kwargs):
+    context = super(self.__class__, self).get_context_data(**kwargs)
+    types = (
+        ("totalSharesUsed", "maxTotalShares", _("Shares")),
+        ("totalShareGigabytesUsed", "maxTotalShareGigabytes",
+         _("Share Storage")),
+        ("totalShareSnapshotsUsed", "maxTotalShareSnapshots",
+         _("Share Snapshots")),
+        ("totalSnapshotGigabytesUsed", "maxTotalSnapshotGigabytes",
+         _("Share Snapshots Storage")),
+        ("totalShareNetworksUsed", "maxTotalShareNetworks",
+         _("Share Networks")),
+    )
+    for t in types:
+        if t[0] in self.usage.limits and t[1] in self.usage.limits:
+            context['charts'].append({
+                'name': t[2],
+                'used': self.usage.limits[t[0]],
+                'max': self.usage.limits[t[1]],
+                'text': False,
+            })
+    return context
+
+
+overview_views.ProjectOverview.get_context_data = get_context_data
+overview_views.ProjectOverview.usage_class = ManilaUsage
