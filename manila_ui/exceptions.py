@@ -16,56 +16,20 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from cinderclient import exceptions as cinderclient
-from glanceclient.common import exceptions as glanceclient
-from heatclient import exc as heatclient
-from keystoneclient import exceptions as keystoneclient
 from manilaclient import exceptions as manilaclient
-from neutronclient.common import exceptions as neutronclient
-from novaclient import exceptions as novaclient
-from requests import exceptions as requests
-from swiftclient import client as swiftclient
 
 
 UNAUTHORIZED = (
-    keystoneclient.Unauthorized,
-    cinderclient.Unauthorized,
-    novaclient.Unauthorized,
-    glanceclient.Unauthorized,
+    manilaclient.AuthorizationFailure,
     manilaclient.Unauthorized,
-    neutronclient.Unauthorized,
-    heatclient.HTTPUnauthorized,
 )
 
 
 NOT_FOUND = (
-    keystoneclient.NotFound,
-    cinderclient.NotFound,
-    novaclient.NotFound,
-    glanceclient.NotFound,
     manilaclient.NotFound,
-    neutronclient.NotFound,
-    heatclient.HTTPNotFound,
 )
 
 
-# NOTE(gabriel): This is very broad, and may need to be dialed in.
 RECOVERABLE = (
-    keystoneclient.ClientException,
-    # AuthorizationFailure is raised when Keystone is "unavailable".
-    keystoneclient.AuthorizationFailure,
-    keystoneclient.Forbidden,
-    cinderclient.ClientException,
-    cinderclient.ConnectionError,
-    cinderclient.Forbidden,
-    novaclient.ClientException,
-    novaclient.Forbidden,
-    glanceclient.ClientException,
     manilaclient.ClientException,
-    neutronclient.Forbidden,
-    neutronclient.NeutronClientException,
-    swiftclient.ClientException,
-    heatclient.HTTPForbidden,
-    heatclient.HTTPException,
-    requests.RequestException,
 )
