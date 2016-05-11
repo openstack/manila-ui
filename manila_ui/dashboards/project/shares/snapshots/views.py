@@ -33,6 +33,7 @@ from openstack_dashboard.usage import quotas
 class SnapshotDetailView(tabs.TabView):
     tab_group_class = snapshot_tabs.SnapshotDetailTabs
     template_name = 'project/shares/snapshots/snapshot_detail.html'
+    redirect_url = reverse_lazy('horizon:project:shares:index')
 
     def get_context_data(self, **kwargs):
         context = super(SnapshotDetailView, self).get_context_data(**kwargs)
@@ -53,10 +54,9 @@ class SnapshotDetailView(tabs.TabView):
             share = manila.share_get(self.request, snapshot.share_id)
             snapshot.share_name_or_id = share.name or share.id
         except Exception:
-            redirect = reverse('horizon:project:shares:index')
             exceptions.handle(self.request,
                               _('Unable to retrieve snapshot details.'),
-                              redirect=redirect)
+                              redirect=self.redirect_url)
         return snapshot
 
     def get_tabs(self, request, *args, **kwargs):

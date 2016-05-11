@@ -14,15 +14,13 @@ from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
 from manila_ui.dashboards.admin.shares import views
-from manila_ui.dashboards.project.shares.snapshots\
-    import views as project_snapshot_views
 
 urlpatterns = patterns(
     '',
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<share_id>[^/]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^snapshots/(?P<snapshot_id>[^/]+)$',
-        project_snapshot_views.SnapshotDetailView.as_view(),
+        views.SnapshotDetailView.as_view(),
         name='snapshot-detail'),
     url(r'^share_networks/(?P<share_network_id>[^/]+)$',
         views.ShareNetworkDetailView.as_view(),

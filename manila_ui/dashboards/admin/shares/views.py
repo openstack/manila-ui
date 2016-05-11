@@ -37,6 +37,8 @@ from manila_ui.dashboards.project.shares.security_services import \
 from manila_ui.dashboards.project.shares.share_networks import \
     views as sn_views
 from manila_ui.dashboards.project.shares.shares import views as share_views
+from manila_ui.dashboards.project.shares.snapshots import \
+    views as snapshot_views
 from manila_ui.utils import filters
 
 filters = (filters.get_item,)
@@ -63,6 +65,10 @@ class SecurityServiceDetailView(ss_views.Detail):
 
 
 class ShareNetworkDetailView(sn_views.Detail):
+    redirect_url = reverse_lazy('horizon:admin:shares:index')
+
+
+class SnapshotDetailView(snapshot_views.SnapshotDetailView):
     redirect_url = reverse_lazy('horizon:admin:shares:index')
 
 
