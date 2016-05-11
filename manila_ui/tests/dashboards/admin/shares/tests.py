@@ -22,6 +22,7 @@ import ddt
 from django.core.urlresolvers import reverse
 from manilaclient import exceptions as manila_client_exc
 import mock
+from neutronclient.client import exceptions
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.admin.shares import utils
@@ -131,32 +132,6 @@ class SharesTests(test.BaseAdminViewTests):
             mock.ANY, detailed=True, search_opts={'all_tenants': True})
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
-    def test_delete_share_network(self):
-        url = reverse('horizon:admin:shares:index')
-        share_network = test_data.inactive_share_network
-        formData = {'action': 'share_networks__delete__%s' % share_network.id}
-        self.mock_object(
-            api_neutron, "network_list", mock.Mock(return_value=[]))
-        self.mock_object(
-            api_neutron, "subnet_list", mock.Mock(return_value=[]))
-        self.mock_object(api_manila, "share_network_delete")
-        self.mock_object(
-            api_manila, "share_network_list",
-            mock.Mock(return_value=[
-                test_data.active_share_network,
-                test_data.inactive_share_network]))
-
-        res = self.client.post(url, formData)
-
-        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
-        api_manila.share_network_delete.assert_called_once_with(
-            mock.ANY, test_data.inactive_share_network.id)
-        api_manila.share_network_list.assert_called_once_with(
-            mock.ANY, detailed=True, search_opts={'all_tenants': True})
-        api_neutron.network_list.assert_called_once_with(mock.ANY)
-        api_neutron.subnet_list.assert_called_once_with(mock.ANY)
-        self.assertRedirectsNoFollow(res, INDEX_URL)
-
     def test_delete_snapshot(self):
         share = test_data.share
         snapshot = test_data.snapshot
@@ -258,7 +233,7 @@ class ShareInstanceTests(test.BaseAdminViewTests):
             1, 200)
         self.assertContains(
             res,
-            "<dd><a href=\"/project/shares/share_network/%s\">%s</a></dd>" % (
+            "<dd><a href=\"/project/shares/share_networks/%s\">%s</a></dd>" % (
                 share_instance.share_network_id,
                 share_instance.share_network_id),
             1, 200)
@@ -472,4 +447,147 @@ class SecurityServicesTests(test.BaseAdminViewTests):
             mock.ANY, test_data.sec_service.id)
         api_manila.security_service_list.assert_called_once_with(
             mock.ANY, search_opts={'all_tenants': True})
+        self.assertRedirectsNoFollow(res, INDEX_URL)
+
+
+class ShareNetworksTests(test.BaseAdminViewTests):
+
+    def setUp(self):
+        super(self.__class__, self).setUp()
+        self.mock_object(
+            api_keystone, "tenant_list",
+            mock.Mock(return_value=(keystone_data.projects, None)))
+        # Reset taken list of projects to avoid test interference
+        utils.PROJECTS = {}
+
+    def test_detail_view(self):
+        share_net = test_data.active_share_network
+        sec_service = test_data.sec_service
+        self.mock_object(
+            api_manila, "share_server_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_network_get", mock.Mock(return_value=share_net))
+        self.mock_object(
+            api_manila, "share_network_security_service_list",
+            mock.Mock(return_value=[sec_service]))
+        network = self.networks.first()
+        subnet = self.subnets.first()
+        self.mock_object(
+            api_neutron, "network_get", mock.Mock(return_value=network))
+        self.mock_object(
+            api_neutron, "subnet_get", mock.Mock(return_value=subnet))
+        url = reverse('horizon:project:shares:share_network_detail',
+                      args=[share_net.id])
+        self.mock_object(
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        self.assertContains(res, "<h1>Share Network Details: %s</h1>"
+                                 % share_net.name,
+                            1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share_net.id, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % network.name_or_id, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % subnet.name_or_id, 1, 200)
+        self.assertContains(res, "<a href=\"/project/shares/security_services"
+                                 "/%s\">%s</a>" % (sec_service.id,
+                                                   sec_service.name), 1, 200)
+        self.assertNoMessages()
+        api_manila.share_network_security_service_list.assert_called_once_with(
+            mock.ANY, share_net.id)
+        api_manila.share_server_list.assert_called_once_with(
+            mock.ANY, search_opts={'share_network_id': share_net.id})
+        api_manila.share_network_get.assert_called_once_with(
+            mock.ANY, share_net.id)
+        api_neutron.network_get.assert_called_once_with(
+            mock.ANY, share_net.neutron_net_id)
+        api_neutron.subnet_get.assert_called_once_with(
+            mock.ANY, share_net.neutron_subnet_id)
+        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
+
+    def test_detail_view_network_not_found(self):
+        share_net = test_data.active_share_network
+        sec_service = test_data.sec_service
+        url = reverse('horizon:project:shares:share_network_detail',
+                      args=[share_net.id])
+        self.mock_object(
+            api_manila, "share_server_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_network_get", mock.Mock(return_value=share_net))
+        self.mock_object(
+            api_manila, "share_network_security_service_list",
+            mock.Mock(return_value=[sec_service]))
+        self.mock_object(
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(
+            api_neutron, "network_get", mock.Mock(
+                side_effect=exceptions.NeutronClientException('fake', 500)))
+        self.mock_object(
+            api_neutron, "subnet_get", mock.Mock(
+                side_effect=exceptions.NeutronClientException('fake', 500)))
+
+        res = self.client.get(url)
+
+        self.assertContains(res, "<h1>Share Network Details: %s</h1>"
+                                 % share_net.name,
+                            1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % share_net.id, 1, 200)
+        self.assertContains(res, "<dd>Unknown</dd>", 2, 200)
+        self.assertNotContains(res, "<dd>%s</dd>" % share_net.neutron_net_id)
+        self.assertNotContains(res,
+                               "<dd>%s</dd>" % share_net.neutron_subnet_id)
+        self.assertContains(res, "<a href=\"/project/shares/security_services"
+                                 "/%s\">%s</a>" % (sec_service.id,
+                                                   sec_service.name), 1, 200)
+        self.assertNoMessages()
+        api_manila.share_network_security_service_list.assert_called_once_with(
+            mock.ANY, share_net.id)
+        api_manila.share_server_list.assert_called_once_with(
+            mock.ANY, search_opts={'share_network_id': share_net.id})
+        api_manila.share_network_get.assert_called_once_with(
+            mock.ANY, share_net.id)
+        api_neutron.network_get.assert_called_once_with(
+            mock.ANY, share_net.neutron_net_id)
+        api_neutron.subnet_get.assert_called_once_with(
+            mock.ANY, share_net.neutron_subnet_id)
+        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
+
+    def test_detail_view_with_exception(self):
+        url = reverse('horizon:admin:shares:share_network_detail',
+                      args=[test_data.active_share_network.id])
+        self.mock_object(
+            api_manila, "share_network_get",
+            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+
+        res = self.client.get(url)
+
+        self.assertRedirectsNoFollow(res, INDEX_URL)
+        api_manila.share_network_get.assert_called_once_with(
+            mock.ANY, test_data.active_share_network.id)
+
+    def test_delete_share_network(self):
+        share_network = test_data.inactive_share_network
+        formData = {'action': 'share_networks__delete__%s' % share_network.id}
+        self.mock_object(
+            api_neutron, "network_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_neutron, "subnet_list", mock.Mock(return_value=[]))
+        self.mock_object(api_manila, "share_network_delete")
+        self.mock_object(
+            api_manila, "share_network_list",
+            mock.Mock(return_value=[
+                test_data.active_share_network,
+                test_data.inactive_share_network]))
+
+        res = self.client.post(INDEX_URL, formData)
+
+        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        api_manila.share_network_delete.assert_called_once_with(
+            mock.ANY, test_data.inactive_share_network.id)
+        api_manila.share_network_list.assert_called_once_with(
+            mock.ANY, detailed=True, search_opts={'all_tenants': True})
+        api_neutron.network_list.assert_called_once_with(mock.ANY)
+        api_neutron.subnet_list.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(res, INDEX_URL)

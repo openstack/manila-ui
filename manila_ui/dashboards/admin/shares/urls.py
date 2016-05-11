@@ -14,8 +14,6 @@ from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
 from manila_ui.dashboards.admin.shares import views
-from manila_ui.dashboards.project.shares.share_networks\
-    import views as project_share_net_views
 from manila_ui.dashboards.project.shares.snapshots\
     import views as project_snapshot_views
 
@@ -27,7 +25,7 @@ urlpatterns = patterns(
         project_snapshot_views.SnapshotDetailView.as_view(),
         name='snapshot-detail'),
     url(r'^share_networks/(?P<share_network_id>[^/]+)$',
-        project_share_net_views.Detail.as_view(),
+        views.ShareNetworkDetailView.as_view(),
         name='share_network_detail'),
     url(r'^security_services/(?P<sec_service_id>[^/]+)$',
         views.SecurityServiceDetailView.as_view(),

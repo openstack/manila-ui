@@ -13,6 +13,7 @@
 #    under the License.
 
 from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import forms
@@ -62,6 +63,7 @@ class Create(forms.ModalFormView):
 class Detail(tabs.TabView):
     tab_group_class = share_net_tabs.ShareNetworkDetailTabs
     template_name = 'project/shares/share_networks/detail.html'
+    redirect_url = reverse_lazy('horizon:project:shares:index')
 
     def get_context_data(self, **kwargs):
         context = super(Detail, self).get_context_data(**kwargs)
@@ -110,10 +112,9 @@ class Detail(tabs.TabView):
                 search_opts=server_search_opts)
             share_net.share_servers = share_servs
         except Exception:
-            redirect = reverse('horizon:project:shares:index')
             exceptions.handle(self.request,
                               _('Unable to retrieve share network details.'),
-                              redirect=redirect)
+                              redirect=self.redirect_url)
         return share_net
 
     def get_tabs(self, request, *args, **kwargs):
