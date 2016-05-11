@@ -32,6 +32,8 @@ from manila_ui.api import manila
 from manila_ui.dashboards.admin.shares import forms as project_forms
 from manila_ui.dashboards.admin.shares import tabs as project_tabs
 import manila_ui.dashboards.admin.shares.workflows as share_workflows
+from manila_ui.dashboards.project.shares.security_services import \
+    views as ss_views
 from manila_ui.dashboards.project.shares.shares import views as share_views
 from manila_ui.utils import filters
 
@@ -52,6 +54,10 @@ class DetailView(share_views.DetailView):
         context["page_title"] = _("Share Details: %(share_name)s") % \
             {'share_name': context["share_display_name"]}
         return context
+
+
+class SecurityServiceDetailView(ss_views.Detail):
+    redirect_url = reverse_lazy('horizon:admin:shares:index')
 
 
 class ManageShareView(forms.ModalFormView):

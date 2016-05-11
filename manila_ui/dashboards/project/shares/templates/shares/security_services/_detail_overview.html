@@ -2,11 +2,9 @@
 {% load url from future %}
 
 <h3>{% trans "Security Service Overview" %}</h3>
-
-<div class="info row-fluid detail">
-  <h4>{% trans "Info" %}</h4>
+<div class="detail">
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
     <dt>{% trans "Type" %}</dt>
     <dd>{{ sec_service.type }}</dd>
     <dt>{% trans "Name" %}</dt>
@@ -17,18 +15,16 @@
       <dt>{% trans "Description" %}</dt>
       <dd>{{ sec_service.description }}</dd>
     {% endif %}
-    <dt>{% trans "Status" %}</dt>
-    <dd>{{ sec_service.status }}</dd>
     <dt>{% trans "Created at" %}</dt>
-    <dd>{{ sec_service.created_at }}</dd>
+    <dd>{{ sec_service.created_at|parse_date }}</dd>
 
   </dl>
 </div>
 
-<div class="specs row-fluid detail">
+<div class="detail">
   <h4>{% trans "Security Service Details" %}</h4>
   <hr class="header_rule">
-  <dl>
+  <dl class="dl-horizontal">
     <dt>{% trans "DNS IP" %}</dt>
     <dd>{{ sec_service.dns_ip }}</dd>
     <dt>{% trans "Server" %}</dt>

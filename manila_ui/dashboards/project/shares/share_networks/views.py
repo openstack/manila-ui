@@ -28,6 +28,7 @@ from manila_ui.dashboards.project.shares.share_networks import tabs \
     as share_net_tabs
 from manila_ui.dashboards.project.shares.share_networks \
     import workflows as share_net_workflows
+from manila_ui.dashboards import utils
 
 from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
@@ -98,9 +99,11 @@ class Detail(tabs.TabView):
                 except Exception:
                     share_net.nova_net = _("Unknown")
 
-            share_net.sec_services = \
-                manila.share_network_security_service_list(self.request,
-                                                           share_net_id)
+            share_net.sec_services = (
+                manila.share_network_security_service_list(
+                    self.request, share_net_id))
+            for ss in share_net.sec_services:
+                ss.type = utils.get_nice_security_service_type(ss)
             server_search_opts = {'share_network_id': share_net_id}
             share_servs = manila.share_server_list(
                 self.request,

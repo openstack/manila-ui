@@ -82,3 +82,12 @@ def metadata_to_str(metadata):
     if len(metadata.keys()) > meta_visible_limit:
         meta_str += '...'
     return meta_str
+
+
+def get_nice_security_service_type(security_service):
+    type_mapping = {
+        'ldap': 'LDAP',
+        'active_directory': 'Active Directory',
+        'kerberos': 'Kerberos',
+    }
+    return type_mapping.get(security_service.type, security_service.type)

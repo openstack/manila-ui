@@ -118,7 +118,7 @@ class ShareNetworksViewTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % share_net.id, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % network.name_or_id, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % subnet.name_or_id, 1, 200)
-        self.assertContains(res, "<a href=\"/project/shares/security_service"
+        self.assertContains(res, "<a href=\"/project/shares/security_services"
                                  "/%s\">%s</a>" % (sec_service.id,
                                                    sec_service.name), 1, 200)
         self.assertNoMessages()
@@ -166,7 +166,7 @@ class ShareNetworksViewTests(test.TestCase):
         self.assertNotContains(res, "<dd>%s</dd>" % share_net.neutron_net_id)
         self.assertNotContains(res,
                                "<dd>%s</dd>" % share_net.neutron_subnet_id)
-        self.assertContains(res, "<a href=\"/project/shares/security_service"
+        self.assertContains(res, "<a href=\"/project/shares/security_services"
                                  "/%s\">%s</a>" % (sec_service.id,
                                                    sec_service.name), 1, 200)
         self.assertNoMessages()
