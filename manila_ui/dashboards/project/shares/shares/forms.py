@@ -312,7 +312,8 @@ class UpdateMetadataForm(forms.SelfHandlingForm):
 class AddRule(forms.SelfHandlingForm):
     access_type = forms.ChoiceField(
         label=_("Access Type"), required=True,
-        choices=(('ip', 'ip'), ('user', 'user'), ('cert', 'cert')))
+        choices=(('ip', 'ip'), ('user', 'user'), ('cert', 'cert'),
+                 ('cephx', 'cephx')))
     access_level = forms.ChoiceField(
         label=_("Access Level"), required=True,
         choices=(('rw', 'read-write'), ('ro', 'read-only'),))

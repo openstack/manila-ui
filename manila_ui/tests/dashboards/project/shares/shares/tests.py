@@ -153,7 +153,7 @@ class ShareViewTests(test.TestCase):
 
     def test_detail_view(self):
         share_net = test_data.active_share_network
-        rules = [test_data.ip_rule, test_data.user_rule]
+        rules = [test_data.ip_rule, test_data.user_rule, test_data.cephx_rule]
         export_locations = test_data.export_locations
         url = reverse('horizon:project:shares:detail', args=[self.share.id])
 
@@ -212,7 +212,7 @@ class ShareViewTests(test.TestCase):
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
 
     def test_list_rules(self):
-        rules = [test_data.ip_rule, test_data.user_rule]
+        rules = [test_data.ip_rule, test_data.user_rule, test_data.cephx_rule]
         self.mock_object(
             api_manila, "share_rules_list", mock.Mock(return_value=rules))
         url = reverse(

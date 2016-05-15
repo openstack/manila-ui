@@ -107,6 +107,8 @@ user_rule = rule('user', 'someuser', 'active',
                  '10837072-c49e-11e3-bd64-60a44c371189')
 ip_rule = rule('ip', '1.1.1.1', 'active',
                '2cc8e2f8-c49e-11e3-bd64-60a44c371189')
+cephx_rule = rule('cephx', 'alice', 'active',
+                  '235481bc-1a84-11e6-9666-68f728a0492e')
 
 snapshot = share_snapshots.ShareSnapshot(
     share_snapshots.ShareSnapshotManager(None),
