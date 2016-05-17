@@ -32,6 +32,13 @@ class ManilaApiTests(base.APITestCase):
         self.manilaclient.share_export_locations.list.assert_called_once_with(
             self.id)
 
+    def test_list_share_instance_export_locations(self):
+        api.share_instance_export_location_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_instance_export_locations.list.assert_called_once_with(
+            self.id)
+
     def test_share_manage(self):
         api.share_manage(
             self.request,
@@ -118,3 +125,13 @@ class ManilaApiTests(base.APITestCase):
         share_types_get = self.manilaclient.share_types.get
         share_types_get.assert_called_once_with(self.id)
         share_types_get.return_value.unset_keys.assert_called_once_with(keys)
+
+    def test_share_instance_list(self):
+        api.share_instance_list(self.request)
+
+        self.manilaclient.share_instances.list.assert_called_once_with()
+
+    def test_share_instance_get(self):
+        api.share_instance_get(self.request, self.id)
+
+        self.manilaclient.share_instances.get.assert_called_once_with(self.id)

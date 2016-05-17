@@ -30,6 +30,7 @@ except ImportError:
     from manilaclient.v1 import shares
 
 from manilaclient.v2 import share_export_locations
+from manilaclient.v2 import share_instances
 
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas
@@ -149,6 +150,33 @@ sec_service = security_services.SecurityService(
      'description': 'test security service',
      'domain': 'testdomain',
      })
+
+
+share_instance = share_instances.ShareInstance(
+    share_instances.ShareInstanceManager(None),
+    {'id': 'fake_share_instance_no_ss_id',
+     'status': 'available',
+     'host': 'host1@backend1#pool1',
+     'availability_zone': 'zone1',
+     'share_id': 'fake_share_id_1',
+     'share_network_id': 'fake_share_network_id_1',
+     'share_server_id': 'fake_share_server_id_1',
+     'created_at': '2016-04-26 13:14:15'}
+)
+
+
+share_instance_no_ss = share_instances.ShareInstance(
+    share_instances.ShareInstanceManager(None),
+    {'id': 'fake_share_instance_id',
+     'status': 'available',
+     'host': 'host2@backend2#pool2',
+     'availability_zone': 'zone2',
+     'share_id': 'fake_share_id_2',
+     'share_network_id': None,
+     'share_server_id': None,
+     'created_at': '2016-04-26 14:15:16'}
+)
+
 
 # Quota Sets
 quota_data = dict(shares='1',

@@ -171,6 +171,36 @@ class ShareNetworkTab(tabs.TableTab):
         return share_networks
 
 
+class ShareInstancesTab(tabs.TableTab):
+    table_classes = (tables.ShareInstancesTable,)
+    name = _("Share Instances")
+    slug = "share_instances_tab"
+    template_name = "horizon/common/_detail_table.html"
+
+    def get_share_instances_data(self):
+        try:
+            share_instances = manila.share_instance_list(self.request)
+        except Exception:
+            share_instances = []
+            exceptions.handle(
+                self.request, _("Unable to retrieve share instances."))
+        return share_instances
+
+
+class ShareInstanceOverviewTab(tabs.Tab):
+    name = _("Overview")
+    slug = "overview"
+    template_name = ("admin/shares/_detail_share_instance.html")
+
+    def get_context_data(self, request):
+        return {"share_instance": self.tab_group.kwargs['share_instance']}
+
+
+class ShareInstanceDetailTabs(tabs.TabGroup):
+    slug = "share_instance_details"
+    tabs = (ShareInstanceOverviewTab,)
+
+
 class ShareServerTab(tabs.TableTab):
     table_classes = (tables.ShareServerTable,)
     name = _("Share Servers")
@@ -206,7 +236,7 @@ class ShareServerDetailTabs(tabs.TabGroup):
 class ShareTabs(tabs.TabGroup):
     slug = "share_tabs"
     tabs = (SharesTab, SnapshotsTab, ShareNetworkTab, SecurityServiceTab,
-            ShareTypesTab, ShareServerTab)
+            ShareTypesTab, ShareServerTab, ShareInstancesTab)
     sticky = True
 
 
