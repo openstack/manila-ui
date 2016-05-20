@@ -61,3 +61,17 @@ class ManilaDashboardsUtilsTests(base.TestCase):
     )
     def test_parse_str_meta_validation_error(self, input_data):
         self.assertRaises(ValidationError, utils.parse_str_meta, input_data)
+
+    @ddt.data(
+        ("ldap", "LDAP"),
+        ("active_directory", "Active Directory"),
+        ("kerberos", "Kerberos"),
+        ("FaKe", "FaKe"),
+    )
+    @ddt.unpack
+    def test_get_nice_security_service_type(self, input_value, expected_value):
+        security_service = type("FakeSS", (object, ), {"type": input_value})()
+
+        result = utils.get_nice_security_service_type(security_service)
+
+        self.assertEqual(expected_value, result)

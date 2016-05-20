@@ -13,6 +13,7 @@
 #    under the License.
 
 from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -27,6 +28,7 @@ from manila_ui.dashboards.project.shares.security_services \
     import tabs as security_services_tabs
 from manila_ui.dashboards.project.shares.share_networks import forms\
     as share_net_forms
+from manila_ui.dashboards import utils
 
 
 class UpdateView(forms.ModalFormView):
@@ -107,6 +109,7 @@ class AddSecurityServiceView(forms.ModalFormView):
 class Detail(tabs.TabView):
     tab_group_class = security_services_tabs.SecurityServiceDetailTabs
     template_name = 'project/shares/security_services/detail.html'
+    redirect_url = reverse_lazy('horizon:project:shares:index')
 
     def get_context_data(self, **kwargs):
         context = super(Detail, self).get_context_data(**kwargs)
@@ -125,11 +128,13 @@ class Detail(tabs.TabView):
             sec_service_id = self.kwargs['sec_service_id']
             sec_service = manila.security_service_get(
                 self.request, sec_service_id)
+            sec_service.type = utils.get_nice_security_service_type(
+                sec_service)
         except Exception:
-            redirect = reverse('horizon:project:shares:index')
             message = _("Unable to retrieve security service "
                         "'%s' details.") % sec_service_id
-            exceptions.handle(self.request, message, redirect=redirect)
+            exceptions.handle(
+                self.request, message, redirect=self.redirect_url)
         return sec_service
 
     def get_tabs(self, request, *args, **kwargs):

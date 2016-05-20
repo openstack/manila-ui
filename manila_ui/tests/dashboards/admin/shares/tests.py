@@ -179,26 +179,6 @@ class SharesTests(test.BaseAdminViewTests):
         api_manila.share_list.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
-    def test_delete_security_service(self):
-        security_service = test_data.sec_service
-        formData = {
-            'action': 'security_services__delete__%s' % security_service.id,
-        }
-        self.mock_object(api_manila, "security_service_delete")
-        self.mock_object(
-            api_manila, "security_service_list",
-            mock.Mock(return_value=[test_data.sec_service]))
-        url = reverse('horizon:admin:shares:index')
-
-        res = self.client.post(url, formData)
-
-        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
-        api_manila.security_service_delete.assert_called_once_with(
-            mock.ANY, test_data.sec_service.id)
-        api_manila.security_service_list.assert_called_once_with(
-            mock.ANY, search_opts={'all_tenants': True})
-        self.assertRedirectsNoFollow(res, INDEX_URL)
-
 
 class ShareInstanceTests(test.BaseAdminViewTests):
 
@@ -423,3 +403,73 @@ class ShareServerTests(test.BaseAdminViewTests):
         self.assertRedirectsNoFollow(res, INDEX_URL)
         api_manila.share_server_get.assert_called_once_with(
             mock.ANY, share_server.id)
+
+
+class SecurityServicesTests(test.BaseAdminViewTests):
+
+    def setUp(self):
+        super(self.__class__, self).setUp()
+        self.mock_object(
+            api_keystone, "tenant_list",
+            mock.Mock(return_value=(keystone_data.projects, None)))
+        # Reset taken list of projects to avoid test interference
+        utils.PROJECTS = {}
+
+    def test_detail_view(self):
+        sec_service = test_data.sec_service
+        self.mock_object(
+            api_manila, "security_service_get",
+            mock.Mock(return_value=sec_service))
+        self.mock_object(
+            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        url = reverse('horizon:admin:shares:security_service_detail',
+                      args=[sec_service.id])
+
+        res = self.client.get(url)
+
+        self.assertContains(res, "<h1>Security Service Details: %s</h1>"
+                                 % sec_service.name,
+                            1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.name, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.id, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.user, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.server, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.dns_ip, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.domain, 1, 200)
+        self.assertNoMessages()
+        api_manila.security_service_get.assert_called_once_with(
+            mock.ANY, sec_service.id)
+        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
+
+    def test_detail_view_with_exception(self):
+        url = reverse('horizon:admin:shares:security_service_detail',
+                      args=[test_data.sec_service.id])
+        self.mock_object(
+            api_manila, "security_service_get",
+            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+
+        res = self.client.get(url)
+
+        self.assertRedirectsNoFollow(res, INDEX_URL)
+        api_manila.security_service_get.assert_called_once_with(
+            mock.ANY, test_data.sec_service.id)
+
+    def test_delete_security_service(self):
+        security_service = test_data.sec_service
+        formData = {
+            'action': 'security_services__delete__%s' % security_service.id,
+        }
+        self.mock_object(api_manila, "security_service_delete")
+        self.mock_object(
+            api_manila, "security_service_list",
+            mock.Mock(return_value=[test_data.sec_service]))
+        url = reverse('horizon:admin:shares:index')
+
+        res = self.client.post(url, formData)
+
+        api_keystone.tenant_list.assert_called_once_with(mock.ANY)
+        api_manila.security_service_delete.assert_called_once_with(
+            mock.ANY, test_data.sec_service.id)
+        api_manila.security_service_list.assert_called_once_with(
+            mock.ANY, search_opts={'all_tenants': True})
+        self.assertRedirectsNoFollow(res, INDEX_URL)

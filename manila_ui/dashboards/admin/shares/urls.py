@@ -14,8 +14,6 @@ from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
 from manila_ui.dashboards.admin.shares import views
-from manila_ui.dashboards.project.shares.security_services \
-    import views as project_sec_services_views
 from manila_ui.dashboards.project.shares.share_networks\
     import views as project_share_net_views
 from manila_ui.dashboards.project.shares.snapshots\
@@ -32,7 +30,7 @@ urlpatterns = patterns(
         project_share_net_views.Detail.as_view(),
         name='share_network_detail'),
     url(r'^security_services/(?P<sec_service_id>[^/]+)$',
-        project_sec_services_views.Detail.as_view(),
+        views.SecurityServiceDetailView.as_view(),
         name='security_service_detail'),
     url(r'^create_type$', views.CreateShareTypeView.as_view(),
         name='create_type'),
