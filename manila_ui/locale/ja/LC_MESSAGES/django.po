@@ -1,0 +1,807 @@
+# Shu Muto <shu-mutou@rf.jp.nec.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.1.1.dev20\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-05-19 07:46+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-05-20 04:38+0000\n"
+"Last-Translator: Shu Muto <shu-mutou@rf.jp.nec.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGiB"
+
+msgid "(Quota exceeded)"
+msgstr "(クォータを超過しました)"
+
+msgid "Access Level"
+msgstr "アクセスレベル"
+
+msgid "Access To"
+msgstr "接続先"
+
+msgid "Access Type"
+msgstr "アクセス種別"
+
+msgid "Access to"
+msgstr "接続先"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "稼働中"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "稼働中"
+
+msgid "Add Rule"
+msgstr "ルールの追加"
+
+msgid "Add Security Service"
+msgstr "セキュリティーサービスの追加"
+
+msgid "Add rule"
+msgstr "ルールの追加"
+
+msgid "Add security services to share network."
+msgstr "共有ネットワークにセキュリティーサービスを追加します。"
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "すべてのキーと値は １ から 255 の範囲でなければいけません。"
+
+msgid "Allow project access to share type."
+msgstr "共有種別への接続をプロジェクトに許可します。"
+
+msgid "At least one security service must be specified."
+msgstr "少なくとも 1 つのセキュリティサービスを指定する必要があります。"
+
+msgid "Availability Zone"
+msgstr "アベイラビリティーゾーン"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "利用可能"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "利用可能"
+
+msgid "Available projects"
+msgstr "使用可能なプロジェクト"
+
+msgid "Available security services"
+msgstr "利用可能なセキュリティーサービス"
+
+msgid "Choose a snapshot"
+msgstr "スナップショットを選択してください"
+
+msgid "Confirm Password"
+msgstr "パスワード（確認）"
+
+msgid "Confirm Unmanage Share"
+msgstr "共有の管理解除の確認"
+
+msgid "Create Security Service"
+msgstr "セキュリティーサービスの作成"
+
+msgid "Create Share"
+msgstr "共有の作成"
+
+msgid "Create Share Network"
+msgstr "共有ネットワークの作成"
+
+msgid "Create Share Snapshot"
+msgstr "共有スナップショットの作成"
+
+msgid "Create Share Type"
+msgstr "共有種別の作成"
+
+msgid "Create Snapshot"
+msgstr "スナップショットの作成"
+
+msgid "Create a Security Service"
+msgstr "セキュリティーサービスの作成"
+
+msgid "Create a Share"
+msgstr "共有の作成"
+
+msgid "Create a Share Type"
+msgstr "共有種別の作成"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "作成中"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "作成中"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "作成中"
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "「%s」のルールを作成中"
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "共有「%s」を作成中"
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "共有スナップショット \"%s\" を作成しています。"
+
+msgid "Current Size (GiB)"
+msgstr "現在のサイズ (GiB)"
+
+msgid "DNS IP"
+msgstr "DNS IP"
+
+msgid "Default Quota"
+msgstr "デフォルトのクォータ"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "削除中"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Domain"
+msgstr "ドメイン"
+
+msgid "Driver handles share servers"
+msgstr "共有サーバーを処理するドライバー"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "ドライバーオプション（Genericドライバーの「volume_id」、など）"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "キー「%s」が重複しています"
+
+msgid "Edit Security Service"
+msgstr "セキュリティーサービスの編集"
+
+msgid "Edit Share"
+msgstr "共有の編集"
+
+msgid "Edit Share Metadata"
+msgstr "共有のメタデータの編集"
+
+msgid "Edit Share Network"
+msgstr "共有ネットワークの編集"
+
+msgid "Edit Snapshot"
+msgstr "スナップショットの編集"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "エラー"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "エラー"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "エラー"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "エラー"
+
+msgid "Expected only pairs of key=value."
+msgstr "キー=値のペアのみ設定できます。"
+
+msgid "Export location"
+msgstr "エクスポート場所"
+
+msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+msgstr "共有のエクスポート場所。NFSの例: 1.2.3.4:/path/to/share"
+
+msgid "Extend Share"
+msgstr "共有の拡張"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "共有「%s」の拡張"
+
+msgctxt "Current status of share"
+msgid "Extending Error"
+msgstr "拡張中のエラー"
+
+msgid "Extra specs"
+msgstr "追加スペック"
+
+msgid "From here you can update share network info. "
+msgstr "ここから、共有ネットワーク情報を更新できます。"
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr "ここから標準のクォータ (上限) を更新できます。"
+
+msgid ""
+"Got improper value for field 'driver_options'. Expected only pairs of "
+"key=value."
+msgstr ""
+"フィールド「driver_options」に不適切な値があります。キー=値のペアのみ設定でき"
+"ます。"
+
+msgid "Host"
+msgstr "ホスト"
+
+msgid "Host of share"
+msgstr "共有のホスト"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr "共有があるホスト。例: some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP Version"
+msgstr "IP バージョン"
+
+msgid "Id"
+msgstr "ID"
+
+#, python-format
+msgid ""
+"Improper value set to required extra spec "
+"'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
+msgstr ""
+"必須の追加のスペック「spec_driver_handles_share_servers」に不適切な値が設定さ"
+"れました。%s が使用できます。 大文字小文字を区別しません。"
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "使用中"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "使用中"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "非稼働"
+
+#, python-format
+msgid "Key '%s' has inproper length."
+msgstr "キー「%s」の長さが不適切です。"
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "キーに空白は使えません。「%s」を確認してください。"
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "キーに空白は使えません。「%s」にエラーがあります。"
+
+msgid "Make visible for all"
+msgstr "すべてを見えるようにします。"
+
+msgid "Manage"
+msgstr "管理"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "管理エラー"
+
+msgid "Manage Rules"
+msgstr "ルールの管理"
+
+msgid "Manage Share"
+msgstr "共有の管理"
+
+msgid "Manage Share Type Access"
+msgstr "共有種別の接続の管理"
+
+msgid "Manage a Share"
+msgstr "共有の管理"
+
+msgid "Metadata"
+msgstr "メタデータ"
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr ""
+"プロジェクトの情報とメンバーを変更しましたが、プロジェクトのクォータを変更で"
+"きません。"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Network Type"
+msgstr "ネットワーク種別"
+
+msgid "Networks"
+msgstr "ネットワーク"
+
+msgid "Neutron Net"
+msgstr "Neutron ネットワーク"
+
+msgid "Neutron Net ID"
+msgstr "Neutron ネットワーク ID"
+
+msgid "Neutron Subnet"
+msgstr "Neutron サブネット"
+
+msgid "Neutron Subnet ID"
+msgstr "Neutron サブネット ID"
+
+msgid "New Size (GiB)"
+msgstr "新しいサイズ (GiB)"
+
+msgid "New size must be greater than current size."
+msgstr "変更後のサイズは現在のサイズより大きくなければいけません。"
+
+msgid "No projects found."
+msgstr "プロジェクトが見つかりませんでした。"
+
+msgid "No projects selected."
+msgstr "どのプロジェクトも選択されていません。"
+
+msgid "No security services found."
+msgstr "セキュリティサービスがありません。"
+
+msgid "No security services selected."
+msgstr "セキュリティサービスが選択されていません。"
+
+msgid "No source, empty share"
+msgstr "ソースの指定なし (空の共有)"
+
+msgid "Nova Net"
+msgstr "Nova ネットワーク"
+
+msgid "Overview"
+msgstr "概要"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Passwords do not match."
+msgstr "パスワードが一致しません。"
+
+msgid "Project"
+msgstr "プロジェクト"
+
+msgid "Projects with access to share type"
+msgstr "共有種別に接続するプロジェクト"
+
+msgid "Protocol"
+msgstr "プロトコル"
+
+msgid "Public"
+msgstr "パブリック"
+
+msgid "Quota"
+msgstr "クォータ"
+
+msgid "Rule"
+msgstr "ルール"
+
+msgid "Rules"
+msgstr "ルール"
+
+#, python-format
+msgid "Scheduled deletion of %(data_type)s"
+msgstr "%(data_type)s の削除を予約しました。"
+
+msgid "Security Service"
+msgstr "セキュリティーサービス"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "セキュリティサービスの詳細:  %(service_display_name)s"
+
+msgid "Security Services"
+msgstr "セキュリティーサービス"
+
+msgid "Security services within share network"
+msgstr "共有ネットワーク内のセキュリティーサービス"
+
+msgid "Segmentation Id"
+msgstr "セグメント ID"
+
+msgid "Selected projects"
+msgstr "選択済みのプロジェクト"
+
+msgid "Selected security services"
+msgstr "選択済みのセキュリティーサービス"
+
+msgid "Server"
+msgstr "サーバー"
+
+msgid "Set maximum quotas for the project."
+msgstr "このプロジェクトの最大クォータを設定します。"
+
+msgid "Share"
+msgstr "共有"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "共有の詳細: %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "共有の詳細: %(share_name)s"
+
+msgid "Share ID"
+msgstr "共有 ID"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "共有インスタンスの詳細: %s"
+
+msgid "Share Instances"
+msgstr "共有インスタンス"
+
+msgid "Share Name"
+msgstr "共有名"
+
+msgid "Share Network"
+msgstr "共有ネットワーク"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr "共有ネットワークの詳細: %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "共有ネットワーク情報"
+
+msgid "Share Networks"
+msgstr "共有ネットワーク"
+
+msgid "Share Protocol"
+msgstr "共有プロトコル"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "共有ルール: %(share_display_name)s"
+
+msgid "Share Server"
+msgstr "共有サーバー"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "共有サーバーの詳細: %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "共有サーバー ID"
+
+msgid "Share Servers"
+msgstr "共有サーバー"
+
+msgid "Share Source"
+msgstr "共有ソース"
+
+msgid "Share Type"
+msgstr "共有種別"
+
+msgid "Share Types"
+msgstr "共有種別"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr ""
+"共有を %(req)iGiB に拡張することができません。利用できるクォータは "
+"%(avail)iGiB しかありません。"
+
+msgid "Share name to be assigned"
+msgstr "割り当てられた共有名"
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr "共有サイズはスナップショットサイズ (%sGiB) 以上でなければいけません。"
+
+msgid "Shares"
+msgstr "共有"
+
+msgid "Shares Networks"
+msgstr "共有ネットワーク"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Size (GiB)"
+msgstr "サイズ (GiB)"
+
+msgid "Snapshot"
+msgstr "スナップショット"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "スナップショットの詳細: %(snapshot_display_name)s"
+
+msgid "Snapshot Name"
+msgstr "スナップショット名"
+
+msgid "Snapshot Overview"
+msgstr "スナップショットの概要"
+
+msgid "Snapshots"
+msgstr "スナップショット"
+
+msgid "Source"
+msgstr "ソース"
+
+msgid "Status"
+msgstr "ステータス"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "セキュリティーサービス %s を正常に作成しました。"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "共有ネットワークが正常に作成されました: %s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "共有種別が正常に作成されました: %s"
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "共有 %s の管理要求は正常に行われました。"
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr "共有 %s の管理解除要求は正常に行われました。"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "共有種別「%s」の追加スペックの更新に成功しました。"
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "セキュリティーサービス %s を正常に更新しました"
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr "共有サイズはスナップショットサイズ (%sGiB) 未満にはできません。"
+
+msgid ""
+"This share is currently attached to an instance. In some cases, creating a "
+"snapshot from an attached share can result in a corrupted snapshot."
+msgstr ""
+"この共有は現在インスタンスに接続されています。状況によっては、接続中の共有か"
+"らスナップショットを作成すると、壊れたスナップショットが作成される可能性があ"
+"ります。"
+
+msgid "Type"
+msgstr "種別"
+
+msgid "Unable to add rule."
+msgstr "ルールを追加できません。"
+
+msgid "Unable to create security service."
+msgstr "セキュリティーサービスを作成できません。"
+
+msgid "Unable to create share network."
+msgstr "共有ネットワークを作成できません。"
+
+msgid "Unable to create share snapshot."
+msgstr "共有スナップショットを作成できません。"
+
+msgid "Unable to create share type."
+msgstr "共有種別を作成できません。"
+
+msgid "Unable to create share."
+msgstr "共有を作成できません。"
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "ルール「%s」を削除できません。"
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "共有 「%s」を削除できません。"
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr ""
+"スナップショット「%s」は削除できません。 １ つ以上の共有が依存しています。"
+
+msgid "Unable to extend share."
+msgstr "共有を拡張できません。"
+
+msgid "Unable to get information about share type access."
+msgstr "共有種別の接続に関する情報を取得できません。"
+
+msgid "Unable to get list of projects."
+msgstr "プロジェクトの一覧を取得できません"
+
+msgid "Unable to get the security services hosts"
+msgstr "セキュリティーサービスのホストを取得できません。"
+
+msgid "Unable to load the specified snapshot."
+msgstr "指定されたスナップショットを読み込めません。"
+
+msgid "Unable to manage share"
+msgstr "共有を管理できません。"
+
+msgid "Unable to retrieve list of projects."
+msgstr "プロジェクトの一覧を取得できません。"
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "セキュリティーサービス「%s」の詳細を取得できません。"
+
+msgid "Unable to retrieve security services"
+msgstr "セキュリティーサービスの一覧を取得できません"
+
+msgid "Unable to retrieve security_service."
+msgstr "セキュリティサービスを取得できません。"
+
+msgid "Unable to retrieve share details."
+msgstr "共有の詳細を取得できません。"
+
+msgid "Unable to retrieve share information."
+msgstr "共有のリソース情報を取得できません。"
+
+msgid "Unable to retrieve share instance details."
+msgstr "共有インスタンスの詳細を取得できません。"
+
+msgid "Unable to retrieve share instances."
+msgstr "共有インスタンスの一覧を取得できません"
+
+msgid "Unable to retrieve share limit information."
+msgstr "共有のリソース上限情報を取得できません。"
+
+msgid "Unable to retrieve share list."
+msgstr "共有の一覧を取得できません。"
+
+msgid "Unable to retrieve share network details."
+msgstr "共有ネットワークの詳細を取得できません。"
+
+msgid "Unable to retrieve share network."
+msgstr "共有ネットワークを取得できません。"
+
+msgid "Unable to retrieve share networks"
+msgstr "共有ネットワークの一覧を取得できません"
+
+msgid "Unable to retrieve share rules."
+msgstr "共有ルールの一覧を取得できません。"
+
+msgid "Unable to retrieve share server details."
+msgstr "共有サーバーの詳細を取得できません。"
+
+msgid "Unable to retrieve share servers"
+msgstr "共有サーバーの一覧を取得できません"
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "共有スナップショットの一覧を取得できません。"
+
+msgid "Unable to retrieve share snapshots."
+msgstr "共有スナップショットの一覧を取得できません。"
+
+msgid "Unable to retrieve share types"
+msgstr "共有種別の一覧を取得できません"
+
+msgid "Unable to retrieve share."
+msgstr "共有を取得できません。"
+
+msgid "Unable to retrieve share_type."
+msgstr "共有種別を取得できません。"
+
+msgid "Unable to retrieve snapshot details."
+msgstr "スナップショットの詳細を取得できません。"
+
+msgid "Unable to retrieve snapshot list."
+msgstr "スナップショット一覧を取得できません。"
+
+msgid "Unable to retrieve snapshot."
+msgstr "スナップショットを取得できません。"
+
+msgid "Unable to retrieve volume details."
+msgstr "ボリュームの詳細を取得できません。"
+
+msgid "Unable to set project quotas."
+msgstr "プロジェクトのクォータを設定できません。"
+
+msgid "Unable to unmanage share."
+msgstr "共有の管理を解除できません。"
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "共有種別「%s」の接続を更新できません。"
+
+msgid "Unable to update default quotas."
+msgstr "標準のクォータを更新できません。"
+
+msgid "Unable to update extra_specs for share type."
+msgstr "共有種別の追加スペックを更新できません。"
+
+msgid "Unable to update security service."
+msgstr "セキュリティーサービスを更新できません。"
+
+msgid "Unable to update share metadata."
+msgstr "共有のメタデータを更新できません。"
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "共有ネットワーク「%s」を更新できません。"
+
+msgid "Unable to update share network."
+msgstr "共有ネットワークを更新できません。"
+
+msgid "Unable to update share type."
+msgstr "共有種別を更新できません。"
+
+msgid "Unable to update share."
+msgstr "共有を更新できません。"
+
+msgid "Unable to update snapshot."
+msgstr "スナップショットを更新できません。"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "Unmanage"
+msgstr "管理解除"
+
+msgctxt "Current status of share"
+msgid "Unmanage Error"
+msgstr "管理解除エラー"
+
+msgid "Unmanage Share"
+msgstr "共有の管理解除"
+
+msgid "Unmanage a Share"
+msgstr "共有の管理解除"
+
+msgid "Update Share Network"
+msgstr "共有ネットワークの更新"
+
+msgid "Update Share Type"
+msgstr "共有種別の更新"
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "共有種別「%s」の接続を更新しました。"
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "共有ネットワーク「%s」を更新しました。"
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "共有 \"%s\" を更新中"
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "共有のメタデータ \"%s\" を更新中"
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "共有ネットワーク「%s」を更新しています"
+
+#, python-format
+msgid "Updating snapshot \"%s\""
+msgstr "スナップショット \"%s\" を更新中"
+
+msgid "Use snapshot as a source"
+msgstr "スナップショットをソースとして使用する"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Visibility"
+msgstr "公開範囲"
+
+msgid "key=value pairs per line can be set"
+msgstr "キー=値のペアを行ごとに設定できます"
