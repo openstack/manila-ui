@@ -1,12 +1,5 @@
 {% extends "horizon/common/_modal_form.html" %}
 {% load i18n %}
-{% load url from future %}
-
-{% block form_id %}{% endblock %}
-{% block form_action %}{% url 'horizon:project:shares:extend' share.id %}{% endblock %}
-
-{% block modal_id %}extend_share_modal{% endblock %}
-{% block modal-header %}{% trans "Edit Share" %}{% endblock %}
 
 {% block modal-body %}
   <div class="left">
@@ -17,9 +10,4 @@
   <div class="right quota-dynamic">
     {% include "project/shares/shares/_extend_limits.html" with usages=usages %}
   </div>
-{% endblock %}
-
-{% block modal-footer %}
-  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Extend Share" %}" />
-  <a href="{% url 'horizon:project:shares:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
 {% endblock %}

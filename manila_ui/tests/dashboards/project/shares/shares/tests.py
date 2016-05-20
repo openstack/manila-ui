@@ -12,6 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import ddt
 from django.core.urlresolvers import reverse
 import mock
 import six
@@ -27,6 +28,7 @@ from openstack_dashboard.usage import quotas
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 
 
+@ddt.ddt
 class ShareViewTests(test.TestCase):
 
     class FakeAZ(object):
@@ -275,19 +277,122 @@ class ShareViewTests(test.TestCase):
             mock.ANY, self.share.id, rule.id)
         api_manila.share_rules_list.assert_called_with(mock.ANY, self.share.id)
 
-    def test_extend_share(self):
-        formData = {'new_size': self.share.size + 1, 'method': u'UpdateForm'}
+    def test_extend_share_open_form_successfully(self):
+        self.share.size = 5
         usage_limit = {
-            'maxTotalShareGigabytes': 250,
-            'totalShareGigabytesUsed': 20,
+            'maxTotalShareGigabytes': self.share.size + 50,
+            'totalShareGigabytesUsed': self.share.size,
+        }
+        url = reverse('horizon:project:shares:extend', args=[self.share.id])
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(api_manila, "share_extend")
+        self.mock_object(
+            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+
+        response = self.client.get(url)
+
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, 'project/shares/shares/extend.html')
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        self.assertFalse(api_manila.share_extend.called)
+        quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        self.assertEqual(3, neutron.is_service_enabled.call_count)
+
+    def test_extend_share_get_with_api_exception(self):
+        usage_limit = {
+            'maxTotalShareGigabytes': self.share.size + 50,
+            'totalShareGigabytesUsed': self.share.size,
+        }
+        url = reverse('horizon:project:shares:extend', args=[self.share.id])
+        self.mock_object(api_manila, "share_extend")
+        self.mock_object(
+            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+        self.mock_object(
+            api_manila, "share_get",
+            mock.Mock(return_value=Exception('Fake share NotFound exception')))
+
+        response = self.client.get(url)
+
+        self.assertEqual(404, response.status_code)
+        self.assertTemplateNotUsed(
+            response, 'project/shares/shares/extend.html')
+        self.assertFalse(api_manila.share_extend.called)
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        self.assertFalse(quotas.tenant_limit_usages.called)
+
+    @ddt.data(6, 54, 55)
+    def test_extend_share_post_successfully(self, new_size):
+        self.share.size = 5
+        form_data = {'new_size': new_size}
+        usage_limit = {
+            'maxTotalShareGigabytes': self.share.size + 50,
+            'totalShareGigabytesUsed': self.share.size,
         }
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
             quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
 
-        response = self.client.post(url, formData)
+        response = self.client.post(url, form_data)
 
         self.assertEqual(302, response.status_code)
+        self.assertTemplateNotUsed(
+            response, 'project/shares/shares/extend.html')
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
         api_manila.share_extend.assert_called_once_with(
-            mock.ANY, self.share.id, formData['new_size'])
+            mock.ANY, self.share.id, form_data['new_size'])
+        quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        self.assertRedirectsNoFollow(response, SHARE_INDEX_URL)
+
+    @ddt.data(0, 5, 56)
+    def test_extend_share_post_with_invalid_value(self, new_size):
+        self.share.size = 5
+        form_data = {'new_size': new_size}
+        usage_limit = {
+            'maxTotalShareGigabytes': self.share.size + 50,
+            'totalShareGigabytesUsed': self.share.size,
+        }
+        url = reverse('horizon:project:shares:extend', args=[self.share.id])
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(api_manila, "share_extend")
+        self.mock_object(
+            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+
+        response = self.client.post(url, form_data)
+
+        self.assertEqual(200, response.status_code)
+        self.assertTemplateUsed(response, 'project/shares/shares/extend.html')
+        self.assertFalse(api_manila.share_extend.called)
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        if new_size <= self.share.size:
+            self.assertFalse(quotas.tenant_limit_usages.called)
+        else:
+            quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        self.assertEqual(3, neutron.is_service_enabled.call_count)
+
+    def test_extend_share_post_with_api_exception(self):
+        self.share.size = 5
+        form_data = {'new_size': 30}
+        usage_limit = {
+            'maxTotalShareGigabytes': self.share.size + 50,
+            'totalShareGigabytesUsed': self.share.size,
+        }
+        url = reverse('horizon:project:shares:extend', args=[self.share.id])
+        self.mock_object(
+            api_manila, "share_extend",
+            mock.Mock(return_value=Exception('Fake API exception')))
+        self.mock_object(
+            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+
+        response = self.client.post(url, form_data)
+
+        self.assertEqual(302, response.status_code)
+        self.assertTemplateNotUsed(
+            response, 'project/shares/shares/extend.html')
+        api_manila.share_extend.assert_called_once_with(
+            mock.ANY, self.share.id, form_data['new_size'])
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        self.assertRedirectsNoFollow(response, SHARE_INDEX_URL)

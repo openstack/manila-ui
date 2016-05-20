@@ -233,24 +233,23 @@ class ManageRulesView(tables.DataTableView):
 class ExtendView(forms.ModalFormView):
     form_class = share_form.ExtendForm
     template_name = 'project/shares/shares/extend.html'
+    submit_label = _("Extend Share")
+    submit_url = "horizon:project:shares:extend"
     success_url = reverse_lazy("horizon:project:shares:index")
     page_title = _('Extend Share')
 
+    @memoized.memoized_method
     def get_object(self):
-        if not hasattr(self, "_object"):
-            share_id = self.kwargs['share_id']
-            try:
-                self._object = manila.share_get(self.request, share_id)
-            except Exception:
-                msg = _('Unable to retrieve share.')
-                url = reverse('horizon:project:shares:index')
-                exceptions.handle(self.request, msg, redirect=url)
-        return self._object
+        try:
+            return manila.share_get(self.request, self.kwargs['share_id'])
+        except Exception:
+            exceptions.handle(self.request, _('Unable to retrieve share.'))
 
     def get_context_data(self, **kwargs):
         context = super(ExtendView, self).get_context_data(**kwargs)
         context['share'] = self.get_object()
-
+        context['submit_url'] = reverse(
+            self.submit_url, args=(self.kwargs['share_id'], ))
         try:
             context['usages'] = quotas.tenant_limit_usages(self.request)
         except Exception:
@@ -260,8 +259,18 @@ class ExtendView(forms.ModalFormView):
 
     def get_initial(self):
         share = self.get_object()
-        return {'share_id': self.kwargs["share_id"],
-                'name': share.name,
-                'orig_size': share.size,
-                'new_size': int(share.size) + 1
-                }
+        if not share or isinstance(share, Exception):
+            raise exceptions.NotFound()
+        return {
+            'share_id': self.kwargs["share_id"],
+            'name': share.name or share.id,
+            'orig_size': share.size,
+            'new_size': int(share.size) + 1,
+        }
+
+    def form_invalid(self, form):
+        context = super(ExtendView, self).get_context_data()
+        context = self._populate_context(context)
+        context['form'] = form
+        context['submit_url'] = reverse(self.submit_url, kwargs=self.kwargs)
+        return self.render_to_response(context)
