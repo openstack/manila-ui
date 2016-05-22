@@ -159,3 +159,60 @@ class ManilaDashboardsAdminSharesUpdateShareTypeFormTests(base.APITestCase):
         self.assertFalse(result)
         mock_horizon_exceptions_handle.assert_called_once_with(
             self.request, mock.ANY)
+
+
+@ddt.ddt
+class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
+
+    def setUp(self):
+        super(self.__class__, self).setUp()
+        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': 'fake_input'}
+        self.request = wsgi.WSGIRequest(FAKE_ENVIRON)
+
+    def _get_form(self, **kwargs):
+        return forms.CreateShareType(self.request, **kwargs)
+
+    @mock.patch('horizon.messages.success')
+    def test_create_share_type(self, mock_horizon_messages_success):
+        form = self._get_form()
+        data = {
+            'extra_specs': '',
+            'is_public': False,
+            'spec_driver_handles_share_servers': 'True',
+            'name': 'share',
+        }
+
+        result = form.handle(self.request, data)
+
+        self.assertTrue(result)
+        self.manilaclient.share_types.create.assert_called_once_with(
+            name=data['name'],
+            spec_driver_handles_share_servers='true',
+            spec_snapshot_support=True,
+            is_public=data["is_public"])
+        mock_horizon_messages_success.assert_called_once_with(
+            self.request, mock.ANY)
+
+    @mock.patch('horizon.messages.success')
+    def test_create_share_type_with_extra_specs(self,
+                                                mock_horizon_messages_success):
+        form = self._get_form()
+        data = {'extra_specs': 'a=b \n c=d',
+                'is_public': False,
+                'spec_driver_handles_share_servers': 'True',
+                'name': 'share'}
+
+        result = form.handle(self.request, data)
+
+        self.assertTrue(result)
+
+        set_keys = self.manilaclient.share_types.get.return_value.set_keys
+        set_keys.assert_called_once_with(
+            {'a': 'b', 'c': 'd'})
+        self.manilaclient.share_types.create.assert_called_once_with(
+            name=data['name'],
+            spec_driver_handles_share_servers='true',
+            spec_snapshot_support=True,
+            is_public=data["is_public"])
+        mock_horizon_messages_success.assert_called_once_with(
+            self.request, mock.ANY)
