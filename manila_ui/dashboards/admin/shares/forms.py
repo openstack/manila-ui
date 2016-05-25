@@ -180,11 +180,6 @@ class CreateShareType(forms.SelfHandlingForm):
             share_type = manila.share_type_create(
                 request, data["name"], spec_dhss, data["is_public"])
             if set_dict:
-                # NOTE(vponomaryov): remove following when
-                # bug #1435819 is fixed.
-                if "driver_handles_share_servers" not in set_dict.keys():
-                    set_dict["driver_handles_share_servers"] = spec_dhss
-
                 manila.share_type_set_extra_specs(
                     request, share_type.id, set_dict)
 
