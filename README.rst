@@ -12,10 +12,13 @@ Manila Management Dashboard
 * Source: http://git.openstack.org/cgit/openstack/manila-ui
 * Bugs: http://bugs.launchpad.net/manila-ui
 
+
 Installation instructions
 -------------------------
 
-Begin by cloning the Horizon and Manila UI repositories::
+For Manila UI installation in RDO, see:
+`Installing Manila UI in RDO`_. For other distributions, begin by
+cloning the Horizon and Manila UI repositories::
 
     git clone https://github.com/openstack/horizon
     git clone https://github.com/openstack/manila-ui
@@ -57,6 +60,21 @@ If everything has gone according to plan, you should be able to run::
 
 and have the application start on port 8080. The horizon dashboard will
 be located at http://localhost:8080/
+
+Installing Manila UI in RDO
+---------------------------
+
+In order to install Manila UI in [RDO](https://www.rdoproject.org),
+please follow the steps below (you may need to use `sudo` privileges
+if you are not root)::
+
+# yum install -y openstack-manila-ui
+# systemctl restart httpd
+# systemctl restart memcached
+
+Manila UI will now be available through OpenStack Horizon; look for
+the Shares tab under Project > Compute. You can access Horizon with
+Manila UI using the same URL and port as before.
 
 Unit testing
 ------------
