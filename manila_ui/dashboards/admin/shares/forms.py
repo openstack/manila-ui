@@ -178,7 +178,7 @@ class CreateShareType(forms.SelfHandlingForm):
                 raise ValidationError(message=msg)
 
             share_type = manila.share_type_create(
-                request, data["name"], spec_dhss, data["is_public"])
+                request, data["name"], spec_dhss, is_public=data["is_public"])
             if set_dict:
                 manila.share_type_set_extra_specs(
                     request, share_type.id, set_dict)
