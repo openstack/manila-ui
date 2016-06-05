@@ -13,6 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from django.conf import settings
 from django.forms import ValidationError  # noqa
 from django.utils.translation import ugettext_lazy as _
 from oslo_utils import strutils
@@ -161,6 +162,15 @@ class CreateShareType(forms.SelfHandlingForm):
                    "or not. List of allowed tenants should be set "
                    "separately."))
 
+    def __init__(self, *args, **kwargs):
+        super(CreateShareType, self).__init__(*args, **kwargs)
+
+        manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+        self.enable_public_share_type_creation = manila_features.get(
+            'enable_public_share_type_creation', True)
+        if not self.enable_public_share_type_creation:
+            self.fields.pop('is_public')
+
     def handle(self, request, data):
         try:
             spec_dhss = data['spec_driver_handles_share_servers'].lower()
@@ -177,8 +187,10 @@ class CreateShareType(forms.SelfHandlingForm):
                 msg = _("Expected only pairs of key=value.")
                 raise ValidationError(message=msg)
 
+            is_public = (self.enable_public_share_type_creation
+                         and data["is_public"])
             share_type = manila.share_type_create(
-                request, data["name"], spec_dhss, is_public=data["is_public"])
+                request, data["name"], spec_dhss, is_public=is_public)
             if set_dict:
                 manila.share_type_set_extra_specs(
                     request, share_type.id, set_dict)
