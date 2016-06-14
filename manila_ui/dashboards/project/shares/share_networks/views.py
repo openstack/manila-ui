@@ -52,7 +52,11 @@ class Update(workflows.WorkflowView):
 
 class Create(forms.ModalFormView):
     form_class = share_net_forms.Create
+    form_id = "create_share_network"
     template_name = 'project/shares/share_networks/create_share_network.html'
+    modal_header = _("Create Share Network")
+    submit_label = _("Create")
+    submit_url = reverse_lazy("horizon:project:shares:create_share_network")
     success_url = 'horizon:project:shares:index'
     page_title = _('Create Share Network')
 
