@@ -20,6 +20,7 @@ try:
     from manilaclient.v2 import security_services
     from manilaclient.v2 import share_networks
     from manilaclient.v2 import share_snapshots
+    from manilaclient.v2 import share_types
     from manilaclient.v2 import shares
 except ImportError:
     # NOTE(vponomaryov): If we got here then we have old manilaclient.
@@ -27,6 +28,7 @@ except ImportError:
     from manilaclient.v1 import security_services
     from manilaclient.v1 import share_networks
     from manilaclient.v1 import share_snapshots
+    from manilaclient.v1 import share_types
     from manilaclient.v1 import shares
 
 from manilaclient.v2 import share_export_locations
@@ -203,6 +205,15 @@ share_server_errored = share_servers.ShareServer(
      'host': 'fakehost2@fakebackend2#fakepool2'}
 )
 
+share_type = share_types.ShareType(
+    share_types.ShareTypeManager(None),
+    {'id': 'share-type-id1',
+     'name': 'test-share-type',
+     'extra_specs': {
+         'snapshot_support': True,
+         'driver_handles_share_servers': False}
+     }
+)
 
 # Quota Sets
 quota_data = dict(shares='1',

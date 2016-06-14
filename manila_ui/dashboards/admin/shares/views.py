@@ -157,7 +157,12 @@ class ManageShareTypeAccessView(workflows.WorkflowView):
 
 class UpdateShareTypeView(forms.ModalFormView):
     form_class = project_forms.UpdateShareType
+    form_id = "update_share_type"
     template_name = "admin/shares/update_share_type.html"
+    modal_header = _("Update Share Type")
+    modal_id = "update_share_type_modal"
+    submit_label = _("Update")
+    submit_url = "horizon:admin:shares:update_type"
     success_url = reverse_lazy("horizon:admin:shares:index")
     page_title = _("Update Share Type")
 
@@ -174,7 +179,8 @@ class UpdateShareTypeView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateShareTypeView, self).get_context_data(**kwargs)
-        context["share_type"] = self.get_object()
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
