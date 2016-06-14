@@ -34,6 +34,11 @@ from manila_ui.dashboards import utils
 class UpdateView(forms.ModalFormView):
     template_name = "project/shares/security_services/update.html"
     form_class = sec_services_forms.Update
+    form_id = "update_security_service"
+    modal_header = _("Edit Security Service")
+    modal_id = "update_security_service_modal"
+    submit_label = _("Edit")
+    submit_url = "horizon:project:shares:update_security_service"
     success_url = 'horizon:project:shares:index'
     page_title = _('Edit Security Service')
 
@@ -54,7 +59,8 @@ class UpdateView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
-        context['sec_service'] = self.get_object()
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
@@ -66,10 +72,15 @@ class UpdateView(forms.ModalFormView):
 
 class CreateView(forms.ModalFormView):
     form_class = sec_services_forms.Create
+    form_id = "create_security_service"
     template_name = ('project/shares/security_services'
                      '/create_security_service.html')
+    modal_header = _("Create Security Service")
+    modal_id = "create_security_service_modal"
+    submit_label = _("Create")
+    submit_url = reverse_lazy("horizon:project:shares:create_security_service")
     success_url = 'horizon:project:shares:index'
-    page_title = _('Create a Security Service')
+    page_title = _('Create Security Service')
 
     def get_success_url(self):
         return reverse(self.success_url)

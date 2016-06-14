@@ -115,7 +115,25 @@ class SecurityServicesViewTests(test.TestCase):
         api_manila.security_service_get.assert_called_once_with(
             mock.ANY, test_data.sec_service.id)
 
-    def test_update_security_service(self):
+    def test_update_security_service_get(self):
+        sec_service = test_data.sec_service
+        url = reverse('horizon:project:shares:update_security_service',
+                      args=[sec_service.id])
+        self.mock_object(
+            api_manila, "security_service_get",
+            mock.Mock(return_value=sec_service))
+        self.mock_object(
+            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        self.assertNoMessages()
+        self.assertTemplateUsed(
+            res, 'project/shares/security_services/update.html')
+        api_manila.security_service_get.assert_called_once_with(
+            mock.ANY, sec_service.id)
+
+    def test_update_security_service_post(self):
         sec_service = test_data.sec_service
         url = reverse('horizon:project:shares:update_security_service',
                       args=[sec_service.id])
