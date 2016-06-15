@@ -127,9 +127,13 @@ class UnmanageShareView(forms.ModalFormView):
 
 class CreateShareTypeView(forms.ModalFormView):
     form_class = project_forms.CreateShareType
+    form_id = "create_share_type"
     template_name = 'admin/shares/create_share_type.html'
+    modal_header = _("Create Share Type")
+    submit_label = _("Create")
+    submit_url = reverse_lazy("horizon:admin:shares:create_type")
     success_url = 'horizon:admin:shares:index'
-    page_title = _("Create a Share Type")
+    page_title = _("Create Share Type")
 
     def get_success_url(self):
         return reverse(self.success_url)
