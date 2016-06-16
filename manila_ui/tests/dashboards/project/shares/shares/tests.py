@@ -202,7 +202,21 @@ class ShareViewTests(test.TestCase):
             mock.ANY, self.share.id)
         self.assertEqual(3, neutron.is_service_enabled.call_count)
 
-    def test_update_share(self):
+    def test_update_share_get(self):
+        share = test_data.share
+        url = reverse('horizon:project:shares:update', args=[share.id])
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(res, 'project/shares/shares/update.html')
+
+    def test_update_share_post(self):
         self.mock_object(api_manila, "share_update")
         formData = {
             'method': 'UpdateForm',

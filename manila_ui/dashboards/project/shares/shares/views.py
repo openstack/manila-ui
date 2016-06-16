@@ -101,7 +101,12 @@ class DetailView(tabs.TabView):
 
 class CreateView(forms.ModalFormView):
     form_class = share_form.CreateForm
+    form_id = "create_share"
     template_name = 'project/shares/shares/create.html'
+    modal_header = _("Create Share")
+    modal_id = "create_share_modal"
+    submit_label = _("Create")
+    submit_url = reverse_lazy("horizon:project:shares:create")
     success_url = reverse_lazy("horizon:project:shares:index")
     page_title = _('Create a Share')
 
@@ -116,7 +121,12 @@ class CreateView(forms.ModalFormView):
 
 class UpdateView(forms.ModalFormView):
     form_class = share_form.UpdateForm
+    form_id = "update_share"
     template_name = 'project/shares/shares/update.html'
+    modal_header = _("Edit Share")
+    modal_id = "update_share_modal"
+    submit_label = _("Edit")
+    submit_url = "horizon:project:shares:update"
     success_url = reverse_lazy("horizon:project:shares:index")
     page_title = _('Edit Share')
 
@@ -133,7 +143,8 @@ class UpdateView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
-        context['share'] = self.get_object()
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
