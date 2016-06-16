@@ -173,7 +173,13 @@ class UpdateMetadataView(forms.ModalFormView):
 
 class AddRuleView(forms.ModalFormView):
     form_class = share_form.AddRule
+    form_id = "rule_add"
     template_name = 'project/shares/shares/rule_add.html'
+    modal_header = _("Add Rule")
+    modal_id = "rule_add_modal"
+    submit_label = _("Add")
+    submit_url = "horizon:project:shares:rule_add"
+    success_url = reverse_lazy("horizon:project:shares:index")
     page_title = _('Add Rule')
 
     def get_object(self):
@@ -189,7 +195,8 @@ class AddRuleView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(AddRuleView, self).get_context_data(**kwargs)
-        context['share'] = self.get_object()
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
@@ -232,8 +239,11 @@ class ManageRulesView(tables.DataTableView):
 
 class ExtendView(forms.ModalFormView):
     form_class = share_form.ExtendForm
+    form_id = "extend_share"
     template_name = 'project/shares/shares/extend.html'
-    submit_label = _("Extend Share")
+    modal_header = _("Extend Share")
+    modal_id = "extend_share_modal"
+    submit_label = _("Extend")
     submit_url = "horizon:project:shares:extend"
     success_url = reverse_lazy("horizon:project:shares:index")
     page_title = _('Extend Share')
@@ -247,9 +257,8 @@ class ExtendView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(ExtendView, self).get_context_data(**kwargs)
-        context['share'] = self.get_object()
-        context['submit_url'] = reverse(
-            self.submit_url, args=(self.kwargs['share_id'], ))
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         try:
             context['usages'] = quotas.tenant_limit_usages(self.request)
         except Exception:
