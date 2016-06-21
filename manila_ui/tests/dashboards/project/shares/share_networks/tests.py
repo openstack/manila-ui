@@ -16,6 +16,7 @@ from django.core.urlresolvers import reverse
 import mock
 
 from neutronclient.client import exceptions
+from openstack_auth import policy
 
 from manila_ui.api import manila as api_manila
 from manila_ui.api import network as api_manila_network
@@ -200,6 +201,9 @@ class ShareNetworksViewTests(test.TestCase):
         self.mock_object(
             api_manila, "security_service_list",
             mock.Mock(return_value=[test_data.sec_service]))
+        self.mock_object(
+            policy, 'check',
+            mock.Mock(side_effect=(lambda *args, **kwargs: True)))
 
         res = self.client.post(url, formData)
 
@@ -217,3 +221,4 @@ class ShareNetworksViewTests(test.TestCase):
             share_net.id,
             name=formData['name'],
             description=formData['description'])
+        self.assertTrue(policy.check.called)
