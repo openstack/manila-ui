@@ -1,13 +1,13 @@
 # Shu Muto <shu-mutou@rf.jp.nec.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.1.1.dev28\n"
+"Project-Id-Version: manila-ui 2.2.1.dev8\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-05-20 17:06+0000\n"
+"POT-Creation-Date: 2016-06-15 11:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-05-23 12:24+0000\n"
+"PO-Revision-Date: 2016-06-16 05:48+0000\n"
 "Last-Translator: Shu Muto <shu-mutou@rf.jp.nec.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -88,6 +88,9 @@ msgstr "パスワード（確認）"
 msgid "Confirm Unmanage Share"
 msgstr "共有の管理解除の確認"
 
+msgid "Create"
+msgstr "作成"
+
 msgid "Create Security Service"
 msgstr "セキュリティーサービスの作成"
 
@@ -111,9 +114,6 @@ msgstr "セキュリティーサービスの作成"
 
 msgid "Create a Share"
 msgstr "共有の作成"
-
-msgid "Create a Share Type"
-msgstr "共有種別の作成"
 
 msgctxt "Current status of share"
 msgid "Creating"
