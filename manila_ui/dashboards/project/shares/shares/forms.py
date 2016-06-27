@@ -379,9 +379,7 @@ class ExtendForm(forms.SelfHandlingForm):
     def handle(self, request, data):
         share_id = self.initial['share_id']
         try:
-            share = manila.share_get(self.request, share_id)
-            manila.share_extend(
-                request, share.id, data['new_size'])
+            manila.share_extend(request, share_id, data['new_size'])
             message = _('Extend share "%s"') % data['name']
             messages.success(request, message)
             return True
