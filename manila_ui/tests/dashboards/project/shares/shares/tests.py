@@ -254,7 +254,17 @@ class ShareViewTests(test.TestCase):
             mock.ANY, self.share.id)
         self.assertEqual(3, neutron.is_service_enabled.call_count)
 
-    def test_create_rule(self):
+    def test_create_rule_get(self):
+        url = reverse('horizon:project:shares:rule_add', args=[self.share.id])
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        self.assertNoMessages()
+        self.assertTemplateUsed(res, 'project/shares/shares/rule_add.html')
+
+    def test_create_rule_post(self):
         url = reverse('horizon:project:shares:rule_add', args=[self.share.id])
         self.mock_object(api_manila, "share_allow")
         formData = {
@@ -290,6 +300,26 @@ class ShareViewTests(test.TestCase):
         api_manila.share_deny.assert_called_with(
             mock.ANY, self.share.id, rule.id)
         api_manila.share_rules_list.assert_called_with(mock.ANY, self.share.id)
+
+    def test_extend_share_get(self):
+        share = test_data.share
+        usage_limit = {
+            'maxTotalShareGigabytes': 250,
+            'totalShareGigabytesUsed': 20,
+        }
+        url = reverse('horizon:project:shares:extend', args=[share.id])
+        self.mock_object(
+            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(res, 'project/shares/shares/extend.html')
 
     def test_extend_share_open_form_successfully(self):
         self.share.size = 5
