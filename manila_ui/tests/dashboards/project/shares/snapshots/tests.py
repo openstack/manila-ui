@@ -20,13 +20,37 @@ from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
 from openstack_dashboard.api import neutron
+from openstack_dashboard.usage import quotas
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
+SHARE_SNAPSHOTS_TAB_URL = reverse('horizon:project:shares:snapshots_tab')
 
 
 class SnapshotSnapshotViewTests(test.TestCase):
 
-    def test_create_snapshot(self):
+    def test_create_snapshot_get(self):
+        share = test_data.share
+        usage_limit = {
+            'maxTotalShareGigabytes': 250,
+            'totalShareGigabytesUsed': 20,
+        }
+        url = reverse('horizon:project:shares:create_snapshot',
+                      args=[share.id])
+        self.mock_object(
+            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(
+            res, 'project/shares/snapshots/create_snapshot.html')
+
+    def test_create_snapshot_post(self):
         share = test_data.share
         url = reverse('horizon:project:shares:create_snapshot',
                       args=[share.id])
@@ -44,7 +68,7 @@ class SnapshotSnapshotViewTests(test.TestCase):
 
         api_manila.share_snapshot_create.assert_called_once_with(
             mock.ANY, share.id, formData['name'], formData['description'])
-        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        self.assertRedirectsNoFollow(res, SHARE_SNAPSHOTS_TAB_URL)
 
     def test_delete_snapshot(self):
         share = test_data.share
