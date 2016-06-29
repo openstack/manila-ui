@@ -119,7 +119,23 @@ class SnapshotSnapshotViewTests(test.TestCase):
             mock.ANY, snapshot.id)
         self.assertEqual(3, neutron.is_service_enabled.call_count)
 
-    def test_update_snapshot(self):
+    def test_update_snapshot_get(self):
+        snapshot = test_data.snapshot
+        url = reverse('horizon:project:shares:edit_snapshot',
+                      args=[snapshot.id])
+        self.mock_object(
+            api_manila, "share_snapshot_get", mock.Mock(return_value=snapshot))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        api_manila.share_snapshot_get.assert_called_once_with(
+            mock.ANY, snapshot.id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(res, 'project/shares/snapshots/update.html')
+
+    def test_update_snapshot_post(self):
         snapshot = test_data.snapshot
         url = reverse('horizon:project:shares:edit_snapshot',
                       args=[snapshot.id])

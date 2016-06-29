@@ -14,7 +14,6 @@
 
 from django.core.urlresolvers import reverse
 from django.core.urlresolvers import reverse_lazy
-from django.utils.http import urlencode
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -99,8 +98,14 @@ class CreateSnapshotView(forms.ModalFormView):
 
 class UpdateView(forms.ModalFormView):
     form_class = snapshot_forms.UpdateForm
+    form_id = "update_snapshot"
     template_name = 'project/shares/snapshots/update.html'
-    success_url = "horizon:project:shares:index"
+    modal_header = _("Edit Snapshot")
+    modal_id = "update_snapshot_modal"
+    submit_label = _("Edit")
+    submit_url = "horizon:project:shares:edit_snapshot"
+    success_url = reverse_lazy('horizon:project:shares:snapshots_tab')
+    page_title = _('Edit Snapshot')
 
     @memoized.memoized_method
     def get_object(self):
@@ -116,7 +121,8 @@ class UpdateView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
-        context['snapshot'] = self.get_object()
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
@@ -124,7 +130,3 @@ class UpdateView(forms.ModalFormView):
         return {'snapshot_id': self.kwargs["snapshot_id"],
                 'name': snapshot.name,
                 'description': snapshot.description}
-
-    def get_success_url(self):
-        return "?".join([reverse(self.success_url),
-                         urlencode({"tab": "share_tabs__snapshots_tab"})])

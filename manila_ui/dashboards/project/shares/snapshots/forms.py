@@ -73,8 +73,4 @@ class UpdateForm(forms.SelfHandlingForm):
             messages.success(request, message)
             return True
         except Exception:
-            redirect = "?".join([reverse("horizon:project:shares:index"),
-                                 urlencode({"tab": "snapshots"})])
-            exceptions.handle(request,
-                              _('Unable to update snapshot.'),
-                              redirect=redirect)
+            exceptions.handle(request, _('Unable to update snapshot.'))
