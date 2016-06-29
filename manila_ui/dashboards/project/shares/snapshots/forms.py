@@ -59,7 +59,7 @@ class CreateSnapshotForm(forms.SelfHandlingForm):
 
 
 class UpdateForm(forms.SelfHandlingForm):
-    name = forms.CharField(max_length="255", label=_("Share Name"))
+    name = forms.CharField(max_length="255", label=_("Snapshot Name"))
     description = forms.CharField(widget=forms.Textarea,
                                   label=_("Description"), required=False)
 
@@ -67,8 +67,7 @@ class UpdateForm(forms.SelfHandlingForm):
         snapshot_id = self.initial['snapshot_id']
         try:
             manila.share_snapshot_update(
-                request, snapshot_id, name=data['name'],
-                description=data['description'])
+                request, snapshot_id, data['name'], data['description'])
             message = _('Updating snapshot "%s"') % data['name']
             messages.success(request, message)
             return True

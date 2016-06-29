@@ -150,10 +150,8 @@ class SnapshotSnapshotViewTests(test.TestCase):
 
         res = self.client.post(url, formData)
 
-        self.assertRedirectsNoFollow(
-            res, SHARE_INDEX_URL + '?tab=share_tabs__snapshots_tab')
+        self.assertRedirectsNoFollow(res, SHARE_SNAPSHOTS_TAB_URL)
         api_manila.share_snapshot_get.assert_called_once_with(
             mock.ANY, snapshot.id)
         api_manila.share_snapshot_update.assert_called_once_with(
-            mock.ANY, snapshot.id, name=formData['name'],
-            description=formData['description'])
+            mock.ANY, snapshot.id, formData['name'], formData['description'])
