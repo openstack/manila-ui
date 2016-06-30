@@ -12,7 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -25,6 +24,7 @@ from manila_ui.api import manila
 from manila_ui.api import network
 from manila_ui.dashboards.admin.shares import tables
 from manila_ui.dashboards.admin.shares import utils
+from manila_ui.dashboards import utils as common_utils
 
 
 class SnapshotsTab(tabs.TableTab):
@@ -104,10 +104,8 @@ class ShareTypesTab(tabs.TableTab):
                               _("Unable to retrieve share types"))
         # Convert dict with extra specs to friendly view
         for st in share_types:
-            es_str = ""
-            for k, v in st.extra_specs.iteritems():
-                es_str += "%s=%s\r\n<br />" % (k, v)
-            st.extra_specs = mark_safe(es_str)
+            st.extra_specs = common_utils.metadata_to_str(
+                st.extra_specs, 8, 45)
         return share_types
 
 

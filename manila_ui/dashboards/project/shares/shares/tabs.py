@@ -10,7 +10,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -42,11 +41,10 @@ class SharesTab(tabs.TableTab):
         try:
             shares = manila.share_list(self.request)
             for share in shares:
-                share.share_network = \
-                    share_nets_names.get(share.share_network_id) or \
-                    share.share_network_id
-                meta_str = utils.metadata_to_str(share.metadata)
-                share.metadata = mark_safe(meta_str)
+                share.share_network = (
+                    share_nets_names.get(share.share_network_id) or
+                    share.share_network_id)
+                share.metadata = utils.metadata_to_str(share.metadata)
 
             snapshots = manila.share_snapshot_list(self.request, detailed=True)
             share_ids_with_snapshots = []
