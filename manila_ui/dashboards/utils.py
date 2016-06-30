@@ -13,7 +13,21 @@
 #    under the License.
 
 from django.forms import ValidationError  # noqa
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+
+
+html_escape_table = {
+    "&": "&amp;",
+    '"': "&quot;",
+    "'": "&apos;",
+    ">": "&gt;",
+    "<": "&lt;",
+}
+
+
+def html_escape(text):
+    return ''.join(html_escape_table.get(s, s) for s in text)
 
 
 def parse_str_meta(meta_s):
@@ -58,14 +72,12 @@ def parse_str_meta(meta_s):
     return set_dict, unset_list
 
 
-def metadata_to_str(metadata):
+def metadata_to_str(metadata, meta_visible_limit=4, text_length_limit=25):
 
     # Only convert dictionaries
     if not hasattr(metadata, 'keys'):
         return metadata
 
-    meta_visible_limit = 4
-    text_length_limit = 25
     meta = []
     meta_keys = metadata.keys()
     meta_keys.sort()
@@ -77,11 +89,11 @@ def metadata_to_str(metadata):
         v = metadata[k]
         if len(v) > text_length_limit:
             v = v[:text_length_limit] + '...'
-        meta.append("%s = %s" % (k_shortenned, v))
+        meta.append("%s = %s" % (html_escape(k_shortenned), html_escape(v)))
     meta_str = "<br/>".join(meta)
-    if len(metadata.keys()) > meta_visible_limit:
+    if len(metadata.keys()) > meta_visible_limit and meta_str[-3:] != "...":
         meta_str += '...'
-    return meta_str
+    return mark_safe(meta_str)
 
 
 def get_nice_security_service_type(security_service):

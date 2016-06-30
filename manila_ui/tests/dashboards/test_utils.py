@@ -63,6 +63,26 @@ class ManilaDashboardsUtilsTests(base.TestCase):
         self.assertRaises(ValidationError, utils.parse_str_meta, input_data)
 
     @ddt.data(
+        (({"a": "<script>alert('A')/*", "b": "*/</script>"}, ),
+         "a = &lt;script&gt;alert(&apos;A&apos;)/*<br/>b = */&lt;/script&gt;"),
+        (({"fookey": "foovalue", "barkey": "barvalue"}, ),
+         "barkey = barvalue<br/>fookey = foovalue"),
+        (({"foo": "barquuz"}, 1, 2), "fo... = ba..."),
+        (({"foo": "barquuz", "zfoo": "zbarquuz"}, 1, 3), "foo = bar..."),
+        (({"foo": "barquuz", "zfoo": "zbarquuz"}, 2, 3),
+         "foo = bar...<br/>zfo... = zba..."),
+        (({"foo": "barquuz", "zfoo": "zbarquuz"}, 3, 3),
+         "foo = bar...<br/>zfo... = zba..."),
+        (({"foo": "barquuz", "zfoo": "zbarquuz"}, 3, 8),
+         "foo = barquuz<br/>zfoo = zbarquuz"),
+    )
+    @ddt.unpack
+    def test_metadata_to_str(self, input_args, expected_output):
+        result = utils.metadata_to_str(*input_args)
+
+        self.assertEqual(expected_output, result)
+
+    @ddt.data(
         ("ldap", "LDAP"),
         ("active_directory", "Active Directory"),
         ("kerberos", "Kerberos"),
