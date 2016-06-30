@@ -17,7 +17,6 @@
 from django.core.urlresolvers import NoReverseMatch  # noqa
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
-from django.utils.safestring import mark_safe
 from django.utils.translation import string_concat, ugettext_lazy  # noqa
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
@@ -150,8 +149,7 @@ class UpdateRow(tables.Row):
             share.share_network = share_net.name or share_net.id
         else:
             share.share_network = None
-        meta_str = utils.metadata_to_str(share.metadata)
-        share.metadata = mark_safe(meta_str)
+        share.metadata = utils.metadata_to_str(share.metadata)
 
         return share
 
