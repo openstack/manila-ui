@@ -208,8 +208,6 @@ class ShareViewTests(test.TestCase):
         share = test_data.share
         url = reverse('horizon:project:shares:update', args=[share.id])
         self.mock_object(
-            api_manila, "share_get", mock.Mock(return_value=share))
-        self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
@@ -310,8 +308,6 @@ class ShareViewTests(test.TestCase):
         url = reverse('horizon:project:shares:extend', args=[share.id])
         self.mock_object(
             quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
-        self.mock_object(
-            api_manila, "share_get", mock.Mock(return_value=share))
         self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
@@ -440,3 +436,41 @@ class ShareViewTests(test.TestCase):
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
         quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(response, SHARE_INDEX_URL)
+
+    def test_update_share_metadata_get(self):
+        share = test_data.share_with_metadata
+        url = reverse(
+            'horizon:project:shares:update_metadata', args=[share.id])
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(
+            res, 'project/shares/shares/update_metadata.html')
+
+    def test_update_share_metadata_post(self):
+        share = test_data.share_with_metadata
+        data = {
+            'metadata': 'aaa=ccc',
+        }
+        form_data = {
+            'metadata': {'aaa': 'ccc'},
+        }
+        url = reverse(
+            'horizon:project:shares:update_metadata', args=[share.id])
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(api_manila, "share_set_metadata")
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+
+        res = self.client.post(url, data)
+
+        api_manila.share_set_metadata.assert_called_once_with(
+            mock.ANY, share, form_data['metadata'])
+        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)

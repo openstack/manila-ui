@@ -73,6 +73,20 @@ nameless_share = shares.Share(
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ'})
 
+share_with_metadata = shares.Share(
+    shares.ShareManager(FakeAPIClient),
+    {'id': "0ebb3748-c1dr-4bb6-8315-0354e7691fff",
+     'status': 'available',
+     'size': 40,
+     'name': 'Share with metadata',
+     'description': 'Share description',
+     'share_proto': 'NFS',
+     'metadata': {'aaa': 'bbb'},
+     'created_at': '2016-06-31 00:00:00',
+     'share_server_id': '1',
+     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
+     'availability_zone': 'Test AZ'})
+
 other_share = shares.Share(
     shares.ShareManager(FakeAPIClient),
     {'id': "21023e92-8008-1234-8059-7f2293ff3889",

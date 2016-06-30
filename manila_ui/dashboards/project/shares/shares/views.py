@@ -153,15 +153,20 @@ class UpdateView(forms.ModalFormView):
 
 class UpdateMetadataView(forms.ModalFormView):
     form_class = share_form.UpdateMetadataForm
+    form_id = "update_share_metadata"
     template_name = 'project/shares/shares/update_metadata.html'
+    modal_header = _("Edit Share Metadata")
+    modal_id = "update_share_metadata_modal"
+    submit_label = _("Save Changes")
+    submit_url = "horizon:project:shares:update_metadata"
     success_url = reverse_lazy("horizon:project:shares:index")
     page_title = _('Edit Share Metadata')
 
     def get_object(self):
         if not hasattr(self, "_object"):
-            vol_id = self.kwargs['share_id']
+            sh_id = self.kwargs['share_id']
             try:
-                self._object = manila.share_get(self.request, vol_id)
+                self._object = manila.share_get(self.request, sh_id)
             except Exception:
                 msg = _('Unable to retrieve share.')
                 url = reverse('horizon:project:shares:index')
@@ -170,7 +175,8 @@ class UpdateMetadataView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateMetadataView, self).get_context_data(**kwargs)
-        context['share'] = self.get_object()
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
