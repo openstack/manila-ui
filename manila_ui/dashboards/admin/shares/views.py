@@ -78,14 +78,14 @@ class DetailView(share_views.DetailView):
 
 class ManageShareView(forms.ModalFormView):
     form_class = project_forms.ManageShare
+    form_id = "manage_share"
     template_name = 'admin/shares/manage_share.html'
     modal_header = _("Manage Share")
-    form_id = "manage_share_modal"
+    modal_id = "manage_share_modal"
     submit_label = _("Manage")
     success_url = reverse_lazy('horizon:admin:shares:index')
     submit_url = reverse_lazy('horizon:admin:shares:manage')
-    cancel_url = reverse_lazy('horizon:admin:shares:index')
-    page_title = _("Manage a Share")
+    page_title = _("Manage Share")
 
     def get_context_data(self, **kwargs):
         context = super(ManageShareView, self).get_context_data(**kwargs)
@@ -243,14 +243,14 @@ class MigrationGetProgressView(forms.ModalFormView):
 
 class UnmanageShareView(forms.ModalFormView):
     form_class = project_forms.UnmanageShare
+    form_id = "unmanage_share"
     template_name = 'admin/shares/unmanage_share.html'
     modal_header = _("Confirm Unmanage Share")
-    form_id = "unmanage_share_modal"
+    modal_id = "unmanage_share_modal"
     submit_label = _("Unmanage")
     success_url = reverse_lazy('horizon:admin:shares:index')
     submit_url = 'horizon:admin:shares:unmanage'
-    cancel_url = reverse_lazy('horizon:admin:shares:index')
-    page_title = _("Unmanage a Share")
+    page_title = _("Unmanage Share")
 
     def get_context_data(self, **kwargs):
         context = super(UnmanageShareView, self).get_context_data(**kwargs)

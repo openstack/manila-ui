@@ -56,11 +56,8 @@ class UpdateView(forms.ModalFormView):
     modal_id = "update_security_service_modal"
     submit_label = _("Edit")
     submit_url = "horizon:project:security_services:security_service_update"
-    success_url = 'horizon:project:security_services:index'
+    success_url = reverse_lazy("horizon:project:security_services:index")
     page_title = _('Edit Security Service')
-
-    def get_success_url(self):
-        return reverse(self.success_url)
 
     def get_object(self):
         if not hasattr(self, "_object"):
@@ -95,11 +92,8 @@ class CreateView(forms.ModalFormView):
     submit_label = _("Create")
     submit_url = reverse_lazy(
         "horizon:project:security_services:security_service_create")
-    success_url = 'horizon:project:security_services:index'
+    success_url = reverse_lazy("horizon:project:security_services:index")
     page_title = _('Create Security Service')
-
-    def get_success_url(self):
-        return reverse(self.success_url)
 
 
 class AddSecurityServiceView(forms.ModalFormView):

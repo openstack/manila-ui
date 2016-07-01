@@ -12,7 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core.urlresolvers import reverse
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
@@ -82,14 +81,12 @@ class Create(forms.ModalFormView):
     form_id = "create_share_network"
     template_name = 'project/share_networks/create.html'
     modal_header = _("Create Share Network")
+    modal_id = "create_share_network_modal"
     submit_label = _("Create")
     submit_url = reverse_lazy(
         "horizon:project:share_networks:share_network_create")
-    success_url = 'horizon:project:share_networks:index'
+    success_url = reverse_lazy("horizon:project:share_networks:index")
     page_title = _('Create Share Network')
-
-    def get_success_url(self):
-        return reverse(self.success_url)
 
 
 class Detail(tabs.TabView):

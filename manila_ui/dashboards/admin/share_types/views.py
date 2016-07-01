@@ -57,13 +57,11 @@ class CreateShareTypeView(forms.ModalFormView):
     form_id = "create_share_type"
     template_name = 'admin/share_types/create.html'
     modal_header = _("Create Share Type")
+    modal_id = "create_share_type_modal"
     submit_label = _("Create")
     submit_url = reverse_lazy("horizon:admin:share_types:create_type")
-    success_url = 'horizon:admin:share_types:index'
+    success_url = reverse_lazy('horizon:admin:share_types:index')
     page_title = _("Create Share Type")
-
-    def get_success_url(self):
-        return reverse(self.success_url)
 
 
 class ManageShareTypeAccessView(workflows.WorkflowView):
