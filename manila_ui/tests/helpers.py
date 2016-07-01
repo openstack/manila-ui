@@ -11,10 +11,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import os
-
-from django.utils import unittest
 import mock
+import os
+import unittest
 
 from manila_ui import api
 from manila_ui.tests.test_data import utils

@@ -10,13 +10,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
 from manila_ui.dashboards.admin.shares import views
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<share_id>[^/]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^snapshots/(?P<snapshot_id>[^/]+)$',
@@ -49,4 +47,4 @@ urlpatterns = patterns(
     url(r'^manage$', views.ManageShareView.as_view(), name='manage'),
     url(r'^unmanage/(?P<share_id>[^/]+)$', views.UnmanageShareView.as_view(),
         name='unmanage'),
-)
+]
