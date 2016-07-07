@@ -664,6 +664,25 @@ class ShareTypeTests(test.BaseAdminViewTests):
         # Reset taken list of projects to avoid test interference
         utils.PROJECTS = {}
 
+    def test_create_share_type(self):
+        url = reverse('horizon:admin:shares:create_type')
+        data = {
+            'is_public': True,
+            'name': 'my_share_type',
+            'spec_driver_handles_share_servers': 'False'
+        }
+        form_data = data.copy()
+        form_data['spec_driver_handles_share_servers'] = 'false'
+        self.mock_object(api_manila, "share_type_create")
+
+        res = self.client.post(url, data)
+
+        api_manila.share_type_create.assert_called_once_with(
+            mock.ANY, form_data['name'],
+            form_data['spec_driver_handles_share_servers'],
+            is_public=form_data['is_public'])
+        self.assertRedirectsNoFollow(res, INDEX_URL)
+
     def test_update_share_type_get(self):
         res = self.client.get(self.url)
 
