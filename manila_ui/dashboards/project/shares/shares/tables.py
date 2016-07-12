@@ -68,6 +68,7 @@ class CreateShare(tables.LinkAction):
     verbose_name = _("Create Share")
     url = "horizon:project:shares:create"
     classes = ("ajax-modal", "btn-create")
+    icon = "plus"
     policy_rules = (("share", "share:create"),)
 
     def allowed(self, request, share=None):
@@ -211,15 +212,6 @@ class SharesTableBase(tables.DataTable):
         return obj.name or obj.id
 
 
-class SharesFilterAction(tables.FilterAction):
-
-    def filter(self, table, shares, filter_string):
-        """Naive case-insensitive search."""
-        q = filter_string.lower()
-        return [share for share in shares
-                if q in share.name.lower()]
-
-
 class ManageRules(tables.LinkAction):
     name = "manage_rules"
     verbose_name = _("Manage Rules")
@@ -233,6 +225,7 @@ class AddRule(tables.LinkAction):
     verbose_name = _("Add rule")
     url = 'horizon:project:shares:rule_add'
     classes = ("ajax-modal", "btn-create")
+    icon = "plus"
     policy_rules = (("share", "share:allow_access"),)
 
     def allowed(self, request, share=None):
@@ -284,8 +277,11 @@ class RulesTable(tables.DataTable):
         verbose_name = _("Rules")
         status_columns = ["status"]
         row_class = UpdateRuleRow
-        table_actions = (DeleteRule, AddRule)
-        row_actions = (DeleteRule, )
+        table_actions = (
+            AddRule,
+            DeleteRule)
+        row_actions = (
+            DeleteRule,)
 
 
 def get_share_network(share):
@@ -313,6 +309,14 @@ class SharesTable(SharesTableBase):
         verbose_name = _("Shares")
         status_columns = ["status"]
         row_class = UpdateRow
-        table_actions = (CreateShare, DeleteShare, SharesFilterAction)
-        row_actions = (EditShare, ExtendShare, snapshot_tables.CreateSnapshot,
-                       DeleteShare, ManageRules, EditShareMetadata)
+        table_actions = (
+            tables.NameFilterAction,
+            CreateShare,
+            DeleteShare)
+        row_actions = (
+            EditShare,
+            ExtendShare,
+            snapshot_tables.CreateSnapshot,
+            ManageRules,
+            EditShareMetadata,
+            DeleteShare)

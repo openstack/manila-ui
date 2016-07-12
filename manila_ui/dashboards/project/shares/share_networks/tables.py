@@ -36,6 +36,7 @@ class Create(tables.LinkAction):
     verbose_name = _("Create Share Network")
     url = "horizon:project:shares:create_share_network"
     classes = ("ajax-modal", "btn-create")
+    icon = "plus"
     policy_rules = (("share", "share_network:create"),)
 
 
@@ -105,9 +106,14 @@ class NovaShareNetworkTable(tables.DataTable):
     class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
-        table_actions = (Create, Delete, )
+        table_actions = (
+            tables.NameFilterAction,
+            Create,
+            Delete)
         row_class = UpdateRow
-        row_actions = (EditShareNetwork, Delete, )
+        row_actions = (
+            EditShareNetwork,
+            Delete)
 
 
 class NeutronShareNetworkTable(tables.DataTable):
@@ -148,7 +154,12 @@ class NeutronShareNetworkTable(tables.DataTable):
     class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
-        table_actions = (Create, Delete, )
+        table_actions = (
+            tables.NameFilterAction,
+            Create,
+            Delete)
         # status_columns = ["status"]
         row_class = UpdateRow
-        row_actions = (EditShareNetwork, Delete, )
+        row_actions = (
+            EditShareNetwork,
+            Delete)

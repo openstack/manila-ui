@@ -36,6 +36,7 @@ class CreateShareType(tables.LinkAction):
     verbose_name = _("Create Share Type")
     url = "horizon:admin:shares:create_type"
     classes = ("ajax-modal", "btn-create")
+    icon = "plus"
     policy_rules = (("share", "share_extension:types_manage"),)
 
 
@@ -108,14 +109,6 @@ class UpdateShareType(tables.LinkAction):
         return {"project_id": project_id}
 
 
-class ShareTypesFilterAction(tables.FilterAction):
-
-    def filter(self, table, share_types, filter_string):
-        """Naive case-insensitive search."""
-        q = filter_string.lower()
-        return [st for st in share_types if q in st.name.lower()]
-
-
 class ShareTypesTable(tables.DataTable):
     name = tables.Column("name", verbose_name=_("Name"))
     extra_specs = tables.Column("extra_specs", verbose_name=_("Extra specs"), )
@@ -132,21 +125,14 @@ class ShareTypesTable(tables.DataTable):
     class Meta(object):
         name = "share_types"
         verbose_name = _("Share Types")
-        table_actions = (CreateShareType, DeleteShareType,
-                         ShareTypesFilterAction, )
+        table_actions = (
+            tables.NameFilterAction,
+            CreateShareType,
+            DeleteShareType)
         row_actions = (
-            UpdateShareType, DeleteShareType,
+            UpdateShareType,
             ManageShareTypeAccess,
-        )
-
-
-class SharesFilterAction(tables.FilterAction):
-
-    def filter(self, table, shares, filter_string):
-        """Naive case-insensitive search."""
-        q = filter_string.lower()
-        return [share for share in shares
-                if q in share.name.lower()]
+            DeleteShareType)
 
 
 class SharesTable(shares_tables.SharesTable):
@@ -173,14 +159,12 @@ class SharesTable(shares_tables.SharesTable):
         status_columns = ["status"]
         row_class = shares_tables.UpdateRow
         table_actions = (
-            shares_tables.DeleteShare,
+            tables.NameFilterAction,
             ManageShareAction,
-            SharesFilterAction,
-        )
+            shares_tables.DeleteShare)
         row_actions = (
-            shares_tables.DeleteShare,
             UnmanageShareAction,
-        )
+            shares_tables.DeleteShare)
         columns = (
             'tenant', 'host', 'name', 'size', 'status', 'visibility',
             'share_type', 'protocol', 'share_server',
@@ -262,8 +246,11 @@ class SnapshotsTable(tables.DataTable):
         verbose_name = _("Snapshots")
         status_columns = ["status"]
         row_class = snapshot_tables.UpdateRow
-        table_actions = (DeleteSnapshot, )
-        row_actions = (DeleteSnapshot, )
+        table_actions = (
+            tables.NameFilterAction,
+            DeleteSnapshot)
+        row_actions = (
+            DeleteSnapshot,)
 
 
 class DeleteSecurityService(tables.DeleteAction):
@@ -313,8 +300,11 @@ class SecurityServiceTable(tables.DataTable):
     class Meta(object):
         name = "security_services"
         verbose_name = _("Security Services")
-        table_actions = (DeleteSecurityService,)
-        row_actions = (DeleteSecurityService,)
+        table_actions = (
+            tables.NameFilterAction,
+            DeleteSecurityService)
+        row_actions = (
+            DeleteSecurityService,)
 
 
 class UpdateShareServerRow(tables.Row):
@@ -346,9 +336,12 @@ class NovaShareNetworkTable(tables.DataTable):
     class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
-        table_actions = (share_networks_tables.Delete, )
+        table_actions = (
+            tables.NameFilterAction,
+            share_networks_tables.Delete)
         row_class = share_networks_tables.UpdateRow
-        row_actions = (share_networks_tables.Delete, )
+        row_actions = (
+            share_networks_tables.Delete,)
 
 
 class NeutronShareNetworkTable(tables.DataTable):
@@ -373,18 +366,12 @@ class NeutronShareNetworkTable(tables.DataTable):
     class Meta(object):
         name = "share_networks"
         verbose_name = _("Share Networks")
-        table_actions = (share_networks_tables.Delete, )
+        table_actions = (
+            tables.NameFilterAction,
+            share_networks_tables.Delete)
         row_class = share_networks_tables.UpdateRow
-        row_actions = (share_networks_tables.Delete, )
-
-
-class SharesServersFilterAction(tables.FilterAction):
-
-    def filter(self, table, shares, filter_string):
-        """Naive case-insensitive search."""
-        q = filter_string.lower()
-        return [share for share in shares
-                if q in share.name.lower()]
+        row_actions = (
+            share_networks_tables.Delete,)
 
 
 class ShareServerTable(tables.DataTable):
@@ -432,9 +419,12 @@ class ShareServerTable(tables.DataTable):
         name = "share_servers"
         status_columns = ["status"]
         verbose_name = _("Share Server")
-        table_actions = (DeleteShareServer, SharesServersFilterAction)
+        table_actions = (
+            tables.NameFilterAction,
+            DeleteShareServer)
         row_class = UpdateShareServerRow
-        row_actions = (DeleteShareServer, )
+        row_actions = (
+            DeleteShareServer,)
 
 
 class ShareInstancesTable(tables.DataTable):
@@ -468,7 +458,8 @@ class ShareInstancesTable(tables.DataTable):
         name = "share_instances"
         verbose_name = _("Share Instances")
         status_columns = ("status", )
-        table_actions = (shares_tables.SharesFilterAction, )
+        table_actions = (
+            tables.NameFilterAction,)
         multi_select = False
 
     def get_share_network_link(share_instance):
