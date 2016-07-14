@@ -76,8 +76,6 @@ class CreateSnapshotView(forms.ModalFormView):
     def get_context_data(self, **kwargs):
         context = super(CreateSnapshotView, self).get_context_data(**kwargs)
         context['share_id'] = self.kwargs['share_id']
-        args = (context['share_id'],)
-        context['submit_url'] = reverse(self.submit_url, args=args)
         try:
             share = manila.share_get(self.request, context['share_id'])
             if (share.status == 'in-use'):
@@ -93,6 +91,7 @@ class CreateSnapshotView(forms.ModalFormView):
         return context
 
     def get_initial(self):
+        self.submit_url = reverse(self.submit_url, kwargs=self.kwargs)
         return {'share_id': self.kwargs["share_id"]}
 
 
