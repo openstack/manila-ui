@@ -21,4 +21,5 @@ ADD_PANEL = 'manila_ui.dashboards.admin.shares.panel.Shares'
 # various services provided by manila.
 OPENSTACK_MANILA_FEATURES = {
     'enable_replication': True,
+    'enable_migration': True,
 }

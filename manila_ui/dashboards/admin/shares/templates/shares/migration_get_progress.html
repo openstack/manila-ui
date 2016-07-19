@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Get Migration Progress" %}{% endblock %}
+
+{% block main %}
+    {% include 'admin/shares/_migration_get_progress.html' %}
+{% endblock %}

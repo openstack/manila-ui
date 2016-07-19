@@ -1,0 +1,13 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+
+{% block modal-body-right %}
+  <h3>{% trans "Description:" %}</h3>
+  <p>{% blocktrans %}
+    Cancel migration of a migrating share.
+    <br>
+    <br>
+    This is equivalent to the <tt>'manila migration-cancel'</tt> command.
+    {% endblocktrans %}
+  </p>
+{% endblock %}

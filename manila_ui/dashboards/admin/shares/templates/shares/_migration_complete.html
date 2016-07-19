@@ -1,0 +1,14 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+
+{% block modal-body-right %}
+  <h3>{% trans "Description:" %}</h3>
+  <p>{% blocktrans %}
+    Complete migration of a migrating share to another Manila host.
+    This operation is expected to be disruptive.
+    <br>
+    <br>
+    This is equivalent to the <tt>'manila migration-complete'</tt> command.
+    {% endblocktrans %}
+  </p>
+{% endblock %}

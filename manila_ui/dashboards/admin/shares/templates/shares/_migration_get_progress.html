@@ -1,0 +1,13 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+
+{% block modal-body-right %}
+  <h3>{% trans "Description:" %}</h3>
+  <p>{% blocktrans %}
+    Obtains migration progress of a migrating share.
+    <br>
+    <br>
+    This is equivalent to the <tt>'manila migration-get-progress'</tt> command.
+    {% endblocktrans %}
+  </p>
+{% endblock %}

@@ -132,6 +132,124 @@ class SharesTests(test.BaseAdminViewTests):
             mock.ANY, detailed=True, search_opts={'all_tenants': True})
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
+    @ddt.data(None, Exception('fake'))
+    def test_migration_start_post(self, exc):
+        share = test_data.share
+        url = reverse('horizon:admin:shares:migration_start',
+                      args=[share.id])
+        formData = {
+            'share_id': share.id,
+            'name': share.name,
+            'host': 'fake_host',
+            'writable': True,
+            'preserve_metadata': True,
+            'force_host_assisted_migration': True,
+            'nondisruptive': True,
+            'new_share_network_id': 'fake_net_id',
+        }
+
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(api_manila, "migration_start", mock.Mock(
+            side_effect=exc))
+
+        res = self.client.post(url, formData)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        api_manila.migration_start.assert_called_once_with(
+            mock.ANY, formData['share_id'],
+            dest_host=formData['host'],
+            force_host_assisted_migration=(
+                formData['force_host_assisted_migration']),
+            writable=formData['writable'],
+            preserve_metadata=formData['preserve_metadata'],
+            nondisruptive=formData['nondisruptive'],
+            new_share_network_id=formData['new_share_network_id'])
+
+        status_code = 200 if exc else 302
+        self.assertEqual(res.status_code, status_code)
+        if not exc:
+            self.assertTemplateNotUsed(
+                res, 'admin/shares/migration_start.html')
+            self.assertRedirectsNoFollow(res, INDEX_URL)
+        else:
+            self.assertTemplateUsed(res, 'admin/shares/migration_start.html')
+
+    @ddt.data('migration_start', 'migration_cancel', 'migration_complete',
+              'migration_get_progress')
+    def test_migration_forms_open_form_successfully(self, method):
+        share = test_data.share
+        url = reverse('horizon:admin:shares:' + method, args=[share.id])
+
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(api_manila, method)
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+
+        self.assertFalse(getattr(api_manila, method).called)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'admin/shares/' + method + '.html')
+
+    @ddt.data('migration_start', 'migration_cancel', 'migration_complete',
+              'migration_get_progress')
+    def test_migration_start_get_share_exception(self, method):
+        share = test_data.share
+        url = reverse('horizon:admin:shares:' + method, args=[share.id])
+
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(side_effect=Exception('fake')))
+        self.mock_object(api_manila, method)
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        self.assertFalse(getattr(api_manila, method).called)
+
+        self.assertEqual(res.status_code, 302)
+        self.assertTemplateNotUsed(res, 'admin/shares/' + method + '.html')
+
+    @ddt.data({'method': 'migration_complete', 'exc': None},
+              {'method': 'migration_complete', 'exc': Exception('fake')},
+              {'method': 'migration_cancel', 'exc': None},
+              {'method': 'migration_cancel', 'exc': Exception('fake')},
+              {'method': 'migration_get_progress',
+               'exc': {'response': 200, 'total_progress': 25}},
+              {'method': 'migration_get_progress', 'exc': Exception('fake')})
+    @ddt.unpack
+    def test_migration_forms_post(self, exc, method):
+        share = test_data.share
+        url = reverse('horizon:admin:shares:' + method,
+                      args=[share.id])
+        formData = {
+            'share_id': share.id,
+            'name': share.name,
+        }
+
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(api_manila, method, mock.Mock(
+            side_effect=exc))
+
+        res = self.client.post(url, formData)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
+        getattr(api_manila, method).assert_called_once_with(
+            mock.ANY, formData['share_id'])
+
+        status_code = 200 if exc else 302
+        self.assertEqual(res.status_code, status_code)
+        if not exc:
+            self.assertTemplateNotUsed(
+                res, 'admin/shares/' + method + '.html')
+            self.assertRedirectsNoFollow(res, INDEX_URL)
+        else:
+            self.assertTemplateUsed(
+                res, 'admin/shares/' + method + '.html')
+
 
 class ShareInstanceTests(test.BaseAdminViewTests):
 
