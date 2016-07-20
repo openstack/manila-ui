@@ -39,8 +39,12 @@ from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas
 
 
+class FakeAPIClient(object):
+    client = "fake_client"
+
+
 share = shares.Share(
-    shares.ShareManager(None),
+    shares.ShareManager(FakeAPIClient),
     {'id': "11023e92-8008-4c8b-8059-7f2293ff3887",
      'status': 'available',
      'size': 40,
@@ -54,7 +58,7 @@ share = shares.Share(
      'availability_zone': 'Test AZ'})
 
 nameless_share = shares.Share(
-    shares.ShareManager(None),
+    shares.ShareManager(FakeAPIClient),
     {'id': "4b069dd0-6eaa-4272-8abc-5448a68f1cce",
      'status': 'available',
      'size': 10,
@@ -70,7 +74,7 @@ nameless_share = shares.Share(
      'availability_zone': 'Test AZ'})
 
 other_share = shares.Share(
-    shares.ShareManager(None),
+    shares.ShareManager(FakeAPIClient),
     {'id': "21023e92-8008-1234-8059-7f2293ff3889",
      'status': 'in-use',
      'size': 10,
@@ -85,7 +89,7 @@ other_share = shares.Share(
      'availability_zone': 'Test AZ'})
 
 admin_export_location = share_export_locations.ShareExportLocation(
-    share_export_locations.ShareExportLocationManager(None),
+    share_export_locations.ShareExportLocationManager(FakeAPIClient),
     {'id': '6921e862-88bc-49a5-a2df-efeed9acd583',
      'path': '1.1.1.1:/path/to/admin/share',
      'preferred': False,
@@ -94,7 +98,7 @@ admin_export_location = share_export_locations.ShareExportLocation(
 )
 
 user_export_location = share_export_locations.ShareExportLocation(
-    share_export_locations.ShareExportLocationManager(None),
+    share_export_locations.ShareExportLocationManager(FakeAPIClient),
     {'id': 'b6bd76ce-12a2-42a9-a30a-8a43b503867d',
      'path': '2.2.2.2:/path/to/user/share',
      'preferred': True,
@@ -115,7 +119,7 @@ cephx_rule = rule('cephx', 'alice', 'active',
                   '235481bc-1a84-11e6-9666-68f728a0492e')
 
 snapshot = share_snapshots.ShareSnapshot(
-    share_snapshots.ShareSnapshotManager(None),
+    share_snapshots.ShareSnapshotManager(FakeAPIClient),
     {'id': '5f3d1c33-7d00-4511-99df-a2def31f3b5d',
      'name': 'test snapshot',
      'description': 'share snapshot',
@@ -124,7 +128,7 @@ snapshot = share_snapshots.ShareSnapshot(
      'share_id': '11023e92-8008-4c8b-8059-7f2293ff3887'})
 
 inactive_share_network = share_networks.ShareNetwork(
-    share_networks.ShareNetworkManager(None),
+    share_networks.ShareNetworkManager(FakeAPIClient),
     {'id': '6f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'name': 'test_share_net',
      'description': 'test share network',
@@ -133,7 +137,7 @@ inactive_share_network = share_networks.ShareNetwork(
      'neutron_subnet_id': 'fake_neutron_subnet_id'})
 
 active_share_network = share_networks.ShareNetwork(
-    share_networks.ShareNetworkManager(None),
+    share_networks.ShareNetworkManager(FakeAPIClient),
     {'id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'name': 'test_share_net',
      'description': 'test share network',
@@ -142,7 +146,7 @@ active_share_network = share_networks.ShareNetwork(
      'neutron_subnet_id': 'fake_neutron_subnet_id'})
 
 sec_service = security_services.SecurityService(
-    security_services.SecurityServiceManager(None),
+    security_services.SecurityServiceManager(FakeAPIClient),
     {'id': '7f3d1c33-8d10-4511-29df-a2def31f3b5d',
      'server': '1.1.1.1',
      'dns_ip': '2.2.2.2',
@@ -156,7 +160,7 @@ sec_service = security_services.SecurityService(
 
 
 share_instance = share_instances.ShareInstance(
-    share_instances.ShareInstanceManager(None),
+    share_instances.ShareInstanceManager(FakeAPIClient),
     {'id': 'fake_share_instance_no_ss_id',
      'status': 'available',
      'host': 'host1@backend1#pool1',
@@ -169,7 +173,7 @@ share_instance = share_instances.ShareInstance(
 
 
 share_instance_no_ss = share_instances.ShareInstance(
-    share_instances.ShareInstanceManager(None),
+    share_instances.ShareInstanceManager(FakeAPIClient),
     {'id': 'fake_share_instance_id',
      'status': 'available',
      'host': 'host2@backend2#pool2',
@@ -181,7 +185,7 @@ share_instance_no_ss = share_instances.ShareInstance(
 )
 
 share_server = share_servers.ShareServer(
-    share_servers.ShareServerManager(None),
+    share_servers.ShareServerManager(FakeAPIClient),
     {'id': 'fake_share_server_id1',
      'status': 'active',
      'share_network_id': 'fake_share_network_id1',
@@ -195,7 +199,7 @@ share_server = share_servers.ShareServer(
 )
 
 share_server_errored = share_servers.ShareServer(
-    share_servers.ShareServerManager(None),
+    share_servers.ShareServerManager(FakeAPIClient),
     {'id': 'fake_share_server_id2',
      'status': 'error',
      'share_network_id': 'fake_share_network_id2',
@@ -206,7 +210,7 @@ share_server_errored = share_servers.ShareServer(
 )
 
 share_type = share_types.ShareType(
-    share_types.ShareTypeManager(None),
+    share_types.ShareTypeManager(FakeAPIClient),
     {'id': 'share-type-id1',
      'name': 'test-share-type',
      'extra_specs': {
@@ -219,7 +223,7 @@ share_type = share_types.ShareType(
 quota_data = dict(shares='1',
                   share_snapshots='1',
                   share_gigabytes='1000')
-quota = quotas.QuotaSet(quotas.QuotaSetManager(None), quota_data)
+quota = quotas.QuotaSet(quotas.QuotaSetManager(FakeAPIClient), quota_data)
 
 # Quota Usages
 quota_usage_data = {'gigabytes': {'used': 0, 'quota': 1000},
