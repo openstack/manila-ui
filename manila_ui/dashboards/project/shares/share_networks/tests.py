@@ -31,6 +31,7 @@ SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 class ShareNetworksViewTests(test.TestCase):
 
     def test_create_share_network(self):
+        share_net = test_data.active_share_network
         neutron_net_id = self.networks.first().id
         formData = {'name': u'new_share_network',
                     'description': u'This is test share network',
@@ -44,7 +45,7 @@ class ShareNetworksViewTests(test.TestCase):
         api.neutron.subnet_list = mock.Mock(return_value=self.subnets.list())
         api_manila_network.network_list = \
             mock.Mock(return_value=self.networks.list())
-        api_manila.share_network_create = mock.Mock()
+        api_manila.share_network_create = mock.Mock(return_value=share_net)
         url = reverse('horizon:project:shares:create_share_network')
         self.client.post(url, formData)
         api_manila.share_network_create.assert_called_with(

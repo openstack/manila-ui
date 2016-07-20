@@ -33,8 +33,12 @@ from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas
 
 
+class FakeAPIClient(object):
+    client = "fake_client"
+
+
 share = shares.Share(
-    shares.ShareManager(None),
+    shares.ShareManager(FakeAPIClient),
     {'id': "11023e92-8008-4c8b-8059-7f2293ff3887",
      'status': 'available',
      'size': 40,
@@ -48,7 +52,7 @@ share = shares.Share(
      'availability_zone': 'Test AZ'})
 
 nameless_share = shares.Share(
-    shares.ShareManager(None),
+    shares.ShareManager(FakeAPIClient),
     {'id': "4b069dd0-6eaa-4272-8abc-5448a68f1cce",
      'status': 'available',
      'size': 10,
@@ -64,7 +68,7 @@ nameless_share = shares.Share(
      'availability_zone': 'Test AZ'})
 
 other_share = shares.Share(
-    shares.ShareManager(None),
+    shares.ShareManager(FakeAPIClient),
     {'id': "21023e92-8008-1234-8059-7f2293ff3889",
      'status': 'in-use',
      'size': 10,
@@ -87,7 +91,7 @@ ip_rule = rule('ip', '1.1.1.1', 'active',
                '2cc8e2f8-c49e-11e3-bd64-60a44c371189')
 
 snapshot = share_snapshots.ShareSnapshot(
-    share_snapshots.ShareSnapshotManager(None),
+    share_snapshots.ShareSnapshotManager(FakeAPIClient),
     {'id': '5f3d1c33-7d00-4511-99df-a2def31f3b5d',
      'name': 'test snapshot',
      'description': 'share snapshot',
@@ -96,7 +100,7 @@ snapshot = share_snapshots.ShareSnapshot(
      'share_id': '11023e92-8008-4c8b-8059-7f2293ff3887'})
 
 inactive_share_network = share_networks.ShareNetwork(
-    share_networks.ShareNetworkManager(None),
+    share_networks.ShareNetworkManager(FakeAPIClient),
     {'id': '6f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'name': 'test_share_net',
      'description': 'test share network',
@@ -105,7 +109,7 @@ inactive_share_network = share_networks.ShareNetwork(
      'neutron_subnet_id': 'fake_neutron_subnet_id'})
 
 active_share_network = share_networks.ShareNetwork(
-    share_networks.ShareNetworkManager(None),
+    share_networks.ShareNetworkManager(FakeAPIClient),
     {'id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'name': 'test_share_net',
      'description': 'test share network',
@@ -114,7 +118,7 @@ active_share_network = share_networks.ShareNetwork(
      'neutron_subnet_id': 'fake_neutron_subnet_id'})
 
 sec_service = security_services.SecurityService(
-    security_services.SecurityServiceManager(None),
+    security_services.SecurityServiceManager(FakeAPIClient),
     {'id': '7f3d1c33-8d10-4511-29df-a2def31f3b5d',
      'server': '1.1.1.1',
      'dns_ip': '2.2.2.2',
@@ -130,7 +134,7 @@ sec_service = security_services.SecurityService(
 quota_data = dict(shares='1',
                   share_snapshots='1',
                   share_gigabytes='1000')
-quota = quotas.QuotaSet(quotas.QuotaSetManager(None), quota_data)
+quota = quotas.QuotaSet(quotas.QuotaSetManager(FakeAPIClient), quota_data)
 
 # Quota Usages
 quota_usage_data = {'gigabytes': {'used': 0, 'quota': 1000},
