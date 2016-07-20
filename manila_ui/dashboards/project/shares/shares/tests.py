@@ -46,6 +46,7 @@ class ShareViewTests(test.TestCase):
                        'gigabytesUsed': 20,
                        'volumesUsed': 0,
                        'maxTotalVolumes': 6}
+        share = test_data.share
         share_net = test_data.active_share_network
         share_nets = [share_net]
         formData = {'name': u'new_share',
@@ -60,7 +61,7 @@ class ShareViewTests(test.TestCase):
                     }
 
         az_list.return_value = [self.FakeAZ('fake_az'), ]
-        api_manila.share_create = mock.Mock()
+        api_manila.share_create = mock.Mock(return_value=share)
         api_manila.share_snapshot_list = mock.Mock(return_value=[])
         api_manila.share_network_list = mock.Mock(return_value=share_nets)
         api_manila.share_type_list = mock.Mock(
@@ -79,6 +80,7 @@ class ShareViewTests(test.TestCase):
 
     @mock.patch.object(nova, 'availability_zone_list')
     def test_create_share_from_snapshot(self, az_list):
+        share = test_data.share
         share_net = test_data.active_share_network
         share_nets = [share_net]
         snapshot = test_data.snapshot
@@ -96,7 +98,7 @@ class ShareViewTests(test.TestCase):
                     }
 
         az_list.return_value = [self.FakeAZ('fake_az'), ]
-        api_manila.share_create = mock.Mock()
+        api_manila.share_create = mock.Mock(return_value=share)
         api_manila.share_snapshot_list = mock.Mock(
             return_value=[snapshot])
         api_manila.share_snapshot_get = mock.Mock(

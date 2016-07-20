@@ -34,6 +34,7 @@ SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 class SecurityServicesViewTests(test.TestCase):
 
     def test_create_security_service(self):
+        sec_service = test_data.sec_service
         formData = {'name': u'new_sec_service',
                     'description': u'This is test security service',
                     'method': u'CreateForm',
@@ -46,7 +47,8 @@ class SecurityServicesViewTests(test.TestCase):
                     'server': 'testserver'
                     }
 
-        api_manila.security_service_create = mock.Mock()
+        api_manila.security_service_create = mock.Mock(
+            return_value=sec_service)
         url = reverse('horizon:project:shares:create_security_service')
         res = self.client.post(url, formData)
         del formData['method']
