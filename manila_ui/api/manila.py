@@ -141,7 +141,7 @@ def share_manage(request, service_host, protocol, export_path,
 
 def migration_start(request, share, dest_host, force_host_assisted_migration,
                     writable, preserve_metadata, nondisruptive,
-                    new_share_network_id):
+                    new_share_network_id, new_share_type_id):
     return manilaclient(request).shares.migration_start(
         share,
         host=dest_host,
@@ -150,6 +150,7 @@ def migration_start(request, share, dest_host, force_host_assisted_migration,
         preserve_metadata=preserve_metadata,
         nondisruptive=nondisruptive,
         new_share_network_id=new_share_network_id,
+        new_share_type_id=new_share_type_id
     )
 
 

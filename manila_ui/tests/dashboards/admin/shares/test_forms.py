@@ -281,6 +281,7 @@ class ManilaDashboardsAdminMigrationFormTests(base.APITestCase):
             'preserve_metadata': True,
             'nondisruptive': False,
             'new_share_network_id': 'fake_net_id',
+            'new_share_type_id': 'fake_type_id',
             'host': 'fake_host',
         }
 

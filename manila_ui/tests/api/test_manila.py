@@ -223,7 +223,7 @@ class ManilaApiTests(base.APITestCase):
 
     def test_migration_start(self):
         api.migration_start(self.request, 'fake_share', 'fake_host', False,
-                            True, True, False, 'fake_net_id')
+                            True, True, False, 'fake_net_id', 'fake_type_id')
 
         self.manilaclient.shares.migration_start.assert_called_once_with(
             'fake_share',
@@ -232,7 +232,8 @@ class ManilaApiTests(base.APITestCase):
             nondisruptive=False,
             writable=True,
             preserve_metadata=True,
-            new_share_network_id='fake_net_id'
+            new_share_network_id='fake_net_id',
+            new_share_type_id='fake_type_id'
         )
 
     def test_migration_complete(self):
