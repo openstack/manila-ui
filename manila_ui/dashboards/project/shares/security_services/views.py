@@ -59,11 +59,10 @@ class UpdateView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
-        args = (self.get_object().id,)
-        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
+        self.submit_url = reverse(self.submit_url, kwargs=self.kwargs)
         sec_service = self.get_object()
         return {'sec_service_id': self.kwargs["sec_service_id"],
                 'name': sec_service.name,
