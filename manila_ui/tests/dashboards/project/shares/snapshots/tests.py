@@ -39,13 +39,10 @@ class SnapshotSnapshotViewTests(test.TestCase):
         self.mock_object(
             quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
         self.mock_object(
-            api_manila, "share_get", mock.Mock(return_value=share))
-        self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
-        api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
         self.assertNoMessages()
         self.assertTemplateUsed(
             res, 'project/shares/snapshots/create_snapshot.html')
