@@ -69,6 +69,7 @@ class CreateSnapshotView(forms.ModalFormView):
     template_name = 'project/shares/snapshots/create_snapshot.html'
     modal_header = _("Create Share Snapshot")
     modal_id = "create_share_snapshot_modal"
+    submit_label = _("Create Share Snapshot")
     submit_url = "horizon:project:shares:create_snapshot"
     success_url = reverse_lazy('horizon:project:shares:snapshots_tab')
     page_title = _('Create Share Snapshot')
@@ -79,17 +80,9 @@ class CreateSnapshotView(forms.ModalFormView):
         args = (context['share_id'],)
         context['submit_url'] = reverse(self.submit_url, args=args)
         try:
-            share = manila.share_get(self.request, context['share_id'])
-            if (share.status == 'in-use'):
-                context['attached'] = True
-                context['form'].set_warning(
-                    _("This share is currently attached to an instance. "
-                      "In some cases, creating a snapshot from an attached "
-                      "share can result in a corrupted snapshot."))
             context['usages'] = quotas.tenant_limit_usages(self.request)
         except Exception:
-            exceptions.handle(self.request,
-                              _('Unable to retrieve share information.'))
+            exceptions.handle(self.request, _('Unable to retrieve quotas.'))
         return context
 
     def get_initial(self):
