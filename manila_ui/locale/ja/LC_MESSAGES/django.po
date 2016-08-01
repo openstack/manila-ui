@@ -2,14 +2,14 @@
 # Shu Muto <shu-mutou@rf.jp.nec.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.2.1.dev15\n"
+"Project-Id-Version: manila-ui 2.3.1.dev16\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-06-27 20:22+0000\n"
+"POT-Creation-Date: 2016-07-29 12:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-06-26 12:11+0000\n"
-"Last-Translator: Akihiro Motoki <amotoki@gmail.com>\n"
+"PO-Revision-Date: 2016-08-01 01:34+0000\n"
+"Last-Translator: Shu Muto <shu-mutou@rf.jp.nec.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "X-Generator: Zanata 3.7.3\n"
@@ -41,6 +41,9 @@ msgstr "稼働中"
 msgctxt "Current status of share server"
 msgid "Active"
 msgstr "稼働中"
+
+msgid "Add"
+msgstr "追加"
 
 msgid "Add Rule"
 msgstr "ルールの追加"
@@ -111,9 +114,6 @@ msgstr "ファイル共有種別の作成"
 msgid "Create Snapshot"
 msgstr "スナップショットの作成"
 
-msgid "Create a Security Service"
-msgstr "セキュリティーサービスの作成"
-
 msgid "Create a Share"
 msgstr "ファイル共有の作成"
 
@@ -170,6 +170,9 @@ msgstr "ドライバーオプション（Genericドライバーの「volume_id�
 msgid "Duplicated keys '%s'."
 msgstr "キー「%s」が重複しています"
 
+msgid "Edit"
+msgstr "編集"
+
 msgid "Edit Security Service"
 msgstr "セキュリティーサービスの編集"
 
@@ -210,6 +213,9 @@ msgstr "エクスポート場所"
 
 msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr "ファイル共有のエクスポート場所。NFSの例: 1.2.3.4:/path/to/share"
+
+msgid "Extend"
+msgstr "拡張"
 
 msgid "Extend Share"
 msgstr "ファイル共有の拡張"
@@ -394,6 +400,9 @@ msgstr "ルール"
 
 msgid "Rules"
 msgstr "ルール"
+
+msgid "Save Changes"
+msgstr "変更の保存"
 
 #, python-format
 msgid "Scheduled deletion of %(data_type)s"
@@ -590,14 +599,6 @@ msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr ""
 "ファイル共有サイズはスナップショットサイズ (%sGiB) 未満にはできません。"
 
-msgid ""
-"This share is currently attached to an instance. In some cases, creating a "
-"snapshot from an attached share can result in a corrupted snapshot."
-msgstr ""
-"このファイル共有は現在インスタンスに接続されています。状況によっては、接続中"
-"のファイル共有からスナップショットを作成すると、壊れたスナップショットが作成"
-"される可能性があります。"
-
 msgid "Type"
 msgstr "種別"
 
@@ -654,6 +655,9 @@ msgstr "ファイル共有を管理できません。"
 msgid "Unable to retrieve list of projects."
 msgstr "プロジェクトの一覧を取得できません。"
 
+msgid "Unable to retrieve quotas."
+msgstr "クォータを取得できません。"
+
 #, python-format
 msgid "Unable to retrieve security service '%s' details."
 msgstr "セキュリティーサービス「%s」の詳細を取得できません。"
@@ -666,9 +670,6 @@ msgstr "セキュリティサービスを取得できません。"
 
 msgid "Unable to retrieve share details."
 msgstr "ファイル共有の詳細を取得できません。"
-
-msgid "Unable to retrieve share information."
-msgstr "ファイル共有のリソース情報を取得できません。"
 
 msgid "Unable to retrieve share instance details."
 msgstr "ファイル共有インスタンスの詳細を取得できません。"
@@ -781,6 +782,9 @@ msgstr "ファイル共有の管理解除"
 
 msgid "Unmanage a Share"
 msgstr "ファイル共有の管理解除"
+
+msgid "Update"
+msgstr "更新"
 
 #, fuzzy
 msgid "Update Share Network"
