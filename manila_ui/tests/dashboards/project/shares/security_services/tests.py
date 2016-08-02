@@ -17,7 +17,7 @@
 #    under the License.
 
 from django.core.urlresolvers import reverse
-from manilaclient import exceptions as manila_client_exc
+from horizon import exceptions as horizon_exceptions
 import mock
 
 from manila_ui.api import manila as api_manila
@@ -105,7 +105,7 @@ class SecurityServicesViewTests(test.TestCase):
                       args=[test_data.sec_service.id])
         self.mock_object(
             api_manila, "security_service_get",
-            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+            mock.Mock(side_effect=horizon_exceptions.NotFound(404)))
 
         res = self.client.get(url)
 
