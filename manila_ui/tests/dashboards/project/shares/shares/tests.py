@@ -406,10 +406,7 @@ class ShareViewTests(test.TestCase):
         self.assertTemplateUsed(response, 'project/shares/shares/extend.html')
         self.assertFalse(api_manila.share_extend.called)
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
-        if new_size <= self.share.size:
-            self.assertFalse(quotas.tenant_limit_usages.called)
-        else:
-            quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        quotas.tenant_limit_usages.assert_called_with(mock.ANY)
         self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_extend_share_post_with_api_exception(self):

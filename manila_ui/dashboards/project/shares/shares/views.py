@@ -290,10 +290,3 @@ class ExtendView(forms.ModalFormView):
             'orig_size': share.size,
             'new_size': int(share.size) + 1,
         }
-
-    def form_invalid(self, form):
-        context = super(ExtendView, self).get_context_data()
-        context = self._populate_context(context)
-        context['form'] = form
-        context['submit_url'] = reverse(self.submit_url, kwargs=self.kwargs)
-        return self.render_to_response(context)
