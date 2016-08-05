@@ -20,7 +20,7 @@ by getting generated pages and verifying results.
 
 import ddt
 from django.core.urlresolvers import reverse
-from manilaclient import exceptions as manila_client_exc
+from horizon import exceptions as horizon_exceptions
 import mock
 from neutronclient.client import exceptions
 
@@ -233,7 +233,7 @@ class ShareInstanceTests(test.BaseAdminViewTests):
                       args=[share_instance.id])
         self.mock_object(
             api_manila, "share_instance_get",
-            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+            mock.Mock(side_effect=horizon_exceptions.NotFound(404)))
 
         res = self.client.get(url)
 
@@ -349,7 +349,7 @@ class ShareServerTests(test.BaseAdminViewTests):
                       args=[share_server.id])
         self.mock_object(
             api_manila, "share_server_get",
-            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+            mock.Mock(side_effect=horizon_exceptions.NotFound(404)))
 
         res = self.client.get(url)
 
@@ -399,7 +399,7 @@ class SecurityServicesTests(test.BaseAdminViewTests):
                       args=[test_data.sec_service.id])
         self.mock_object(
             api_manila, "security_service_get",
-            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+            mock.Mock(side_effect=horizon_exceptions.NotFound(404)))
 
         res = self.client.get(url)
 
@@ -537,7 +537,7 @@ class ShareNetworksTests(test.BaseAdminViewTests):
                       args=[test_data.active_share_network.id])
         self.mock_object(
             api_manila, "share_network_get",
-            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+            mock.Mock(side_effect=horizon_exceptions.NotFound(404)))
 
         res = self.client.get(url)
 
@@ -615,7 +615,7 @@ class SnapshotsTests(test.BaseAdminViewTests):
                       args=[test_data.snapshot.id])
         self.mock_object(
             api_manila, "share_snapshot_get",
-            mock.Mock(side_effect=manila_client_exc.NotFound(404)))
+            mock.Mock(side_effect=horizon_exceptions.NotFound(404)))
 
         res = self.client.get(url)
 
