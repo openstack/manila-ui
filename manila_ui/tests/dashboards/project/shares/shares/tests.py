@@ -21,11 +21,25 @@ from manila_ui.api import manila as api_manila
 from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
+from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 from openstack_dashboard.api import nova
 from openstack_dashboard.usage import quotas
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
+
+
+class QuotaTests(test.TestCase):
+
+    def test_get_disabled_quotas(self):
+        self.mock_object(
+            base, "is_service_enabled", mock.Mock(return_value=False))
+
+        result_quotas = quotas.get_disabled_quotas(self.request)
+        expected_quotas = set(
+            quotas.QUOTA_FIELDS + quotas.MISSING_QUOTA_FIELDS)
+
+        self.assertItemsEqual(result_quotas, expected_quotas)
 
 
 @ddt.ddt
