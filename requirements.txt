@@ -10,6 +10,6 @@ django-compressor>=2.0 # MIT
 django-openstack-auth>=2.3.0 # Apache-2.0
 iso8601>=0.1.11 # MIT
 oslo.utils>=3.16.0 # Apache-2.0
-python-keystoneclient!=1.8.0,!=2.1.0,>=1.7.0 # Apache-2.0
+python-keystoneclient!=2.1.0,>=2.0.0 # Apache-2.0
 python-manilaclient>=1.10.0 # Apache-2.0
 six>=1.9.0 # MIT
