@@ -32,7 +32,7 @@ def parse_str_meta(meta_s):
             # Key for unsetting
             key = string.strip('\"\'\ ')
             if len(key) not in range(1, 256):
-                msg = _("Key '%s' has inproper length.") % key
+                msg = _("Key '%s' has improper length.") % key
             elif " " in key:
                 msg = _("Key can not contain spaces. See string '%s'.") % key
             elif key not in unset_list:
