@@ -49,6 +49,7 @@ class SnapshotSnapshotViewTests(test.TestCase):
 
     def test_create_snapshot_post(self):
         share = test_data.share
+        snapshot = test_data.snapshot
         url = reverse('horizon:project:shares:create_snapshot',
                       args=[share.id])
         formData = {
@@ -59,7 +60,9 @@ class SnapshotSnapshotViewTests(test.TestCase):
             'type': 'NFS',
             'share_id': share.id,
         }
-        self.mock_object(api_manila, "share_snapshot_create")
+        self.mock_object(
+            api_manila, "share_snapshot_create",
+            mock.Mock(return_value=snapshot))
 
         res = self.client.post(url, formData)
 

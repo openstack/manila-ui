@@ -49,6 +49,7 @@ class ShareViewTests(test.TestCase):
     @mock.patch.object(nova, 'availability_zone_list')
     def test_create_share(self, az_list):
         url = reverse('horizon:project:shares:create')
+        share = test_data.share
         share_net = test_data.active_share_network
         share_nets = [share_net]
         formData = {
@@ -64,7 +65,8 @@ class ShareViewTests(test.TestCase):
         }
 
         az_list.return_value = [self.FakeAZ('fake_az'), ]
-        self.mock_object(api_manila, "share_create")
+        self.mock_object(
+            api_manila, "share_create", mock.Mock(return_value=share))
         self.mock_object(
             api_manila, "share_snapshot_list", mock.Mock(return_value=[]))
         self.mock_object(
@@ -88,6 +90,7 @@ class ShareViewTests(test.TestCase):
 
     @mock.patch.object(nova, 'availability_zone_list')
     def test_create_share_from_snapshot(self, mock_az_list):
+        share = test_data.share
         share_net = test_data.active_share_network
         share_nets = [share_net]
         snapshot = test_data.snapshot
@@ -106,7 +109,8 @@ class ShareViewTests(test.TestCase):
             'availability_zone': 'fake_az',
         }
         mock_az_list.return_value = [self.FakeAZ('fake_az'), ]
-        self.mock_object(api_manila, "share_create")
+        self.mock_object(
+            api_manila, "share_create", mock.Mock(return_value=share))
         self.mock_object(
             api_manila, "share_snapshot_list",
             mock.Mock(return_value=[snapshot]))
