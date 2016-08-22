@@ -216,3 +216,39 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
             is_public=data["is_public"])
         mock_horizon_messages_success.assert_called_once_with(
             self.request, mock.ANY)
+
+    @ddt.data(True, False)
+    @mock.patch('horizon.messages.success')
+    def test_public_share_type_creation(self,
+                                        enable_public_share_type_creation,
+                                        mock_horizon_messages_success):
+        with self.settings(OPENSTACK_MANILA_FEATURES={
+                'enable_public_share_type_creation':
+                enable_public_share_type_creation}):
+            form = self._get_form()
+
+            data = {
+                'extra_specs': '',
+                'is_public': enable_public_share_type_creation,
+                'spec_driver_handles_share_servers': 'True',
+                'name': 'share',
+            }
+
+            result = form.handle(self.request, data)
+
+            self.assertTrue(result)
+            self.assertEqual(
+                enable_public_share_type_creation,
+                form.enable_public_share_type_creation)
+            if enable_public_share_type_creation:
+                self.assertIn("is_public", form.fields)
+                self.assertTrue(form.fields["is_public"])
+            else:
+                self.assertNotIn("is_public", form.fields)
+            self.manilaclient.share_types.create.assert_called_once_with(
+                name=data['name'],
+                spec_driver_handles_share_servers='true',
+                spec_snapshot_support=True,
+                is_public=enable_public_share_type_creation)
+            mock_horizon_messages_success.assert_called_once_with(
+                self.request, mock.ANY)
