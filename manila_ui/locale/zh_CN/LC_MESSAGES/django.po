@@ -1,0 +1,814 @@
+# sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
+# zzxwill <zzxwill@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.3.1.dev31\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-08-22 15:19+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-08-23 06:18+0000\n"
+"Last-Translator: sunanchen <KF.sunanchen@h3c.com>\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGiB"
+
+msgid "(Quota exceeded)"
+msgstr "（超过配额）"
+
+msgid "Access Level"
+msgstr "访问级别"
+
+msgid "Access To"
+msgstr "访问"
+
+msgid "Access Type"
+msgstr "访问类型"
+
+msgid "Access to"
+msgstr "访问"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "活动"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "活动"
+
+msgid "Add"
+msgstr "增加"
+
+msgid "Add Rule"
+msgstr "增加规则"
+
+msgid "Add Security Service"
+msgstr "增加安全服务"
+
+msgid "Add rule"
+msgstr "增加规则"
+
+msgid "Add security services to share network."
+msgstr "给共享网络增加安全服务"
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "所有的键和值都必须在1到255之间"
+
+msgid "Allow project access to share type."
+msgstr "允许项目连接到共享类型"
+
+msgid "At least one security service must be specified."
+msgstr "至少指定一项安全服务"
+
+msgid "Availability Zone"
+msgstr "可用域"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "可用"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "可用"
+
+msgid "Available projects"
+msgstr "可用项目"
+
+msgid "Available security services"
+msgstr "可用安全服务"
+
+msgid "Choose a snapshot"
+msgstr "选择一个快照"
+
+msgid "Confirm Password"
+msgstr "确认密码"
+
+msgid "Confirm Unmanage Share"
+msgstr "确认取消管理共享"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Create Security Service"
+msgstr "创建安全服务"
+
+msgid "Create Share"
+msgstr "创建共享"
+
+msgid "Create Share Network"
+msgstr "创建共享网络"
+
+msgid "Create Share Snapshot"
+msgstr "创建共享快照"
+
+msgid "Create Share Type"
+msgstr "创建共享类型"
+
+msgid "Create Snapshot"
+msgstr "创建快照"
+
+msgid "Create a Share"
+msgstr "创建共享"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "创建中"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "正在创建"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "正在创建"
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "为 \"%s\"创建规则"
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "创建共享\"%s\""
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "创建共享快照\"%s\"中"
+
+msgid "Current Size (GiB)"
+msgstr "当前大小(GiB)"
+
+msgid "DNS IP"
+msgstr "DNS IP地址"
+
+msgid "Default Quota"
+msgstr "默认配额"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "删除中"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Domain"
+msgstr "域名"
+
+msgid "Driver handles share servers"
+msgstr "共享服务器"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "Driver选项（例如,设置'volume_id'为Generic driver）"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "复制密钥'%s'"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Edit Security Service"
+msgstr "编辑安全服务"
+
+msgid "Edit Share"
+msgstr "编辑共享"
+
+msgid "Edit Share Metadata"
+msgstr "编辑共享元数据"
+
+msgid "Edit Share Network"
+msgstr "编辑共享网络"
+
+msgid "Edit Snapshot"
+msgstr "编辑快照"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "错误"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "错误"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "错误"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "错误"
+
+msgid "Expected only pairs of key=value."
+msgstr "只支持键值对的方式key=value"
+
+msgid "Export location"
+msgstr "导入位置"
+
+msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+msgstr "导入共享的位置。例如，NFS: 1.2.3.4:/path/to/share"
+
+msgid "Extend"
+msgstr "扩展"
+
+msgid "Extend Share"
+msgstr "扩展共享"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "扩展共享 \"%s\""
+
+msgctxt "Current status of share"
+msgid "Extending Error"
+msgstr "扩展错误"
+
+msgid "Extra specs"
+msgstr "额外规范"
+
+msgid "From here you can update share network info. "
+msgstr "您可在此处更新共享网络信息。"
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr "您可在此处更新默认配额（上限）。"
+
+msgid ""
+"Got improper value for field 'driver_options'. Expected only pairs of "
+"key=value."
+msgstr "'driver_options'设置了不正确的值。只支持键值对的方式key=value"
+
+msgid "Host"
+msgstr "主机"
+
+msgid "Host of share"
+msgstr "共享主机"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr "共享服务所处的主机，比如some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP Version"
+msgstr "IP版本"
+
+msgid "Id"
+msgstr "Id"
+
+#, python-format
+msgid ""
+"Improper value set to required extra spec "
+"'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
+msgstr ""
+"额外规范中'spec_driver_handles_share_servers'的值设置的不正确。允许的值为%s。"
+"不区分大小写"
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "正在使用"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "正在使用"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "失效"
+
+#, python-format
+msgid "Key '%s' has improper length."
+msgstr "密钥'%s'长度不符合要求"
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "密钥不能包含空格。参看字符串'%s'。"
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "密钥不能包含空格。'%s'中存在错误"
+
+msgid "Make visible for all"
+msgstr "对所有人可见"
+
+msgid "Manage"
+msgstr "管理"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "管理错误"
+
+msgid "Manage Rules"
+msgstr "管理规则"
+
+msgid "Manage Share"
+msgstr "管理共享"
+
+msgid "Manage Share Type Access"
+msgstr "管理共享类型的访问权限"
+
+msgid "Manage a Share"
+msgstr "管理共享"
+
+msgid "Metadata"
+msgstr "元数据"
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr "已修改项目信息和成员，但是无法修改项目配额。"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Network Type"
+msgstr "网络类型"
+
+msgid "Networks"
+msgstr "网络"
+
+msgid "Neutron Net"
+msgstr "Neutron网络"
+
+msgid "Neutron Net ID"
+msgstr "Neutron网络ID"
+
+msgid "Neutron Subnet"
+msgstr "Neutron子网"
+
+msgid "Neutron Subnet ID"
+msgstr "Neutron子网ID"
+
+msgid "New Size (GiB)"
+msgstr "新大小(GiB)"
+
+msgid "New size must be greater than current size."
+msgstr "新大小必须大于当前大小"
+
+msgid "No projects found."
+msgstr "没有找到任何项目"
+
+msgid "No projects selected."
+msgstr "为选择任何项目"
+
+msgid "No security services found."
+msgstr "未发现安全服务"
+
+msgid "No security services selected."
+msgstr "未选择安全服务"
+
+msgid "No source, empty share"
+msgstr "没有源，空的共享"
+
+msgid "Nova Net"
+msgstr "Nova网络"
+
+msgid "Overview"
+msgstr "概览"
+
+msgid "Password"
+msgstr "密码"
+
+msgid "Passwords do not match."
+msgstr "密码不匹配"
+
+msgid "Project"
+msgstr "项目"
+
+msgid "Projects with access to share type"
+msgstr "项目访问分享类型"
+
+msgid "Protocol"
+msgstr "协议"
+
+msgid "Public"
+msgstr "公有"
+
+msgid "Quota"
+msgstr "配额"
+
+msgid "Rule"
+msgstr "规则"
+
+msgid "Rules"
+msgstr "规则"
+
+msgid "Save Changes"
+msgstr "保存变更"
+
+#, python-format
+msgid "Scheduled deletion of %(data_type)s"
+msgstr "已计划删除%(data_type)s"
+
+msgid "Security Service"
+msgstr "安全服务"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "安全服务详情: %(service_display_name)s"
+
+msgid "Security Services"
+msgstr "安全服务"
+
+msgid "Security services within share network"
+msgstr "共享网络内的安全服务"
+
+msgid "Segmentation Id"
+msgstr "分段ID"
+
+msgid "Selected projects"
+msgstr "选择项目"
+
+msgid "Selected security services"
+msgstr "选择安全服务"
+
+msgid "Server"
+msgstr "主机"
+
+msgid "Set maximum quotas for the project."
+msgstr "为项目设置最大配额"
+
+msgid "Share"
+msgstr "共享"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "共享详情: %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "共享详情: %(share_name)s"
+
+msgid "Share ID"
+msgstr "共享ID"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "共享实例详情: %s"
+
+msgid "Share Instances"
+msgstr "共享实例"
+
+msgid "Share Name"
+msgstr "共享名称"
+
+msgid "Share Network"
+msgstr "共享网络"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr "共享网络详情: %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "共享网络信息"
+
+msgid "Share Networks"
+msgstr "共享网络"
+
+msgid "Share Protocol"
+msgstr "共享协议"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "共享规则: %(share_display_name)s"
+
+msgid "Share Server"
+msgstr "共享服务器"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "共享服务器详情: %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "共享服务器Id"
+
+msgid "Share Servers"
+msgstr "共享服务器"
+
+msgid "Share Snapshots"
+msgstr "共享快照"
+
+msgid "Share Snapshots Storage"
+msgstr "共享快照存储"
+
+msgid "Share Source"
+msgstr "共享源"
+
+msgid "Share Storage"
+msgstr "共享存储"
+
+msgid "Share Type"
+msgstr "共享类型"
+
+msgid "Share Types"
+msgstr "共享类型"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr "共享不能扩展到 %(req)iGiB，因为您的可用配额只有 %(avail)iGiB。"
+
+msgid "Share name to be assigned"
+msgstr "指定分享名称"
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr "分享大小必须等于或者大于快照大小(%sGiB)"
+
+msgid "Shares"
+msgstr "共享"
+
+msgid "Shares Networks"
+msgstr "共享网络"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Size (GiB)"
+msgstr "大小(GiB)"
+
+msgid "Snapshot"
+msgstr "快照"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "快照详情: %(snapshot_display_name)s"
+
+msgid "Snapshot Name"
+msgstr "快照名称"
+
+msgid "Snapshot Overview"
+msgstr "快照概览"
+
+msgid "Snapshots"
+msgstr "快照"
+
+msgid "Source"
+msgstr "源"
+
+msgid "Status"
+msgstr "状态"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "成功创建安全服务%s"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "成功创建共享网络%s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "创建共享类型%s成功"
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "已成功发送管理卷 %s 的请求"
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr "已成功发送取消管理卷 %s 的请求"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "成功更新共享类型的额外规范'%s'"
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "成功更新安全服务\"%s\""
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr "共享大小不能小于快照大小(%sGiB)"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Unable to add rule."
+msgstr "无法增加规则"
+
+msgid "Unable to create security service."
+msgstr "无法创建安全服务"
+
+msgid "Unable to create share network."
+msgstr "无法创建共享网络"
+
+msgid "Unable to create share snapshot."
+msgstr "无法创建共享快照"
+
+msgid "Unable to create share type."
+msgstr "无法创建共享类型"
+
+msgid "Unable to create share."
+msgstr "无法创建共享"
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "无法删除规则 \"%s\""
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "无法删除共享 \"%s\""
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr "无法删除快照\"%s\"。一个或多个共享正在使用"
+
+msgid "Unable to extend share."
+msgstr "无法扩展共享"
+
+msgid "Unable to get information about share type access."
+msgstr "无法获得共享类型访问信息"
+
+msgid "Unable to get list of projects."
+msgstr "无法获得项目列表"
+
+msgid "Unable to get the security services hosts"
+msgstr "无法获得安全服务主机"
+
+msgid "Unable to load the specified snapshot."
+msgstr "无法加载指定快照"
+
+msgid "Unable to manage share"
+msgstr "无法管理共享"
+
+msgid "Unable to retrieve list of projects."
+msgstr "无法检索项目列表"
+
+msgid "Unable to retrieve quotas."
+msgstr "无法检索配额"
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "无法检索安全服务详情'%s'"
+
+msgid "Unable to retrieve security services"
+msgstr "无法检索安全服务"
+
+msgid "Unable to retrieve security_service."
+msgstr "无法检索安全服务"
+
+msgid "Unable to retrieve share details."
+msgstr "无法检索共享详情"
+
+msgid "Unable to retrieve share instance details."
+msgstr "无法检索共享实例详情"
+
+msgid "Unable to retrieve share instances."
+msgstr "无法检索共享实例"
+
+msgid "Unable to retrieve share limit information."
+msgstr "无法检索共享限制信息"
+
+msgid "Unable to retrieve share list."
+msgstr "无法检索共享列表"
+
+msgid "Unable to retrieve share network details."
+msgstr "无法检索共享网络详情"
+
+msgid "Unable to retrieve share network."
+msgstr "无法检索共享网络"
+
+msgid "Unable to retrieve share networks"
+msgstr "无法检索共享网络"
+
+msgid "Unable to retrieve share rules."
+msgstr "无法检索共享规则"
+
+msgid "Unable to retrieve share server details."
+msgstr "无法检索共享服务器详情"
+
+msgid "Unable to retrieve share servers"
+msgstr "无法检索共享服务器"
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "无法检索共享快照列表"
+
+msgid "Unable to retrieve share snapshots."
+msgstr "无法检索共享快照"
+
+msgid "Unable to retrieve share types"
+msgstr "无法检索共享类型"
+
+msgid "Unable to retrieve share."
+msgstr "无法检索共享"
+
+msgid "Unable to retrieve share_type."
+msgstr "无法检索共享类型"
+
+msgid "Unable to retrieve snapshot details."
+msgstr "无法检索快照详情"
+
+msgid "Unable to retrieve snapshot list."
+msgstr "无法检索快照列表"
+
+msgid "Unable to retrieve snapshot."
+msgstr "无法检索快照"
+
+msgid "Unable to retrieve volume details."
+msgstr "无法检索卷详情"
+
+msgid "Unable to set project quotas."
+msgstr "无法设置项目配额"
+
+msgid "Unable to unmanage share."
+msgstr "无法取消管理共享"
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "无法更新共享类型\"%s\"的访问权限"
+
+msgid "Unable to update default quotas."
+msgstr "无法更新默认配额"
+
+msgid "Unable to update extra_specs for share type."
+msgstr "无法更新共享类型的额外规范"
+
+msgid "Unable to update security service."
+msgstr "无法更新安全服务"
+
+msgid "Unable to update share metadata."
+msgstr "无法更新共享元数据"
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "无法更新共享网络 \"%s\""
+
+msgid "Unable to update share network."
+msgstr "无法更新共享网络"
+
+msgid "Unable to update share type."
+msgstr "无法更新共享类型"
+
+msgid "Unable to update share."
+msgstr "无法更新共享"
+
+msgid "Unable to update snapshot."
+msgstr "无法更新快照"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Unmanage"
+msgstr "取消管理"
+
+msgctxt "Current status of share"
+msgid "Unmanage Error"
+msgstr "取消管理错误"
+
+msgid "Unmanage Share"
+msgstr "取消管理共享"
+
+msgid "Unmanage a Share"
+msgstr "取消管理共享"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Update Share Network"
+msgstr "更新共享网络"
+
+msgid "Update Share Type"
+msgstr "更新共享类型"
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "更新共享类型\"%s\"的访问权限"
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "更新共享网络\"%s\""
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "正在更新共享 \"%s\""
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "正在更新共享元数据 \"%s\""
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "更新共享网络\"%s\""
+
+#, python-format
+msgid "Updating snapshot \"%s\""
+msgstr "更新快照\"%s\"中"
+
+msgid "Use snapshot as a source"
+msgstr "使用快照作为源"
+
+msgid "User"
+msgstr "用户"
+
+msgid "Visibility"
+msgstr "可见性"
+
+msgid "key=value pairs per line can be set"
+msgstr "每一行设置键值对"
