@@ -126,7 +126,7 @@ def get_tenant_quota_data(f, request, disabled_quotas=None, tenant_id=None):
 @wrap(quotas.get_disabled_quotas)
 def get_disabled_quotas(f, request):
     disabled_quotas = f(request)
-    disabled_quotas.extend(_get_manila_disabled_quotas(request))
+    disabled_quotas.update(_get_manila_disabled_quotas(request))
     return disabled_quotas
 
 
