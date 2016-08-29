@@ -12,10 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-"""
-Views for managing shares.
-"""
-
 from django.core.urlresolvers import reverse
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _

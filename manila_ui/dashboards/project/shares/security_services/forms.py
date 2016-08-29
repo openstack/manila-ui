@@ -13,10 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-"""
-Views for managing shares.
-"""
-
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError  # noqa
 from django.template.defaultfilters import filesizeformat  # noqa
