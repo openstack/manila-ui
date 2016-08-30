@@ -110,7 +110,7 @@ class UpdateShareType(tables.LinkAction):
 
 
 class ShareTypesTable(tables.DataTable):
-    name = tables.Column("name", verbose_name=_("Name"))
+    name = tables.WrappingColumn("name", verbose_name=_("Name"))
     extra_specs = tables.Column("extra_specs", verbose_name=_("Extra specs"), )
     visibility = tables.Column(
         "is_public", verbose_name=_("Visibility"),
@@ -136,9 +136,9 @@ class ShareTypesTable(tables.DataTable):
 
 
 class SharesTable(shares_tables.SharesTable):
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:admin:shares:detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:admin:shares:detail")
     host = tables.Column("host", verbose_name=_("Host"))
     project = tables.Column("project_name", verbose_name=_("Project"))
 
@@ -219,9 +219,9 @@ class SnapshotsTable(tables.DataTable):
         ("creating", pgettext_lazy("Current status of snapshot", u"Creating")),
         ("error", pgettext_lazy("Current status of snapshot", u"Error")),
     )
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:admin:shares:snapshot-detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:admin:shares:snapshot-detail")
     description = tables.Column("description",
                                 verbose_name=_("Description"),
                                 truncate=40)
@@ -282,9 +282,9 @@ class DeleteShareServer(tables.DeleteAction):
 
 
 class SecurityServiceTable(tables.DataTable):
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:admin:shares:security_service_detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:admin:shares:security_service_detail")
     project = tables.Column("project_name", verbose_name=_("Project"))
     dns_ip = tables.Column("dns_ip", verbose_name=_("DNS IP"))
     server = tables.Column("server", verbose_name=_("Server"))
@@ -316,9 +316,9 @@ class UpdateShareServerRow(tables.Row):
 
 
 class NovaShareNetworkTable(tables.DataTable):
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:admin:shares:share_network_detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:admin:shares:share_network_detail")
     project = tables.Column("project_name", verbose_name=_("Project"))
     nova_net = tables.Column("nova_net", verbose_name=_("Nova Net"))
     ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
@@ -345,8 +345,9 @@ class NovaShareNetworkTable(tables.DataTable):
 
 
 class NeutronShareNetworkTable(tables.DataTable):
-    name = tables.Column("name", verbose_name=_("Name"),
-                         link="horizon:project:shares:share_network_detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:project:shares:share_network_detail")
     project = tables.Column("project_name", verbose_name=_("Project"))
     neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
     neutron_subnet = tables.Column(

@@ -88,8 +88,9 @@ class UpdateRow(tables.Row):
 
 
 class NovaShareNetworkTable(tables.DataTable):
-    name = tables.Column("name", verbose_name=_("Name"),
-                         link="horizon:project:shares:share_network_detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:project:shares:share_network_detail")
     nova_net = tables.Column("nova_net", verbose_name=_("Nova Net"))
     ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
     network_type = tables.Column("network_type",
@@ -129,8 +130,9 @@ class NeutronShareNetworkTable(tables.DataTable):
                                    u"Inactive")),
         ("ERROR", pgettext_lazy("Current status of share network", u"Error")),
     )
-    name = tables.Column("name", verbose_name=_("Name"),
-                         link="horizon:project:shares:share_network_detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:project:shares:share_network_detail")
     neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
     neutron_subnet = tables.Column(
         "neutron_subnet", verbose_name=_("Neutron Subnet"))

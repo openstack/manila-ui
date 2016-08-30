@@ -45,9 +45,9 @@ class Edit(tables.LinkAction):
 
 
 class SecurityServiceTable(tables.DataTable):
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:project:shares:security_service_detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:project:shares:security_service_detail")
     dns_ip = tables.Column("dns_ip", verbose_name=_("DNS IP"))
     server = tables.Column("server", verbose_name=_("Server"))
     domain = tables.Column("domain", verbose_name=_("Domain"))

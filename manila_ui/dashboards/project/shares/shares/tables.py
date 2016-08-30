@@ -190,9 +190,9 @@ class SharesTableBase(tables.DataTable):
         ("extending_error", pgettext_lazy("Current status of share",
                                           u"Extending Error")),
     )
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:project:shares:detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:project:shares:detail")
     description = tables.Column("description",
                                 verbose_name=_("Description"),
                                 truncate=40)
@@ -290,9 +290,9 @@ def get_share_network(share):
 
 
 class SharesTable(SharesTableBase):
-    name = tables.Column("name",
-                         verbose_name=_("Name"),
-                         link="horizon:project:shares:detail")
+    name = tables.WrappingColumn(
+        "name", verbose_name=_("Name"),
+        link="horizon:project:shares:detail")
     visibility = tables.Column(
         "is_public", verbose_name=_("Visibility"),
         help_text=("Whether this share visible to all tenants (public) or "
