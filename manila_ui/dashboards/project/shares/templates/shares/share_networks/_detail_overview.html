@@ -13,7 +13,7 @@
     <dd>{{ share_network.description }}</dd>
     {% endif %}
     {% if share_network.share_servers %}
-    <dt>{% trans "Share Servers on this network" %}</dt>
+    <dt>{% trans "Share Servers" %}</dt>
     {% for server in share_network.share_servers %}
     {% url 'horizon:admin:shares:share_server_detail' server.id as server_url %}
     <dd><a href="{{ server_url }}">{{ server.id }}</a></dd>
