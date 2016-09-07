@@ -209,16 +209,12 @@ class ManilaApiTests(base.APITestCase):
             api.nova,
             "availability_zone_list",
             mock.Mock(return_value=availability_zones))
-        self.manilaclient.share_replicas.list.return_value = [
-            type("FakeReplica", (object,), {"availability_zone": "foo"})]
-        share = "fake_share"
-        expected = set(("bar", "quuz"))
+        expected = {"foo", "bar", "quuz"}
 
         result = api.share_valid_availability_zones_for_new_replica(
-            self.request, share)
+            self.request)
 
         self.assertEqual(expected, result)
-        self.manilaclient.share_replicas.list.assert_called_once_with(share)
         api.nova.availability_zone_list.assert_called_once_with(self.request)
 
     def test_migration_start(self):
