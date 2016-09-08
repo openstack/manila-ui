@@ -405,18 +405,12 @@ def share_replica_resync(request, replica):
     return manilaclient(request).share_replicas.resync(replica)
 
 
-def share_valid_availability_zones_for_new_replica(request, share):
+def share_valid_availability_zones_for_new_replica(request):
     availability_zones = (
         set([az.zoneName
              for az in nova.availability_zone_list(request)])
     )
-
-    az_with_replicas = (
-        set([r.availability_zone
-             for r in share_replica_list(request, share)])
-    )
-
-    return availability_zones - az_with_replicas
+    return availability_zones
 
 
 def tenant_absolute_limits(request):
