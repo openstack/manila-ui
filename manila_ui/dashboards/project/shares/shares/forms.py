@@ -26,7 +26,6 @@ from horizon.utils.memoized import memoized  # noqa
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
-from openstack_dashboard.api import nova
 from openstack_dashboard.usage import quotas
 
 
@@ -52,10 +51,10 @@ class CreateForm(forms.SelfHandlingForm):
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (
             [("", "")] + [(st.name, st.name) for st in share_types])
-        availability_zones = nova.availability_zone_list(request)
+
+        availability_zones = manila.availability_zone_list(request)
         self.fields['availability_zone'].choices = (
-            [("", "")] +
-            [(az.zoneName, az.zoneName) for az in availability_zones])
+            [("", "")] + [(az.name, az.name) for az in availability_zones])
 
         self.sn_field_name_prefix = 'share-network-choices-'
         for st in share_types:

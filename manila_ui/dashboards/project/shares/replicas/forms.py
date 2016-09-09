@@ -36,11 +36,9 @@ class CreateReplicaForm(forms.SelfHandlingForm):
         self.fields['share_id'] = forms.CharField(widget=forms.HiddenInput(),
                                                   initial=share_id)
 
-        availability_zones = (
-            manila.share_valid_availability_zones_for_new_replica(request))
-
+        availability_zones = manila.availability_zone_list(request)
         self.fields['availability_zone'].choices = (
-            [(az, az) for az in availability_zones])
+            [(az.name, az.name) for az in availability_zones])
 
     def handle(self, request, data):
         try:

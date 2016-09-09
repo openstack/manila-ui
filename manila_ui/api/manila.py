@@ -28,13 +28,12 @@ import six
 from horizon import exceptions
 from horizon.utils.memoized import memoized  # noqa
 from openstack_dashboard.api import base
-from openstack_dashboard.api import nova
 
 
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.22"  # requires manilaclient 1.10.0 or newer
+MANILA_VERSION = "2.22"  # requires manilaclient 1.12.0 or newer
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -405,14 +404,6 @@ def share_replica_resync(request, replica):
     return manilaclient(request).share_replicas.resync(replica)
 
 
-def share_valid_availability_zones_for_new_replica(request):
-    availability_zones = (
-        set([az.zoneName
-             for az in nova.availability_zone_list(request)])
-    )
-    return availability_zones
-
-
 def tenant_absolute_limits(request):
     limits = manilaclient(request).limits.get().absolute
     limits_dict = {}
@@ -431,6 +422,10 @@ def share_instance_list(request):
 
 def share_instance_get(request, share_instance_id):
     return manilaclient(request).share_instances.get(share_instance_id)
+
+
+def availability_zone_list(request):
+    return manilaclient(request).availability_zones.list()
 
 
 @memoized

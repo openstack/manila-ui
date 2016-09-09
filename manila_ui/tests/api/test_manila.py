@@ -14,7 +14,6 @@
 #    under the License.
 
 import ddt
-import mock
 
 from manila_ui.api import manila as api
 from manila_ui.tests import helpers as base
@@ -200,23 +199,6 @@ class ManilaApiTests(base.APITestCase):
         mock_reset_state = self.manilaclient.share_replicas.reset_replica_state
         mock_reset_state.assert_called_once_with(replica, state)
 
-    def test_share_valid_availability_zones_for_new_replica(self):
-        availability_zones = [
-            type("FakeAZ", (object,), {"zoneName": zone_name})
-            for zone_name in ("foo", "bar", "quuz")
-        ]
-        self.mock_object(
-            api.nova,
-            "availability_zone_list",
-            mock.Mock(return_value=availability_zones))
-        expected = {"foo", "bar", "quuz"}
-
-        result = api.share_valid_availability_zones_for_new_replica(
-            self.request)
-
-        self.assertEqual(expected, result)
-        api.nova.availability_zone_list.assert_called_once_with(self.request)
-
     def test_migration_start(self):
         api.migration_start(self.request, 'fake_share', 'fake_host', False,
                             True, True, False, 'fake_net_id', 'fake_type_id')
@@ -249,3 +231,8 @@ class ManilaApiTests(base.APITestCase):
 
         (self.manilaclient.shares.migration_get_progress.
             assert_called_once_with('fake_share'))
+
+    def test_availability_zone_list(self):
+        api.availability_zone_list(self.request)
+
+        self.manilaclient.availability_zones.list.assert_called_once_with()

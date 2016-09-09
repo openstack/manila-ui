@@ -20,14 +20,13 @@ from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
 from openstack_dashboard.api import neutron
-from openstack_dashboard.api import nova
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
 
 
 class FakeAZ(object):
     def __init__(self, name):
-        self.zoneName = name
+        self.name = name
 
 
 class ReplicasTests(test.TestCase):
@@ -48,15 +47,14 @@ class ReplicasTests(test.TestCase):
         new_az = old_az + "_new"
         self.mock_object(api_manila, "share_replica_create")
         self.mock_object(
-            nova,
-            "availability_zone_list",
+            api_manila, "availability_zone_list",
             mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
 
         res = self.client.get(url)
 
         self.assertEqual(200, res.status_code)
         self.assertFalse(api_manila.share_replica_create.called)
-        nova.availability_zone_list.assert_called_once_with(mock.ANY)
+        api_manila.availability_zone_list.assert_called_once_with(mock.ANY)
         self.assertNoMessages()
         self.assertTemplateUsed(
             res, "project/shares/replicas/create_replica.html")
@@ -71,8 +69,7 @@ class ReplicasTests(test.TestCase):
             "availability_zone": new_az,
         }
         self.mock_object(
-            nova,
-            "availability_zone_list",
+            api_manila, "availability_zone_list",
             mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
         self.mock_object(
             api_manila,
@@ -86,7 +83,7 @@ class ReplicasTests(test.TestCase):
             mock.ANY, self.share.id, formData["availability_zone"])
         api_manila.share_replica_create.assert_called_once_with(
             mock.ANY, formData["share_id"], formData["availability_zone"])
-        nova.availability_zone_list.assert_called_once_with(mock.ANY)
+        api_manila.availability_zone_list.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(
             res,
             reverse("horizon:project:shares:manage_replicas",
@@ -158,12 +155,6 @@ class ReplicasTests(test.TestCase):
         self.assertFalse(api_manila.share_instance_export_location_list.called)
 
     def test_list(self):
-        old_az = self.share.availability_zone
-        new_az = old_az + "_new"
-        self.mock_object(
-            nova,
-            "availability_zone_list",
-            mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
         self.mock_object(
             api_manila,
             "share_replica_list",
@@ -181,12 +172,6 @@ class ReplicasTests(test.TestCase):
             mock.ANY, self.share.id)
 
     def test_list_exception(self):
-        old_az = self.share.availability_zone
-        new_az = old_az + "_new"
-        self.mock_object(
-            nova,
-            "availability_zone_list",
-            mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
         self.mock_object(
             api_manila,
             "share_replica_list",

@@ -21,14 +21,8 @@ from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
 from openstack_dashboard.api import neutron
-from openstack_dashboard.api import nova
 
 SHARE_INDEX_URL = reverse('horizon:admin:shares:index')
-
-
-class FakeAZ(object):
-    def __init__(self, name):
-        self.zoneName = name
 
 
 @ddt.ddt
@@ -98,12 +92,6 @@ class ReplicasTests(test.BaseAdminViewTests):
         self.assertFalse(api_manila.share_instance_export_location_list.called)
 
     def test_list(self):
-        old_az = self.share.availability_zone
-        new_az = old_az + "_new"
-        self.mock_object(
-            nova,
-            "availability_zone_list",
-            mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
         self.mock_object(
             api_manila,
             "share_replica_list",
@@ -121,12 +109,6 @@ class ReplicasTests(test.BaseAdminViewTests):
             mock.ANY, self.share.id)
 
     def test_list_exception(self):
-        old_az = self.share.availability_zone
-        new_az = old_az + "_new"
-        self.mock_object(
-            nova,
-            "availability_zone_list",
-            mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
         self.mock_object(
             api_manila,
             "share_replica_list",

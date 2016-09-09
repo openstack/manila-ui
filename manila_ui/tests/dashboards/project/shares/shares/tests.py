@@ -23,7 +23,6 @@ from manila_ui.tests import helpers as test
 
 from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
-from openstack_dashboard.api import nova
 from openstack_dashboard.usage import quotas
 
 SHARE_INDEX_URL = reverse('horizon:project:shares:index')
@@ -47,7 +46,7 @@ class ShareViewTests(test.TestCase):
 
     class FakeAZ(object):
         def __init__(self, name):
-            self.zoneName = name
+            self.name = name
 
     def setUp(self):
         super(ShareViewTests, self).setUp()
@@ -60,7 +59,7 @@ class ShareViewTests(test.TestCase):
         self.mock_object(
             api_manila, "share_get", mock.Mock(return_value=self.share))
 
-    @mock.patch.object(nova, 'availability_zone_list')
+    @mock.patch.object(api_manila, 'availability_zone_list')
     def test_create_share(self, az_list):
         url = reverse('horizon:project:shares:create')
         share = test_data.share
@@ -102,7 +101,7 @@ class ShareViewTests(test.TestCase):
         api_manila.share_network_list.assert_called_once_with(mock.ANY)
         api_manila.share_type_list.assert_called_once_with(mock.ANY)
 
-    @mock.patch.object(nova, 'availability_zone_list')
+    @mock.patch.object(api_manila, 'availability_zone_list')
     def test_create_share_from_snapshot(self, mock_az_list):
         share = test_data.share
         share_net = test_data.active_share_network
