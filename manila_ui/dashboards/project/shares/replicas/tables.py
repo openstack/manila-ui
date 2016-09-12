@@ -90,8 +90,18 @@ class DeleteReplica(tables.DeleteAction):
 
     def allowed(self, request, replica=None):
         if replica:
-            return replica.status in DELETABLE_STATUSES
-        return True
+            share = manila.share_get(request, replica.share_id)
+            replicas = manila.share_replica_list(request, replica.share_id)
+            if share.replication_type is None:
+                return False
+            elif (share.replication_type is 'writable' and
+                  replica.status in DELETABLE_STATUSES and
+                  len(replicas) > 1) or (
+                      share.replication_type in ('dr', 'readable') and
+                      replica.status in DELETABLE_STATUSES and
+                      replica.replica_state != 'active'):
+                return True
+        return False
 
     def single(self, data_table, request, object_id):
         try:
@@ -157,7 +167,7 @@ class ReplicasTable(tables.DataTable):
         row_class = UpdateReplicaRow
         table_actions = (
             CreateReplica,
-            DeleteReplica)
+        )
         row_actions = (
             SetReplicaAsActive,
             DeleteReplica)
