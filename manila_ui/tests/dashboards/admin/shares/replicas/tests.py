@@ -12,6 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import copy
 import ddt
 from django.core.urlresolvers import reverse
 import mock
@@ -38,6 +39,7 @@ class ReplicasTests(test.BaseAdminViewTests):
         super(self.__class__, self).setUp()
         self.share = test_data.share
         self.share_replica = test_data.share_replica
+        self.share_replica2 = test_data.share_replica2
         self.mock_object(
             api_manila, "share_get", mock.Mock(return_value=self.share))
         self.mock_object(
@@ -143,25 +145,70 @@ class ReplicasTests(test.BaseAdminViewTests):
         api_manila.share_replica_list.assert_called_with(
             mock.ANY, self.share.id)
 
-    def test_delete(self):
-        formData = {"action": "replicas__delete__%s" % self.share_replica.id}
+    @ddt.data(
+        ([test_data.share_replica], test_data.share_replica.id, None),
+        ([test_data.share_replica], test_data.share_replica.id, 'dr'),
+        ([test_data.share_replica], test_data.share_replica.id, 'readable'),
+        ([test_data.share_replica], test_data.share_replica.id, 'writable'),
+        ([test_data.share_replica, test_data.share_replica2],
+         test_data.share_replica.id, 'dr'),
+        ([test_data.share_replica, test_data.share_replica2],
+         test_data.share_replica.id, 'readable'),
+    )
+    @ddt.unpack
+    def test_delete_not_allowed(self, replica_list, replica_id,
+                                replication_type):
+        share = copy.copy(self.share)
+        share.replication_type = replication_type
+        formData = {"action": "replicas__delete__%s" % replica_id}
         self.mock_object(api_manila, "share_replica_delete")
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
         self.mock_object(
             api_manila,
             "share_replica_list",
-            mock.Mock(return_value=[self.share_replica]))
+            mock.Mock(return_value=replica_list))
         url = reverse(
-            "horizon:admin:shares:manage_replicas",
-            args=[self.share.id])
+            "horizon:admin:shares:manage_replicas", args=[share.id])
 
         res = self.client.post(url, formData)
 
         self.assertEqual(302, res.status_code)
         self.assertRedirectsNoFollow(res, url)
-        api_manila.share_replica_list.assert_called_with(
-            mock.ANY, self.share.id)
+        api_manila.share_replica_list.assert_called_with(mock.ANY, share.id)
+        self.assertFalse(api_manila.share_replica_delete.called)
+
+    @ddt.data(
+        ([test_data.share_replica, test_data.share_replica2],
+         test_data.share_replica2.id, 'dr'),
+        ([test_data.share_replica, test_data.share_replica2],
+         test_data.share_replica2.id, 'readable'),
+        ([test_data.share_replica, test_data.share_replica3],
+         test_data.share_replica.id, 'writable'),
+        ([test_data.share_replica, test_data.share_replica3],
+         test_data.share_replica3.id, 'writable'),
+    )
+    @ddt.unpack
+    def test_delete_allowed(self, replica_list, replica_id, replication_type):
+        share = copy.copy(self.share)
+        share.replication_type = replication_type
+        formData = {"action": "replicas__delete__%s" % replica_id}
+        self.mock_object(api_manila, "share_replica_delete")
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            api_manila,
+            "share_replica_list", mock.Mock(return_value=replica_list))
+        url = reverse(
+            "horizon:admin:shares:manage_replicas", args=[share.id])
+
+        res = self.client.post(url, formData)
+
+        self.assertEqual(302, res.status_code)
+        self.assertRedirectsNoFollow(res, url)
+        api_manila.share_replica_list.assert_called_with(mock.ANY, share.id)
         api_manila.share_replica_delete.assert_called_with(
-            mock.ANY, self.share_replica.id)
+            mock.ANY, replica_id)
 
     def test_resync_replica_get(self):
         url = reverse(
