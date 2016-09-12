@@ -76,6 +76,7 @@ nameless_share = shares.Share(
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ',
+     'replication_type': None,
      'mount_snapshot_support': False})
 
 share_with_metadata = shares.Share(
@@ -91,6 +92,7 @@ share_with_metadata = shares.Share(
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ',
+     'replication_type': 'readable',
      'mount_snapshot_support': False})
 
 other_share = shares.Share(
@@ -107,6 +109,7 @@ other_share = shares.Share(
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ',
+     'replication_type': 'readable',
      'mount_snapshot_support': False})
 
 share_replica = share_replicas.ShareReplica(
