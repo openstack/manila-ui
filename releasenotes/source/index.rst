@@ -7,3 +7,4 @@ manila-ui Release Notes
    :maxdepth: 1
 
    unreleased
+   newton
