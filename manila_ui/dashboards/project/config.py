@@ -23,9 +23,9 @@
 # configuration label and avoid this conflict.
 #
 
-from django.apps import AppConfig
+from django import apps
 
 
-class Config(AppConfig):
+class Config(apps.AppConfig):
     name = 'manila_ui.dashboards.project'
     label = 'manila_project'
