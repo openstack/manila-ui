@@ -1,15 +1,16 @@
 # sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
+# zhongjun <jun.zhongjun2@gmail.com>, 2016. #zanata
 # zzxwill <zzxwill@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.3.1.dev31\n"
+"Project-Id-Version: manila-ui 2.5.1.dev7\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-08-22 15:19+0000\n"
+"POT-Creation-Date: 2016-09-16 09:32+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-08-23 06:18+0000\n"
-"Last-Translator: sunanchen <KF.sunanchen@h3c.com>\n"
+"PO-Revision-Date: 2016-09-14 07:02+0000\n"
+"Last-Translator: zhongjun <jun.zhongjun2@gmail.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
 "X-Generator: Zanata 3.7.3\n"
@@ -69,6 +70,13 @@ msgstr "至少指定一项安全服务"
 msgid "Availability Zone"
 msgstr "可用域"
 
+msgid "Availability zone"
+msgstr "可用域"
+
+msgctxt "Current status of replica"
+msgid "Available"
+msgstr "可用"
+
 msgctxt "Current status of share"
 msgid "Available"
 msgstr "可用"
@@ -83,8 +91,35 @@ msgstr "可用项目"
 msgid "Available security services"
 msgstr "可用安全服务"
 
+msgid "Cancel Migration"
+msgstr "取消迁移"
+
+msgid "Cancel migration"
+msgstr "取消迁移"
+
+msgid "Cancel migration of a Share"
+msgstr "取消迁移共享"
+
 msgid "Choose a snapshot"
 msgstr "选择一个快照"
+
+msgid "Complete Migration"
+msgstr "完成迁移"
+
+msgid "Complete migration"
+msgstr "完成迁移"
+
+msgid "Complete migration of a Share"
+msgstr "完成共享迁移"
+
+msgid "Confirm Migration Cancelling of Share"
+msgstr "确认共享迁移的取消"
+
+msgid "Confirm Migration Completion of Share"
+msgstr "确认共享迁移的完成"
+
+msgid "Confirm Obtaining migration progress of Share"
+msgstr "确认获取共享迁移的进度"
 
 msgid "Confirm Password"
 msgstr "确认密码"
@@ -94,6 +129,9 @@ msgstr "确认取消管理共享"
 
 msgid "Create"
 msgstr "创建"
+
+msgid "Create Replica"
+msgstr "创建副本"
 
 msgid "Create Security Service"
 msgstr "创建安全服务"
@@ -116,6 +154,13 @@ msgstr "创建快照"
 msgid "Create a Share"
 msgstr "创建共享"
 
+msgid "Created At"
+msgstr "创建于"
+
+msgctxt "Current status of replica"
+msgid "Creating"
+msgstr "创建中"
+
 msgctxt "Current status of share"
 msgid "Creating"
 msgstr "创建中"
@@ -127,6 +172,10 @@ msgstr "正在创建"
 msgctxt "Current status of snapshot"
 msgid "Creating"
 msgstr "正在创建"
+
+#, python-format
+msgid "Creating replica for share \"%s\"."
+msgstr "为共享\"%s\".创建副本。"
 
 #, python-format
 msgid "Creating rule for \"%s\""
@@ -149,12 +198,21 @@ msgstr "DNS IP地址"
 msgid "Default Quota"
 msgstr "默认配额"
 
+msgctxt "Current status of replica"
+msgid "Deleting"
+msgstr "删除中"
+
 msgctxt "Current status of share"
 msgid "Deleting"
 msgstr "删除中"
 
 msgid "Description"
 msgstr "描述"
+
+msgid ""
+"Destination host where share will be migrated to. Use the format "
+"'host@backend#pool'."
+msgstr "选择要迁移至的目的主机。使用格式如'host@backend#pool'。"
 
 msgid "Domain"
 msgstr "域名"
@@ -186,6 +244,10 @@ msgstr "编辑共享网络"
 
 msgid "Edit Snapshot"
 msgstr "编辑快照"
+
+msgctxt "Current status of replica"
+msgid "Error"
+msgstr "错误"
 
 msgctxt "Current status of share"
 msgid "Error"
@@ -229,11 +291,17 @@ msgstr "扩展错误"
 msgid "Extra specs"
 msgstr "额外规范"
 
+msgid "Force Host Assisted Migration"
+msgstr "强制主机协助迁移"
+
 msgid "From here you can update share network info. "
 msgstr "您可在此处更新共享网络信息。"
 
 msgid "From here you can update the default quotas (max limits)."
 msgstr "您可在此处更新默认配额（上限）。"
+
+msgid "Get migration progress"
+msgstr "获取迁移进度"
 
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
@@ -246,11 +314,20 @@ msgstr "主机"
 msgid "Host of share"
 msgstr "共享主机"
 
+msgid "Host to migrate share"
+msgstr "选择要迁移的主机。"
+
 msgid "Host where share is located, example: some.host@driver[#pool]"
 msgstr "共享服务所处的主机，比如some.host@driver[#pool]"
 
 msgid "ID"
 msgstr "ID"
+
+msgid "ID of share network to be set in migrated share"
+msgstr "设置迁移共享的共享网络ID"
+
+msgid "ID of share type to be set in migrating share"
+msgstr "设置正在迁移中的共享的共享类型的ID"
 
 msgid "IP Version"
 msgstr "IP版本"
@@ -278,6 +355,14 @@ msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "失效"
 
+msgid ""
+"Input the ID of the share network where the share should be migrated to."
+msgstr "输入迁移共享的共享网络的ID"
+
+msgid ""
+"Input the ID of the share type which the migrating share will be set to."
+msgstr "输入正在迁移中的共享的共享类型的ID"
+
 #, python-format
 msgid "Key '%s' has improper length."
 msgstr "密钥'%s'长度不符合要求"
@@ -300,6 +385,9 @@ msgctxt "Current status of share"
 msgid "Manage Error"
 msgstr "管理错误"
 
+msgid "Manage Replicas"
+msgstr "管理副本"
+
 msgid "Manage Rules"
 msgstr "管理规则"
 
@@ -314,6 +402,24 @@ msgstr "管理共享"
 
 msgid "Metadata"
 msgstr "元数据"
+
+msgid "Migrate Share"
+msgstr "共享迁移"
+
+msgid "Migrate a Share"
+msgstr "迁移共享"
+
+msgctxt "Current status of share"
+msgid "Migrating"
+msgstr "迁移中"
+
+msgctxt "Current status of share"
+msgid "Migrating to"
+msgstr "正在迁移至"
+
+#, python-format
+msgid "Migration of share %(name)s is at %(progress)s percent."
+msgstr "共享%(name)s已迁移百分之%(progress)s。"
 
 msgid ""
 "Modified project information and members, but unable to modify project "
@@ -362,8 +468,17 @@ msgstr "未选择安全服务"
 msgid "No source, empty share"
 msgstr "没有源，空的共享"
 
+msgid "Non-disruptive"
+msgstr "非破坏性的"
+
 msgid "Nova Net"
 msgstr "Nova网络"
+
+msgid "Obtain Progress"
+msgstr "获取进度"
+
+msgid "Obtain migration progress of a Share"
+msgstr "获取共享迁移的进度"
 
 msgid "Overview"
 msgstr "概览"
@@ -373,6 +488,9 @@ msgstr "密码"
 
 msgid "Passwords do not match."
 msgstr "密码不匹配"
+
+msgid "Preserve Metadata"
+msgstr "保护元数据"
 
 msgid "Project"
 msgstr "项目"
@@ -388,6 +506,58 @@ msgstr "公有"
 
 msgid "Quota"
 msgstr "配额"
+
+msgid "Replica"
+msgstr "副本"
+
+#, python-format
+msgid "Replica Details: %(replica_display_name)s"
+msgstr "副本详情：%(replica_display_name)s"
+
+msgid "Replica State"
+msgstr "副本状态"
+
+msgid "Replicas"
+msgstr "副本"
+
+msgid "Reset Replica State"
+msgstr "重置副本状态"
+
+msgid "Reset Replica Status"
+msgstr "重置副本状态"
+
+msgid "Reset replica state"
+msgstr "重置副本状态"
+
+msgid "Reset replica status"
+msgstr "重置副本状态"
+
+msgid "Reset state"
+msgstr "重置状态"
+
+msgid "Reset status"
+msgstr "重置状态"
+
+#, python-format
+msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
+msgstr "正在重置副本 ('%(id)s') 状态从'%(from)s'到 '%(to)s'。"
+
+#, python-format
+msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "重置副本 ('%(id)s') 状态从'%(from)s'到 '%(to)s'。"
+
+msgid "Resync"
+msgstr "重新同步"
+
+msgid "Resync Replica"
+msgstr "重新同步副本"
+
+msgid "Resync replica"
+msgstr "重新同步副本"
+
+#, python-format
+msgid "Resync'ing replica '%s'"
+msgstr "重新同步副本'%s'"
 
 msgid "Rule"
 msgstr "规则"
@@ -427,8 +597,18 @@ msgstr "选择安全服务"
 msgid "Server"
 msgstr "主机"
 
+msgid "Set Replica as Active"
+msgstr "设置副本状态为Active"
+
+msgid "Set as Active"
+msgstr "设置为Active"
+
 msgid "Set maximum quotas for the project."
 msgstr "为项目设置最大配额"
+
+#, python-format
+msgid "Setting replica \"%s\" as active..."
+msgstr "设置副本\"%s\"状态为active。。。"
 
 msgid "Share"
 msgstr "共享"
@@ -469,6 +649,10 @@ msgstr "共享网络"
 
 msgid "Share Protocol"
 msgstr "共享协议"
+
+#, python-format
+msgid "Share Replicas: %(share_display_name)s"
+msgstr "共享副本： %(share_display_name)s"
 
 #, python-format
 msgid "Share Rules: %(share_display_name)s"
@@ -515,6 +699,10 @@ msgid "Share name to be assigned"
 msgstr "指定分享名称"
 
 #, python-format
+msgid "Share replica %s has been deleted."
+msgstr "共享副本'%s'已经被删除。"
+
+#, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr "分享大小必须等于或者大于快照大小(%sGiB)"
 
@@ -552,6 +740,9 @@ msgstr "快照"
 msgid "Source"
 msgstr "源"
 
+msgid "Start migration"
+msgstr "开始迁移"
+
 msgid "Status"
 msgstr "状态"
 
@@ -568,8 +759,20 @@ msgid "Successfully created share type: %s"
 msgstr "创建共享类型%s成功"
 
 #, python-format
+msgid "Successfully sent the request to cancel migration of  share: %s."
+msgstr "成功发送取消共享: %s迁移的请求。"
+
+#, python-format
+msgid "Successfully sent the request to complete migration of  share: %s."
+msgstr "成功发送完成共享迁移: %s的请求。"
+
+#, python-format
 msgid "Successfully sent the request to manage share: %s"
 msgstr "已成功发送管理卷 %s 的请求"
+
+#, python-format
+msgid "Successfully sent the request to migrate share: %s."
+msgstr "已成功发送迁移共享: %s的请求。"
 
 #, python-format
 msgid "Successfully sent the request to unmanage share: %s"
@@ -593,11 +796,22 @@ msgstr "类型"
 msgid "Unable to add rule."
 msgstr "无法增加规则"
 
+#, python-format
+msgid "Unable to cancel migration of share %s at this moment."
+msgstr "当前无法取消共享%s的迁移。"
+
+#, python-format
+msgid "Unable to complete migration of share %s."
+msgstr "无法完成共享: %s的迁移。"
+
 msgid "Unable to create security service."
 msgstr "无法创建安全服务"
 
 msgid "Unable to create share network."
 msgstr "无法创建共享网络"
+
+msgid "Unable to create share replica."
+msgstr "无法创建共享副本。"
 
 msgid "Unable to create share snapshot."
 msgstr "无法创建共享快照"
@@ -607,6 +821,10 @@ msgstr "无法创建共享类型"
 
 msgid "Unable to create share."
 msgstr "无法创建共享"
+
+#, python-format
+msgid "Unable to delete replica \"%s\"."
+msgstr "无法删除副本'%s'。"
 
 #, python-format
 msgid "Unable to delete rule \"%s\"."
@@ -638,11 +856,39 @@ msgstr "无法加载指定快照"
 msgid "Unable to manage share"
 msgstr "无法管理共享"
 
+#, python-format
+msgid "Unable to migrate share %s."
+msgstr "无法迁移共享%s。"
+
+#, python-format
+msgid "Unable to obtain progress of migration of share %s at this moment."
+msgstr "当前无法获得共享%s的迁移进度。"
+
+#, python-format
+msgid "Unable to reset state of replica '%s'."
+msgstr "无法重置副本'%s'的状态。"
+
+#, python-format
+msgid "Unable to reset status of replica '%s'."
+msgstr "无法重置副本'%s'的状态。"
+
+#, python-format
+msgid "Unable to resync replica '%s'."
+msgstr "无法重新同步副本 '%s'。"
+
 msgid "Unable to retrieve list of projects."
 msgstr "无法检索项目列表"
 
 msgid "Unable to retrieve quotas."
 msgstr "无法检索配额"
+
+#, python-format
+msgid "Unable to retrieve replica %sdetails."
+msgstr "无法检索副本%s详情。"
+
+#, python-format
+msgid "Unable to retrieve replica '%s'."
+msgstr "无法检索副本'%s'。"
 
 #, python-format
 msgid "Unable to retrieve security service '%s' details."
@@ -678,6 +924,9 @@ msgstr "无法检索共享网络"
 msgid "Unable to retrieve share networks"
 msgstr "无法检索共享网络"
 
+msgid "Unable to retrieve share replicas."
+msgstr "无法检索共享副本"
+
 msgid "Unable to retrieve share rules."
 msgstr "无法检索共享规则"
 
@@ -699,6 +948,10 @@ msgstr "无法检索共享类型"
 msgid "Unable to retrieve share."
 msgstr "无法检索共享"
 
+#, python-format
+msgid "Unable to retrieve share. %s"
+msgstr "无法检索共享。%s"
+
 msgid "Unable to retrieve share_type."
 msgstr "无法检索共享类型"
 
@@ -716,6 +969,10 @@ msgstr "无法检索卷详情"
 
 msgid "Unable to set project quotas."
 msgstr "无法设置项目配额"
+
+#, python-format
+msgid "Unable to set replica '%s' as active."
+msgstr "无法设置副本'%s'状态为active。"
 
 msgid "Unable to unmanage share."
 msgstr "无法取消管理共享"
@@ -777,6 +1034,9 @@ msgstr "更新共享网络"
 msgid "Update Share Type"
 msgstr "更新共享类型"
 
+msgid "Updated At"
+msgstr "更新于"
+
 #, python-format
 msgid "Updated access for share type \"%s\"."
 msgstr "更新共享类型\"%s\"的访问权限"
@@ -809,6 +1069,9 @@ msgstr "用户"
 
 msgid "Visibility"
 msgstr "可见性"
+
+msgid "Writable"
+msgstr "可写入的"
 
 msgid "key=value pairs per line can be set"
 msgstr "每一行设置键值对"
