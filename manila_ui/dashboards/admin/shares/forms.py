@@ -200,10 +200,9 @@ class ManageShare(forms.SelfHandlingForm):
         max_length=255, label=_("Export location"), required=True,
         help_text=_("Export location of share. Example for NFS: "
                     "1.2.3.4:/path/to/share"))
-    protocol = forms.ChoiceField(
-        label=_("Share Protocol"), required=True,
-        choices=(('NFS', 'NFS'), ('CIFS', 'CIFS'), ('GlusterFS', 'GlusterFS'),
-                 ('HDFS', 'HDFS'), ('CephFS', 'CephFS')))
+
+    protocol = forms.ChoiceField(label=_("Share Protocol"), required=True)
+
     share_type = forms.ChoiceField(label=_("Share Type"), required=True)
 
     driver_options = forms.CharField(
@@ -228,6 +227,17 @@ class ManageShare(forms.SelfHandlingForm):
             if dhss and dhss.lower() in strutils.FALSE_STRINGS:
                 st_choices.append((st.name, st.name))
         self.fields['share_type'].choices = st_choices
+        # NOTE(vkmc): choose only those share protocols that are enabled
+        # FIXME(vkmc): this should be better implemented by having a
+        # capabilities endpoint on the control plane.
+        manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+        self.enabled_share_protocols = manila_features.get(
+            'enabled_share_protocols',
+            ['NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS'])
+        self.fields['protocol'].choices = ([(' ', ' ')] +
+                                           [(enabled_proto, enabled_proto)
+                                           for enabled_proto in
+                                           self.enabled_share_protocols])
 
     def handle(self, request, data):
         try:

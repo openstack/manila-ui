@@ -47,10 +47,15 @@ class CreateForm(forms.SelfHandlingForm):
 
     def __init__(self, request, *args, **kwargs):
         super(CreateForm, self).__init__(request, *args, **kwargs)
+        # NOTE(vkmc): choose only those share protocols that are enabled
+        # FIXME(vkmc): this should be better implemented by having a
+        # capabilities endpoint on the control plane.
         manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+        self.enabled_share_protocols = manila_features.get(
+            'enabled_share_protocols',
+            ['NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS'])
         self.enable_public_shares = manila_features.get(
             'enable_public_shares', True)
-        share_protos = ('NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS')
         share_networks = manila.share_network_list(request)
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (
@@ -105,7 +110,8 @@ class CreateForm(forms.SelfHandlingForm):
                 help_text=(
                     "If set then all tenants will be able to see this share."))
 
-        self.fields['share_proto'].choices = [(sp, sp) for sp in share_protos]
+        self.fields['share_proto'].choices = [(sp, sp) for sp in
+                                              self.enabled_share_protocols]
         if "snapshot_id" in request.GET:
             try:
                 snapshot = self.get_snapshot(request,
