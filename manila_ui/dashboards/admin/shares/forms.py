@@ -14,6 +14,7 @@
 #    under the License.
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.forms import ValidationError  # noqa
 from django.utils.translation import ugettext_lazy as _
 from oslo_utils import strutils
@@ -71,16 +72,26 @@ class MigrationStart(forms.SelfHandlingForm):
         help_text=("Defines whether this share should have all its file "
                    "metadata preserved during migration. If set so, this will "
                    "prevent the use of the Data Service for migration."))
-    new_share_network_id = forms.CharField(
-        max_length=255, label=_("ID of share network to be set in migrated "
-                                "share"), required=False,
-        help_text=_("Input the ID of the share network where the share should"
-                    " be migrated to."))
-    new_share_type_id = forms.CharField(
-        max_length=255, label=_("ID of share type to be set in migrating "
-                                "share"), required=False,
-        help_text=_("Input the ID of the share type which the migrating share"
-                    " will be set to."))
+    new_share_network = forms.ChoiceField(
+        label=_("New share network to be set in migrated share"),
+        required=False,
+        help_text=_("Input the new share network where the share should"
+                    " be migrated to if you would like to change it."))
+    new_share_type = forms.ChoiceField(
+        label=_("New share type to be set in migrating share"), required=False,
+        help_text=_("Input the new share type which the migrating share will "
+                    "be set to if you would like to change the type."))
+
+    def __init__(self, request, *args, **kwargs):
+        super(MigrationStart, self).__init__(request, *args, **kwargs)
+        share_networks = manila.share_network_list(request)
+        share_types = manila.share_type_list(request)
+        st_choices = [('', '')] + [(st.id, st.name) for st in share_types]
+        sn_choices = (
+            [('', '')] +
+            [(sn.id, sn.name or sn.id) for sn in share_networks])
+        self.fields['new_share_type'].choices = st_choices
+        self.fields['new_share_network'].choices = sn_choices
 
     def handle(self, request, data):
         share_name = _get_id_if_name_empty(data)
@@ -93,8 +104,8 @@ class MigrationStart(forms.SelfHandlingForm):
                 preserve_metadata=data['preserve_metadata'],
                 nondisruptive=data['nondisruptive'],
                 dest_host=data['host'],
-                new_share_network_id=data['new_share_network_id'],
-                new_share_type_id=data['new_share_type_id'])
+                new_share_network_id=data['new_share_network'],
+                new_share_type_id=data['new_share_type'])
 
             messages.success(
                 request,
@@ -102,8 +113,10 @@ class MigrationStart(forms.SelfHandlingForm):
                 % share_name)
             return True
         except Exception:
-            exceptions.handle(request, _("Unable to migrate share %s.")
-                              % share_name)
+            redirect = reverse("horizon:admin:shares:index")
+            exceptions.handle(
+                request, _("Unable to migrate share %s.") % share_name,
+                redirect=redirect)
         return False
 
 
