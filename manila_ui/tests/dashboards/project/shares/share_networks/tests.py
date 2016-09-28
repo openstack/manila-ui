@@ -109,8 +109,6 @@ class ShareNetworksViewTests(test.TestCase):
             api.neutron, "subnet_get", mock.Mock(return_value=subnet))
         url = reverse('horizon:project:shares:share_network_detail',
                       args=[share_net.id])
-        self.mock_object(
-            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
@@ -135,7 +133,6 @@ class ShareNetworksViewTests(test.TestCase):
             mock.ANY, share_net.neutron_net_id)
         api.neutron.subnet_get.assert_called_once_with(
             mock.ANY, share_net.neutron_subnet_id)
-        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_detail_view_network_not_found(self):
         share_net = test_data.active_share_network
@@ -149,8 +146,6 @@ class ShareNetworksViewTests(test.TestCase):
         self.mock_object(
             api_manila, "share_network_security_service_list",
             mock.Mock(return_value=[sec_service]))
-        self.mock_object(
-            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
             api.neutron, "network_get", mock.Mock(
                 side_effect=exceptions.NeutronClientException('fake', 500)))
@@ -183,7 +178,6 @@ class ShareNetworksViewTests(test.TestCase):
             mock.ANY, share_net.neutron_net_id)
         api.neutron.subnet_get.assert_called_once_with(
             mock.ANY, share_net.neutron_subnet_id)
-        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_update_share_network(self):
         share_net = test_data.inactive_share_network

@@ -180,8 +180,6 @@ class ShareViewTests(test.TestCase):
         export_locations = test_data.export_locations
         url = reverse('horizon:project:shares:detail', args=[self.share.id])
         self.mock_object(
-            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
-        self.mock_object(
             api_manila, "share_network_get", mock.Mock(return_value=share_net))
         self.mock_object(
             api_manila, "share_rules_list", mock.Mock(return_value=rules))
@@ -219,7 +217,6 @@ class ShareViewTests(test.TestCase):
             mock.ANY, self.share.id)
         api_manila.share_export_location_list.assert_called_once_with(
             mock.ANY, self.share.id)
-        self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_update_share_get(self):
         share = test_data.share
@@ -256,8 +253,6 @@ class ShareViewTests(test.TestCase):
         rules = [test_data.ip_rule, test_data.user_rule, test_data.cephx_rule]
         self.mock_object(
             api_manila, "share_rules_list", mock.Mock(return_value=rules))
-        self.mock_object(
-            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         url = reverse(
             'horizon:project:shares:manage_rules', args=[self.share.id])
 
@@ -267,7 +262,6 @@ class ShareViewTests(test.TestCase):
         self.assertTemplateUsed(res, 'project/shares/shares/manage_rules.html')
         api_manila.share_rules_list.assert_called_once_with(
             mock.ANY, self.share.id)
-        self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_create_rule_get(self):
         url = reverse('horizon:project:shares:rule_add', args=[self.share.id])
@@ -341,8 +335,6 @@ class ShareViewTests(test.TestCase):
             'totalShareGigabytesUsed': self.share.size,
         }
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
-        self.mock_object(
-            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
             quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
@@ -354,7 +346,6 @@ class ShareViewTests(test.TestCase):
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
         self.assertFalse(api_manila.share_extend.called)
         quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
-        self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_extend_share_get_with_api_exception(self):
         usage_limit = {
@@ -411,8 +402,6 @@ class ShareViewTests(test.TestCase):
             'totalShareGigabytesUsed': self.share.size,
         }
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
-        self.mock_object(
-            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
             quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
@@ -424,7 +413,6 @@ class ShareViewTests(test.TestCase):
         self.assertFalse(api_manila.share_extend.called)
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
         quotas.tenant_limit_usages.assert_called_with(mock.ANY)
-        self.assertEqual(3, neutron.is_service_enabled.call_count)
 
     def test_extend_share_post_with_api_exception(self):
         self.share.size = 5

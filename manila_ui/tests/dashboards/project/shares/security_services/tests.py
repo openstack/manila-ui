@@ -82,8 +82,6 @@ class SecurityServicesViewTests(test.TestCase):
         self.mock_object(
             api_manila, "security_service_get",
             mock.Mock(return_value=sec_service))
-        self.mock_object(
-            api.neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         url = reverse('horizon:project:shares:security_service_detail',
                       args=[sec_service.id])
 
@@ -101,7 +99,6 @@ class SecurityServicesViewTests(test.TestCase):
         self.assertNoMessages()
         api_manila.security_service_get.assert_called_once_with(
             mock.ANY, sec_service.id)
-        self.assertEqual(3, api.neutron.is_service_enabled.call_count)
 
     def test_detail_view_with_exception(self):
         url = reverse('horizon:project:shares:security_service_detail',
