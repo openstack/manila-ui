@@ -265,8 +265,6 @@ class ShareInstanceTests(test.BaseAdminViewTests):
             api_manila, "share_instance_list",
             mock.Mock(return_value=share_instances))
         self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
-        self.mock_object(
             api_keystone, "tenant_list", mock.Mock(return_value=([], None)))
 
         res = self.client.get(url)
@@ -297,7 +295,6 @@ class ShareInstanceTests(test.BaseAdminViewTests):
                 1, 200)
         api_manila.share_instance_list.assert_called_once_with(mock.ANY)
         self.assertEqual(5, api_keystone.tenant_list.call_count)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_share_instance(self):
         share_instance = test_data.share_instance
@@ -311,8 +308,6 @@ class ShareInstanceTests(test.BaseAdminViewTests):
         self.mock_object(
             api_manila, "share_instance_export_location_list",
             mock.Mock(return_value=test_data.export_locations))
-        self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
@@ -345,7 +340,6 @@ class ShareInstanceTests(test.BaseAdminViewTests):
             mock.ANY, share_instance.id)
         api_manila.share_instance_export_location_list.assert_called_once_with(
             mock.ANY, share_instance.id)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_share_instance_with_exception(self):
         share_instance = test_data.share_instance
@@ -384,8 +378,6 @@ class ShareServerTests(test.BaseAdminViewTests):
             mock.Mock(side_effect=[
                 [], [test_data.share], [test_data.nameless_share]]))
         self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
-        self.mock_object(
             api_keystone, "tenant_list",
             mock.Mock(return_value=(projects, None)))
 
@@ -414,7 +406,6 @@ class ShareServerTests(test.BaseAdminViewTests):
         ])
         api_manila.share_server_list.assert_called_once_with(mock.ANY)
         self.assertEqual(1, api_keystone.tenant_list.call_count)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_share_server(self):
         share_server = test_data.share_server
@@ -426,8 +417,6 @@ class ShareServerTests(test.BaseAdminViewTests):
             mock.Mock(return_value=share_server))
         self.mock_object(
             api_manila, "share_list", mock.Mock(return_value=shares))
-        self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
@@ -461,7 +450,6 @@ class ShareServerTests(test.BaseAdminViewTests):
             mock.ANY, share_server.id)
         api_manila.share_list.assert_called_once_with(
             mock.ANY, search_opts={"share_server_id": share_server.id})
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_share_server_with_exception(self):
         share_server = test_data.share_server
@@ -493,8 +481,6 @@ class SecurityServicesTests(test.BaseAdminViewTests):
         self.mock_object(
             api_manila, "security_service_get",
             mock.Mock(return_value=sec_service))
-        self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         url = reverse('horizon:admin:shares:security_service_detail',
                       args=[sec_service.id])
 
@@ -512,7 +498,6 @@ class SecurityServicesTests(test.BaseAdminViewTests):
         self.assertNoMessages()
         api_manila.security_service_get.assert_called_once_with(
             mock.ANY, sec_service.id)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_with_exception(self):
         url = reverse('horizon:admin:shares:security_service_detail',
@@ -576,8 +561,6 @@ class ShareNetworksTests(test.BaseAdminViewTests):
             api_neutron, "subnet_get", mock.Mock(return_value=subnet))
         url = reverse('horizon:project:shares:share_network_detail',
                       args=[share_net.id])
-        self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
@@ -602,7 +585,6 @@ class ShareNetworksTests(test.BaseAdminViewTests):
             mock.ANY, share_net.neutron_net_id)
         api_neutron.subnet_get.assert_called_once_with(
             mock.ANY, share_net.neutron_subnet_id)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_network_not_found(self):
         share_net = test_data.active_share_network
@@ -616,8 +598,6 @@ class ShareNetworksTests(test.BaseAdminViewTests):
         self.mock_object(
             api_manila, "share_network_security_service_list",
             mock.Mock(return_value=[sec_service]))
-        self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
             api_neutron, "network_get", mock.Mock(
                 side_effect=exceptions.NeutronClientException('fake', 500)))
@@ -650,7 +630,6 @@ class ShareNetworksTests(test.BaseAdminViewTests):
             mock.ANY, share_net.neutron_net_id)
         api_neutron.subnet_get.assert_called_once_with(
             mock.ANY, share_net.neutron_subnet_id)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_with_exception(self):
         url = reverse('horizon:admin:shares:share_network_detail',
@@ -710,8 +689,6 @@ class SnapshotsTests(test.BaseAdminViewTests):
             api_manila, "share_snapshot_get", mock.Mock(return_value=snapshot))
         self.mock_object(
             api_manila, "share_get", mock.Mock(return_value=share))
-        self.mock_object(
-            api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
         res = self.client.get(url)
 
@@ -728,7 +705,6 @@ class SnapshotsTests(test.BaseAdminViewTests):
         api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
         api_manila.share_snapshot_get.assert_called_once_with(
             mock.ANY, snapshot.id)
-        self.assertEqual(3, api_neutron.is_service_enabled.call_count)
 
     def test_detail_view_with_exception(self):
         url = reverse('horizon:admin:shares:snapshot-detail',
