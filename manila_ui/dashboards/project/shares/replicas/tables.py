@@ -45,8 +45,8 @@ class CreateReplica(tables.LinkAction):
     policy_rules = (("share", "share:create_replica"),)
 
     def allowed(self, request, datum=None):
-        return len(manila.share_valid_availability_zones_for_new_replica(
-            request, self.table.kwargs['share_id'])) != 0
+        share = manila.share_get(request, self.table.kwargs['share_id'])
+        return share.replication_type is not None
 
     def get_policy_target(self, request, datum=None):
         return {"project_id": getattr(datum, "project_id", None)}

@@ -55,17 +55,11 @@ class ReplicasTests(test.TestCase):
             nova,
             "availability_zone_list",
             mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
-        self.mock_object(
-            api_manila,
-            "share_replica_list",
-            mock.Mock(return_value=[test_data.share_replica]))
 
         res = self.client.get(url)
 
         self.assertEqual(200, res.status_code)
         self.assertFalse(api_manila.share_replica_create.called)
-        api_manila.share_replica_list.assert_called_once_with(
-            mock.ANY, self.share.id)
         nova.availability_zone_list.assert_called_once_with(mock.ANY)
         self.assertNoMessages()
         self.assertTemplateUsed(
@@ -86,10 +80,6 @@ class ReplicasTests(test.TestCase):
             mock.Mock(return_value=[FakeAZ(new_az), FakeAZ(old_az)]))
         self.mock_object(
             api_manila,
-            "share_replica_list",
-            mock.Mock(return_value=[test_data.share_replica]))
-        self.mock_object(
-            api_manila,
             "share_replica_create",
             mock.Mock(return_value=test_data.share_replica))
 
@@ -98,8 +88,6 @@ class ReplicasTests(test.TestCase):
         self.assertEqual(302, res.status_code)
         api_manila.share_replica_create.assert_called_once_with(
             mock.ANY, self.share.id, formData["availability_zone"])
-        api_manila.share_replica_list.assert_called_once_with(
-            mock.ANY, self.share.id)
         api_manila.share_replica_create.assert_called_once_with(
             mock.ANY, formData["share_id"], formData["availability_zone"])
         nova.availability_zone_list.assert_called_once_with(mock.ANY)

@@ -56,7 +56,8 @@ share = shares.Share(
      'created_at': '2014-01-27 10:30:00',
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
-     'availability_zone': 'Test AZ'})
+     'availability_zone': 'Test AZ',
+     'replication_type': 'readable'})
 
 nameless_share = shares.Share(
     shares.ShareManager(FakeAPIClient),

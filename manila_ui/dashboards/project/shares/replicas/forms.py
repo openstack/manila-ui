@@ -37,9 +37,7 @@ class CreateReplicaForm(forms.SelfHandlingForm):
                                                   initial=share_id)
 
         availability_zones = (
-            manila.share_valid_availability_zones_for_new_replica(
-                request, share_id)
-        )
+            manila.share_valid_availability_zones_for_new_replica(request))
 
         self.fields['availability_zone'].choices = (
             [(az, az) for az in availability_zones])
