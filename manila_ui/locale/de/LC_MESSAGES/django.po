@@ -1,0 +1,1103 @@
+# Frank Kloeker <eumel@arcor.de>, 2016. #zanata
+# Robert Simai <robert.simai@suse.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.5.2.dev2\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-10-10 13:04+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-10-11 02:07+0000\n"
+"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGiB"
+
+msgid "(Quota exceeded)"
+msgstr "(Kontingent überschritten)"
+
+msgid "Access Level"
+msgstr "Zugriffsstufe"
+
+msgid "Access To"
+msgstr "Zugriff auf"
+
+msgid "Access Type"
+msgstr "Zugriffstyp"
+
+msgid "Access to"
+msgstr "Zugriff auf"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "Aktiv"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Add Rule"
+msgstr "Regel hinzufügen"
+
+msgid "Add Security Service"
+msgstr "Sicherheitsdienst hinzufügen"
+
+msgid "Add rule"
+msgstr "Regel hinzufügen"
+
+msgid "Add security services to share network."
+msgstr "Füge Sicherheitsdienst zu Freigabenetzwerk hinzu."
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "Alle Schlüssel und Werte müssen im Bereich zwischen 1 und 255 liegen."
+
+msgid "Allow project access to share type."
+msgstr "Erlaube Projekt Zugriff auf Freigabetyp."
+
+msgid "At least one security service must be specified."
+msgstr "Wenigstens ein Sicherheitsdienst muss angegeben werden."
+
+msgid "Availability Zone"
+msgstr "Verfügbarkeitszone"
+
+msgid "Availability zone"
+msgstr "Verfügbarkeitszone"
+
+msgctxt "Current status of replica"
+msgid "Available"
+msgstr "Verfügbar"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "Verfügbar"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "Verfügbar"
+
+msgid "Available projects"
+msgstr "Verfügbare Projekte"
+
+msgid "Available security services"
+msgstr "Verfügbare Sicherheitsdienste"
+
+msgid "Cancel Migration"
+msgstr "Migration abbrechen"
+
+msgid "Cancel migration"
+msgstr "Migration abbrechen"
+
+msgid "Cancel migration of a Share"
+msgstr "Migration einer Freigabe abbrechen"
+
+msgid "Choose a snapshot"
+msgstr "Wählen Sie eine Schattenkopie"
+
+msgid "Complete Migration"
+msgstr "Migration abschliessen"
+
+msgid "Complete migration"
+msgstr "Migration abschließen"
+
+msgid "Complete migration of a Share"
+msgstr "Migration einer Freigabe abschliessen"
+
+msgid "Confirm Migration Cancelling of Share"
+msgstr "Bestätige Abbruch der Migration einer Freigabe"
+
+msgid "Confirm Migration Completion of Share"
+msgstr "Bestätige Abschluss der Migration der Freigabe"
+
+msgid "Confirm Obtaining migration progress of Share"
+msgstr "Bestätige Erhalt des Migrationsfortschritts einer Freigabe"
+
+msgid "Confirm Password"
+msgstr "Bestätige Passwort"
+
+msgid "Confirm Unmanage Share"
+msgstr "Bestätige aufheben der Verwaltung einer Freigabe"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Create Replica"
+msgstr "Erstelle Replika"
+
+msgid "Create Security Service"
+msgstr "Erstelle Sicherheitsdienst"
+
+msgid "Create Share"
+msgstr "Freigabe erstellen"
+
+msgid "Create Share Network"
+msgstr "Erstelle Freigabenetzwerk"
+
+msgid "Create Share Snapshot"
+msgstr "Erstelle Fraigaben-Schattenkopie"
+
+msgid "Create Share Type"
+msgstr "Erstelle Freigabetyp"
+
+msgid "Create Snapshot"
+msgstr "Schattenkopie erstellen"
+
+msgid "Create a Share"
+msgstr "Erstelle eine Freigabe"
+
+msgid "Created At"
+msgstr "Erstellt um"
+
+msgctxt "Current status of replica"
+msgid "Creating"
+msgstr "Erstellen"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "Erstellen"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "Erstellen"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "Erstellen"
+
+#, python-format
+msgid "Creating replica for share \"%s\"."
+msgstr "Erstelle Replika für Freigabe \"%s\"."
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "Erstelle Regel für \"%s\""
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "Erstelle Freigabe \"%s\""
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "Erstelle geteilte Schattenkopie \"%s\"."
+
+msgid "Current Size (GiB)"
+msgstr "Aktuelle Größe (GiB)"
+
+msgid "DNS IP"
+msgstr "DNS IP"
+
+msgid "Default Quota"
+msgstr "Standardkontingent"
+
+msgctxt "Current status of replica"
+msgid "Deleting"
+msgstr "Löschen"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "Löschen"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid ""
+"Destination host where share will be migrated to. Use the format "
+"'host@backend#pool'."
+msgstr ""
+"Zielhost, zu dem die Freigabe migriert wird. Benutzen Sie das Format "
+"'host@backend#pool'."
+
+msgid "Domain"
+msgstr "Domäne"
+
+msgid "Driver handles share servers"
+msgstr "Treiberhändler des Freigabeservers"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "Treiberoptionen ('volume_id' für generischen Treiber, etc...)"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "Doppelte Schlüssel '%s'."
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Edit Security Service"
+msgstr "Bearbeite Sicherheitsdienst"
+
+msgid "Edit Share"
+msgstr "Freigabe bearbeiten"
+
+msgid "Edit Share Metadata"
+msgstr "Freigabemetadaten bearbeiten"
+
+msgid "Edit Share Network"
+msgstr "Bearbeite Freigabenetzwerk"
+
+msgid "Edit Snapshot"
+msgstr "Schattenkopie bearbeiten"
+
+msgctxt "Current status of replica"
+msgid "Error"
+msgstr "Fehler"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "Fehler"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "Fehler"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "Fehler"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Expected only pairs of key=value."
+msgstr "Erwartet nur Schlüssel=Wert Paare."
+
+msgid "Export location"
+msgstr "Exportiere Lokation"
+
+msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+msgstr ""
+"Exportiere Lokation der Freigabe. Beispiel für NFS: 1.2.3.4:/path/to/share"
+
+msgid "Extend"
+msgstr "Erweitern"
+
+msgid "Extend Share"
+msgstr "Freigabe erweitern"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "Erweitere Freigabe \"%s\""
+
+msgctxt "Current status of share"
+msgid "Extending Error"
+msgstr "Erweiterungsfehler"
+
+msgid "Extra specs"
+msgstr "Extra Spezifikationen"
+
+msgid "Force Host Assisted Migration"
+msgstr "Erzwinge durch Host unterstützte Migration"
+
+msgid "From here you can update share network info. "
+msgstr "Hier können Sie Informationen zum Freigabenetzwerk aktualisieren."
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr "Hier können Sie Standardkontingente (maximale Limits) aktualisieren."
+
+msgid "Get migration progress"
+msgstr "Migrationsfortschritt abrufen"
+
+msgid ""
+"Got improper value for field 'driver_options'. Expected only pairs of "
+"key=value."
+msgstr ""
+"Falscher Wert für das Feld 'driver_options' erhalten. Erwartet werden nur "
+"Schlüssel=Wert Paare."
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Host of share"
+msgstr "Host der Freigabe"
+
+msgid "Host to migrate share"
+msgstr "Host zur Migration der Freigabe"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr ""
+"Host, auf dem die Freigabe beheimatet ist, Beispiel: some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "ID of share network to be set in migrated share"
+msgstr "ID des Freigabenetzwerkes, um es in der migrierten Freigabe zu setzen."
+
+msgid "ID of share type to be set in migrating share"
+msgstr "ID des Freigabetyps, um ihn in der migrierten Freigabe zu setzen"
+
+msgid "IP Version"
+msgstr "IP Version"
+
+msgid "Id"
+msgstr "Id"
+
+#, python-format
+msgid ""
+"Improper value set to required extra spec "
+"'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
+msgstr ""
+"Falscher Wert zum Setzen der Extra Spezifikation "
+"'spec_driver_handles_share_servers'. Erlaubte Werte sind %s. Gross- und "
+"Kleinschreibung wird ignoriert."
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "In Benutzung"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "In Benutzung"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "Inaktiv"
+
+msgid ""
+"Input the ID of the share network where the share should be migrated to."
+msgstr ""
+"Eingabe der ID des Freigabenetzwerkes, in welches die Freigabe migriert "
+"werden soll."
+
+msgid ""
+"Input the ID of the share type which the migrating share will be set to."
+msgstr ""
+"Eingabe der ID des Freigabetyps, welcher für die migrierte Freigabe gesetzt "
+"werden soll."
+
+#, python-format
+msgid "Key '%s' has improper length."
+msgstr "Schlüssel '%s' hat falsche Länge."
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "Der Schlüssel darf keine Leerzeichen enthalten. Prüfen Sie '%s'."
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "Schlüssel dürfen keine Leerzeichen enthalten. Fehler in '%s'."
+
+msgid "Make visible for all"
+msgstr "Für alle sichtbar machen"
+
+msgid "Manage"
+msgstr "Verwalten"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "Fehler verwalten"
+
+msgid "Manage Replicas"
+msgstr "Verwalte Replikas"
+
+msgid "Manage Rules"
+msgstr "Regeln verwalten"
+
+msgid "Manage Share"
+msgstr "Verwalte Freigabe"
+
+msgid "Manage Share Type Access"
+msgstr "Verwalte Freigabetypzugriff"
+
+msgid "Manage a Share"
+msgstr "Verwalten einer Freigabe"
+
+msgid "Metadata"
+msgstr "Metadaten"
+
+msgid "Migrate Share"
+msgstr "Migriere Freigabe"
+
+msgid "Migrate a Share"
+msgstr "Freigabe migrieren"
+
+msgctxt "Current status of share"
+msgid "Migrating"
+msgstr "Migrieren"
+
+msgctxt "Current status of share"
+msgid "Migrating to"
+msgstr "Migriere nach"
+
+#, python-format
+msgid "Migration of share %(name)s is at %(progress)s percent."
+msgstr "Migration der Freigabe %(name)s ist bei %(progress)s Prozent."
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr ""
+"Projektinformationen und Mitglieder wurden geändert, aber Projektkontingente "
+"können nicht aktualisieren werden."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Network Type"
+msgstr "Netzwerktyp"
+
+msgid "Networks"
+msgstr "Netzwerke"
+
+msgid "Neutron Net"
+msgstr "Neutron Netz"
+
+msgid "Neutron Net ID"
+msgstr "Neutron Netz ID"
+
+msgid "Neutron Subnet"
+msgstr "Neutron Subnetz"
+
+msgid "Neutron Subnet ID"
+msgstr "Neutron Subnetz ID"
+
+msgid "New Size (GiB)"
+msgstr "Neue Größe (GiB)"
+
+msgid "New size must be greater than current size."
+msgstr "Neue Größe muss grösser als die derzeitige Größe sein."
+
+msgid "No projects found."
+msgstr "Keine Projekte gefunden."
+
+msgid "No projects selected."
+msgstr "Keine Projekte ausgewählt."
+
+msgid "No security services found."
+msgstr "Keine Sicherheitsdienste gefunden."
+
+msgid "No security services selected."
+msgstr "Keine Sicherheitsdienste ausgewählt."
+
+msgid "No source, empty share"
+msgstr "Keine Quelle, leere Freigabe"
+
+msgid "Non-disruptive"
+msgstr "Nicht-störend"
+
+msgid "Nova Net"
+msgstr "Nova Netz"
+
+msgid "Obtain Progress"
+msgstr "Erhalte Fortschritt"
+
+msgid "Obtain migration progress of a Share"
+msgstr "Erhalte Fortschritt der Migration einer Freigabe"
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Passwords do not match."
+msgstr "Passwörter stimmen nicht überein."
+
+msgid "Preserve Metadata"
+msgstr "Metadaten behalten"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects with access to share type"
+msgstr "Projekte mit Zugriff auf Freigabetypen"
+
+msgid "Protocol"
+msgstr "Protokoll"
+
+msgid "Public"
+msgstr "Öffentlich"
+
+msgid "Quota"
+msgstr "Kontingente"
+
+msgid "Replica"
+msgstr "Replika"
+
+#, python-format
+msgid "Replica Details: %(replica_display_name)s"
+msgstr "Replika Details: %(replica_display_name)s"
+
+msgid "Replica State"
+msgstr "Replika Zustand"
+
+msgid "Replicas"
+msgstr "Replikas"
+
+msgid "Reset Replica State"
+msgstr "Replika Zustand zurücksetzen"
+
+msgid "Reset Replica Status"
+msgstr "Replika Status zurücksetzen"
+
+msgid "Reset replica state"
+msgstr "Replika Zustand zurücksetzen"
+
+msgid "Reset replica status"
+msgstr "Replika-Status zurücksetzen"
+
+msgid "Reset state"
+msgstr "Zustand zurücksetzen"
+
+msgid "Reset status"
+msgstr "Status zurücksetzen"
+
+#, python-format
+msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
+msgstr ""
+"Setze Status von Replika ('%(id)s') von '%(from)s' auf '%(to)s' zurück."
+
+#, python-format
+msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Zurücksetzen des Status von Replika ('%(id)s') von '%(from)s' zu '%(to)s'."
+
+msgid "Resync"
+msgstr "Resynchronisieren"
+
+msgid "Resync Replica"
+msgstr "Resynchronisiere Replika"
+
+msgid "Resync replica"
+msgstr "Resynchronisiere Replika"
+
+#, python-format
+msgid "Resync'ing replica '%s'"
+msgstr "Resynchronisiere Replika '%s'"
+
+msgid "Rule"
+msgstr "Regel"
+
+msgid "Rules"
+msgstr "Regeln"
+
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#, python-format
+msgid "Scheduled deletion of %(data_type)s"
+msgstr "Löschung von %(data_type)s eingeplant"
+
+msgid "Security Service"
+msgstr "Sicherheitsdienst"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "Sicherheitsdienst-Details: %(service_display_name)s"
+
+msgid "Security Services"
+msgstr "Sicherheitsdienste"
+
+msgid "Security services within share network"
+msgstr "Sicherheitsdienste in Freigabenetzwerk"
+
+msgid "Segmentation Id"
+msgstr "Segmentierungs-ID"
+
+msgid "Selected projects"
+msgstr "Ausgewählte Projekte"
+
+msgid "Selected security services"
+msgstr "Gewählte SIcherheitsdienste"
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Set Replica as Active"
+msgstr "Setze Replika auf aktiv"
+
+msgid "Set as Active"
+msgstr "Setze auf aktiv"
+
+msgid "Set maximum quotas for the project."
+msgstr "Setze maximale Kontingente für dieses Projekt."
+
+#, python-format
+msgid "Setting replica \"%s\" as active..."
+msgstr "Setze Replika \"%s\" auf aktiv..."
+
+msgid "Share"
+msgstr "Freigabe"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "Details Freigabe: %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "Freigabedetails: %(share_name)s"
+
+msgid "Share ID"
+msgstr "Freigabe-ID"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "Details Freigabeinstanz: %s"
+
+msgid "Share Instances"
+msgstr "Freigabeinstanzen"
+
+msgid "Share Name"
+msgstr "Freigabename"
+
+msgid "Share Network"
+msgstr "Freigabenetzwerk"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr "Details Freigabenetzwerk: %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "Freigabenetzwerk Informationen"
+
+msgid "Share Networks"
+msgstr "Freigabenetzwerke"
+
+msgid "Share Protocol"
+msgstr "Freigabenprotokoll"
+
+#, python-format
+msgid "Share Replicas: %(share_display_name)s"
+msgstr "Freigaben-Replikas: %(share_display_name)s"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "Freigaberegeln: %(share_display_name)s"
+
+msgid "Share Server"
+msgstr "Freigabeserver"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "Details Freigabeserver: %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "Freigabeserver-ID"
+
+msgid "Share Servers"
+msgstr "Freigabeserver"
+
+msgid "Share Snapshots"
+msgstr "Freigabe Schattenkopien"
+
+msgid "Share Snapshots Storage"
+msgstr "Freigabe Schattenkopienspeicher"
+
+msgid "Share Source"
+msgstr "Freigabequelle"
+
+msgid "Share Storage"
+msgstr "Freigabespeicher"
+
+msgid "Share Type"
+msgstr "Freigabetyp"
+
+msgid "Share Types"
+msgstr "Freigabetypen"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr ""
+"Die Freigabe kann nicht auf %(req)iGiB erweitert werden, da nur %(avail)iGiB "
+"in Ihrem Kontingent verfügbar sind."
+
+msgid "Share name to be assigned"
+msgstr "Zuzuweisender Freigabename"
+
+#, python-format
+msgid "Share replica %s has been deleted."
+msgstr "Freigabe Replika %s wurde gelöscht."
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr ""
+"Freigabegrösse muss gleich oder grösser als die Grösse der Schattenkopie "
+"sein (%sGiB)"
+
+msgid "Shares"
+msgstr "Freigaben"
+
+msgid "Shares Networks"
+msgstr "Freigabenetzwerke"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "Grösse"
+
+msgid "Size (GiB)"
+msgstr "Grösse (GiB)"
+
+msgid "Snapshot"
+msgstr "Schattenkopie"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "Schattenkopiedetails: %(snapshot_display_name)s"
+
+msgid "Snapshot Name"
+msgstr "Schattenkopiename"
+
+msgid "Snapshot Overview"
+msgstr "Übersicht Schattenkopie"
+
+msgid "Snapshots"
+msgstr "Schattenkopien"
+
+msgid "Source"
+msgstr "Quelle"
+
+msgid "Start migration"
+msgstr "Migration starten"
+
+msgid "Status"
+msgstr "Status"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "Sicherheitsdienst erfolgreich erstellt: %s"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "Freigabenetzwerk erfolgreich erstellt: %s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "Freigabetyp erfolgreich erstellt: %s"
+
+#, python-format
+msgid "Successfully sent the request to cancel migration of  share: %s."
+msgstr ""
+"Anfrage zum Abbruch der Migration der Freigabe erfolgreich gesendet: %s"
+
+#, python-format
+msgid "Successfully sent the request to complete migration of  share: %s."
+msgstr ""
+"Anfrage zum Abschließen der Migration der Freigabe erfolgreich gesendet: %s"
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "Anfrage zur Verwaltung der Freigabe erfolgreich gesendet: %s"
+
+#, python-format
+msgid "Successfully sent the request to migrate share: %s."
+msgstr "Anfrage zur Migration der Freigabe erfolgreich gesendet: %s"
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr ""
+"Anfrage zum Aufheben der Verwaltung der Freigabe erfolgreich gesendet: %s"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "Extra-Spezifikationen des Freigabetypes '%s' erfolgreich aktualisiert."
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "Erfolgreiche Aktualisierung des Sicherheitsdienstes \"%s\""
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr ""
+"Die Größe der Freigabe kann nicht kleiner als die der Schattenkopie sein "
+"(%sGiB)"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Unable to add rule."
+msgstr "Konnte Regel nicht hinzufügen."
+
+#, python-format
+msgid "Unable to cancel migration of share %s at this moment."
+msgstr "Kann Migration der Freigabe %s momentan nicht abbrechen."
+
+#, python-format
+msgid "Unable to complete migration of share %s."
+msgstr "Konnte Migration der Freigabe %s nicht fertigstellen."
+
+msgid "Unable to create security service."
+msgstr "Konnte Sicherheitsdienst nicht erstellen."
+
+msgid "Unable to create share network."
+msgstr "Konnte Freigabenetzwerk nicht erstellen."
+
+msgid "Unable to create share replica."
+msgstr "Konnte Freigabe-Replika nicht erstellen."
+
+msgid "Unable to create share snapshot."
+msgstr "Konnte Freigaben-Schattenkopie nicht erstellen."
+
+msgid "Unable to create share type."
+msgstr "Konnte Freigabetyp nicht erstellen."
+
+msgid "Unable to create share."
+msgstr "Konnte Freigabe nicht erstellen."
+
+#, python-format
+msgid "Unable to delete replica \"%s\"."
+msgstr "Konnte Replika \"%s\" nicht löschen."
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "Konnte Regel \"%s\" nicht löschen."
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "Konnte Freigabe \"%s\" nicht löschen."
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr ""
+"Konnte Schattenkopie \"%s\" nicht löschen. Eine oder mehrere Freigaben sind "
+"davon abhängig."
+
+msgid "Unable to extend share."
+msgstr "Konnte Freigabe nicht erweitern."
+
+msgid "Unable to get information about share type access."
+msgstr "Konnte Informationen über Freigabetypenzugriff nicht abrufen."
+
+msgid "Unable to get list of projects."
+msgstr "Konnte Projektliste nicht abrufen."
+
+msgid "Unable to get the security services hosts"
+msgstr "Konnte die Sicherheitsdienst-Hosts nicht abrufen"
+
+msgid "Unable to load the specified snapshot."
+msgstr "Konnte angegebene Schattenkopie nicht laden."
+
+msgid "Unable to manage share"
+msgstr "Konnte Freigabe nicht verwalten"
+
+#, python-format
+msgid "Unable to migrate share %s."
+msgstr "Konnte Freigabe %s nicht migrieren."
+
+#, python-format
+msgid "Unable to obtain progress of migration of share %s at this moment."
+msgstr ""
+"Kann den Fortschritt der Migration der Freigaben %s momentan nicht abrufen."
+
+#, python-format
+msgid "Unable to reset state of replica '%s'."
+msgstr "Konnte Status des Replika %s nicht zurücksetzen."
+
+#, python-format
+msgid "Unable to reset status of replica '%s'."
+msgstr "Konnte Status des Replika %s nicht zurücksetzen."
+
+#, python-format
+msgid "Unable to resync replica '%s'."
+msgstr "Resynchronisieren von Replika '%s' nicht möglich ."
+
+msgid "Unable to retrieve list of projects."
+msgstr "Konnte Projektliste nicht abrufen"
+
+msgid "Unable to retrieve quotas."
+msgstr "Konnte Kontingente nicht abrufen."
+
+#, python-format
+msgid "Unable to retrieve replica %sdetails."
+msgstr "Konnte Replika %sdetails nicht abrufen."
+
+#, python-format
+msgid "Unable to retrieve replica '%s'."
+msgstr "Konnte Replika '%s' nicht abrufen."
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "Konnte Details zu Sicherheitsdienst '%s' nicht abrufen."
+
+msgid "Unable to retrieve security services"
+msgstr "Konnte Sicherheitsdienste nicht abrufen"
+
+msgid "Unable to retrieve security_service."
+msgstr "Konnte Sicherheitsdienst nicht abrufen."
+
+msgid "Unable to retrieve share details."
+msgstr "Konnte Freigabendetails nicht abrufen."
+
+msgid "Unable to retrieve share instance details."
+msgstr "Konnte Freigabeinstanzdetails nicht abrufen."
+
+msgid "Unable to retrieve share instances."
+msgstr "Konnte Freigabeinstanzen nicht abrufen"
+
+msgid "Unable to retrieve share limit information."
+msgstr "Konnte Informationen zu Freigabenlimits nicht abrufen."
+
+msgid "Unable to retrieve share list."
+msgstr "Konnte Liste der Freigaben nicht abrufen"
+
+msgid "Unable to retrieve share network details."
+msgstr "Konnte Details zum Freigabenetzwerk nicht abrufen."
+
+msgid "Unable to retrieve share network."
+msgstr "Konnte Freigabenetzwerk nicht abrufen."
+
+msgid "Unable to retrieve share networks"
+msgstr "Konnte Freigabenetzwerke nicht abrufen"
+
+msgid "Unable to retrieve share replicas."
+msgstr "Konnte Freigaben-Replikas nicht abrufen."
+
+msgid "Unable to retrieve share rules."
+msgstr "Konnte Freigaberegeln nicht abrufen."
+
+msgid "Unable to retrieve share server details."
+msgstr "Konnte Details zum Freigabeserver nicht abrufen."
+
+msgid "Unable to retrieve share servers"
+msgstr "Konnte Freigabeserver nicht abrufen"
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "Konnte Freigaben-Schattenkopieliste nicht abrufen."
+
+msgid "Unable to retrieve share snapshots."
+msgstr "Konnte freigegebene Schattenkopien nicht abrufen."
+
+msgid "Unable to retrieve share types"
+msgstr "Konnte Freigabetypen nicht abrufen."
+
+msgid "Unable to retrieve share."
+msgstr "Konnte Freigabe nicht abrufen."
+
+#, python-format
+msgid "Unable to retrieve share. %s"
+msgstr "Konnte Freigabe nicht abrufen. %s"
+
+msgid "Unable to retrieve share_type."
+msgstr "Konnte den Freigabetyp nicht abrufen."
+
+msgid "Unable to retrieve snapshot details."
+msgstr "Konnte Schattenkopiedetails nicht abrufen."
+
+msgid "Unable to retrieve snapshot list."
+msgstr "Konnte Liste der Schattenkopien nicht abrufen."
+
+msgid "Unable to retrieve snapshot."
+msgstr "Konnte Schattenkopie nicht abrufen."
+
+msgid "Unable to retrieve volume details."
+msgstr "Konnte Datenträgerdetails nicht abrufen."
+
+msgid "Unable to set project quotas."
+msgstr "Konnte Projektkontingente nicht setzen."
+
+#, python-format
+msgid "Unable to set replica '%s' as active."
+msgstr "Konnte Replika \"%s\" nicht auf aktiv setzen."
+
+msgid "Unable to unmanage share."
+msgstr "Konnte Verwaltung der Freigabe nicht aufheben"
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "Konnte Zugriff für Freigabetyp \"%s\" nicht aktualisieren."
+
+msgid "Unable to update default quotas."
+msgstr "Konnte Standardkontingente nicht aktualisieren."
+
+msgid "Unable to update extra_specs for share type."
+msgstr "Konnte Extra-Spezifikationen für Freigabetyp nicht aktualisieren."
+
+msgid "Unable to update security service."
+msgstr "Konnte Sicherheitsdienst nicht aktualisieren."
+
+msgid "Unable to update share metadata."
+msgstr "Konnte Freigabe Metadaten nicht aktualisieren."
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "Konnte Freigabenetzwerk \"%s\" nicht aktualisieren."
+
+msgid "Unable to update share network."
+msgstr "Konnte Freigabenetzwerk nicht aktualisieren."
+
+msgid "Unable to update share type."
+msgstr "Konnte Freigabetyp nicht aktualisieren."
+
+msgid "Unable to update share."
+msgstr "Konnte Freigabe nicht aktualisieren."
+
+msgid "Unable to update snapshot."
+msgstr "Konnte Schattenkopie nicht aktualisieren"
+
+msgid "Unknown"
+msgstr "Unbekannt"
+
+msgid "Unmanage"
+msgstr "Verwaltung aufheben"
+
+msgctxt "Current status of share"
+msgid "Unmanage Error"
+msgstr "Fehlerverwaltung  aufheben"
+
+msgid "Unmanage Share"
+msgstr "Verwaltung der Freigabe  aufheben"
+
+msgid "Unmanage a Share"
+msgstr "Verwaltung einer Freigabe aufheben"
+
+msgid "Update"
+msgstr "Aktualisieren"
+
+msgid "Update Share Network"
+msgstr "Aktualisiere Freigabenetzwerk"
+
+msgid "Update Share Type"
+msgstr "Aktualisiere Freigabetyp"
+
+msgid "Updated At"
+msgstr "Aktualisiert um"
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "Zugriff für Freigabetyp \"%s\" aktualisiert."
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "Aktualisiere Freigabenetzwerk \"%s\"."
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "Aktualisiere Freigabe \"%s\""
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "Aktualisiere Freigabe Metadaten \"%s\""
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "Aktualisiere Freigabenetzwerk \"%s\""
+
+#, python-format
+msgid "Updating snapshot \"%s\""
+msgstr "Aktualisiere Schattenkopie \"%s\""
+
+msgid "Use snapshot as a source"
+msgstr "Benutze Schattenkopie als Quelle"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "Visibility"
+msgstr "Sichtbarkeit"
+
+msgid "Writable"
+msgstr "Beschreibbar"
+
+msgid "key=value pairs per line can be set"
+msgstr "Schlüssel=Wert Paare pro Zeile können gesetzt werden"
