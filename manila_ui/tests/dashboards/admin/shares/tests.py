@@ -137,6 +137,11 @@ class SharesTests(test.BaseAdminViewTests):
         share = test_data.share
         url = reverse('horizon:admin:shares:migration_start',
                       args=[share.id])
+        sn_choices = [test.FakeEntity('sn1_id', 'sn1_name'),
+                      test.FakeEntity('sn2_id', 'sn2_name')]
+
+        st_choices = [test.FakeEntity('st1_id', 'st1_name'),
+                      test.FakeEntity('st2_id', 'st2_name')]
         formData = {
             'share_id': share.id,
             'name': share.name,
@@ -145,14 +150,19 @@ class SharesTests(test.BaseAdminViewTests):
             'preserve_metadata': True,
             'force_host_assisted_migration': True,
             'nondisruptive': True,
-            'new_share_network_id': 'fake_net_id',
-            'new_share_type_id': 'fake_type_id',
+            'new_share_network': 'sn2_id',
+            'new_share_type': 'st2_id',
         }
-
         self.mock_object(
             api_manila, "share_get", mock.Mock(return_value=share))
-        self.mock_object(api_manila, "migration_start", mock.Mock(
-            side_effect=exc))
+        self.mock_object(
+            api_manila, "migration_start", mock.Mock(side_effect=exc))
+        self.mock_object(
+            api_manila, "share_network_list",
+            mock.Mock(return_value=sn_choices))
+        self.mock_object(
+            api_manila, "share_type_list",
+            mock.Mock(return_value=st_choices))
 
         res = self.client.post(url, formData)
 
@@ -165,17 +175,13 @@ class SharesTests(test.BaseAdminViewTests):
             writable=formData['writable'],
             preserve_metadata=formData['preserve_metadata'],
             nondisruptive=formData['nondisruptive'],
-            new_share_network_id=formData['new_share_network_id'],
-            new_share_type_id=formData['new_share_type_id'])
-
-        status_code = 200 if exc else 302
-        self.assertEqual(res.status_code, status_code)
-        if not exc:
-            self.assertTemplateNotUsed(
-                res, 'admin/shares/migration_start.html')
-            self.assertRedirectsNoFollow(res, INDEX_URL)
-        else:
-            self.assertTemplateUsed(res, 'admin/shares/migration_start.html')
+            new_share_network_id=formData['new_share_network'],
+            new_share_type_id=formData['new_share_type'])
+        api_manila.share_network_list.assert_called_once_with(mock.ANY)
+        api_manila.share_type_list.assert_called_once_with(mock.ANY)
+        self.assertEqual(302, res.status_code)
+        self.assertTemplateNotUsed(res, 'admin/shares/migration_start.html')
+        self.assertRedirectsNoFollow(res, INDEX_URL)
 
     @ddt.data('migration_start', 'migration_cancel', 'migration_complete',
               'migration_get_progress')
@@ -187,6 +193,19 @@ class SharesTests(test.BaseAdminViewTests):
             api_manila, "share_get", mock.Mock(return_value=share))
         self.mock_object(api_manila, method)
 
+        if method == 'migration_start':
+            self.mock_object(
+                api_manila, "share_network_list",
+                mock.Mock(
+                    return_value=[test.FakeEntity('sn1_id', 'sn1_name'),
+                                  test.FakeEntity('sn2_id', 'sn2_name')]))
+
+            self.mock_object(
+                api_manila, "share_type_list",
+                mock.Mock(
+                    return_value=[test.FakeEntity('st1_id', 'st1_name'),
+                                  test.FakeEntity('st2_id', 'st2_name')]))
+
         res = self.client.get(url)
 
         api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
@@ -195,6 +214,10 @@ class SharesTests(test.BaseAdminViewTests):
 
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'admin/shares/' + method + '.html')
+
+        if method == 'migration_start':
+            api_manila.share_network_list.assert_called_once_with(mock.ANY)
+            api_manila.share_type_list.assert_called_once_with(mock.ANY)
 
     @ddt.data('migration_start', 'migration_cancel', 'migration_complete',
               'migration_get_progress')

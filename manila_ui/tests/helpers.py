@@ -59,3 +59,9 @@ class APITestCase(ManilaTestsMixin, helpers.APITestCase):
         super(APITestCase, self).setUp()
         self._manilaclient = self.mock_object(api.manila, "manilaclient")
         self.manilaclient = self._manilaclient.return_value
+
+
+class FakeEntity(object):
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
