@@ -1,20 +1,20 @@
 # Aleksey Alekseenko <9118250541@mail.ru>, 2016. #zanata
 # Alexander <ainikitenkov@gmail.com>, 2016. #zanata
-# Andrew <apapsujko@gmail.com>, 2016. #zanata
 # Artem <amikhalev90@gmail.com>, 2016. #zanata
 # Ilya Alekseyev <ilyaalekseyev@acm.org>, 2016. #zanata
 # Ivan Startsev <istartsev67@gmail.com>, 2016. #zanata
 # Valentin Chikunov <vchikunov@hystax.com>, 2016. #zanata
+# Valeriy Ponomaryov <vponomaryov@mirantis.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.2.dev2\n"
+"Project-Id-Version: manila-ui 2.5.2.dev4\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-10-10 13:04+0000\n"
+"POT-Creation-Date: 2016-10-18 20:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-10-12 03:02+0000\n"
-"Last-Translator: Ivan Startsev <istartsev67@gmail.com>\n"
+"PO-Revision-Date: 2016-10-18 11:38+0000\n"
+"Last-Translator: Valeriy Ponomaryov <vponomaryov@mirantis.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "X-Generator: Zanata 3.7.3\n"
@@ -130,7 +130,7 @@ msgid "Confirm Password"
 msgstr "Подтвердите пароль"
 
 msgid "Confirm Unmanage Share"
-msgstr "Подтвердить отключение управления общим ресурсом"
+msgstr "Подтвердить разрегистрацию общего ресурса"
 
 msgid "Create"
 msgstr "Создать"
@@ -228,7 +228,7 @@ msgid "Driver handles share servers"
 msgstr "Драйвер обрабатывает сервера общих ресурсов"
 
 msgid "Driver options ('volume_id' for Generic driver, etc...)"
-msgstr "Параметры диска('volume_id' для корневого диска и т.д.)"
+msgstr "Параметры драйвера ('volume_id' для 'generic' драйвера и т.д.)"
 
 #, python-format
 msgid "Duplicated keys '%s'."
@@ -250,7 +250,7 @@ msgid "Edit Share Network"
 msgstr "Редактировать сеть общего ресурса"
 
 msgid "Edit Snapshot"
-msgstr "Изменить снапшот"
+msgstr "Изменить снимок"
 
 msgctxt "Current status of replica"
 msgid "Error"
@@ -298,6 +298,9 @@ msgstr "Ошибка расширения общего ресурса"
 msgid "Extra specs"
 msgstr "Доп. параметры"
 
+msgid "Force Host Assisted Migration"
+msgstr "Принудительно использовать хост для миграции"
+
 msgid "From here you can update share network info. "
 msgstr "Здесь вы можете обновить информацию о сети общего ресурса."
 
@@ -343,7 +346,7 @@ msgid ""
 "Improper value set to required extra spec "
 "'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
 msgstr ""
-"В требуемую дополнительную спецификацию 'spec_driver_handles_share_servers' "
+"В требуемый дополнительный параметр 'spec_driver_handles_share_servers' "
 "выставлено недопустимое значение. Допустимые значения %s. "
 "Регистронезависимое."
 
@@ -358,16 +361,6 @@ msgstr "Используется"
 msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "Неактивный"
-
-msgid ""
-"Input the ID of the share network where the share should be migrated to."
-msgstr "Введите ИД общей сети куда общий ресурс должен быть перенесен."
-
-msgid ""
-"Input the ID of the share type which the migrating share will be set to."
-msgstr ""
-"Введите ИД типа общего ресурса к которому будет присвоен переносимый общий "
-"ресурс. "
 
 #, python-format
 msgid "Key '%s' has improper length."
@@ -387,20 +380,24 @@ msgstr "Сделать видимым для всех"
 msgid "Manage"
 msgstr "Управление"
 
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "Ошибка регистрации"
+
 msgid "Manage Replicas"
-msgstr "Редактирование репликами"
+msgstr "Управление репликами общих ресурсов"
 
 msgid "Manage Rules"
 msgstr "Управление правилами"
 
 msgid "Manage Share"
-msgstr "Редактировать общий ресурс"
+msgstr "Зарегистрировать общий ресурс"
 
 msgid "Manage Share Type Access"
 msgstr "Управление доступом к типам общих ресурсов"
 
 msgid "Manage a Share"
-msgstr "Редактировать общий ресурс"
+msgstr "Зарегистрировать общий ресурс"
 
 msgid "Metadata"
 msgstr "Метаданные"
@@ -524,22 +521,22 @@ msgid "Replicas"
 msgstr "Реплики"
 
 msgid "Reset Replica State"
-msgstr "Очистить состояние реплики"
+msgstr "Сбросить состояние реплики"
 
 msgid "Reset Replica Status"
-msgstr "Очистить состояние реплики"
+msgstr "Сбросить статус реплики"
 
 msgid "Reset replica state"
-msgstr "Очистить состояние реплики"
+msgstr "Сбросить состояние реплики"
 
 msgid "Reset replica status"
-msgstr "Очистить состояние реплики"
+msgstr "Сбросить статус реплики"
 
 msgid "Reset state"
-msgstr "Очистить состояние"
+msgstr "Сбросить состояние"
 
 msgid "Reset status"
-msgstr "Очистить состояние"
+msgstr "Сбросить статус"
 
 #, python-format
 msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
@@ -547,7 +544,7 @@ msgstr "Сброс состояния реплики ('%(id)s') с '%(from)s' к
 
 #, python-format
 msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
-msgstr "Сброс копии ('%(id)s') статус из '%(from)s' в '%(to)s'."
+msgstr "Сброс статуса реплики ('%(id)s') с '%(from)s' до '%(to)s'."
 
 msgid "Resync"
 msgstr "Синхронизировать"
@@ -604,7 +601,7 @@ msgid "Set Replica as Active"
 msgstr "Назначить реплику активной"
 
 msgid "Set as Active"
-msgstr "Назначить активным"
+msgstr "Назначить активной"
 
 msgid "Set maximum quotas for the project."
 msgstr "Выставите максимальные квоты для этого проекта"
@@ -622,10 +619,10 @@ msgstr "Информация об общем ресурсе: %(share_display_nam
 
 #, python-format
 msgid "Share Details: %(share_name)s"
-msgstr "Информация о общем ресурсе: %(share_name)s"
+msgstr "Информация об общем ресурсе: %(share_name)s"
 
 msgid "Share ID"
-msgstr "ID сервера общего ресурса"
+msgstr "ID общего ресурса"
 
 #, python-format
 msgid "Share Instance Details: %s"
@@ -648,7 +645,7 @@ msgid "Share Network Info"
 msgstr "Информация о сети общего ресурса"
 
 msgid "Share Networks"
-msgstr "Сети общего ресурса"
+msgstr "Сети общих ресурсов"
 
 msgid "Share Protocol"
 msgstr "Протокол общего ресурса"
@@ -669,16 +666,16 @@ msgid "Share Server Details: %(server_name)s"
 msgstr "Информация о Сервере общего ресурса:  %(server_name)s"
 
 msgid "Share Server Id"
-msgstr "Id сервера общего ресурса"
+msgstr "ID сервера общего ресурса"
 
 msgid "Share Servers"
 msgstr "Сервера общих ресурсов"
 
 msgid "Share Snapshots"
-msgstr "Снимок общего ресурса"
+msgstr "Снимки общего ресурса"
 
 msgid "Share Snapshots Storage"
-msgstr "Общедоступное Хранилище Снимков"
+msgstr "Размер хранилица снимков общих ресурсов"
 
 msgid "Share Source"
 msgstr "Источник общего ресурса"
@@ -701,19 +698,19 @@ msgstr ""
 "составляет %(avail)i ГиБ."
 
 msgid "Share name to be assigned"
-msgstr "Имя общего ресурса будет назначено."
+msgstr "Имя общего ресурса, которое будет назначено."
 
 #, python-format
 msgid "Share replica %s has been deleted."
-msgstr "Копия общего ресурса %s была удалена."
+msgstr "Реплика общего ресурса %s была удалена."
 
 #, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr ""
-"Размер общего ресурса должен быть равным или больше размера снапшота (%sГиБ)"
+"Размер общего ресурса должен быть равным или больше размера снимка (%sГиБ)"
 
 msgid "Shares"
-msgstr "Общий ресурс"
+msgstr "Общие ресурсы"
 
 msgid "Shares Networks"
 msgstr "Сети Общего Ресурса"
@@ -732,10 +729,10 @@ msgstr "Снимок"
 
 #, python-format
 msgid "Snapshot Details: %(snapshot_display_name)s"
-msgstr "Информация о снапшоте: %(snapshot_display_name)s"
+msgstr "Информация о снимке: %(snapshot_display_name)s"
 
 msgid "Snapshot Name"
-msgstr "Имя снапшота"
+msgstr "Имя снимка"
 
 msgid "Snapshot Overview"
 msgstr "Обзор снимка"
@@ -754,11 +751,11 @@ msgstr "Статус"
 
 #, python-format
 msgid "Successfully created security service: %s"
-msgstr "Служба безопасности:%s успешно создана"
+msgstr "Служба безопасности: %s успешно создана"
 
 #, python-format
 msgid "Successfully created share network: %s"
-msgstr "Сеть общего ресурса:%s успешно создана"
+msgstr "Сеть общего ресурса: %s успешно создана"
 
 #, python-format
 msgid "Successfully created share type: %s"
@@ -774,7 +771,7 @@ msgstr "Успешно отправлен запрос на завершение
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
-msgstr "Запрос на редактирование общего ресурса:%s успешно отправлен"
+msgstr "Запрос на регистрацию общего ресурса %s успешно отправлен"
 
 #, python-format
 msgid "Successfully sent the request to migrate share: %s."
@@ -862,7 +859,7 @@ msgid "Unable to load the specified snapshot."
 msgstr "Не удается загрузить определенный снимок."
 
 msgid "Unable to manage share"
-msgstr "Невозможно отредактировать общий ресурс"
+msgstr "Невозможно зарегистрировать общий ресурс"
 
 #, python-format
 msgid "Unable to migrate share %s."
@@ -879,7 +876,7 @@ msgstr "Невозможно сбросить состояние реплики 
 
 #, python-format
 msgid "Unable to reset status of replica '%s'."
-msgstr "Невозможно очистить статус реплики '%s'."
+msgstr "Невозможно сбросить статус реплики '%s'."
 
 #, python-format
 msgid "Unable to resync replica '%s'."
@@ -994,13 +991,13 @@ msgid "Unable to update default quotas."
 msgstr "Не удалось обновить квоты по умолчанию."
 
 msgid "Unable to update extra_specs for share type."
-msgstr "не удается обновить extra_specs для типа общего ресурса."
+msgstr "Не удается обновить доп параметры для типа общего ресурса."
 
 msgid "Unable to update security service."
 msgstr "Невозможно обновить службу безопасности."
 
 msgid "Unable to update share metadata."
-msgstr "Невозможно обновить метаданные общего раздела."
+msgstr "Невозможно обновить метаданные общего ресурса."
 
 #, python-format
 msgid "Unable to update share network \"%s\"."
@@ -1022,17 +1019,17 @@ msgid "Unknown"
 msgstr "Неизвестно"
 
 msgid "Unmanage"
-msgstr "Отключить управление"
+msgstr "Разрегистрировать"
 
 msgctxt "Current status of share"
 msgid "Unmanage Error"
 msgstr "Неуправляемая ошибка"
 
 msgid "Unmanage Share"
-msgstr "Не управлять общим ресурсом"
+msgstr "Разрегистрировать общий ресурс"
 
 msgid "Unmanage a Share"
-msgstr "Не управлять общим ресурсом"
+msgstr "Разрегистрировать общий ресурс"
 
 msgid "Update"
 msgstr "Обновить"
@@ -1052,7 +1049,7 @@ msgstr "Доступ для типа общего ресурса \"%s\" обно
 
 #, python-format
 msgid "Updated share network \"%s\"."
-msgstr "Обновление сети общего доступа \"%s\"."
+msgstr "Сеть общего ресурса \"%s\" обновлена"
 
 #, python-format
 msgid "Updating share \"%s\""
@@ -1071,7 +1068,7 @@ msgid "Updating snapshot \"%s\""
 msgstr "Обновляем снимок \"%s\""
 
 msgid "Use snapshot as a source"
-msgstr "Использовать снапшот как источник"
+msgstr "Использовать снимок как источник"
 
 msgid "User"
 msgstr "Пользователь"
