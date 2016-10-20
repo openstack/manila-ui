@@ -13,7 +13,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-10-18 11:38+0000\n"
+"PO-Revision-Date: 2016-10-19 08:06+0000\n"
 "Last-Translator: Valeriy Ponomaryov <vponomaryov@mirantis.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -362,6 +362,17 @@ msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "Неактивный"
 
+msgid ""
+"Input the new share network where the share should be migrated to if you "
+"would like to change it."
+msgstr ""
+"Выберите новую сеть общего ресурса, которая будет применена при миграции"
+
+msgid ""
+"Input the new share type which the migrating share will be set to if you "
+"would like to change the type."
+msgstr "Выберите новый тип общего ресурса, который будет применён при миграции"
+
 #, python-format
 msgid "Key '%s' has improper length."
 msgstr "Ключ '%s' имеет неподходящую длину"
@@ -449,6 +460,15 @@ msgstr "ID подсети Neutron"
 
 msgid "New Size (GiB)"
 msgstr "Новый размер (ГиБ)"
+
+msgid "New share network to be set in migrated share"
+msgstr ""
+"Новая сеть общего ресурса, которая будет назначена мигрируемому общему "
+"ресурсу"
+
+msgid "New share type to be set in migrating share"
+msgstr ""
+"Новый тип общего ресурса, который будет назначен мигрируемому общему ресурсу"
 
 msgid "New size must be greater than current size."
 msgstr "Новый размер должен быть больше чем текущий размер"
