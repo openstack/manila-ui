@@ -76,15 +76,76 @@ Manila UI will now be available through OpenStack Horizon; look for
 the Shares tab under Project > Compute. You can access Horizon with
 Manila UI using the same URL and port as before.
 
-Unit testing
+_`Configuration`
+----------------
+
+It is possible to enable or disable some Manila UI features. To do so,
+look for files located in "manila_ui/enabled" directory,
+where you can redefine the values of the OPENSTACK_MANILA_FEATURES dict::
+
+    * enable_replication
+    * enable_migration
+    * enable_public_share_type_creation
+
+Note that there is a separate list of configurations for "admin" and
+"project" dashboards.
+
+Contributing
 ------------
+
+When implementing a new feature, you may think about making it optional,
+so it could be enabled or disabled in different deployments.
+
+How to use it:
+
+.. code-block:: python
+
+    from django.conf import settings
+    manila_config = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+    manila_config.get('your_new_config_option', 'value_of_config_option')
+
+See `Configuration`_ section for more configuration details.
+
+It is also expected that each addition of new logic to Manila UI is covered by
+unit tests.
+
+Test modules should be located under "manila_ui/tests", satisfying
+the following template when tests are written for a specific module::
+
+    manila_ui[/tests]/path/to/[test_]modulename.py
+
+However, when testing the flow between different modules (using test app),
+the tests can be added to a test module that can satisfy
+the following template::
+
+    manila_ui[/tests]/path/to/directory/tests.py
+
+Manila UI tests use the mock library for testing.
+
+Running unit tests
+------------------
 
 The unit tests can be executed directly from within this Manila UI plugin
 project directory by using::
 
-    cd ../manila-ui
-    ./run_tests.sh
+    $ cd ../manila-ui
+    $ tox
 
 This is made possible by the dependency in test-requirements.txt upon the
 horizon source, which pulls down all of the horizon and openstack_dashboard
 modules that the plugin uses.
+
+To run only py27 unit tests, use following command::
+
+    $ tox -e py27
+
+To run only py34 unit tests, use following command::
+
+    $ tox -e py34
+
+To run unit tests using specific Django version use the following::
+
+    $ tox -e py27dj17
+    $ tox -e py27dj18
+    $ tox -e py27dj19
+    $ tox -e py27dj110
