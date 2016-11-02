@@ -1,0 +1,1103 @@
+# suhartono <cloudsuhartono@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.5.1.dev24\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-10-21 10:01+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-10-26 09:52+0000\n"
+"Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGiB"
+
+msgid "(Quota exceeded)"
+msgstr "(Kuota terlampaui)"
+
+msgid "Access Level"
+msgstr "Access Level (tingkat akses)"
+
+msgid "Access To"
+msgstr "Access To (akses ke)"
+
+msgid "Access Type"
+msgstr "Access Type (tipe akses)"
+
+msgid "Access to"
+msgstr "Access to (akses ke)"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "Active (aktif)"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "Active (aktif)"
+
+msgid "Add"
+msgstr "Add (tambah)"
+
+msgid "Add Rule"
+msgstr "Add Rule (tambah aturan)"
+
+msgid "Add Security Service"
+msgstr "Add Security Service (tambah layanan keamanan)"
+
+msgid "Add rule"
+msgstr "Tambah aturan"
+
+msgid "Add security services to share network."
+msgstr "Menambahkan layanan keamanan untuk jaringan berbagi."
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "Semua key dan nilai-nilai harus dalam kisaran 1 sampai 255."
+
+msgid "Allow project access to share type."
+msgstr "Membolehkan akses proyek untuk tipe share."
+
+msgid "At least one security service must be specified."
+msgstr "Setidaknya satu layanan keamanan harus ditentukan."
+
+msgid "Availability Zone"
+msgstr "Availability Zone (zona ketersediaan)"
+
+msgid "Availability zone"
+msgstr "Zona ketersediaan"
+
+msgctxt "Current status of replica"
+msgid "Available"
+msgstr "Available (tersedia)"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "Available (tersedia)"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "Available (tersedia)"
+
+msgid "Available projects"
+msgstr "Proyek yang tersedia"
+
+msgid "Available security services"
+msgstr "Layanan keamanan yang tersedia"
+
+msgid "Cancel Migration"
+msgstr "Cancel Migration (pembatalan migrasi)"
+
+msgid "Cancel migration"
+msgstr "Membatalkan migrasi"
+
+msgid "Cancel migration of a Share"
+msgstr "Pembatalan migrasi share "
+
+msgid "Choose a snapshot"
+msgstr "Pilih snapshot"
+
+msgid "Complete Migration"
+msgstr "Complete Migration (menyelsaikan migrasi)"
+
+msgid "Complete migration"
+msgstr "Migrasi lengkap"
+
+msgid "Complete migration of a Share"
+msgstr "Menyelesaikan migrasi share"
+
+msgid "Confirm Migration Cancelling of Share"
+msgstr ""
+"Confirm Migration Cancelling of Share (mengkonfirmasi pembatalan migrasi "
+"share)"
+
+msgid "Confirm Migration Completion of Share"
+msgstr ""
+"Confirm Migration Completion of Share (mengkonfirmasi penyelesaian migrasi "
+"share)"
+
+msgid "Confirm Obtaining migration progress of Share"
+msgstr "Konfirmasi perolehan kemajuan migrasi share"
+
+msgid "Confirm Password"
+msgstr "Confirm Password (konfirmasi sandi)"
+
+msgid "Confirm Unmanage Share"
+msgstr "Confirm Unmanage Share (Konfirmasi share yang tidak dikelola)"
+
+msgid "Create"
+msgstr "Create (buat)"
+
+msgid "Create Replica"
+msgstr "Create Replica (buat replika)"
+
+msgid "Create Security Service"
+msgstr "Create Security Service (buat layanan keamanan)"
+
+msgid "Create Share"
+msgstr "Create Share (buat share)"
+
+msgid "Create Share Network"
+msgstr "Create Share Network (Buat jaringan berbagi)"
+
+msgid "Create Share Snapshot"
+msgstr "Create Share Snapshot (buat snapshot berbagi)"
+
+msgid "Create Share Type"
+msgstr "Create Share Type (membuat tipe share)"
+
+msgid "Create Snapshot"
+msgstr "Create Snapshot (pembuatan snapshot)"
+
+msgid "Create a Share"
+msgstr "Create a Share (Buat share)"
+
+msgid "Created At"
+msgstr "Created At"
+
+msgctxt "Current status of replica"
+msgid "Creating"
+msgstr "Creating (Pembuatan)"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "Creating (pembuatan)"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "Creating (pembuatan)"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "Creating (pembuatan)"
+
+#, python-format
+msgid "Creating replica for share \"%s\"."
+msgstr "Menciptakan replika untuk berbagi \"%s\"."
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "Membuat aturan untuk \"%s\""
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "Pembuatan share \"%s\""
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "Pembuatan snapshot berbagi \"%s\"."
+
+msgid "Current Size (GiB)"
+msgstr "Current Size (ukuran saat ini) (GiB)"
+
+msgid "DNS IP"
+msgstr "DNS IP"
+
+msgid "Default Quota"
+msgstr "Default Quota (kuota default)"
+
+msgctxt "Current status of replica"
+msgid "Deleting"
+msgstr "Deleting"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "Deleting (penghapusan)"
+
+msgid "Description"
+msgstr "Deskripsi"
+
+msgid ""
+"Destination host where share will be migrated to. Use the format "
+"'host@backend#pool'."
+msgstr ""
+"Host tujuan dimana share akan bermigrasi. Menggunakan format "
+"'host@backend#pool'."
+
+msgid "Domain"
+msgstr "Domain"
+
+msgid "Driver handles share servers"
+msgstr "Driver menangani server share"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "Opsi driver ('volume_id' untuk driver Generic, dll ...)"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "Key duplikat '%s'."
+
+msgid "Edit"
+msgstr "Edit (perbaharui)"
+
+msgid "Edit Security Service"
+msgstr "Edit Security Service (perbaharui layanan keamanan)"
+
+msgid "Edit Share"
+msgstr "Edit Share (perbaharui share)"
+
+msgid "Edit Share Metadata"
+msgstr "Edit Share Metadata (mengedit metadata berbagi)"
+
+msgid "Edit Share Network"
+msgstr "Edit Share Network (mengedit jaringan berbagi)"
+
+msgid "Edit Snapshot"
+msgstr "Edit Snapshot (mengedit snapshot)"
+
+msgctxt "Current status of replica"
+msgid "Error"
+msgstr "Error (kesalahan)"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "Error (kesalahan)"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "Error (kesalahan)"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "Error (kesalahan)"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "Error (kesalahan)"
+
+msgid "Expected only pairs of key=value."
+msgstr "Diharapkan hanya pasang key=value."
+
+msgid "Export location"
+msgstr "Lokasi ekspor"
+
+msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+msgstr "Lokasi ekspor share. misalnya untuk NFS: 1.2.3.4:/path/to/share"
+
+msgid "Extend"
+msgstr "Extend (memperluas)"
+
+msgid "Extend Share"
+msgstr "Extend Share (memperluas share)"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "Memperluas share \"%s\""
+
+msgctxt "Current status of share"
+msgid "Extending Error"
+msgstr "Extending Error (kesalahan meluas)"
+
+msgid "Extra specs"
+msgstr "Spesifikasi tambahan"
+
+msgid "Force Host Assisted Migration"
+msgstr "Force Host Assisted Migration"
+
+msgid "From here you can update share network info. "
+msgstr "Dari sini Anda dapat memperbarui informasi jaringan berbagi."
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr "Dari sini Anda dapat memperbarui kuota default (batas max)."
+
+msgid "Get migration progress"
+msgstr "Dapatkan kemajuan migrasi"
+
+msgid ""
+"Got improper value for field 'driver_options'. Expected only pairs of "
+"key=value."
+msgstr ""
+"Punya nilai yang tidak benar untuk kolom 'driver_options'. Diharapkan hanya "
+"pasangan kunci = nilai (key=value)"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Host of share"
+msgstr "Host share"
+
+msgid "Host to migrate share"
+msgstr "Host memigrasikan share"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr "Host dimana share berada, misalnya: some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP Version"
+msgstr "IP Version"
+
+msgid "Id"
+msgstr "Id"
+
+#, python-format
+msgid ""
+"Improper value set to required extra spec "
+"'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
+msgstr ""
+"Pengaturan nilai yang tidak benar untuk spesifikasi tambahan yang "
+"diperlukan  'spec_driver_handles_share_servers'. Nilai yang diperbolehkan "
+"adalah %s. Case insensitive."
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "In-use"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "In-use"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "Inactive (tidak aktif)"
+
+msgid ""
+"Input the new share network where the share should be migrated to if you "
+"would like to change it."
+msgstr ""
+"Masukan jaringan share baru dimana share harus bermigrasi jika Anda ingin "
+"mengubahnya."
+
+msgid ""
+"Input the new share type which the migrating share will be set to if you "
+"would like to change the type."
+msgstr ""
+"Masukan tipe share baru dimana pangsa bermigrasi akan ditetapkan jika Anda "
+"ingin mengubah tipe."
+
+#, python-format
+msgid "Key '%s' has improper length."
+msgstr "Key '%s' memiliki panjang yang tidak benar."
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "Key tidak bisa berisi spasi. Lihat string '%s'."
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "Key harus tidak mengandung spasi. Kesalahan dalam '%s'."
+
+msgid "Make visible for all"
+msgstr "Membuat terlihat untuk semuanya"
+
+msgid "Manage"
+msgstr "Manage (mengelola)"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "Manage Error (mengelola kesalahan)"
+
+msgid "Manage Replicas"
+msgstr "Manage Replicas (mengelola replika)"
+
+msgid "Manage Rules"
+msgstr "Manage Rules (mengelola aturan)"
+
+msgid "Manage Share"
+msgstr "Manage Share (mengelola share)"
+
+msgid "Manage Share Type Access"
+msgstr "Manage Share Type Access (mengelola akses tipe share)"
+
+msgid "Manage a Share"
+msgstr "Manage a Share (mengelola share)"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Migrate Share"
+msgstr "Migrate Share (migrasi share)"
+
+msgid "Migrate a Share"
+msgstr "Migrate a Share (memigrasi share)"
+
+msgctxt "Current status of share"
+msgid "Migrating"
+msgstr "Migrating (migrasi)"
+
+msgctxt "Current status of share"
+msgid "Migrating to"
+msgstr "Bermigrasi ke"
+
+#, python-format
+msgid "Migration of share %(name)s is at %(progress)s percent."
+msgstr "Migrasi dari share %(name)s berada pada %(progress)s persen."
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr ""
+"Informasi proyek dan anggota dimodifikasi, tetapi tidak dapat memodifikasi "
+"kuota proyek."
+
+msgid "Name"
+msgstr "Name (nama)"
+
+msgid "Network Type"
+msgstr "Network Type (tipe jaringan)"
+
+msgid "Networks"
+msgstr "Networks (jaringan)"
+
+msgid "Neutron Net"
+msgstr "Neutron Net"
+
+msgid "Neutron Net ID"
+msgstr "Neutron Net ID"
+
+msgid "Neutron Subnet"
+msgstr "Neutron Subnet (subnet Neutron)"
+
+msgid "Neutron Subnet ID"
+msgstr "Neutron Subnet ID"
+
+msgid "New Size (GiB)"
+msgstr "New Size (ukuran baru) (GiB)"
+
+msgid "New share network to be set in migrated share"
+msgstr "Jaringan share baru yang akan ditetapkan di share bermigrasi"
+
+msgid "New share type to be set in migrating share"
+msgstr "Jenis share baru yang akan diatur dalam migrasi share"
+
+msgid "New size must be greater than current size."
+msgstr ""
+"Ukuran baru (new size) harus lebih besar dari ukuran saat ini (current size)."
+
+msgid "No projects found."
+msgstr "Tidak ada proyek yang ditemukan."
+
+msgid "No projects selected."
+msgstr "Tidak ada proyek yang dipilih."
+
+msgid "No security services found."
+msgstr "Tidak ada layanan keamanan ditemukan."
+
+msgid "No security services selected."
+msgstr "Tidak ada layanan keamanan yang dipilih."
+
+msgid "No source, empty share"
+msgstr "Tidak ada sumber, share kosong"
+
+msgid "Non-disruptive"
+msgstr "Non-gangguan"
+
+msgid "Nova Net"
+msgstr "Nova Net"
+
+msgid "Obtain Progress"
+msgstr "Obtain Progress (mendapatkan kemajuan)"
+
+msgid "Obtain migration progress of a Share"
+msgstr "Mendapatkan kemajuan migrasi share"
+
+msgid "Overview"
+msgstr "Overview (ikhtisar)"
+
+msgid "Password"
+msgstr "Password (sandi)"
+
+msgid "Passwords do not match."
+msgstr "Sandi tidak cocok"
+
+msgid "Preserve Metadata"
+msgstr "Preserve Metadata (pertahankan metadata)"
+
+msgid "Project"
+msgstr "Project (proyek)"
+
+msgid "Projects with access to share type"
+msgstr "Proyek dengan akses untuk tipe share"
+
+msgid "Protocol"
+msgstr "Protocol (protokol)"
+
+msgid "Public"
+msgstr "Public (publik)"
+
+msgid "Quota"
+msgstr "Quota (kuota)"
+
+msgid "Replica"
+msgstr "Replica (replika)"
+
+#, python-format
+msgid "Replica Details: %(replica_display_name)s"
+msgstr "Rincian replika: %(replica_display_name)s"
+
+msgid "Replica State"
+msgstr "Replica State (keadaan replika)"
+
+msgid "Replicas"
+msgstr "Replicas (replika)"
+
+msgid "Reset Replica State"
+msgstr "Reset Replica State (mengatur ulang keadaan replika)"
+
+msgid "Reset Replica Status"
+msgstr "Reset Replica Status (menyetel ulang status replika)"
+
+msgid "Reset replica state"
+msgstr "Mengatur ulang keadaan replika"
+
+msgid "Reset replica status"
+msgstr "Mengatur ulang status replika"
+
+msgid "Reset state"
+msgstr "Reset state (mengatur slang status)"
+
+msgid "Reset status"
+msgstr "Mengatur ulang status"
+
+#, python-format
+msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
+msgstr "Atur ulang replika ('%(id)s') keadaan dari '%(from)s' ke '%(to)s'."
+
+#, python-format
+msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "Atur ulang replika ('%(id)s') status dari '%(from)s' ke'%(to)s'."
+
+msgid "Resync"
+msgstr "Resync"
+
+msgid "Resync Replica"
+msgstr "Resync Replica"
+
+msgid "Resync replica"
+msgstr "Resync replika"
+
+#, python-format
+msgid "Resync'ing replica '%s'"
+msgstr "Resync'ing replika '%s'"
+
+msgid "Rule"
+msgstr "Rule (aturan)"
+
+msgid "Rules"
+msgstr "Rules (aturan)"
+
+msgid "Save Changes"
+msgstr "Save Changes (simpan perubahan)"
+
+#, python-format
+msgid "Scheduled deletion of %(data_type)s"
+msgstr "Penghapusan terjadwal %(data_type)s"
+
+msgid "Security Service"
+msgstr "Security Service (layanan keamanan)"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "Rincian layanan keamanan: %(service_display_name)s"
+
+msgid "Security Services"
+msgstr "Security Services (layanan keamanan)"
+
+msgid "Security services within share network"
+msgstr "layanan keamanan dalam jaringan berbagi"
+
+msgid "Segmentation Id"
+msgstr "Segmentation Id (segmentasi Id)"
+
+msgid "Selected projects"
+msgstr "Proyek yang dipilih"
+
+msgid "Selected security services"
+msgstr "layanan keamanan terpilih"
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Set Replica as Active"
+msgstr "Menetapkan replika menjadi aktif"
+
+msgid "Set as Active"
+msgstr "Set as Active (Atur ke aktif)"
+
+msgid "Set maximum quotas for the project."
+msgstr "Menetapkan kuota maksimum untuk proyek tersebut."
+
+#, python-format
+msgid "Setting replica \"%s\" as active..."
+msgstr "Pengaturan replika \"%s\" aktif ..."
+
+msgid "Share"
+msgstr "Share"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "Share Details (rincian share): %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "Rincian share: %(share_name)s"
+
+msgid "Share ID"
+msgstr "Share ID"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "Share Instance Details (rincian instance berbagai): %s"
+
+msgid "Share Instances"
+msgstr "Share Instances (instance berbagi)"
+
+msgid "Share Name"
+msgstr "Share Name"
+
+msgid "Share Network"
+msgstr "Share Network (jaringan berbagi)"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr ""
+"Share Network Details (rincian jaringan berbagi): %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "Share Network Info (info jaringan berbagi)"
+
+msgid "Share Networks"
+msgstr "Share Networks (jaringan berbagi)"
+
+msgid "Share Protocol"
+msgstr "Share Protocol (protokol share)"
+
+#, python-format
+msgid "Share Replicas: %(share_display_name)s"
+msgstr " Replika berbagi: %(share_display_name)s"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "Share Rules (aturan share): %(share_display_name)s"
+
+msgid "Share Server"
+msgstr "Share Server"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "Share Server Details (rincian server berbagi): %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "Share Server Id"
+
+msgid "Share Servers"
+msgstr "Share Servers (server berbagi)"
+
+msgid "Share Snapshots"
+msgstr "Share Snapshots (snapshots bersama)"
+
+msgid "Share Snapshots Storage"
+msgstr "Share Snapshots Storage (penyimpanan snapshot bersama)"
+
+msgid "Share Source"
+msgstr "Share Source (berbagi sumber)"
+
+msgid "Share Storage"
+msgstr "Share Storage (penyimpanan bersama)"
+
+msgid "Share Type"
+msgstr "Share Type (tipe share)"
+
+msgid "Share Types"
+msgstr "Share Types (tipe share)"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr ""
+"Share tidak dapat diperpanjang untuk %(req)iGiB karena Anda hanya memiliki "
+"%(avail)iGiB dari kuota Anda yang tersedia."
+
+msgid "Share name to be assigned"
+msgstr "Nama share yang akan ditetapkan"
+
+#, python-format
+msgid "Share replica %s has been deleted."
+msgstr "Berbagi replika %s sudah dihapus."
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr ""
+"Ukuran berbagi (share size) harus sama atau lebih besar dari ukuran snapshot "
+"(%sGiB)"
+
+msgid "Shares"
+msgstr "Shares"
+
+msgid "Shares Networks"
+msgstr "Shares Networks (jaringan bersama)"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "Size (ukuran)"
+
+msgid "Size (GiB)"
+msgstr "Size (GiB)"
+
+msgid "Snapshot"
+msgstr "Snapshot"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "Snapshot Details (rincian snapshot) : %(snapshot_display_name)s"
+
+msgid "Snapshot Name"
+msgstr "Snapshot Name (nama snapshot)"
+
+msgid "Snapshot Overview"
+msgstr "Snapshot Overview (ikhtisar snapshot)"
+
+msgid "Snapshots"
+msgstr "Snapshots"
+
+msgid "Source"
+msgstr "Source (sumber)"
+
+msgid "Start migration"
+msgstr "Start migration (memulai migrasi)"
+
+msgid "Status"
+msgstr "Status"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "Berhasil menciptakan layanan keamanan: %s"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "Berhasil menciptakan jaringan bersama (share) :%s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "Berhasil menciptakan tipe share: %s"
+
+#, python-format
+msgid "Successfully sent the request to cancel migration of  share: %s."
+msgstr "Berhasil mengirim permintaan untuk membatalkan migrasi share: %s."
+
+#, python-format
+msgid "Successfully sent the request to complete migration of  share: %s."
+msgstr "Berhasil dikirim permintaan untuk menyelesaikan migrasi share: %s."
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "Berhasil dikirim permintaan untuk mengelola share: %s"
+
+#, python-format
+msgid "Successfully sent the request to migrate share: %s."
+msgstr "Berhasil dikirim permintaan memigrasikan share: %s."
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr ""
+"Berhasil mengirimkan permintaan untuk tidak mengelola (unmanaged) share: %s"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "Berhasil diperbarui spesifikasi tambahan untuk tipe share '%s'."
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "layanan keamanan berhasil diperbarui \"%s\""
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr ""
+"Ukuran berbagi (share size) tidak bisa kurang dari ukuran snapshot (%sGiB)"
+
+msgid "Type"
+msgstr "Type (tipe)"
+
+msgid "Unable to add rule."
+msgstr "Tidak dapat menambahkan aturan."
+
+#, python-format
+msgid "Unable to cancel migration of share %s at this moment."
+msgstr "Tidak dapat membatalkan migrasi share %s saat ini."
+
+#, python-format
+msgid "Unable to complete migration of share %s."
+msgstr "Tidak dapat menyelesaikan migrasi share %s."
+
+msgid "Unable to create security service."
+msgstr "Tidak dapat membuat layanan keamanan."
+
+msgid "Unable to create share network."
+msgstr "Tidak dapat membuat jaringan berbagi (share)."
+
+msgid "Unable to create share replica."
+msgstr "Tidak dapat membuat replika share."
+
+msgid "Unable to create share snapshot."
+msgstr "Tidak dapat membuat snapshot berbagi."
+
+msgid "Unable to create share type."
+msgstr "Tidak dapat membuat tipe share"
+
+msgid "Unable to create share."
+msgstr "Tidak dapat membuat share."
+
+#, python-format
+msgid "Unable to delete replica \"%s\"."
+msgstr "Tidak dapat menghapus replika \"%s\"."
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "Tidak dapat menghapus aturan \"%s\"."
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "Tidak dapat menghapus share \"%s\". "
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr ""
+"Tidak dapat menghapus snapshot \"%s\". Satu atau lebih share bergantung "
+"padanya."
+
+msgid "Unable to extend share."
+msgstr "Tidak dapat memperluas share."
+
+msgid "Unable to get information about share type access."
+msgstr "Tidak dapat mendapatkan informasi tentang akses tipe share."
+
+msgid "Unable to get list of projects."
+msgstr "Tidak dapat mendapatkan daftar proyek."
+
+msgid "Unable to get the security services hosts"
+msgstr "Tidak dapat mendapatkan host layanan keamanan"
+
+msgid "Unable to load the specified snapshot."
+msgstr "Tidak dapat memuat snapshot spesifik."
+
+msgid "Unable to manage share"
+msgstr "Tidak mampu mengelola share"
+
+#, python-format
+msgid "Unable to migrate share %s."
+msgstr "Tidak dapat bermigrasi share %s."
+
+#, python-format
+msgid "Unable to obtain progress of migration of share %s at this moment."
+msgstr "Tidak dapat memperoleh kemajuan migrasi share %s saat ini."
+
+#, python-format
+msgid "Unable to reset state of replica '%s'."
+msgstr "Tidak dapat mengatur ulang keadaan replika '%s'."
+
+#, python-format
+msgid "Unable to reset status of replica '%s'."
+msgstr "Tidak dapat mengatur ulang status replika '%s'."
+
+#, python-format
+msgid "Unable to resync replica '%s'."
+msgstr "Tidak dapat resync replika '%s'."
+
+msgid "Unable to retrieve list of projects."
+msgstr "Tidak dapat mengambil daftar proyek."
+
+msgid "Unable to retrieve quotas."
+msgstr "Tidak dapat mengambil kuota."
+
+#, python-format
+msgid "Unable to retrieve replica %sdetails."
+msgstr "Tidak dapat mengambil replika %sdetails."
+
+#, python-format
+msgid "Unable to retrieve replica '%s'."
+msgstr "Tidak dapat mengambil replika '%s'."
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "Tidak dapat mengambil layanan keamanan '%s' rincian."
+
+msgid "Unable to retrieve security services"
+msgstr "Tidak dapat mengambil layanan keamanan"
+
+msgid "Unable to retrieve security_service."
+msgstr "Tidak dapat mengambil security_service."
+
+msgid "Unable to retrieve share details."
+msgstr "Tidak dapat mengambil rincian saham."
+
+msgid "Unable to retrieve share instance details."
+msgstr "Tidak dapat mengambil rincian instance berbagi."
+
+msgid "Unable to retrieve share instances."
+msgstr "Tidak dapat mengambil instance berbagi."
+
+msgid "Unable to retrieve share limit information."
+msgstr "Tidak dapat mengambil informasi batas share."
+
+msgid "Unable to retrieve share list."
+msgstr "Tidak dapat mengambil daftar share."
+
+msgid "Unable to retrieve share network details."
+msgstr "Tidak dapat mengambil rincian jaringan berbagi."
+
+msgid "Unable to retrieve share network."
+msgstr "Tidak dapat mengambil jaringan berbagi."
+
+msgid "Unable to retrieve share networks"
+msgstr "Tidak dapat mengambil jaringan berbagi"
+
+msgid "Unable to retrieve share replicas."
+msgstr "Tidak dapat mengambil replika berbagi."
+
+msgid "Unable to retrieve share rules."
+msgstr "Tidak dapat mengambil aturan share."
+
+msgid "Unable to retrieve share server details."
+msgstr "Tidak dapat mengambil rincian server share."
+
+msgid "Unable to retrieve share servers"
+msgstr "Tidak dapat mengambil server berbagi"
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "Tidak dapat mengambil daftar snapshot berbagi."
+
+msgid "Unable to retrieve share snapshots."
+msgstr "Tidak dapat mengambil snapshot berbagi."
+
+msgid "Unable to retrieve share types"
+msgstr "Tidak dapat mengambil tipe share"
+
+msgid "Unable to retrieve share."
+msgstr "Tidak dapat mengambil share."
+
+#, python-format
+msgid "Unable to retrieve share. %s"
+msgstr "Tidak dapat mengambil share. %s"
+
+msgid "Unable to retrieve share_type."
+msgstr "Tidak dapat mengambil share_type."
+
+msgid "Unable to retrieve snapshot details."
+msgstr "Tidak dapat mengambil rincian snapshot."
+
+msgid "Unable to retrieve snapshot list."
+msgstr "Tidak dapat mengambil daftar snapshot."
+
+msgid "Unable to retrieve snapshot."
+msgstr "Tidak dapat mengambil snapshot."
+
+msgid "Unable to retrieve volume details."
+msgstr ""
+"Unable to retrieve volume details. (tidak dapat mengambil rincian volume)"
+
+msgid "Unable to set project quotas."
+msgstr "Tidak dapat mengatur kuota proyek."
+
+#, python-format
+msgid "Unable to set replica '%s' as active."
+msgstr "Tidak dapat mengatur replika '%s' aktif."
+
+msgid "Unable to unmanage share."
+msgstr "Tidak dapat tidak mengelola (unmanage) share."
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "Tidak dapat memperbarui akses untuk tipe share \"%s\"."
+
+msgid "Unable to update default quotas."
+msgstr "Tidak dapat memperbarui kuota default."
+
+msgid "Unable to update extra_specs for share type."
+msgstr "Tidak dapat memperbarui extra_specsuntuk tipe share."
+
+msgid "Unable to update security service."
+msgstr "Tidak dapat memperbarui layanan keamanan."
+
+msgid "Unable to update share metadata."
+msgstr "Tidak dapat memperbarui metadata berbagi."
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "Tidak dapat memperbarui jaringan berbagi \"%s\"."
+
+msgid "Unable to update share network."
+msgstr "Tidak dapat memperbarui jaringan berbagi."
+
+msgid "Unable to update share type."
+msgstr "Tidak dapat memperbarui tipe share."
+
+msgid "Unable to update share."
+msgstr "Tidak dapat memperbarui share."
+
+msgid "Unable to update snapshot."
+msgstr "Tidak dapat memperbarui snapshot."
+
+msgid "Unknown"
+msgstr "Unknown (tidak diketahui)"
+
+msgid "Unmanage"
+msgstr "Unmanage (tidak dikelola)"
+
+msgctxt "Current status of share"
+msgid "Unmanage Error"
+msgstr "Unmanage Error (kesalahan tidak dikelola)"
+
+msgid "Unmanage Share"
+msgstr "Unmanage Share (share tidak terkelola)"
+
+msgid "Unmanage a Share"
+msgstr "Unmanage a Share (tidak mengelola share)"
+
+msgid "Update"
+msgstr "Update (perbarui)"
+
+msgid "Update Share Network"
+msgstr "Update Share Network (memperharui jaringan berbagi)"
+
+msgid "Update Share Type"
+msgstr "Update Share Type (Memperbarui tipe share)"
+
+msgid "Updated At"
+msgstr "Updated At"
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "Diperbaharui akses untuk tipe share \"%s\"."
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "Diperbarui jaringan berbagi \"%s\"."
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "Perbaharui share \"%s\""
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "Memperbarui metadata berbagi \"%s\""
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "Memperbarui jaringan berbagi \"%s\""
+
+#, python-format
+msgid "Updating snapshot \"%s\""
+msgstr "Pemutakhirkan snapshot \"%s\""
+
+msgid "Use snapshot as a source"
+msgstr "Gunakan snapshot sebagai sumber"
+
+msgid "User"
+msgstr "User (pengguna)"
+
+msgid "Visibility"
+msgstr "Visibility (keterlihatan)"
+
+msgid "Writable"
+msgstr "Writable (dapat ditulis)"
+
+msgid "key=value pairs per line can be set"
+msgstr "Pasasngan key=value per baris dapat diatur"

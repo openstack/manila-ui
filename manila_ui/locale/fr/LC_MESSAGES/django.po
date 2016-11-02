@@ -1,0 +1,1072 @@
+# Gérald LONLAS <g.lonlas@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.5.1.dev24\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-10-21 10:01+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-11-01 07:30+0000\n"
+"Last-Translator: Gérald LONLAS <g.lonlas@gmail.com>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGio"
+
+msgid "(Quota exceeded)"
+msgstr "(Quota dépassé)"
+
+msgid "Access Level"
+msgstr "Niveau d'accès"
+
+msgid "Access To"
+msgstr "Accès à"
+
+msgid "Access Type"
+msgstr "Type d'accès"
+
+msgid "Access to"
+msgstr "Accès à"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "Actif"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "Actif"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Add Rule"
+msgstr "Ajouter une règle"
+
+msgid "Add Security Service"
+msgstr "Ajout d'un service de sécurité "
+
+msgid "Add rule"
+msgstr "Ajouter une règle"
+
+msgid "Add security services to share network."
+msgstr "Ajout du service de sécurité au partage réseau."
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "Toutes les clés doit avoir une valeur comprise dans la plage 1 à 255."
+
+msgid "Allow project access to share type."
+msgstr "Autoriser un projet à accéder au type de partage."
+
+msgid "At least one security service must be specified."
+msgstr "Au moins un service de sécurité doit être indiqué."
+
+msgid "Availability Zone"
+msgstr "Zone de disponibilité"
+
+msgid "Availability zone"
+msgstr "Zone de disponibilité"
+
+msgctxt "Current status of replica"
+msgid "Available"
+msgstr "Disponible"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "Disponible"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "Disponible"
+
+msgid "Available projects"
+msgstr "Projets disponibles"
+
+msgid "Available security services"
+msgstr "Service de sécurité disponible."
+
+msgid "Cancel Migration"
+msgstr "Annuler la migration"
+
+msgid "Cancel migration"
+msgstr "Annuler la migration"
+
+msgid "Cancel migration of a Share"
+msgstr "Annuler la migration d'un partage"
+
+msgid "Choose a snapshot"
+msgstr "Choisir un instantané"
+
+msgid "Complete Migration"
+msgstr "Migration terminée"
+
+msgid "Complete migration"
+msgstr "Migration terminée"
+
+msgid "Complete migration of a Share"
+msgstr "Migration du partage avec succès"
+
+msgid "Confirm Migration Cancelling of Share"
+msgstr "Confirmer l'annulation de la migration du partage"
+
+msgid "Confirm Migration Completion of Share"
+msgstr "Confirmer l'avancement de la  migration du partage"
+
+msgid "Confirm Password"
+msgstr "Confirmer le mot de passe"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Create Replica"
+msgstr "Créer un replica"
+
+msgid "Create Security Service"
+msgstr "Créer un service de sécurité "
+
+msgid "Create Share"
+msgstr "Créer un partage"
+
+msgid "Create Share Network"
+msgstr "Créer un partage réseau"
+
+msgid "Create Share Snapshot"
+msgstr "Créer l'instantané du partage"
+
+msgid "Create Share Type"
+msgstr "Créer un type de partage"
+
+msgid "Create Snapshot"
+msgstr "Créer l'instantané"
+
+msgid "Create a Share"
+msgstr "Créer un partage"
+
+msgid "Created At"
+msgstr "Créé le"
+
+msgctxt "Current status of replica"
+msgid "Creating"
+msgstr "Création en cours"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "Création en cours"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "Création en cours"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "Création en cours"
+
+#, python-format
+msgid "Creating replica for share \"%s\"."
+msgstr "Création du réplica pour le partage \"%s\"."
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "Création de la règle pour \"%s\""
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "Création du partage \"%s\""
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "Création de l'instantané partagé \"%s\"."
+
+msgid "Current Size (GiB)"
+msgstr "Taille actuelle (Gio)"
+
+msgid "DNS IP"
+msgstr "IP DNS"
+
+msgid "Default Quota"
+msgstr "Quota par défaut"
+
+msgctxt "Current status of replica"
+msgid "Deleting"
+msgstr "Suppression en cours"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "Suppression en cours"
+
+msgid "Description"
+msgstr "Description"
+
+msgid ""
+"Destination host where share will be migrated to. Use the format "
+"'host@backend#pool'."
+msgstr ""
+"Hôte de destination où le partage sera migré. Utilisez le format "
+"'host@backend#pool'."
+
+msgid "Domain"
+msgstr "Domaine"
+
+msgid "Driver handles share servers"
+msgstr "Pilote qui supporte les partages serveur"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "Option du pilote ('volume_id' pour les  Generic driver, etc...)"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "Clés dupliquées '%s'."
+
+msgid "Edit"
+msgstr "Éditer"
+
+msgid "Edit Security Service"
+msgstr "Éditer le service de sécurité "
+
+msgid "Edit Share"
+msgstr "Éditer le partage"
+
+msgid "Edit Share Metadata"
+msgstr "Éditer les métadonnées du partage"
+
+msgid "Edit Share Network"
+msgstr "Éditer le partage réseau"
+
+msgid "Edit Snapshot"
+msgstr "Éditer l'instantané"
+
+msgctxt "Current status of replica"
+msgid "Error"
+msgstr "Erreur"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "Erreur"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "Erreur"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "Erreur"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Expected only pairs of key=value."
+msgstr "Seule les paires de clé-valeur key=value sont attendus."
+
+msgid "Export location"
+msgstr "Emplacement de l'export"
+
+msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+msgstr ""
+"Emplacement de l'export du partage. Par exemple pour NFS : 1.2.3.4:/path/to/"
+"share"
+
+msgid "Extend"
+msgstr "Étendre"
+
+msgid "Extend Share"
+msgstr "Étendre le partage"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "Étendre le partage \"%s\""
+
+msgctxt "Current status of share"
+msgid "Extending Error"
+msgstr "Erreur étendue"
+
+msgid "Extra specs"
+msgstr "Spécifications supplémentaires"
+
+msgid "Force Host Assisted Migration"
+msgstr "Forcer la migration assisté de l'hôte"
+
+msgid "From here you can update share network info. "
+msgstr "D'ici, vous pouvez mettre à jour les informations du partage réseau."
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr ""
+"Ici, vous pouvez mettre à jour les quotas par défaut (limites maximales)."
+
+msgid "Get migration progress"
+msgstr "Voir l'avancement de la migration"
+
+msgid "Host"
+msgstr "Hôte"
+
+msgid "Host of share"
+msgstr "Hôte du partage"
+
+msgid "Host to migrate share"
+msgstr "Hôte pour la migration du partage"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr "Hôte où se trouve le partage, exemple : some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP Version"
+msgstr "Version d'IP"
+
+msgid "Id"
+msgstr "ID"
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "En cours d'utilisation"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "En cours d'utilisation"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "Inactif"
+
+#, python-format
+msgid "Key '%s' has improper length."
+msgstr "La clé '%s' a une longueur inappropriée."
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "La clé ne peut pas contenir d'espace. Voir la chaine '%s'."
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "La clé ne peut pas contenir d'espace. Erreur dans '%s'."
+
+msgid "Make visible for all"
+msgstr "Rendre visible pour tous"
+
+msgid "Manage"
+msgstr "Gérer"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "Erreur gérée"
+
+msgid "Manage Replicas"
+msgstr "Gérer les réplicas"
+
+msgid "Manage Rules"
+msgstr "Gérer les règles"
+
+msgid "Manage Share"
+msgstr "Gérer le partage"
+
+msgid "Manage Share Type Access"
+msgstr "Gérer les accès du type de partage"
+
+msgid "Manage a Share"
+msgstr "Gérer un partage"
+
+msgid "Metadata"
+msgstr "Métadonnées"
+
+msgid "Migrate Share"
+msgstr "Migrer le partage"
+
+msgid "Migrate a Share"
+msgstr "Migrer le partage"
+
+msgctxt "Current status of share"
+msgid "Migrating"
+msgstr "Migration en cours"
+
+msgctxt "Current status of share"
+msgid "Migrating to"
+msgstr "Migration vers"
+
+#, python-format
+msgid "Migration of share %(name)s is at %(progress)s percent."
+msgstr "Migration du partage %(name)s est à %(progress)s pourcent(s)."
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr ""
+"Les informations et les membres du projet ont bien été modifiés, mais "
+"impossible de modifier les quotas."
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Network Type"
+msgstr "Type de réseau"
+
+msgid "Networks"
+msgstr "Réseaux"
+
+msgid "Neutron Net"
+msgstr "Neutron Net"
+
+msgid "Neutron Net ID"
+msgstr "ID Neutron Net"
+
+msgid "Neutron Subnet"
+msgstr "Sous-réseau Neutron"
+
+msgid "Neutron Subnet ID"
+msgstr "ID sous-réseau Neutron"
+
+msgid "New Size (GiB)"
+msgstr "Nouvelle taille (Gio)"
+
+msgid "New share network to be set in migrated share"
+msgstr "Le nouveau partage réseau doit être mis dans le partage migré"
+
+msgid "New share type to be set in migrating share"
+msgstr ""
+"Nouveau type de partage qui doit être appliqué dans la migration de partage"
+
+msgid "New size must be greater than current size."
+msgstr "La nouvelle taille doit être supérieure à la taille en cours."
+
+msgid "No projects found."
+msgstr "Aucun projet trouvé."
+
+msgid "No projects selected."
+msgstr "Aucun projet sélectionné."
+
+msgid "No security services found."
+msgstr "Aucun service de sécurité trouvé."
+
+msgid "No security services selected."
+msgstr "Aucun service de sécurité sélectionné."
+
+msgid "No source, empty share"
+msgstr "Aucune source, partage vide"
+
+msgid "Non-disruptive"
+msgstr "Non perturbant"
+
+msgid "Nova Net"
+msgstr "Nova Net"
+
+msgid "Obtain Progress"
+msgstr ""
+"\t\n"
+"Voir l'avancement"
+
+msgid "Obtain migration progress of a Share"
+msgstr "Voir l'avancement de la migration d'un partage"
+
+msgid "Overview"
+msgstr "Vue d'ensemble"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Passwords do not match."
+msgstr "Les mots de passe ne correspondent pas."
+
+msgid "Preserve Metadata"
+msgstr "Préserver les métadonnées"
+
+msgid "Project"
+msgstr "Projet"
+
+msgid "Projects with access to share type"
+msgstr "Projets avec un accès au type de partage"
+
+msgid "Protocol"
+msgstr "Protocole"
+
+msgid "Public"
+msgstr "Public"
+
+msgid "Quota"
+msgstr "Quota"
+
+msgid "Replica"
+msgstr "Replicata"
+
+#, python-format
+msgid "Replica Details: %(replica_display_name)s"
+msgstr "Détail du replica : %(replica_display_name)s"
+
+msgid "Replica State"
+msgstr "État du replica"
+
+msgid "Replicas"
+msgstr "Réplicas"
+
+msgid "Reset Replica State"
+msgstr "Réinitialiser l'état du replica"
+
+msgid "Reset Replica Status"
+msgstr "Réinitialiser le statut du replica"
+
+msgid "Reset replica state"
+msgstr "Réinitialiser l'état du replica"
+
+msgid "Reset replica status"
+msgstr "Réinitialiser le statut du replica"
+
+msgid "Reset state"
+msgstr "Réinitialiser l'état"
+
+msgid "Reset status"
+msgstr "Réinitialiser le statut"
+
+#, python-format
+msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
+msgstr ""
+"Réinitialisation de l'état du replica ('%(id)s') de '%(from)s' à '%(to)s'."
+
+#, python-format
+msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Réinitialisation du statut du replica ('%(id)s') de '%(from)s' à '%(to)s'."
+
+msgid "Resync"
+msgstr "Resynchroniser"
+
+msgid "Resync Replica"
+msgstr "Resynchroniser le replica"
+
+msgid "Resync replica"
+msgstr "Resynchroniser le replica"
+
+#, python-format
+msgid "Resync'ing replica '%s'"
+msgstr "Resynchronisation du replica \"%s\""
+
+msgid "Rule"
+msgstr "Règle"
+
+msgid "Rules"
+msgstr "Règles"
+
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
+
+#, python-format
+msgid "Scheduled deletion of %(data_type)s"
+msgstr "Suppression de %(data_type)s programmée "
+
+msgid "Security Service"
+msgstr "Service de sécurité"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "Détail du service de sécurité : %(service_display_name)s"
+
+msgid "Security Services"
+msgstr "Services de sécurité"
+
+msgid "Security services within share network"
+msgstr "Service de sécurité dans le partage réseau"
+
+msgid "Segmentation Id"
+msgstr "ID segmentation"
+
+msgid "Selected projects"
+msgstr "Projets sélectionnés"
+
+msgid "Selected security services"
+msgstr "Service de sécurité sélectionné"
+
+msgid "Server"
+msgstr "Serveur"
+
+msgid "Set Replica as Active"
+msgstr "Mettre le replica \"%s\" à actif"
+
+msgid "Set as Active"
+msgstr "Mettre à actif"
+
+msgid "Set maximum quotas for the project."
+msgstr "Définir les quotas maximum pour le projet."
+
+#, python-format
+msgid "Setting replica \"%s\" as active..."
+msgstr "Mettre le replica \"%s\" à actif"
+
+msgid "Share"
+msgstr "Partage"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "Détails du partage : %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "Détails du partage : %(share_name)s"
+
+msgid "Share ID"
+msgstr "ID du partage"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "Détails du partage d'instance : %s"
+
+msgid "Share Instances"
+msgstr "Partage d'instance"
+
+msgid "Share Name"
+msgstr "Nom du partage"
+
+msgid "Share Network"
+msgstr "Partage réseau"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr "Détail du partage réseau : %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "Informations du partage réseau"
+
+msgid "Share Networks"
+msgstr "Partages réseau"
+
+msgid "Share Protocol"
+msgstr "Protocole de partage"
+
+#, python-format
+msgid "Share Replicas: %(share_display_name)s"
+msgstr "Replicas du partage : %(share_display_name)s"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "Règles du partage : %(share_display_name)s"
+
+msgid "Share Server"
+msgstr "Partage serveur"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "Détails du partage serveur : %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "ID du partage serveur"
+
+msgid "Share Servers"
+msgstr "Partages serveur"
+
+msgid "Share Snapshots"
+msgstr "Instantanés de partage"
+
+msgid "Share Snapshots Storage"
+msgstr "Instantané du partage de stockage"
+
+msgid "Share Source"
+msgstr "Source du partage"
+
+msgid "Share Storage"
+msgstr "Partage de stockage"
+
+msgid "Share Type"
+msgstr "Type de partage"
+
+msgid "Share Types"
+msgstr "Types de partage"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr ""
+"Le partage ne peut pas être étendu à %(req)iGio car vous avez disposez "
+"uniquement d'un quota de %(avail)iGio."
+
+msgid "Share name to be assigned"
+msgstr "Nom du partage à donner"
+
+#, python-format
+msgid "Share replica %s has been deleted."
+msgstr "Le partage de replica %s a été supprimé."
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr ""
+"La taille du partage doit être supérieure ou égale à la taille de "
+"l'instantané (%sGio)"
+
+msgid "Shares"
+msgstr "Partages"
+
+msgid "Shares Networks"
+msgstr "Partage réseau"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "Taille"
+
+msgid "Size (GiB)"
+msgstr "Taille (Gio)"
+
+msgid "Snapshot"
+msgstr "Instantané"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "Détails de l'instantané : %(snapshot_display_name)s"
+
+msgid "Snapshot Name"
+msgstr "Nom du snapshot"
+
+msgid "Snapshot Overview"
+msgstr "Aperçu de l'instantané"
+
+msgid "Snapshots"
+msgstr "Instantanés "
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Start migration"
+msgstr "Démarrer la migration"
+
+msgid "Status"
+msgstr "Statut"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "Service de sécurité créé avec succès : %s"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "Partage réseau créé avec succès : %s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "Le type de partage a été créé : %s"
+
+#, python-format
+msgid "Successfully sent the request to cancel migration of  share: %s."
+msgstr ""
+"La demande pour annuler la migration du partage a été envoyée avec succès : "
+"%s"
+
+#, python-format
+msgid "Successfully sent the request to complete migration of  share: %s."
+msgstr ""
+"La demande pour finir la migration du partage a été envoyée avec succès : %s"
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "La demande de gestion du partage a été envoyée avec succès : %s"
+
+#, python-format
+msgid "Successfully sent the request to migrate share: %s."
+msgstr "La demande de migration du partage a été envoyée avec succès : %s"
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr "La demande de non-gestion du partage a été envoyée avec succès : %s"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "Spécification supplémentaire \"%s\" mise à jour avec succès."
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "Service de sécurité \"%s\" mis à jour avec succès"
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr ""
+"La taille du partage ne peut pas être inférieure à la taille de l'instantané "
+"(%sGio)"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Unable to add rule."
+msgstr "Impossible d'ajouter la règle."
+
+#, python-format
+msgid "Unable to cancel migration of share %s at this moment."
+msgstr "Il est impossible pour le moment d'annuler la migration du partage %s."
+
+#, python-format
+msgid "Unable to complete migration of share %s."
+msgstr "Impossible de finir la migration du partage %s."
+
+msgid "Unable to create security service."
+msgstr "Impossible de créer le service de sécurité."
+
+msgid "Unable to create share network."
+msgstr "Impossible de créer le partage réseau."
+
+msgid "Unable to create share replica."
+msgstr "Impossible de créer le partage de replica."
+
+msgid "Unable to create share snapshot."
+msgstr "Impossible de créer un instantané partagé."
+
+msgid "Unable to create share type."
+msgstr "Impossible de créer le type de partage."
+
+msgid "Unable to create share."
+msgstr "Impossible de créer le partage."
+
+#, python-format
+msgid "Unable to delete replica \"%s\"."
+msgstr "Impossible de supprimer le replica \"%s\"."
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "Impossible de supprimer la règle  \"%s\"."
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "Impossible de supprimer le partage \"%s\""
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr ""
+"Impossible de supprimer l'instantané \"%s\". Un ou plusieurs partages "
+"dépendent de lui."
+
+msgid "Unable to extend share."
+msgstr "Impossible d'étendre le partage."
+
+msgid "Unable to get information about share type access."
+msgstr ""
+"Impossible de récupérer les information au sujet des accès sur le type de "
+"partage."
+
+msgid "Unable to get list of projects."
+msgstr "Impossible d'obtenir la liste des projets"
+
+msgid "Unable to get the security services hosts"
+msgstr "Impossible de récupérer les hôtes des services de sécurité"
+
+msgid "Unable to load the specified snapshot."
+msgstr "Impossible de charger l'instantané spécifié."
+
+msgid "Unable to manage share"
+msgstr "Impossible de gérer le partage."
+
+#, python-format
+msgid "Unable to migrate share %s."
+msgstr "Impossible de migrer le partage %s."
+
+#, python-format
+msgid "Unable to obtain progress of migration of share %s at this moment."
+msgstr ""
+"Il est impossible pour le moment d'obtenir la progression de la migration du "
+"partage %s."
+
+#, python-format
+msgid "Unable to reset state of replica '%s'."
+msgstr "Impossible de réinitialiser l'état du replica \"%s\"."
+
+#, python-format
+msgid "Unable to reset status of replica '%s'."
+msgstr "Impossible de réinitialiser le statut du replica \"%s\"."
+
+#, python-format
+msgid "Unable to resync replica '%s'."
+msgstr "Impossible de synchroniser le replica \"%s\"."
+
+msgid "Unable to retrieve list of projects."
+msgstr "Impossible de récupérer la liste des projets."
+
+msgid "Unable to retrieve quotas."
+msgstr "Impossible de récupérer les quotas."
+
+#, python-format
+msgid "Unable to retrieve replica %sdetails."
+msgstr "Impossible de récupérer les détails du replica \"%s\"."
+
+#, python-format
+msgid "Unable to retrieve replica '%s'."
+msgstr "Impossible de récupérer le replica \"%s\"."
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "Impossible de récupérer les détails du service de sécurité \"%s\"."
+
+msgid "Unable to retrieve security services"
+msgstr "Impossible de récupérer les services de sécurité."
+
+msgid "Unable to retrieve security_service."
+msgstr "Impossible de récupérer security_service."
+
+msgid "Unable to retrieve share details."
+msgstr "Impossible de récupérer les détails du partage."
+
+msgid "Unable to retrieve share instance details."
+msgstr "Impossible de récupérer les détails du partage d'instance."
+
+msgid "Unable to retrieve share instances."
+msgstr "Impossible de récupérer les partages d'instance"
+
+msgid "Unable to retrieve share limit information."
+msgstr "Impossible de récupérer les informations de limite du partage."
+
+msgid "Unable to retrieve share list."
+msgstr "Impossible de récupérer la liste des partages."
+
+msgid "Unable to retrieve share network details."
+msgstr "Impossible de récupérer les détails du partage réseau."
+
+msgid "Unable to retrieve share network."
+msgstr "Impossible de récupérer le partage réseau."
+
+msgid "Unable to retrieve share networks"
+msgstr "Impossible de récupérer les partages réseau"
+
+msgid "Unable to retrieve share replicas."
+msgstr "Impossible de récupérer les partages de replica."
+
+msgid "Unable to retrieve share rules."
+msgstr "Impossible de récupérer la liste des partages."
+
+msgid "Unable to retrieve share server details."
+msgstr "Impossible de récupérer les détails du partage serveur."
+
+msgid "Unable to retrieve share servers"
+msgstr "Impossible de récupérer les partages de serveur"
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "Impossible de récupérer la liste des instantanés partagés."
+
+msgid "Unable to retrieve share snapshots."
+msgstr "Impossible de récupérer les instantanés du partage."
+
+msgid "Unable to retrieve share types"
+msgstr "Impossible de récupérer les types de partage"
+
+msgid "Unable to retrieve share."
+msgstr "Impossible de récupérer le partage."
+
+#, python-format
+msgid "Unable to retrieve share. %s"
+msgstr "Impossible de récupérer les partages \"%s\"."
+
+msgid "Unable to retrieve share_type."
+msgstr "Impossible de récupérer le share_type."
+
+msgid "Unable to retrieve snapshot details."
+msgstr "Impossible de récupérer les détails de l'instantané."
+
+msgid "Unable to retrieve snapshot list."
+msgstr "Impossible de récupérer la liste des instantanés"
+
+msgid "Unable to retrieve snapshot."
+msgstr "Impossible de récupérer l'instantané."
+
+msgid "Unable to retrieve volume details."
+msgstr "Impossible de récupérer les détails du volume."
+
+msgid "Unable to set project quotas."
+msgstr "Impossible de définir les quotas du projet."
+
+#, python-format
+msgid "Unable to set replica '%s' as active."
+msgstr "Impossible de mettre le replica \"%s\" à actif."
+
+msgid "Unable to unmanage share."
+msgstr "Impossible de ne pas gérer le partage."
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "Impossible de mettre à jour le type de partage \"%s\"."
+
+msgid "Unable to update default quotas."
+msgstr "Impossible de mettre à jour les quotas par défaut."
+
+msgid "Unable to update extra_specs for share type."
+msgstr "Impossible de mettre à jour extra_specs pour le type de partage."
+
+msgid "Unable to update security service."
+msgstr "Impossible de mettre à jour le service de sécurité."
+
+msgid "Unable to update share metadata."
+msgstr "Impossible de mettre à jour les métadonnées du partage."
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "Impossible de mettre à jour le partage réseau \"%s\"."
+
+msgid "Unable to update share network."
+msgstr "Impossible de mettre à jour le partage réseau."
+
+msgid "Unable to update share type."
+msgstr "Impossible de mettre à jour le type de partage."
+
+msgid "Unable to update share."
+msgstr "Impossible de mettre à jour le partage."
+
+msgid "Unable to update snapshot."
+msgstr "Impossible de mettre à jour l'instantané."
+
+msgid "Unknown"
+msgstr "Inconnu"
+
+msgid "Unmanage"
+msgstr "Non-géré"
+
+msgctxt "Current status of share"
+msgid "Unmanage Error"
+msgstr "Erreur non-gérée"
+
+msgid "Unmanage Share"
+msgstr "Partage non-géré"
+
+msgid "Update"
+msgstr "Mettre à jour"
+
+msgid "Update Share Network"
+msgstr "Mettre à jour le partage réseau"
+
+msgid "Update Share Type"
+msgstr "Mise à jour du type de partage"
+
+msgid "Updated At"
+msgstr "Mis à jour à"
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "Mise à jour des accès pour le type de partage : \"%s\"."
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "Partage réseau mis à jour \"%s\"."
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "Mise à jour du partage \"%s\""
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "Mise à jour des métadonnées du partage \"%s\""
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "Mise à jour en cours du partage réseau \"%s\""
+
+#, python-format
+msgid "Updating snapshot \"%s\""
+msgstr "Mise à jour de l'instantané du volume \"%s\""
+
+msgid "Use snapshot as a source"
+msgstr "Utiliser un instantané comme source"
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "Visibility"
+msgstr "Visibilité"
+
+msgid "Writable"
+msgstr "Accessible en écriture"
+
+msgid "key=value pairs per line can be set"
+msgstr "paires de clé-valeur key=value par ligne peut être mise"
