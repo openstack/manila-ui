@@ -160,15 +160,16 @@ user_export_location = share_export_locations.ShareExportLocation(
 
 export_locations = [admin_export_location, user_export_location]
 
-rule = collections.namedtuple('Access', ['access_type', 'access_to', 'status',
-                                         'id'])
+rule = collections.namedtuple('Access', ['access_type', 'access_to', 'state',
+                                         'id', 'access_level', 'access_key'])
 
 user_rule = rule('user', 'someuser', 'active',
-                 '10837072-c49e-11e3-bd64-60a44c371189')
+                 '10837072-c49e-11e3-bd64-60a44c371189', 'rw', '')
 ip_rule = rule('ip', '1.1.1.1', 'active',
-               '2cc8e2f8-c49e-11e3-bd64-60a44c371189')
+               '2cc8e2f8-c49e-11e3-bd64-60a44c371189', 'rw', '')
 cephx_rule = rule('cephx', 'alice', 'active',
-                  '235481bc-1a84-11e6-9666-68f728a0492e')
+                  '235481bc-1a84-11e6-9666-68f728a0492e', 'rw',
+                  'AQAdFCNYDCapMRAANuK/CiEZbog2911a+t5dcQ==')
 
 snapshot = share_snapshots.ShareSnapshot(
     share_snapshots.ShareSnapshotManager(FakeAPIClient),

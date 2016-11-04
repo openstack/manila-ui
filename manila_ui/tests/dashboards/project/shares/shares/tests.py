@@ -212,7 +212,20 @@ class ShareViewTests(test.TestCase):
             2, 200)
         for rule in rules:
             self.assertContains(res, "<dt>%s</dt>" % rule.access_type, 1, 200)
-            self.assertContains(res, "<dd>%s</dd>" % rule.access_to, 1, 200)
+            self.assertContains(
+                res, "<div><b>Access to: </b>%s</div>" % rule.access_to,
+                1, 200)
+            if 'cephx' == rule.access_type:
+                self.assertContains(
+                    res, "<div><b>Access Key: </b>%s</div>" % rule.access_key,
+                    1, 200)
+        self.assertContains(
+            res, "<div><b>Access Key: </b></div>",
+            len(rules) - sum(r.access_type == 'cephx' for r in rules), 200)
+        self.assertContains(
+            res, "<div><b>Access Level: </b>rw</div>", len(rules), 200)
+        self.assertContains(
+            res, "<div><b>Status: </b>active</div>", len(rules), 200)
         self.assertNoMessages()
         api_manila.share_rules_list.assert_called_once_with(
             mock.ANY, self.share.id)
