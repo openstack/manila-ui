@@ -15,14 +15,14 @@ from horizon.test.settings import *  # noqa
 from openstack_dashboard.test.settings import *  # noqa
 
 # Load the pluggable dashboard settings
-import manila_ui.enabled
+import manila_ui.local.enabled
 import openstack_dashboard.enabled
 from openstack_dashboard.utils import settings
 
 MANILA_UI_APPS = list(INSTALLED_APPS) + ['manila_ui.dashboards']
 settings.update_dashboards(
     [
-        manila_ui.enabled,
+        manila_ui.local.enabled,
         openstack_dashboard.enabled,
     ],
     HORIZON_CONFIG,

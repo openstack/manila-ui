@@ -57,7 +57,8 @@ Install Manila UI with all dependencies in your virtual environment::
 
 And enable it in Horizon::
 
-    cp ../manila-ui/manila_ui/enabled/_90_manila_*.py openstack_dashboard/local/enabled
+    cp ../manila-ui/manila_ui/local/enabled/_90_manila_*.py openstack_dashboard/local/enabled
+    cp ../manila-ui/manila_ui/local/local_settings.d/_90_manila_*.py openstack_dashboard/local/local_settings.d
 
 
 Starting the app
@@ -89,15 +90,12 @@ _`Configuration`
 ----------------
 
 It is possible to enable or disable some Manila UI features. To do so,
-look for files located in "manila_ui/enabled" directory,
+look for files located in "manila_ui/local/local_settings.d/" directory,
 where you can redefine the values of the OPENSTACK_MANILA_FEATURES dict::
 
     * enable_replication
     * enable_migration
     * enable_public_share_type_creation
-
-Note that there is a separate list of configurations for "admin" and
-"project" dashboards.
 
 Contributing
 ------------

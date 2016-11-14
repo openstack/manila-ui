@@ -26,7 +26,8 @@ if is_service_enabled horizon && is_service_enabled manila && is_service_enabled
     elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
         # Configure after the other layer 1 and 2 services have been configured
         echo_summary "Configuring Manila UI"
-        cp -a ${MANILA_UI_DIR}/manila_ui/enabled/* ${DEST}/horizon/openstack_dashboard/local/enabled/
+        cp -a ${MANILA_UI_DIR}/manila_ui/local/enabled/* ${DEST}/horizon/openstack_dashboard/local/enabled/
+        cp -a ${MANILA_UI_DIR}/manila_ui/local/local_settings.d/* ${DEST}/horizon/openstack_dashboard/local/local_settings.d/
     elif [[ "$1" == "stack" && "$2" == "extra" ]]; then
         # no-op
         :

@@ -27,9 +27,3 @@ ADD_EXCEPTIONS = {
     'not_found': exceptions.NOT_FOUND,
     'unauthorized': exceptions.UNAUTHORIZED,
 }
-
-# The OPENSTACK_MANILA_FEATURES settings can be used to enable or disable
-# various services provided by manila.
-OPENSTACK_MANILA_FEATURES = {
-    'enable_replication': True,
-}
