@@ -1,0 +1,939 @@
+# Stanislav Ulrych <stanislav.ulrych@ultimum.io>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.5.1.dev31\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-11-14 22:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-11-24 11:18+0000\n"
+"Last-Translator: Stanislav Ulrych <stanislav.ulrych@ultimum.io>\n"
+"Language-Team: Czech\n"
+"Language: cs\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGiB"
+
+msgid "(Quota exceeded)"
+msgstr "(kvóta překročena)"
+
+msgid "Access Level"
+msgstr "Úroveň přístupu"
+
+msgid "Access To"
+msgstr "Přístup do"
+
+msgid "Access Type"
+msgstr "Typ přístupu"
+
+msgid "Access to"
+msgstr "Přístup do"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "Aktivní"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "Aktivní"
+
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Add Rule"
+msgstr "Přidat pravidlo"
+
+msgid "Add Security Service"
+msgstr "Přidat bezpečnostní službu"
+
+msgid "Add rule"
+msgstr "Přidat pravidlo"
+
+msgid "Add security services to share network."
+msgstr "Přidat bezpečnostní služby do sítě sdílení."
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "Všechny klíče a hodnoty musí být v rozsau 1 až 255."
+
+msgid "Allow project access to share type."
+msgstr "Povolit projektu přístup k typu sdílení"
+
+msgid "At least one security service must be specified."
+msgstr "Musí být zadána alespoň jedna bezpečnostní služba."
+
+msgid "Availability Zone"
+msgstr "Zóna dostupnosti"
+
+msgid "Availability zone"
+msgstr "Zóna dostupnosti"
+
+msgctxt "Current status of replica"
+msgid "Available"
+msgstr "Dostupné"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "Dostupné"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "Dostupné"
+
+msgid "Available projects"
+msgstr "Dostupné projekty"
+
+msgid "Available security services"
+msgstr "Dostupné bezpečnostní služby"
+
+msgid "Cancel Migration"
+msgstr "Zrušit migraci"
+
+msgid "Cancel migration"
+msgstr "Zrušit migraci"
+
+msgid "Cancel migration of a Share"
+msgstr "Zrušit migraci sdílení"
+
+msgid "Choose a snapshot"
+msgstr "Zvolte snapshot"
+
+msgid "Complete Migration"
+msgstr "Dokončit migraci"
+
+msgid "Complete migration"
+msgstr "Dokončit migraci"
+
+msgid "Complete migration of a Share"
+msgstr "Dokončit migraci sdílení"
+
+msgid "Confirm Migration Cancelling of Share"
+msgstr "Potvrdit zrušení migrace sdílení"
+
+msgid "Confirm Migration Completion of Share"
+msgstr "Potvrdit dokončení migraci sdílení"
+
+msgid "Confirm Password"
+msgstr "Potvrdit heslo"
+
+msgid "Create"
+msgstr "Vytvořit"
+
+msgid "Create Replica"
+msgstr "Vytvořit repliku"
+
+msgid "Create Security Service"
+msgstr "Vytvořit bezpečnostní službu"
+
+msgid "Create Share"
+msgstr "Vytvořit sdílení"
+
+msgid "Create Share Network"
+msgstr "Vytvořit síť sdílení"
+
+msgid "Create Share Snapshot"
+msgstr "Vytvořit snapshot sdílení."
+
+msgid "Create Share Type"
+msgstr "Vytvořit typ sdílení"
+
+msgid "Create Snapshot"
+msgstr "Vytvořit snapshot"
+
+msgid "Create a Share"
+msgstr "Vytvořit sdílení"
+
+msgid "Created At"
+msgstr "Vytvořeno"
+
+msgctxt "Current status of replica"
+msgid "Creating"
+msgstr "Vytváření"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "Vytváření"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "Vytváření"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "Výtvářeno"
+
+#, python-format
+msgid "Creating replica for share \"%s\"."
+msgstr "Vytváření repliky pro sdílení \"%s\"."
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "Vytváření pravidla pro \"%s\""
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "Vytváření sdílení \"%s\""
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "Vytváření snapshotu sdílení \"%s\"."
+
+msgid "Current Size (GiB)"
+msgstr "Současná velikost (GiB)"
+
+msgid "DNS IP"
+msgstr "DNS IP"
+
+msgid "Default Quota"
+msgstr "Výchozí kvóta"
+
+msgctxt "Current status of replica"
+msgid "Deleting"
+msgstr "Mazání"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "Mazání"
+
+msgid "Description"
+msgstr "Popis"
+
+msgid ""
+"Destination host where share will be migrated to. Use the format "
+"'host@backend#pool'."
+msgstr ""
+"Cílový hostitel, na který bude sdílení migrováno. Použijte formát "
+"'host@backend#pool'."
+
+msgid "Domain"
+msgstr "Doména"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "Volby driveru ('volume_id' pro generický driver atd.)"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "Duplikátní klíče '%s'."
+
+msgid "Edit"
+msgstr "Upravit"
+
+msgid "Edit Security Service"
+msgstr "Upravit bezpečnostní službu"
+
+msgid "Edit Share"
+msgstr "Upravit sdílení"
+
+msgid "Edit Share Metadata"
+msgstr "Upravit metadata sdílení"
+
+msgid "Edit Share Network"
+msgstr "Upravit síť sdílení"
+
+msgid "Edit Snapshot"
+msgstr "Upravit snapshot"
+
+msgctxt "Current status of replica"
+msgid "Error"
+msgstr "Chyba"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "Chyba"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "Chyba"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "Chyba"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Extend"
+msgstr "Rozšířit"
+
+msgid "Extend Share"
+msgstr "Rozšířit sdílení"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "Zvětšit sdílení \"%s\""
+
+msgid "Extra specs"
+msgstr "Dodatečné specifikace"
+
+msgid "Force Host Assisted Migration"
+msgstr "Vynutit migraci asistovanou hostitelem"
+
+msgid "From here you can update share network info. "
+msgstr "Zde můžete upravit informace o síti sdílení."
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr "Zde můžete aktualizovat výchozí kvóty (max. limity)."
+
+msgid "Host"
+msgstr "Hostitel"
+
+msgid "Host of share"
+msgstr "Hostitel sdílení"
+
+msgid "Host to migrate share"
+msgstr "Hostitel na který má být sdílení migrováno"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr "Hostitel, na němž se sdílení nachází, příklad: some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP Version"
+msgstr "Verze IP"
+
+msgid "Id"
+msgstr "Id"
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "Používá se"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "Používá se"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "Neaktivní"
+
+msgid ""
+"Input the new share type which the migrating share will be set to if you "
+"would like to change the type."
+msgstr "Zadejte nový typ sdílení pokud jej chcete změnit při migraci."
+
+#, python-format
+msgid "Key '%s' has improper length."
+msgstr "Klíč '%s' nemá správnou délku."
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "Klíč nemůže obsahovat mezery. Viz řetězec '%s'."
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "Klíče nemohou obsahovat mezery. Chyba v '%s'."
+
+msgid "Make visible for all"
+msgstr "Učinit viditelné pro všechny"
+
+msgid "Manage"
+msgstr "Spravovat"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "Spravovat chyby"
+
+msgid "Manage Rules"
+msgstr "Správa pravidel"
+
+msgid "Manage Share Type Access"
+msgstr "Spravovat přístup typů sdílení"
+
+msgid "Manage a Share"
+msgstr "Spravovat sdílení"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Migrate Share"
+msgstr "Migrovat sdílení"
+
+msgid "Migrate a Share"
+msgstr "Migrovat sdílení"
+
+msgctxt "Current status of share"
+msgid "Migrating"
+msgstr "Migrace"
+
+msgctxt "Current status of share"
+msgid "Migrating to"
+msgstr "Migrace do"
+
+#, python-format
+msgid "Migration of share %(name)s is at %(progress)s percent."
+msgstr "Migrace sdílení %(name)s je hotová z %(progress)s procent."
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr ""
+"Informace o projektu a členové projektu modifikováni, ale modifikace kvót "
+"selhala."
+
+msgid "Name"
+msgstr "Název"
+
+msgid "Network Type"
+msgstr "Typ sítě"
+
+msgid "Networks"
+msgstr "Sítě"
+
+msgid "Neutron Net"
+msgstr "Neutron síť"
+
+msgid "Neutron Net ID"
+msgstr "Neutron Net ID"
+
+msgid "Neutron Subnet"
+msgstr "Neutron podsíť"
+
+msgid "Neutron Subnet ID"
+msgstr "Neutron Subnet ID"
+
+msgid "New Size (GiB)"
+msgstr "Nová velkost (GiB)"
+
+msgid "New share network to be set in migrated share"
+msgstr "Nová síť sdílení pro zmigrované sdílení"
+
+msgid "New size must be greater than current size."
+msgstr "Nová velikost musí být větší než současná."
+
+msgid "No projects found."
+msgstr "Nenalezeny žádné projekty."
+
+msgid "No projects selected."
+msgstr "Nevybrány žádné projekty."
+
+msgid "No security services found."
+msgstr "Nenalezeny žádné bezpečnostní služby."
+
+msgid "No security services selected."
+msgstr "Nevybrány žádné bezpečnostní služby."
+
+msgid "No source, empty share"
+msgstr "Žádný zdroj, prázdné sdílení"
+
+msgid "Nova Net"
+msgstr "Nova Net"
+
+msgid "Overview"
+msgstr "Přehled"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Passwords do not match."
+msgstr "Hesla se neshodují."
+
+msgid "Preserve Metadata"
+msgstr "Zachovat metadata"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects with access to share type"
+msgstr "Projekty s přístupem k typu sdílení"
+
+msgid "Protocol"
+msgstr "Protokol"
+
+msgid "Public"
+msgstr "Veřejný"
+
+msgid "Quota"
+msgstr "Kvóta"
+
+#, python-format
+msgid "Replica Details: %(replica_display_name)s"
+msgstr "Detaily repliky: %(replica_display_name)s"
+
+msgid "Replica State"
+msgstr "Stav repliky"
+
+msgid "Rule"
+msgstr "Pravidlo"
+
+msgid "Rules"
+msgstr "Pravidla"
+
+msgid "Save Changes"
+msgstr "Uložit změny"
+
+#, python-format
+msgid "Scheduled deletion of %(data_type)s"
+msgstr "Mazání %(data_type)s naplánováno"
+
+msgid "Security Service"
+msgstr "Bezpečnostní služba"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "Detaily bezpečnostní služby: %(service_display_name)s"
+
+msgid "Security Services"
+msgstr "Bezpečnostní služby"
+
+msgid "Security services within share network"
+msgstr "Bezpečnostní služby v síti sdílení"
+
+msgid "Segmentation Id"
+msgstr "ID segmentace"
+
+msgid "Selected projects"
+msgstr "Vybrané projekty"
+
+msgid "Selected security services"
+msgstr "Vybrané bezpečnostní služby"
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Set Replica as Active"
+msgstr "Nastavit repliku jako aktivní"
+
+msgid "Set as Active"
+msgstr "Nastavit jako aktivní"
+
+msgid "Set maximum quotas for the project."
+msgstr "Nastavit maximální kvóty pro projekt."
+
+#, python-format
+msgid "Setting replica \"%s\" as active..."
+msgstr "Nastavování repliky \"%s\" jako aktivní..."
+
+msgid "Share"
+msgstr "Sdílení"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "Detaily sdílení: %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "Detaily sdílení: %(share_name)s"
+
+msgid "Share ID"
+msgstr "Share ID"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "Detaily instance sdílení: %s"
+
+msgid "Share Instances"
+msgstr "Instance sdílení"
+
+msgid "Share Name"
+msgstr "Název sdílení"
+
+msgid "Share Network"
+msgstr "Síť sdílení"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr "Detaily sítě sdílení: %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "Informace o síti sdílení"
+
+msgid "Share Networks"
+msgstr "Sítě sdílení"
+
+msgid "Share Protocol"
+msgstr "Protokol sdílení"
+
+#, python-format
+msgid "Share Replicas: %(share_display_name)s"
+msgstr "Repliky sdílení: %(share_display_name)s"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "Pravidla sdílení: %(share_display_name)s"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "Detaily serveru sdílení: %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "Id serveru sdílení"
+
+msgid "Share Servers"
+msgstr "Servery sdílení"
+
+msgid "Share Snapshots"
+msgstr "Snapshoty sdílení"
+
+msgid "Share Snapshots Storage"
+msgstr "Úložiště snapshotů sdílení"
+
+msgid "Share Source"
+msgstr "Zdroj sdílení"
+
+msgid "Share Storage"
+msgstr "Sdílené úložiště"
+
+msgid "Share Type"
+msgstr "Typ sdílení"
+
+msgid "Share Types"
+msgstr "Typy sdílení"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr ""
+"Sdílení nemůže být zvětšeno na %(req)iGiB, protože máte dostupných pouze "
+"%(avail)iGiB z vaší kvóty."
+
+msgid "Share name to be assigned"
+msgstr "Název sdílení, který bude přidělen."
+
+#, python-format
+msgid "Share replica %s has been deleted."
+msgstr "Replika sdílení %s byla smazána."
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr "Velikost sdílení musí být větší nebo roven velikosti snapshotu (%sGiB)"
+
+msgid "Shares"
+msgstr "Sdílení"
+
+msgid "Shares Networks"
+msgstr "Sítě sdílení"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "Velikost"
+
+msgid "Size (GiB)"
+msgstr "Velikost (GiB)"
+
+msgid "Snapshot"
+msgstr "Snapshot"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "Detaily snapshot: %(snapshot_display_name)s"
+
+msgid "Snapshot Name"
+msgstr "Název snapshotu"
+
+msgid "Snapshot Overview"
+msgstr "Přehled snapshotů"
+
+msgid "Snapshots"
+msgstr "Snapshoty"
+
+msgid "Source"
+msgstr "Zdroj"
+
+msgid "Start migration"
+msgstr "Spustit migraci"
+
+msgid "Status"
+msgstr "Status"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "Úspěšně vytvořena bezpečnostní služba: %s"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "Úspěšně vytvořena síť sdílení: %s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "Úspěšně vytvořen typ sdílení: %s"
+
+#, python-format
+msgid "Successfully sent the request to cancel migration of  share: %s."
+msgstr "Požadavek na zrušení migrace sdílení odeslán úspěšně: %s."
+
+#, python-format
+msgid "Successfully sent the request to complete migration of  share: %s."
+msgstr "Požadavek na dokončení migrace sdílení odeslán úspěšně: %s."
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "Žádost o správu sdílení byla úspěšně odeslána: %s"
+
+#, python-format
+msgid "Successfully sent the request to migrate share: %s."
+msgstr "Požadavek na migraci sdílení odeslán úspěšně: %s."
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr "Žádost o zrušení správy sdílení byla úspěšně odeslána: %s"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "Úspěšně aktualizovány dodatečné specifikace pro typ sdílení '%s'."
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "Úspěšně aktualizována bezpečnostní služba: %s"
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr "Velikost sdílení nemůže být menší než velikost snapshotu (%sGiB)"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Unable to add rule."
+msgstr "Nelze přidat pravidlo."
+
+#, python-format
+msgid "Unable to cancel migration of share %s at this moment."
+msgstr "Momentálně nelze zrušit migraci sdílení %s."
+
+#, python-format
+msgid "Unable to complete migration of share %s."
+msgstr "Nelze dokončit migraci sdílení %s."
+
+msgid "Unable to create security service."
+msgstr "Nelze vytvořit bezpečnostní službu."
+
+msgid "Unable to create share network."
+msgstr "Nelze vytvořit sít sdílení."
+
+msgid "Unable to create share replica."
+msgstr "Nelze vytvořit repliku sdílení."
+
+msgid "Unable to create share snapshot."
+msgstr "Nelze vytvořit snapshot sdílení."
+
+msgid "Unable to create share type."
+msgstr "Nelze vytvořit typ sdílení."
+
+msgid "Unable to create share."
+msgstr "Nelze vytvořit sdílení."
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "Nelze smazat pravidlo \"%s\"."
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "Nelze smazat sdílení \"%s\". "
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr "Nelze smazat snapshot \"%s\". Jedno nebo více sdílení na něm závisí."
+
+msgid "Unable to extend share."
+msgstr "Nelze zvětšit sdílení."
+
+msgid "Unable to get information about share type access."
+msgstr "Nelze získat informaci o přístupu ke sdílení"
+
+msgid "Unable to get list of projects."
+msgstr "Nelze získat seznam projektů."
+
+msgid "Unable to get the security services hosts"
+msgstr "Nelze získat hostitele bezpečnostních služeb"
+
+msgid "Unable to load the specified snapshot."
+msgstr "Nelze načíst zadaný snapshot."
+
+msgid "Unable to manage share"
+msgstr "Nelze spravovat sdílení."
+
+#, python-format
+msgid "Unable to migrate share %s."
+msgstr "Nelze migrovat sdílení %s."
+
+#, python-format
+msgid "Unable to obtain progress of migration of share %s at this moment."
+msgstr "Momentálně nelze získat stav procesu migrace sdílení %s."
+
+#, python-format
+msgid "Unable to resync replica '%s'."
+msgstr "Nelze synchronizovat repliku '%s'."
+
+msgid "Unable to retrieve list of projects."
+msgstr "Nelze získat seznam projektů."
+
+msgid "Unable to retrieve quotas."
+msgstr "Nelze získat kvóty."
+
+#, python-format
+msgid "Unable to retrieve replica %sdetails."
+msgstr "Nelze získat detaily repliky %sdetails."
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "Nelze získat detaily o bezpečnostní službě '%s'."
+
+msgid "Unable to retrieve security services"
+msgstr "Nelze získat bezpečnostní služby."
+
+msgid "Unable to retrieve security_service."
+msgstr "Nelze získat security_service."
+
+msgid "Unable to retrieve share details."
+msgstr "Nelze získat detaily sdílení."
+
+msgid "Unable to retrieve share instance details."
+msgstr "Nelze získat detaily instance sdílení."
+
+msgid "Unable to retrieve share instances."
+msgstr "Nelze získat instance sdílení."
+
+msgid "Unable to retrieve share list."
+msgstr "Nelze získat seznam sdílení."
+
+msgid "Unable to retrieve share network details."
+msgstr "Nelze získat detaily sítě sdílení."
+
+msgid "Unable to retrieve share network."
+msgstr "Nelze získat sít sdílení."
+
+msgid "Unable to retrieve share networks"
+msgstr "Nelze získat sítě sdílení"
+
+msgid "Unable to retrieve share replicas."
+msgstr "Nelze získat repliky sdílení."
+
+msgid "Unable to retrieve share rules."
+msgstr "Nelze získat pravidla sdílení."
+
+msgid "Unable to retrieve share server details."
+msgstr "Nelze získat detaily serveru sdílení."
+
+msgid "Unable to retrieve share servers"
+msgstr "Nelze získat servery sdílení"
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "Nelze získat seznam snapshotů sdílení."
+
+msgid "Unable to retrieve share snapshots."
+msgstr "Nelze získat snapshoty sdílení."
+
+msgid "Unable to retrieve share types"
+msgstr "Nelze získat typy sdílení"
+
+msgid "Unable to retrieve share."
+msgstr "Nelze získat sdílení."
+
+#, python-format
+msgid "Unable to retrieve share. %s"
+msgstr "Nelze získat sdílení. %s"
+
+msgid "Unable to retrieve share_type."
+msgstr "Nelze získat share_type."
+
+msgid "Unable to retrieve snapshot details."
+msgstr "Nelze získat detaily snapshotu."
+
+msgid "Unable to retrieve snapshot list."
+msgstr "Nelze získat seznam snapshotů."
+
+msgid "Unable to retrieve snapshot."
+msgstr "Nelze získat snapshot."
+
+msgid "Unable to retrieve volume details."
+msgstr "Nelze získat detaily svazku."
+
+msgid "Unable to set project quotas."
+msgstr "Nelze nastavit kvóty projektu."
+
+#, python-format
+msgid "Unable to set replica '%s' as active."
+msgstr "Nelze nastavit repliku '%s' jako aktivní."
+
+msgid "Unable to unmanage share."
+msgstr "Nelze zrušit správu sdílení."
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "Nelze aktualizovat přístup pro typ sdílení \"%s\"."
+
+msgid "Unable to update default quotas."
+msgstr "Nelze aktualizovat výchozí kvóty."
+
+msgid "Unable to update extra_specs for share type."
+msgstr "Nelze aktualizovat extra_specs pro typ sdílení."
+
+msgid "Unable to update security service."
+msgstr "Nelze aktualizovat bezpečnostní službu."
+
+msgid "Unable to update share metadata."
+msgstr "Nelze aktualizovat metadata sdílení."
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "Nelze aktualizovat síť sdílení \"%s\"."
+
+msgid "Unable to update share network."
+msgstr "Nelze aktualizovat síť sdílení."
+
+msgid "Unable to update share type."
+msgstr "Nelze aktualizovat typ sdílení."
+
+msgid "Unable to update share."
+msgstr "Nelze aktualizovat sdílení."
+
+msgid "Unable to update snapshot."
+msgstr "Nelze aktualizovat snapshot."
+
+msgid "Unknown"
+msgstr "Neznámé"
+
+msgid "Unmanage"
+msgstr "Zrušit správu"
+
+msgid "Unmanage a Share"
+msgstr "Zrušit správu sdílení"
+
+msgid "Update"
+msgstr "Aktualizovat"
+
+msgid "Update Share Network"
+msgstr "Aktualizovat síť sdílení"
+
+msgid "Updated At"
+msgstr "Aktualizováno"
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "Aktualizován přístup pro typ sdílení \"%s\"."
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "Aktualizována síť sdílení \"%s\"."
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "Aktualizace sdílení \"%s\""
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "Aktualizace metadat sdílení \"%s\""
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "Aktualizace sítě sdílení \"%s\""
+
+#, python-format
+msgid "Updating snapshot \"%s\""
+msgstr "Aktualizace snapshotu \"%s\""
+
+msgid "Use snapshot as a source"
+msgstr "Použít snapshot jako zdroj"
+
+msgid "User"
+msgstr "Uživatel"
+
+msgid "Writable"
+msgstr "Zapisovatelný"
