@@ -1,0 +1,5 @@
+# settings file for manila-ui plugin
+enable_service manila-ui
+
+# set up default directories
+MANILA_UI_DIR=${MANILA_UI_DIR:=$DEST/manila-ui}
