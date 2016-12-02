@@ -281,6 +281,7 @@ class RulesTable(tables.DataTable):
     access_level = tables.Column(
         "access_level", verbose_name=_("Access Level"))
     status = tables.Column("state", verbose_name=_("Status"))
+    access_key = tables.Column("access_key", verbose_name=_("Access Key"))
 
     def get_object_display(self, obj):
         return obj.id
