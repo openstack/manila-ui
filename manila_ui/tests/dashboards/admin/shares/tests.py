@@ -142,12 +142,19 @@ class SharesTests(test.BaseAdminViewTests):
 
         st_choices = [test.FakeEntity('st1_id', 'st1_name'),
                       test.FakeEntity('st2_id', 'st2_name')]
+
+        dest_choices = [
+            test.FakeEntity('ubuntu@beta#BETA', 'ubuntu@beta#BETA'),
+            test.FakeEntity('ubuntu@alpha#ALPHA', 'ubuntu@alpha#ALPHA')
+        ]
+
         formData = {
             'share_id': share.id,
             'name': share.name,
-            'host': 'fake_host',
+            'host': 'ubuntu@alpha#ALPHA',
             'writable': True,
             'preserve_metadata': True,
+            'preserve_snapshots': True,
             'force_host_assisted_migration': True,
             'nondisruptive': True,
             'new_share_network': 'sn2_id',
@@ -163,6 +170,9 @@ class SharesTests(test.BaseAdminViewTests):
         self.mock_object(
             api_manila, "share_type_list",
             mock.Mock(return_value=st_choices))
+        self.mock_object(
+            api_manila, "pool_list",
+            mock.Mock(return_value=dest_choices))
 
         res = self.client.post(url, formData)
 
@@ -174,11 +184,13 @@ class SharesTests(test.BaseAdminViewTests):
                 formData['force_host_assisted_migration']),
             writable=formData['writable'],
             preserve_metadata=formData['preserve_metadata'],
+            preserve_snapshots=formData['preserve_snapshots'],
             nondisruptive=formData['nondisruptive'],
             new_share_network_id=formData['new_share_network'],
             new_share_type_id=formData['new_share_type'])
         api_manila.share_network_list.assert_called_once_with(mock.ANY)
         api_manila.share_type_list.assert_called_once_with(mock.ANY)
+        api_manila.pool_list.assert_called_once_with(mock.ANY)
         self.assertEqual(302, res.status_code)
         self.assertTemplateNotUsed(res, 'admin/shares/migration_start.html')
         self.assertRedirectsNoFollow(res, INDEX_URL)
@@ -206,6 +218,14 @@ class SharesTests(test.BaseAdminViewTests):
                     return_value=[test.FakeEntity('st1_id', 'st1_name'),
                                   test.FakeEntity('st2_id', 'st2_name')]))
 
+            self.mock_object(
+                api_manila, "pool_list",
+                mock.Mock(return_value=[test.FakeEntity('ubuntu@beta#BETA',
+                                                        'ubuntu@beta#BETA'),
+                                        test.FakeEntity('ubuntu@alpha#ALPHA',
+                                                        'ubuntu@alpha#ALPHA')
+                                        ]))
+
         res = self.client.get(url)
 
         api_manila.share_get.assert_called_once_with(mock.ANY, share.id)
@@ -218,6 +238,7 @@ class SharesTests(test.BaseAdminViewTests):
         if method == 'migration_start':
             api_manila.share_network_list.assert_called_once_with(mock.ANY)
             api_manila.share_type_list.assert_called_once_with(mock.ANY)
+            api_manila.pool_list.assert_called_once_with(mock.ANY)
 
     @ddt.data('migration_start', 'migration_cancel', 'migration_complete',
               'migration_get_progress')

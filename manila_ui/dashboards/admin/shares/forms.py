@@ -40,56 +40,63 @@ ST_EXTRA_SPECS_FORM_ATTRS = {
 
 class MigrationStart(forms.SelfHandlingForm):
     name = forms.CharField(
-        label=_("Share Name"), required=False,
+        label=_("Share Name"),
         widget=forms.TextInput(attrs={'readonly': 'readonly'}))
     share_id = forms.CharField(
-        label=_("ID"), required=False,
+        label=_("ID"),
         widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-    host = forms.CharField(
-        max_length=255, label=_("Host to migrate share"),
-        help_text=_("Destination host where share will be migrated to. Use the"
-                    " format 'host@backend#pool'."))
+    host = forms.ChoiceField(
+        label=_("Host to migrate share"),
+        help_text=_("Destination host and pool where share will be migrated "
+                    "to."))
     force_host_assisted_migration = forms.BooleanField(
         label=_("Force Host Assisted Migration"),
         required=False, initial=False,
-        help_text=("Defines whether the migration of this share should skip "
-                   "the attempt to be assisted by a storage vendor backend. "
-                   "This will force the use of the Data Service to perform "
-                   "migration."))
+        help_text=_("Enforces the use of the host-assisted migration approach,"
+                    " which bypasses driver optimizations."))
     nondisruptive = forms.BooleanField(
-        label=_("Non-disruptive"),
-        required=False, initial=False,
-        help_text=("Defines whether the migration of this share should be "
-                   "performed only if it is non-disruptive If set so, this "
-                   "will prevent the use of the Data Service for migration."))
+        label=_("Nondisruptive"),
+        required=False, initial=True,
+        help_text=_("Enforces migration to be nondisruptive. If set to True, "
+                    "host-assisted migration will not be attempted."))
     writable = forms.BooleanField(
         label=_("Writable"), required=False, initial=True,
-        help_text=("Defines whether this share should remain writable during "
-                   "migration. If set so, this will prevent the use of the "
-                   "Data Service for migration."))
+        help_text=_("Enforces migration to keep the share writable while "
+                    "contents are being moved. If set to True, host-assisted "
+                    "migration will not be attempted."))
     preserve_metadata = forms.BooleanField(
         label=_("Preserve Metadata"), required=False, initial=True,
-        help_text=("Defines whether this share should have all its file "
-                   "metadata preserved during migration. If set so, this will "
-                   "prevent the use of the Data Service for migration."))
+        help_text=_("Enforces migration to preserve all file metadata when "
+                    "moving its contents. If set to True, host-assisted "
+                    "migration will not be attempted."))
+    preserve_snapshots = forms.BooleanField(
+        label=_("Preserve Snapshots"), required=False, initial=True,
+        help_text=_("Enforces migration of the share snapshots to the "
+                    "destination. If set to True, host-assisted migration will"
+                    " not be attempted."))
     new_share_network = forms.ChoiceField(
         label=_("New share network to be set in migrated share"),
         required=False,
-        help_text=_("Input the new share network where the share should"
-                    " be migrated to if you would like to change it."))
+        help_text=_('Specify the new share network for the share. Do not '
+                    'specify this parameter if the migrating share has to be '
+                    'retained within its current share network.'))
     new_share_type = forms.ChoiceField(
         label=_("New share type to be set in migrating share"), required=False,
-        help_text=_("Input the new share type which the migrating share will "
-                    "be set to if you would like to change the type."))
+        help_text=_('Specify the new share type for the share. Do not specify '
+                    'this parameter if the migrating share has to be retained '
+                    'with its current share type.'))
 
     def __init__(self, request, *args, **kwargs):
         super(MigrationStart, self).__init__(request, *args, **kwargs)
         share_networks = manila.share_network_list(request)
         share_types = manila.share_type_list(request)
+        dests = manila.pool_list(request)
+        dest_choices = [('', '')] + [(d.name, d.name) for d in dests]
         st_choices = [('', '')] + [(st.id, st.name) for st in share_types]
         sn_choices = (
             [('', '')] +
             [(sn.id, sn.name or sn.id) for sn in share_networks])
+        self.fields['host'].choices = dest_choices
         self.fields['new_share_type'].choices = st_choices
         self.fields['new_share_network'].choices = sn_choices
 
@@ -102,6 +109,7 @@ class MigrationStart(forms.SelfHandlingForm):
                     data['force_host_assisted_migration']),
                 writable=data['writable'],
                 preserve_metadata=data['preserve_metadata'],
+                preserve_snapshots=data['preserve_snapshots'],
                 nondisruptive=data['nondisruptive'],
                 dest_host=data['host'],
                 new_share_network_id=data['new_share_network'],
