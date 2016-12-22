@@ -199,6 +199,43 @@ class ManilaApiTests(base.APITestCase):
         mock_reset_state = self.manilaclient.share_replicas.reset_replica_state
         mock_reset_state.assert_called_once_with(replica, state)
 
+    def test_allow_snapshot(self):
+        access_type = "fake_type"
+        access_to = "fake_value"
+
+        api.share_snapshot_allow(self.request, self.id, access_type,
+                                 access_to)
+
+        client = self.manilaclient
+        client.share_snapshots.allow.assert_called_once_with(
+            self.id, access_type, access_to)
+
+    def test_deny_snapshot(self):
+        api.share_snapshot_deny(self.request, self.id, self.id)
+
+        client = self.manilaclient
+        client.share_snapshots.deny.assert_called_once_with(self.id, self.id)
+
+    def test_list_snapshot_rules(self):
+        api.share_snapshot_rules_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_snapshots.access_list.assert_called_once_with(self.id)
+
+    def test_list_snapshot_export_locations(self):
+        api.share_snap_export_location_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_snapshot_export_locations.list.assert_called_once_with(
+            snapshot=self.id)
+
+    def test_list_snapshot_instance_export_locations(self):
+        api.share_snap_instance_export_location_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_snapshot_export_locations.list.assert_called_once_with(
+            snapshot_instance=self.id)
+
     def test_migration_start(self):
         api.migration_start(self.request, 'fake_share', 'fake_host', False,
                             True, True, True, True, 'fake_net_id',

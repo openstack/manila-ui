@@ -30,16 +30,22 @@ INDEX_URL = reverse('horizon:project:shares:index')
 class SharesTests(test.TestCase):
 
     def test_index_with_all_tabs(self):
-        snaps = [test_data.snapshot]
+        snaps = [test_data.snapshot, test_data.snapshot_mount_support]
         shares = [test_data.share, test_data.nameless_share,
                   test_data.other_share]
         share_networks = [test_data.inactive_share_network,
                           test_data.active_share_network]
         security_services = [test_data.sec_service]
+        snap_shares = [test_data.share, test_data.share_mount_snapshot]
+
         self.mock_object(
             api_manila, "share_list", mock.Mock(return_value=shares))
         self.mock_object(
             api_manila, "share_snapshot_list", mock.Mock(return_value=snaps))
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=snap_shares[0]))
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=snap_shares[1]))
         self.mock_object(
             api_manila, "share_network_list",
             mock.Mock(return_value=share_networks))
@@ -67,6 +73,10 @@ class SharesTests(test.TestCase):
         api_neutron.subnet_list.assert_called_once_with(mock.ANY)
         api_manila.security_service_list.assert_called_once_with(mock.ANY)
         api_manila.share_snapshot_list.assert_called_with(mock.ANY)
+        api_manila.share_get.assert_has_calls([
+            mock.call(mock.ANY, snaps[0].share_id),
+            mock.call(mock.ANY, snaps[1].share_id)
+        ])
         api_manila.share_list.assert_called_with(mock.ANY)
         api_manila.share_network_list.assert_has_calls([
             mock.call(mock.ANY),

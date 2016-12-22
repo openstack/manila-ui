@@ -18,14 +18,18 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
 from horizon import forms
+from horizon import tables
 from horizon import tabs
 from horizon.utils import memoized
 
 from manila_ui.api import manila
 from manila_ui.dashboards.project.shares.snapshots import forms \
     as snapshot_forms
-from manila_ui.dashboards.project.shares.snapshots\
+from manila_ui.dashboards.project.shares.snapshots \
+    import tables as snapshot_tables
+from manila_ui.dashboards.project.shares.snapshots \
     import tabs as snapshot_tabs
+from manila_ui.dashboards import utils as ui_utils
 from openstack_dashboard.usage import quotas
 
 
@@ -41,8 +45,8 @@ class SnapshotDetailView(tabs.TabView):
         context["snapshot"] = snapshot
         context["snapshot_display_name"] = snapshot_display_name
         context["page_title"] = _("Snapshot Details: "
-                                  "%(snapshot_display_name)s") % \
-            {'snapshot_display_name': snapshot_display_name}
+                                  "%(snapshot_display_name)s") % (
+            {'snapshot_display_name': snapshot_display_name})
         return context
 
     @memoized.memoized_method
@@ -51,6 +55,18 @@ class SnapshotDetailView(tabs.TabView):
             snapshot_id = self.kwargs['snapshot_id']
             snapshot = manila.share_snapshot_get(self.request, snapshot_id)
             share = manila.share_get(self.request, snapshot.share_id)
+            if share.mount_snapshot_support:
+                snapshot.rules = manila.share_snapshot_rules_list(
+                    self.request, snapshot_id)
+                snapshot.export_locations = (
+                    manila.share_snap_export_location_list(
+                        self.request, snapshot))
+                export_locations = [
+                    exp['path'] for exp in snapshot.export_locations
+                ]
+                snapshot.el_size = ui_utils.calculate_longest_str_size(
+                    export_locations)
+
             snapshot.share_name_or_id = share.name or share.id
         except Exception:
             exceptions.handle(self.request,
@@ -122,3 +138,72 @@ class UpdateView(forms.ModalFormView):
         return {'snapshot_id': self.kwargs["snapshot_id"],
                 'name': snapshot.name,
                 'description': snapshot.description}
+
+
+class AddRuleView(forms.ModalFormView):
+    form_class = snapshot_forms.AddRule
+    form_id = "rule_add_snap"
+    template_name = 'project/shares/snapshots/rule_add.html'
+    modal_header = _("Add Rule")
+    modal_id = "rule_add_snap_modal"
+    submit_label = _("Add")
+    submit_url = "horizon:project:shares:snapshot_rule_add"
+    success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Add Rule')
+
+    def get_object(self):
+        if not hasattr(self, "_object"):
+            snapshot_id = self.kwargs['snapshot_id']
+            try:
+                self._object = manila.share_snapshot_get(
+                    self.request, snapshot_id)
+            except Exception:
+                msg = _('Unable to retrieve snapshot.')
+                url = reverse('horizon:project:shares:index')
+                exceptions.handle(self.request, msg, redirect=url)
+        return self._object
+
+    def get_context_data(self, **kwargs):
+        context = super(AddRuleView, self).get_context_data(**kwargs)
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
+        return context
+
+    def get_initial(self):
+        snapshot = self.get_object()
+        return {'snapshot_id': self.kwargs["snapshot_id"],
+                'name': snapshot.name,
+                'description': snapshot.description}
+
+    def get_success_url(self):
+        return reverse("horizon:project:shares:snapshot_manage_rules",
+                       args=[self.kwargs['snapshot_id']])
+
+
+class ManageRulesView(tables.DataTableView):
+    table_class = snapshot_tables.RulesTable
+    template_name = 'project/shares/snapshots/manage_rules.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ManageRulesView, self).get_context_data(**kwargs)
+        snapshot = manila.share_snapshot_get(
+            self.request, self.kwargs['snapshot_id'])
+        context['snapshot_display_name'] = snapshot.name or snapshot.id
+        context["snapshot"] = self.get_data()
+        context["page_title"] = _("Snapshot Rules: "
+                                  "%(snapshot_display_name)s") % {
+            'snapshot_display_name': context['snapshot_display_name']}
+        return context
+
+    @memoized.memoized_method
+    def get_data(self):
+        try:
+            snapshot_id = self.kwargs['snapshot_id']
+            rules = manila.share_snapshot_rules_list(
+                self.request, snapshot_id)
+        except Exception:
+            redirect = reverse('horizon:project:shares:index')
+            exceptions.handle(self.request,
+                              _('Unable to retrieve snapshot rules.'),
+                              redirect=redirect)
+        return rules

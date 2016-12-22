@@ -1,0 +1,4 @@
+---
+features:
+  - Added support for the mountable snapshots feature to manila-ui.
+

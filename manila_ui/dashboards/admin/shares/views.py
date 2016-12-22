@@ -37,6 +37,7 @@ from manila_ui.dashboards.project.shares.share_networks import \
 from manila_ui.dashboards.project.shares.shares import views as share_views
 from manila_ui.dashboards.project.shares.snapshots import \
     views as snapshot_views
+from manila_ui.dashboards import utils as ui_utils
 from manila_ui.utils import filters
 
 filters = (filters.get_item,)
@@ -53,8 +54,8 @@ class DetailView(share_views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        context["page_title"] = _("Share Details: %(share_name)s") % \
-            {'share_name': context["share_display_name"]}
+        context["page_title"] = _("Share Details: %(share_name)s") % {
+            'share_name': context["share_display_name"]}
         return context
 
 
@@ -349,8 +350,8 @@ class ShareServDetail(tabs.TabView):
         share_server_display_name = share_server.id
         context["share_server"] = share_server
         context["share_server_display_name"] = share_server_display_name
-        context["page_title"] = _("Share Server Details: %(server_name)s") % \
-            {'server_name': share_server_display_name}
+        context["page_title"] = _("Share Server Details: %(server_name)s") % {
+            'server_name': share_server_display_name}
         return context
 
     @memoized.memoized_method
@@ -384,13 +385,6 @@ class ShareInstanceDetailView(tabs.TabView):
     tab_group_class = project_tabs.ShareInstanceDetailTabs
     template_name = 'admin/shares/share_instance_detail.html'
 
-    def _calculate_size_of_longest_export_location(self, export_locations):
-        size = 40
-        for export_location in export_locations:
-            if len(export_location["path"]) > size:
-                size = len(export_location["path"])
-        return size
-
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         share_instance = self.get_data()
@@ -408,9 +402,11 @@ class ShareInstanceDetailView(tabs.TabView):
             share_instance.export_locations = (
                 manila.share_instance_export_location_list(
                     self.request, share_instance_id))
-            share_instance.el_size = (
-                self._calculate_size_of_longest_export_location(
-                    share_instance.export_locations))
+            export_locations = [
+                exp['path'] for exp in share_instance.export_locations
+            ]
+            share_instance.el_size = ui_utils.calculate_longest_str_size(
+                export_locations)
             return share_instance
         except Exception:
             redirect = reverse('horizon:admin:shares:index')
