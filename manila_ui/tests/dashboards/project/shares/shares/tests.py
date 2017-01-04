@@ -13,11 +13,15 @@
 #    under the License.
 
 import ddt
+from django.core.handlers import wsgi
 from django.core.urlresolvers import reverse
 import mock
 import six
 
+from horizon import messages as horizon_messages
 from manila_ui.api import manila as api_manila
+from manila_ui.dashboards.project.shares.shares import forms
+from manila_ui.dashboards import utils
 from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
@@ -489,3 +493,129 @@ class ShareViewTests(test.TestCase):
         api_manila.share_set_metadata.assert_called_once_with(
             mock.ANY, share, form_data['metadata'])
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+
+
+@ddt.ddt
+class ShareViewFormTests(ShareViewTests, test.APITestCase):
+
+    def setUp(self):
+        super(ShareViewFormTests, self).setUp()
+        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': 'fake_input'}
+        self.request = wsgi.WSGIRequest(FAKE_ENVIRON)
+        self.mock_object(
+            horizon_messages, "success",
+            mock.Mock())
+
+    @ddt.data((True, True), (True, False), (False, False))
+    @ddt.unpack
+    def test_enable_public_share_creation(self,
+                                          enable_public_shares,
+                                          is_public):
+        def _get_form(**kwargs):
+            return forms.CreateForm(self.request, **kwargs)
+
+        self.mock_object(
+            api_manila, "share_create", mock.Mock(return_value=self.share))
+        self.mock_object(
+            api_manila, "share_snapshot_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_network_list",
+            mock.Mock(return_value=[test_data.active_share_network]))
+        self.mock_object(
+            api_manila, "share_type_list",
+            mock.Mock(return_value=[self.fake_share_type, ]))
+        self.mock_object(
+            api_manila, "availability_zone_list",
+            mock.Mock(return_value=[self.FakeAZ('fake_az'), ]))
+
+        data = {
+            'name': u'new_share',
+            'description': u'This is test share',
+            'method': u'CreateForm',
+            'share_network': test_data.active_share_network.id,
+            'size': 1,
+            'share_proto': u'NFS',
+            'share_type': 'fake',
+            'share-network-choices-fake': test_data.active_share_network.id,
+            'availability_zone': 'fake_az',
+            'metadata': 'key=value',
+            'snapshot_id': None,
+        }
+        if enable_public_shares:
+            data.update({'is_public': is_public})
+
+        with self.settings(OPENSTACK_MANILA_FEATURES={
+            'enable_public_shares': enable_public_shares}):
+                form = _get_form()
+                result = form.handle(self.request, data)
+                self.assertTrue(result)
+                self.assertEqual(
+                    enable_public_shares,
+                    form.enable_public_shares)
+                if enable_public_shares:
+                    self.assertIn("is_public", form.fields)
+                    self.assertTrue(form.fields["is_public"])
+                else:
+                    self.assertNotIn("is_public", form.fields)
+                api_manila.share_create.assert_called_once_with(
+                    self.request,
+                    availability_zone=data['availability_zone'],
+                    description=data['description'],
+                    is_public=is_public,
+                    metadata=utils.parse_str_meta(data['metadata'])[0],
+                    name=data['name'],
+                    proto=data['share_proto'],
+                    share_network=test_data.active_share_network.id,
+                    share_type=data['share_type'],
+                    size=data['size'],
+                    snapshot_id=data['snapshot_id'],
+                )
+                horizon_messages.success.assert_called_once_with(
+                    self.request, mock.ANY)
+
+    @ddt.data((True, True), (True, False), (False, False))
+    @ddt.unpack
+    def test_enable_public_share_update(self,
+                                        enable_public_shares,
+                                        is_public):
+        def _get_form(initial):
+            kwargs = {
+                'prefix': None,
+                'initial': initial,
+            }
+            return forms.UpdateForm(self.request, **kwargs)
+
+        initial = {'share_id': 'fake_share_id'}
+
+        self.mock_object(
+            api_manila, "share_update", mock.Mock(return_value=self.share))
+
+        data = {
+            'name': u'old_share',
+            'description': u'This is test share',
+        }
+        if enable_public_shares:
+            data.update({'is_public': is_public})
+
+        with self.settings(OPENSTACK_MANILA_FEATURES={
+            'enable_public_shares': enable_public_shares}):
+                form = _get_form(initial)
+                result = form.handle(self.request, data)
+                self.assertTrue(result)
+                self.assertEqual(
+                    enable_public_shares,
+                    form.enable_public_shares)
+                if enable_public_shares:
+                    self.assertIn("is_public", form.fields)
+                    self.assertTrue(form.fields["is_public"])
+                else:
+                    self.assertNotIn("is_public", form.fields)
+                api_manila.share_update.assert_called_once_with(
+                    self.request,
+                    self.share,
+                    data['name'],
+                    data['description'],
+                    is_public=is_public,
+                )
+                horizon_messages.success.assert_called_once_with(
+                    self.request, mock.ANY)
