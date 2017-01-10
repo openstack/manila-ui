@@ -96,6 +96,7 @@ where you can redefine the values of the OPENSTACK_MANILA_FEATURES dict::
     * enable_replication
     * enable_migration
     * enable_public_share_type_creation
+    * enable_public_shares
     * enabled_share_protocols
 
 By default, enabled_share_protocols within the OPENSTACK_MANILA_FEATURES
@@ -109,6 +110,8 @@ expected to redefine enabled_share_protocols as follows:
     OPENSTACK_MANILA_FEATURES = {
        'enable_replication': True,
        'enable_migration': True,
+       'enable_public_share_type_creation': True,
+       'enable_public_shares': True,
        'enabled_share_protocols': ['NFS'],
     }
 
