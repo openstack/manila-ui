@@ -53,7 +53,7 @@ class CreateForm(forms.SelfHandlingForm):
         manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
         self.enabled_share_protocols = manila_features.get(
             'enabled_share_protocols',
-            ['NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS'])
+            ['NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS', 'MapRFS'])
         self.enable_public_shares = manila_features.get(
             'enable_public_shares', True)
         share_networks = manila.share_network_list(request)

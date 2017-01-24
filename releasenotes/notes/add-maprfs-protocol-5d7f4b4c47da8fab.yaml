@@ -1,0 +1,3 @@
+---
+features:
+  - Added native protocol for MapRFS manila share driver
