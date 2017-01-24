@@ -236,3 +236,28 @@ class ManilaApiTests(base.APITestCase):
         api.availability_zone_list(self.request)
 
         self.manilaclient.availability_zones.list.assert_called_once_with()
+
+    @ddt.data(
+        {},
+        {"name": "foo_name"},
+        {"description": "foo_desc"},
+        {"neutron_net_id": "foo_neutron_net_id"},
+        {"neutron_subnet_id": "foo_neutron_subnet_id"},
+        {"name": "foo_name", "description": "foo_desc",
+         "neutron_net_id": "foo_neutron_net_id",
+         "neutron_subnet_id": "foo_neutron_subnet_id"},
+    )
+    @ddt.unpack
+    def test_share_network_create(self, **kwargs):
+        expected_kwargs = {
+            "name": None,
+            "description": None,
+            "neutron_net_id": None,
+            "neutron_subnet_id": None,
+        }
+        expected_kwargs.update(kwargs)
+
+        api.share_network_create(self.request, **kwargs)
+
+        mock_sn_create = self.manilaclient.share_networks.create
+        mock_sn_create.assert_called_once_with(**expected_kwargs)
