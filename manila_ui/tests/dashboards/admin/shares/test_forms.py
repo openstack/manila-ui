@@ -283,13 +283,21 @@ class ManilaDashboardsAdminMigrationFormTests(base.APITestCase):
             mock.Mock(return_value=[base.FakeEntity('st1_id', 'st1_name'),
                                     base.FakeEntity('st2_id', 'st2_name')]))
 
+        self.mock_object(
+            api, "pool_list",
+            mock.Mock(return_value=[base.FakeEntity('ubuntu@beta#BETA',
+                                                    'ubuntu@beta#BETA'),
+                                    base.FakeEntity('ubuntu@alpha#ALPHA',
+                                                    'ubuntu@alpha#ALPHA')]))
+
         form = forms.MigrationStart(self.request, **self._get_initial())
 
         data = {
             'force_host_assisted_migration': False,
             'writable': True,
             'preserve_metadata': True,
-            'nondisruptive': False,
+            'preserve_snapshots': True,
+            'nondisruptive': True,
             'new_share_network': 'fake_net_id',
             'new_share_type': 'fake_type_id',
             'host': 'fake_host',
@@ -302,6 +310,7 @@ class ManilaDashboardsAdminMigrationFormTests(base.APITestCase):
 
         api.share_network_list.assert_called_once_with(mock.ANY)
         api.share_type_list.assert_called_once_with(mock.ANY)
+        api.pool_list.assert_called_once_with(mock.ANY)
 
     @mock.patch('horizon.messages.success')
     def test_migration_complete(self, mock_horizon_messages_success):
