@@ -33,7 +33,7 @@ from openstack_dashboard.api import base
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.22"  # requires manilaclient 1.12.0 or newer
+MANILA_VERSION = "2.26"  # requires manilaclient 1.12.0 or newer
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -225,10 +225,10 @@ def share_network_list(request, detailed=False, search_opts=None):
 
 
 def share_network_create(request, neutron_net_id=None, neutron_subnet_id=None,
-                         nova_net_id=None, name=None, description=None):
+                         name=None, description=None):
     return manilaclient(request).share_networks.create(
         neutron_net_id=neutron_net_id, neutron_subnet_id=neutron_subnet_id,
-        nova_net_id=nova_net_id, name=name, description=description)
+        name=name, description=description)
 
 
 def share_network_get(request, share_net_id):
