@@ -73,3 +73,28 @@ class UpdateForm(forms.SelfHandlingForm):
             return True
         except Exception:
             exceptions.handle(request, _('Unable to update snapshot.'))
+
+
+class AddRule(forms.SelfHandlingForm):
+    access_type = forms.ChoiceField(
+        label=_("Access Type"), required=True,
+        choices=(('ip', 'ip'), ('user', 'user'), ('cephx', 'cephx'),
+                 ('cert', 'cert')))
+    access_to = forms.CharField(
+        label=_("Access To"), max_length="255", required=True)
+
+    def handle(self, request, data):
+        snapshot_id = self.initial['snapshot_id']
+        try:
+            manila.share_snapshot_allow(
+                request, snapshot_id,
+                access_to=data['access_to'],
+                access_type=data['access_type'])
+            message = _('Creating snapshot rule for "%s"') % data['access_to']
+            messages.success(request, message)
+            return True
+        except Exception:
+            redirect = reverse("horizon:project:shares:snapshot_manage_rules",
+                               args=[self.initial['snapshot_id']])
+            exceptions.handle(
+                request, _('Unable to add snapshot rule.'), redirect=redirect)

@@ -35,6 +35,7 @@ from manilaclient.v2 import share_export_locations
 from manilaclient.v2 import share_instances
 from manilaclient.v2 import share_replicas
 from manilaclient.v2 import share_servers
+from manilaclient.v2 import share_snapshot_export_locations
 
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas as usage_quotas
@@ -57,7 +58,8 @@ share = shares.Share(
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ',
-     'replication_type': 'readable'})
+     'replication_type': 'readable',
+     'mount_snapshot_support': False})
 
 nameless_share = shares.Share(
     shares.ShareManager(FakeAPIClient),
@@ -73,7 +75,8 @@ nameless_share = shares.Share(
      'share_type': 'vol_type_1',
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
-     'availability_zone': 'Test AZ'})
+     'availability_zone': 'Test AZ',
+     'mount_snapshot_support': False})
 
 share_with_metadata = shares.Share(
     shares.ShareManager(FakeAPIClient),
@@ -87,7 +90,8 @@ share_with_metadata = shares.Share(
      'created_at': '2016-06-31 00:00:00',
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
-     'availability_zone': 'Test AZ'})
+     'availability_zone': 'Test AZ',
+     'mount_snapshot_support': False})
 
 other_share = shares.Share(
     shares.ShareManager(FakeAPIClient),
@@ -102,7 +106,8 @@ other_share = shares.Share(
      'share_type': None,
      'share_server_id': '1',
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
-     'availability_zone': 'Test AZ'})
+     'availability_zone': 'Test AZ',
+     'mount_snapshot_support': False})
 
 share_replica = share_replicas.ShareReplica(
     share_replicas.ShareReplicaManager(FakeAPIClient),
@@ -140,6 +145,22 @@ share_replica3 = share_replicas.ShareReplica(
      'updated_at': '2016-07-19 21:47:14'}
 )
 
+share_mount_snapshot = shares.Share(
+    shares.ShareManager(FakeAPIClient),
+    {'id': "11023e92-8008-4c8b-8059-7f2293ff3888",
+     'status': 'available',
+     'size': 40,
+     'name': 'Share name',
+     'description': 'Share description',
+     'share_proto': 'NFS',
+     'metadata': {},
+     'created_at': '2014-01-27 10:30:00',
+     'share_server_id': '1',
+     'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
+     'availability_zone': 'Test AZ',
+     'replication_type': 'readable',
+     'mount_snapshot_support': True})
+
 admin_export_location = share_export_locations.ShareExportLocation(
     share_export_locations.ShareExportLocationManager(FakeAPIClient),
     {'id': '6921e862-88bc-49a5-a2df-efeed9acd583',
@@ -160,6 +181,40 @@ user_export_location = share_export_locations.ShareExportLocation(
 
 export_locations = [admin_export_location, user_export_location]
 
+admin_snapshot_export_locations = [
+    share_snapshot_export_locations.ShareSnapshotExportLocation(
+        share_snapshot_export_locations.ShareSnapshotExportLocationManager(
+            FakeAPIClient),
+        {'id': '6921e862-88bc-49a5-a2df-efeed9acd584',
+         'path': '1.1.1.1:/path/to/admin/share',
+         'is_admin_only': True,
+         'share_snapshot_instance_id': 'e1c2d35e-fe67-4028-ad7a-45f668732b1e'}
+    ),
+    share_snapshot_export_locations.ShareSnapshotExportLocation(
+        share_snapshot_export_locations.ShareSnapshotExportLocationManager(
+            FakeAPIClient),
+        {'id': '6921e862-88bc-49a5-a2df-efeed9acd585',
+         'path': '1.1.1.2:/path/to/admin/share',
+         'is_admin_only': False,
+         'share_snapshot_instance_id': 'e1c2d35e-fe67-4028-ad7a-45f668732b1f'}
+    )
+]
+
+user_snapshot_export_locations = [
+    share_snapshot_export_locations.ShareSnapshotExportLocation(
+        share_snapshot_export_locations.ShareSnapshotExportLocationManager(
+            FakeAPIClient),
+        {'id': 'b6bd76ce-12a2-42a9-a30a-8a43b503867e',
+         'path': '1.1.1.1:/path/to/user/share_snapshot'}
+    ),
+    share_snapshot_export_locations.ShareSnapshotExportLocation(
+        share_snapshot_export_locations.ShareSnapshotExportLocationManager(
+            FakeAPIClient),
+        {'id': 'b6bd76ce-12a2-42a9-a30a-8a43b503867f',
+         'path': '1.1.1.2:/not/too/long/path/to/user/share_snapshot'}
+    )
+]
+
 rule = collections.namedtuple('Access', ['access_type', 'access_to', 'state',
                                          'id', 'access_level', 'access_key'])
 
@@ -179,6 +234,15 @@ snapshot = share_snapshots.ShareSnapshot(
      'size': 40,
      'status': 'available',
      'share_id': '11023e92-8008-4c8b-8059-7f2293ff3887'})
+
+snapshot_mount_support = share_snapshots.ShareSnapshot(
+    share_snapshots.ShareSnapshotManager(FakeAPIClient),
+    {'id': '5f3d1c33-7d00-4511-99df-a2def31f3b5e',
+     'name': 'test snapshot',
+     'description': 'share snapshot',
+     'size': 40,
+     'status': 'available',
+     'share_id': '11023e92-8008-4c8b-8059-7f2293ff3888'})
 
 inactive_share_network = share_networks.ShareNetwork(
     share_networks.ShareNetworkManager(FakeAPIClient),

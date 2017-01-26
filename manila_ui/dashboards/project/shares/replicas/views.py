@@ -28,6 +28,7 @@ from manila_ui.dashboards.project.shares.replicas import (
 from manila_ui.dashboards.project.shares.replicas import (
     tables as replicas_tables)
 from manila_ui.dashboards.project.shares.replicas import tabs as replicas_tabs
+from manila_ui.dashboards import utils as ui_utils
 
 
 class ManageReplicasView(tables.DataTableView):
@@ -70,14 +71,6 @@ class DetailReplicaView(tabs.TabView):
     template_name = 'project/shares/replicas/detail.html'
     _redirect_url = 'horizon:project:shares:index'
 
-    def _calculate_size_of_longest_export_location(self, export_locations):
-        size = 40
-        for export_location in export_locations:
-            current_size = len(export_location["path"])
-            if current_size > size:
-                size = current_size
-        return size
-
     def get_context_data(self, **kwargs):
         context = super(DetailReplicaView, self).get_context_data(**kwargs)
         replica = self.get_data()
@@ -97,8 +90,11 @@ class DetailReplicaView(tabs.TabView):
             replica.export_locations = (
                 manila.share_instance_export_location_list(
                     self.request, replica_id))
-            replica.el_size = self._calculate_size_of_longest_export_location(
-                replica.export_locations)
+            export_locations = [
+                exp['path'] for exp in replica.export_locations
+            ]
+            replica.el_size = ui_utils.calculate_longest_str_size(
+                export_locations)
         except Exception:
             redirect = reverse(self._redirect_url)
             exceptions.handle(

@@ -103,3 +103,12 @@ def get_nice_security_service_type(security_service):
         'kerberos': 'Kerberos',
     }
     return type_mapping.get(security_service.type, security_service.type)
+
+
+def calculate_longest_str_size(str_list):
+    size = 40
+    for str_val in str_list:
+        current_size = len(str_val)
+        if current_size > size:
+            size = current_size
+    return size

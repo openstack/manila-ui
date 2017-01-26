@@ -137,6 +137,83 @@ class SnapshotShareNameColumn(tables.Column):
         return reverse(self.link, args=(snapshot.share_id,))
 
 
+class ManageRules(tables.LinkAction):
+    name = "snapshot_manage_rules"
+    verbose_name = _("Manage Rules")
+    url = "horizon:project:shares:snapshot_manage_rules"
+    classes = ("btn-edit",)
+    policy_rules = (("share", "share:access_get_all"),)
+
+    def allowed(self, request, snapshot=None):
+        share = manila.share_get(request, snapshot.share_id)
+        return share.mount_snapshot_support
+
+
+class AddRule(tables.LinkAction):
+    name = "snapshot_rule_add"
+    verbose_name = _("Add rule")
+    url = 'horizon:project:shares:snapshot_rule_add'
+    classes = ("ajax-modal", "btn-create")
+    icon = "plus"
+    policy_rules = (("share", "share:allow_access"),)
+
+    def allowed(self, request, snapshot=None):
+        snapshot = manila.share_snapshot_get(
+            request, self.table.kwargs['snapshot_id'])
+        return snapshot.status in ("available", "in-use")
+
+    def get_link_url(self):
+        return reverse(self.url, args=[self.table.kwargs['snapshot_id']])
+
+
+class DeleteRule(tables.DeleteAction):
+    data_type_singular = _("Rule")
+    data_type_plural = _("Rules")
+    action_past = _("Scheduled deletion of %(data_type)s")
+    policy_rules = (("share", "share:deny_access"),)
+
+    def delete(self, request, obj_id):
+        try:
+            manila.share_snapshot_deny(
+                request, self.table.kwargs['snapshot_id'], obj_id)
+        except Exception:
+            msg = _('Unable to delete snapshot rule "%s".') % obj_id
+            exceptions.handle(request, msg)
+
+
+class UpdateRuleRow(tables.Row):
+    ajax = True
+
+    def get_data(self, request, rule_id):
+        rules = manila.share_snapshot_rules_list(
+            request, self.table.kwargs['snapshot_id'])
+        if rules:
+            for rule in rules:
+                if rule.id == rule_id:
+                    return rule
+        raise exceptions.NotFound
+
+
+class RulesTable(tables.DataTable):
+    access_type = tables.Column("access_type", verbose_name=_("Access Type"))
+    access_to = tables.Column("access_to", verbose_name=_("Access to"))
+    status = tables.Column("state", verbose_name=_("Status"))
+
+    def get_object_display(self, obj):
+        return obj.id
+
+    class Meta(object):
+        name = "rules"
+        verbose_name = _("Rules")
+        status_columns = ["status"]
+        row_class = UpdateRuleRow
+        table_actions = (
+            AddRule,
+            DeleteRule)
+        row_actions = (
+            DeleteRule,)
+
+
 class SnapshotsTable(tables.DataTable):
     STATUS_CHOICES = (
         ("in-use", True),
@@ -184,4 +261,5 @@ class SnapshotsTable(tables.DataTable):
         row_actions = (
             EditSnapshot,
             CreateShareFromSnapshot,
+            ManageRules,
             DeleteSnapshot)

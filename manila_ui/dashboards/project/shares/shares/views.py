@@ -29,6 +29,7 @@ from manila_ui.dashboards.project.shares.shares \
     import tables as shares_tables
 from manila_ui.dashboards.project.shares.shares \
     import tabs as shares_tabs
+from manila_ui.dashboards import utils as ui_utils
 from openstack_dashboard.usage import quotas
 
 
@@ -52,14 +53,6 @@ class DetailView(tabs.TabView):
     tab_group_class = shares_tabs.ShareDetailTabs
     template_name = 'project/shares/shares/detail.html'
 
-    def _calculate_size_of_longest_export_location(self, export_locations):
-        size = 40
-        for export_location in export_locations:
-            current_size = len(export_location["path"])
-            if current_size > size:
-                size = current_size
-        return size
-
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         share = self.get_data()
@@ -67,8 +60,8 @@ class DetailView(tabs.TabView):
         context["share"] = share
         context["share_display_name"] = share_display_name
         context["page_title"] = _("Share Details: "
-                                  "%(share_display_name)s") % \
-            {'share_display_name': share_display_name}
+                                  "%(share_display_name)s") % {
+            'share_display_name': share_display_name}
         return context
 
     @memoized.memoized_method
@@ -79,8 +72,10 @@ class DetailView(tabs.TabView):
             share.rules = manila.share_rules_list(self.request, share_id)
             share.export_locations = manila.share_export_location_list(
                 self.request, share_id)
-            share.el_size = self._calculate_size_of_longest_export_location(
-                share.export_locations)
+            export_locations = [
+                exp['path'] for exp in share.export_locations]
+            share.el_size = ui_utils.calculate_longest_str_size(
+                export_locations)
         except Exception:
             redirect = reverse('horizon:project:shares:index')
             exceptions.handle(self.request,
@@ -230,8 +225,8 @@ class ManageRulesView(tables.DataTableView):
         context['share_display_name'] = share.name or share.id
         context["share"] = self.get_data()
         context["page_title"] = _("Share Rules: "
-                                  "%(share_display_name)s") % \
-            {'share_display_name': context['share_display_name']}
+                                  "%(share_display_name)s") % {
+            'share_display_name': context['share_display_name']}
         return context
 
     @memoized.memoized_method

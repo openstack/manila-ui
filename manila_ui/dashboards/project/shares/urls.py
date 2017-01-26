@@ -79,6 +79,12 @@ urlpatterns = [
     url(r'^(?P<share_id>[^/]+)/extend/$',
         shares_views.ExtendView.as_view(),
         name='extend'),
+    url(r'^(?P<snapshot_id>[^/]+)/snapshot_rules/$',
+        snapshot_views.ManageRulesView.as_view(),
+        name='snapshot_manage_rules'),
+    url(r'^(?P<snapshot_id>[^/]+)/snapshot_rule_add/$',
+        snapshot_views.AddRuleView.as_view(),
+        name='snapshot_rule_add'),
 ]
 
 if manila.is_replication_enabled():

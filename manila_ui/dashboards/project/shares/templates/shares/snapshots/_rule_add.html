@@ -1,0 +1,11 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% block modal-body-right %}
+  <h3>{% trans "Description" %}:</h3>
+  <p>{% blocktrans %}
+      Add policy rule to snapshot, 'ip' rule represents ip address,
+      'user' rule represents username or usergroup,
+      'cephx' rule represents ceph auth ID, and 'cert' rule represents
+      certificate.
+    {% endblocktrans %}</p>
+{% endblock %}

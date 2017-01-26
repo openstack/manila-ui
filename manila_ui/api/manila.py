@@ -33,7 +33,7 @@ from openstack_dashboard.api import base
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.29"  # requires manilaclient 1.12.0 or newer
+MANILA_VERSION = "2.32"  # requires manilaclient 1.13.0 or newer
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -206,6 +206,29 @@ def share_snapshot_create(request, share_id, name=None,
 
 def share_snapshot_delete(request, snapshot_id):
     return manilaclient(request).share_snapshots.delete(snapshot_id)
+
+
+def share_snapshot_allow(request, snapshot_id, access_type, access_to):
+    return manilaclient(request).share_snapshots.allow(
+        snapshot_id, access_type, access_to)
+
+
+def share_snapshot_deny(request, snapshot_id, rule_id):
+    return manilaclient(request).share_snapshots.deny(snapshot_id, rule_id)
+
+
+def share_snapshot_rules_list(request, snapshot_id):
+    return manilaclient(request).share_snapshots.access_list(snapshot_id)
+
+
+def share_snap_export_location_list(request, snapshot):
+    return manilaclient(request).share_snapshot_export_locations.list(
+        snapshot=snapshot)
+
+
+def share_snap_instance_export_location_list(request, snapshot_instance):
+    return manilaclient(request).share_snapshot_export_locations.list(
+        snapshot_instance=snapshot_instance)
 
 
 def share_server_list(request, search_opts=None):
