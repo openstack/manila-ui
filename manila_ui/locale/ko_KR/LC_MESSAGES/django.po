@@ -3,9 +3,9 @@
 # Sungjin Kang <gang.sungjin@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.1.dev46\n"
+"Project-Id-Version: manila-ui 2.6.1.dev8\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-10 14:23+0000\n"
+"POT-Creation-Date: 2017-01-26 00:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -212,12 +212,6 @@ msgstr "삭제 중"
 msgid "Description"
 msgstr "설명"
 
-msgid ""
-"Destination host where share will be migrated to. Use the format "
-"'host@backend#pool'."
-msgstr ""
-"공유를 마이그레이션할 대상 호스트. 'host@backend#pool' 포맷을 사용합니다."
-
 msgid "Domain"
 msgstr "도메인"
 
@@ -355,18 +349,6 @@ msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "비활성화 됨"
 
-msgid ""
-"Input the new share network where the share should be migrated to if you "
-"would like to change it."
-msgstr ""
-"공유를 변경하려면 공유가 마이그레이션 되어야 하는 새 공유 네트워크를 입력합니"
-"다."
-
-msgid ""
-"Input the new share type which the migrating share will be set to if you "
-"would like to change the type."
-msgstr "형식을 변경하려는 경우 마이그레이션 될 새 공유 유형을 입력합니다."
-
 #, python-format
 msgid "Key '%s' has improper length."
 msgstr "키 '%s' 길이가 적절하지 않습니다."
@@ -478,9 +460,6 @@ msgstr "보안 서비스가 선택되지 않았습니다."
 
 msgid "No source, empty share"
 msgstr "소스가 없음, 빈 공유"
-
-msgid "Non-disruptive"
-msgstr "비파괴"
 
 msgid "Nova Net"
 msgstr "Nova Net"

@@ -1,9 +1,9 @@
 # Stanislav Ulrych <stanislav.ulrych@ultimum.io>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.1.dev31\n"
+"Project-Id-Version: manila-ui 2.6.1.dev8\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-11-14 22:00+0000\n"
+"POT-Creation-Date: 2017-01-26 00:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -201,13 +201,6 @@ msgstr "Mazání"
 msgid "Description"
 msgstr "Popis"
 
-msgid ""
-"Destination host where share will be migrated to. Use the format "
-"'host@backend#pool'."
-msgstr ""
-"Cílový hostitel, na který bude sdílení migrováno. Použijte formát "
-"'host@backend#pool'."
-
 msgid "Domain"
 msgstr "Doména"
 
@@ -310,11 +303,6 @@ msgstr "Používá se"
 msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "Neaktivní"
-
-msgid ""
-"Input the new share type which the migrating share will be set to if you "
-"would like to change the type."
-msgstr "Zadejte nový typ sdílení pokud jej chcete změnit při migraci."
 
 #, python-format
 msgid "Key '%s' has improper length."

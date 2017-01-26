@@ -1,9 +1,9 @@
 # Gérald LONLAS <g.lonlas@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.1.dev27\n"
+"Project-Id-Version: manila-ui 2.6.1.dev8\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-11-08 22:07+0000\n"
+"POT-Creation-Date: 2017-01-26 00:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -203,13 +203,6 @@ msgstr "Suppression en cours"
 
 msgid "Description"
 msgstr "Description"
-
-msgid ""
-"Destination host where share will be migrated to. Use the format "
-"'host@backend#pool'."
-msgstr ""
-"Hôte de destination où le partage sera migré. Utilisez le format "
-"'host@backend#pool'."
 
 msgid "Domain"
 msgstr "Domaine"
@@ -449,9 +442,6 @@ msgstr "Aucun service de sécurité sélectionné."
 
 msgid "No source, empty share"
 msgstr "Aucune source, partage vide"
-
-msgid "Non-disruptive"
-msgstr "Non perturbant"
 
 msgid "Nova Net"
 msgstr "Nova Net"

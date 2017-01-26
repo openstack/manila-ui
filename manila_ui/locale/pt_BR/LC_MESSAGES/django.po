@@ -1,9 +1,9 @@
 # José Mello <jose.eduardo.jr@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.1.dev18\n"
+"Project-Id-Version: manila-ui 2.6.1.dev8\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-10-13 15:46+0000\n"
+"POT-Creation-Date: 2017-01-26 00:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -179,13 +179,6 @@ msgstr "Excluindo"
 
 msgid "Description"
 msgstr "Descrição"
-
-msgid ""
-"Destination host where share will be migrated to. Use the format "
-"'host@backend#pool'."
-msgstr ""
-"Host destino para o qual o compartilhamento será migrado. Utilize o formato "
-"'host@backend#pool'."
 
 msgid "Domain"
 msgstr "Domínio"
@@ -386,9 +379,6 @@ msgstr "Nenhum projeto selecionado."
 
 msgid "No source, empty share"
 msgstr "Sem origem, compartilhamento vazio"
-
-msgid "Non-disruptive"
-msgstr "Não-disruptivo"
 
 msgid "Nova Net"
 msgstr "Rede Nova"
