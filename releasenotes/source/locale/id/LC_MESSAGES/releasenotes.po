@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui Release Notes 2.7.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-02 11:58+0000\n"
+"POT-Creation-Date: 2017-02-03 11:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,9 +20,6 @@ msgstr "2.2.0"
 
 msgid "2.7.0"
 msgstr "2.7.0"
-
-msgid "2.7.0-5"
-msgstr "2.7.0-5"
 
 msgid "Added native protocol for MapRFS manila share driver"
 msgstr "Ditambahkan protokol asli (native) untuk MapRFS manila share driver"
