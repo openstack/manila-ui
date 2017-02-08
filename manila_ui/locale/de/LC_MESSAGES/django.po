@@ -1,14 +1,15 @@
 # Frank Kloeker <eumel@arcor.de>, 2016. #zanata
 # Robert Simai <robert.simai@suse.com>, 2016. #zanata
+# Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.6.1.dev8\n"
+"Project-Id-Version: manila-ui 2.7.1.dev6\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-26 00:43+0000\n"
+"POT-Creation-Date: 2017-02-03 11:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-12-05 10:10+0000\n"
+"PO-Revision-Date: 2017-01-27 01:21+0000\n"
 "Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -191,6 +192,10 @@ msgstr "Erstelle Freigabe \"%s\""
 msgid "Creating share snapshot \"%s\"."
 msgstr "Erstelle geteilte Schattenkopie \"%s\"."
 
+#, python-format
+msgid "Creating snapshot rule for \"%s\""
+msgstr "Erstelle Schattenkopie-Regel für \"%s\""
+
 msgid "Current Size (GiB)"
 msgstr "Aktuelle Größe (GiB)"
 
@@ -210,6 +215,9 @@ msgstr "Löschen"
 
 msgid "Description"
 msgstr "Beschreibung"
+
+msgid "Destination host and pool where share will be migrated to."
+msgstr "Zielhost und Pool, zu dem die Shares migriert werden."
 
 msgid "Domain"
 msgstr "Domäne"
@@ -241,6 +249,43 @@ msgstr "Bearbeite Freigabenetzwerk"
 
 msgid "Edit Snapshot"
 msgstr "Schattenkopie bearbeiten"
+
+msgid ""
+"Enforces migration of the share snapshots to the destination. If set to "
+"True, host-assisted migration will not be attempted."
+msgstr ""
+"Erzwingt die Migration der Share-Schattenkopien zum Ziel. Wenn aktiviert, "
+"wird die Host-gestützte Migration nicht verwendet."
+
+msgid ""
+"Enforces migration to be nondisruptive. If set to True, host-assisted "
+"migration will not be attempted."
+msgstr ""
+"Erzwingt unterbrechungsfreie Migration. Wenn aktiviert, wird die Host-"
+"gestützte Migration ausgelassen."
+
+msgid ""
+"Enforces migration to keep the share writable while contents are being "
+"moved. If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"Erzwingt, dass bei der Migration die Shares schreibbar bleiben, während "
+"deren Inhalt bewegt wird. Wenn aktiviert, wird die Host-gestützte Migration "
+"ausgelassen."
+
+msgid ""
+"Enforces migration to preserve all file metadata when moving its contents. "
+"If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"Erzwingt, dass bei der Migration alle Datei-Metadaten bewahrt werden, "
+"während der Inhalt verschoben wird. Wenn aktiviert, wird die Host-gestützte "
+"Migration ausgelassen."
+
+msgid ""
+"Enforces the use of the host-assisted migration approach, which bypasses "
+"driver optimizations."
+msgstr ""
+"Erzwingt die Verwendung der Host-gestützten Migration, welche "
+"Treiberoptimierungen umgeht."
 
 msgctxt "Current status of replica"
 msgid "Error"
@@ -464,6 +509,9 @@ msgstr "Keine Sicherheitsdienste ausgewählt."
 msgid "No source, empty share"
 msgstr "Keine Quelle, leere Freigabe"
 
+msgid "Nondisruptive"
+msgstr "Ohne Unterbrechung"
+
 msgid "Nova Net"
 msgstr "Nova Netz"
 
@@ -484,6 +532,9 @@ msgstr "Passwörter stimmen nicht überein."
 
 msgid "Preserve Metadata"
 msgstr "Metadaten behalten"
+
+msgid "Preserve Snapshots"
+msgstr "Schattenkopien aufbewahren"
 
 msgid "Project"
 msgstr "Projekt"
@@ -733,11 +784,30 @@ msgstr "Schattenkopiename"
 msgid "Snapshot Overview"
 msgstr "Übersicht Schattenkopie"
 
+#, python-format
+msgid "Snapshot Rules: %(snapshot_display_name)s"
+msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
+
 msgid "Snapshots"
 msgstr "Schattenkopien"
 
 msgid "Source"
 msgstr "Quelle"
+
+msgid ""
+"Specify the new share network for the share. Do not specify this parameter "
+"if the migrating share has to be retained within its current share network."
+msgstr ""
+"Geben Sie das neue Share-Netzwerk für das Share an. Geben Sie diesen "
+"Parameter nicht an, wenn das Migrations-Share im aktuellen Share-Netzwerk "
+"verbleiben soll."
+
+msgid ""
+"Specify the new share type for the share. Do not specify this parameter if "
+"the migrating share has to be retained with its current share type."
+msgstr ""
+"Geben Sie den neuen Share-Typ für das Share an. Geben Sie diesen Parameter "
+"nicht an, wenn das Migrations-Share seinen aktuellen Share-Typ behalten soll."
 
 msgid "Start migration"
 msgstr "Migration starten"
@@ -800,6 +870,9 @@ msgstr "Typ"
 msgid "Unable to add rule."
 msgstr "Konnte Regel nicht hinzufügen."
 
+msgid "Unable to add snapshot rule."
+msgstr "Schattenkopie-Regel kann nicht hinzugefügt werden."
+
 #, python-format
 msgid "Unable to cancel migration of share %s at this moment."
 msgstr "Kann Migration der Freigabe %s momentan nicht abbrechen."
@@ -843,6 +916,10 @@ msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr ""
 "Konnte Schattenkopie \"%s\" nicht löschen. Eine oder mehrere Freigaben sind "
 "davon abhängig."
+
+#, python-format
+msgid "Unable to delete snapshot rule \"%s\"."
+msgstr "Schattenkopie-Regel \"%s\" kann nicht gelöscht werden."
 
 msgid "Unable to extend share."
 msgstr "Konnte Freigabe nicht erweitern."
@@ -967,6 +1044,9 @@ msgstr "Konnte Schattenkopiedetails nicht abrufen."
 
 msgid "Unable to retrieve snapshot list."
 msgstr "Konnte Liste der Schattenkopien nicht abrufen."
+
+msgid "Unable to retrieve snapshot rules."
+msgstr "Schattenkopie-Regeln können nicht abgerufen werden."
 
 msgid "Unable to retrieve snapshot."
 msgstr "Konnte Schattenkopie nicht abrufen."
