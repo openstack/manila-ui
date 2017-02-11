@@ -1,16 +1,17 @@
 # sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
 # zhongjun <jun.zhongjun2@gmail.com>, 2016. #zanata
 # zzxwill <zzxwill@gmail.com>, 2016. #zanata
+# liujunpeng <liujunpeng@inspur.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.6.1.dev8\n"
+"Project-Id-Version: manila-ui 2.7.1.dev3\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-26 00:43+0000\n"
+"POT-Creation-Date: 2017-02-09 08:17+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-09-14 07:02+0000\n"
-"Last-Translator: zhongjun <jun.zhongjun2@gmail.com>\n"
+"PO-Revision-Date: 2017-02-10 02:25+0000\n"
+"Last-Translator: liujunpeng <liujunpeng@inspur.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
 "X-Generator: Zanata 3.7.3\n"
@@ -22,6 +23,9 @@ msgstr "%sGiB"
 
 msgid "(Quota exceeded)"
 msgstr "（超过配额）"
+
+msgid "Access Key"
+msgstr "访问密钥"
 
 msgid "Access Level"
 msgstr "访问级别"
@@ -189,6 +193,10 @@ msgstr "创建共享\"%s\""
 msgid "Creating share snapshot \"%s\"."
 msgstr "创建共享快照\"%s\"中"
 
+#, python-format
+msgid "Creating snapshot rule for \"%s\""
+msgstr "创建快照规则\"%s\""
+
 msgid "Current Size (GiB)"
 msgstr "当前大小(GiB)"
 
@@ -208,6 +216,9 @@ msgstr "删除中"
 
 msgid "Description"
 msgstr "描述"
+
+msgid "Destination host and pool where share will be migrated to."
+msgstr " 共享迁移到的目的主机和池。"
 
 msgid "Domain"
 msgstr "域名"
@@ -239,6 +250,34 @@ msgstr "编辑共享网络"
 
 msgid "Edit Snapshot"
 msgstr "编辑快照"
+
+msgid ""
+"Enforces migration of the share snapshots to the destination. If set to "
+"True, host-assisted migration will not be attempted."
+msgstr "强制共享快照迁移到目的地。如果为True，主机辅助迁移将不会尝试。"
+
+msgid ""
+"Enforces migration to be nondisruptive. If set to True, host-assisted "
+"migration will not be attempted."
+msgstr "强制迁移不干扰。如果设置为True，将不尝试主机辅助迁移。"
+
+msgid ""
+"Enforces migration to keep the share writable while contents are being "
+"moved. If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"当内容被移动时，强制迁移保持共享可写。如果为True，主机辅助迁移将不会尝试。"
+
+msgid ""
+"Enforces migration to preserve all file metadata when moving its contents. "
+"If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"当移动它的内容时，强制迁移保留所有文件元数据。如果为True，主机辅助迁移将不会"
+"尝试。"
+
+msgid ""
+"Enforces the use of the host-assisted migration approach, which bypasses "
+"driver optimizations."
+msgstr "强制使用主机辅助迁移方法，绕过驱动最优参数。"
 
 msgctxt "Current status of replica"
 msgid "Error"
@@ -431,6 +470,12 @@ msgstr "Neutron子网ID"
 msgid "New Size (GiB)"
 msgstr "新大小(GiB)"
 
+msgid "New share network to be set in migrated share"
+msgstr " 在迁移共享中，设置新的共享网络"
+
+msgid "New share type to be set in migrating share"
+msgstr "在迁移共享中设置共享类型"
+
 msgid "New size must be greater than current size."
 msgstr "新大小必须大于当前大小"
 
@@ -448,6 +493,9 @@ msgstr "未选择安全服务"
 
 msgid "No source, empty share"
 msgstr "没有源，空的共享"
+
+msgid "Nondisruptive"
+msgstr "不干扰"
 
 msgid "Nova Net"
 msgstr "Nova网络"
@@ -469,6 +517,9 @@ msgstr "密码不匹配"
 
 msgid "Preserve Metadata"
 msgstr "保护元数据"
+
+msgid "Preserve Snapshots"
+msgstr "保留快照"
 
 msgid "Project"
 msgstr "项目"
@@ -712,11 +763,29 @@ msgstr "快照名称"
 msgid "Snapshot Overview"
 msgstr "快照概览"
 
+#, python-format
+msgid "Snapshot Rules: %(snapshot_display_name)s"
+msgstr "快照规则：%(snapshot_display_name)s"
+
 msgid "Snapshots"
 msgstr "快照"
 
 msgid "Source"
 msgstr "源"
+
+msgid ""
+"Specify the new share network for the share. Do not specify this parameter "
+"if the migrating share has to be retained within its current share network."
+msgstr ""
+"为共享指定新的共享网络。如果迁移共享被保留在它的当前共享网络时，不要指定这参"
+"数。"
+
+msgid ""
+"Specify the new share type for the share. Do not specify this parameter if "
+"the migrating share has to be retained with its current share type."
+msgstr ""
+"为共享指定新的共享类型。如果迁移共享被保留在它的当前共享类型时，不要指定这个"
+"参数。"
 
 msgid "Start migration"
 msgstr "开始迁移"
@@ -774,6 +843,9 @@ msgstr "类型"
 msgid "Unable to add rule."
 msgstr "无法增加规则"
 
+msgid "Unable to add snapshot rule."
+msgstr "不能添加快照规则。"
+
 #, python-format
 msgid "Unable to cancel migration of share %s at this moment."
 msgstr "当前无法取消共享%s的迁移。"
@@ -815,6 +887,10 @@ msgstr "无法删除共享 \"%s\""
 #, python-format
 msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr "无法删除快照\"%s\"。一个或多个共享正在使用"
+
+#, python-format
+msgid "Unable to delete snapshot rule \"%s\"."
+msgstr "不能删除快照规则\"%s\"。"
 
 msgid "Unable to extend share."
 msgstr "无法扩展共享"
@@ -938,6 +1014,9 @@ msgstr "无法检索快照详情"
 
 msgid "Unable to retrieve snapshot list."
 msgstr "无法检索快照列表"
+
+msgid "Unable to retrieve snapshot rules."
+msgstr "不能获取快照规则。"
 
 msgid "Unable to retrieve snapshot."
 msgstr "无法检索快照"
