@@ -13,6 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError  # noqa
 from django.template.defaultfilters import filesizeformat  # noqa
@@ -47,6 +48,9 @@ class CreateForm(forms.SelfHandlingForm):
 
     def __init__(self, request, *args, **kwargs):
         super(CreateForm, self).__init__(request, *args, **kwargs)
+        manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+        self.enable_public_shares = manila_features.get(
+            'enable_public_shares', True)
         share_protos = ('NFS', 'CIFS', 'GlusterFS', 'HDFS', 'CephFS')
         share_networks = manila.share_network_list(request)
         share_types = manila.share_type_list(request)
@@ -95,10 +99,12 @@ class CreateForm(forms.SelfHandlingForm):
         self.fields['metadata'] = forms.CharField(
             label=_("Metadata"), required=False,
             widget=forms.Textarea(attrs={'rows': 4}))
-        self.fields['is_public'] = forms.BooleanField(
-            label=_("Make visible for all"), required=False,
-            help_text=(
-                "If set then all tenants will be able to see this share."))
+
+        if self.enable_public_shares:
+            self.fields['is_public'] = forms.BooleanField(
+                label=_("Make visible for all"), required=False,
+                help_text=(
+                    "If set then all tenants will be able to see this share."))
 
         self.fields['share_proto'].choices = [(sp, sp) for sp in share_protos]
         if "snapshot_id" in request.GET:
@@ -216,6 +222,7 @@ class CreateForm(forms.SelfHandlingForm):
             except ValidationError as e:
                 self.api_error(e.messages[0])
                 return False
+            is_public = self.enable_public_shares and data['is_public']
             share = manila.share_create(
                 request,
                 size=data['size'],
@@ -225,7 +232,7 @@ class CreateForm(forms.SelfHandlingForm):
                 share_network=share_network,
                 snapshot_id=snapshot_id,
                 share_type=data['share_type'],
-                is_public=data['is_public'],
+                is_public=is_public,
                 metadata=metadata,
                 availability_zone=data['availability_zone'])
             message = _('Creating share "%s"') % data['name']
@@ -255,13 +262,22 @@ class UpdateForm(forms.SelfHandlingForm):
         widget=forms.Select(
             attrs={'class': 'switched', 'data-slug': 'sharetype'}))
 
+    def __init__(self, request, *args, **kwargs):
+        super(UpdateForm, self).__init__(request, *args, **kwargs)
+        manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+        self.enable_public_shares = manila_features.get(
+            'enable_public_shares', True)
+        if not self.enable_public_shares:
+            self.fields.pop('is_public')
+
     def handle(self, request, data):
         share_id = self.initial['share_id']
+        is_public = data['is_public'] if self.enable_public_shares else False
         try:
             share = manila.share_get(self.request, share_id)
             manila.share_update(
                 request, share, data['name'], data['description'],
-                is_public=data['is_public'])
+                is_public=is_public)
             message = _('Updating share "%s"') % data['name']
             messages.success(request, message)
             return True
