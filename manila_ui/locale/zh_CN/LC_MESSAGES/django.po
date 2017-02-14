@@ -1,16 +1,17 @@
 # sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
 # zhongjun <jun.zhongjun2@gmail.com>, 2016. #zanata
 # zzxwill <zzxwill@gmail.com>, 2016. #zanata
+# Yu Long <yulongxn@163.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.2.dev4\n"
+"Project-Id-Version: manila-ui 2.5.2.dev9\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2016-10-18 20:04+0000\n"
+"POT-Creation-Date: 2017-02-13 18:52+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-09-14 07:02+0000\n"
-"Last-Translator: zhongjun <jun.zhongjun2@gmail.com>\n"
+"PO-Revision-Date: 2017-02-12 04:02+0000\n"
+"Last-Translator: Yu Long <yulongxn@163.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
 "X-Generator: Zanata 3.7.3\n"
@@ -349,6 +350,16 @@ msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "失效"
 
+msgid ""
+"Input the new share network where the share should be migrated to if you "
+"would like to change it."
+msgstr "如果你想要改变，输入要迁移到的新的共享网络。"
+
+msgid ""
+"Input the new share type which the migrating share will be set to if you "
+"would like to change the type."
+msgstr "如果你想改变类型，输入新的迁移共享类型"
+
 #, python-format
 msgid "Key '%s' has improper length."
 msgstr "密钥'%s'长度不符合要求"
@@ -435,6 +446,12 @@ msgstr "Neutron子网ID"
 
 msgid "New Size (GiB)"
 msgstr "新大小(GiB)"
+
+msgid "New share network to be set in migrated share"
+msgstr "在迁移共享中，设置新的共享网络"
+
+msgid "New share type to be set in migrating share"
+msgstr "在迁移共享中设置新的共享类型"
 
 msgid "New size must be greater than current size."
 msgstr "新大小必须大于当前大小"
