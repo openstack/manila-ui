@@ -39,8 +39,7 @@ class QuotaTests(test.TestCase):
             base, "is_service_enabled", mock.Mock(return_value=False))
 
         result_quotas = quotas.get_disabled_quotas(self.request)
-        expected_quotas = set(
-            quotas.QUOTA_FIELDS + quotas.MISSING_QUOTA_FIELDS)
+        expected_quotas = set(quotas.QUOTA_FIELDS)
 
         self.assertItemsEqual(result_quotas, expected_quotas)
 
