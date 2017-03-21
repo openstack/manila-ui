@@ -266,6 +266,8 @@ class ExtendView(forms.ModalFormView):
         context['submit_url'] = reverse(self.submit_url, args=args)
         try:
             context['usages'] = quotas.tenant_limit_usages(self.request)
+            context['usages']['totalShareGigabytesUsed'] -= int(
+                self.get_object().size)
         except Exception:
             exceptions.handle(self.request)
 
