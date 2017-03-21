@@ -203,8 +203,9 @@ class ManageReplicas(tables.LinkAction):
     classes = ("btn-edit",)
     policy_rules = (("share", "share:replica_get_all"),)
 
-    def allowed(self, request, *args, **kwargs):
-        return manila.is_replication_enabled()
+    def allowed(self, request, share):
+        share_replication_enabled = share.replication_type is not None
+        return manila.is_replication_enabled() and share_replication_enabled
 
 
 class SharesTable(shares_tables.SharesTable):
