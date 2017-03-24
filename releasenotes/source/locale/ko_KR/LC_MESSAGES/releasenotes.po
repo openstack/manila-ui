@@ -1,0 +1,31 @@
+# Ian Y. Choi <ianyrchoi@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui Release Notes 2.7.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-21 16:11+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-09-14 07:03+0000\n"
+"Last-Translator: Ian Y. Choi <ianyrchoi@gmail.com>\n"
+"Language-Team: Korean (South Korea)\n"
+"Language: ko-KR\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "2.2.0"
+msgstr "2.2.0"
+
+msgid "Current Series Release Notes"
+msgstr "현재 시리즈에 대한 릴리즈 노트"
+
+msgid "New Features"
+msgstr "새로운 기능"
+
+msgid "Started using release notes to track changes to manila UI."
+msgstr ""
+"manilla UI 변경 사항을 추적하기 위해 릴리즈 노트 사용을 시작하였습니다."
+
+msgid "manila-ui Release Notes"
+msgstr "manila-ui 릴리즈 노트"

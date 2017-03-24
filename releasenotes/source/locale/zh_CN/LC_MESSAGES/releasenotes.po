@@ -1,0 +1,31 @@
+# linlin <469923498@qq.com>, 2016. #zanata
+# sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui Release Notes 2.7.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-21 16:11+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-08-23 03:18+0000\n"
+"Last-Translator: sunanchen <KF.sunanchen@h3c.com>\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "2.2.0"
+msgstr "2.2.0版本"
+
+msgid "Current Series Release Notes"
+msgstr "当前版本发布说明"
+
+msgid "New Features"
+msgstr "新特性"
+
+msgid "Started using release notes to track changes to manila UI."
+msgstr "开始使用释放注释来追踪manila UI。"
+
+msgid "manila-ui Release Notes"
+msgstr "manila-ui发布说明"
