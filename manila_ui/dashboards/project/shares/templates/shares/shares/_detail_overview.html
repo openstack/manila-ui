@@ -76,7 +76,12 @@
   <dl class="dl-horizontal">
   {% for rule in share.rules %}
     <dt>{{ rule.access_type }}</dt>
-    <dd>{{ rule.access_to }}</dd>
+    <dd><p>
+      <div><b>Access to: </b>{{ rule.access_to }}</div>
+      <div><b>Access Level: </b>{{ rule.access_level }}</div>
+      <div><b>Status: </b>{{ rule.state }}</div>
+      <div><b>Access Key: </b>{{ rule.access_key }}</div>
+    </p></dd>
   {% endfor %}
   </dl>
 </div>
