@@ -283,3 +283,37 @@ class ExtendView(forms.ModalFormView):
             'orig_size': share.size,
             'new_size': int(share.size) + 1,
         }
+
+
+class RevertView(forms.ModalFormView):
+    form_class = share_form.RevertForm
+    form_id = "revert_share"
+    template_name = 'project/shares/shares/revert.html'
+    modal_header = _("Revert Share to a Snapshot")
+    modal_id = "revert_share_modal"
+    submit_label = _("Revert share to a snapshot")
+    submit_url = "horizon:project:shares:revert"
+    success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Revert Share to a Snapshot')
+
+    @memoized.memoized_method
+    def get_object(self):
+        try:
+            return manila.share_get(self.request, self.kwargs['share_id'])
+        except Exception:
+            exceptions.handle(self.request, _('Unable to retrieve share.'))
+
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
+        return context
+
+    def get_initial(self):
+        share = self.get_object()
+        if not share or isinstance(share, Exception):
+            raise exceptions.NotFound()
+        return {
+            'share_id': self.kwargs["share_id"],
+            'name': share.name or share.id,
+        }

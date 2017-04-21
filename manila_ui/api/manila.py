@@ -175,6 +175,17 @@ def share_extend(request, share_id, new_size):
     return manilaclient(request).shares.extend(share_id, new_size)
 
 
+def share_revert(request, share, snapshot):
+    """Sends request to revert share to specific snapshot.
+
+    This API available only since 2.27 microversion.
+
+    :param share: Share class instance or share ID
+    :param snapshot: ShareSnapshot class instance or share snapshot ID
+    """
+    return manilaclient(request).shares.revert_to_snapshot(share, snapshot)
+
+
 def share_snapshot_get(request, snapshot_id):
     return manilaclient(request).share_snapshots.get(snapshot_id)
 

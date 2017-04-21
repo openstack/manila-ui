@@ -45,7 +45,7 @@ class QuotaTests(test.TestCase):
 
 
 @ddt.ddt
-class ShareViewTests(test.TestCase):
+class ShareViewTests(test.APITestCase):
 
     class FakeAZ(object):
         def __init__(self, name):
@@ -61,6 +61,11 @@ class ShareViewTests(test.TestCase):
         self.share = test_data.share
         self.mock_object(
             api_manila, "share_get", mock.Mock(return_value=self.share))
+        self.mock_object(
+            neutron, "is_service_enabled", mock.Mock(return_value=[True]))
+        self.mock_object(horizon_messages, "success")
+        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': 'fake_input'}
+        self.request = wsgi.WSGIRequest(FAKE_ENVIRON)
 
     @mock.patch.object(api_manila, 'availability_zone_list')
     def test_create_share(self, az_list):
@@ -455,6 +460,102 @@ class ShareViewTests(test.TestCase):
         quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(response, SHARE_INDEX_URL)
 
+    def test_revert_to_snapshot_get_success(self):
+        snapshots = [
+            type('FakeSnapshot', (object, ),
+                 {'name': s_n, 'id': s_id, 'created_at': c_at})
+            for s_n, s_id, c_at in (
+                ('foo_name', 'foo_id', '2017-04-20T12:31:14.000000'),
+                ('bar_name', 'bar_id', '2017-04-20T12:31:16.000000'))
+        ]
+        url = reverse('horizon:project:shares:revert', args=[self.share.id])
+        self.mock_object(api_manila, "share_revert")
+        self.mock_object(
+            api_manila, "share_snapshot_list",
+            mock.Mock(return_value=snapshots))
+
+        res = self.client.get(url)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        api_manila.share_snapshot_list.assert_called_once_with(
+            mock.ANY, search_opts={'share_id': self.share.id})
+        api_manila.share_revert.assert_not_called()
+        self.assertNoMessages()
+        self.assertTemplateUsed(res, 'project/shares/shares/revert.html')
+
+    def test_revert_to_snapshot_post_success(self):
+        snapshots = [
+            type('FakeSnapshot', (object, ),
+                 {'name': s_n, 'id': s_id, 'created_at': c_at})
+            for s_n, s_id, c_at in (
+                ('foo_name', 'foo_id', '2017-04-20T12:31:14.000000'),
+                ('bar_name', 'bar_id', '2017-04-20T12:31:16.000000'),
+                ('quuz_name', 'quuz_id', '2017-04-20T12:31:13.000000'))
+        ]
+        url = reverse('horizon:project:shares:revert', args=[self.share.id])
+        self.mock_object(api_manila, "share_revert")
+        self.mock_object(
+            api_manila, "share_snapshot_list",
+            mock.Mock(return_value=snapshots))
+        data = {'snapshot': snapshots[1].id}
+
+        res = self.client.post(url, data)
+
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        api_manila.share_snapshot_list.assert_called_once_with(
+            mock.ANY, search_opts={'share_id': self.share.id})
+        api_manila.share_revert.assert_called_once_with(
+            mock.ANY, self.share.id, data['snapshot'])
+        self.assertNoMessages()
+        self.assertTemplateNotUsed(res, 'project/shares/shares/revert.html')
+        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+
+    def test_revert_to_snapshot_share_not_found(self):
+        url = reverse("horizon:project:shares:revert", args=[self.share.id])
+        self.mock_object(api_manila, "share_revert")
+        api_manila.share_get.side_effect = Exception(
+            'Fake share NotFound exception')
+        self.mock_object(
+            api_manila, "share_snapshot_list", mock.Mock(return_value=[]))
+
+        res = self.client.get(url)
+
+        self.assertEqual(404, res.status_code)
+        self.assertTemplateNotUsed(
+            res, 'project/shares/shares/revert.html')
+        api_manila.share_revert.assert_not_called()
+        api_manila.share_snapshot_list.assert_not_called()
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+
+    def test_revert_to_snapshot_failed(self):
+        snapshots = [
+            type('FakeSnapshot', (object, ),
+                 {'name': s_n, 'id': s_id, 'created_at': c_at})
+            for s_n, s_id, c_at in (
+                ('foo_name', 'foo_id', '2017-04-20T12:31:14.000000'),
+                ('bar_name', 'bar_id', '2017-04-20T12:31:16.000000'),
+                ('quuz_name', 'quuz_id', '2017-04-20T12:31:13.000000'))
+        ]
+        url = reverse('horizon:project:shares:revert', args=[self.share.id])
+        self.mock_object(
+            api_manila, "share_revert",
+            mock.Mock(side_effect=Exception('Fake reverting error')))
+        self.mock_object(
+            api_manila, "share_snapshot_list",
+            mock.Mock(return_value=snapshots))
+        data = {'snapshot': snapshots[1].id}
+
+        res = self.client.post(url, data)
+
+        self.assertEqual(302, res.status_code)
+        api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
+        api_manila.share_snapshot_list.assert_called_once_with(
+            mock.ANY, search_opts={'share_id': self.share.id})
+        api_manila.share_revert.assert_called_once_with(
+            mock.ANY, self.share.id, data['snapshot'])
+        self.assertTemplateNotUsed(res, 'project/shares/shares/revert.html')
+        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+
     def test_update_share_metadata_get(self):
         share = test_data.share_with_metadata
         url = reverse(
@@ -492,18 +593,6 @@ class ShareViewTests(test.TestCase):
         api_manila.share_set_metadata.assert_called_once_with(
             mock.ANY, share, form_data['metadata'])
         self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
-
-
-@ddt.ddt
-class ShareViewFormTests(ShareViewTests, test.APITestCase):
-
-    def setUp(self):
-        super(ShareViewFormTests, self).setUp()
-        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': 'fake_input'}
-        self.request = wsgi.WSGIRequest(FAKE_ENVIRON)
-        self.mock_object(
-            horizon_messages, "success",
-            mock.Mock())
 
     @ddt.data((True, True), (True, False), (False, False))
     @ddt.unpack
