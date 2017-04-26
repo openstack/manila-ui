@@ -1,0 +1,5 @@
+---
+fixes:
+  - Fixed form of share creation from snapshot. Before it was losing
+    source snapshot ID in request and was creating share from scratch instead
+    of expected snapshot-sourced variant.

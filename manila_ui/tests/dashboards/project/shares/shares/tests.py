@@ -142,7 +142,7 @@ class ShareViewTests(test.TestCase):
         res = self.client.post(url, formData)
 
         mock_az_list.assert_called_once_with(mock.ANY)
-        api_manila.share_snapshot_list.assert_called_once_with(mock.ANY)
+        api_manila.share_snapshot_list.assert_not_called()
         api_manila.share_snapshot_get.assert_called_once_with(
             mock.ANY, snapshot.id)
         api_manila.share_network_list.assert_called_once_with(mock.ANY)
