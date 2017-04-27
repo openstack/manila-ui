@@ -249,3 +249,68 @@ class ManilaApiTests(base.APITestCase):
 
         (self.manilaclient.shares.migration_get_progress.
             assert_called_once_with('fake_share'))
+
+    @ddt.data(
+        ({'share_gigabytes': 333}, {'gigabytes': 333}),
+        ({'share_snapshot_gigabytes': 444}, {'snapshot_gigabytes': 444}),
+        ({'share_snapshots': 14}, {'snapshots': 14}),
+        ({'snapshots': 14}, {'snapshots': 14}),
+        ({'gigabytes': 14}, {'gigabytes': 14}),
+        ({'snapshot_gigabytes': 314}, {'snapshot_gigabytes': 314}),
+        ({'shares': 24}, {'shares': 24}),
+        ({'share_networks': 14}, {'share_networks': 14}),
+    )
+    @ddt.unpack
+    def test_tenant_quota_update(self, provided_kwargs, expected_kwargs):
+        tenant_id = 'fake_tenant_id'
+
+        api.tenant_quota_update(self.request, tenant_id, **provided_kwargs)
+
+        self.manilaclient.quotas.update.assert_called_once_with(
+            tenant_id, **expected_kwargs)
+        self.manilaclient.quota_classes.update.assert_not_called()
+
+    @ddt.data(
+        ({'share_gigabytes': 333}, {'gigabytes': 333}),
+        ({'share_snapshot_gigabytes': 444}, {'snapshot_gigabytes': 444}),
+        ({'share_snapshots': 14}, {'snapshots': 14}),
+        ({'snapshots': 14}, {'snapshots': 14}),
+        ({'gigabytes': 14}, {'gigabytes': 14}),
+        ({'snapshot_gigabytes': 314}, {'snapshot_gigabytes': 314}),
+        ({'shares': 24}, {'shares': 24}),
+        ({'share_networks': 14}, {'share_networks': 14}),
+    )
+    @ddt.unpack
+    def test_default_quota_update(self, provided_kwargs, expected_kwargs):
+        api.default_quota_update(self.request, **provided_kwargs)
+
+        self.manilaclient.quota_classes.update.assert_called_once_with(
+            api.DEFAULT_QUOTA_NAME, **expected_kwargs)
+
+    @ddt.data(
+        {},
+        {"name": "foo_name"},
+        {"description": "foo_desc"},
+        {"neutron_net_id": "foo_neutron_net_id"},
+        {"neutron_subnet_id": "foo_neutron_subnet_id"},
+        {"nova_net_id": "foo_nova_net_id"},
+        {"name": "foo_name", "description": "foo_desc",
+         "neutron_net_id": "foo_neutron_net_id",
+         "neutron_subnet_id": "foo_neutron_subnet_id",
+         "nova_net_id": "foo_nova_net_id"},
+    )
+    @ddt.unpack
+    def test_share_network_create(self, **kwargs):
+        expected_kwargs = {
+            "name": None,
+            "description": None,
+            "neutron_net_id": None,
+            "neutron_subnet_id": None,
+            "nova_net_id": None,
+        }
+        expected_kwargs.update(kwargs)
+
+        api.share_network_create(self.request, **kwargs)
+
+        mock_sn_create = self.manilaclient.share_networks.create
+        mock_sn_create.assert_called_once_with(**expected_kwargs)
