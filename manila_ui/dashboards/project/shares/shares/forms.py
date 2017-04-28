@@ -392,3 +392,48 @@ class ExtendForm(forms.SelfHandlingForm):
             exceptions.handle(request,
                               _('Unable to extend share.'),
                               redirect=redirect)
+
+
+class RevertForm(forms.SelfHandlingForm):
+    """Form for reverting a share to a snapshot."""
+
+    snapshot = forms.ChoiceField(
+        label=_("Snapshot"),
+        required=True,
+        widget=forms.Select(
+            attrs={'class': 'switchable', 'data-slug': 'share_snapshot'}))
+
+    def __init__(self, req, *args, **kwargs):
+        super(self.__class__, self).__init__(req, *args, **kwargs)
+        # NOTE(vponomaryov): manila client does not allow to filter snapshots
+        # using "created_at" field, so, we need to get all snapshots of a share
+        # and do filtering here.
+        search_opts = {'share_id': self.initial['share_id']}
+        snapshots = manila.share_snapshot_list(req, search_opts=search_opts)
+        amount_of_snapshots = len(snapshots)
+        if amount_of_snapshots < 1:
+            self.fields['snapshot'].choices = [("", "")]
+        else:
+            snapshot = snapshots[0]
+            if amount_of_snapshots > 1:
+                for s in snapshots[1:]:
+                    if s.created_at > snapshot.created_at:
+                        snapshot = s
+            self.fields['snapshot'].choices = [
+                (snapshot.id, snapshot.name or snapshot.id)]
+
+    def handle(self, request, data):
+        share_id = self.initial['share_id']
+        snapshot_id = data['snapshot']
+        try:
+            manila.share_revert(request, share_id, snapshot_id)
+            message = _('Share "%(s)s" has been reverted to "%(ss)s" snapshot '
+                        'successfully') % {'s': share_id, 'ss': snapshot_id}
+            messages.success(request, message)
+            return True
+        except Exception:
+            redirect = reverse("horizon:project:shares:index")
+            exceptions.handle(
+                request,
+                _('Unable to revert share to the snapshot.'),
+                redirect=redirect)

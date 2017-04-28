@@ -72,6 +72,15 @@ class ManilaApiTests(base.APITestCase):
             self.id, new_size
         )
 
+    def test_share_revert(self):
+        share = 'fake_share'
+        snapshot = 'fake_snapshot'
+
+        api.share_revert(self.request, share, snapshot)
+
+        self.manilaclient.shares.revert_to_snapshot.assert_called_once_with(
+            share, snapshot)
+
     @ddt.data(True, False)
     def test_share_type_create_with_default_values(self, dhss):
         name = 'fake_share_type_name'

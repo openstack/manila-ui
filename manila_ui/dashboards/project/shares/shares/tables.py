@@ -135,6 +135,26 @@ class ExtendShare(tables.LinkAction):
         return share.status.lower() in ("available",)
 
 
+class RevertShare(tables.LinkAction):
+    name = "revert_share"
+    verbose_name = _("Revert Share")
+    url = "horizon:project:shares:revert"
+    classes = ("ajax-modal", "btn-create")
+    policy_rules = (("share", "share:revert"),)
+
+    def get_policy_target(self, request, datum=None):
+        project_id = None
+        if datum:
+            project_id = getattr(datum, "os-share-tenant-attr:tenant_id", None)
+        return {"project_id": project_id}
+
+    def allowed(self, request, share=None):
+        return (
+            share.revert_to_snapshot_support and
+            share.status.lower() == "available"
+        )
+
+
 class UpdateRow(tables.Row):
     ajax = True
 
@@ -162,12 +182,14 @@ class SharesTableBase(tables.DataTable):
         ("available", True), ("AVAILABLE", True),
         ("creating", None), ("CREATING", None),
         ("deleting", None), ("DELETING", None),
+        ("reverting", None),
         ("migrating", None), ("migrating_to", None),
         ("error", False), ("ERROR", False),
         ("error_deleting", False), ("ERROR_DELETING", False),
         ("MANAGE_ERROR", False),
         ("UNMANAGE_ERROR", False),
         ("extending_error", False),
+        ("reverting_error", False),
     )
     STATUS_DISPLAY_CHOICES = (
         ("available", pgettext_lazy("Current status of share", u"Available")),
@@ -191,6 +213,8 @@ class SharesTableBase(tables.DataTable):
                                          u"Unmanage Error")),
         ("extending_error", pgettext_lazy("Current status of share",
                                           u"Extending Error")),
+        ("reverting_error", pgettext_lazy("Current status of share",
+                                          u"Reverting Error")),
     )
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
@@ -331,6 +355,7 @@ class SharesTable(SharesTableBase):
         row_actions = (
             EditShare,
             ExtendShare,
+            RevertShare,
             snapshot_tables.CreateSnapshot,
             ManageRules,
             ManageReplicas,
