@@ -1,0 +1,4 @@
+---
+fixes:
+  - Fixed quota names overlapping with Cinder's quotas. Now it is possible
+    to read/write any manila quotas not messing up Cinder's quotas.

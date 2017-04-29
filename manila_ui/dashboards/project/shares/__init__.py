@@ -69,16 +69,20 @@ def wrap(orig_func):
 
 MANILA_QUOTA_FIELDS = (
     "shares",
-    "snapshots",
-    "gigabytes",
+    "share_gigabytes",
+    "share_snapshots",
+    "share_snapshot_gigabytes",
     "share_networks",
 )
 MANILA_QUOTA_NAMES = {
     'shares': _('Shares'),
+    'share_gigabytes': _('Share gigabytes'),
+    'share_snapshots': _('Share snapshots'),
+    'share_snapshot_gigabytes': _('Share snapshot gigabytes'),
     'share_networks': _('Shares Networks'),
 }
 
-quotas.QUOTA_FIELDS = quotas.QUOTA_FIELDS + MANILA_QUOTA_FIELDS
+quotas.QUOTA_FIELDS += MANILA_QUOTA_FIELDS
 
 
 def _get_manila_disabled_quotas(request):
@@ -96,7 +100,15 @@ def _get_manila_quota_data(request, method_name, disabled_quotas=None,
     if disabled_quotas is None:
         disabled_quotas = _get_manila_disabled_quotas(request)
     if 'shares' not in disabled_quotas:
-        return getattr(manila, method_name)(request, tenant_id)
+        manila_quotas = getattr(manila, method_name)(request, tenant_id)
+        for quota in manila_quotas:
+            if quota.name == 'gigabytes':
+                quota.name = 'share_gigabytes'
+            elif quota.name == 'snapshots':
+                quota.name = 'share_snapshots'
+            elif quota.name == 'snapshot_gigabytes':
+                quota.name = 'share_snapshot_gigabytes'
+        return manila_quotas
     else:
         return None
 
@@ -141,9 +153,10 @@ def tenant_quota_usages(f, request, tenant_id=None):
         sn_l = manila.share_network_list(request)
         gig_s = sum([int(v.size) for v in shares])
         gig_ss = sum([int(v.size) for v in snapshots])
-        usages.tally('gigabytes', gig_s + gig_ss)
         usages.tally('shares', len(shares))
-        usages.tally('snapshots', len(snapshots))
+        usages.tally('share_gigabytes', gig_s)
+        usages.tally('share_snapshots', len(snapshots))
+        usages.tally('share_snapshot_gigabytes', gig_ss)
         usages.tally('share_networks', len(sn_l))
 
     return usages
@@ -159,11 +172,14 @@ def tenant_limit_usages(f, request):
             limits.update(manila.tenant_absolute_limits(request))
             shares = manila.share_list(request)
             snapshots = manila.share_snapshot_list(request)
+            share_networks = manila.share_network_list(request)
             total_s_size = sum([getattr(share, 'size', 0) for share in shares])
             total_ss_size = sum([getattr(ss, 'size', 0) for ss in snapshots])
-            limits['totalGigabytesUsed'] = total_s_size + total_ss_size
             limits['totalSharesUsed'] = len(shares)
+            limits['totalShareGigabytesUsed'] = total_s_size
             limits['totalSnapshotsUsed'] = len(snapshots)
+            limits['totalSnapshotGigabytesUsed'] = total_ss_size
+            limits['totalShareNetworksUsed'] = len(share_networks)
         except Exception:
             msg = _("Unable to retrieve share limit information.")
             horizon.exceptions.handle(request, msg)
@@ -187,11 +203,17 @@ def get_quota_name(f, quota):
 class ManilaUpdateDefaultQuotaAction(
         default_workflows.UpdateDefaultQuotasAction):
     shares = horizon.forms.IntegerField(min_value=-1, label=_("Shares"))
-    share_networks = horizon.forms.IntegerField(min_value=-1,
-                                                label=_("Share Networks"))
+    share_gigabytes = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share gigabytes"))
+    share_snapshots = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share snapshots"))
+    share_snapshot_gigabytes = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share snapshot gigabytes"))
+    share_networks = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share Networks"))
 
     class Meta(object):
-        name = _("Default Quota")
+        name = _("Default Quotas")
         slug = 'update_default_quotas'
         help_text = _("From here you can update the default quotas "
                       "(max limits).")
@@ -221,8 +243,8 @@ class ManilaUpdateDefaultQuotas(default_workflows.UpdateDefaultQuotas):
         return True
 
 
-default_views.UpdateDefaultQuotasView.workflow_class = \
-    ManilaUpdateDefaultQuotas
+default_views.UpdateDefaultQuotasView.workflow_class = (
+    ManilaUpdateDefaultQuotas)
 
 #
 # Add manila fields to Identity/Projects/Modify Quotas
@@ -232,16 +254,22 @@ default_views.UpdateDefaultQuotasView.workflow_class = \
 class ManilaUpdateProjectQuotaAction(
         project_workflows.UpdateProjectQuotaAction):
     shares = horizon.forms.IntegerField(min_value=-1, label=_("Shares"))
-    share_networks = horizon.forms.IntegerField(min_value=-1,
-                                                label=_("Share Networks"))
+    share_gigabytes = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share gigabytes"))
+    share_snapshots = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share snapshots"))
+    share_snapshot_gigabytes = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share snapshot gigabytes"))
+    share_networks = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share Networks"))
 
     class Meta(object):
         name = _("Quota")
         slug = 'update_quotas'
         help_text = _("Set maximum quotas for the project.")
 
-project_workflows.UpdateProjectQuota.action_class = \
-    ManilaUpdateProjectQuotaAction
+project_workflows.UpdateProjectQuota.action_class = (
+    ManilaUpdateProjectQuotaAction)
 project_workflows.UpdateProjectQuota.contributes = quotas.QUOTA_FIELDS
 
 
@@ -274,16 +302,23 @@ project_views.UpdateProjectView.workflow_class = ManilaUpdateProject
 class ManilaCreateProjectQuotaAction(
         project_workflows.CreateProjectQuotaAction):
     shares = horizon.forms.IntegerField(min_value=-1, label=_("Shares"))
-    share_networks = horizon.forms.IntegerField(min_value=-1,
-                                                label=_("Share Networks"))
+    share_gigabytes = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share gigabytes"))
+    share_snapshots = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share snapshots"))
+    share_snapshot_gigabytes = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share snapshot gigabytes"))
+    share_networks = horizon.forms.IntegerField(
+        min_value=-1, label=_("Share Networks"))
 
     class Meta(object):
         name = _("Quota")
         slug = 'create_quotas'
         help_text = _("Set maximum quotas for the project.")
 
-project_workflows.CreateProjectQuota.action_class = \
-    ManilaCreateProjectQuotaAction
+
+project_workflows.CreateProjectQuota.action_class = (
+    ManilaCreateProjectQuotaAction)
 project_workflows.CreateProjectQuota.contributes = quotas.QUOTA_FIELDS
 
 
