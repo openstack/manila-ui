@@ -19,6 +19,7 @@ from django.utils.http import urlencode  # noqa
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import string_concat  # noqa
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext_lazy
 
 from horizon import exceptions
 from horizon import tables
@@ -81,10 +82,23 @@ class CreateSnapshot(tables.LinkAction):
 
 
 class DeleteSnapshot(tables.DeleteAction):
-    data_type_singular = _("Snapshot")
-    data_type_plural = _("Snapshots")
-    action_past = _("Scheduled deletion of %(data_type)s")
     policy_rules = (("share", "share:delete_snapshot"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Snapshot",
+            u"Delete Snapshots",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Snapshot",
+            u"Deleted Snapshots",
+            count
+        )
 
     def get_policy_target(self, request, datum=None):
         project_id = None
@@ -167,10 +181,23 @@ class AddRule(tables.LinkAction):
 
 
 class DeleteRule(tables.DeleteAction):
-    data_type_singular = _("Rule")
-    data_type_plural = _("Rules")
-    action_past = _("Scheduled deletion of %(data_type)s")
     policy_rules = (("share", "share:deny_access"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Rule",
+            u"Delete Rules",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Rule",
+            u"Deleted Rules",
+            count
+        )
 
     def delete(self, request, obj_id):
         try:

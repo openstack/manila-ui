@@ -14,6 +14,7 @@
 # under the License.
 
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext_lazy
 from horizon import tables
 from manila_ui.api import manila
 
@@ -28,9 +29,23 @@ class Create(tables.LinkAction):
 
 
 class Delete(tables.DeleteAction):
-    data_type_singular = _("Security Service")
-    data_type_plural = _("Security Services")
     policy_rules = (("share", "security_service:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Security Service",
+            u"Delete Security Services",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Security Service",
+            u"Deleted Security Services",
+            count
+        )
 
     def delete(self, request, obj_id):
         manila.security_service_delete(request, obj_id)

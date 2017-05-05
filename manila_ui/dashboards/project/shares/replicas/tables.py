@@ -17,6 +17,7 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext_lazy
 import six
 
 from horizon import messages
@@ -73,10 +74,23 @@ class SetReplicaAsActive(tables.LinkAction):
 
 
 class DeleteReplica(tables.DeleteAction):
-    data_type_singular = _("Replica")
-    data_type_plural = _("Replicas")
-    action_past = _("Scheduled deletion of %(data_type)s")
     policy_rules = (("share_replica", "share_replica:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Replica",
+            u"Delete Replicas",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Replica",
+            u"Deleted Replicas",
+            count
+        )
 
     def get_policy_target(self, request, datum=None):
         return {"project_id": getattr(datum, "project_id", None)}

@@ -16,6 +16,7 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext_lazy
 
 from horizon import exceptions
 from horizon import tables
@@ -41,9 +42,23 @@ class CreateShareType(tables.LinkAction):
 
 
 class DeleteShareType(tables.DeleteAction):
-    data_type_singular = _("Share Type")
-    data_type_plural = _("Share Types")
     policy_rules = (("share", "share_extension:types_manage"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Share Type",
+            u"Delete Share Types",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Share Type",
+            u"Deleted Share Types",
+            count
+        )
 
     def delete(self, request, obj_id):
         manila.share_type_delete(request, obj_id)
@@ -255,10 +270,23 @@ class SnapshotShareNameColumn(tables.Column):
 
 
 class DeleteSnapshot(tables.DeleteAction):
-    data_type_singular = _("Snapshot")
-    data_type_plural = _("Snapshots")
-    action_past = _("Scheduled deletion of %(data_type)s")
     policy_rules = (("snapshot", "snapshot:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Snapshot",
+            u"Delete Snapshots",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Snapshot",
+            u"Deleted Snapshots",
+            count
+        )
 
     def get_policy_target(self, request, datum=None):
         project_id = None
@@ -332,18 +360,46 @@ class SnapshotsTable(tables.DataTable):
 
 
 class DeleteSecurityService(tables.DeleteAction):
-    data_type_singular = _("Security Service")
-    data_type_plural = _("Security Services")
     policy_rules = (("share", "security_service:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Security Service",
+            u"Delete Security Services",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Security Service",
+            u"Deleted Security Services",
+            count
+        )
 
     def delete(self, request, obj_id):
         manila.security_service_delete(request, obj_id)
 
 
 class DeleteShareServer(tables.DeleteAction):
-    data_type_singular = _("Share Server")
-    data_type_plural = _("Share Server")
     policy_rules = (("share", "share_server:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Share Server",
+            u"Delete Share Server",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Share Server",
+            u"Deleted Share Server",
+            count
+        )
 
     def delete(self, request, obj_id):
         manila.share_server_delete(request, obj_id)

@@ -17,6 +17,7 @@ from django.template.defaultfilters import title  # noqa
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import string_concat  # noqa
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext_lazy
 
 from horizon import tables
 
@@ -41,9 +42,23 @@ class Create(tables.LinkAction):
 
 
 class Delete(tables.DeleteAction):
-    data_type_singular = _("Share Network")
-    data_type_plural = _("Share Networks")
     policy_rules = (("share", "share_network:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Share Network",
+            u"Delete Share Networks",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Share Network",
+            u"Deleted Share Networks",
+            count
+        )
 
     def delete(self, request, obj_id):
         manila.share_network_delete(request, obj_id)

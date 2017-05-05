@@ -18,6 +18,7 @@ from django.template.defaultfilters import title  # noqa
 from django.utils.translation import string_concat, ugettext_lazy  # noqa
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext_lazy
 from horizon import exceptions
 from horizon import messages
 from horizon import tables
@@ -35,10 +36,23 @@ DELETABLE_STATES = (
 
 
 class DeleteShare(tables.DeleteAction):
-    data_type_singular = _("Share")
-    data_type_plural = _("Shares")
-    action_past = _("Scheduled deletion of %(data_type)s")
     policy_rules = (("share", "share:delete"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Share",
+            u"Delete Shares",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Share",
+            u"Deleted Shares",
+            count
+        )
 
     def get_policy_target(self, request, datum=None):
         project_id = None
@@ -275,10 +289,23 @@ class AddRule(tables.LinkAction):
 
 
 class DeleteRule(tables.DeleteAction):
-    data_type_singular = _("Rule")
-    data_type_plural = _("Rules")
-    action_past = _("Scheduled deletion of %(data_type)s")
     policy_rules = (("share", "share:deny_access"),)
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Rule",
+            u"Delete Rules",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Rule",
+            u"Deleted Rules",
+            count
+        )
 
     def delete(self, request, obj_id):
         try:
