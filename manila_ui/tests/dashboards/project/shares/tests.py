@@ -46,6 +46,9 @@ class ShareViewTests(test.APITestCase):
             return_value={'driver_handles_share_servers': 'True'})
         self.share = test_data.share
         self.mock_object(
+            api_manila, "share_group_list",
+            mock.Mock(return_value=[]))
+        self.mock_object(
             api_manila, "share_get", mock.Mock(return_value=self.share))
         self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
@@ -114,12 +117,14 @@ class ShareViewTests(test.APITestCase):
             api_manila, "share_type_list",
             mock.Mock(return_value=[self.fake_share_type, ]))
 
-        self.client.post(url, formData)
+        res = self.client.post(url, formData)
 
+        self.assertRedirectsNoFollow(res, INDEX_URL)
         api_manila.share_create.assert_called_once_with(
             mock.ANY, size=formData['size'], name=formData['name'],
             description=formData['description'], proto=formData['share_proto'],
-            snapshot_id=None, is_public=False, share_network=share_net.id,
+            snapshot_id=None, is_public=False,
+            share_group_id=None, share_network=share_net.id,
             metadata={}, share_type=formData['share_type'],
             availability_zone=formData['availability_zone'])
         api_manila.share_snapshot_list.assert_called_once_with(mock.ANY)
@@ -173,7 +178,7 @@ class ShareViewTests(test.APITestCase):
             mock.ANY, size=formData['size'], name=formData['name'],
             description=formData['description'], proto=formData['share_proto'],
             snapshot_id=snapshot.id, is_public=False,
-            share_network=share_net.id, metadata={},
+            share_group_id=None, share_network=share_net.id, metadata={},
             share_type=formData['share_type'],
             availability_zone=formData['availability_zone'])
         self.assertRedirectsNoFollow(res, INDEX_URL)
@@ -186,6 +191,8 @@ class ShareViewTests(test.APITestCase):
             api_manila, "share_network_list", mock.Mock(return_value=[]))
         self.mock_object(api_manila, "share_delete")
         self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=self.share))
+        self.mock_object(
             api_manila, "share_list", mock.Mock(return_value=[self.share]))
 
         res = self.client.post(INDEX_URL, formData)
@@ -194,8 +201,9 @@ class ShareViewTests(test.APITestCase):
         api_manila.share_snapshot_list.assert_called_once_with(
             mock.ANY, detailed=True)
         api_manila.share_list.assert_called_with(mock.ANY)
+        api_manila.share_get.assert_called_with(mock.ANY, self.share.id)
         api_manila.share_delete.assert_called_with(
-            mock.ANY, self.share.id)
+            mock.ANY, self.share.id, share_group_id=self.share.share_group_id)
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_detail_view(self):
@@ -669,6 +677,7 @@ class ShareViewTests(test.APITestCase):
                     metadata=utils.parse_str_meta(data['metadata'])[0],
                     name=data['name'],
                     proto=data['share_proto'],
+                    share_group_id=None,
                     share_network=test_data.active_share_network.id,
                     share_type=data['share_type'],
                     size=data['size'],

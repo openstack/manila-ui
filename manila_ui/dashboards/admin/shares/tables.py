@@ -14,8 +14,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from horizon import tables
 
-from manila_ui.api import manila
 from manila_ui.dashboards.project.shares import tables as shares_tables
+from manila_ui import features
 
 
 class MigrationStartAction(tables.LinkAction):
@@ -30,7 +30,7 @@ class MigrationStartAction(tables.LinkAction):
         if share:
             return (share.status.upper() == "AVAILABLE" and
                     not getattr(share, 'has_snapshot', False) and
-                    manila.is_migration_enabled())
+                    features.is_migration_enabled())
         return False
 
 
@@ -44,7 +44,7 @@ class MigrationCompleteAction(tables.LinkAction):
 
     def allowed(self, request, share=None):
         if (share and share.status.upper() == "MIGRATING" and
-                manila.is_migration_enabled()):
+                features.is_migration_enabled()):
             return True
         return False
 
@@ -59,7 +59,7 @@ class MigrationCancelAction(tables.LinkAction):
 
     def allowed(self, request, share=None):
         if (share and share.status.upper() == "MIGRATING" and
-                manila.is_migration_enabled()):
+                features.is_migration_enabled()):
             return True
         return False
 
@@ -74,7 +74,7 @@ class MigrationGetProgressAction(tables.LinkAction):
 
     def allowed(self, request, share=None):
         if (share and share.status.upper() == "MIGRATING" and
-                manila.is_migration_enabled()):
+                features.is_migration_enabled()):
             return True
         return False
 
@@ -115,7 +115,7 @@ class ManageReplicas(tables.LinkAction):
 
     def allowed(self, request, share):
         share_replication_enabled = share.replication_type is not None
-        return manila.is_replication_enabled() and share_replication_enabled
+        return features.is_replication_enabled() and share_replication_enabled
 
 
 class SharesTable(shares_tables.SharesTable):
@@ -156,7 +156,9 @@ class SharesTable(shares_tables.SharesTable):
             UnmanageShareAction,
             shares_tables.DeleteShare,
         )
-        columns = (
+        columns = [
             'tenant', 'host', 'name', 'size', 'status', 'visibility',
             'share_type', 'protocol', 'share_server',
-        )
+        ]
+        if features.is_share_groups_enabled():
+            columns.append('share_group_id')

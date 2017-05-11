@@ -26,6 +26,37 @@ class ManilaApiTests(base.APITestCase):
         super(self.__class__, self).setUp()
         self.id = "fake_id"
 
+    @ddt.data((None, True), ("some_fake_sg_id", False))
+    @ddt.unpack
+    def test_share_create(self, sg_id, is_public):
+        kwargs = {
+            "share_network": "fake_sn",
+            "snapshot_id": "fake_snapshot_id",
+            "metadata": {"k1": "v1", "k2": "v2"},
+            "share_type": "fake_st",
+            "is_public": is_public,
+            "availability_zone": "fake_az",
+            "share_group_id": sg_id,
+        }
+        size = 5
+        name = "fake_name"
+        desc = "fake_description"
+        proto = "fake_share_protocol"
+
+        api.share_create(self.request, size, name, desc, proto, **kwargs)
+
+        self.manilaclient.shares.create.assert_called_once_with(
+            proto, size, name=name, description=desc, **kwargs)
+
+    @ddt.data(None, "some_fake_sg_id")
+    def test_share_delete(self, sg_id):
+        s_id = "fake_share_id"
+
+        api.share_delete(self.request, s_id, sg_id)
+
+        self.manilaclient.shares.delete.assert_called_once_with(
+            s_id, share_group_id=sg_id)
+
     def test_list_share_export_locations(self):
         api.share_export_location_list(self.request, self.id)
 
@@ -346,3 +377,294 @@ class ManilaApiTests(base.APITestCase):
 
         mock_sn_create = self.manilaclient.share_networks.create
         mock_sn_create.assert_called_once_with(**expected_kwargs)
+
+    # Share groups tests
+
+    def test_share_group_create(self):
+        name = "fake_sg_name"
+        kwargs = {
+            "description": "fake_desc",
+            "share_group_type": "fake_sg_type",
+            "share_types": ["fake", "list", "of", "fake", "share", "types"],
+            "share_network": "fake_sn",
+            "source_share_group_snapshot": "fake_source_share_group_snapshot",
+            "availability_zone": "fake_az",
+        }
+
+        result = api.share_group_create(self.request, name, **kwargs)
+
+        self.assertEqual(
+            self.manilaclient.share_groups.create.return_value, result)
+        self.manilaclient.share_groups.create.assert_called_once_with(
+            name=name, **kwargs)
+
+    def test_share_group_get(self):
+        sg = "fake_share_group"
+
+        result = api.share_group_get(self.request, sg)
+
+        self.assertEqual(
+            self.manilaclient.share_groups.get.return_value, result)
+        self.manilaclient.share_groups.get.assert_called_once_with(sg)
+
+    def test_share_group_update(self):
+        sg = "fake_share_group"
+        name = "fake_name"
+        desc = "fake_desc"
+
+        result = api.share_group_update(self.request, sg, name, desc)
+
+        self.assertEqual(
+            self.manilaclient.share_groups.update.return_value, result)
+        self.manilaclient.share_groups.update.assert_called_once_with(
+            sg, name=name, description=desc)
+
+    @ddt.data({}, {"force": True}, {"force": False})
+    def test_share_group_delete(self, kwargs):
+        sg = 'fake_share_group'
+
+        api.share_group_delete(self.request, sg, **kwargs)
+
+        self.manilaclient.share_groups.delete.assert_called_once_with(
+            sg, force=kwargs.get("force", False))
+
+    def test_share_group_reset_state(self):
+        sg = 'fake_share_group'
+        state = 'fake_state'
+
+        result = api.share_group_reset_state(self.request, sg, state)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_groups.reset_state.return_value,
+            result)
+        self.manilaclient.share_groups.reset_state.assert_called_once_with(
+            sg, state)
+
+    @ddt.data(
+        {},
+        {"detailed": True},
+        {"detailed": False},
+        {"search_opts": {"foo": "bar"}},
+        {"sort_key": "id", "sort_dir": "asc"},
+    )
+    def test_share_group_list(self, kwargs):
+        result = api.share_group_list(self.request, **kwargs)
+
+        self.assertEqual(
+            self.manilaclient.share_groups.list.return_value, result)
+        self.manilaclient.share_groups.list.assert_called_once_with(
+            detailed=kwargs.get("detailed", True),
+            search_opts=kwargs.get("search_opts"),
+            sort_key=kwargs.get("sort_key"),
+            sort_dir=kwargs.get("sort_dir"),
+        )
+
+    # Share Group Snapshots tests
+
+    def test_share_group_snapshot_create(self):
+        sg = 'fake_share_group'
+        name = 'fake_name'
+        desc = 'fake_description'
+
+        result = api.share_group_snapshot_create(self.request, sg, name, desc)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_snapshots.create.return_value,
+            result)
+        self.manilaclient.share_group_snapshots.create.assert_called_once_with(
+            share_group=sg, name=name, description=desc)
+
+    def test_share_group_snapshot_get(self):
+        sgs = 'fake_share_group_snapshot'
+
+        result = api.share_group_snapshot_get(self.request, sgs)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_snapshots.get.return_value, result)
+        self.manilaclient.share_group_snapshots.get.assert_called_once_with(
+            sgs)
+
+    def test_share_group_snapshot_update(self):
+        sgs = 'fake_share_group_snapshot'
+        name = 'fake_name'
+        desc = 'fake_description'
+
+        result = api.share_group_snapshot_update(self.request, sgs, name, desc)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_snapshots.update.return_value,
+            result)
+        self.manilaclient.share_group_snapshots.update.assert_called_once_with(
+            sgs, name=name, description=desc)
+
+    @ddt.data(True, False)
+    def test_share_group_snapshot_delete(self, force):
+        sgs = 'fake_share_group_snapshot'
+
+        result = api.share_group_snapshot_delete(self.request, sgs, force)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_snapshots.delete.return_value,
+            result)
+        self.manilaclient.share_group_snapshots.delete.assert_called_once_with(
+            sgs, force=force)
+
+    def test_share_group_snapshot_reset_state(self):
+        sgs = 'fake_share_group_snapshot'
+        state = 'fake_state'
+
+        result = api.share_group_snapshot_reset_state(self.request, sgs, state)
+
+        rs_method = self.manilaclient.share_group_snapshots.reset_state
+        self.assertIsNotNone(result)
+        self.assertEqual(rs_method.return_value, result)
+        rs_method.assert_called_once_with(sgs, state)
+
+    @ddt.data(
+        {},
+        {'detailed': False},
+        {'detailed': True, 'search_opts': 'foo',
+         'sort_key': 'k', 'sort_dir': 'v'},
+    )
+    def test_share_group_snapshot_list(self, kwargs):
+        result = api.share_group_snapshot_list(self.request, **kwargs)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_snapshots.list.return_value,
+            result)
+        self.manilaclient.share_group_snapshots.list.assert_called_once_with(
+            detailed=kwargs.get('detailed', True),
+            search_opts=kwargs.get('search_opts'),
+            sort_key=kwargs.get('sort_key'),
+            sort_dir=kwargs.get('sort_dir'))
+
+    # Share Group Types tests
+
+    @ddt.data(
+        {'is_public': True},
+        {'is_public': False, 'group_specs': {'foo': 'bar'}},
+        {'group_specs': {}},
+    )
+    def test_share_group_type_create(self, kwargs):
+        name = 'fake_sgt_name'
+        sts = ['fake', 'list', 'of', 'share', 'types']
+
+        result = api.share_group_type_create(self.request, name, sts, **kwargs)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_types.create.return_value,
+            result)
+        self.manilaclient.share_group_types.create.assert_called_once_with(
+            name=name, share_types=sts,
+            is_public=kwargs.get('is_public', False),
+            group_specs=kwargs.get('group_specs'))
+
+    def test_share_group_type_get(self):
+        sgt = "fake_sgt"
+
+        result = api.share_group_type_get(self.request, sgt)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_types.get.return_value, result)
+        self.manilaclient.share_group_types.get.assert_called_once_with(sgt)
+
+    @ddt.data(True, False)
+    def test_share_group_type_list(self, show_all):
+        result = api.share_group_type_list(self.request, show_all)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_types.list.return_value, result)
+        self.manilaclient.share_group_types.list.assert_called_once_with(
+            show_all=show_all)
+
+    def test_share_group_type_delete(self):
+        sgt = 'fake_share_group_type'
+
+        result = api.share_group_type_delete(self.request, sgt)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_types.delete.return_value, result)
+        self.manilaclient.share_group_types.delete.assert_called_once_with(sgt)
+
+    def test_share_group_type_access_list(self):
+        sgt = 'fake_share_group_type'
+
+        result = api.share_group_type_access_list(self.request, sgt)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.share_group_type_access.list.return_value,
+            result)
+        self.manilaclient.share_group_type_access.list.assert_called_once_with(
+            sgt)
+
+    def test_share_group_type_access_add(self):
+        sgt = 'fake_share_group_type'
+        project = 'fake_project'
+
+        result = api.share_group_type_access_add(self.request, sgt, project)
+
+        sgt_access = self.manilaclient.share_group_type_access
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            sgt_access.add_project_access.return_value, result)
+        sgt_access.add_project_access.assert_called_once_with(sgt, project)
+
+    def test_share_group_type_access_remove(self):
+        sgt = 'fake_share_group_type'
+        project = 'fake_project'
+
+        result = api.share_group_type_access_remove(self.request, sgt, project)
+
+        sgt_access = self.manilaclient.share_group_type_access
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            sgt_access.remove_project_access.return_value, result)
+        sgt_access.remove_project_access.assert_called_once_with(sgt, project)
+
+    def test_share_group_type_set_specs(self):
+        sgt = 'fake_share_group_type'
+        group_specs = 'fake_specs'
+
+        result = api.share_group_type_set_specs(self.request, sgt, group_specs)
+
+        get_method = self.manilaclient.share_group_types.get
+        self.assertIsNotNone(result)
+        self.assertEqual(get_method.return_value.set_keys.return_value, result)
+        get_method.assert_called_once_with(sgt)
+        get_method.return_value.set_keys.assert_called_once_with(group_specs)
+
+    def test_share_group_type_unset_specs(self):
+        sgt = 'fake_share_group_type'
+        keys = ['fake', 'list', 'of', 'keys', 'for', 'deletion']
+
+        result = api.share_group_type_unset_specs(self.request, sgt, keys)
+
+        get_method = self.manilaclient.share_group_types.get
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            get_method.return_value.unset_keys.return_value, result)
+        get_method.assert_called_once_with(sgt)
+        get_method.return_value.unset_keys.assert_called_once_with(keys)
+
+    def test_share_group_type_get_specs(self):
+        sgt = 'fake_share_group_type'
+
+        result = api.share_group_type_get_specs(self.request, sgt)
+
+        get_method = self.manilaclient.share_group_types.get
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            get_method.return_value.get_keys.return_value, result)
+        get_method.assert_called_once_with(sgt)
+        get_method.return_value.get_keys.assert_called_once_with()

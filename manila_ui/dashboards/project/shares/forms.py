@@ -18,16 +18,17 @@ from django.core.urlresolvers import reverse
 from django.forms import ValidationError  # noqa
 from django.template.defaultfilters import filesizeformat  # noqa
 from django.utils.translation import ugettext_lazy as _
-import six
-
 from horizon import exceptions
 from horizon import forms
 from horizon import messages
 from horizon.utils.memoized import memoized  # noqa
+from openstack_dashboard.usage import quotas
+import six
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
-from openstack_dashboard.usage import quotas
+from manila_ui import features
+from manilaclient.common.apiclient import exceptions as m_exceptions
 
 
 class CreateForm(forms.SelfHandlingForm):
@@ -64,6 +65,14 @@ class CreateForm(forms.SelfHandlingForm):
         availability_zones = manila.availability_zone_list(request)
         self.fields['availability_zone'].choices = (
             [("", "")] + [(az.name, az.name) for az in availability_zones])
+
+        if features.is_share_groups_enabled():
+            share_groups = manila.share_group_list(request)
+            self.fields['sg'] = forms.ChoiceField(
+                label=_("Share Group"),
+                choices=[("", "")] + [(sg.id, sg.name or sg.id)
+                                      for sg in share_groups],
+                required=False)
 
         self.sn_field_name_prefix = 'share-network-choices-'
         for st in share_types:
@@ -226,17 +235,20 @@ class CreateForm(forms.SelfHandlingForm):
                 share_type=data['share_type'],
                 is_public=is_public,
                 metadata=metadata,
-                availability_zone=data['availability_zone'])
+                availability_zone=data['availability_zone'],
+                share_group_id=data.get('sg') or None,
+            )
             message = _('Creating share "%s"') % data['name']
             messages.success(request, message)
             return share
         except ValidationError as e:
             self.api_error(e.messages[0])
-            return False
+        except m_exceptions.BadRequest as e:
+            self.api_error(_("Unable to create share. %s") % e.message)
         except Exception:
             exceptions.handle(request, ignore=True)
             self.api_error(_("Unable to create share."))
-            return False
+        return False
 
     @memoized
     def get_snapshot(self, request, id):

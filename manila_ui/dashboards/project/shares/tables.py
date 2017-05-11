@@ -22,10 +22,12 @@ from django.utils.translation import ungettext_lazy
 from horizon import exceptions
 from horizon import messages
 from horizon import tables
+from openstack_dashboard.usage import quotas
+
 from manila_ui.api import manila
 from manila_ui.dashboards.project.share_snapshots import tables as ss_tables
 from manila_ui.dashboards import utils
-from openstack_dashboard.usage import quotas
+from manila_ui import features
 
 
 DELETABLE_STATES = (
@@ -60,8 +62,10 @@ class DeleteShare(tables.DeleteAction):
         return {"project_id": project_id}
 
     def delete(self, request, obj_id):
+        share = manila.share_get(request, obj_id)
         try:
-            manila.share_delete(request, obj_id)
+            manila.share_delete(
+                request, share.id, share_group_id=share.share_group_id)
         except Exception:
             msg = _('Unable to delete share "%s". ') % obj_id
             messages.error(request, msg)
@@ -250,6 +254,21 @@ class SharesTableBase(tables.DataTable):
     def get_object_display(self, obj):
         return obj.name or obj.id
 
+    def get_share_group_link(share):
+        if features.is_share_groups_enabled() and share.share_group_id:
+            return reverse(
+                "horizon:project:share_groups:detail",
+                args=(share.share_group_id,))
+        else:
+            return None
+
+    share_group_id = tables.Column(
+        "share_group_id",
+        verbose_name=_("Share Group"),
+        empty_value="-",
+        link=get_share_group_link,
+    )
+
 
 class ManageRules(tables.LinkAction):
     name = "manage_rules"
@@ -268,7 +287,7 @@ class ManageReplicas(tables.LinkAction):
 
     def allowed(self, request, share):
         share_replication_enabled = share.replication_type is not None
-        return manila.is_replication_enabled() and share_replication_enabled
+        return features.is_replication_enabled() and share_replication_enabled
 
 
 class AddRule(tables.LinkAction):
@@ -387,3 +406,10 @@ class SharesTable(SharesTableBase):
             ManageReplicas,
             EditShareMetadata,
             DeleteShare)
+
+        columns = [
+            'name', 'description', 'metadata', 'size', 'status',
+            'proto', 'visibility', 'share_network',
+        ]
+        if features.is_share_groups_enabled():
+            columns.append('share_group_id')

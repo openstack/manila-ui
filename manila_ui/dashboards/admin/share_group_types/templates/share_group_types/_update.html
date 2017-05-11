@@ -1,0 +1,14 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% block modal-body-right %}
+    <h3>{% trans "Description" %}:</h3>
+    <p>
+      {% trans "Here can be modified group-specs for share group type." %}<br />
+      {% trans "One line - one action. Empty strings will be ignored." %}<br />
+      {% trans "To add group-specs use:" %}
+      <pre>key=value</pre>
+      {% trans "To unset group-specs use:" %}
+      <pre>key</pre>
+      {% trans "All pairs that are in field for left are set for this share group type." %}
+    </p>
+{% endblock %}

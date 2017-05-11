@@ -1,0 +1,23 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Share Group Snapshot Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ share_group_snapshot.name }}</dd>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ share_group_snapshot.id }}</dd>
+    {% url 'horizon:project:share_groups:detail' share_group_snapshot.share_group_id as sg_url %}
+    <dt>{% trans "Source Share Group" %}</dt>
+    <dd><a href="{{ sg_url }}">{{ share_group_snapshot.sg_name_or_id }}</a></dd>
+    {% if share_group_snapshot.description %}
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ share_group_snapshot.description }}</dd>
+    {% endif %}
+    <dt>{% trans "Status" %}</dt>
+    <dd>{{ share_group_snapshot.status|capfirst }}</dd>
+    <dt>{% trans "Created" %}</dt>
+    <dd>{{ share_group_snapshot.created_at|parse_date }}</dd>
+  </dl>
+</div>

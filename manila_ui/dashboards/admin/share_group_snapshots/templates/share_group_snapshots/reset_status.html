@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Reset Share Group Snapshot Status" %}{% endblock %}
+
+{% block main %}
+    {% include 'admin/share_group_snapshots/_reset_status.html' %}
+{% endblock %}

@@ -85,7 +85,8 @@ class SharesTests(test.BaseAdminViewTests):
         res = self.client.post(url, formData)
 
         api_keystone.tenant_list.assert_called_once_with(mock.ANY)
-        api_manila.share_delete.assert_called_once_with(mock.ANY, share.id)
+        api_manila.share_delete.assert_called_once_with(
+            mock.ANY, share.id, share_group_id=share.share_group_id)
         api_manila.share_list.assert_called_once_with(
             mock.ANY, search_opts={'all_tenants': True})
         api_manila.share_snapshot_list.assert_called_once_with(

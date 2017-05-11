@@ -14,9 +14,9 @@
 
 from django.conf import urls
 
-from manila_ui.api import manila
 from manila_ui.dashboards.project.shares.replicas import views as replica_views
 from manila_ui.dashboards.project.shares import views as shares_views
+from manila_ui import features
 
 
 urlpatterns = [
@@ -58,7 +58,7 @@ urlpatterns = [
         name='revert'),
 ]
 
-if manila.is_replication_enabled():
+if features.is_replication_enabled():
     urlpatterns.extend([
         urls.url(
             r'^(?P<share_id>[^/]+)/create_replica/$',

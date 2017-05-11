@@ -32,6 +32,9 @@ except ImportError:
     from manilaclient.v1 import shares
 
 from manilaclient.v2 import share_export_locations
+from manilaclient.v2 import share_group_snapshots
+from manilaclient.v2 import share_group_types
+from manilaclient.v2 import share_groups
 from manilaclient.v2 import share_instances
 from manilaclient.v2 import share_replicas
 from manilaclient.v2 import share_servers
@@ -59,6 +62,7 @@ share = shares.Share(
      'share_network_id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
      'availability_zone': 'Test AZ',
      'replication_type': 'readable',
+     'share_group_id': 'fake_share_group_id',
      'mount_snapshot_support': False})
 
 nameless_share = shares.Share(
@@ -332,11 +336,134 @@ share_server_errored = share_servers.ShareServer(
 share_type = share_types.ShareType(
     share_types.ShareTypeManager(FakeAPIClient),
     {'id': 'share-type-id1',
-     'name': 'test-share-type',
+     'name': 'test-share-type1',
+     'share_type_access:is_public': True,
      'extra_specs': {
          'snapshot_support': True,
          'driver_handles_share_servers': False}
      }
+)
+
+share_type_private = share_types.ShareType(
+    share_types.ShareTypeManager(FakeAPIClient),
+    {'id': 'share-type-id2',
+     'name': 'test-share-type2',
+     'share_type_access:is_public': False,
+     'extra_specs': {'driver_handles_share_servers': False}}
+)
+
+share_type_dhss_true = share_types.ShareType(
+    share_types.ShareTypeManager(FakeAPIClient),
+    {'id': 'share-type-id3',
+     'name': 'test-share-type3',
+     'share_type_access:is_public': True,
+     'extra_specs': {'driver_handles_share_servers': True}}
+)
+
+share_group_type = share_group_types.ShareGroupType(
+    share_group_types.ShareGroupTypeManager(FakeAPIClient),
+    {'id': 'fake_share_group_type_id1',
+     'name': 'fake_share_group_type_name',
+     'share_types': [share_type.id],
+     'group_specs': {'k1': 'v1', 'k2': 'v2'},
+     'is_public': True}
+)
+
+share_group_type_private = share_group_types.ShareGroupType(
+    share_group_types.ShareGroupTypeManager(FakeAPIClient),
+    {'id': 'fake_private_share_group_type_id2',
+     'name': 'fake_private_share_group_type_name',
+     'share_types': [share_type.id, share_type_private.id],
+     'group_specs': {'k1': 'v1', 'k2': 'v2'},
+     'is_public': False}
+)
+
+share_group_type_dhss_true = share_group_types.ShareGroupType(
+    share_group_types.ShareGroupTypeManager(FakeAPIClient),
+    {'id': 'fake_share_group_type_id3',
+     'name': 'fake_share_group_type_name',
+     'share_types': [share_type_dhss_true.id],
+     'group_specs': {'k3': 'v3', 'k4': 'v4'},
+     'is_public': True}
+)
+
+share_group = share_groups.ShareGroup(
+    share_groups.ShareGroupManager(FakeAPIClient),
+    {'id': 'fake_share_group_id',
+     'name': 'fake_share_group_name',
+     'description': 'fake sg description',
+     'status': 'available',
+     'share_types': [share_type.id],
+     'share_group_type_id': share_group_type.id,
+     'source_share_group_snapshot_id': None,
+     'share_network_id': None,
+     'share_server_id': None,
+     'availability_zone': None,
+     'host': 'fake_host_987654321',
+     'consistent_snapshot_support': None,
+     'created_at': '2017-05-31T13:36:15.000000',
+     'project_id': 'fake_project_id_987654321'}
+)
+
+share_group_nameless = share_groups.ShareGroup(
+    share_groups.ShareGroupManager(FakeAPIClient),
+    {'id': 'fake_nameless_share_group_id',
+     'name': None,
+     'status': 'available',
+     'share_types': [share_type.id],
+     'share_group_type_id': share_group_type.id,
+     'source_share_group_snapshot_id': None,
+     'share_network_id': None,
+     'share_server_id': None,
+     'availability_zone': None,
+     'host': 'fake_host_987654321',
+     'consistent_snapshot_support': None,
+     'created_at': '2017-05-31T13:36:15.000000',
+     'project_id': 'fake_project_id_987654321'}
+)
+
+share_group_dhss_true = share_groups.ShareGroup(
+    share_groups.ShareGroupManager(FakeAPIClient),
+    {'id': 'fake_dhss_true_share_group_id',
+     'name': 'fake_dhss_true_share_group_name',
+     'status': 'available',
+     'share_types': [share_type_dhss_true.id],
+     'share_group_type_id': share_group_type_dhss_true.id,
+     'source_share_group_snapshot_id': None,
+     'share_network_id': 'fake_share_network_id',
+     'share_server_id': 'fake_share_server_id',
+     'availability_zone': None,
+     'host': 'fake_host_987654321',
+     'consistent_snapshot_support': None,
+     'created_at': '2017-05-31T23:59:59.000000',
+     'project_id': 'fake_project_id_987654321'}
+)
+
+share_group_snapshot = share_group_snapshots.ShareGroupSnapshot(
+    share_group_snapshots.ShareGroupSnapshotManager(FakeAPIClient),
+    {'id': 'fake_share_group_snapshot_id_1',
+     'name': 'fake_share_group_snapshot_name',
+     'status': 'available',
+     'share_group_id': share_group.id,
+     'description': 'fake sgs description',
+     'created_at': '2017-06-01T13:13:13.000000',
+     'project_id': 'fake_project_id_987654321',
+     'members': [
+         {'share_id': 'fake_share_id_1', 'id': 'fake_ssi_id_1', 'size': 1},
+         {'share_id': 'fake_share_id_2', 'id': 'fake_ssi_id_2', 'size': 2},
+     ]}
+)
+
+share_group_snapshot_nameless = share_group_snapshots.ShareGroupSnapshot(
+    share_group_snapshots.ShareGroupSnapshotManager(FakeAPIClient),
+    {'id': 'fake_share_group_snapshot_id_2_nameless',
+     'name': None,
+     'status': 'available',
+     'share_group_id': share_group_nameless.id,
+     'description': 'fake nameless sgs description',
+     'created_at': '2017-06-02T14:14:14.000000',
+     'project_id': 'fake_project_id_987654321',
+     'members': []}
 )
 
 # Quota Sets

@@ -1,0 +1,55 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Share Group Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ share_group.id }}</dd>
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ share_group.name }}</dd>
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ share_group.description }}</dd>
+    <dt>{% trans "Status" %}</dt>
+    <dd>{{ share_group.status|capfirst }}</dd>
+    <dt>{% trans "Created" %}</dt>
+    <dd>{{ share_group.created_at|parse_date }}</dd>
+    {% if share_group.source_share_group_snapshot_id %}
+    <dt>{% trans "Source SG Snapshot" %}</dt>
+    {% url 'horizon:project:share_group_snapshots:detail' share_group.source_share_group_snapshot_id as ssgs_url%}
+    <dd><a href="{{ ssgs_url }}">{{ share_group.source_share_group_snapshot_id }}</a></dd>
+    {% endif %}
+    <dt>{% trans "Share Group Type" %}</dt>
+    <dd>{{ share_group.share_group_type_id}}</dd>
+    {% if share_group.availability_zone %}
+    <dt>{% trans "Availability Zone" %}</dt>
+    <dd>{{ share_group.availability_zone }}</dd>
+    {% endif %}
+    {% if share_group.share_network_id %}
+    <dt>{% trans "Share Network" %}</dt>
+    {% url 'horizon:project:share_networks:share_network_detail' share_group.share_network_id as sn_url%}
+    <dd><a href="{{ sn_url }}">{{ share_group.share_network_id }}</a></dd>
+    {% endif %}
+    {% if share_group.share_types %}
+    <dt>{% trans "Share Types" %}</dt>
+    {% for st in share_group.share_types %}
+      <dd><p>
+        <div><b>Share Type Name:</b> {{ st.name }}</div>
+        <div><b>Share Type Visibility:</b> {% if st.is_public %}Public{% else %}Private{% endif %}</div>
+        <div><b>Network handling enabled:</b> {{ st.dhss }}</div>
+      </p></dd>
+    {% endfor %}
+    {% endif %}
+    {% if share_group.members %}
+    <dt>{% trans "Shares" %}</dt>
+    {% for m in share_group.members %}
+      {% url 'horizon:project:shares:detail' m.id as share_url%}
+      <dd>
+        <div>
+          <a href="{{ share_url }}">{% if m.name %}{{ m.name }}{% else %}{{ m.id }}{% endif %}</a>
+        </div>
+      </dd>
+    {% endfor %}
+    {% endif %}
+  </dl>
+</div>

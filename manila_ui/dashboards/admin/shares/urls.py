@@ -12,9 +12,9 @@
 
 from django.conf import urls
 
-from manila_ui.api import manila
 from manila_ui.dashboards.admin.shares.replicas import views as replica_views
 from manila_ui.dashboards.admin.shares import views
+from manila_ui import features
 
 
 urlpatterns = [
@@ -36,7 +36,7 @@ urlpatterns = [
         name='unmanage'),
 ]
 
-if manila.is_replication_enabled():
+if features.is_replication_enabled():
     urlpatterns.extend([
         urls.url(
             r'^(?P<share_id>[^/]+)/replicas/$',
@@ -60,7 +60,7 @@ if manila.is_replication_enabled():
             name='reset_replica_state'),
     ])
 
-if manila.is_migration_enabled():
+if features.is_migration_enabled():
     urlpatterns.extend([
         urls.url(
             r'^migration_start/(?P<share_id>[^/]+)$',

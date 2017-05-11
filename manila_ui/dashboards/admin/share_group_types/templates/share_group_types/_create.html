@@ -1,0 +1,11 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% block modal-body-right %}
+  <h3>{% trans "Description" %}:</h3>
+  <p>{% trans "The share group type defines the characteristics of a share group backend." %}
+    <br /><br /><strong>Extra specs</strong> field:<br />
+    {% trans "One line - one action. Empty strings will be ignored." %}<br />
+    {% trans "To add group-specs use:" %}
+    <pre>key=value</pre>
+  </p>
+{% endblock %}
