@@ -13,16 +13,16 @@
 #    under the License.
 
 from django.utils.translation import ugettext_lazy as _
-
 import horizon
-
 from openstack_dashboard.dashboards.project import dashboard
 
 
 class Shares(horizon.Panel):
     name = _("Shares")
     slug = 'shares'
-    permissions = ('openstack.services.share', )
+    permissions = (
+        'openstack.services.share',
+    )
 
 
 dashboard.Project.register(Shares)

@@ -1,5 +1,3 @@
-# Copyright 2016 Mirantis Inc.
-#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -12,7 +10,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-PANEL_DASHBOARD = 'admin'
-PANEL_GROUP = 'admin'
-PANEL = 'shares'
-ADD_PANEL = 'manila_ui.dashboards.admin.shares.panel.Shares'
+from django.conf import urls
+
+from manila_ui.dashboards.admin.share_instances import views
+
+
+urlpatterns = [
+    urls.url(
+        r'^$',
+        views.ShareInstancesView.as_view(),
+        name='index'),
+    urls.url(
+        r'^(?P<share_instance_id>[^/]+)$',
+        views.ShareInstanceDetailView.as_view(),
+        name='share_instance_detail'),
+]

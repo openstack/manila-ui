@@ -132,7 +132,7 @@ class NovaShareNetworkTable(tables.DataTable):
             Delete)
 
 
-class NeutronShareNetworkTable(tables.DataTable):
+class ShareNetworksTable(tables.DataTable):
     STATUS_CHOICES = (
         ("ACTIVE", True),
         ("INACTIVE", True),

@@ -12,7 +12,7 @@
     <dd>{{ share_server.host}}</dd>
     <dt>{% trans "Share Network" %}</dt>
     {% if share_server.share_network_id %}
-    {% url 'horizon:admin:shares:share_network_detail' share_server.share_network_id as share_net_url %}
+    {% url 'horizon:admin:share_networks:share_network_detail' share_server.share_network_id as share_net_url %}
     <dd><a href="{{ share_net_url }}">{{ share_server.share_network_name }}</a></dd>
     {% else %}
     <dd>{{ share_server.share_network_name }}</dd>
@@ -30,9 +30,9 @@
   <h4>{% trans "Specs" %}</h4>
   <hr class="header_rule">
   <dl class="dl-horizontal">
-  {% for key in share_server.backend_details %}
+  {% for key, value in share_server.backend_details.items %}
     <dt>{{ key }}</dt>
-    <dd>{{ share_server.backend_details|get_item:key }}</dd>
+    <dd>{{ value }}</dd>
   {% endfor %}
   </dl>
 </div>

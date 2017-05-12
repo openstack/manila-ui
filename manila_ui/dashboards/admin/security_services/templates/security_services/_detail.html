@@ -1,0 +1,37 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Security Service Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Type" %}</dt>
+    <dd>{{ sec_service.type }}</dd>
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ sec_service.name }}</dd>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ sec_service.id }}</dd>
+    {% if sec_service.description %}
+      <dt>{% trans "Description" %}</dt>
+      <dd>{{ sec_service.description }}</dd>
+    {% endif %}
+    <dt>{% trans "Created at" %}</dt>
+    <dd>{{ sec_service.created_at|parse_date }}</dd>
+
+  </dl>
+</div>
+
+<div class="detail">
+  <h4>{% trans "Security Service Details" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "DNS IP" %}</dt>
+    <dd>{{ sec_service.dns_ip }}</dd>
+    <dt>{% trans "Server" %}</dt>
+    <dd>{{ sec_service.server }}</dd>
+    <dt>{% trans "Domain" %}</dt>
+    <dd>{{ sec_service.domain }}</dd>
+    <dt>{% trans "User" %}</dt>
+    <dd>{{ sec_service.user }}</dd>
+  </dl>
+</div>
+

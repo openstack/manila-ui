@@ -1,0 +1,66 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Share Snapshot Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ snapshot.name }}</dd>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ snapshot.id }}</dd>
+    {% url 'horizon:admin:shares:detail' snapshot.share_id as share_url %}
+    <dt>{% trans "Source" %}</dt>
+    <dd><a href="{{ share_url }}">{{ snapshot.share_name_or_id }}</a></dd>
+    {% if snapshot.description %}
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ snapshot.description }}</dd>
+    {% endif %}
+    <dt>{% trans "Status" %}</dt>
+    <dd>{{ snapshot.status|capfirst }}</dd>
+    {% if snapshot.export_locations %}
+    <dt>{% trans "Export locations" %}</dt>
+    {% for el in snapshot.export_locations %}
+      <dd><p>
+        <div><b>Path:</b>
+            <input type="text" readonly="true"
+                   value="{{ el.path }}" size="{{ snapshot.el_size }}"
+                   onClick="this.setSelectionRange(0, this.value.length)">
+        </div>
+        {% if el.is_admin_only != None %}
+        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+        {% endif %}
+        {% if el.share_snapshot_instance_id %}
+        <div><b>Snapshot Replica ID:</b> {{ el.share_snapshot_instance_id }}</div>
+        {% endif %}
+      </p></dd>
+    {% endfor %}
+    {% endif %}
+  </dl>
+</div>
+
+{% if snapshot.rules != None %}
+<div class="detail">
+  <h4>{% trans "Access Rules" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+  {% for rule in snapshot.rules %}
+    <dt>{{ rule.access_type }}</dt>
+    <dd><p>
+      <div><b>Access to: </b>{{ rule.access_to }}</div>
+      <div><b>Status: </b>{{ rule.state }}</div>
+    </p></dd>
+  {% endfor %}
+  </dl>
+</div>
+{% endif %}
+
+<div class="detail">
+  <h4>{% trans "Specs" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Size" %}</dt>
+    <dd>{{ snapshot.size }} {% trans "GiB" %}</dd>
+    <dt>{% trans "Created" %}</dt>
+    <dd>{{ snapshot.created_at|parse_date }}</dd>
+  </dl>
+</div>

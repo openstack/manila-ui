@@ -2,9 +2,9 @@
 {% load i18n %}
 
 {% block form_id %}{% endblock %}
-{% block form_action %}{% url 'horizon:admin:shares:manage_share_type_access' share_type.id %}{% endblock %}
+{% block form_action %}{% url 'horizon:admin:share_types:manage_share_type_access' share_type.id %}{% endblock %}
 
-{% block modal_id %}add_security_service_modal{% endblock %}
+{% block modal_id %}manage_share_type_access_modal{% endblock %}
 {% block modal-header %}{% trans "Manage Share Type Access" %}{% endblock %}
 
 
@@ -55,5 +55,5 @@
 
 {% block modal-footer %}
   <input class="btn btn-primary pull-right" type="submit" value="{% trans "Submit" %}" />
-  <a href="{% url 'horizon:admin:shares:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
+  <a href="{% url 'horizon:admin:share_types:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
 {% endblock %}

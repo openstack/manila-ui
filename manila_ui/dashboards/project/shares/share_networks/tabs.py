@@ -32,7 +32,7 @@ class ShareNetworkTab(tabs.TableTab):
 
     def __init__(self, tab_group, request):
         if base.is_service_enabled(request, 'network'):
-            self.table_classes = (share_net_tables.NeutronShareNetworkTable,)
+            self.table_classes = (share_net_tables.ShareNetworksTable,)
         else:
             self.table_classes = (share_net_tables.NovaShareNetworkTable,)
         super(ShareNetworkTab, self).__init__(tab_group, request)

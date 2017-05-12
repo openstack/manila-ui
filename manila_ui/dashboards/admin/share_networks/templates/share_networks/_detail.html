@@ -1,0 +1,56 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Share Network Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ share_network.name }}</dd>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ share_network.id }}</dd>
+    {% if share_network.description %}
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ share_network.description }}</dd>
+    {% endif %}
+    {% if share_network.share_servers %}
+    <dt>{% trans "Share Servers" %}</dt>
+    {% for server in share_network.share_servers %}
+    {% url 'horizon:admin:share_servers:share_server_detail' server.id as server_url %}
+    <dd><a href="{{ server_url }}">{{ server.id }}</a></dd>
+    {% endfor %}
+    {% endif %}
+  </dl>
+</div>
+
+<div class="detail">
+  <h4>{% trans "Net Details" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Network" %}</dt>
+    {% if share_network.neutron_net %}
+    <dd>{{ share_network.neutron_net }}</dd>
+    <dt>{% trans "Subnet" %}</dt>
+    <dd>{{ share_network.neutron_subnet}}</dd>
+    {% endif %}
+    {% if share_network.nova_net %}
+    <dd>{{ share_network.nova_net }}</dd>
+    {% endif %}
+  </dl>
+</div>
+
+<div class="detail">
+  <h4>{% trans "Security Services" %}</h4>
+  <hr class="header_rule">
+  {% for sec_service in share_network.sec_services %}
+        {% url 'horizon:admin:security_services:security_service_detail' sec_service.id as sec_service_url%}
+  <dl class="dl-horizontal">
+        <dt>{% trans "Id" %}</dt>
+        <dd><a href="{{ sec_service_url }}">{{ sec_service.id }}</a></dd>
+        <dt>{% trans "Name" %}</dt>
+        <dd><a href="{{ sec_service_url }}">{{ sec_service.name }}</a></dd>
+        <dt>{% trans "Type" %}</dt>
+        <dd>{{ sec_service.type }}</dd>
+  </dl>
+  <br />
+  {% endfor %}
+</div>

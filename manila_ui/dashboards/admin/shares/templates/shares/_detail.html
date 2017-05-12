@@ -1,0 +1,100 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "Share Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "Name" %}</dt>
+    <dd>{{ share.name }}</dd>
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ share.id }}</dd>
+    {% if share.description %}
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ share.description }}</dd>
+    {% endif %}
+    <dt>{% trans "Status" %}</dt>
+    <dd>{{ share.status|capfirst }}</dd>
+    <dt>{% trans "Export locations" %}</dt>
+    {% for el in share.export_locations %}
+      <dd><p>
+        <div><b>Path:</b>
+            <input type="text" readonly="true"
+                   value="{{ el.path }}" size="{{ share.el_size }}"
+                   onClick="this.setSelectionRange(0, this.value.length)">
+        </div>
+        <div><b>Preferred:</b> {{ el.preferred }}</div>
+        {% if el.is_admin_only == True or el.is_admin_only == False %}
+        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+        {% endif %}
+        {% if el.share_instance_id %}
+        <div><b>Share Replica ID:</b> {{ el.share_instance_id }}</div>
+        {% endif %}
+      </p></dd>
+    {% endfor %}
+    {% if share.snapshot_id %}
+    <dt>{% trans "Snapshot ID" %}</dt>
+    {% url 'horizon:admin:share_snapshots:snapshot_detail' share.snapshot_id as snapshot_url%}
+    <dd><a href="{{ snapshot_url }}">{{ share.snapshot_id }}</a></dd>
+    {% endif %}
+    <dt>{% trans "Visibility" %}</dt>
+    {% if share.is_public == True %}
+    <dd>{{ 'public' }}</dd>
+    {% else %}
+    <dd>{{ 'private' }}</dd>
+    <dt>{% trans "Availability zone" %}</dt>
+    <dd>{{ share.availability_zone }}</dd>
+    {% endif %}
+
+    <dt>{% trans "Size" %}</dt>
+    <dd>{{ share.size }} {% trans "GiB" %}</dd>
+    <dt>{% trans "Protocol" %}</dt>
+    <dd>{{ share.share_proto }}</dd>
+    {% if share.share_type %}
+    <dt>{% trans "Share type" %}</dt>
+    <dd><p>
+      <div><b>Name: </b>{{ share.share_type_name }}</div>
+      <div><b>ID: </b>{{ share.share_type }}</div>
+    </p></dd>
+    {% endif %}
+    {% if share.share_network_id %}
+    <dt>{% trans "Share network" %}</dt>
+    {% url 'horizon:admin:share_networks:share_network_detail' share.share_network_id as sn_url%}
+    <dd><a href="{{ sn_url }}">{{ share.share_network_id }}</a></dd>
+    {% endif %}
+    <dt>{% trans "Mount snapshot support" %}</dt>
+    <dd>{{ share.mount_snapshot_support }}</dd>
+    <dt>{% trans "Created" %}</dt>
+    <dd>{{ share.created_at|parse_date }}</dd>
+    <dt>{% trans "Host" %}</dt>
+    <dd>{{ share.host }}</dd>
+    <dt>{% trans "Task state" %}</dt>
+    <dd>{{ share.task_state }}</dd>
+  </dl>
+</div>
+
+<div class="status row-fluid detail">
+  <h4>{% trans "Access Rules" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+  {% for rule in share.rules %}
+    <dt>{{ rule.access_type }}</dt>
+    <dd><p>
+      <div><b>Access to: </b>{{ rule.access_to }}</div>
+      <div><b>Access Level: </b>{{ rule.access_level }}</div>
+      <div><b>Status: </b>{{ rule.state }}</div>
+      <div><b>Access Key: </b>{{ rule.access_key }}</div>
+    </p></dd>
+  {% endfor %}
+  </dl>
+</div>
+
+<div class="status row-fluid detail">
+  <h4>{% trans "Metadata" %}</h4>
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+  {% for key, value in share.metadata.items %}
+    <dt>{{ key }}</dt>
+    <dd>{{ value }}</dd>
+  {% endfor %}
+  </dl>
+</div>

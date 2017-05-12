@@ -92,7 +92,7 @@ class ManageShareTypeAccessWorkflow(workflows.Workflow):
     finalize_button_name = _("Manage Share Type Access")
     success_message = _('Updated access for share type "%s".')
     failure_message = _('Unable to update access for share type "%s".')
-    success_url = 'horizon:admin:shares:index'
+    success_url = 'horizon:admin:share_types:index'
     default_steps = (AddProjectStep, )
 
     def format_status_message(self, message):

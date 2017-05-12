@@ -20,9 +20,9 @@ def data(TEST):
          "endpoints_links": [],
          "endpoints": [
              {"region": "RegionOne",
-              "adminURL": "http://admin.manila.example.com:8786/v1.0",
-              "internalURL": "http://int.manila.example.com:8786/v1.0",
-              "publicURL": "http://public.manila.example.com:8786/v1.0"}]},
+              "adminURL": "http://admin.manila.example.com:8786/v1",
+              "internalURL": "http://int.manila.example.com:8786/v1",
+              "publicURL": "http://public.manila.example.com:8786/v1"}]},
     )
 
 projects = [
