@@ -3,9 +3,9 @@
 # Sungjin Kang <gang.sungjin@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.6.1.dev8\n"
+"Project-Id-Version: manila-ui 2.8.1.dev13\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-26 00:43+0000\n"
+"POT-Creation-Date: 2017-05-12 11:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Last-Translator: Sungjin Kang <gang.sungjin@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
 "Language: ko-KR\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #, python-format
@@ -197,9 +197,6 @@ msgstr "현재 크기 (GiB)"
 
 msgid "DNS IP"
 msgstr "DNS IP"
-
-msgid "Default Quota"
-msgstr "기본 할당량"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -497,9 +494,6 @@ msgstr "공용"
 msgid "Quota"
 msgstr "Quota"
 
-msgid "Replica"
-msgstr "Replica"
-
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
 msgstr "레프리카 상세정보: %(replica_display_name)s"
@@ -549,21 +543,11 @@ msgstr "replica 재동기화"
 msgid "Resync'ing replica '%s'"
 msgstr "replica '%s'  재동기화 중"
 
-msgid "Rule"
-msgstr "규칙"
-
 msgid "Rules"
 msgstr "규칙"
 
 msgid "Save Changes"
 msgstr "변경사항 저장"
-
-#, python-format
-msgid "Scheduled deletion of %(data_type)s"
-msgstr "%(data_type)s 예약 삭제"
-
-msgid "Security Service"
-msgstr "보안 서비스"
 
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
@@ -599,9 +583,6 @@ msgstr "프로젝트에대한 최대 quota를 설정합니다."
 #, python-format
 msgid "Setting replica \"%s\" as active..."
 msgstr "레프리카 \"%s\"를 활성화 상태로 설정"
-
-msgid "Share"
-msgstr "공유"
 
 #, python-format
 msgid "Share Details: %(share_display_name)s"

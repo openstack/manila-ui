@@ -1,9 +1,9 @@
 # Stanislav Ulrych <stanislav.ulrych@ultimum.io>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.6.1.dev8\n"
+"Project-Id-Version: manila-ui 2.8.1.dev13\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-26 00:43+0000\n"
+"POT-Creation-Date: 2017-05-12 11:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: Stanislav Ulrych <stanislav.ulrych@ultimum.io>\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
 #, python-format
@@ -186,9 +186,6 @@ msgstr "Současná velikost (GiB)"
 
 msgid "DNS IP"
 msgstr "DNS IP"
-
-msgid "Default Quota"
-msgstr "Výchozí kvóta"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -445,21 +442,11 @@ msgstr "Detaily repliky: %(replica_display_name)s"
 msgid "Replica State"
 msgstr "Stav repliky"
 
-msgid "Rule"
-msgstr "Pravidlo"
-
 msgid "Rules"
 msgstr "Pravidla"
 
 msgid "Save Changes"
 msgstr "Uložit změny"
-
-#, python-format
-msgid "Scheduled deletion of %(data_type)s"
-msgstr "Mazání %(data_type)s naplánováno"
-
-msgid "Security Service"
-msgstr "Bezpečnostní služba"
 
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
@@ -495,9 +482,6 @@ msgstr "Nastavit maximální kvóty pro projekt."
 #, python-format
 msgid "Setting replica \"%s\" as active..."
 msgstr "Nastavování repliky \"%s\" jako aktivní..."
-
-msgid "Share"
-msgstr "Sdílení"
 
 #, python-format
 msgid "Share Details: %(share_display_name)s"

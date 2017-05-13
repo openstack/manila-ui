@@ -4,9 +4,9 @@
 # liujunpeng <liujunpeng@inspur.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.7.1.dev21\n"
+"Project-Id-Version: manila-ui 2.8.1.dev13\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-03-21 16:11+0000\n"
+"POT-Creation-Date: 2017-05-12 11:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -202,9 +202,6 @@ msgstr "当前大小(GiB)"
 
 msgid "DNS IP"
 msgstr "DNS IP地址"
-
-msgid "Default Quota"
-msgstr "默认配额"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -536,9 +533,6 @@ msgstr "公有"
 msgid "Quota"
 msgstr "配额"
 
-msgid "Replica"
-msgstr "副本"
-
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
 msgstr "副本详情：%(replica_display_name)s"
@@ -588,21 +582,11 @@ msgstr "重新同步副本"
 msgid "Resync'ing replica '%s'"
 msgstr "重新同步副本'%s'"
 
-msgid "Rule"
-msgstr "规则"
-
 msgid "Rules"
 msgstr "规则"
 
 msgid "Save Changes"
 msgstr "保存变更"
-
-#, python-format
-msgid "Scheduled deletion of %(data_type)s"
-msgstr "已计划删除%(data_type)s"
-
-msgid "Security Service"
-msgstr "安全服务"
 
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
@@ -638,9 +622,6 @@ msgstr "为项目设置最大配额"
 #, python-format
 msgid "Setting replica \"%s\" as active..."
 msgstr "设置副本\"%s\"状态为active。。。"
-
-msgid "Share"
-msgstr "共享"
 
 #, python-format
 msgid "Share Details: %(share_display_name)s"
