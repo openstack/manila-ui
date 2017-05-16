@@ -26,7 +26,7 @@ from manila_ui.api import manila
 from manila_ui.dashboards.admin.share_snapshots import tables as ss_tables
 from manila_ui.dashboards.admin.share_snapshots import tabs as ss_tabs
 from manila_ui.dashboards.admin import utils
-import manila_ui.dashboards.project.shares.snapshots.views as snapshot_views
+import manila_ui.dashboards.project.share_snapshots.views as snapshot_views
 
 
 class ShareSnapshotsView(tables.MultiTableView):
@@ -57,7 +57,7 @@ class ShareSnapshotsView(tables.MultiTableView):
         return snapshots
 
 
-class ShareSnapshotDetailView(snapshot_views.SnapshotDetailView):
+class ShareSnapshotDetailView(snapshot_views.ShareSnapshotDetailView):
     tab_group_class = ss_tabs.SnapshotDetailTabs
     template_name = "admin/share_snapshots/detail.html"
     redirect_url = reverse_lazy("horizon:admin:share_snapshots:index")

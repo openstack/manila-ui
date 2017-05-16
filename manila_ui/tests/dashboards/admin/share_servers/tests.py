@@ -19,7 +19,7 @@ import mock
 from openstack_dashboard.api import keystone as api_keystone
 
 from manila_ui.api import manila as api_manila
-from manila_ui.tests.dashboards.project.shares import test_data
+from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 
 INDEX_URL = reverse('horizon:admin:share_servers:index')

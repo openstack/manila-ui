@@ -29,7 +29,7 @@ from manila_ui.dashboards.admin.shares import forms as project_forms
 from manila_ui.dashboards.admin.shares import tables as s_tables
 from manila_ui.dashboards.admin.shares import tabs as s_tabs
 from manila_ui.dashboards.admin import utils
-from manila_ui.dashboards.project.shares.shares import views as share_views
+from manila_ui.dashboards.project.shares import views as share_views
 
 
 class SharesView(tables.MultiTableView, share_views.ShareTableMixIn):

@@ -28,7 +28,7 @@ from manila_ui.api import manila
 from manila_ui.dashboards.admin.share_networks import tables as sn_tables
 from manila_ui.dashboards.admin.share_networks import tabs as sn_tabs
 from manila_ui.dashboards.admin import utils
-import manila_ui.dashboards.project.shares.share_networks.views as p_views
+from manila_ui.dashboards.project.share_networks import views as p_views
 
 
 class ShareNetworksView(tables.MultiTableView):

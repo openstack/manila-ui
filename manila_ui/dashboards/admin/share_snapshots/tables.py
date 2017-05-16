@@ -20,8 +20,8 @@ from horizon import exceptions
 from horizon import tables
 
 from manila_ui.api import manila
-from manila_ui.dashboards.project.shares.shares import tables as shares_tables
-import manila_ui.dashboards.project.shares.snapshots.tables as ss_tables
+import manila_ui.dashboards.project.share_snapshots.tables as ss_tables
+from manila_ui.dashboards.project.shares import tables as shares_tables
 
 
 def get_size(share):
@@ -118,7 +118,7 @@ class ShareSnapshotsTable(tables.DataTable):
         name = "share_snapshots"
         verbose_name = _("Share Snapshots")
         status_columns = ["status"]
-        row_class = ss_tables.UpdateRow
+        row_class = ss_tables.UpdateShareSnapshotRow
         table_actions = (
             tables.NameFilterAction,
             DeleteShareSnapshot,

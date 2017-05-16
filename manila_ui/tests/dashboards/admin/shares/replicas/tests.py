@@ -18,7 +18,7 @@ from django.core.urlresolvers import reverse
 import mock
 
 from manila_ui.api import manila as api_manila
-from manila_ui.tests.dashboards.project.shares import test_data
+from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 
 from openstack_dashboard.api import neutron

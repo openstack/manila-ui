@@ -1,0 +1,7 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% block modal-body-right %}
+  <div class="quota-dynamic">
+    {% include "project/shares/_limits.html" with usages=usages %}
+  </div>
+{% endblock %}

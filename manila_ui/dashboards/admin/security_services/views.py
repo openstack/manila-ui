@@ -26,7 +26,7 @@ from manila_ui.api import manila
 import manila_ui.dashboards.admin.security_services.tables as ss_tables
 import manila_ui.dashboards.admin.security_services.tabs as ss_tabs
 from manila_ui.dashboards.admin import utils
-import manila_ui.dashboards.project.shares.security_services.views as ss_views
+import manila_ui.dashboards.project.security_services.views as ss_views
 
 
 class SecurityServicesView(tables.MultiTableView):

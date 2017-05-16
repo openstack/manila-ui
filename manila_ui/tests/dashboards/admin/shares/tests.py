@@ -22,7 +22,7 @@ from openstack_dashboard.usage import quotas
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.admin import utils
-from manila_ui.tests.dashboards.project.shares import test_data
+from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 from manila_ui.tests.test_data import keystone_data
 

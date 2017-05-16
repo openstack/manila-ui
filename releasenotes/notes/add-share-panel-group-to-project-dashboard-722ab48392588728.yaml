@@ -1,0 +1,12 @@
+---
+features:
+  - Project dashboard now has manila-specific panel group called 'share'.
+    All 'tabs' we had before are panels in this group now. Each panel
+    is loaded in separate page. It allows us to avoid making redundant
+    API calls that we did loading all tabs at once.
+upgrade:
+  - URLs for resources in project dashboard were changed.
+    One part of changes is removal of intermediate "shares" part. Example -
+    was - "/project/shares/share_networks/"
+    became - "/project/share_networks/"
+    Other part is rename of resource actions to be more alike.

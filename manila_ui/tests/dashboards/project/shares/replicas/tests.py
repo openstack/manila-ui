@@ -16,15 +16,14 @@ import copy
 import ddt
 from django.core.urlresolvers import reverse
 import mock
+from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares.replicas import tables as r_tables
-from manila_ui.tests.dashboards.project.shares import test_data
+from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 
-from openstack_dashboard.api import neutron
-
-SHARE_INDEX_URL = reverse('horizon:project:shares:index')
+INDEX_URL = reverse('horizon:project:shares:index')
 
 
 class FakeAZ(object):
@@ -153,7 +152,7 @@ class ReplicasTests(test.TestCase):
         res = self.client.get(url)
 
         self.assertEqual(302, res.status_code)
-        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        self.assertRedirectsNoFollow(res, INDEX_URL)
         self.assertTemplateNotUsed(res, "project/shares/replicas/detail.html")
         api_manila.share_replica_get.assert_called_once_with(
             mock.ANY, self.share_replica.id)
@@ -187,7 +186,7 @@ class ReplicasTests(test.TestCase):
         res = self.client.get(url)
 
         self.assertEqual(302, res.status_code)
-        self.assertRedirectsNoFollow(res, SHARE_INDEX_URL)
+        self.assertRedirectsNoFollow(res, INDEX_URL)
         self.assertTemplateNotUsed(
             res, "project/shares/replicas/manage_replicas.html")
         api_manila.share_replica_list.assert_called_with(

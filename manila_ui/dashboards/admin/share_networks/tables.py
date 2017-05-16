@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import tables
 import six
 
-import manila_ui.dashboards.project.shares.share_networks.tables as sn_tables
+import manila_ui.dashboards.project.share_networks.tables as sn_tables
 
 
 class ShareNetworksTable(tables.DataTable):

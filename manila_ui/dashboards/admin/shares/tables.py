@@ -15,7 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import tables
 
 from manila_ui.api import manila
-from manila_ui.dashboards.project.shares.shares import tables as shares_tables
+from manila_ui.dashboards.project.shares import tables as shares_tables
 
 
 class MigrationStartAction(tables.LinkAction):
