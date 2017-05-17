@@ -67,13 +67,13 @@ def wrap(orig_func):
 # incorporate manila quotas and usage, all public functions must be
 # monkey-patched to add that information in.
 
-MANILA_QUOTA_FIELDS = (
+MANILA_QUOTA_FIELDS = {
     "shares",
     "share_gigabytes",
     "share_snapshots",
     "share_snapshot_gigabytes",
     "share_networks",
-)
+}
 MANILA_QUOTA_NAMES = {
     'shares': _('Shares'),
     'share_gigabytes': _('Share gigabytes'),
@@ -82,7 +82,7 @@ MANILA_QUOTA_NAMES = {
     'share_networks': _('Shares Networks'),
 }
 
-quotas.QUOTA_FIELDS += MANILA_QUOTA_FIELDS
+quotas.QUOTA_FIELDS = quotas.QUOTA_FIELDS | MANILA_QUOTA_FIELDS
 
 
 def _get_manila_disabled_quotas(request):
