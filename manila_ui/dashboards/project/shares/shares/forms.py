@@ -112,17 +112,23 @@ class CreateForm(forms.SelfHandlingForm):
 
         self.fields['share_proto'].choices = [(sp, sp) for sp in
                                               self.enabled_share_protocols]
-        if "snapshot_id" in request.GET:
+        if ("snapshot_id" in request.GET or
+                kwargs.get("data", {}).get("snapshot")):
             try:
-                snapshot = self.get_snapshot(request,
-                                             request.GET["snapshot_id"])
+                snapshot = self.get_snapshot(
+                    request,
+                    request.GET.get("snapshot_id",
+                                    kwargs.get("data", {}).get("snapshot")))
                 self.fields['name'].initial = snapshot.name
                 self.fields['size'].initial = snapshot.size
                 self.fields['snapshot'].choices = ((snapshot.id, snapshot),)
                 try:
                     # Set the share type from the original share
                     orig_share = manila.share_get(request, snapshot.share_id)
-                    self.fields['share_type'].initial = orig_share.share_type
+                    # NOTE(vponomaryov): we should use share type name, not ID,
+                    # because we use names in our choices above.
+                    self.fields['share_type'].initial = (
+                        orig_share.share_type_name)
                 except Exception:
                     pass
                 self.fields['size'].help_text = _(
@@ -182,11 +188,6 @@ class CreateForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         try:
-            # usages = quotas.tenant_limit_usages(self.request)
-            # availableGB = usages['maxTotalShareGigabytes'] - \
-            #    usages['gigabytesUsed']
-            # availableVol = usages['maxTotalShares'] - usages['sharesUsed']
-
             snapshot_id = None
             source_type = data.get('share_source_type', None)
             share_network = data.get('share_network', None)
@@ -201,21 +202,7 @@ class CreateForm(forms.SelfHandlingForm):
                                       'snapshot size (%sGiB)') % snapshot.size
                     raise ValidationError(error_message)
             else:
-                if type(data['size']) is str:
-                    data['size'] = int(data['size'])
-            #
-            # if availableGB < data['size']:
-            #    error_message = _('A share of %(req)iGB cannot be created as '
-            #                      'you only have %(avail)iGB of your quota '
-            #                      'available.')
-            #    params = {'req': data['size'],
-            #              'avail': availableGB}
-            #    raise ValidationError(error_message % params)
-            # elif availableVol <= 0:
-            #    error_message = _('You are already using all of your '
-            #                      'available'
-            #                      ' shares.')
-            #    raise ValidationError(error_message)
+                data['size'] = int(data['size'])
 
             metadata = {}
             try:
