@@ -18,6 +18,7 @@ from django.core.urlresolvers import reverse
 import mock
 
 from manila_ui.api import manila as api_manila
+from manila_ui.dashboards.project.shares.replicas import tables as r_tables
 from manila_ui.tests.dashboards.project.shares import test_data
 from manila_ui.tests import helpers as test
 
@@ -311,3 +312,18 @@ class ReplicasTests(test.TestCase):
 
         self.assertRedirectsNoFollow(
             res, reverse("horizon:project:shares:index"))
+
+    def test_replicas_table(self):
+        replicas_table = r_tables.ReplicasTable(self.request)
+        counter = 0
+        columns = ['created_at', 'updated_at']
+        for column in replicas_table.get_columns():
+            if column.name in columns:
+                self.assertEqual(1, len(column.filters))
+                self.assertEqual(
+                    column.filters[0], r_tables.filters.parse_isotime)
+                counter += 1
+                columns.remove(column.name)
+        self.assertEqual(
+            2, counter,
+            "The following columns are missing: %s." % ', '.join(columns))
