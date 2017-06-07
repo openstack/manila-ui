@@ -3,9 +3,9 @@
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev18\n"
+"Project-Id-Version: manila-ui 2.8.1.dev25\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-05-23 13:04+0000\n"
+"POT-Creation-Date: 2017-06-06 14:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -151,9 +151,6 @@ msgstr "Erstelle Fraigaben-Schattenkopie"
 msgid "Create Share Type"
 msgstr "Erstelle Freigabetyp"
 
-msgid "Create Snapshot"
-msgstr "Schattenkopie erstellen"
-
 msgid "Create a Share"
 msgstr "Erstelle eine Freigabe"
 
@@ -253,9 +250,6 @@ msgstr "Freigabemetadaten bearbeiten"
 
 msgid "Edit Share Network"
 msgstr "Bearbeite Freigabenetzwerk"
-
-msgid "Edit Snapshot"
-msgstr "Schattenkopie bearbeiten"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -480,14 +474,8 @@ msgstr "Netzwerke"
 msgid "Neutron Net"
 msgstr "Neutron Netz"
 
-msgid "Neutron Net ID"
-msgstr "Neutron Netz ID"
-
 msgid "Neutron Subnet"
 msgstr "Neutron Subnetz"
-
-msgid "Neutron Subnet ID"
-msgstr "Neutron Subnetz ID"
 
 msgid "New Size (GiB)"
 msgstr "Neue Größe (GiB)"
@@ -772,18 +760,9 @@ msgstr "Schattenkopie"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Schattenkopiedetails: %(snapshot_display_name)s"
 
-msgid "Snapshot Name"
-msgstr "Schattenkopiename"
-
-msgid "Snapshot Overview"
-msgstr "Übersicht Schattenkopie"
-
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
-
-msgid "Snapshots"
-msgstr "Schattenkopien"
 
 msgid "Source"
 msgstr "Quelle"
@@ -1020,9 +999,6 @@ msgstr "Konnte Freigaben-Schattenkopieliste nicht abrufen."
 msgid "Unable to retrieve share snapshots."
 msgstr "Konnte freigegebene Schattenkopien nicht abrufen."
 
-msgid "Unable to retrieve share types"
-msgstr "Konnte Freigabetypen nicht abrufen."
-
 msgid "Unable to retrieve share."
 msgstr "Konnte Freigabe nicht abrufen."
 
@@ -1035,12 +1011,6 @@ msgstr "Konnte den Freigabetyp nicht abrufen."
 
 msgid "Unable to retrieve snapshot details."
 msgstr "Konnte Schattenkopiedetails nicht abrufen."
-
-msgid "Unable to retrieve snapshot list."
-msgstr "Konnte Liste der Schattenkopien nicht abrufen."
-
-msgid "Unable to retrieve snapshot rules."
-msgstr "Schattenkopie-Regeln können nicht abgerufen werden."
 
 msgid "Unable to retrieve snapshot."
 msgstr "Konnte Schattenkopie nicht abrufen."
@@ -1086,9 +1056,6 @@ msgstr "Konnte Freigabetyp nicht aktualisieren."
 
 msgid "Unable to update share."
 msgstr "Konnte Freigabe nicht aktualisieren."
-
-msgid "Unable to update snapshot."
-msgstr "Konnte Schattenkopie nicht aktualisieren"
 
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -1137,10 +1104,6 @@ msgstr "Aktualisiere Freigabe Metadaten \"%s\""
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "Aktualisiere Freigabenetzwerk \"%s\""
-
-#, python-format
-msgid "Updating snapshot \"%s\""
-msgstr "Aktualisiere Schattenkopie \"%s\""
 
 msgid "Use snapshot as a source"
 msgstr "Benutze Schattenkopie als Quelle"

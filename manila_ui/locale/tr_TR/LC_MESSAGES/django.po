@@ -1,9 +1,9 @@
 # işbaran akçayır <isbaran@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev17\n"
+"Project-Id-Version: manila-ui 2.8.1.dev25\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-05-19 13:09+0000\n"
+"POT-Creation-Date: 2017-06-06 14:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -149,9 +149,6 @@ msgstr "Paylaşım Anlık Görüntüsü Oluştur"
 
 msgid "Create Share Type"
 msgstr "Paylaşım Türü Oluştur"
-
-msgid "Create Snapshot"
-msgstr "Anlık Görüntü Oluştur"
 
 msgid "Create a Share"
 msgstr "Bir Paylaşım Oluştur"
@@ -325,9 +322,6 @@ msgstr "Paylaşım Metaverisini Düzenle"
 
 msgid "Edit Share Network"
 msgstr "Paylaşım Ağını Düzenle"
-
-msgid "Edit Snapshot"
-msgstr "Anlık Görüntü Düzenle"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -547,14 +541,8 @@ msgstr "Ağlar"
 msgid "Neutron Net"
 msgstr "Neutron Ağı"
 
-msgid "Neutron Net ID"
-msgstr "Neutron Ağ Kimliği"
-
 msgid "Neutron Subnet"
 msgstr "Neutron Alt Ağı"
-
-msgid "Neutron Subnet ID"
-msgstr "Neutron Alt Ağ Kimliği"
 
 msgid "New Size (GiB)"
 msgstr "Yeni Boyut (GiB)"
@@ -860,18 +848,9 @@ msgstr "Anlık görüntü"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Anlık Görüntü Ayrıntıları: %(snapshot_display_name)s"
 
-msgid "Snapshot Name"
-msgstr "Anlık Görüntü Adı"
-
-msgid "Snapshot Overview"
-msgstr "Anlık Görüntü Genel Görünümü"
-
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "Anlık Görüntü Kuralları: %(snapshot_display_name)s"
-
-msgid "Snapshots"
-msgstr "Anlık Görüntüler"
 
 msgid "Source"
 msgstr "Kaynak"
@@ -1100,9 +1079,6 @@ msgstr "Paylaşım anlık görüntü listesi alınamıyor."
 msgid "Unable to retrieve share snapshots."
 msgstr "Paylaşım anlık görüntüleri alınamadı."
 
-msgid "Unable to retrieve share types"
-msgstr "Paylaşım türleri alınamadı"
-
 msgid "Unable to retrieve share."
 msgstr "Paylaşım alınamıyor."
 
@@ -1115,12 +1091,6 @@ msgstr "share_type alınamadı."
 
 msgid "Unable to retrieve snapshot details."
 msgstr "Anlık görüntü ayrıntıları alınamıyor."
-
-msgid "Unable to retrieve snapshot list."
-msgstr "Anlık görüntü listesi alınamadı."
-
-msgid "Unable to retrieve snapshot rules."
-msgstr "Anlık görüntü kuralları alınamıyor."
 
 msgid "Unable to retrieve snapshot."
 msgstr "Anlık görüntü alınamıyor."
@@ -1170,9 +1140,6 @@ msgstr "Paylaşım türü güncellenemiyor."
 msgid "Unable to update share."
 msgstr "Paylaşım güncellenemedi."
 
-msgid "Unable to update snapshot."
-msgstr "Anlık görüntü güncellenemiyor."
-
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
@@ -1220,10 +1187,6 @@ msgstr "Paylaşım metaverisi \"%s\" güncelleniyor"
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "Paylaşım ağı \"%s\" güncelleniyor"
-
-#, python-format
-msgid "Updating snapshot \"%s\""
-msgstr "\"%s\" anlık görüntüsü güncelleniyor"
 
 msgid "Use snapshot as a source"
 msgstr "Anlık görüntüyü kaynak olarak kullan"

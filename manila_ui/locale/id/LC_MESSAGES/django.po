@@ -2,9 +2,9 @@
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev13\n"
+"Project-Id-Version: manila-ui 2.8.1.dev25\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-05-12 11:54+0000\n"
+"POT-Creation-Date: 2017-06-06 14:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -154,9 +154,6 @@ msgstr "Create Share Snapshot (buat snapshot berbagi)"
 msgid "Create Share Type"
 msgstr "Create Share Type (membuat tipe share)"
 
-msgid "Create Snapshot"
-msgstr "Create Snapshot (pembuatan snapshot)"
-
 msgid "Create a Share"
 msgstr "Create a Share (Buat share)"
 
@@ -249,9 +246,6 @@ msgstr "Edit Share Metadata (mengedit metadata berbagi)"
 
 msgid "Edit Share Network"
 msgstr "Edit Share Network (mengedit jaringan berbagi)"
-
-msgid "Edit Snapshot"
-msgstr "Edit Snapshot (mengedit snapshot)"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -474,14 +468,8 @@ msgstr "Networks (jaringan)"
 msgid "Neutron Net"
 msgstr "Neutron Net"
 
-msgid "Neutron Net ID"
-msgstr "Neutron Net ID"
-
 msgid "Neutron Subnet"
 msgstr "Neutron Subnet (subnet Neutron)"
-
-msgid "Neutron Subnet ID"
-msgstr "Neutron Subnet ID"
 
 msgid "New Size (GiB)"
 msgstr "New Size (ukuran baru) (GiB)"
@@ -789,18 +777,9 @@ msgstr "Snapshot"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Snapshot Details (rincian snapshot) : %(snapshot_display_name)s"
 
-msgid "Snapshot Name"
-msgstr "Snapshot Name (nama snapshot)"
-
-msgid "Snapshot Overview"
-msgstr "Snapshot Overview (ikhtisar snapshot)"
-
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "Snapshot Rules (aturan snapshot): %(snapshot_display_name)s"
-
-msgid "Snapshots"
-msgstr "Snapshots"
 
 msgid "Source"
 msgstr "Source (sumber)"
@@ -1032,9 +1011,6 @@ msgstr "Tidak dapat mengambil daftar snapshot berbagi."
 msgid "Unable to retrieve share snapshots."
 msgstr "Tidak dapat mengambil snapshot berbagi."
 
-msgid "Unable to retrieve share types"
-msgstr "Tidak dapat mengambil tipe share"
-
 msgid "Unable to retrieve share."
 msgstr "Tidak dapat mengambil share."
 
@@ -1047,12 +1023,6 @@ msgstr "Tidak dapat mengambil share_type."
 
 msgid "Unable to retrieve snapshot details."
 msgstr "Tidak dapat mengambil rincian snapshot."
-
-msgid "Unable to retrieve snapshot list."
-msgstr "Tidak dapat mengambil daftar snapshot."
-
-msgid "Unable to retrieve snapshot rules."
-msgstr "Tidak dapat mengambil aturan snapshot."
 
 msgid "Unable to retrieve snapshot."
 msgstr "Tidak dapat mengambil snapshot."
@@ -1103,9 +1073,6 @@ msgstr "Tidak dapat memperbarui tipe share."
 msgid "Unable to update share."
 msgstr "Tidak dapat memperbarui share."
 
-msgid "Unable to update snapshot."
-msgstr "Tidak dapat memperbarui snapshot."
-
 msgid "Unknown"
 msgstr "Unknown (tidak diketahui)"
 
@@ -1153,10 +1120,6 @@ msgstr "Memperbarui metadata berbagi \"%s\""
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "Memperbarui jaringan berbagi \"%s\""
-
-#, python-format
-msgid "Updating snapshot \"%s\""
-msgstr "Pemutakhirkan snapshot \"%s\""
 
 msgid "Use snapshot as a source"
 msgstr "Gunakan snapshot sebagai sumber"

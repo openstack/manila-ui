@@ -3,9 +3,9 @@
 # Sungjin Kang <gang.sungjin@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev13\n"
+"Project-Id-Version: manila-ui 2.8.1.dev25\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-05-12 11:54+0000\n"
+"POT-Creation-Date: 2017-06-06 14:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -151,9 +151,6 @@ msgstr "공유 스냅샷 생성"
 msgid "Create Share Type"
 msgstr "공유 유형 생성"
 
-msgid "Create Snapshot"
-msgstr "스냅샷 생성"
-
 msgid "Create a Share"
 msgstr "공유 생성"
 
@@ -236,9 +233,6 @@ msgstr "공유 메타데이터 편집"
 
 msgid "Edit Share Network"
 msgstr "공유 네트워크 편집"
-
-msgid "Edit Snapshot"
-msgstr "스냅샷 수정"
 
 msgctxt "Current status of replica"
 msgid "Error"
@@ -422,14 +416,8 @@ msgstr "네트워크"
 msgid "Neutron Net"
 msgstr "Neutron Net"
 
-msgid "Neutron Net ID"
-msgstr "Neutron Net ID"
-
 msgid "Neutron Subnet"
 msgstr "Neutron 서브넷"
-
-msgid "Neutron Subnet ID"
-msgstr "Neutron 서브넷 ID"
 
 msgid "New Size (GiB)"
 msgstr "새 크기 (GiB)"
@@ -700,15 +688,6 @@ msgstr "스냅샷"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "스냅샷 상세정보: %(snapshot_display_name)s"
 
-msgid "Snapshot Name"
-msgstr "스냅샷 이름"
-
-msgid "Snapshot Overview"
-msgstr "스냅샷 개요"
-
-msgid "Snapshots"
-msgstr "스냅샷"
-
 msgid "Source"
 msgstr "소스"
 
@@ -917,9 +896,6 @@ msgstr "공유 스냅샷 목록을 찾을 수 없습니다."
 msgid "Unable to retrieve share snapshots."
 msgstr "공유 스냅샷을 찾지 못했습니다."
 
-msgid "Unable to retrieve share types"
-msgstr "공유 유형을 가져올 수 없습니다"
-
 msgid "Unable to retrieve share."
 msgstr "공유를 찾을 수 없습니다."
 
@@ -932,9 +908,6 @@ msgstr "share_type 을 가져올 수 없습니다."
 
 msgid "Unable to retrieve snapshot details."
 msgstr "스냅샷 상세정보를 찾을 수 없습니다."
-
-msgid "Unable to retrieve snapshot list."
-msgstr "스냅샷 목록을 가져올 수 없습니다."
 
 msgid "Unable to retrieve snapshot."
 msgstr "스냅샷을 찾을 수 없습니다."
@@ -980,9 +953,6 @@ msgstr "공유 유형을 업데이트할 수 없습니다."
 
 msgid "Unable to update share."
 msgstr "공유를 업데이트할 수 없습니다."
-
-msgid "Unable to update snapshot."
-msgstr "스냅샷을 업데이트하지 못 하였습니다."
 
 msgid "Unknown"
 msgstr "알 수 없음"
@@ -1031,10 +1001,6 @@ msgstr "공유 메타데이터 \"%s\" 업데이트중"
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "공유 네트워크 \"%s\" 업데이트 중."
-
-#, python-format
-msgid "Updating snapshot \"%s\""
-msgstr "스냅샷 \"%s\" 업데이트 중"
 
 msgid "Use snapshot as a source"
 msgstr "소스로 스냅샷 사용"

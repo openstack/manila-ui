@@ -4,13 +4,13 @@
 # liujunpeng <liujunpeng@inspur.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev13\n"
+"Project-Id-Version: manila-ui 2.8.1.dev25\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-05-12 11:54+0000\n"
+"POT-Creation-Date: 2017-06-06 14:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-02-10 02:25+0000\n"
+"PO-Revision-Date: 2017-02-10 02:24+0000\n"
 "Last-Translator: liujunpeng <liujunpeng@inspur.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
@@ -152,9 +152,6 @@ msgstr "创建共享快照"
 msgid "Create Share Type"
 msgstr "创建共享类型"
 
-msgid "Create Snapshot"
-msgstr "创建快照"
-
 msgid "Create a Share"
 msgstr "创建共享"
 
@@ -244,9 +241,6 @@ msgstr "编辑共享元数据"
 
 msgid "Edit Share Network"
 msgstr "编辑共享网络"
-
-msgid "Edit Snapshot"
-msgstr "编辑快照"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -455,14 +449,8 @@ msgstr "网络"
 msgid "Neutron Net"
 msgstr "Neutron网络"
 
-msgid "Neutron Net ID"
-msgstr "Neutron网络ID"
-
 msgid "Neutron Subnet"
 msgstr "Neutron子网"
-
-msgid "Neutron Subnet ID"
-msgstr "Neutron子网ID"
 
 msgid "New Size (GiB)"
 msgstr "新大小(GiB)"
@@ -738,18 +726,9 @@ msgstr "快照"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "快照详情: %(snapshot_display_name)s"
 
-msgid "Snapshot Name"
-msgstr "快照名称"
-
-msgid "Snapshot Overview"
-msgstr "快照概览"
-
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "快照规则：%(snapshot_display_name)s"
-
-msgid "Snapshots"
-msgstr "快照"
 
 msgid "Source"
 msgstr "源"
@@ -977,9 +956,6 @@ msgstr "无法检索共享快照列表"
 msgid "Unable to retrieve share snapshots."
 msgstr "无法检索共享快照"
 
-msgid "Unable to retrieve share types"
-msgstr "无法检索共享类型"
-
 msgid "Unable to retrieve share."
 msgstr "无法检索共享"
 
@@ -992,12 +968,6 @@ msgstr "无法检索共享类型"
 
 msgid "Unable to retrieve snapshot details."
 msgstr "无法检索快照详情"
-
-msgid "Unable to retrieve snapshot list."
-msgstr "无法检索快照列表"
-
-msgid "Unable to retrieve snapshot rules."
-msgstr "不能获取快照规则。"
 
 msgid "Unable to retrieve snapshot."
 msgstr "无法检索快照"
@@ -1043,9 +1013,6 @@ msgstr "无法更新共享类型"
 
 msgid "Unable to update share."
 msgstr "无法更新共享"
-
-msgid "Unable to update snapshot."
-msgstr "无法更新快照"
 
 msgid "Unknown"
 msgstr "未知"
@@ -1094,10 +1061,6 @@ msgstr "正在更新共享元数据 \"%s\""
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "更新共享网络\"%s\""
-
-#, python-format
-msgid "Updating snapshot \"%s\""
-msgstr "更新快照\"%s\"中"
 
 msgid "Use snapshot as a source"
 msgstr "使用快照作为源"
