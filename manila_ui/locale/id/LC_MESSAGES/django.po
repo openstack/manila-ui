@@ -2,13 +2,13 @@
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev25\n"
+"Project-Id-Version: manila-ui 2.9.1.dev1\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-06-06 14:33+0000\n"
+"POT-Creation-Date: 2017-06-08 22:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-05-09 04:30+0000\n"
+"PO-Revision-Date: 2017-06-09 03:44+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
@@ -53,6 +53,9 @@ msgstr "Add Rule (tambah aturan)"
 
 msgid "Add Security Service"
 msgstr "Add Security Service (tambah layanan keamanan)"
+
+msgid "Add Share Snapshot Rule"
+msgstr "Menambahkan Share Snapshot Rule"
 
 msgid "Add rule"
 msgstr "Tambah aturan"
@@ -205,6 +208,86 @@ msgstr "DNS IP"
 msgid "Default Quotas"
 msgstr "Default Quota"
 
+msgid "Delete Replica"
+msgid_plural "Delete Replicas"
+msgstr[0] "Delete Replica"
+
+msgid "Delete Rule"
+msgid_plural "Delete Rules"
+msgstr[0] "Delete Rule"
+
+msgid "Delete Security Service"
+msgid_plural "Delete Security Services"
+msgstr[0] "Delete Security Service"
+
+msgid "Delete Share"
+msgid_plural "Delete Shares"
+msgstr[0] "Delete Share"
+
+msgid "Delete Share Network"
+msgid_plural "Delete Share Networks"
+msgstr[0] "Delete Share Network"
+
+msgid "Delete Share Server"
+msgid_plural "Delete Share Server"
+msgstr[0] "Delete Share Server"
+
+msgid "Delete Share Snapshot"
+msgid_plural "Delete Share Snapshots"
+msgstr[0] "Delete Share Snapshot"
+
+msgid "Delete Share Snapshot Rule"
+msgid_plural "Delete Share Snapshot Rules"
+msgstr[0] "Delete Share Snapshot Rule"
+
+msgid "Delete Share Type"
+msgid_plural "Delete Share Types"
+msgstr[0] "Delete Share Type"
+
+msgid "Delete Snapshot"
+msgid_plural "Delete Snapshots"
+msgstr[0] "Delete Snapshot"
+
+msgid "Deleted Replica"
+msgid_plural "Deleted Replicas"
+msgstr[0] "Deleted Replica"
+
+msgid "Deleted Rule"
+msgid_plural "Deleted Rules"
+msgstr[0] "Deleted Rule"
+
+msgid "Deleted Security Service"
+msgid_plural "Deleted Security Services"
+msgstr[0] "Deleted Security Service"
+
+msgid "Deleted Share"
+msgid_plural "Deleted Shares"
+msgstr[0] "Deleted Share"
+
+msgid "Deleted Share Network"
+msgid_plural "Deleted Share Networks"
+msgstr[0] "Deleted Share Network"
+
+msgid "Deleted Share Server"
+msgid_plural "Deleted Share Server"
+msgstr[0] "Deleted Share Server"
+
+msgid "Deleted Share Snapshot"
+msgid_plural "Deleted Share Snapshots"
+msgstr[0] "Deleted Share Snapshot"
+
+msgid "Deleted Share Snapshot Rule"
+msgid_plural "Deleted Share Snapshot Rules"
+msgstr[0] "Deleted Share Snapshot Rule"
+
+msgid "Deleted Share Type"
+msgid_plural "Deleted Share Types"
+msgstr[0] "Deleted Share Type"
+
+msgid "Deleted Snapshot"
+msgid_plural "Deleted Snapshots"
+msgstr[0] "Deleted Snapshot"
+
 msgctxt "Current status of replica"
 msgid "Deleting"
 msgstr "Deleting"
@@ -246,6 +329,9 @@ msgstr "Edit Share Metadata (mengedit metadata berbagi)"
 
 msgid "Edit Share Network"
 msgstr "Edit Share Network (mengedit jaringan berbagi)"
+
+msgid "Edit Share Snapshot"
+msgstr "Edit Share Snapshot"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -422,11 +508,11 @@ msgstr "Manage Rules (mengelola aturan)"
 msgid "Manage Share"
 msgstr "Manage Share (mengelola share)"
 
+msgid "Manage Share Snapshot Rules"
+msgstr "Mengelola Share Snapshot Rules"
+
 msgid "Manage Share Type Access"
 msgstr "Manage Share Type Access (mengelola akses tipe share)"
-
-msgid "Manage a Share"
-msgstr "Manage a Share (mengelola share)"
 
 msgid "Metadata"
 msgstr "Metadata"
@@ -613,6 +699,9 @@ msgstr "Save Changes (simpan perubahan)"
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Rincian layanan keamanan: %(service_display_name)s"
 
+msgid "Security Service Overview"
+msgstr "Security Service Overview"
+
 msgid "Security Services"
 msgstr "Security Services (layanan keamanan)"
 
@@ -663,6 +752,9 @@ msgstr "Share ID"
 msgid "Share Instance Details: %s"
 msgstr "Share Instance Details (rincian instance berbagai): %s"
 
+msgid "Share Instance Overview"
+msgstr "Share Instance Overview"
+
 msgid "Share Instances"
 msgstr "Share Instances (instance berbagi)"
 
@@ -680,8 +772,14 @@ msgstr ""
 msgid "Share Network Info"
 msgstr "Share Network Info (info jaringan berbagi)"
 
+msgid "Share Network Overview"
+msgstr "Share Network Overview"
+
 msgid "Share Networks"
 msgstr "Share Networks (jaringan berbagi)"
+
+msgid "Share Overview"
+msgstr "Share Overview"
 
 msgid "Share Protocol"
 msgstr "Share Protocol (protokol share)"
@@ -704,8 +802,20 @@ msgstr "Share Server Details (rincian server berbagi): %(server_name)s"
 msgid "Share Server Id"
 msgstr "Share Server Id"
 
+msgid "Share Server Overview"
+msgstr "Share Server Overview"
+
 msgid "Share Servers"
 msgstr "Share Servers (server berbagi)"
+
+msgid "Share Snapshot Name"
+msgstr "Share Snapshot Name"
+
+msgid "Share Snapshot Overview"
+msgstr "Share Snapshot Overview"
+
+msgid "Share Snapshot Rules"
+msgstr "Share Snapshot Rules"
 
 msgid "Share Snapshots"
 msgstr "Share Snapshots (snapshots bersama)"
@@ -1005,11 +1115,23 @@ msgstr "Tidak dapat mengambil rincian server share."
 msgid "Unable to retrieve share servers"
 msgstr "Tidak dapat mengambil server berbagi"
 
+msgid "Unable to retrieve share snapshot list."
+msgstr "Tidak dapat mengambil daftar share snapshot."
+
+msgid "Unable to retrieve share snapshot rules."
+msgstr "Tidak dapat mengambil share snapshot rule."
+
+msgid "Unable to retrieve share snapshot."
+msgstr "Tidak dapat mengambil share snapshot."
+
 msgid "Unable to retrieve share snapshots list."
 msgstr "Tidak dapat mengambil daftar snapshot berbagi."
 
 msgid "Unable to retrieve share snapshots."
 msgstr "Tidak dapat mengambil snapshot berbagi."
+
+msgid "Unable to retrieve share types."
+msgstr "Tidak dapat mengambil share types."
 
 msgid "Unable to retrieve share."
 msgstr "Tidak dapat mengambil share."
@@ -1067,6 +1189,9 @@ msgstr "Tidak dapat memperbarui jaringan berbagi \"%s\"."
 msgid "Unable to update share network."
 msgstr "Tidak dapat memperbarui jaringan berbagi."
 
+msgid "Unable to update share snapshot."
+msgstr "Tidak dapat memperbarui share snapshot."
+
 msgid "Unable to update share type."
 msgstr "Tidak dapat memperbarui tipe share."
 
@@ -1086,14 +1211,14 @@ msgstr "Unmanage Error (kesalahan tidak dikelola)"
 msgid "Unmanage Share"
 msgstr "Unmanage Share (share tidak terkelola)"
 
-msgid "Unmanage a Share"
-msgstr "Unmanage a Share (tidak mengelola share)"
-
 msgid "Update"
 msgstr "Update (perbarui)"
 
 msgid "Update Share Network"
 msgstr "Update Share Network (memperharui jaringan berbagi)"
+
+msgid "Update Share Snapshot"
+msgstr "Memperbarui Share Snapshot"
 
 msgid "Update Share Type"
 msgstr "Update Share Type (Memperbarui tipe share)"
@@ -1120,6 +1245,10 @@ msgstr "Memperbarui metadata berbagi \"%s\""
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "Memperbarui jaringan berbagi \"%s\""
+
+#, python-format
+msgid "Updating share snapshot \"%s\""
+msgstr "Memperbarui share snapshot \"%s\""
 
 msgid "Use snapshot as a source"
 msgstr "Gunakan snapshot sebagai sumber"

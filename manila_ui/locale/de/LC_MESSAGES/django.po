@@ -3,9 +3,9 @@
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.8.1.dev25\n"
+"Project-Id-Version: manila-ui 2.9.1.dev1\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-06-06 14:33+0000\n"
+"POT-Creation-Date: 2017-06-08 22:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -430,9 +430,6 @@ msgstr "Verwalte Freigabe"
 
 msgid "Manage Share Type Access"
 msgstr "Verwalte Freigabetypzugriff"
-
-msgid "Manage a Share"
-msgstr "Verwalten einer Freigabe"
 
 msgid "Metadata"
 msgstr "Metadaten"
@@ -1069,9 +1066,6 @@ msgstr "Fehlerverwaltung  aufheben"
 
 msgid "Unmanage Share"
 msgstr "Verwaltung der Freigabe  aufheben"
-
-msgid "Unmanage a Share"
-msgstr "Verwaltung einer Freigabe aufheben"
 
 msgid "Update"
 msgstr "Aktualisieren"
