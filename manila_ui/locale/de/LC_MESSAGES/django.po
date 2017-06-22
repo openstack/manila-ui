@@ -3,13 +3,13 @@
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.9.1.dev1\n"
+"Project-Id-Version: manila-ui 2.9.1.dev3\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-06-08 22:16+0000\n"
+"POT-Creation-Date: 2017-06-21 14:36+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-06-01 04:33+0000\n"
+"PO-Revision-Date: 2017-06-21 10:51+0000\n"
 "Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -199,15 +199,85 @@ msgstr "Aktuelle Größe (GiB)"
 msgid "DNS IP"
 msgstr "DNS IP"
 
+msgid "Delete Replica"
+msgid_plural "Delete Replicas"
+msgstr[0] "Replik entfernen"
+msgstr[1] "Repliken entfernen"
+
 msgid "Delete Rule"
 msgid_plural "Delete Rules"
 msgstr[0] "Regel löschen"
 msgstr[1] "Regeln löschen"
 
+msgid "Delete Security Service"
+msgid_plural "Delete Security Services"
+msgstr[0] "Lösche Sicherheitsdienst"
+msgstr[1] "Lösche Sicherheitsdienste"
+
+msgid "Delete Share"
+msgid_plural "Delete Shares"
+msgstr[0] "Lösche Freigabe"
+msgstr[1] "Lösche Freigaben"
+
+msgid "Delete Share Network"
+msgid_plural "Delete Share Networks"
+msgstr[0] "Freigabenetzwerk löschen"
+msgstr[1] "Freigabenetzwerke löschen"
+
+msgid "Delete Share Server"
+msgid_plural "Delete Share Server"
+msgstr[0] "Freigabeserver entfernen"
+msgstr[1] "Freigabeserver entfernen"
+
+msgid "Delete Share Type"
+msgid_plural "Delete Share Types"
+msgstr[0] "Freigabetyp löschen"
+msgstr[1] "Freigabetypen löschen"
+
+msgid "Delete Snapshot"
+msgid_plural "Delete Snapshots"
+msgstr[0] "Schattenkopie löschen"
+msgstr[1] "Schattenkopien löschen"
+
+msgid "Deleted Replica"
+msgid_plural "Deleted Replicas"
+msgstr[0] "Gelöschte Replik"
+msgstr[1] "Gelöschte Repliken"
+
 msgid "Deleted Rule"
 msgid_plural "Deleted Rules"
 msgstr[0] "Gelöschte Regel"
 msgstr[1] "Gelöschte Regeln"
+
+msgid "Deleted Security Service"
+msgid_plural "Deleted Security Services"
+msgstr[0] "Gelöschter Sicherheitsdienst"
+msgstr[1] "Gelöschte Sicherheitsdienste"
+
+msgid "Deleted Share"
+msgid_plural "Deleted Shares"
+msgstr[0] "Gelöschte Freigabe"
+msgstr[1] "Gelöschte Freigaben"
+
+msgid "Deleted Share Network"
+msgid_plural "Deleted Share Networks"
+msgstr[0] "Gelöschtes Freigabenetzwerk"
+msgstr[1] "Gelöschte Freigabennetzwerke"
+
+msgid "Deleted Share Server"
+msgid_plural "Deleted Share Server"
+msgstr[0] "Gelöschter Freigabeserver"
+msgstr[1] "Gelöschte Freigabeserver"
+
+msgid "Deleted Share Type"
+msgid_plural "Deleted Share Types"
+msgstr[0] "Gelöschter Freigabetyp"
+msgstr[1] "Gelöschte Freigabetypen"
+
+msgid "Deleted Snapshot"
+msgid_plural "Deleted Snapshots"
+msgstr[0] "Schattenkopie löschen"
+msgstr[1] "Schattenkopien löschen"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -399,7 +469,7 @@ msgstr "Inaktiv"
 
 #, python-format
 msgid "Key '%s' has improper length."
-msgstr "Schlüssel '%s' hat falsche Länge."
+msgstr "Schlüssel '%s' hat die falsche Länge."
 
 #, python-format
 msgid "Key can not contain spaces. See string '%s'."
@@ -607,6 +677,9 @@ msgstr "Änderungen speichern"
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Sicherheitsdienst-Details: %(service_display_name)s"
 
+msgid "Security Service Overview"
+msgstr "Sicherheitsdienst Überblick"
+
 msgid "Security Services"
 msgstr "Sicherheitsdienste"
 
@@ -653,6 +726,9 @@ msgstr "Freigabe-ID"
 msgid "Share Instance Details: %s"
 msgstr "Details Freigabeinstanz: %s"
 
+msgid "Share Instance Overview"
+msgstr "Freigegebene Instanzen Übersicht"
+
 msgid "Share Instances"
 msgstr "Freigabeinstanzen"
 
@@ -669,8 +745,14 @@ msgstr "Details Freigabenetzwerk: %(network_display_name)s"
 msgid "Share Network Info"
 msgstr "Freigabenetzwerk Informationen"
 
+msgid "Share Network Overview"
+msgstr "Freigabenetzwerke Übersicht"
+
 msgid "Share Networks"
 msgstr "Freigabenetzwerke"
+
+msgid "Share Overview"
+msgstr "Freigaben Übersicht"
 
 msgid "Share Protocol"
 msgstr "Freigabenprotokoll"
@@ -693,8 +775,17 @@ msgstr "Details Freigabeserver: %(server_name)s"
 msgid "Share Server Id"
 msgstr "Freigabeserver-ID"
 
+msgid "Share Server Overview"
+msgstr "Freigabeserver Übersicht"
+
 msgid "Share Servers"
 msgstr "Freigabeserver"
+
+msgid "Share Snapshot Name"
+msgstr "Freigegebene Schattenkopie Name"
+
+msgid "Share Snapshot Overview"
+msgstr "Schattenkopieübersicht teilen"
 
 msgid "Share Snapshots"
 msgstr "Freigabe Schattenkopien"
@@ -721,6 +812,9 @@ msgid ""
 msgstr ""
 "Die Freigabe kann nicht auf %(req)iGiB erweitert werden, da nur %(avail)iGiB "
 "in Ihrem Kontingent verfügbar sind."
+
+msgid "Share gigabytes"
+msgstr "Freigabe Gigabyte"
 
 msgid "Share name to be assigned"
 msgstr "Zuzuweisender Freigabename"
@@ -990,11 +1084,17 @@ msgstr "Konnte Details zum Freigabeserver nicht abrufen."
 msgid "Unable to retrieve share servers"
 msgstr "Konnte Freigabeserver nicht abrufen"
 
+msgid "Unable to retrieve share snapshot list."
+msgstr "Konnte Liste der geteilten Schattenkopien nicht abrufen."
+
 msgid "Unable to retrieve share snapshots list."
 msgstr "Konnte Freigaben-Schattenkopieliste nicht abrufen."
 
 msgid "Unable to retrieve share snapshots."
 msgstr "Konnte freigegebene Schattenkopien nicht abrufen."
+
+msgid "Unable to retrieve share types."
+msgstr "Freigabetypen können nicht abgerufen werden."
 
 msgid "Unable to retrieve share."
 msgstr "Konnte Freigabe nicht abrufen."
