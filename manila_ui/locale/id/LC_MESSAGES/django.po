@@ -2,17 +2,17 @@
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.7.1.dev6\n"
+"Project-Id-Version: manila-ui 2.7.2.dev7\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-02-03 11:09+0000\n"
+"POT-Creation-Date: 2017-07-11 15:46+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-01-31 03:14+0000\n"
+"PO-Revision-Date: 2017-07-14 12:15+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #, python-format
@@ -205,8 +205,8 @@ msgstr "Current Size (ukuran saat ini) (GiB)"
 msgid "DNS IP"
 msgstr "DNS IP"
 
-msgid "Default Quota"
-msgstr "Default Quota (kuota default)"
+msgid "Default Quotas"
+msgstr "Default Quotas"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -744,6 +744,9 @@ msgstr ""
 "Share tidak dapat diperpanjang untuk %(req)iGiB karena Anda hanya memiliki "
 "%(avail)iGiB dari kuota Anda yang tersedia."
 
+msgid "Share gigabytes"
+msgstr "Share gigabytes"
+
 msgid "Share name to be assigned"
 msgstr "Nama share yang akan ditetapkan"
 
@@ -756,6 +759,12 @@ msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr ""
 "Ukuran berbagi (share size) harus sama atau lebih besar dari ukuran snapshot "
 "(%sGiB)"
+
+msgid "Share snapshot gigabytes"
+msgstr "Share snapshot gigabytes"
+
+msgid "Share snapshots"
+msgstr "Share snapshots"
 
 msgid "Shares"
 msgstr "Shares"
