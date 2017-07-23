@@ -1,20 +1,21 @@
 # sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
 # zhongjun <jun.zhongjun2@gmail.com>, 2016. #zanata
 # zzxwill <zzxwill@gmail.com>, 2016. #zanata
+# Bin <liubin@glab.cn>, 2017. #zanata
 # Yu Long <yulongxn@163.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.5.2.dev9\n"
+"Project-Id-Version: manila-ui 2.5.2.dev13\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-02-13 18:52+0000\n"
+"POT-Creation-Date: 2017-07-11 20:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-02-12 04:02+0000\n"
-"Last-Translator: Yu Long <yulongxn@163.com>\n"
+"PO-Revision-Date: 2017-07-22 03:16+0000\n"
+"Last-Translator: Bin <liubin@glab.cn>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #, python-format
@@ -23,6 +24,9 @@ msgstr "%sGiB"
 
 msgid "(Quota exceeded)"
 msgstr "（超过配额）"
+
+msgid "Access Key"
+msgstr "访问密钥"
 
 msgid "Access Level"
 msgstr "访问级别"
@@ -196,7 +200,7 @@ msgstr "当前大小(GiB)"
 msgid "DNS IP"
 msgstr "DNS IP地址"
 
-msgid "Default Quota"
+msgid "Default Quotas"
 msgstr "默认配额"
 
 msgctxt "Current status of replica"
@@ -698,6 +702,9 @@ msgid ""
 "quota available."
 msgstr "共享不能扩展到 %(req)iGiB，因为您的可用配额只有 %(avail)iGiB。"
 
+msgid "Share gigabytes"
+msgstr "共享大小(GB)"
+
 msgid "Share name to be assigned"
 msgstr "指定分享名称"
 
@@ -708,6 +715,12 @@ msgstr "共享副本'%s'已经被删除。"
 #, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr "分享大小必须等于或者大于快照大小(%sGiB)"
+
+msgid "Share snapshot gigabytes"
+msgstr "共享快照大小(GB)"
+
+msgid "Share snapshots"
+msgstr "共享快照"
 
 msgid "Shares"
 msgstr "共享"
