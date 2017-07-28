@@ -1,15 +1,16 @@
 # linlin <469923498@qq.com>, 2016. #zanata
 # sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
+# Bin <liubin@glab.cn>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui Release Notes 2.7.1\n"
+"Project-Id-Version: manila-ui Release Notes 2.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-21 16:11+0000\n"
+"POT-Creation-Date: 2017-07-27 18:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-08-23 03:18+0000\n"
-"Last-Translator: sunanchen <KF.sunanchen@h3c.com>\n"
+"PO-Revision-Date: 2017-07-27 03:57+0000\n"
+"Last-Translator: Bin <liubin@glab.cn>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -18,14 +19,56 @@ msgstr ""
 msgid "2.2.0"
 msgstr "2.2.0版本"
 
+msgid "2.5.1-12"
+msgstr "2.5.1-12"
+
+msgid "2.7.0"
+msgstr "2.7.0"
+
+msgid "2.7.1"
+msgstr "2.7.1"
+
+msgid "2.8.0"
+msgstr "2.8.0"
+
+msgid "2.9.0"
+msgstr "2.9.0"
+
+msgid "Added native protocol for MapRFS manila share driver"
+msgstr "为MapPFS的manila共享驱动添加本地协议。"
+
+msgid "Added possibility to revert share to its latest snapshot."
+msgstr "增加了将共享恢复到其最新快照的可能性。"
+
+msgid "Added preserve-snapshots option to share migration."
+msgstr "增加了共享迁移的保持快照选项。"
+
+msgid "Added support for the mountable snapshots feature to manila-ui."
+msgstr "增加了对manila-ui的可挂载快照特征支持。"
+
+msgid "Bug Fixes"
+msgstr "Bug修复"
+
 msgid "Current Series Release Notes"
 msgstr "当前版本发布说明"
 
 msgid "New Features"
 msgstr "新特性"
 
+msgid "Newton Series Release Notes"
+msgstr "Newton版本发布说明"
+
+msgid "Ocata Series Release Notes"
+msgstr "Ocata版本发布说明"
+
 msgid "Started using release notes to track changes to manila UI."
 msgstr "开始使用释放注释来追踪manila UI。"
+
+msgid "Updated descriptions of share migration parameters."
+msgstr "更新共享迁移参数的描述。"
+
+msgid "Upgrade Notes"
+msgstr "升级说明"
 
 msgid "manila-ui Release Notes"
 msgstr "manila-ui发布说明"
