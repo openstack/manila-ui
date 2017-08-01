@@ -3,13 +3,13 @@
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.10.1.dev1\n"
+"Project-Id-Version: manila-ui 2.10.1.dev4\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-07-29 18:46+0000\n"
+"POT-Creation-Date: 2017-07-31 14:46+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-07-31 10:37+0000\n"
+"PO-Revision-Date: 2017-08-01 08:28+0000\n"
 "Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -55,6 +55,9 @@ msgstr "Regel hinzufügen"
 msgid "Add Security Service"
 msgstr "Sicherheitsdienst hinzufügen"
 
+msgid "Add Share Snapshot Rule"
+msgstr "Freigabe Schattenkopie Regel hinzufügen"
+
 msgid "Add rule"
 msgstr "Regel hinzufügen"
 
@@ -69,6 +72,9 @@ msgstr "Erlaube Projekt Zugriff auf Freigabetyp."
 
 msgid "At least one security service must be specified."
 msgstr "Wenigstens ein Sicherheitsdienst muss angegeben werden."
+
+msgid "At least one share type must be specified."
+msgstr "Es muss mindestens ein Freigabetyp angegeben werden."
 
 msgid "Availability Zone"
 msgstr "Verfügbarkeitszone"
@@ -142,6 +148,15 @@ msgstr "Erstelle Sicherheitsdienst"
 msgid "Create Share"
 msgstr "Freigabe erstellen"
 
+msgid "Create Share Group"
+msgstr "Freigabegruppe erstellen"
+
+msgid "Create Share Group Snapshot"
+msgstr "Freigabegruppe Schattenkopie erstellen"
+
+msgid "Create Share Group Type"
+msgstr "Freigabengruppe Typ erstellen"
+
 msgid "Create Share Network"
 msgstr "Erstelle Freigabenetzwerk"
 
@@ -156,6 +171,9 @@ msgstr "Erstelle eine Freigabe"
 
 msgid "Created At"
 msgstr "Erstellt um"
+
+msgid "Created at"
+msgstr "Erstellt am"
 
 msgctxt "Current status of replica"
 msgid "Creating"
@@ -184,6 +202,14 @@ msgstr "Erstelle Regel für \"%s\""
 #, python-format
 msgid "Creating share \"%s\""
 msgstr "Erstelle Freigabe \"%s\""
+
+#, python-format
+msgid "Creating share group \"%s\""
+msgstr "Erstelle Freigabegruppe \"%s\""
+
+#, python-format
+msgid "Creating share group snapshot \"%s\"."
+msgstr "Freigabegruppe Schattenkopie \"%s\" erstellen."
 
 #, python-format
 msgid "Creating share snapshot \"%s\"."
@@ -221,6 +247,21 @@ msgid "Delete Share"
 msgid_plural "Delete Shares"
 msgstr[0] "Lösche Freigabe"
 msgstr[1] "Lösche Freigaben"
+
+msgid "Delete Share Group"
+msgid_plural "Delete Share Groups"
+msgstr[0] "Freigabegruppe löschen"
+msgstr[1] "Freigabegruppen löschen"
+
+msgid "Delete Share Group Snapshot"
+msgid_plural "Delete Share Group Snapshots"
+msgstr[0] "Freigabengruppe Schattenkopie löschen"
+msgstr[1] "Freigabengruppe Schattenkopien löschen"
+
+msgid "Delete Share Group Type"
+msgid_plural "Delete Share Group Types"
+msgstr[0] "Freigabengruppe Typ löschen"
+msgstr[1] "Freigabengruppen Typen löschen"
 
 msgid "Delete Share Network"
 msgid_plural "Delete Share Networks"
@@ -262,6 +303,21 @@ msgid_plural "Deleted Shares"
 msgstr[0] "Gelöschte Freigabe"
 msgstr[1] "Gelöschte Freigaben"
 
+msgid "Deleted Share Group"
+msgid_plural "Deleted Share Groups"
+msgstr[0] "Gelöschte Freigabegruppe"
+msgstr[1] "Gelöschte Freigabegruppen"
+
+msgid "Deleted Share Group Snapshot"
+msgid_plural "Deleted Share Group Snapshots"
+msgstr[0] "Gelöschte Freigabengruppe Schattenkopie"
+msgstr[1] "Gelöschte Freigabengruppe Schattenkopien"
+
+msgid "Deleted Share Group Type"
+msgid_plural "Deleted Share Group Types"
+msgstr[0] "Gelöschter Freigabengruppe Typ"
+msgstr[1] "Gelöschte Freigabengruppen Typen"
+
 msgid "Deleted Share Network"
 msgid_plural "Deleted Share Networks"
 msgstr[0] "Gelöschtes Freigabenetzwerk"
@@ -271,6 +327,11 @@ msgid "Deleted Share Server"
 msgid_plural "Deleted Share Server"
 msgstr[0] "Gelöschter Freigabeserver"
 msgstr[1] "Gelöschte Freigabeserver"
+
+msgid "Deleted Share Snapshot"
+msgid_plural "Deleted Share Snapshots"
+msgstr[0] "Freigabe Schattenkopie löschen"
+msgstr[1] "Freigabe Schattenkopien löschen"
 
 msgid "Deleted Share Type"
 msgid_plural "Deleted Share Types"
@@ -323,6 +384,9 @@ msgstr "Freigabemetadaten bearbeiten"
 
 msgid "Edit Share Network"
 msgstr "Bearbeite Freigabenetzwerk"
+
+msgid "Edit Share Snapshot"
+msgstr "Freigabe Schattenkopie bearbeiten"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -504,6 +568,9 @@ msgstr "Regeln verwalten"
 msgid "Manage Share"
 msgstr "Verwalte Freigabe"
 
+msgid "Manage Share Group Type Access"
+msgstr "Freigabengruppe Typzugriff verwalten"
+
 msgid "Manage Share Type Access"
 msgstr "Verwalte Freigabetypzugriff"
 
@@ -635,6 +702,9 @@ msgstr "Replika Zustand zurücksetzen"
 msgid "Reset Replica Status"
 msgstr "Replika Status zurücksetzen"
 
+msgid "Reset Share Group Status"
+msgstr "Freigabegruppen Status zurücksetzen"
+
 msgid "Reset replica state"
 msgstr "Replika Zustand zurücksetzen"
 
@@ -739,6 +809,28 @@ msgstr "Details Freigabe: %(share_display_name)s"
 msgid "Share Details: %(share_name)s"
 msgstr "Freigabedetails: %(share_name)s"
 
+msgid "Share Group"
+msgstr "Freigabegruppe"
+
+#, python-format
+msgid "Share Group Details: %s"
+msgstr "Freigabegruppen Details: %s"
+
+msgid "Share Group Name"
+msgstr "Freigabegruppe Name"
+
+msgid "Share Group Overview"
+msgstr "Freigabegruppen Übersicht"
+
+msgid "Share Group Snapshots"
+msgstr "Freigabengruppe Schattenkopien"
+
+msgid "Share Group Types"
+msgstr "Freigabengruppe Typen"
+
+msgid "Share Groups"
+msgstr "Freigabegruppen"
+
 msgid "Share ID"
 msgstr "Freigabe-ID"
 
@@ -807,6 +899,9 @@ msgstr "Freigegebene Schattenkopie Name"
 msgid "Share Snapshot Overview"
 msgstr "Schattenkopieübersicht teilen"
 
+msgid "Share Snapshot Rules"
+msgstr "Schattenkopie-Regeln löschen"
+
 msgid "Share Snapshots"
 msgstr "Freigabe Schattenkopien"
 
@@ -848,6 +943,9 @@ msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr ""
 "Freigabegrösse muss gleich oder grösser als die Grösse der Schattenkopie "
 "sein (%sGiB)"
+
+msgid "Share types"
+msgstr "Freigabetypen"
 
 msgid "Shares"
 msgstr "Freigaben"
@@ -904,6 +1002,10 @@ msgid "Successfully created security service: %s"
 msgstr "Sicherheitsdienst erfolgreich erstellt: %s"
 
 #, python-format
+msgid "Successfully created share group type: %s"
+msgstr "Freigabegruppen Typ erfolgreich erstellt: %s"
+
+#, python-format
 msgid "Successfully created share network: %s"
 msgstr "Freigabenetzwerk erfolgreich erstellt: %s"
 
@@ -939,6 +1041,10 @@ msgid "Successfully updated extra specs for share type '%s'."
 msgstr "Extra-Spezifikationen des Freigabetypes '%s' erfolgreich aktualisiert."
 
 #, python-format
+msgid "Successfully updated group specs for share group type '%s'."
+msgstr "Spezifikationen für Freigabegruppe Typ '%s' erfolgreich aktualisiert."
+
+#, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "Erfolgreiche Aktualisierung des Sicherheitsdienstes \"%s\""
 
@@ -968,6 +1074,9 @@ msgstr "Konnte Migration der Freigabe %s nicht fertigstellen."
 msgid "Unable to create security service."
 msgstr "Konnte Sicherheitsdienst nicht erstellen."
 
+msgid "Unable to create share group type."
+msgstr "Freigabegruppen Typ kann nicht erstellt werden."
+
 msgid "Unable to create share network."
 msgstr "Konnte Freigabenetzwerk nicht erstellen."
 
@@ -982,6 +1091,10 @@ msgstr "Konnte Freigabetyp nicht erstellen."
 
 msgid "Unable to create share."
 msgstr "Konnte Freigabe nicht erstellen."
+
+#, python-format
+msgid "Unable to create share. %s"
+msgstr "Freigabe kann nicht erstellt werden. %s"
 
 #, python-format
 msgid "Unable to delete replica \"%s\"."
@@ -1041,6 +1154,10 @@ msgid "Unable to reset status of replica '%s'."
 msgstr "Konnte Status des Replika %s nicht zurücksetzen."
 
 #, python-format
+msgid "Unable to reset status of share group '%s'."
+msgstr "Status der Freigabegruppe '%s' kann nicht zurückgesetzt werden."
+
+#, python-format
 msgid "Unable to resync replica '%s'."
 msgstr "Resynchronisieren von Replika '%s' nicht möglich ."
 
@@ -1070,6 +1187,23 @@ msgstr "Konnte Sicherheitsdienst nicht abrufen."
 
 msgid "Unable to retrieve share details."
 msgstr "Konnte Freigabendetails nicht abrufen."
+
+#, python-format
+msgid "Unable to retrieve share group '%s'."
+msgstr "Freigabegruppe '%s' kann nicht abgerufen werden."
+
+msgid "Unable to retrieve share group details."
+msgstr "Freigabegruppen Details können nicht abgerufen werden."
+
+#, python-format
+msgid "Unable to retrieve share group snapshot '%s'."
+msgstr "Freigabengruppe Schattenkopie '%s' kann nicht abgerufen werden."
+
+msgid "Unable to retrieve share group types."
+msgstr "Freigabengruppe Typen können nicht abgerufen werden."
+
+msgid "Unable to retrieve share groups."
+msgstr "Freigabegruppen können nicht abgerufen werden."
 
 msgid "Unable to retrieve share instance details."
 msgstr "Konnte Freigabeinstanzdetails nicht abrufen."
@@ -1158,8 +1292,15 @@ msgstr "Konnte Standardkontingente nicht aktualisieren."
 msgid "Unable to update extra_specs for share type."
 msgstr "Konnte Extra-Spezifikationen für Freigabetyp nicht aktualisieren."
 
+msgid "Unable to update group_specs for share group type."
+msgstr ""
+"Spezifikationen für Freigabegruppe Typ können nicht aktualisiert werden."
+
 msgid "Unable to update security service."
 msgstr "Konnte Sicherheitsdienst nicht aktualisieren."
+
+msgid "Unable to update share group snapshot."
+msgstr "Freigabegruppe Schattenkopie kann nicht aktualisiert werden."
 
 msgid "Unable to update share metadata."
 msgstr "Konnte Freigabe Metadaten nicht aktualisieren."
@@ -1193,11 +1334,20 @@ msgstr "Verwaltung der Freigabe  aufheben"
 msgid "Update"
 msgstr "Aktualisieren"
 
+msgid "Update Share Group"
+msgstr "Freigabegruppe aktualisieren"
+
+msgid "Update Share Group Snapshot"
+msgstr "Freigabegruppe Schattenkopie aktualisieren"
+
 msgid "Update Share Network"
 msgstr "Aktualisiere Freigabenetzwerk"
 
 msgid "Update Share Type"
 msgstr "Aktualisiere Freigabetyp"
+
+msgid "Update Share group Type"
+msgstr "Freigabengruppe Typ aktualisieren"
 
 msgid "Updated At"
 msgstr "Aktualisiert um"
@@ -1213,6 +1363,10 @@ msgstr "Aktualisiere Freigabenetzwerk \"%s\"."
 #, python-format
 msgid "Updating share \"%s\""
 msgstr "Aktualisiere Freigabe \"%s\""
+
+#, python-format
+msgid "Updating share group snapshot \"%s\""
+msgstr "Freigabegruppe Schattenkopie \"%s\" wird aktualisiert."
 
 #, python-format
 msgid "Updating share metadata \"%s\""
