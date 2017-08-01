@@ -2,8 +2,8 @@
 Team and repository tags
 ========================
 
-.. image:: http://governance.openstack.org/badges/manila-ui.svg
-    :target: http://governance.openstack.org/reference/tags/index.html
+.. image:: https://governance.openstack.org/badges/manila-ui.svg
+    :target: https://governance.openstack.org/reference/tags/index.html
 
 .. Change things from this point on
 
@@ -16,10 +16,9 @@ Manila Management Dashboard
 * Free software: Apache license
 
 .. Uncomment these bullet items when the project is integrated into OpenStack
-.. item * Documentation: http://docs.openstack.org/developer/manila-ui
 
-* Source: http://git.openstack.org/cgit/openstack/manila-ui
-* Bugs: http://bugs.launchpad.net/manila-ui
+* Source: https://git.openstack.org/cgit/openstack/manila-ui
+* Bugs: https://bugs.launchpad.net/manila-ui
 
 
 Installation instructions
