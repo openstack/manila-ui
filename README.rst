@@ -118,7 +118,7 @@ expected to redefine enabled_share_protocols as follows:
        'enabled_share_protocols': ['NFS'],
     }
 
-Contributing
+New Features
 ------------
 
 When implementing a new feature, you may think about making it optional,
