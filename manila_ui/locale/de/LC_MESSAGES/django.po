@@ -3,13 +3,13 @@
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.10.1.dev4\n"
+"Project-Id-Version: manila-ui 2.10.1.dev8\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-07-31 14:46+0000\n"
+"POT-Creation-Date: 2017-08-01 14:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-01 08:28+0000\n"
+"PO-Revision-Date: 2017-08-08 11:28+0000\n"
 "Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -705,6 +705,9 @@ msgstr "Replika Status zurücksetzen"
 msgid "Reset Share Group Status"
 msgstr "Freigabegruppen Status zurücksetzen"
 
+msgid "Reset Status"
+msgstr "Status zurücksetzen"
+
 msgid "Reset replica state"
 msgstr "Replika Zustand zurücksetzen"
 
@@ -821,6 +824,9 @@ msgstr "Freigabegruppe Name"
 
 msgid "Share Group Overview"
 msgstr "Freigabegruppen Übersicht"
+
+msgid "Share Group Snapshot"
+msgstr "Freigabegruppe Schattenkopie"
 
 msgid "Share Group Snapshots"
 msgstr "Freigabengruppe Schattenkopien"
@@ -975,6 +981,9 @@ msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
 
 msgid "Source"
 msgstr "Quelle"
+
+msgid "Source Type"
+msgstr "Quellentyp"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "

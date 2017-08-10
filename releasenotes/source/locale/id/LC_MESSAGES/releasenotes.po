@@ -2,13 +2,13 @@
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui Release Notes 2.9.1\n"
+"Project-Id-Version: manila-ui Release Notes 2.10.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-27 18:42+0000\n"
+"POT-Creation-Date: 2017-08-01 14:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-06-09 03:41+0000\n"
+"PO-Revision-Date: 2017-08-09 02:31+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
@@ -18,11 +18,17 @@ msgstr ""
 msgid "2.2.0"
 msgstr "2.2.0"
 
+msgid "2.5.1-12"
+msgstr "2.5.1-12"
+
 msgid "2.7.0"
 msgstr "2.7.0"
 
 msgid "2.7.1"
 msgstr "2.7.1"
+
+msgid "2.7.1-7"
+msgstr "2.7.1-7"
 
 msgid "2.8.0"
 msgstr "2.8.0"
