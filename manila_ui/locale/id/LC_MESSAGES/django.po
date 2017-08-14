@@ -1,15 +1,16 @@
 # suhartono <cloudsuhartono@gmail.com>, 2016. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2017. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.9.1.dev1\n"
+"Project-Id-Version: manila-ui 2.10.1.dev10\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-06-08 22:16+0000\n"
+"POT-Creation-Date: 2017-08-11 13:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-06-09 03:44+0000\n"
-"Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
+"PO-Revision-Date: 2017-08-13 10:37+0000\n"
+"Last-Translator: Andreas Jaeger <jaegerandi@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -66,11 +67,17 @@ msgstr "Menambahkan layanan keamanan untuk jaringan berbagi."
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Semua key dan nilai-nilai harus dalam kisaran 1 sampai 255."
 
+msgid "Allow project access to share group type."
+msgstr "Izinkan akses proyek ke share group type."
+
 msgid "Allow project access to share type."
 msgstr "Membolehkan akses proyek untuk tipe share."
 
 msgid "At least one security service must be specified."
 msgstr "Setidaknya satu layanan keamanan harus ditentukan."
+
+msgid "At least one share type must be specified."
+msgstr "Setidaknya satu share type harus ditentukan."
 
 msgid "Availability Zone"
 msgstr "Availability Zone (zona ketersediaan)"
@@ -148,6 +155,15 @@ msgstr "Create Security Service (buat layanan keamanan)"
 msgid "Create Share"
 msgstr "Create Share (buat share)"
 
+msgid "Create Share Group"
+msgstr "Membuat Share Group"
+
+msgid "Create Share Group Snapshot"
+msgstr "Membuat Share Group Snapshot"
+
+msgid "Create Share Group Type"
+msgstr "Membuat Share Group Type"
+
 msgid "Create Share Network"
 msgstr "Create Share Network (Buat jaringan berbagi)"
 
@@ -162,6 +178,9 @@ msgstr "Create a Share (Buat share)"
 
 msgid "Created At"
 msgstr "Created At"
+
+msgid "Created at"
+msgstr "Dibuat di"
 
 msgctxt "Current status of replica"
 msgid "Creating"
@@ -190,6 +209,14 @@ msgstr "Membuat aturan untuk \"%s\""
 #, python-format
 msgid "Creating share \"%s\""
 msgstr "Pembuatan share \"%s\""
+
+#, python-format
+msgid "Creating share group \"%s\""
+msgstr "Membuat share group \"%s\""
+
+#, python-format
+msgid "Creating share group snapshot \"%s\"."
+msgstr "Membuat share group snapshot \"%s\"."
 
 #, python-format
 msgid "Creating share snapshot \"%s\"."
@@ -223,6 +250,18 @@ msgstr[0] "Delete Security Service"
 msgid "Delete Share"
 msgid_plural "Delete Shares"
 msgstr[0] "Delete Share"
+
+msgid "Delete Share Group"
+msgid_plural "Delete Share Groups"
+msgstr[0] "Delete Share Group"
+
+msgid "Delete Share Group Snapshot"
+msgid_plural "Delete Share Group Snapshots"
+msgstr[0] "Delete Share Group Snapshot"
+
+msgid "Delete Share Group Type"
+msgid_plural "Delete Share Group Types"
+msgstr[0] "Delete Share Group Type"
 
 msgid "Delete Share Network"
 msgid_plural "Delete Share Networks"
@@ -263,6 +302,18 @@ msgstr[0] "Deleted Security Service"
 msgid "Deleted Share"
 msgid_plural "Deleted Shares"
 msgstr[0] "Deleted Share"
+
+msgid "Deleted Share Group"
+msgid_plural "Deleted Share Groups"
+msgstr[0] "Deleted Share Group"
+
+msgid "Deleted Share Group Snapshot"
+msgid_plural "Deleted Share Group Snapshots"
+msgstr[0] "Deleted Share Group Snapshot"
+
+msgid "Deleted Share Group Type"
+msgid_plural "Deleted Share Group Types"
+msgstr[0] "Deleted Share Group Type"
 
 msgid "Deleted Share Network"
 msgid_plural "Deleted Share Networks"
@@ -435,6 +486,9 @@ msgstr ""
 "Punya nilai yang tidak benar untuk kolom 'driver_options'. Diharapkan hanya "
 "pasangan kunci = nilai (key=value)"
 
+msgid "Group specs"
+msgstr "Group specs"
+
 msgid "Host"
 msgstr "Host"
 
@@ -507,6 +561,9 @@ msgstr "Manage Rules (mengelola aturan)"
 
 msgid "Manage Share"
 msgstr "Manage Share (mengelola share)"
+
+msgid "Manage Share Group Type Access"
+msgstr "Mengelola Share Group Type Access"
 
 msgid "Manage Share Snapshot Rules"
 msgstr "Mengelola Share Snapshot Rules"
@@ -585,6 +642,9 @@ msgstr "Tidak ada layanan keamanan yang dipilih."
 msgid "No source, empty share"
 msgstr "Tidak ada sumber, share kosong"
 
+msgid "No source, empty share group"
+msgstr "Tidak ada sumber, kosong share group"
+
 msgid "Nondisruptive"
 msgstr "Nondisruptive"
 
@@ -615,6 +675,9 @@ msgstr "Preserve Snapshots"
 msgid "Project"
 msgstr "Project (proyek)"
 
+msgid "Projects with access to share group type"
+msgstr "Proyek dengan akses keshare group type"
+
 msgid "Projects with access to share type"
 msgstr "Proyek dengan akses untuk tipe share"
 
@@ -643,6 +706,15 @@ msgstr "Reset Replica State (mengatur ulang keadaan replika)"
 msgid "Reset Replica Status"
 msgstr "Reset Replica Status (menyetel ulang status replika)"
 
+msgid "Reset Share Group Snapshot Status"
+msgstr "Reset Share Group Snapshot Status"
+
+msgid "Reset Share Group Status"
+msgstr "Reset Share Group Status"
+
+msgid "Reset Status"
+msgstr "Reset Status"
+
 msgid "Reset replica state"
 msgstr "Mengatur ulang keadaan replika"
 
@@ -662,6 +734,18 @@ msgstr "Atur ulang replika ('%(id)s') keadaan dari '%(from)s' ke '%(to)s'."
 #, python-format
 msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
 msgstr "Atur ulang replika ('%(id)s') status dari '%(from)s' ke'%(to)s'."
+
+#, python-format
+msgid "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Menyetel ulang status share group ('%(id)s') dari '%(from)s' ke '%(to)s'."
+
+#, python-format
+msgid ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Menyetel ulang status share group snapshot ('%(id)s') dari '%(from)s' ke "
+"'%(to)s'."
 
 msgid "Resync"
 msgstr "Resync"
@@ -744,6 +828,41 @@ msgstr "Share Details (rincian share): %(share_display_name)s"
 #, python-format
 msgid "Share Details: %(share_name)s"
 msgstr "Rincian share: %(share_name)s"
+
+msgid "Share Group"
+msgstr "Share Group"
+
+#, python-format
+msgid "Share Group Details: %s"
+msgstr "Share Group Details: %s"
+
+msgid "Share Group Name"
+msgstr "Share Group Name"
+
+msgid "Share Group Overview"
+msgstr "Share Group Overview"
+
+msgid "Share Group Snapshot"
+msgstr "Share Group Snapshot"
+
+#, python-format
+msgid "Share Group Snapshot Details: %(sgs_display_name)s"
+msgstr "Share Group Snapshot Details: %(sgs_display_name)s"
+
+msgid "Share Group Snapshot Overview"
+msgstr "Share Group Snapshot Overview"
+
+msgid "Share Group Snapshots"
+msgstr "Share Group Snapshots"
+
+msgid "Share Group Type"
+msgstr "Share Group Type"
+
+msgid "Share Group Types"
+msgstr "Share Group Types"
+
+msgid "Share Groups"
+msgstr "Share Groups"
 
 msgid "Share ID"
 msgstr "Share ID"
@@ -835,6 +954,12 @@ msgstr "Share Type (tipe share)"
 msgid "Share Types"
 msgstr "Share Types (tipe share)"
 
+msgid "Share Types (multiple available)"
+msgstr "Share Types (multiple available)"
+
+msgid "Share Types (one available)"
+msgstr "Share Types (one available)"
+
 #, python-format
 msgid ""
 "Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
@@ -865,6 +990,9 @@ msgstr "Berbagi snapshot gigabyte"
 msgid "Share snapshots"
 msgstr "Berbagi snapshot"
 
+msgid "Share types"
+msgstr "Share types"
+
 msgid "Shares"
 msgstr "Shares"
 
@@ -894,6 +1022,12 @@ msgstr "Snapshot Rules (aturan snapshot): %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Source (sumber)"
 
+msgid "Source Share Group Snapshot"
+msgstr "Source Share Group Snapshot"
+
+msgid "Source Type"
+msgstr "Source Type"
+
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
 "if the migrating share has to be retained within its current share network."
@@ -917,6 +1051,10 @@ msgstr "Status"
 #, python-format
 msgid "Successfully created security service: %s"
 msgstr "Berhasil menciptakan layanan keamanan: %s"
+
+#, python-format
+msgid "Successfully created share group type: %s"
+msgstr "Berhasil membuat share group type: %s"
 
 #, python-format
 msgid "Successfully created share network: %s"
@@ -952,6 +1090,10 @@ msgid "Successfully updated extra specs for share type '%s'."
 msgstr "Berhasil diperbarui spesifikasi tambahan untuk tipe share '%s'."
 
 #, python-format
+msgid "Successfully updated group specs for share group type '%s'."
+msgstr "Spesifikasi grup yang berhasil diperbarui untuk share group type '%s'."
+
+#, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "layanan keamanan berhasil diperbarui \"%s\""
 
@@ -980,6 +1122,15 @@ msgstr "Tidak dapat menyelesaikan migrasi share %s."
 msgid "Unable to create security service."
 msgstr "Tidak dapat membuat layanan keamanan."
 
+msgid "Unable to create share group snapshot."
+msgstr "Tidak dapat membuat share group snapshot."
+
+msgid "Unable to create share group type."
+msgstr "Tidak dapat membuat share group type."
+
+msgid "Unable to create share group."
+msgstr "Tidak dapat membuat share group."
+
 msgid "Unable to create share network."
 msgstr "Tidak dapat membuat jaringan berbagi (share)."
 
@@ -996,6 +1147,10 @@ msgid "Unable to create share."
 msgstr "Tidak dapat membuat share."
 
 #, python-format
+msgid "Unable to create share. %s"
+msgstr "Tidak dapat membuat share. %s"
+
+#, python-format
 msgid "Unable to delete replica \"%s\"."
 msgstr "Tidak dapat menghapus replika \"%s\"."
 
@@ -1006,6 +1161,14 @@ msgstr "Tidak dapat menghapus aturan \"%s\"."
 #, python-format
 msgid "Unable to delete share \"%s\". "
 msgstr "Tidak dapat menghapus share \"%s\". "
+
+#, python-format
+msgid ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+msgstr ""
+"Tidak dapat menghapus share group snapshot \"%s\". Satu atau lebih share "
+"group bergantung padanya."
 
 #, python-format
 msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
@@ -1020,6 +1183,9 @@ msgstr "Tidak dapat menghapus aturan snapshot \"%s\"."
 msgid "Unable to extend share."
 msgstr "Tidak dapat memperluas share."
 
+msgid "Unable to get information about share group type access."
+msgstr "Tidak dapat memperoleh informasi tentang share group type access."
+
 msgid "Unable to get information about share type access."
 msgstr "Tidak dapat mendapatkan informasi tentang akses tipe share."
 
@@ -1028,6 +1194,15 @@ msgstr "Tidak dapat mendapatkan daftar proyek."
 
 msgid "Unable to get the security services hosts"
 msgstr "Tidak dapat mendapatkan host layanan keamanan"
+
+#, python-format
+msgid "Unable to get the specified share group '%s' for snapshot creation."
+msgstr ""
+"Tidak dapat memperoleh share group yang ditentukan '%s' untuk pembuatan "
+"snapshot."
+
+msgid "Unable to load the specified share group snapshot."
+msgstr "Tidak dapat memuat share group snapshot yang ditentukan."
 
 msgid "Unable to load the specified snapshot."
 msgstr "Tidak dapat memuat snapshot spesifik."
@@ -1050,6 +1225,14 @@ msgstr "Tidak dapat mengatur ulang keadaan replika '%s'."
 #, python-format
 msgid "Unable to reset status of replica '%s'."
 msgstr "Tidak dapat mengatur ulang status replika '%s'."
+
+#, python-format
+msgid "Unable to reset status of share group '%s'."
+msgstr "Tidak dapat mengatur ulang status share group '%s'."
+
+#, python-format
+msgid "Unable to reset status of share group snapshot '%s'."
+msgstr "Tidak dapat mengatur ulang status share group snapshot '%s'."
 
 #, python-format
 msgid "Unable to resync replica '%s'."
@@ -1081,6 +1264,38 @@ msgstr "Tidak dapat mengambil security_service."
 
 msgid "Unable to retrieve share details."
 msgstr "Tidak dapat mengambil rincian saham."
+
+#, python-format
+msgid "Unable to retrieve share group '%s'."
+msgstr "Tidak dapat mengambil share group '%s'."
+
+msgid "Unable to retrieve share group details."
+msgstr "Tidak dapat mengambil share group details."
+
+#, python-format
+msgid "Unable to retrieve share group snapshot '%s'."
+msgstr "Tidak dapat mengambil share group snapshot '%s'."
+
+msgid "Unable to retrieve share group snapshot details."
+msgstr "Tidak dapat mengambil share group snapshot details."
+
+msgid "Unable to retrieve share group snapshot list."
+msgstr "Tidak dapat mengambil daftar share group snapshot."
+
+msgid "Unable to retrieve share group snapshot."
+msgstr "Tidak dapat mengambil share group snapshot."
+
+msgid "Unable to retrieve share group snapshots."
+msgstr "Tidak dapat mengambil share group snapshots."
+
+msgid "Unable to retrieve share group types."
+msgstr "Tidak dapat mengambil share group types."
+
+msgid "Unable to retrieve share group."
+msgstr "Tidak dapat mengambil share group."
+
+msgid "Unable to retrieve share groups."
+msgstr "Tidak dapat mengambil share groups."
 
 msgid "Unable to retrieve share instance details."
 msgstr "Tidak dapat mengambil rincian instance berbagi."
@@ -1140,6 +1355,9 @@ msgstr "Tidak dapat mengambil share."
 msgid "Unable to retrieve share. %s"
 msgstr "Tidak dapat mengambil share. %s"
 
+msgid "Unable to retrieve share_gruop_type."
+msgstr "Tidak dapat mengambil share_gruop_type."
+
 msgid "Unable to retrieve share_type."
 msgstr "Tidak dapat mengambil share_type."
 
@@ -1167,6 +1385,10 @@ msgid "Unable to unmanage share."
 msgstr "Tidak dapat tidak mengelola (unmanage) share."
 
 #, python-format
+msgid "Unable to update access for share group type \"%s\"."
+msgstr "Tidak dapat memperbarui akses untuk share group type \"%s\"."
+
+#, python-format
 msgid "Unable to update access for share type \"%s\"."
 msgstr "Tidak dapat memperbarui akses untuk tipe share \"%s\"."
 
@@ -1176,8 +1398,20 @@ msgstr "Tidak dapat memperbarui kuota default."
 msgid "Unable to update extra_specs for share type."
 msgstr "Tidak dapat memperbarui extra_specsuntuk tipe share."
 
+msgid "Unable to update group_specs for share group type."
+msgstr "Tidak dapat memperbarui group_specs untuk share group type."
+
 msgid "Unable to update security service."
 msgstr "Tidak dapat memperbarui layanan keamanan."
+
+msgid "Unable to update share group snapshot."
+msgstr "Tidak dapat memperbarui share group snapshot."
+
+msgid "Unable to update share group type."
+msgstr "Tidak dapat memperbarui share group type."
+
+msgid "Unable to update share group."
+msgstr "Tidak dapat memperbarui share group."
 
 msgid "Unable to update share metadata."
 msgstr "Tidak dapat memperbarui metadata berbagi."
@@ -1214,6 +1448,15 @@ msgstr "Unmanage Share (share tidak terkelola)"
 msgid "Update"
 msgstr "Update (perbarui)"
 
+msgid "Update Share Group"
+msgstr "Memperbarui Share Group"
+
+msgid "Update Share Group Snapshot"
+msgstr "Memperbarui Share Group Snapshot"
+
+msgid "Update Share Group Type"
+msgstr "Update Share Group Type"
+
 msgid "Update Share Network"
 msgstr "Update Share Network (memperharui jaringan berbagi)"
 
@@ -1223,8 +1466,15 @@ msgstr "Memperbarui Share Snapshot"
 msgid "Update Share Type"
 msgstr "Update Share Type (Memperbarui tipe share)"
 
+msgid "Update Share group Type"
+msgstr "Update Share group Type"
+
 msgid "Updated At"
 msgstr "Updated At"
+
+#, python-format
+msgid "Updated access for share group type \"%s\"."
+msgstr "Akses yang diperbarui untuk share group type \"%s\"."
 
 #, python-format
 msgid "Updated access for share type \"%s\"."
@@ -1239,6 +1489,14 @@ msgid "Updating share \"%s\""
 msgstr "Perbaharui share \"%s\""
 
 #, python-format
+msgid "Updating share group \"%s\""
+msgstr "Memperbarui share group \"%s\""
+
+#, python-format
+msgid "Updating share group snapshot \"%s\""
+msgstr "Memperbarui share group snapshot \"%s\""
+
+#, python-format
 msgid "Updating share metadata \"%s\""
 msgstr "Memperbarui metadata berbagi \"%s\""
 
@@ -1249,6 +1507,9 @@ msgstr "Memperbarui jaringan berbagi \"%s\""
 #, python-format
 msgid "Updating share snapshot \"%s\""
 msgstr "Memperbarui share snapshot \"%s\""
+
+msgid "Use share group snapshot as a source"
+msgstr "Menggunakan share group snapshot sebagai sumber"
 
 msgid "Use snapshot as a source"
 msgstr "Gunakan snapshot sebagai sumber"
