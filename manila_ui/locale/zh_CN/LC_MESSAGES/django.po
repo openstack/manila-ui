@@ -1,17 +1,18 @@
 # sunanchen <KF.sunanchen@h3c.com>, 2016. #zanata
 # zhongjun <jun.zhongjun2@gmail.com>, 2016. #zanata
 # zzxwill <zzxwill@gmail.com>, 2016. #zanata
+# Bin <liubin@glab.cn>, 2017. #zanata
 # liujunpeng <liujunpeng@inspur.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.9.1.dev1\n"
+"Project-Id-Version: manila-ui 2.10.1.dev13\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-06-08 22:16+0000\n"
+"POT-Creation-Date: 2017-08-16 17:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-02-10 02:24+0000\n"
-"Last-Translator: liujunpeng <liujunpeng@inspur.com>\n"
+"PO-Revision-Date: 2017-08-17 01:56+0000\n"
+"Last-Translator: Bin <liubin@glab.cn>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -199,6 +200,14 @@ msgstr "当前大小(GiB)"
 
 msgid "DNS IP"
 msgstr "DNS IP地址"
+
+msgid "Delete Security Service"
+msgid_plural "Delete Security Services"
+msgstr[0] "删除安全服务"
+
+msgid "Deleted Security Service"
+msgid_plural "Deleted Security Services"
+msgstr[0] "删除安全服务"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -576,6 +585,9 @@ msgstr "保存变更"
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "安全服务详情: %(service_display_name)s"
+
+msgid "Security Service Overview"
+msgstr "安全服务概览"
 
 msgid "Security Services"
 msgstr "安全服务"
