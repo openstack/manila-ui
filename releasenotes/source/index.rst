@@ -7,5 +7,6 @@ manila-ui Release Notes
    :maxdepth: 1
 
    unreleased
+   pike
    ocata
    newton
