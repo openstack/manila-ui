@@ -1,6 +1,6 @@
-========
+=====
 Usage
-========
+=====
 
 To use manila-ui in a project::
 

@@ -4,17 +4,17 @@
    contain the root `toctree` directive.
 
 Welcome to manila-ui's documentation!
-========================================================
+=====================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   readme
-   installation
-   usage
-   contributing
+   contributor/readme
+   install/installation
+   user/usage
+   contributor/contributing
 
 Indices and tables
 ==================
