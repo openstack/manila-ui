@@ -143,9 +143,9 @@ def get_disabled_quotas(f, request):
 
 
 @wrap(quotas.tenant_quota_usages)
-def tenant_quota_usages(f, request, tenant_id=None):
+def tenant_quota_usages(f, request, tenant_id=None, targets=None):
 
-    usages = f(request, tenant_id)
+    usages = f(request, tenant_id, targets)
 
     if 'shares' not in _get_manila_disabled_quotas(request):
         shares = manila.share_list(request)
