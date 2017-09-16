@@ -2,17 +2,18 @@
 # zhongjun <jun.zhongjun2@gmail.com>, 2016. #zanata
 # zzxwill <zzxwill@gmail.com>, 2016. #zanata
 # Bin <liubin@glab.cn>, 2017. #zanata
+# WenChao Xiang <liverpool8056@163.com>, 2017. #zanata
 # liujunpeng <liujunpeng@inspur.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.10.1.dev13\n"
+"Project-Id-Version: manila-ui 2.10.2.dev9\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-08-16 17:08+0000\n"
+"POT-Creation-Date: 2017-09-13 14:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-17 01:56+0000\n"
-"Last-Translator: Bin <liubin@glab.cn>\n"
+"PO-Revision-Date: 2017-09-16 07:16+0000\n"
+"Last-Translator: WenChao Xiang <liverpool8056@163.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -204,6 +205,10 @@ msgstr "DNS IP地址"
 msgid "Delete Security Service"
 msgid_plural "Delete Security Services"
 msgstr[0] "删除安全服务"
+
+msgid "Delete Share Group Snapshot"
+msgid_plural "Delete Share Group Snapshots"
+msgstr[0] "删除共享组快照"
 
 msgid "Deleted Security Service"
 msgid_plural "Deleted Security Services"
@@ -563,6 +568,11 @@ msgstr "正在重置副本 ('%(id)s') 状态从'%(from)s'到 '%(to)s'。"
 msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
 msgstr "重置副本 ('%(id)s') 状态从'%(from)s'到 '%(to)s'。"
 
+#, python-format
+msgid ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "重置共享组快照('%(id)s') 状态从'%(from)s'至'%(to)s'"
+
 msgid "Resync"
 msgstr "重新同步"
 
@@ -627,6 +637,9 @@ msgstr "共享详情: %(share_display_name)s"
 #, python-format
 msgid "Share Details: %(share_name)s"
 msgstr "共享详情: %(share_name)s"
+
+msgid "Share Group Snapshots"
+msgstr "共享组快照"
 
 msgid "Share ID"
 msgstr "共享ID"
@@ -854,6 +867,12 @@ msgid "Unable to delete share \"%s\". "
 msgstr "无法删除共享 \"%s\""
 
 #, python-format
+msgid ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+msgstr "无法删除共享组快照\"%s\"，至少一个共享组与其存在依赖关系"
+
+#, python-format
 msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr "无法删除快照\"%s\"。一个或多个共享正在使用"
 
@@ -894,6 +913,10 @@ msgstr "无法重置副本'%s'的状态。"
 #, python-format
 msgid "Unable to reset status of replica '%s'."
 msgstr "无法重置副本'%s'的状态。"
+
+#, python-format
+msgid "Unable to reset status of share group snapshot '%s'."
+msgstr "无法重置共享组快照'%s'的状态"
 
 #, python-format
 msgid "Unable to resync replica '%s'."

@@ -1,14 +1,14 @@
 # işbaran akçayır <isbaran@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.9.1.dev1\n"
+"Project-Id-Version: manila-ui 2.10.2.dev9\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-06-08 22:16+0000\n"
+"POT-Creation-Date: 2017-09-13 14:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-05-22 02:31+0000\n"
-"Last-Translator: işbaran akçayır <isbaran@gmail.com>\n"
+"PO-Revision-Date: 2017-08-25 07:29+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Turkish (Turkey)\n"
 "Language: tr-TR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -54,6 +54,9 @@ msgstr "Kural Ekle"
 msgid "Add Security Service"
 msgstr "Güvenlik Servisi Ekle"
 
+msgid "Add Share Snapshot Rule"
+msgstr "Paylaşım Anlık Görüntü Kuralı Ekle"
+
 msgid "Add rule"
 msgstr "Kural ekle"
 
@@ -63,11 +66,17 @@ msgstr "Paylaşım ağına güvenlik servisleri ekle."
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Tüm anahtarlar ve değerler 1 ve 255 aralığında olmalı."
 
+msgid "Allow project access to share group type."
+msgstr "Paylaşım grubu türüne proje erişimine izin ver."
+
 msgid "Allow project access to share type."
 msgstr "Paylaşım türüne proje erişimi ver."
 
 msgid "At least one security service must be specified."
 msgstr "En az bir güvenlik servisi belirtilmeli."
+
+msgid "At least one share type must be specified."
+msgstr "En az bir paylaşım türü belirtilmelidir."
 
 msgid "Availability Zone"
 msgstr "Kullanılırlık Bölgesi"
@@ -141,6 +150,15 @@ msgstr "Güvenlik Servisi Oluştur"
 msgid "Create Share"
 msgstr "Paylaşım Oluştur"
 
+msgid "Create Share Group"
+msgstr "Paylaşım Grubu Oluştur"
+
+msgid "Create Share Group Snapshot"
+msgstr "Paylaşım Grubu Anlık Görüntüsü Oluştur"
+
+msgid "Create Share Group Type"
+msgstr "Paylaşım Grubu Türü Oluştur"
+
 msgid "Create Share Network"
 msgstr "Paylaşım Ağı Oluştur"
 
@@ -155,6 +173,9 @@ msgstr "Bir Paylaşım Oluştur"
 
 msgid "Created At"
 msgstr "Oluşturulma Tarihi"
+
+msgid "Created at"
+msgstr "Oluşturulma"
 
 msgctxt "Current status of replica"
 msgid "Creating"
@@ -183,6 +204,14 @@ msgstr "\"%s\" için kural oluşturuluyor"
 #, python-format
 msgid "Creating share \"%s\""
 msgstr "\"%s\" paylaşımı oluşturuluyor"
+
+#, python-format
+msgid "Creating share group \"%s\""
+msgstr "\"%s\" paylaşım grubu oluşturuluyor"
+
+#, python-format
+msgid "Creating share group snapshot \"%s\"."
+msgstr "Paylaşım grubu anlık görüntüsü \"%s\" oluşturuluyor."
 
 #, python-format
 msgid "Creating share snapshot \"%s\"."
@@ -221,6 +250,21 @@ msgid_plural "Delete Shares"
 msgstr[0] "Paylaşımı Sil"
 msgstr[1] "Paylaşımları Sil"
 
+msgid "Delete Share Group"
+msgid_plural "Delete Share Groups"
+msgstr[0] "Paylaşım Grubunu Sil"
+msgstr[1] "Paylaşım Gruplarını Sil"
+
+msgid "Delete Share Group Snapshot"
+msgid_plural "Delete Share Group Snapshots"
+msgstr[0] "Paylaşım Grubu Anlık Görüntüsünü Sil"
+msgstr[1] "Paylaşım Grubu Anlık Görüntülerini Sil"
+
+msgid "Delete Share Group Type"
+msgid_plural "Delete Share Group Types"
+msgstr[0] "Paylaşım Grubu Türünü Sil"
+msgstr[1] "Paylaşım Grubu Türlerini Sil"
+
 msgid "Delete Share Network"
 msgid_plural "Delete Share Networks"
 msgstr[0] "Paylaşım Ağını Sil"
@@ -230,6 +274,16 @@ msgid "Delete Share Server"
 msgid_plural "Delete Share Server"
 msgstr[0] "Paylaşım Sunucusu Sil"
 msgstr[1] "Paylaşım Sunucularını Sil"
+
+msgid "Delete Share Snapshot"
+msgid_plural "Delete Share Snapshots"
+msgstr[0] "Paylaşım Anlık Görüntüsünü Sİl"
+msgstr[1] "Paylaşım Anlık Görüntülerini Sİl"
+
+msgid "Delete Share Snapshot Rule"
+msgid_plural "Delete Share Snapshot Rules"
+msgstr[0] "Paylaşım Anlık Görüntü Kuralı Sil"
+msgstr[1] "Paylaşım Anlık Görüntü Kurallarını Sil"
 
 msgid "Delete Share Type"
 msgid_plural "Delete Share Types"
@@ -261,6 +315,21 @@ msgid_plural "Deleted Shares"
 msgstr[0] "Paylaşım Silindi"
 msgstr[1] "Paylaşımlar Silindi"
 
+msgid "Deleted Share Group"
+msgid_plural "Deleted Share Groups"
+msgstr[0] "Paylaşım Grubunu Sil"
+msgstr[1] "Paylaşım Gruplarını Sil"
+
+msgid "Deleted Share Group Snapshot"
+msgid_plural "Deleted Share Group Snapshots"
+msgstr[0] "Paylaşım Grubu Anlık Görüntüsünü Sil"
+msgstr[1] "Paylaşım Grubu Anlık Görüntülerini Sil"
+
+msgid "Deleted Share Group Type"
+msgid_plural "Deleted Share Group Types"
+msgstr[0] "Paylaşım Grubu Türünü Sil"
+msgstr[1] "Paylaşım Grubu Türlerini Sil"
+
 msgid "Deleted Share Network"
 msgid_plural "Deleted Share Networks"
 msgstr[0] "Paylaşım Ağı Silindi"
@@ -270,6 +339,16 @@ msgid "Deleted Share Server"
 msgid_plural "Deleted Share Server"
 msgstr[0] "Paylaşım Sunucusu Silindi"
 msgstr[1] "Paylaşım Sunucuları Silindi"
+
+msgid "Deleted Share Snapshot"
+msgid_plural "Deleted Share Snapshots"
+msgstr[0] "Paylaşım Anlık Görüntüsünü Sil"
+msgstr[1] "Paylaşım Anlık Görüntülerini Sil"
+
+msgid "Deleted Share Snapshot Rule"
+msgid_plural "Deleted Share Snapshot Rules"
+msgstr[0] "Paylaşım Anlık Görüntü Kuralı Sil"
+msgstr[1] "Paylaşım Anlık Görüntü Kurallarını Sil"
 
 msgid "Deleted Share Type"
 msgid_plural "Deleted Share Types"
@@ -322,6 +401,9 @@ msgstr "Paylaşım Metaverisini Düzenle"
 
 msgid "Edit Share Network"
 msgstr "Paylaşım Ağını Düzenle"
+
+msgid "Edit Share Snapshot"
+msgstr "Paylaşım Anlık Görüntüsü Düzenle"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -424,6 +506,9 @@ msgstr ""
 "'driver_options' alanı için geçersiz değer alındı. Yalnızca anahtar=değer "
 "çiftleri bekleniyor."
 
+msgid "Group specs"
+msgstr "Grup özellikleri"
+
 msgid "Host"
 msgstr "Sunucu"
 
@@ -495,6 +580,12 @@ msgstr "Kuralları Yönet"
 
 msgid "Manage Share"
 msgstr "Paylaşımı Yönet"
+
+msgid "Manage Share Group Type Access"
+msgstr "Paylaşım Grubu Türü Erişimini Yönet"
+
+msgid "Manage Share Snapshot Rules"
+msgstr "Paylaşım Anlık Görüntü Kurallarını Yönet"
 
 msgid "Manage Share Type Access"
 msgstr "Paylaşım Türü Erişimini Yönet"
@@ -568,6 +659,9 @@ msgstr "Hiçbir güvenlik servisi seçilmemiş."
 msgid "No source, empty share"
 msgstr "Kaynak yok, boş paylaşım"
 
+msgid "No source, empty share group"
+msgstr "Kaynak yok, boş paylaşım grubu"
+
 msgid "Nondisruptive"
 msgstr "Aksatmadan"
 
@@ -598,6 +692,9 @@ msgstr "Anlık Görüntüleri Koru"
 msgid "Project"
 msgstr "Proje"
 
+msgid "Projects with access to share group type"
+msgstr "Paylaşım grubu türüne erişimi olan projeler"
+
 msgid "Projects with access to share type"
 msgstr "Paylaşım türüne erişimi olan projeler"
 
@@ -626,6 +723,15 @@ msgstr "Kopya Durumunu Sıfırla"
 msgid "Reset Replica Status"
 msgstr "Kopya Durumunu Sıfırla"
 
+msgid "Reset Share Group Snapshot Status"
+msgstr "Paylaşım Grubu Anlık Görüntü Durumu"
+
+msgid "Reset Share Group Status"
+msgstr "Paylaşım Grubu Durumunu Sıfırla"
+
+msgid "Reset Status"
+msgstr "Durumu Sıfırla"
+
 msgid "Reset replica state"
 msgstr "Kopya durumunu sıfırla"
 
@@ -645,6 +751,18 @@ msgstr "Kopya ('%(id)s') durumu '%(from)s' den '%(to)s' e sıfırlanıyor."
 #, python-format
 msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
 msgstr "Kopya ('%(id)s') durumu '%(from)s' den '%(to)s' e yeniden ayarlanıyor."
+
+#, python-format
+msgid "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"('%(id)s') paylaşım grubu durumu '%(from)s' den '%(to)s' e sıfırlanıyor."
+
+#, python-format
+msgid ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Paylaşım grubu anlık görüntüsü ('%(id)s') durumu '%(from)s' den '%(to)s' e "
+"yeniden ayarlanıyor."
 
 msgid "Resync"
 msgstr "Yeniden eşzamanla"
@@ -681,6 +799,9 @@ msgstr "Değişiklikleri Kaydet"
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Güvenlik Servisi Ayrıntıları: %(service_display_name)s"
+
+msgid "Security Service Overview"
+msgstr "Güvenlik Servisi Genel Görünümü"
 
 msgid "Security Services"
 msgstr "Güvenlik Servisleri"
@@ -725,12 +846,50 @@ msgstr "Paylaşım Ayrıntıları: %(share_display_name)s"
 msgid "Share Details: %(share_name)s"
 msgstr "Paylaşım Ayrıntıları: %(share_name)s"
 
+msgid "Share Group"
+msgstr "Paylaşım Grubu"
+
+#, python-format
+msgid "Share Group Details: %s"
+msgstr "Paylaşım Grubu Ayrıntıları: %s"
+
+msgid "Share Group Name"
+msgstr "Paylaşım Grubu İsmi"
+
+msgid "Share Group Overview"
+msgstr "Paylaşım Grubu Genel Görünümü"
+
+msgid "Share Group Snapshot"
+msgstr "Paylaşım Grubu Anlık Görüntüsü"
+
+#, python-format
+msgid "Share Group Snapshot Details: %(sgs_display_name)s"
+msgstr "Paylaşım Grubu Anlık Görüntü Ayrıntıları: %(sgs_display_name)s"
+
+msgid "Share Group Snapshot Overview"
+msgstr "Paylaşım Grubu Anlık Görüntüsü Genel Görünümü"
+
+msgid "Share Group Snapshots"
+msgstr "Paylaşım Grubu Anlık Görüntüleri"
+
+msgid "Share Group Type"
+msgstr "Paylaşım Grubu Türü"
+
+msgid "Share Group Types"
+msgstr "Paylaşım Grubu Türleri"
+
+msgid "Share Groups"
+msgstr "Paylaşım Grupları"
+
 msgid "Share ID"
 msgstr "Paylaşım Kimliği"
 
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "Paylaşım Sunucusu Ayrıntıları: %s"
+
+msgid "Share Instance Overview"
+msgstr "Paylaşım Sunucusu Genel Görünümü"
 
 msgid "Share Instances"
 msgstr "Paylaşım Sunucuları"
@@ -748,8 +907,14 @@ msgstr "Paylaşım Ağı Ayrıntıları: %(network_display_name)s"
 msgid "Share Network Info"
 msgstr "Paylaşım Ağı Bilgisi"
 
+msgid "Share Network Overview"
+msgstr "Paylaşım Ağı Genel Görünümü"
+
 msgid "Share Networks"
 msgstr "Paylaşım Ağları"
+
+msgid "Share Overview"
+msgstr "Paylaşım Genel Görünümü"
 
 msgid "Share Protocol"
 msgstr "Paylaşım Protokolü"
@@ -772,8 +937,20 @@ msgstr "Paylaşım Sunucusu Ayrıntıları: %(server_name)s"
 msgid "Share Server Id"
 msgstr "Paylaşım Sunucu Kimliği"
 
+msgid "Share Server Overview"
+msgstr "Paylaşım Sunucusu Genel Görünümü"
+
 msgid "Share Servers"
 msgstr "Paylaşım Sunucuları"
+
+msgid "Share Snapshot Name"
+msgstr "Paylaşım Anlık Görüntü İsmi"
+
+msgid "Share Snapshot Overview"
+msgstr "Paylaşım Anlık Görüntüsü Genel Görünümü"
+
+msgid "Share Snapshot Rules"
+msgstr "Paylaşım Anlık Görüntü Kuralları"
 
 msgid "Share Snapshots"
 msgstr "Paylaşım Anlık Görüntüleri"
@@ -792,6 +969,12 @@ msgstr "Paylaşım Türü"
 
 msgid "Share Types"
 msgstr "Paylaşım Türleri"
+
+msgid "Share Types (multiple available)"
+msgstr "Paylaşım Türleri (birden çok kullanılabilir)"
+
+msgid "Share Types (one available)"
+msgstr "Paylaşım Türleri (biri kullanılabilir)"
 
 #, python-format
 msgid ""
@@ -823,6 +1006,9 @@ msgstr "Paylaşım anlık görüntü gigabaytları"
 msgid "Share snapshots"
 msgstr "Paylaşım anlık görüntüleri"
 
+msgid "Share types"
+msgstr "Paylaşım türleri"
+
 msgid "Shares"
 msgstr "Paylaşımlar"
 
@@ -852,6 +1038,12 @@ msgstr "Anlık Görüntü Kuralları: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Kaynak"
 
+msgid "Source Share Group Snapshot"
+msgstr "Paylaşım Grubu Anlık Görüntüsünü Kaynak Et"
+
+msgid "Source Type"
+msgstr "Kaynak Türü"
+
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
 "if the migrating share has to be retained within its current share network."
@@ -875,6 +1067,10 @@ msgstr "Durum"
 #, python-format
 msgid "Successfully created security service: %s"
 msgstr "Güvenlik servisi başarıyla oluşturuldu: %s"
+
+#, python-format
+msgid "Successfully created share group type: %s"
+msgstr "Başarıyla paylaşım grubu türü oluşturuldu: %s"
 
 #, python-format
 msgid "Successfully created share network: %s"
@@ -909,6 +1105,10 @@ msgid "Successfully updated extra specs for share type '%s'."
 msgstr "'%s' paylaşım türü için ek özellikler başarıyla güncellendi."
 
 #, python-format
+msgid "Successfully updated group specs for share group type '%s'."
+msgstr "'%s' paylaşım grubu türü için grup özellikleri başarıyla güncellendi."
+
+#, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "Güvenlik servisi \"%s\" başarıyla güncellendi"
 
@@ -936,6 +1136,15 @@ msgstr "%s paylaşımının göçü tamamlanamadı."
 msgid "Unable to create security service."
 msgstr "Güvenlik servisi oluşturulamıyor."
 
+msgid "Unable to create share group snapshot."
+msgstr "Paylaşım grubu anlık görüntüsü oluşturulamadı."
+
+msgid "Unable to create share group type."
+msgstr "Paylaşım grubu türü oluşturulamadı."
+
+msgid "Unable to create share group."
+msgstr "Paylaşım grubu oluşturulamıyor."
+
 msgid "Unable to create share network."
 msgstr "Paylaşım ağı oluşturulamadı."
 
@@ -952,6 +1161,10 @@ msgid "Unable to create share."
 msgstr "Paylaşım oluşturulamadı."
 
 #, python-format
+msgid "Unable to create share. %s"
+msgstr "Paylaşım oluşturulamadı. %s"
+
+#, python-format
 msgid "Unable to delete replica \"%s\"."
 msgstr "Kopya \"%s\" silinemedi."
 
@@ -962,6 +1175,14 @@ msgstr "\"%s\" kuralı silinemedi."
 #, python-format
 msgid "Unable to delete share \"%s\". "
 msgstr "\"%s\" paylaşımı silinemedi. "
+
+#, python-format
+msgid ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+msgstr ""
+"\"%s\" paylaşım grubu anlık görüntüsü silinemiyor. Bir ya da daha fazla "
+"paylaşım grubu ona bağımlı."
 
 #, python-format
 msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
@@ -975,6 +1196,9 @@ msgstr "Anlık görüntü kuralı \"%s\" silinemiyor."
 msgid "Unable to extend share."
 msgstr "Paylaşım genişletilemedi."
 
+msgid "Unable to get information about share group type access."
+msgstr "Paylaşım grubu tür erişimiyle ilgili bilgi alınamadı."
+
 msgid "Unable to get information about share type access."
 msgstr "Paylaşım türü erişimi hakkında bilgi alınamadı."
 
@@ -983,6 +1207,14 @@ msgstr "Proje listesi alınamadı."
 
 msgid "Unable to get the security services hosts"
 msgstr "Güvenlik servisi sunucuları alınamadı"
+
+#, python-format
+msgid "Unable to get the specified share group '%s' for snapshot creation."
+msgstr ""
+"Anlık görüntü oluşturmak için belirtilen paylaşım grubu '%s' alınamadı."
+
+msgid "Unable to load the specified share group snapshot."
+msgstr "Belirtilen paylaşım grubu anlık görüntüsü yüklenemedi."
 
 msgid "Unable to load the specified snapshot."
 msgstr "Belirtilen anlık görüntü yüklenemedi."
@@ -1005,6 +1237,14 @@ msgstr "'%s' kopyasının durumu sıfırlanamadı."
 #, python-format
 msgid "Unable to reset status of replica '%s'."
 msgstr "'%s' kopyasının durumu sıfırlanamadı."
+
+#, python-format
+msgid "Unable to reset status of share group '%s'."
+msgstr "'%s' paylaşım grubu durumu sıfırlanamadı."
+
+#, python-format
+msgid "Unable to reset status of share group snapshot '%s'."
+msgstr "'%s' paylaşım grubu anlık görüntüsü durumu sıfırlanamıyor."
 
 #, python-format
 msgid "Unable to resync replica '%s'."
@@ -1036,6 +1276,38 @@ msgstr "security_service alınamadı."
 
 msgid "Unable to retrieve share details."
 msgstr "Paylaşım ayrıntıları alınamadı."
+
+#, python-format
+msgid "Unable to retrieve share group '%s'."
+msgstr "Paylaşım grubu '%s' alınamıyor."
+
+msgid "Unable to retrieve share group details."
+msgstr "Paylaşım grubu ayrıntıları alınamıyor."
+
+#, python-format
+msgid "Unable to retrieve share group snapshot '%s'."
+msgstr "Paylaşım grubu anlık görüntüsü '%s' alınamıyor."
+
+msgid "Unable to retrieve share group snapshot details."
+msgstr "Paylaşım grubu anlık görüntü ayrıntıları alınamıyor."
+
+msgid "Unable to retrieve share group snapshot list."
+msgstr "Paylaşım grubu anlık görüntü listesi alınamıyor."
+
+msgid "Unable to retrieve share group snapshot."
+msgstr "Paylaşım grubu anlık görüntüsü alınamıyor."
+
+msgid "Unable to retrieve share group snapshots."
+msgstr "Paylaşım grubu anlık görüntüleri alınamadı."
+
+msgid "Unable to retrieve share group types."
+msgstr "Paylaşım grubu türleri alınamadı."
+
+msgid "Unable to retrieve share group."
+msgstr "Paylaşım grubu alınamıyor."
+
+msgid "Unable to retrieve share groups."
+msgstr "Paylaşım grupları alınamadı."
 
 msgid "Unable to retrieve share instance details."
 msgstr "Paylaşım sunucusu ayrıntıları alınamadı."
@@ -1070,11 +1342,23 @@ msgstr "Paylaşım sunucusu ayrıntıları alınamıyor."
 msgid "Unable to retrieve share servers"
 msgstr "Paylaşım sunucuları alınamadı"
 
+msgid "Unable to retrieve share snapshot list."
+msgstr "Paylaşım anlık görüntü listesi alınamadı."
+
+msgid "Unable to retrieve share snapshot rules."
+msgstr "Paylaşım anlık görüntü kuralları alınamadı."
+
+msgid "Unable to retrieve share snapshot."
+msgstr "Paylaşım anlık görüntüsü alınamıyor."
+
 msgid "Unable to retrieve share snapshots list."
 msgstr "Paylaşım anlık görüntü listesi alınamıyor."
 
 msgid "Unable to retrieve share snapshots."
 msgstr "Paylaşım anlık görüntüleri alınamadı."
+
+msgid "Unable to retrieve share types."
+msgstr "Paylaşım türleri alınamadı."
 
 msgid "Unable to retrieve share."
 msgstr "Paylaşım alınamıyor."
@@ -1082,6 +1366,9 @@ msgstr "Paylaşım alınamıyor."
 #, python-format
 msgid "Unable to retrieve share. %s"
 msgstr "Paylaşım alınamıyor. %s"
+
+msgid "Unable to retrieve share_gruop_type."
+msgstr "Paylaşım grup bütür alınamadı."
 
 msgid "Unable to retrieve share_type."
 msgstr "share_type alınamadı."
@@ -1109,6 +1396,10 @@ msgid "Unable to unmanage share."
 msgstr "Paylaşım yönetim iptali başarısız."
 
 #, python-format
+msgid "Unable to update access for share group type \"%s\"."
+msgstr "\"%s\" paylaşım grubu türü için erişim güncellenemedi."
+
+#, python-format
 msgid "Unable to update access for share type \"%s\"."
 msgstr "Paylaşım türü \"%s\" için erişim güncellenemiyor."
 
@@ -1118,8 +1409,20 @@ msgstr "Öntanımlı kotalar güncellenemedi."
 msgid "Unable to update extra_specs for share type."
 msgstr "Paylaşım türü için ek_özellikler başarıyla güncellendi."
 
+msgid "Unable to update group_specs for share group type."
+msgstr "Paylaşım grubu türü için grup özellikleri güncellenemedi."
+
 msgid "Unable to update security service."
 msgstr "Güvenlik servisi güncellenemedi."
+
+msgid "Unable to update share group snapshot."
+msgstr "Paylaşım grubu anlık görüntüsü güncellenemedi."
+
+msgid "Unable to update share group type."
+msgstr "Paylaşım grubu türü güncellenemedi."
+
+msgid "Unable to update share group."
+msgstr "Paylaşım grubu güncellenemiyor."
 
 msgid "Unable to update share metadata."
 msgstr "Paylaşım metaverisi güncellenemedi."
@@ -1130,6 +1433,9 @@ msgstr "Paylaşım ağı \"%s\" güncellenemedi."
 
 msgid "Unable to update share network."
 msgstr "Paylaşım ağı güncellenemedi."
+
+msgid "Unable to update share snapshot."
+msgstr "Paylaşım anlık görüntüsü güncellenemedi."
 
 msgid "Unable to update share type."
 msgstr "Paylaşım türü güncellenemiyor."
@@ -1153,14 +1459,33 @@ msgstr "Paylaşım Yönetimini Bırak"
 msgid "Update"
 msgstr "Güncelle"
 
+msgid "Update Share Group"
+msgstr "Paylaşım Grubunu Güncelle"
+
+msgid "Update Share Group Snapshot"
+msgstr "Paylaşım Grubu Anlık Görüntüsünü Güncelle"
+
+msgid "Update Share Group Type"
+msgstr "Paylaşım Grubu Türünü Güncelle"
+
 msgid "Update Share Network"
 msgstr "Paylaşım Ağını Güncelle"
+
+msgid "Update Share Snapshot"
+msgstr "Paylaşım Anlık Görüntüsünü Güncelle"
 
 msgid "Update Share Type"
 msgstr "Paylaşım Türünü Güncelle"
 
+msgid "Update Share group Type"
+msgstr "Paylaşım grubu Türünü Güncelle"
+
 msgid "Updated At"
 msgstr "Güncelleme Zamanı"
+
+#, python-format
+msgid "Updated access for share group type \"%s\"."
+msgstr "\"%s\" paylaşım grubu türü için erişimi güncelle."
 
 #, python-format
 msgid "Updated access for share type \"%s\"."
@@ -1175,12 +1500,27 @@ msgid "Updating share \"%s\""
 msgstr "\"%s\" paylaşımı güncelleniyor"
 
 #, python-format
+msgid "Updating share group \"%s\""
+msgstr "\"%s\" paylaşım grubu güncelleniyor"
+
+#, python-format
+msgid "Updating share group snapshot \"%s\""
+msgstr "Paylaşım grubu anlık görüntüsü \"%s\" güncelleniyor"
+
+#, python-format
 msgid "Updating share metadata \"%s\""
 msgstr "Paylaşım metaverisi \"%s\" güncelleniyor"
 
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "Paylaşım ağı \"%s\" güncelleniyor"
+
+#, python-format
+msgid "Updating share snapshot \"%s\""
+msgstr "Paylaşım anlık görüntüsü \"%s\" güncelleniyor"
+
+msgid "Use share group snapshot as a source"
+msgstr "Paylaşım grubu anlık görüntüsünü kaynak olarak kullan"
 
 msgid "Use snapshot as a source"
 msgstr "Anlık görüntüyü kaynak olarak kullan"
