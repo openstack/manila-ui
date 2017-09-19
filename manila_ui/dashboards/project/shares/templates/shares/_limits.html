@@ -1,4 +1,4 @@
-{% load i18n horizon humanize %}
+{% load i18n horizon humanize bootstrap %}
 
 <h3>{% trans "Description" %}:</h3>
 
@@ -13,22 +13,49 @@
 
 <h3>{% trans "Share Limits" %}</h3>
 
-<div class="quota_title clearfix">
-  <strong>{% trans "Total Gibibytes" %} <span>({{ usages.totalGigabytesUsed|intcomma }} {% trans "GiB" %})</span></strong>
-  <p>{{ usages.maxTotalShareGigabytes|quota:_("GiB")|intcomma }}</p>
+<div class="quota_title">
+  <div class="pull-left">
+    <strong>{% trans "Total Gibibytes" %}</strong>
+  </div>
+  <span class="pull-right">
+    {% blocktrans with used=usages.totalShareGigabytesUsed|intcomma quota=usages.maxTotalShareGigabytes|intcomma|quotainf %}{{ used }} of {{ quota }} GiB Used{% endblocktrans %}
+  </span>
 </div>
 
-<div id="quota_size" data-progress-indicator-for="id_size" data-quota-limit="{{ usages.maxTotalShareGigabytes }}" data-quota-used="{{ usages.totalGigabytesUsed }}" class="quota_bar">
+{{ minifyspace }}
+<div id="quota_size"
+     data-progress-indicator-for="id_size"
+     data-quota-limit="{{ usages.maxTotalShareGigabytes }}"
+     data-quota-used={% block gigabytes_used_progress %}"{{ usages.totalShareGigabytesUsed }}"{% endblock %}
+     class="quota_bar">
+  {% widthratio usages.totalShareGigabytesUsed usages.maxTotalShareGigabytes 100 as gigabytes_percent %}
+  {% bs_progress_bar gigabytes_percent 0 %}
+</div>
+{{ endminifyspace }}
+
+<div class="quota_title">
+  <div class="pull-left">
+    <strong>{% block type_title %}{% trans "Number of Shares" %}{% endblock %}</strong>
+  </div>
+  <span class="pull-right">
+    {% block used_of_quota %}
+      {% blocktrans with used=usages.totalSharesUsed|intcomma quota=usages.maxTotalShares|intcomma|quotainf %}{{ used }} of {{ quota }} Used{% endblocktrans %}
+    {% endblock %}
+  </span>
 </div>
 
-<div class="quota_title clearfix">
-  <strong>{% trans "Number of Shares" %} <span>({{ usages.totalSharesUsed|intcomma }})</span></strong>
-  <p>{{ usages.maxTotalShares|quota|intcomma }}</p>
+{{ minifyspace }}
+<div id={% block type_id %}"quota_shares"{% endblock %}
+     data-quota-limit={% block total_progress %}"{{ usages.maxTotalShares }}"{% endblock %}
+     data-quota-used={% block used_progress %}"{{ usages.totalSharesUsed }}"{% endblock %}
+     class="quota_bar">
+  {% block show_progress_bar %}
+    {% widthratio usages.totalSharesUsed usages.maxTotalShares 100 as shares_percent %}
+    {% widthratio 100 usages.maxTotalShares 1 as single_step %}
+    {% bs_progress_bar shares_percent single_step %}
+  {% endblock %}
 </div>
-
-<div id="quota_shares" data-progress-indicator-step-by="1" data-quota-limit="{{ usages.maxTotalShares}}" data-quota-used="{{ usages.totalSharesUsed }}" class="quota_bar">
-</div>
-
+{{ endminifyspace }}
 
 <script type="text/javascript" charset="utf-8">
   if(typeof horizon.Quota !== 'undefined') {
