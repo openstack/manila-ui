@@ -380,6 +380,7 @@ def get_context_data(self, **kwargs):
     for t in types:
         if t[0] in self.usage.limits and t[1] in self.usage.limits:
             context['charts'].append({
+                'type': t[0],
                 'name': t[2],
                 'used': self.usage.limits[t[0]],
                 'max': self.usage.limits[t[1]],
