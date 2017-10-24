@@ -1,0 +1,1531 @@
+# Andi Chandler <andi@gowling.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: manila-ui 2.10.2.dev25\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2017-10-13 14:46+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-10-15 07:37+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"Language-Team: English (United Kingdom)\n"
+"Language: en-GB\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#, python-format
+msgid "%sGiB"
+msgstr "%sGiB"
+
+msgid "(Quota exceeded)"
+msgstr "(Quota exceeded)"
+
+msgid "Access Key"
+msgstr "Access Key"
+
+msgid "Access Level"
+msgstr "Access Level"
+
+msgid "Access To"
+msgstr "Access To"
+
+msgid "Access Type"
+msgstr "Access Type"
+
+msgid "Access to"
+msgstr "Access to"
+
+msgctxt "Current status of share network"
+msgid "Active"
+msgstr "Active"
+
+msgctxt "Current status of share server"
+msgid "Active"
+msgstr "Active"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Add Rule"
+msgstr "Add Rule"
+
+msgid "Add Security Service"
+msgstr "Add Security Service"
+
+msgid "Add Share Snapshot Rule"
+msgstr "Add Share Snapshot Rule"
+
+msgid "Add rule"
+msgstr "Add rule"
+
+msgid "Add security services to share network."
+msgstr "Add security services to share network."
+
+msgid "All keys and values must be in range from 1 to 255."
+msgstr "All keys and values must be in range from 1 to 255."
+
+msgid "Allow project access to share group type."
+msgstr "Allow project access to share group type."
+
+msgid "Allow project access to share type."
+msgstr "Allow project access to share type."
+
+msgid "At least one security service must be specified."
+msgstr "At least one security service must be specified."
+
+msgid "At least one share type must be specified."
+msgstr "At least one share type must be specified."
+
+msgid "Availability Zone"
+msgstr "Availability Zone"
+
+msgid "Availability zone"
+msgstr "Availability zone"
+
+msgctxt "Current status of replica"
+msgid "Available"
+msgstr "Available"
+
+msgctxt "Current status of share"
+msgid "Available"
+msgstr "Available"
+
+msgctxt "Current status of snapshot"
+msgid "Available"
+msgstr "Available"
+
+msgid "Available projects"
+msgstr "Available projects"
+
+msgid "Available security services"
+msgstr "Available security services"
+
+msgid "Cancel Migration"
+msgstr "Cancel Migration"
+
+msgid "Cancel migration"
+msgstr "Cancel migration"
+
+msgid "Cancel migration of a Share"
+msgstr "Cancel migration of a Share"
+
+msgid "Choose a snapshot"
+msgstr "Choose a snapshot"
+
+msgid "Complete Migration"
+msgstr "Complete Migration"
+
+msgid "Complete migration"
+msgstr "Complete migration"
+
+msgid "Complete migration of a Share"
+msgstr "Complete migration of a Share"
+
+msgid "Confirm Migration Cancelling of Share"
+msgstr "Confirm Migration Cancelling of Share"
+
+msgid "Confirm Migration Completion of Share"
+msgstr "Confirm Migration Completion of Share"
+
+msgid "Confirm Obtaining migration progress of Share"
+msgstr "Confirm Obtaining migration progress of Share"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Confirm Unmanage Share"
+msgstr "Confirm Unmanage Share"
+
+msgid "Create"
+msgstr "Create"
+
+msgid "Create Replica"
+msgstr "Create Replica"
+
+msgid "Create Security Service"
+msgstr "Create Security Service"
+
+msgid "Create Share"
+msgstr "Create Share"
+
+msgid "Create Share Group"
+msgstr "Create Share Group"
+
+msgid "Create Share Group Snapshot"
+msgstr "Create Share Group Snapshot"
+
+msgid "Create Share Group Type"
+msgstr "Create Share Group Type"
+
+msgid "Create Share Network"
+msgstr "Create Share Network"
+
+msgid "Create Share Snapshot"
+msgstr "Create Share Snapshot"
+
+msgid "Create Share Type"
+msgstr "Create Share Type"
+
+msgid "Create a Share"
+msgstr "Create a Share"
+
+msgid "Created At"
+msgstr "Created At"
+
+msgid "Created at"
+msgstr "Created at"
+
+msgctxt "Current status of replica"
+msgid "Creating"
+msgstr "Creating"
+
+msgctxt "Current status of share"
+msgid "Creating"
+msgstr "Creating"
+
+msgctxt "Current status of share server"
+msgid "Creating"
+msgstr "Creating"
+
+msgctxt "Current status of snapshot"
+msgid "Creating"
+msgstr "Creating"
+
+#, python-format
+msgid "Creating replica for share \"%s\"."
+msgstr "Creating replica for share \"%s\"."
+
+#, python-format
+msgid "Creating rule for \"%s\""
+msgstr "Creating rule for \"%s\""
+
+#, python-format
+msgid "Creating share \"%s\""
+msgstr "Creating share \"%s\""
+
+#, python-format
+msgid "Creating share group \"%s\""
+msgstr "Creating share group \"%s\""
+
+#, python-format
+msgid "Creating share group snapshot \"%s\"."
+msgstr "Creating share group snapshot \"%s\"."
+
+#, python-format
+msgid "Creating share snapshot \"%s\"."
+msgstr "Creating share snapshot \"%s\"."
+
+#, python-format
+msgid "Creating snapshot rule for \"%s\""
+msgstr "Creating snapshot rule for \"%s\""
+
+msgid "Current Size (GiB)"
+msgstr "Current Size (GiB)"
+
+msgid "DNS IP"
+msgstr "DNS IP"
+
+msgid "Default Quotas"
+msgstr "Default Quotas"
+
+msgid "Delete Replica"
+msgid_plural "Delete Replicas"
+msgstr[0] "Delete Replica"
+msgstr[1] "Delete Replicas"
+
+msgid "Delete Rule"
+msgid_plural "Delete Rules"
+msgstr[0] "Delete Rule"
+msgstr[1] "Delete Rules"
+
+msgid "Delete Security Service"
+msgid_plural "Delete Security Services"
+msgstr[0] "Delete Security Service"
+msgstr[1] "Delete Security Services"
+
+msgid "Delete Share"
+msgid_plural "Delete Shares"
+msgstr[0] "Delete Share"
+msgstr[1] "Delete Shares"
+
+msgid "Delete Share Group"
+msgid_plural "Delete Share Groups"
+msgstr[0] "Delete Share Group"
+msgstr[1] "Delete Share Groups"
+
+msgid "Delete Share Group Snapshot"
+msgid_plural "Delete Share Group Snapshots"
+msgstr[0] "Delete Share Group Snapshot"
+msgstr[1] "Delete Share Group Snapshots"
+
+msgid "Delete Share Group Type"
+msgid_plural "Delete Share Group Types"
+msgstr[0] "Delete Share Group Type"
+msgstr[1] "Delete Share Group Types"
+
+msgid "Delete Share Network"
+msgid_plural "Delete Share Networks"
+msgstr[0] "Delete Share Network"
+msgstr[1] "Delete Share Networks"
+
+msgid "Delete Share Server"
+msgid_plural "Delete Share Server"
+msgstr[0] "Delete Share Server"
+msgstr[1] "Delete Share Server"
+
+msgid "Delete Share Snapshot"
+msgid_plural "Delete Share Snapshots"
+msgstr[0] "Delete Share Snapshot"
+msgstr[1] "Delete Share Snapshots"
+
+msgid "Delete Share Snapshot Rule"
+msgid_plural "Delete Share Snapshot Rules"
+msgstr[0] "Delete Share Snapshot Rule"
+msgstr[1] "Delete Share Snapshot Rules"
+
+msgid "Delete Share Type"
+msgid_plural "Delete Share Types"
+msgstr[0] "Delete Share Type"
+msgstr[1] "Delete Share Types"
+
+msgid "Delete Snapshot"
+msgid_plural "Delete Snapshots"
+msgstr[0] "Delete Snapshot"
+msgstr[1] "Delete Snapshots"
+
+msgid "Deleted Replica"
+msgid_plural "Deleted Replicas"
+msgstr[0] "Deleted Replica"
+msgstr[1] "Deleted Replicas"
+
+msgid "Deleted Rule"
+msgid_plural "Deleted Rules"
+msgstr[0] "Deleted Rule"
+msgstr[1] "Deleted Rules"
+
+msgid "Deleted Security Service"
+msgid_plural "Deleted Security Services"
+msgstr[0] "Deleted Security Service"
+msgstr[1] "Deleted Security Services"
+
+msgid "Deleted Share"
+msgid_plural "Deleted Shares"
+msgstr[0] "Deleted Share"
+msgstr[1] "Deleted Shares"
+
+msgid "Deleted Share Group"
+msgid_plural "Deleted Share Groups"
+msgstr[0] "Deleted Share Group"
+msgstr[1] "Deleted Share Groups"
+
+msgid "Deleted Share Group Snapshot"
+msgid_plural "Deleted Share Group Snapshots"
+msgstr[0] "Deleted Share Group Snapshot"
+msgstr[1] "Deleted Share Group Snapshots"
+
+msgid "Deleted Share Group Type"
+msgid_plural "Deleted Share Group Types"
+msgstr[0] "Deleted Share Group Type"
+msgstr[1] "Deleted Share Group Types"
+
+msgid "Deleted Share Network"
+msgid_plural "Deleted Share Networks"
+msgstr[0] "Deleted Share Network"
+msgstr[1] "Deleted Share Networks"
+
+msgid "Deleted Share Server"
+msgid_plural "Deleted Share Server"
+msgstr[0] "Deleted Share Server"
+msgstr[1] "Deleted Share Server"
+
+msgid "Deleted Share Snapshot"
+msgid_plural "Deleted Share Snapshots"
+msgstr[0] "Deleted Share Snapshot"
+msgstr[1] "Deleted Share Snapshots"
+
+msgid "Deleted Share Snapshot Rule"
+msgid_plural "Deleted Share Snapshot Rules"
+msgstr[0] "Deleted Share Snapshot Rule"
+msgstr[1] "Deleted Share Snapshot Rules"
+
+msgid "Deleted Share Type"
+msgid_plural "Deleted Share Types"
+msgstr[0] "Deleted Share Type"
+msgstr[1] "Deleted Share Types"
+
+msgid "Deleted Snapshot"
+msgid_plural "Deleted Snapshots"
+msgstr[0] "Deleted Snapshot"
+msgstr[1] "Deleted Snapshots"
+
+msgctxt "Current status of replica"
+msgid "Deleting"
+msgstr "Deleting"
+
+msgctxt "Current status of share"
+msgid "Deleting"
+msgstr "Deleting"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Destination host and pool where share will be migrated to."
+msgstr "Destination host and pool where share will be migrated to."
+
+msgid "Domain"
+msgstr "Domain"
+
+msgid "Driver handles share servers"
+msgstr "Driver handles share servers"
+
+msgid "Driver options ('volume_id' for Generic driver, etc...)"
+msgstr "Driver options ('volume_id' for Generic driver, etc...)"
+
+#, python-format
+msgid "Duplicated keys '%s'."
+msgstr "Duplicated keys '%s'."
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Edit Security Service"
+msgstr "Edit Security Service"
+
+msgid "Edit Share"
+msgstr "Edit Share"
+
+msgid "Edit Share Metadata"
+msgstr "Edit Share Metadata"
+
+msgid "Edit Share Network"
+msgstr "Edit Share Network"
+
+msgid "Edit Share Snapshot"
+msgstr "Edit Share Snapshot"
+
+msgid ""
+"Enforces migration of the share snapshots to the destination. If set to "
+"True, host-assisted migration will not be attempted."
+msgstr ""
+"Enforces migration of the share snapshots to the destination. If set to "
+"True, host-assisted migration will not be attempted."
+
+msgid ""
+"Enforces migration to be nondisruptive. If set to True, host-assisted "
+"migration will not be attempted."
+msgstr ""
+"Enforces migration to be non-disruptive. If set to True, host-assisted "
+"migration will not be attempted."
+
+msgid ""
+"Enforces migration to keep the share writable while contents are being "
+"moved. If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"Enforces migration to keep the share writable while contents are being "
+"moved. If set to True, host-assisted migration will not be attempted."
+
+msgid ""
+"Enforces migration to preserve all file metadata when moving its contents. "
+"If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"Enforces migration to preserve all file metadata when moving its contents. "
+"If set to True, host-assisted migration will not be attempted."
+
+msgid ""
+"Enforces the use of the host-assisted migration approach, which bypasses "
+"driver optimizations."
+msgstr ""
+"Enforces the use of the host-assisted migration approach, which bypasses "
+"driver optimisations."
+
+msgctxt "Current status of replica"
+msgid "Error"
+msgstr "Error"
+
+msgctxt "Current status of share"
+msgid "Error"
+msgstr "Error"
+
+msgctxt "Current status of share network"
+msgid "Error"
+msgstr "Error"
+
+msgctxt "Current status of share server"
+msgid "Error"
+msgstr "Error"
+
+msgctxt "Current status of snapshot"
+msgid "Error"
+msgstr "Error"
+
+msgid "Expected only pairs of key=value."
+msgstr "Expected only pairs of key=value."
+
+msgid "Export location"
+msgstr "Export location"
+
+msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+msgstr "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
+
+msgid "Extend"
+msgstr "Extend"
+
+msgid "Extend Share"
+msgstr "Extend Share"
+
+#, python-format
+msgid "Extend share \"%s\""
+msgstr "Extend share \"%s\""
+
+msgctxt "Current status of share"
+msgid "Extending Error"
+msgstr "Extending Error"
+
+msgid "Extra specs"
+msgstr "Extra specs"
+
+msgid "Force Host Assisted Migration"
+msgstr "Force Host Assisted Migration"
+
+msgid "From here you can update share network info. "
+msgstr "From here you can update share network info. "
+
+msgid "From here you can update the default quotas (max limits)."
+msgstr "From here you can update the default quotas (max limits)."
+
+msgid "Get migration progress"
+msgstr "Get migration progress"
+
+msgid ""
+"Got improper value for field 'driver_options'. Expected only pairs of "
+"key=value."
+msgstr ""
+"Got improper value for field 'driver_options'. Expected only pairs of "
+"key=value."
+
+msgid "Group specs"
+msgstr "Group specs"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Host of share"
+msgstr "Host of share"
+
+msgid "Host to migrate share"
+msgstr "Host to migrate share"
+
+msgid "Host where share is located, example: some.host@driver[#pool]"
+msgstr "Host where share is located, example: some.host@driver[#pool]"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP Version"
+msgstr "IP Version"
+
+msgid "Id"
+msgstr "Id"
+
+#, python-format
+msgid ""
+"Improper value set to required extra spec "
+"'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
+msgstr ""
+"Improper value set to required extra spec "
+"'spec_driver_handles_share_servers'. Allowed values are %s. Case insensitive."
+
+msgctxt "Current status of share server"
+msgid "In-use"
+msgstr "In-use"
+
+msgctxt "Current status of snapshot"
+msgid "In-use"
+msgstr "In-use"
+
+msgctxt "Current status of share network"
+msgid "Inactive"
+msgstr "Inactive"
+
+#, python-format
+msgid "Key '%s' has improper length."
+msgstr "Key '%s' has improper length."
+
+#, python-format
+msgid "Key can not contain spaces. See string '%s'."
+msgstr "Key can not contain spaces. See string '%s'."
+
+#, python-format
+msgid "Keys should not contain spaces. Error in '%s'."
+msgstr "Keys should not contain spaces. Error in '%s'."
+
+msgid "Make visible for all"
+msgstr "Make visible for all"
+
+msgid "Manage"
+msgstr "Manage"
+
+msgctxt "Current status of share"
+msgid "Manage Error"
+msgstr "Managed Error"
+
+msgid "Manage Replicas"
+msgstr "Manage Replicas"
+
+msgid "Manage Rules"
+msgstr "Manage Rules"
+
+msgid "Manage Share"
+msgstr "Manage Share"
+
+msgid "Manage Share Group Type Access"
+msgstr "Manage Share Group Type Access"
+
+msgid "Manage Share Snapshot Rules"
+msgstr "Manage Share Snapshot Rules"
+
+msgid "Manage Share Type Access"
+msgstr "Manage Share Type Access"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Migrate Share"
+msgstr "Migrate Share"
+
+msgid "Migrate a Share"
+msgstr "Migrate a Share"
+
+msgctxt "Current status of share"
+msgid "Migrating"
+msgstr "Migrating"
+
+msgctxt "Current status of share"
+msgid "Migrating to"
+msgstr "Migrating to"
+
+#, python-format
+msgid "Migration of share %(name)s is at %(progress)s percent."
+msgstr "Migration of share %(name)s is at %(progress)s percent."
+
+msgid ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+msgstr ""
+"Modified project information and members, but unable to modify project "
+"quotas."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Network Type"
+msgstr "Network Type"
+
+msgid "Networks"
+msgstr "Networks"
+
+msgid "Neutron Net"
+msgstr "Neutron Net"
+
+msgid "Neutron Subnet"
+msgstr "Neutron Subnet"
+
+msgid "New Size (GiB)"
+msgstr "New Size (GiB)"
+
+msgid "New share network to be set in migrated share"
+msgstr "New share network to be set in migrated share"
+
+msgid "New share type to be set in migrating share"
+msgstr "New share type to be set in migrating share"
+
+msgid "New size must be greater than current size."
+msgstr "New size must be greater than current size."
+
+msgid "No projects found."
+msgstr "No projects found."
+
+msgid "No projects selected."
+msgstr "No projects selected."
+
+msgid "No security services found."
+msgstr "No security services found."
+
+msgid "No security services selected."
+msgstr "No security services selected."
+
+msgid "No source, empty share"
+msgstr "No source, empty share"
+
+msgid "No source, empty share group"
+msgstr "No source, empty share group"
+
+msgid "Nondisruptive"
+msgstr "Non-disruptive"
+
+msgid "Nova Net"
+msgstr "Nova Net"
+
+msgid "Obtain Progress"
+msgstr "Obtain Progress"
+
+msgid "Obtain migration progress of a Share"
+msgstr "Obtain migration progress of a Share"
+
+msgid "Overview"
+msgstr "Overview"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Passwords do not match."
+msgstr "Passwords do not match."
+
+msgid "Preserve Metadata"
+msgstr "Preserve Metadata"
+
+msgid "Preserve Snapshots"
+msgstr "Preserve Snapshots"
+
+msgid "Project"
+msgstr "Project"
+
+msgid "Projects with access to share group type"
+msgstr "Projects with access to share group type"
+
+msgid "Projects with access to share type"
+msgstr "Projects with access to share type"
+
+msgid "Protocol"
+msgstr "Protocol"
+
+msgid "Public"
+msgstr "Public"
+
+msgid "Quota"
+msgstr "Quota"
+
+#, python-format
+msgid "Replica Details: %(replica_display_name)s"
+msgstr "Replica Details: %(replica_display_name)s"
+
+msgid "Replica State"
+msgstr "Replica State"
+
+msgid "Replicas"
+msgstr "Replicas"
+
+msgid "Reset Replica State"
+msgstr "Reset Replica State"
+
+msgid "Reset Replica Status"
+msgstr "Reset Replica Status"
+
+msgid "Reset Share Group Snapshot Status"
+msgstr "Reset Share Group Snapshot Status"
+
+msgid "Reset Share Group Status"
+msgstr "Reset Share Group Status"
+
+msgid "Reset Status"
+msgstr "Reset Status"
+
+msgid "Reset replica state"
+msgstr "Reset replica state"
+
+msgid "Reset replica status"
+msgstr "Reset replica status"
+
+msgid "Reset state"
+msgstr "Reset state"
+
+msgid "Reset status"
+msgstr "Reset status"
+
+#, python-format
+msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
+msgstr "Resetting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
+
+#, python-format
+msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "Resetting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
+
+#, python-format
+msgid "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
+
+#, python-format
+msgid ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+
+msgid "Resync"
+msgstr "Resync"
+
+msgid "Resync Replica"
+msgstr "Resync Replica"
+
+msgid "Resync replica"
+msgstr "Resync replica"
+
+#, python-format
+msgid "Resync'ing replica '%s'"
+msgstr "Resync'ing replica '%s'"
+
+msgid "Revert Share"
+msgstr "Revert Share"
+
+msgid "Revert Share to a Snapshot"
+msgstr "Revert Share to a Snapshot"
+
+msgid "Revert share to a snapshot"
+msgstr "Revert share to a snapshot"
+
+msgctxt "Current status of share"
+msgid "Reverting Error"
+msgstr "Reverting Error"
+
+msgid "Rules"
+msgstr "Rules"
+
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#, python-format
+msgid "Security Service Details: %(service_display_name)s"
+msgstr "Security Service Details: %(service_display_name)s"
+
+msgid "Security Service Overview"
+msgstr "Security Service Overview"
+
+msgid "Security Services"
+msgstr "Security Services"
+
+msgid "Security services within share network"
+msgstr "Security services within share network"
+
+msgid "Segmentation Id"
+msgstr "Segmentation Id"
+
+msgid "Selected projects"
+msgstr "Selected projects"
+
+msgid "Selected security services"
+msgstr "Selected security services"
+
+msgid "Server"
+msgstr "Server"
+
+msgid "Set Replica as Active"
+msgstr "Set Replica as Active"
+
+msgid "Set as Active"
+msgstr "Set as Active"
+
+msgid "Set maximum quotas for the project."
+msgstr "Set maximum quotas for the project."
+
+#, python-format
+msgid "Setting replica \"%s\" as active..."
+msgstr "Setting replica \"%s\" as active..."
+
+#, python-format
+msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
+msgstr "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
+
+#, python-format
+msgid "Share Details: %(share_display_name)s"
+msgstr "Share Details: %(share_display_name)s"
+
+#, python-format
+msgid "Share Details: %(share_name)s"
+msgstr "Share Details: %(share_name)s"
+
+msgid "Share Group"
+msgstr "Share Group"
+
+#, python-format
+msgid "Share Group Details: %s"
+msgstr "Share Group Details: %s"
+
+msgid "Share Group Name"
+msgstr "Share Group Name"
+
+msgid "Share Group Overview"
+msgstr "Share Group Overview"
+
+msgid "Share Group Snapshot"
+msgstr "Share Group Snapshot"
+
+#, python-format
+msgid "Share Group Snapshot Details: %(sgs_display_name)s"
+msgstr "Share Group Snapshot Details: %(sgs_display_name)s"
+
+msgid "Share Group Snapshot Overview"
+msgstr "Share Group Snapshot Overview"
+
+msgid "Share Group Snapshots"
+msgstr "Share Group Snapshots"
+
+msgid "Share Group Type"
+msgstr "Share Group Type"
+
+msgid "Share Group Types"
+msgstr "Share Group Types"
+
+msgid "Share Groups"
+msgstr "Share Groups"
+
+msgid "Share ID"
+msgstr "Share ID"
+
+#, python-format
+msgid "Share Instance Details: %s"
+msgstr "Share Instance Details: %s"
+
+msgid "Share Instance Overview"
+msgstr "Share Instance Overview"
+
+msgid "Share Instances"
+msgstr "Share Instances"
+
+msgid "Share Name"
+msgstr "Share Name"
+
+msgid "Share Network"
+msgstr "Share Network"
+
+#, python-format
+msgid "Share Network Details: %(network_display_name)s"
+msgstr "Share Network Details: %(network_display_name)s"
+
+msgid "Share Network Info"
+msgstr "Share Network Info"
+
+msgid "Share Network Overview"
+msgstr "Share Network Overview"
+
+msgid "Share Networks"
+msgstr "Share Networks"
+
+msgid "Share Overview"
+msgstr "Share Overview"
+
+msgid "Share Protocol"
+msgstr "Share Protocol"
+
+#, python-format
+msgid "Share Replicas: %(share_display_name)s"
+msgstr "Share Replicas: %(share_display_name)s"
+
+#, python-format
+msgid "Share Rules: %(share_display_name)s"
+msgstr "Share Rules: %(share_display_name)s"
+
+msgid "Share Server"
+msgstr "Share Server"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "Share Server Details: %(server_name)s"
+
+msgid "Share Server Id"
+msgstr "Share Server Id"
+
+msgid "Share Server Overview"
+msgstr "Share Server Overview"
+
+msgid "Share Servers"
+msgstr "Share Servers"
+
+msgid "Share Snapshot Name"
+msgstr "Share Snapshot Name"
+
+msgid "Share Snapshot Overview"
+msgstr "Share Snapshot Overview"
+
+msgid "Share Snapshot Rules"
+msgstr "Share Snapshot Rules"
+
+msgid "Share Snapshots"
+msgstr "Share Snapshots"
+
+msgid "Share Snapshots Storage"
+msgstr "Share Snapshots Storage"
+
+msgid "Share Source"
+msgstr "Share Source"
+
+msgid "Share Storage"
+msgstr "Share Storage"
+
+msgid "Share Type"
+msgstr "Share Type"
+
+msgid "Share Types"
+msgstr "Share Types"
+
+msgid "Share Types (multiple available)"
+msgstr "Share Types (multiple available)"
+
+msgid "Share Types (one available)"
+msgstr "Share Types (one available)"
+
+#, python-format
+msgid ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+msgstr ""
+"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
+"quota available."
+
+msgid "Share gigabytes"
+msgstr "Share gigabytes"
+
+msgid "Share name to be assigned"
+msgstr "Share name to be assigned"
+
+#, python-format
+msgid "Share replica %s has been deleted."
+msgstr "Share replica %s has been deleted."
+
+#, python-format
+msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
+msgstr "Share size must be equal to or greater than the snapshot size (%sGiB)"
+
+msgid "Share snapshot gigabytes"
+msgstr "Share snapshot gigabytes"
+
+msgid "Share snapshots"
+msgstr "Share snapshots"
+
+msgid "Share types"
+msgstr "Share types"
+
+msgid "Shares"
+msgstr "Shares"
+
+msgid "Shares Networks"
+msgstr "Shares Networks"
+
+msgid "Sid"
+msgstr "Sid"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Size (GiB)"
+msgstr "Size (GiB)"
+
+msgid "Snapshot"
+msgstr "Snapshot"
+
+#, python-format
+msgid "Snapshot Details: %(snapshot_display_name)s"
+msgstr "Snapshot Details: %(snapshot_display_name)s"
+
+#, python-format
+msgid "Snapshot Rules: %(snapshot_display_name)s"
+msgstr "Snapshot Rules: %(snapshot_display_name)s"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Source Share Group Snapshot"
+msgstr "Source Share Group Snapshot"
+
+msgid "Source Type"
+msgstr "Source Type"
+
+msgid ""
+"Specify the new share network for the share. Do not specify this parameter "
+"if the migrating share has to be retained within its current share network."
+msgstr ""
+"Specify the new share network for the share. Do not specify this parameter "
+"if the migrating share has to be retained within its current share network."
+
+msgid ""
+"Specify the new share type for the share. Do not specify this parameter if "
+"the migrating share has to be retained with its current share type."
+msgstr ""
+"Specify the new share type for the share. Do not specify this parameter if "
+"the migrating share has to be retained with its current share type."
+
+msgid "Start migration"
+msgstr "Start migration"
+
+msgid "Status"
+msgstr "Status"
+
+#, python-format
+msgid "Successfully created security service: %s"
+msgstr "Successfully created security service: %s"
+
+#, python-format
+msgid "Successfully created share group type: %s"
+msgstr "Successfully created share group type: %s"
+
+#, python-format
+msgid "Successfully created share network: %s"
+msgstr "Successfully created share network: %s"
+
+#, python-format
+msgid "Successfully created share type: %s"
+msgstr "Successfully created share type: %s"
+
+#, python-format
+msgid "Successfully sent the request to cancel migration of  share: %s."
+msgstr "Successfully sent the request to cancel migration of  share: %s."
+
+#, python-format
+msgid "Successfully sent the request to complete migration of  share: %s."
+msgstr "Successfully sent the request to complete migration of  share: %s."
+
+#, python-format
+msgid "Successfully sent the request to manage share: %s"
+msgstr "Successfully sent the request to manage share: %s"
+
+#, python-format
+msgid "Successfully sent the request to migrate share: %s."
+msgstr "Successfully sent the request to migrate share: %s."
+
+#, python-format
+msgid "Successfully sent the request to unmanage share: %s"
+msgstr "Successfully sent the request to unmanage share: %s"
+
+#, python-format
+msgid "Successfully updated extra specs for share type '%s'."
+msgstr "Successfully updated extra specs for share type '%s'."
+
+#, python-format
+msgid "Successfully updated group specs for share group type '%s'."
+msgstr "Successfully updated group specs for share group type '%s'."
+
+#, python-format
+msgid "Successfully updated security service \"%s\""
+msgstr "Successfully updated security service \"%s\""
+
+#, python-format
+msgid "The share size cannot be less than the snapshot size (%sGiB)"
+msgstr "The share size cannot be less than the snapshot size (%sGiB)"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Unable to add rule."
+msgstr "Unable to add rule."
+
+msgid "Unable to add snapshot rule."
+msgstr "Unable to add snapshot rule."
+
+#, python-format
+msgid "Unable to cancel migration of share %s at this moment."
+msgstr "Unable to cancel migration of share %s at this moment."
+
+#, python-format
+msgid "Unable to complete migration of share %s."
+msgstr "Unable to complete migration of share %s."
+
+msgid "Unable to create security service."
+msgstr "Unable to create security service."
+
+msgid "Unable to create share group snapshot."
+msgstr "Unable to create share group snapshot."
+
+msgid "Unable to create share group type."
+msgstr "Unable to create share group type."
+
+msgid "Unable to create share group."
+msgstr "Unable to create share group."
+
+msgid "Unable to create share network."
+msgstr "Unable to create share network."
+
+msgid "Unable to create share replica."
+msgstr "Unable to create share replica."
+
+msgid "Unable to create share snapshot."
+msgstr "Unable to create share snapshot."
+
+msgid "Unable to create share type."
+msgstr "Unable to create share type."
+
+msgid "Unable to create share."
+msgstr "Unable to create share."
+
+#, python-format
+msgid "Unable to create share. %s"
+msgstr "Unable to create share. %s"
+
+#, python-format
+msgid "Unable to delete replica \"%s\"."
+msgstr "Unable to delete replica \"%s\"."
+
+#, python-format
+msgid "Unable to delete rule \"%s\"."
+msgstr "Unable to delete rule \"%s\"."
+
+#, python-format
+msgid "Unable to delete share \"%s\". "
+msgstr "Unable to delete share \"%s\". "
+
+#, python-format
+msgid ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+msgstr ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr "Unable to delete snapshot \"%s\". One or more shares depend on it."
+
+#, python-format
+msgid "Unable to delete snapshot rule \"%s\"."
+msgstr "Unable to delete snapshot rule \"%s\"."
+
+msgid "Unable to extend share."
+msgstr "Unable to extend share."
+
+msgid "Unable to get information about share group type access."
+msgstr "Unable to get information about share group type access."
+
+msgid "Unable to get information about share type access."
+msgstr "Unable to get information about share type access."
+
+msgid "Unable to get list of projects."
+msgstr "Unable to get list of projects."
+
+msgid "Unable to get the security services hosts"
+msgstr "Unable to get the security services hosts"
+
+#, python-format
+msgid "Unable to get the specified share group '%s' for snapshot creation."
+msgstr "Unable to get the specified share group '%s' for snapshot creation."
+
+msgid "Unable to load the specified share group snapshot."
+msgstr "Unable to load the specified share group snapshot."
+
+msgid "Unable to load the specified snapshot."
+msgstr "Unable to load the specified snapshot."
+
+msgid "Unable to manage share"
+msgstr "Unable to manage share"
+
+#, python-format
+msgid "Unable to migrate share %s."
+msgstr "Unable to migrate share %s."
+
+#, python-format
+msgid "Unable to obtain progress of migration of share %s at this moment."
+msgstr "Unable to obtain progress of migration of share %s at this moment."
+
+#, python-format
+msgid "Unable to reset state of replica '%s'."
+msgstr "Unable to reset state of replica '%s'."
+
+#, python-format
+msgid "Unable to reset status of replica '%s'."
+msgstr "Unable to reset status of replica '%s'."
+
+#, python-format
+msgid "Unable to reset status of share group '%s'."
+msgstr "Unable to reset status of share group '%s'."
+
+#, python-format
+msgid "Unable to reset status of share group snapshot '%s'."
+msgstr "Unable to reset status of share group snapshot '%s'."
+
+#, python-format
+msgid "Unable to resync replica '%s'."
+msgstr "Unable to resync replica '%s'."
+
+msgid "Unable to retrieve list of projects."
+msgstr "Unable to retrieve list of projects."
+
+msgid "Unable to retrieve quotas."
+msgstr "Unable to retrieve quotas."
+
+#, python-format
+msgid "Unable to retrieve replica %sdetails."
+msgstr "Unable to retrieve replica %sdetails."
+
+#, python-format
+msgid "Unable to retrieve replica '%s'."
+msgstr "Unable to retrieve replica '%s'."
+
+#, python-format
+msgid "Unable to retrieve security service '%s' details."
+msgstr "Unable to retrieve security service '%s' details."
+
+msgid "Unable to retrieve security services"
+msgstr "Unable to retrieve security services"
+
+msgid "Unable to retrieve security_service."
+msgstr "Unable to retrieve security_service."
+
+msgid "Unable to retrieve share details."
+msgstr "Unable to retrieve share details."
+
+#, python-format
+msgid "Unable to retrieve share group '%s'."
+msgstr "Unable to retrieve share group '%s'."
+
+msgid "Unable to retrieve share group details."
+msgstr "Unable to retrieve share group details."
+
+#, python-format
+msgid "Unable to retrieve share group snapshot '%s'."
+msgstr "Unable to retrieve share group snapshot '%s'."
+
+msgid "Unable to retrieve share group snapshot details."
+msgstr "Unable to retrieve share group snapshot details."
+
+msgid "Unable to retrieve share group snapshot list."
+msgstr "Unable to retrieve share group snapshot list."
+
+msgid "Unable to retrieve share group snapshot."
+msgstr "Unable to retrieve share group snapshot."
+
+msgid "Unable to retrieve share group snapshots."
+msgstr "Unable to retrieve share group snapshots."
+
+msgid "Unable to retrieve share group types."
+msgstr "Unable to retrieve share group types."
+
+msgid "Unable to retrieve share group."
+msgstr "Unable to retrieve share group."
+
+msgid "Unable to retrieve share groups."
+msgstr "Unable to retrieve share groups."
+
+msgid "Unable to retrieve share instance details."
+msgstr "Unable to retrieve share instance details."
+
+msgid "Unable to retrieve share instances."
+msgstr "Unable to retrieve share instances."
+
+msgid "Unable to retrieve share limit information."
+msgstr "Unable to retrieve share limit information."
+
+msgid "Unable to retrieve share list."
+msgstr "Unable to retrieve share list."
+
+msgid "Unable to retrieve share network details."
+msgstr "Unable to retrieve share network details."
+
+msgid "Unable to retrieve share network."
+msgstr "Unable to retrieve share network."
+
+msgid "Unable to retrieve share networks"
+msgstr "Unable to retrieve share networks"
+
+msgid "Unable to retrieve share replicas."
+msgstr "Unable to retrieve share replicas."
+
+msgid "Unable to retrieve share rules."
+msgstr "Unable to retrieve share rules."
+
+msgid "Unable to retrieve share server details."
+msgstr "Unable to retrieve share server details."
+
+msgid "Unable to retrieve share servers"
+msgstr "Unable to retrieve share servers"
+
+msgid "Unable to retrieve share snapshot list."
+msgstr "Unable to retrieve share snapshot list."
+
+msgid "Unable to retrieve share snapshot rules."
+msgstr "Unable to retrieve share snapshot rules."
+
+msgid "Unable to retrieve share snapshot."
+msgstr "Unable to retrieve share snapshot."
+
+msgid "Unable to retrieve share snapshots list."
+msgstr "Unable to retrieve share snapshots list."
+
+msgid "Unable to retrieve share snapshots."
+msgstr "Unable to retrieve share snapshots."
+
+msgid "Unable to retrieve share types."
+msgstr "Unable to retrieve share types."
+
+msgid "Unable to retrieve share."
+msgstr "Unable to retrieve share."
+
+#, python-format
+msgid "Unable to retrieve share. %s"
+msgstr "Unable to retrieve share. %s"
+
+msgid "Unable to retrieve share_gruop_type."
+msgstr "Unable to retrieve share_group_type."
+
+msgid "Unable to retrieve share_type."
+msgstr "Unable to retrieve share_type."
+
+msgid "Unable to retrieve snapshot details."
+msgstr "Unable to retrieve snapshot details."
+
+msgid "Unable to retrieve snapshot."
+msgstr "Unable to retrieve snapshot."
+
+msgid "Unable to retrieve volume details."
+msgstr "Unable to retrieve volume details."
+
+msgid "Unable to revert share to the snapshot."
+msgstr "Unable to revert share to the snapshot."
+
+msgid "Unable to set project quotas."
+msgstr "Unable to set project quotas."
+
+#, python-format
+msgid "Unable to set replica '%s' as active."
+msgstr "Unable to set replica '%s' as active."
+
+msgid "Unable to unmanage share."
+msgstr "Unable to unmanage share."
+
+#, python-format
+msgid "Unable to update access for share group type \"%s\"."
+msgstr "Unable to update access for share group type \"%s\"."
+
+#, python-format
+msgid "Unable to update access for share type \"%s\"."
+msgstr "Unable to update access for share type \"%s\"."
+
+msgid "Unable to update default quotas."
+msgstr "Unable to update default quotas."
+
+msgid "Unable to update extra_specs for share type."
+msgstr "Unable to update extra_specs for share type."
+
+msgid "Unable to update group_specs for share group type."
+msgstr "Unable to update group_specs for share group type."
+
+msgid "Unable to update security service."
+msgstr "Unable to update security service."
+
+msgid "Unable to update share group snapshot."
+msgstr "Unable to update share group snapshot."
+
+msgid "Unable to update share group type."
+msgstr "Unable to update share group type."
+
+msgid "Unable to update share group."
+msgstr "Unable to update share group."
+
+msgid "Unable to update share metadata."
+msgstr "Unable to update share metadata."
+
+#, python-format
+msgid "Unable to update share network \"%s\"."
+msgstr "Unable to update share network \"%s\"."
+
+msgid "Unable to update share network."
+msgstr "Unable to update share network."
+
+msgid "Unable to update share snapshot."
+msgstr "Unable to update share snapshot."
+
+msgid "Unable to update share type."
+msgstr "Unable to update share type."
+
+msgid "Unable to update share."
+msgstr "Unable to update share."
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "Unmanage"
+msgstr "Unmanage"
+
+msgctxt "Current status of share"
+msgid "Unmanage Error"
+msgstr "Unmanaged Error"
+
+msgid "Unmanage Share"
+msgstr "Unmanage Share"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Update Share Group"
+msgstr "Update Share Group"
+
+msgid "Update Share Group Snapshot"
+msgstr "Update Share Group Snapshot"
+
+msgid "Update Share Group Type"
+msgstr "Update Share Group Type"
+
+msgid "Update Share Network"
+msgstr "Update Share Network"
+
+msgid "Update Share Snapshot"
+msgstr "Update Share Snapshot"
+
+msgid "Update Share Type"
+msgstr "Update Share Type"
+
+msgid "Update Share group Type"
+msgstr "Update Share group Type"
+
+msgid "Updated At"
+msgstr "Updated At"
+
+#, python-format
+msgid "Updated access for share group type \"%s\"."
+msgstr "Updated access for share group type \"%s\"."
+
+#, python-format
+msgid "Updated access for share type \"%s\"."
+msgstr "Updated access for share type \"%s\"."
+
+#, python-format
+msgid "Updated share network \"%s\"."
+msgstr "Updated share network \"%s\"."
+
+#, python-format
+msgid "Updating share \"%s\""
+msgstr "Updating share \"%s\""
+
+#, python-format
+msgid "Updating share group \"%s\""
+msgstr "Updating share group \"%s\""
+
+#, python-format
+msgid "Updating share group snapshot \"%s\""
+msgstr "Updating share group snapshot \"%s\""
+
+#, python-format
+msgid "Updating share metadata \"%s\""
+msgstr "Updating share metadata \"%s\""
+
+#, python-format
+msgid "Updating share network \"%s\""
+msgstr "Updating share network \"%s\""
+
+#, python-format
+msgid "Updating share snapshot \"%s\""
+msgstr "Updating share snapshot \"%s\""
+
+msgid "Use share group snapshot as a source"
+msgstr "Use share group snapshot as a source"
+
+msgid "Use snapshot as a source"
+msgstr "Use snapshot as a source"
+
+msgid "User"
+msgstr "User"
+
+msgid "Visibility"
+msgstr "Visibility"
+
+msgid "Writable"
+msgstr "Writable"
+
+msgid "key=value pairs per line can be set"
+msgstr "key=value pairs per line can be set"
