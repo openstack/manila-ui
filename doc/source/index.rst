@@ -3,21 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to manila-ui's documentation!
-=====================================
+.. the main title comes from README.rst
 
-Contents:
+.. include:: ../../README.rst
+
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
 
-   contributor/readme
    install/installation
+   configuration/index
    user/usage
-   contributor/contributing
+   contributor/index
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`search`
