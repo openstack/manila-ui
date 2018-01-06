@@ -15,7 +15,8 @@ Contents
 
    install/installation
    configuration/index
-   user/usage
+   user/index
+   admin/index
    contributor/index
 
 Indices and tables
