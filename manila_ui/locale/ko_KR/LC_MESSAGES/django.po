@@ -2,16 +2,17 @@
 # Ian Y. Choi <ianyrchoi@gmail.com>, 2016. #zanata
 # Sungjin Kang <gang.sungjin@gmail.com>, 2017. #zanata
 # minwook-shin <minwook0106@gmail.com>, 2017. #zanata
+# Ian Y. Choi <ianyrchoi@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.10.1.dev12\n"
+"Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-08-15 16:55+0000\n"
+"POT-Creation-Date: 2018-01-26 18:21+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-16 07:50+0000\n"
-"Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
+"PO-Revision-Date: 2018-02-12 10:05+0000\n"
+"Last-Translator: Ian Y. Choi <ianyrchoi@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
 "Language: ko-KR\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -56,6 +57,10 @@ msgstr "규칙 추가"
 msgid "Add Security Service"
 msgstr "보안 서비스 추가"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Add Share Snapshot Rule"
+msgstr "공유 스냅샷 규칙 추가"
+
 msgid "Add rule"
 msgstr "규칙 추가"
 
@@ -65,11 +70,17 @@ msgstr "공유 네트워크에 보안 서비스 추가."
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "모든 키와 값은 1 에서 255까지의 범위에 있어야 합니다."
 
+msgid "Allow project access to share group type."
+msgstr "프로젝트가 공유 그룹 유형에 액세스하도록 허용"
+
 msgid "Allow project access to share type."
 msgstr "프로젝트가 공유 유형에 엑세스하도록 허용합니다."
 
 msgid "At least one security service must be specified."
 msgstr "최소한 하나의 보안 서비스를 지정해야 합니다."
+
+msgid "At least one share type must be specified."
+msgstr "적어도 하나의 공유 유형이 지정되어야 합니다."
 
 msgid "Availability Zone"
 msgstr "가용 구역"
@@ -143,6 +154,14 @@ msgstr "보안 서비스 생성"
 msgid "Create Share"
 msgstr "공유 생성"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Create Share Group"
+msgstr "공유 그룹 생성"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Create Share Group Snapshot"
+msgstr "공유 그룹 스냅샷 생성"
+
 msgid "Create Share Group Type"
 msgstr "공유 그룹 타입 생성"
 
@@ -192,15 +211,39 @@ msgstr "\"%s\"를 위한 생성 규칙"
 msgid "Creating share \"%s\""
 msgstr "공유 \"%s\"를 생성하는중"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Creating share group \"%s\""
+msgstr "공유 그룹 \"%s\" 생성"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Creating share group snapshot \"%s\"."
+msgstr "공유 그룹 스냅샷 \"%s\" 생성."
+
 #, python-format
 msgid "Creating share snapshot \"%s\"."
 msgstr "공유 스냅샷 \"%s\" 생성"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Creating snapshot rule for \"%s\""
+msgstr "\"%s\"의 스냅샷 규칙 생성 중"
 
 msgid "Current Size (GiB)"
 msgstr "현재 크기 (GiB)"
 
 msgid "DNS IP"
 msgstr "DNS IP"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Default Quotas"
+msgstr "기본 할당량"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Replica"
+msgid_plural "Delete Replicas"
+msgstr[0] "복제본 삭제"
 
 msgid "Delete Rule"
 msgid_plural "Delete Rules"
@@ -210,6 +253,11 @@ msgid "Delete Security Service"
 msgid_plural "Delete Security Services"
 msgstr[0] "보안 서비스 삭제"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Share"
+msgid_plural "Delete Shares"
+msgstr[0] "공유 삭제"
+
 msgid "Delete Share Group"
 msgid_plural "Delete Share Groups"
 msgstr[0] "공유 그룹 삭제"
@@ -217,6 +265,45 @@ msgstr[0] "공유 그룹 삭제"
 msgid "Delete Share Group Snapshot"
 msgid_plural "Delete Share Group Snapshots"
 msgstr[0] "공유 그룹 스냅샷 삭제"
+
+msgid "Delete Share Group Type"
+msgid_plural "Delete Share Group Types"
+msgstr[0] "공유 그룹 유형 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Share Network"
+msgid_plural "Delete Share Networks"
+msgstr[0] "공유 네트워크 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Share Server"
+msgid_plural "Delete Share Server"
+msgstr[0] "공유 서버 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Share Snapshot"
+msgid_plural "Delete Share Snapshots"
+msgstr[0] "공유 스냅샷 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Share Snapshot Rule"
+msgid_plural "Delete Share Snapshot Rules"
+msgstr[0] "공유 스냅샷 규칙 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Share Type"
+msgid_plural "Delete Share Types"
+msgstr[0] "공유 유형 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Delete Snapshot"
+msgid_plural "Delete Snapshots"
+msgstr[0] "스냅샷 삭제"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Replica"
+msgid_plural "Deleted Replicas"
+msgstr[0] "삭제된 복제본"
 
 msgid "Deleted Rule"
 msgid_plural "Deleted Rules"
@@ -226,6 +313,11 @@ msgid "Deleted Security Service"
 msgid_plural "Deleted Security Services"
 msgstr[0] "보안 서비스 삭제됨"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Share"
+msgid_plural "Deleted Shares"
+msgstr[0] "삭제된 공유"
+
 msgid "Deleted Share Group"
 msgid_plural "Deleted Share Groups"
 msgstr[0] "공유 그룹 삭제됨"
@@ -233,6 +325,40 @@ msgstr[0] "공유 그룹 삭제됨"
 msgid "Deleted Share Group Snapshot"
 msgid_plural "Deleted Share Group Snapshots"
 msgstr[0] "공유 그룹 스냅샷 삭제됨"
+
+msgid "Deleted Share Group Type"
+msgid_plural "Deleted Share Group Types"
+msgstr[0] "공유 그룹 유형이 삭제됨"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Share Network"
+msgid_plural "Deleted Share Networks"
+msgstr[0] "삭제된 공유 네트워크"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Share Server"
+msgid_plural "Deleted Share Server"
+msgstr[0] "삭제된 공유 서버"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Share Snapshot"
+msgid_plural "Deleted Share Snapshots"
+msgstr[0] "삭제된 공유 스냅샷"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Share Snapshot Rule"
+msgid_plural "Deleted Share Snapshot Rules"
+msgstr[0] "삭제된 공유 스냅샷 규칙"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Share Type"
+msgid_plural "Deleted Share Types"
+msgstr[0] "삭제된 공유 유형"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Deleted Snapshot"
+msgid_plural "Deleted Snapshots"
+msgstr[0] "삭제된 스냅샷"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -244,6 +370,10 @@ msgstr "삭제 중"
 
 msgid "Description"
 msgstr "설명"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Destination host and pool where share will be migrated to."
+msgstr "공유가 마이그레이션 될 대상 호스트와 풀."
 
 msgid "Domain"
 msgstr "도메인"
@@ -272,6 +402,48 @@ msgstr "공유 메타데이터 편집"
 
 msgid "Edit Share Network"
 msgstr "공유 네트워크 편집"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Edit Share Snapshot"
+msgstr "공유 스냅샷 편집"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Enforces migration of the share snapshots to the destination. If set to "
+"True, host-assisted migration will not be attempted."
+msgstr ""
+"목적지로 공유 스냅샷의 마이그레이션을 강제합니다. True일 경우 호스트 지원 마"
+"이그레이션을 시도하지 않습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Enforces migration to be nondisruptive. If set to True, host-assisted "
+"migration will not be attempted."
+msgstr ""
+"마이그레이션을 무중단이 되도록 강제. True일 경우 호스트 지원 마이그레이션을 "
+"시도하지 않습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Enforces migration to keep the share writable while contents are being "
+"moved. If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"컨텐츠가 옮겨지는 도중 공유의 쓰기 가능을 유지하도록 마이그레이션을 강제합니"
+"다. True일 경우 호스트 지원 마이그레이션을 시도하지 않습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Enforces migration to preserve all file metadata when moving its contents. "
+"If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"컨텐츠를 옮길 때 모든 파일을 보존하기 위해 마이그레이션을 강제합니다. True일 "
+"경우 호스트 지원 마이그레이션을 시도하지 않습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Enforces the use of the host-assisted migration approach, which bypasses "
+"driver optimizations."
+msgstr "호스트 지원 마이그레이션 방식의 사용을 강제합니다."
 
 msgctxt "Current status of replica"
 msgid "Error"
@@ -413,6 +585,13 @@ msgstr "관리 규칙"
 msgid "Manage Share"
 msgstr "공유 관리"
 
+msgid "Manage Share Group Type Access"
+msgstr "공유 그룹 유형 액세스 관리"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Manage Share Snapshot Rules"
+msgstr "공유 스냅샷 규칙 관리"
+
 msgid "Manage Share Type Access"
 msgstr "공유 유형 액세스 관리"
 
@@ -485,6 +664,14 @@ msgstr "보안 서비스가 선택되지 않았습니다."
 msgid "No source, empty share"
 msgstr "소스가 없음, 빈 공유"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "No source, empty share group"
+msgstr "소스가 없음, 빈 공유 그룹"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Nondisruptive"
+msgstr "무중단"
+
 msgid "Nova Net"
 msgstr "Nova Net"
 
@@ -506,8 +693,15 @@ msgstr "비밀번호가 일치하지 않습니다."
 msgid "Preserve Metadata"
 msgstr "메타데이터 보존"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Preserve Snapshots"
+msgstr "스냅샷 보존"
+
 msgid "Project"
 msgstr "프로젝트"
+
+msgid "Projects with access to share group type"
+msgstr "공유 그룹 유형에 대한 액세스를 포함하는 프로젝트"
 
 msgid "Projects with access to share type"
 msgstr "공유 유형에 대한 엑세스를 포함하는 프로젝트"
@@ -540,6 +734,10 @@ msgstr "Replica Status 리셋"
 msgid "Reset Share Group Snapshot Status"
 msgstr "공유 그룹 스냅샷 상태 재설정"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Reset Share Group Status"
+msgstr "공유 그룹 상태 초기화"
+
 msgid "Reset Status"
 msgstr "상태 재설정"
 
@@ -563,6 +761,15 @@ msgstr "replica ('%(id)s') state를 '%(from)s' 에서 '%(to)s' 로 리셋."
 msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
 msgstr "replica ('%(id)s') status를 '%(from)s' 에서 '%(to)s' 로 리셋."
 
+#, python-format
+msgid "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "공유 그룹 ('%(id)s') 상태를 '%(from)s' 에서 '%(to)s' 로 초기화."
+
+#, python-format
+msgid ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr "공유 그룹 스냅샷 ('%(id)s') 상태를 '%(from)s' 에서 '%(to)s' 로 초기화."
+
 msgid "Resync"
 msgstr "재동기화"
 
@@ -575,6 +782,23 @@ msgstr "replica 재동기화"
 #, python-format
 msgid "Resync'ing replica '%s'"
 msgstr "replica '%s'  재동기화 중"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Revert Share"
+msgstr "공유 되돌리기"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Revert Share to a Snapshot"
+msgstr "공유를 스냅샷으로 되돌리기"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Revert share to a snapshot"
+msgstr "공유를 스냅샷으로 되돌리기"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgctxt "Current status of share"
+msgid "Reverting Error"
+msgstr "되돌리기 에러"
 
 msgid "Rules"
 msgstr "규칙"
@@ -620,6 +844,11 @@ msgstr "프로젝트에대한 최대 quota를 설정합니다."
 msgid "Setting replica \"%s\" as active..."
 msgstr "레프리카 \"%s\"를 활성화 상태로 설정"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
+msgstr "성공적으로 공유 \"%(s)s\"는 스냅샷 \"%(ss)s\"으로 되돌려졌습니다."
+
 #, python-format
 msgid "Share Details: %(share_display_name)s"
 msgstr "공유 상세정보: %(share_display_name)s"
@@ -628,14 +857,38 @@ msgstr "공유 상세정보: %(share_display_name)s"
 msgid "Share Details: %(share_name)s"
 msgstr "공유 세부 사항: %(share_name)s"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Group"
+msgstr "공유 그룹"
+
+#, python-format
+msgid "Share Group Details: %s"
+msgstr "공유 그룹 상세 정보: %s"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Group Name"
+msgstr "공유 그룹 이름"
+
 msgid "Share Group Overview"
 msgstr "공유 그룹 개요"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Group Snapshot"
+msgstr "공유 그룹 스냅샷"
+
+#, python-format
+msgid "Share Group Snapshot Details: %(sgs_display_name)s"
+msgstr "공유 그룹 스냅샷 세부 사항: %(sgs_display_name)s"
 
 msgid "Share Group Snapshot Overview"
 msgstr "공유 그룹 스냅샷 개요"
 
 msgid "Share Group Snapshots"
 msgstr "공유 그룹 스냅샷"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Group Type"
+msgstr "공유 그룹 유형"
 
 msgid "Share Group Types"
 msgstr "공유 그룹 타입"
@@ -649,6 +902,10 @@ msgstr "공유 ID"
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "공유 인스턴스 세부 사항: %s"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Instance Overview"
+msgstr "공유 인스턴스 개요"
 
 msgid "Share Instances"
 msgstr "공유 인스턴스"
@@ -666,8 +923,16 @@ msgstr "공유 네트워크 상세 정보: %(network_display_name)s"
 msgid "Share Network Info"
 msgstr "공유 네트워크 정보"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Network Overview"
+msgstr "공유 네트워크 개요"
+
 msgid "Share Networks"
 msgstr "공유 네트워크"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Overview"
+msgstr "공유 개요"
 
 msgid "Share Protocol"
 msgstr "공유 프로토콜"
@@ -690,8 +955,24 @@ msgstr "공유 서버 세부 사항: %(server_name)s"
 msgid "Share Server Id"
 msgstr "공유 서버 Id"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Server Overview"
+msgstr "공유 서버 개요"
+
 msgid "Share Servers"
 msgstr "공유 서버"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Snapshot Name"
+msgstr "공유 스냅샷 이름"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Snapshot Overview"
+msgstr "공유 스냅샷 개요"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Snapshot Rules"
+msgstr "공유 스냅샷 규칙"
 
 msgid "Share Snapshots"
 msgstr "공유 스냅샷"
@@ -711,12 +992,24 @@ msgstr "공유 유형"
 msgid "Share Types"
 msgstr "공유 유형"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Types (multiple available)"
+msgstr "공유 유형 (복수 사용 가능)"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share Types (one available)"
+msgstr "공유 유형 (단일 사용 가능)"
+
 #, python-format
 msgid ""
 "Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
 "quota available."
 msgstr ""
 "사용가능한 quota의 %(avail)iGiB에서 %(req)iGiB로 공유를 확장하지 못했습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share gigabytes"
+msgstr "기가바이트 공유"
 
 msgid "Share name to be assigned"
 msgstr "할당될 공유 이름"
@@ -728,6 +1021,14 @@ msgstr "공유 replica %s 를 삭제하였습니다."
 #, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr "공유 크기는 스냅샷 크기 (%sGiB)보다 크거나 같아야합니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share snapshot gigabytes"
+msgstr "스냅샷 기가바이트 공유"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Share snapshots"
+msgstr "스냅샷 공유"
 
 msgid "Share types"
 msgstr "공유 유형"
@@ -754,8 +1055,37 @@ msgstr "스냅샷"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "스냅샷 상세정보: %(snapshot_display_name)s"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Snapshot Rules: %(snapshot_display_name)s"
+msgstr "스냅샷 규칙: %(snapshot_display_name)s"
+
 msgid "Source"
 msgstr "소스"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Source Share Group Snapshot"
+msgstr "공유 그룹 스냅샷 소스"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Source Type"
+msgstr "소스 유형"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Specify the new share network for the share. Do not specify this parameter "
+"if the migrating share has to be retained within its current share network."
+msgstr ""
+"공유에 사용될 새 공유 네트워크를 지정하세요. 만약 마이그레이션 공유가 현재 공"
+"유 네트워크 안에서 유지되어야 한다면 이 매개변수를 지정하면 안 됩니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid ""
+"Specify the new share type for the share. Do not specify this parameter if "
+"the migrating share has to be retained with its current share type."
+msgstr ""
+"공유를 위한 새로운 공유 유형을 지정하세요. 만약 마이그레이션 공유가 현재 공"
+"유 유형 내에서 유지되어야 한다면 이 매개변수를 지정하면 안 됩니다."
 
 msgid "Start migration"
 msgstr "마이그레이션 시작"
@@ -766,6 +1096,10 @@ msgstr "상태"
 #, python-format
 msgid "Successfully created security service: %s"
 msgstr "보안 서비스: %s 를 성공적으로 생성하였습니다"
+
+#, python-format
+msgid "Successfully created share group type: %s"
+msgstr "성공적으로 생성됨. 공유 그룹 타입: %s"
 
 #, python-format
 msgid "Successfully created share network: %s"
@@ -802,6 +1136,10 @@ msgid "Successfully updated extra specs for share type '%s'."
 msgstr "공유 유형 '%s' 에 대한 부가 스펙 갱신을 성공하였습니다."
 
 #, python-format
+msgid "Successfully updated group specs for share group type '%s'."
+msgstr "공유 그룹 타입 '%s'의 그룹 스펙을 성공적으로 갱신하였습니다."
+
+#, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "시큐리티 서비스 %s를 성공적으로 업데이트 하였습니다."
 
@@ -815,6 +1153,10 @@ msgstr "유형"
 msgid "Unable to add rule."
 msgstr "규칙을 추가할 수 없습니다."
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to add snapshot rule."
+msgstr "스냅샷 규칙을 추가할 수 없음."
+
 #, python-format
 msgid "Unable to cancel migration of share %s at this moment."
 msgstr "현재 공유 %s 에 대한 마이그레이션 취소를 가져올 수 없습니다."
@@ -825,6 +1167,17 @@ msgstr "공유 %s 에 대한 마이그레이션을 완료할 수 없습니다."
 
 msgid "Unable to create security service."
 msgstr "보안 서비스를 생성할 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to create share group snapshot."
+msgstr "공유 그룹 스냅샷을 생성할 수 없습니다."
+
+msgid "Unable to create share group type."
+msgstr "공유 그룹 유형을 생성할 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to create share group."
+msgstr "공유 그룹을 생성할 수 없습니다."
 
 msgid "Unable to create share network."
 msgstr "공유 네트워크를 생성할 수 없습니다."
@@ -841,6 +1194,11 @@ msgstr "공유 유형을 생성할 수 없습니다."
 msgid "Unable to create share."
 msgstr "공유를 생성할 수 없습니다."
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Unable to create share. %s"
+msgstr "공유 %s를 생성할 수 없습니다."
+
 #, python-format
 msgid "Unable to delete replica \"%s\"."
 msgstr "replica \"%s\" 를 삭제할 수 없습니다."
@@ -854,12 +1212,28 @@ msgid "Unable to delete share \"%s\". "
 msgstr "공유 %s를 제거할 수 없습니다. "
 
 #, python-format
+msgid ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+msgstr ""
+"공유 그룹 스냅샷 \"%s\"을 삭제할 수 없습니다. 하나 이상의 공유 그룹이 의존하"
+"고 있습니다."
+
+#, python-format
 msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr ""
 "\"%s\" 스냅샷을 삭제할 수 없습니다. 하나 이상의 공유에 의존하고 있습니다."
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Unable to delete snapshot rule \"%s\"."
+msgstr "스냅샷 규칙 \"%s\"를 삭제할 수 없습니다."
+
 msgid "Unable to extend share."
 msgstr "공유를 확장할수 없습니다."
+
+msgid "Unable to get information about share group type access."
+msgstr "공유 그룹 유형 액세스에 관련된 정보를 얻을 수 없습니다."
 
 msgid "Unable to get information about share type access."
 msgstr "공유 유형 액세스에 관련된 정보를 가져올 수 없습니다."
@@ -869,6 +1243,15 @@ msgstr "프로젝트 목록을 가져올 수 없습니다."
 
 msgid "Unable to get the security services hosts"
 msgstr "보안 서비스 호스트를 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Unable to get the specified share group '%s' for snapshot creation."
+msgstr "스냅샷 생성을 위한 지정된 공유 그룹 '%s' 를 얻을 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to load the specified share group snapshot."
+msgstr "지정된 공유 그룹 스냅샷을 불러들일 수 없습니다."
 
 msgid "Unable to load the specified snapshot."
 msgstr "지정한 스냅샷을 불러올 수 없습니다."
@@ -891,6 +1274,14 @@ msgstr "replica '%s' state를 리셋할 수 없습니다"
 #, python-format
 msgid "Unable to reset status of replica '%s'."
 msgstr "replica '%s' status를 리셋할 수 없습니다."
+
+#, python-format
+msgid "Unable to reset status of share group '%s'."
+msgstr "공유 그룹 '%s' 상태를 초기화할 수 없습니다."
+
+#, python-format
+msgid "Unable to reset status of share group snapshot '%s'."
+msgstr "공유 그룹 스냅샷 '%s'의 상태를 초기화할 수 없습니다."
 
 #, python-format
 msgid "Unable to resync replica '%s'."
@@ -922,6 +1313,42 @@ msgstr "security_service를 찾지 못했습니다."
 
 msgid "Unable to retrieve share details."
 msgstr "공유 세부 사항을 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Unable to retrieve share group '%s'."
+msgstr "공유 그룹 '%s'를 가져올 수 없습니다."
+
+msgid "Unable to retrieve share group details."
+msgstr "공유 그룹 상세 정보를 가져올 수 없습니다."
+
+#, python-format
+msgid "Unable to retrieve share group snapshot '%s'."
+msgstr "공유 그룹 스냅샷  '%s'을 가져올 수 없습니다."
+
+msgid "Unable to retrieve share group snapshot details."
+msgstr "공유 그룹 스냅샷 세부 사항을 가져올 수 없습니다."
+
+msgid "Unable to retrieve share group snapshot list."
+msgstr "공유 그룹 스냅샷 목록을 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share group snapshot."
+msgstr "공유 그룹 스냅샷을 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share group snapshots."
+msgstr "공유 그룹 스냅샷을 가져올 수 없습니다."
+
+msgid "Unable to retrieve share group types."
+msgstr "공유 그룹 유형을 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share group."
+msgstr "공유 그룹을 가져올 수 없습니다."
+
+msgid "Unable to retrieve share groups."
+msgstr "공유 그룹 상태를 가져올 수 없습니다."
 
 msgid "Unable to retrieve share instance details."
 msgstr "공유 인스턴스 세부 사항을 가져올 수 없습니다."
@@ -956,11 +1383,27 @@ msgstr "공유 서버 세부 사항을 가져올 수 없습니다."
 msgid "Unable to retrieve share servers"
 msgstr "공유 서버를 가져올 수 없습니다"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share snapshot list."
+msgstr "공유 스냅샷 목록을 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share snapshot rules."
+msgstr "공유 스냅샷 규칙을 가져올 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share snapshot."
+msgstr "공유 스냅샷을 가져올 수 없습니다."
+
 msgid "Unable to retrieve share snapshots list."
 msgstr "공유 스냅샷 목록을 찾을 수 없습니다."
 
 msgid "Unable to retrieve share snapshots."
 msgstr "공유 스냅샷을 찾지 못했습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to retrieve share types."
+msgstr "공유 유형을 가져올 수 없습니다."
 
 msgid "Unable to retrieve share."
 msgstr "공유를 찾을 수 없습니다."
@@ -968,6 +1411,9 @@ msgstr "공유를 찾을 수 없습니다."
 #, python-format
 msgid "Unable to retrieve share. %s"
 msgstr "공유 %s를 가져올 수 없습니다. "
+
+msgid "Unable to retrieve share_gruop_type."
+msgstr "공유 그룹 유형을 가져올 수 없습니다."
 
 msgid "Unable to retrieve share_type."
 msgstr "share_type 을 가져올 수 없습니다."
@@ -981,6 +1427,10 @@ msgstr "스냅샷을 찾을 수 없습니다."
 msgid "Unable to retrieve volume details."
 msgstr "볼륨 세부 사항을 가져올 수 없습니다."
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to revert share to the snapshot."
+msgstr "공유를 스냅샷으로 되돌릴 수 없습니다."
+
 msgid "Unable to set project quotas."
 msgstr "프로젝트 quota를 설정하지 못하였습니다."
 
@@ -992,6 +1442,10 @@ msgid "Unable to unmanage share."
 msgstr "공유를 관리 해제할 수 없습니다."
 
 #, python-format
+msgid "Unable to update access for share group type \"%s\"."
+msgstr "공유 그룹 유형 \"%s\"에 대한 업데이트를 할 수 없습니다."
+
+#, python-format
 msgid "Unable to update access for share type \"%s\"."
 msgstr "공유 유형 \"%s\" 에 대한 액세스를 업데이트할 수 없습니다."
 
@@ -1001,8 +1455,22 @@ msgstr "기본 할당량을 업데이트할 수 없습니다."
 msgid "Unable to update extra_specs for share type."
 msgstr "공유 유형에 대한 extra_specs 을 업데이트할 수 없습니다."
 
+msgid "Unable to update group_specs for share group type."
+msgstr "공유 그룹 유형의 그룹 스펙을 업데이트할 수 없습니다."
+
 msgid "Unable to update security service."
 msgstr "보안 서비스를 업데이트 할 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to update share group snapshot."
+msgstr "공유 그룹 스냅샷을 업데이트할 수 없습니다."
+
+msgid "Unable to update share group type."
+msgstr "공유 그룹 유형을 업데이트할 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to update share group."
+msgstr "공유 그룹을 업데이트할 수 없습니다."
 
 msgid "Unable to update share metadata."
 msgstr "공유 메타데이터를 업데이트할 수 없습니다."
@@ -1013,6 +1481,10 @@ msgstr "공유 네트워크 \"%s\"를 업데이트 할 수 없습니다."
 
 msgid "Unable to update share network."
 msgstr "공유 네트워크를 업데이트 할 수 없습니다."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Unable to update share snapshot."
+msgstr "공유 스냅샷을 업데이트할 수 없습니다."
 
 msgid "Unable to update share type."
 msgstr "공유 유형을 업데이트할 수 없습니다."
@@ -1036,8 +1508,23 @@ msgstr "공유 관리 해제"
 msgid "Update"
 msgstr "업데이트"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Update Share Group"
+msgstr "공유 그룹 업데이트"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Update Share Group Snapshot"
+msgstr "공유 그룹 스냅샷 업데이트"
+
+msgid "Update Share Group Type"
+msgstr "공유 그룹 유형 업데이트"
+
 msgid "Update Share Network"
 msgstr "공유 네트워크 업데이트"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Update Share Snapshot"
+msgstr "공유 스냅샷 업데이트"
 
 msgid "Update Share Type"
 msgstr "공유 유형 업데이트"
@@ -1047,6 +1534,10 @@ msgstr "공유 그룹 유형 업데이트"
 
 msgid "Updated At"
 msgstr "업데이트"
+
+#, python-format
+msgid "Updated access for share group type \"%s\"."
+msgstr "공유 그룹 유형 \"%s\"에 대한 액세스가 업데이트 되었습니다."
 
 #, python-format
 msgid "Updated access for share type \"%s\"."
@@ -1060,6 +1551,16 @@ msgstr "공유 네트워크 \"%s\" 업데이트됨."
 msgid "Updating share \"%s\""
 msgstr "공유 \"%s\" 업데이트 중"
 
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Updating share group \"%s\""
+msgstr "공유 그룹 \"%s\" 업데이트 중"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Updating share group snapshot \"%s\""
+msgstr "공유 그룹 스냅샷 \"%s\" 업데이트 중"
+
 #, python-format
 msgid "Updating share metadata \"%s\""
 msgstr "공유 메타데이터 \"%s\" 업데이트중"
@@ -1067,6 +1568,15 @@ msgstr "공유 메타데이터 \"%s\" 업데이트중"
 #, python-format
 msgid "Updating share network \"%s\""
 msgstr "공유 네트워크 \"%s\" 업데이트 중."
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+#, python-format
+msgid "Updating share snapshot \"%s\""
+msgstr "공유 스냅샷 \"%s\" 업데이트 중"
+
+# auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
+msgid "Use share group snapshot as a source"
+msgstr "공유 그룹 스냅샷을 소스로 사용"
 
 msgid "Use snapshot as a source"
 msgstr "소스로 스냅샷 사용"
