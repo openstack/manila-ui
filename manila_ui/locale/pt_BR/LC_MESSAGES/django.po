@@ -1,15 +1,16 @@
 # José Mello <jose.eduardo.jr@gmail.com>, 2016. #zanata
+# Fernando Pimenta <fernando.c.pimenta@gmail.com>, 2018. #zanata
 # Rodrigo Loures <rmoraesloures@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-01-18 10:21+0000\n"
+"POT-Creation-Date: 2018-02-13 13:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-01-23 09:52+0000\n"
-"Last-Translator: José Mello <jose.eduardo.jr@gmail.com>\n"
+"PO-Revision-Date: 2018-02-16 07:59+0000\n"
+"Last-Translator: Fernando Pimenta <fernando.c.pimenta@gmail.com>\n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt-BR\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -56,6 +57,9 @@ msgstr "Adicionar regra"
 
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Todas as chaves e valores devem estar no intervalo de 1 a 255"
+
+msgid "At least one share type must be specified."
+msgstr "Pelo menos um tipo de compartilhamento deve ser especificado."
 
 msgid "Availability Zone"
 msgstr "Zona de Disponibilidade"
@@ -129,6 +133,9 @@ msgstr "Criar um Compartilhamento"
 msgid "Created At"
 msgstr "Criado Em"
 
+msgid "Created at"
+msgstr "Criado em"
+
 msgctxt "Current status of replica"
 msgid "Creating"
 msgstr "Criando"
@@ -163,6 +170,29 @@ msgstr "Criando snapshot do compartilhamento \"%s\"."
 
 msgid "Current Size (GiB)"
 msgstr "Tamanho Atual (GiB)"
+
+msgid "DNS IP"
+msgstr "IP DNS"
+
+msgid "Delete Security Service"
+msgid_plural "Delete Security Services"
+msgstr[0] "Excluir Serviço de Segurança"
+msgstr[1] "Excluir Serviços de Segurança"
+
+msgid "Delete Share Group Snapshot"
+msgid_plural "Delete Share Group Snapshots"
+msgstr[0] "Excluir Snapshot de Grupo de Compartilhamento"
+msgstr[1] "Excluir Snapshots de Grupo de Compartilhamento"
+
+msgid "Deleted Security Service"
+msgid_plural "Deleted Security Services"
+msgstr[0] "Serviço de Segurança Excluído"
+msgstr[1] "Serviços de Segurança Excluídos"
+
+msgid "Deleted Share Group Snapshot"
+msgid_plural "Deleted Share Group Snapshots"
+msgstr[0] "Snapshot de Grupo de Compartilhamento Excluído"
+msgstr[1] "Snapshots de Grupo de Compartilhamento Excluídos"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -220,6 +250,9 @@ msgctxt "Current status of snapshot"
 msgid "Error"
 msgstr "Erro"
 
+msgid "Expected only pairs of key=value."
+msgstr "Esperados apenas pares de chave=valor."
+
 msgid "Export location"
 msgstr "Localização do Export"
 
@@ -248,6 +281,9 @@ msgstr "A partir daqui é possível atualizar as cotas padrão (limites máximos
 
 msgid "Get migration progress"
 msgstr "Obter progresso da migração"
+
+msgid "Group specs"
+msgstr "Especificações do Grupo"
 
 msgid "Host"
 msgstr "Host"
@@ -399,11 +435,27 @@ msgstr "Cota"
 msgid "Replica State"
 msgstr "Estado da Réplica"
 
+msgid "Reset Share Group Snapshot Status"
+msgstr "Redefinir o Status do Snapshot do Grupo de Compartilhamento"
+
+msgid "Reset Status"
+msgstr "Redefinir Status"
+
 msgid "Reset replica state"
 msgstr "Resincronizar estado da réplica"
 
 msgid "Reset state"
 msgstr "Redefinir estado"
+
+msgid "Reset status"
+msgstr "Redefinir status"
+
+#, python-format
+msgid ""
+"Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Redefinindo o status do snapshot do grupo de compartilhamento ('%(id)s') de "
+"'%(from)s' para '%(to)s'."
 
 msgid "Resync"
 msgstr "Resincronizar"
@@ -416,6 +468,9 @@ msgstr "Regras"
 
 msgid "Save Changes"
 msgstr "Salvar Alterações"
+
+msgid "Security Service Overview"
+msgstr "Visão Geral do Serviço de Segurança"
 
 msgid "Security Services"
 msgstr "Serviços de segurança"
@@ -449,6 +504,17 @@ msgstr "Detalhes do Compartilhamento: %(share_display_name)s"
 #, python-format
 msgid "Share Details: %(share_name)s"
 msgstr "Detalhes do Compartilhamento: %(share_name)s"
+
+#, python-format
+msgid "Share Group Snapshot Details: %(sgs_display_name)s"
+msgstr ""
+"Detalhes do Snapshot do Grupo de Compartilhamento: %(sgs_display_name)s"
+
+msgid "Share Group Snapshot Overview"
+msgstr "Visão Geral de Snapshot de Grupo de Compartilhamento"
+
+msgid "Share Group Snapshots"
+msgstr "Snapshots de Grupo de Compartilhamento"
 
 msgid "Share ID"
 msgstr "ID do Compartilhamento"
@@ -520,6 +586,9 @@ msgstr "Compartilhamentos"
 msgid "Shares Networks"
 msgstr "Redes de Compartilhamentos"
 
+msgid "Sid"
+msgstr "Sid"
+
 msgid "Size"
 msgstr "Tamanho"
 
@@ -542,6 +611,10 @@ msgstr "Status"
 #, python-format
 msgid "Successfully created security service: %s"
 msgstr "Serviço de segurança criado com sucesso: %s"
+
+#, python-format
+msgid "Successfully created share group type: %s"
+msgstr "Tipo de grupo de compartilhamento criado com sucesso: %s"
 
 #, python-format
 msgid "Successfully created share network: %s"
@@ -581,6 +654,9 @@ msgstr ""
 msgid "Unable to create security service."
 msgstr "Não foi possível criar o serviço de segurança: %s"
 
+msgid "Unable to create share group type."
+msgstr "Não é possível criar o tipo de grupo de compartilhamento."
+
 msgid "Unable to create share network."
 msgstr "Não é possível criar a rede de compartilhamento."
 
@@ -604,6 +680,14 @@ msgstr "Não foi possível excluir regra \"%s\"."
 msgid "Unable to delete share \"%s\". "
 msgstr "Não é possível excluir o compartilhamento \"%s\"."
 
+#, python-format
+msgid ""
+"Unable to delete share group snapshot \"%s\". One or more share groups "
+"depend on it."
+msgstr ""
+"Não é possível excluir o snapshot do grupo de compartilhamento \"%s\". Um ou "
+"mais grupos de compartilhamento dependem dele."
+
 msgid "Unable to extend share."
 msgstr "Não foi possível estender o compartilhamento."
 
@@ -616,6 +700,12 @@ msgstr "Não foi possível gerenciar o compartilhamento"
 #, python-format
 msgid "Unable to migrate share %s."
 msgstr "Não foi possível migrar compartilhamento %s."
+
+#, python-format
+msgid "Unable to reset status of share group snapshot '%s'."
+msgstr ""
+"Não é possível redefinir o status do snapshot do grupo de compartilhamento "
+"'%s'."
 
 msgid "Unable to retrieve list of projects."
 msgstr "Não é possível recuperar lista de projetos."
@@ -639,6 +729,17 @@ msgstr "Não é possível recuperar o security_service."
 
 msgid "Unable to retrieve share details."
 msgstr "Não é possível obter os detalhes do compartilhamento."
+
+#, python-format
+msgid "Unable to retrieve share group snapshot '%s'."
+msgstr "Não é possível recuperar o snapshot do grupo de compartilhamento '%s'."
+
+msgid "Unable to retrieve share group snapshot details."
+msgstr ""
+"Não é possível obter os detalhes do snapshot do grupo de compartilhamento."
+
+msgid "Unable to retrieve share group snapshot list."
+msgstr "Não é possível obter a lista de snapshot de grupo de compartilhamento."
 
 msgid "Unable to retrieve share instance details."
 msgstr "Não foi possível obter os detalhes da instância de compartilhamento."
