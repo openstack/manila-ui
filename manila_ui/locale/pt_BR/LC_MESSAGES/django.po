@@ -5,16 +5,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-13 13:01+0000\n"
+"POT-Creation-Date: 2018-02-22 13:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-02-16 07:59+0000\n"
+"PO-Revision-Date: 2018-02-23 12:56+0000\n"
 "Last-Translator: Fernando Pimenta <fernando.c.pimenta@gmail.com>\n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt-BR\n"
 "X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid ""
+"\n"
+"    Placeholder for description of share group type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"    Âncora para descrição do formulário de gerenciamento de acesso do tipo "
+"de grupo de compartilhamento.\n"
+"    "
 
 #, python-format
 msgid "%sGiB"
@@ -58,6 +68,14 @@ msgstr "Adicionar regra"
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Todas as chaves e valores devem estar no intervalo de 1 a 255"
 
+msgid "All pairs that are in field for left are set for this share group type."
+msgstr ""
+"Todos os pares que estão no campo a esquerda são definidos para este tipo de "
+"grupo de compartilhamento."
+
+msgid "Allow project access to share group type."
+msgstr "Permite ao projeto acessar tipo de grupo de compartilhamento."
+
 msgid "At least one share type must be specified."
 msgstr "Pelo menos um tipo de compartilhamento deve ser especificado."
 
@@ -81,6 +99,9 @@ msgstr "Disponível"
 
 msgid "Available projects"
 msgstr "Projetos disponíveis"
+
+msgid "Cancel"
+msgstr "Cancelar"
 
 msgid "Cancel Migration"
 msgstr "Cancelar Migração"
@@ -109,6 +130,9 @@ msgstr "Confirmar Remoção de Gerenciamento de Compartilhamento"
 msgid "Create"
 msgstr "Criar"
 
+msgid "Create Group Share Type"
+msgstr "Criar Tipo de Grupo de Compartilhamento."
+
 msgid "Create Replica"
 msgstr "Criar Réplica"
 
@@ -117,6 +141,9 @@ msgstr "Criar Serviço de segurança"
 
 msgid "Create Share"
 msgstr "Criar Compartilhamento"
+
+msgid "Create Share Group Type"
+msgstr "Criar Tipo de Grupo de Compartilhamento"
 
 msgid "Create Share Network"
 msgstr "Criar Rede de Compartilhamento"
@@ -129,6 +156,9 @@ msgstr "Criar Tipo de Compartilhamento"
 
 msgid "Create a Share"
 msgstr "Criar um Compartilhamento"
+
+msgid "Created"
+msgstr "Criado"
 
 msgid "Created At"
 msgstr "Criado Em"
@@ -179,20 +209,60 @@ msgid_plural "Delete Security Services"
 msgstr[0] "Excluir Serviço de Segurança"
 msgstr[1] "Excluir Serviços de Segurança"
 
+msgid "Delete Share Group"
+msgid_plural "Delete Share Groups"
+msgstr[0] "Excluir Grupo de Compartilhamento"
+msgstr[1] "Excluir Grupos de Compartilhamento"
+
 msgid "Delete Share Group Snapshot"
 msgid_plural "Delete Share Group Snapshots"
 msgstr[0] "Excluir Snapshot de Grupo de Compartilhamento"
 msgstr[1] "Excluir Snapshots de Grupo de Compartilhamento"
+
+msgid "Delete Share Group Type"
+msgid_plural "Delete Share Group Types"
+msgstr[0] "Excluir Tipo de Grupo de Compartilhamento"
+msgstr[1] "Excluir Tipos de Grupo de Compartilhamento"
+
+msgid "Delete Share Server"
+msgid_plural "Delete Share Server"
+msgstr[0] "Excluir Servidor de Compartilhamento"
+msgstr[1] " Excluir Servidor de Compartilhamento"
+
+msgid "Delete Snapshot"
+msgid_plural "Delete Snapshots"
+msgstr[0] "Excluir Snapshot"
+msgstr[1] "Excluir Snapshots"
 
 msgid "Deleted Security Service"
 msgid_plural "Deleted Security Services"
 msgstr[0] "Serviço de Segurança Excluído"
 msgstr[1] "Serviços de Segurança Excluídos"
 
+msgid "Deleted Share Group"
+msgid_plural "Deleted Share Groups"
+msgstr[0] "Grupo de Compartilhamento Excluído"
+msgstr[1] "Grupos de Compartilhamento Excluídos"
+
 msgid "Deleted Share Group Snapshot"
 msgid_plural "Deleted Share Group Snapshots"
 msgstr[0] "Snapshot de Grupo de Compartilhamento Excluído"
 msgstr[1] "Snapshots de Grupo de Compartilhamento Excluídos"
+
+msgid "Deleted Share Group Type"
+msgid_plural "Deleted Share Group Types"
+msgstr[0] "Tipo de Grupo de Compartilhamento Excluído"
+msgstr[1] "Tipos de Grupo de Compartilhamento Excluídos"
+
+msgid "Deleted Share Server"
+msgid_plural "Deleted Share Server"
+msgstr[0] " Servidor de Compartilhamento Excluído"
+msgstr[1] " Servidor de Compartilhamento Excluído"
+
+msgid "Deleted Snapshot"
+msgid_plural "Deleted Snapshots"
+msgstr[0] "Snapshot Excluído"
+msgstr[1] "Snapshots Excluídos"
 
 msgctxt "Current status of replica"
 msgid "Deleting"
@@ -204,6 +274,9 @@ msgstr "Excluindo"
 
 msgid "Description"
 msgstr "Descrição"
+
+msgid "Destination host and pool where share will be migrated to."
+msgstr "Host de destino e pool para onde o compartilhamento será migrado."
 
 msgid "Domain"
 msgstr "Domínio"
@@ -230,6 +303,42 @@ msgstr "Editar Metadados do Compartilhamento"
 msgid "Edit Share Network"
 msgstr "Editar Rede de Compartilhamento"
 
+msgid ""
+"Enforces migration of the share snapshots to the destination. If set to "
+"True, host-assisted migration will not be attempted."
+msgstr ""
+"Força a migração dos snapshots de compartilhamento para o destino. Se "
+"definido para True, a migração host-assisted não será tentada."
+
+msgid ""
+"Enforces migration to be nondisruptive. If set to True, host-assisted "
+"migration will not be attempted."
+msgstr ""
+"Força a migração a não ser disruptiva. Se definido para True, a migração "
+"host-assisted não será tentada."
+
+msgid ""
+"Enforces migration to keep the share writable while contents are being "
+"moved. If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"Força a migração a manter o compartilhamento gravável enquanto o conteúdo "
+"estiver sendo movido. Se definido para True, a migração host-assisted não "
+"será tentada."
+
+msgid ""
+"Enforces migration to preserve all file metadata when moving its contents. "
+"If set to True, host-assisted migration will not be attempted."
+msgstr ""
+"Força a migração a preservar todo o metadado de arquivo enquanto move seu "
+"conteúdo. Se definido para True a migração host-assisted não sera tentada."
+
+msgid ""
+"Enforces the use of the host-assisted migration approach, which bypasses "
+"driver optimizations."
+msgstr ""
+"Força a utilização da abordagem host-assisted, que ignora otimizações do "
+"driver."
+
 msgctxt "Current status of replica"
 msgid "Error"
 msgstr "Erro"
@@ -255,6 +364,9 @@ msgstr "Esperados apenas pares de chave=valor."
 
 msgid "Export location"
 msgstr "Localização do Export"
+
+msgid "Export locations"
+msgstr "Exportar localizações"
 
 msgid "Extend"
 msgstr "Estender"
@@ -284,6 +396,11 @@ msgstr "Obter progresso da migração"
 
 msgid "Group specs"
 msgstr "Especificações do Grupo"
+
+msgid "Here can be modified group-specs for share group type."
+msgstr ""
+"Aqui pode ser modificado o group-specs para o tipo de grupo de "
+"compartilhamento."
 
 msgid "Host"
 msgstr "Host"
@@ -348,6 +465,9 @@ msgstr "Gerenciar regras"
 msgid "Manage Share"
 msgstr "Gerenciar Compartilhamento"
 
+msgid "Manage Share Group Type Access"
+msgstr "Gerenciar Acesso do Tipo de Grupo de Compartilhamento"
+
 msgid "Migrate Share"
 msgstr "Migrar Compartilhamento"
 
@@ -371,6 +491,12 @@ msgstr ""
 
 msgid "Name"
 msgstr "Nome"
+
+msgid "Net Details"
+msgstr "Detalhes da Rede"
+
+msgid "Network"
+msgstr "Rede"
 
 msgid "Network Type"
 msgstr "Tipo de Rede"
@@ -399,6 +525,9 @@ msgstr "Nenhum projeto selecionado."
 msgid "No source, empty share"
 msgstr "Sem origem, compartilhamento vazio"
 
+msgid "Nondisruptive"
+msgstr "Não disruptivo"
+
 msgid "Nova Net"
 msgstr "Rede Nova"
 
@@ -407,6 +536,9 @@ msgstr "Obter Progresso"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Obter progresso da migração de um Compartilhamento"
+
+msgid "One line - one action. Empty strings will be ignored."
+msgstr "Uma linha - uma ação. Sequências vazias serão ignoradas."
 
 msgid "Overview"
 msgstr "Visão Geral"
@@ -420,8 +552,14 @@ msgstr "As senhas não correspondem."
 msgid "Preserve Metadata"
 msgstr "Preservar Metadados"
 
+msgid "Preserve Snapshots"
+msgstr "Preservar Snapshots"
+
 msgid "Project"
 msgstr "Projeto"
+
+msgid "Projects with access to share group type"
+msgstr "Projetos com acesso a tipo de grupo de compartilhamento"
 
 msgid "Protocol"
 msgstr "Protocolo"
@@ -438,6 +576,9 @@ msgstr "Estado da Réplica"
 msgid "Reset Share Group Snapshot Status"
 msgstr "Redefinir o Status do Snapshot do Grupo de Compartilhamento"
 
+msgid "Reset Share Group Status"
+msgstr "Redefinir o Status do Grupo de Compartilhamento"
+
 msgid "Reset Status"
 msgstr "Redefinir Status"
 
@@ -449,6 +590,12 @@ msgstr "Redefinir estado"
 
 msgid "Reset status"
 msgstr "Redefinir status"
+
+#, python-format
+msgid "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
+msgstr ""
+"Redefinindo o status do grupo de compartilhamento ('%(id)s') de '%(from)s' "
+"para '%(to)s'."
 
 #, python-format
 msgid ""
@@ -469,6 +616,9 @@ msgstr "Regras"
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
+msgid "Security Service Details"
+msgstr "Detalhes do Serviço de Segurança"
+
 msgid "Security Service Overview"
 msgstr "Visão Geral do Serviço de Segurança"
 
@@ -477,6 +627,9 @@ msgstr "Serviços de segurança"
 
 msgid "Segmentation Id"
 msgstr "ID de Segmentação"
+
+msgid "Selected Projects"
+msgstr "Projetos Selecionados."
 
 msgid "Selected projects"
 msgstr "Projetos selecionados"
@@ -497,6 +650,9 @@ msgstr "Defina o valor máximo para as cotas do projeto."
 msgid "Setting replica \"%s\" as active..."
 msgstr "Definindo réplica \"%s\" como ativa..."
 
+msgid "Share"
+msgstr "Compartilhamento"
+
 #, python-format
 msgid "Share Details: %(share_display_name)s"
 msgstr "Detalhes do Compartilhamento: %(share_display_name)s"
@@ -504,6 +660,19 @@ msgstr "Detalhes do Compartilhamento: %(share_display_name)s"
 #, python-format
 msgid "Share Details: %(share_name)s"
 msgstr "Detalhes do Compartilhamento: %(share_name)s"
+
+msgid "Share Group Details"
+msgstr "Detalhes do Grupo de Compartilhamento"
+
+#, python-format
+msgid "Share Group Details: %s"
+msgstr "Detalhes do Grupo de Compartilhamento:%s"
+
+msgid "Share Group Overview"
+msgstr "Visão Geral de Grupo de Compartilhamento"
+
+msgid "Share Group Snapshot Details"
+msgstr "Detalhes do Snapshot do Grupo de Compartilhamento"
 
 #, python-format
 msgid "Share Group Snapshot Details: %(sgs_display_name)s"
@@ -516,12 +685,27 @@ msgstr "Visão Geral de Snapshot de Grupo de Compartilhamento"
 msgid "Share Group Snapshots"
 msgstr "Snapshots de Grupo de Compartilhamento"
 
+msgid "Share Group Type"
+msgstr "Tipo do Grupo de Compartilhamento"
+
+msgid "Share Group Types"
+msgstr "Tipos de Grupo de Compartilhamento"
+
+msgid "Share Groups"
+msgstr "Grupos de Compartilhamento"
+
 msgid "Share ID"
 msgstr "ID do Compartilhamento"
+
+msgid "Share Instance Details"
+msgstr "Detalhes da Instância de Compartilhamento"
 
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "Detalhes da Instância de Compartilhamento: %s"
+
+msgid "Share Instance Overview"
+msgstr "Visão Geral de Instância de Compartilhamento"
 
 msgid "Share Instances"
 msgstr "Instâncias de Compartilhamento"
@@ -532,11 +716,20 @@ msgstr "Nome do Compartilhamento"
 msgid "Share Network"
 msgstr "Rede de Compartilhamento"
 
+msgid "Share Network Details"
+msgstr "Detalhes da Rede de Compartilhamento"
+
 msgid "Share Network Info"
 msgstr "Informação da Rede de Compartilhamento"
 
+msgid "Share Network Overview"
+msgstr "Visão Geral da Rede de Compartilhamento"
+
 msgid "Share Networks"
 msgstr "Redes de Compartilhamento"
+
+msgid "Share Overview"
+msgstr "Visão Geral do Compartilhamento"
 
 msgid "Share Protocol"
 msgstr "Protocolo de Compartilhamento"
@@ -548,11 +741,24 @@ msgstr "Regras do Compartilhamento: %(share_display_name)s"
 msgid "Share Server"
 msgstr "Servidor de Compartilhamento"
 
+msgid "Share Server Details"
+msgstr "Detalhes do Servidor de Compartilhamento"
+
+#, python-format
+msgid "Share Server Details: %(server_name)s"
+msgstr "Detalhes do Servidor de Compartilhamento: %(server_name)s"
+
 msgid "Share Server Id"
 msgstr "ID do Servidor de Compartilhamento"
 
+msgid "Share Server Overview"
+msgstr "Visão Geral de Servidor de Compartilhamento"
+
 msgid "Share Servers"
 msgstr "Servidores de Compartilhamento"
+
+msgid "Share Snapshot Overview"
+msgstr "Visão Geral de Snapshot de Compartilhamento"
 
 msgid "Share Snapshots"
 msgstr "Snapshots do Compartilhamento"
@@ -580,11 +786,23 @@ msgstr ""
 msgid "Share name to be assigned"
 msgstr "Nome do compartilhamento a ser atribuído"
 
+msgid "Share network"
+msgstr "Rede de compartilhamento"
+
+msgid "Share server"
+msgstr "Servidor de compartilhamento"
+
+msgid "Share types"
+msgstr "Tipos de Compartilhamento"
+
 msgid "Shares"
 msgstr "Compartilhamentos"
 
 msgid "Shares Networks"
 msgstr "Redes de Compartilhamentos"
+
+msgid "Shares on this server"
+msgstr "Compartilhamentos neste servidor"
 
 msgid "Sid"
 msgstr "Sid"
@@ -599,14 +817,32 @@ msgstr "Snapshot"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Detalhes do Snapshot: %(snapshot_display_name)s"
 
+msgid "Snapshot Overview"
+msgstr "Visão Geral de Snapshot"
+
 msgid "Source"
 msgstr "Origem"
+
+msgid "Source Share Group"
+msgstr "Grupo de Compartilhamento Fonte"
+
+msgid "Source share group snapshot"
+msgstr "Snapshot fonte do grupo de compartilhamento"
+
+msgid "Specs"
+msgstr "Especificações"
 
 msgid "Start migration"
 msgstr "Iniciar migração"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Submit"
+msgstr "Enviar"
+
+msgid "Subnet"
+msgstr "Sub-rede"
 
 #, python-format
 msgid "Successfully created security service: %s"
@@ -631,14 +867,32 @@ msgstr ""
 "gerenciado: %s"
 
 #, python-format
+msgid "Successfully updated group specs for share group type '%s'."
+msgstr ""
+"Especificações de grupo atualizadas com sucesso para o tipo de grupo de "
+"compartilhamento '%s'."
+
+#, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "Serviço de segurança \"%s\" atualizado com sucesso "
+
+msgid ""
+"The share group type defines the characteristics of a share group backend."
+msgstr ""
+"O tipo de grupo de compartilhamento define as características do backend de "
+"um grupo de compartilhamento."
 
 #, python-format
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr ""
 "O tamanho do compartilhamento não pode ser menor que o tamanho do snapshot "
 "(%sGiB)"
+
+msgid "To add group-specs use:"
+msgstr "Para adicionar group-specs utilize:"
+
+msgid "To unset group-specs use:"
+msgstr "Para desconfigurar group-specs use:"
 
 msgid "Type"
 msgstr "Tipo"
@@ -688,8 +942,19 @@ msgstr ""
 "Não é possível excluir o snapshot do grupo de compartilhamento \"%s\". Um ou "
 "mais grupos de compartilhamento dependem dele."
 
+#, python-format
+msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
+msgstr ""
+"Não é possível excluir o snapshot \"%s\". um ou mais compartilhamentos "
+"dependem dele."
+
 msgid "Unable to extend share."
 msgstr "Não foi possível estender o compartilhamento."
+
+msgid "Unable to get information about share group type access."
+msgstr ""
+"Não é possível obter informações sobre o acesso dos tipos de grupo de "
+"compartilhamento."
 
 msgid "Unable to get list of projects."
 msgstr "Não é possível recuperar lista de projetos."
@@ -700,6 +965,10 @@ msgstr "Não foi possível gerenciar o compartilhamento"
 #, python-format
 msgid "Unable to migrate share %s."
 msgstr "Não foi possível migrar compartilhamento %s."
+
+#, python-format
+msgid "Unable to reset status of share group '%s'."
+msgstr "Não e possível redefinir o status do grupo de compartilhamento '%s'."
 
 #, python-format
 msgid "Unable to reset status of share group snapshot '%s'."
@@ -731,6 +1000,13 @@ msgid "Unable to retrieve share details."
 msgstr "Não é possível obter os detalhes do compartilhamento."
 
 #, python-format
+msgid "Unable to retrieve share group '%s'."
+msgstr "Não é possível obter o grupo de compartilhamento '%s'"
+
+msgid "Unable to retrieve share group details."
+msgstr "Não é possível obter os detalhes do grupo de compartilhamento."
+
+#, python-format
 msgid "Unable to retrieve share group snapshot '%s'."
 msgstr "Não é possível recuperar o snapshot do grupo de compartilhamento '%s'."
 
@@ -740,6 +1016,12 @@ msgstr ""
 
 msgid "Unable to retrieve share group snapshot list."
 msgstr "Não é possível obter a lista de snapshot de grupo de compartilhamento."
+
+msgid "Unable to retrieve share group types."
+msgstr "Não é possível obter os tipos de grupos de compartilhamento."
+
+msgid "Unable to retrieve share groups."
+msgstr "Não é possível obter grupos de compartilhamento."
 
 msgid "Unable to retrieve share instance details."
 msgstr "Não foi possível obter os detalhes da instância de compartilhamento."
@@ -784,6 +1066,9 @@ msgstr "Não foi possível recuperar compartilhamento."
 msgid "Unable to retrieve share. %s"
 msgstr "Não foi possível recuperar compartilhamento. %s"
 
+msgid "Unable to retrieve share_gruop_type."
+msgstr "Não é possível obter share_group_type."
+
 msgid "Unable to retrieve share_type."
 msgstr "Não foi possível recuperar o share_type."
 
@@ -806,11 +1091,25 @@ msgstr "Não foi possível definir a réplica '%s' como ativa."
 msgid "Unable to unmanage share."
 msgstr "Não foi possível tornar o compartilhamento não gerenciado."
 
+#, python-format
+msgid "Unable to update access for share group type \"%s\"."
+msgstr ""
+"Não é possível atualizar acessos para o tipo de grupo de compartilhamento "
+"\"%s\"."
+
 msgid "Unable to update default quotas."
 msgstr "Não é possível atualizar cotas padrão."
 
+msgid "Unable to update group_specs for share group type."
+msgstr ""
+"Não é possível atualizar group_specs para o tipo de grupo de "
+"compartilhamento."
+
 msgid "Unable to update security service."
 msgstr "Não foi possível atualizar o serviço de segurança."
+
+msgid "Unable to update share group type."
+msgstr "Não é possível atualizar o tipo de grupo de compartilhamento."
 
 msgid "Unable to update share metadata."
 msgstr "Não foi possível atualizar metadados de compartilhamento."
@@ -837,14 +1136,24 @@ msgstr "Remover Gerenciamento de Compartilhamento"
 msgid "Update"
 msgstr "Atualizar"
 
+msgid "Update Share Group Type"
+msgstr "Atualizar Tipo de Grupo de Compartilhamento"
+
 msgid "Update Share Network"
 msgstr "Atualizar Rede de Compartilhamento"
 
 msgid "Update Share Type"
 msgstr "Atualizar Tipo de Compartilhamento"
 
+msgid "Update Share group Type"
+msgstr "Atualizar o Tipo do Grupo de Compartilhamento"
+
 msgid "Updated At"
 msgstr "Atualizado em"
+
+#, python-format
+msgid "Updated access for share group type \"%s\"."
+msgstr "Acesso atualizado para o tipo de grupo de compartilhamento \"%s\"."
 
 #, python-format
 msgid "Updating share \"%s\""

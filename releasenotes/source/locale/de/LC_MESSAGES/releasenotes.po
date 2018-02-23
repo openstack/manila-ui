@@ -3,16 +3,17 @@
 # Andreas Jaeger <jaegerandi@gmail.com>, 2017. #zanata
 # Frank Kloeker <eumel@arcor.de>, 2017. #zanata
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
+# Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui Release Notes 2.10.2\n"
+"Project-Id-Version: manila-ui Release Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 14:46+0000\n"
+"POT-Creation-Date: 2018-02-22 13:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-10-17 03:39+0000\n"
-"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
+"PO-Revision-Date: 2018-02-21 07:56+0000\n"
+"Last-Translator: Reik Keutterling <spielkind@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -113,6 +114,9 @@ msgstr ""
 "Jeder panel wird auf einer separaten Seite geladen. Das erlaubt uns "
 "redundante API Aufrufe, welche wir beim Laden aller Tabs zur selben Zeit "
 "hatten, zu vermeiden."
+
+msgid "Queens Series Release Notes"
+msgstr "Versionshinweise Queens"
 
 msgid "Started using release notes to track changes to manila UI."
 msgstr ""

@@ -1,18 +1,197 @@
 # Andi Chandler <andi@gowling.com>, 2017. #zanata
+# Andi Chandler <andi@gowling.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.10.2.dev25\n"
+"Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-13 14:46+0000\n"
+"POT-Creation-Date: 2018-02-22 13:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-10-15 07:37+0000\n"
+"PO-Revision-Date: 2018-02-22 05:08+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en-GB\n"
 "X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid ""
+"\n"
+"      Add policy rule to share, 'ip' rule represents ipv4 address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID.\n"
+"    "
+msgstr ""
+"\n"
+"      Add policy rule to share, 'ip' rule represents ipv4 address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents Ceph auth ID.\n"
+"    "
+
+msgid ""
+"\n"
+"      Add policy rule to snapshot, 'ip' rule represents ip address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID, and 'cert' rule represents\n"
+"      certificate.\n"
+"    "
+msgstr ""
+"\n"
+"      Add policy rule to snapshot, 'ip' rule represents IP address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents Ceph auth ID, and 'cert' rule represents\n"
+"      certificate.\n"
+"    "
+
+msgid ""
+"\n"
+"    \"Manage\" an existing share from a Manila host.\n"
+"    This will make the share visible within OpenStack.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila manage'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    \"Manage\" an existing share from a Manila host.\n"
+"    This will make the share visible within OpenStack.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila manage'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Cancel migration of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-cancel'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    Cancel migration of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-cancel'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Complete migration of a migrating share to another Manila host.\n"
+"    This operation is expected to be disruptive.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-complete'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    Complete migration of a migrating share to another Manila host.\n"
+"    This operation is expected to be disruptive.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-complete'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Migrate an existing share to another Manila host.\n"
+"    This will move all your share data from one host to another.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-start'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    Migrate an existing share to another Manila host.\n"
+"    This will move all your share data from one host to another.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-start'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Obtains migration progress of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-get-progress'</tt> "
+"command.\n"
+"    "
+msgstr ""
+"\n"
+"    Obtains migration progress of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-get-progress'</tt> "
+"command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Placeholder for description of share group type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"    Placeholder for description of share group type access managing form.\n"
+"    "
+
+msgid ""
+"\n"
+"    Placeholder for description of share type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"    Placeholder for description of share type access managing form.\n"
+"    "
+
+msgid ""
+"\n"
+"    Share networks contain network data, that will be used\n"
+"    for creation of service VM, where will be hosted shares.\n"
+"    "
+msgstr ""
+"\n"
+"    Share networks contain network data, that will be used\n"
+"    for creation of service VM, where will be hosted shares.\n"
+"    "
+
+msgid ""
+"\n"
+"    The security service can be used by backend drivers to \n"
+"    configure clients, for more secure using of share.\n"
+"    "
+msgstr ""
+"\n"
+"    The security service can be used by backend drivers to \n"
+"    configure clients, for more secure using of share.\n"
+"    "
+
+msgid ""
+"\n"
+"    When a share is \"unmanaged\", the share will no longer be visible "
+"within OpenStack.\n"
+"    Note that the share will not be deleted.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila unmanage'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    When a share is \"unmanaged\", the share will no longer be visible "
+"within OpenStack.\n"
+"    Note that the share will not be deleted.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila unmanage'</tt> command.\n"
+"    "
+
+#, python-format
+msgid "%(used)s of %(quota)s GiB Used"
+msgstr "%(used)s of %(quota)s GiB Used"
+
+#, python-format
+msgid "%(used)s of %(quota)s Used"
+msgstr "%(used)s of %(quota)s Used"
 
 #, python-format
 msgid "%sGiB"
@@ -26,6 +205,9 @@ msgstr "Access Key"
 
 msgid "Access Level"
 msgstr "Access Level"
+
+msgid "Access Rules"
+msgstr "Access Rules"
 
 msgid "Access To"
 msgstr "Access To"
@@ -65,6 +247,16 @@ msgstr "Add security services to share network."
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "All keys and values must be in range from 1 to 255."
 
+msgid "All pairs that are in field for left are set for this metadata."
+msgstr "All pairs that are in field for left are set for this metadata."
+
+msgid "All pairs that are in field for left are set for this share group type."
+msgstr ""
+"All pairs that are in field for left are set for this share group type."
+
+msgid "All pairs that are in field for left are set for this share type."
+msgstr "All pairs that are in field for left are set for this share type."
+
 msgid "Allow project access to share group type."
 msgstr "Allow project access to share group type."
 
@@ -95,11 +287,17 @@ msgctxt "Current status of snapshot"
 msgid "Available"
 msgstr "Available"
 
+msgid "Available networks"
+msgstr "Available networks"
+
 msgid "Available projects"
 msgstr "Available projects"
 
 msgid "Available security services"
 msgstr "Available security services"
+
+msgid "Cancel"
+msgstr "Cancel"
 
 msgid "Cancel Migration"
 msgstr "Cancel Migration"
@@ -140,6 +338,9 @@ msgstr "Confirm Unmanage Share"
 msgid "Create"
 msgstr "Create"
 
+msgid "Create Group Share Type"
+msgstr "Create Group Share Type"
+
 msgid "Create Replica"
 msgstr "Create Replica"
 
@@ -161,6 +362,9 @@ msgstr "Create Share Group Type"
 msgid "Create Share Network"
 msgstr "Create Share Network"
 
+msgid "Create Share Replica"
+msgstr "Create Share Replica"
+
 msgid "Create Share Snapshot"
 msgstr "Create Share Snapshot"
 
@@ -169,6 +373,12 @@ msgstr "Create Share Type"
 
 msgid "Create a Share"
 msgstr "Create a Share"
+
+msgid "Create share replica in specific availability zone."
+msgstr "Create share replica in specific availability zone."
+
+msgid "Created"
+msgstr "Created"
 
 msgid "Created At"
 msgstr "Created At"
@@ -370,6 +580,9 @@ msgstr "Deleting"
 msgid "Description"
 msgstr "Description"
 
+msgid "Description:"
+msgstr "Description:"
+
 msgid "Destination host and pool where share will be migrated to."
 msgstr "Destination host and pool where share will be migrated to."
 
@@ -403,6 +616,9 @@ msgstr "Edit Share Network"
 
 msgid "Edit Share Snapshot"
 msgstr "Edit Share Snapshot"
+
+msgid "Edit Share network"
+msgstr "Edit Share network"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -468,6 +684,9 @@ msgstr "Export location"
 msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 
+msgid "Export locations"
+msgstr "Export locations"
+
 msgid "Extend"
 msgstr "Extend"
 
@@ -478,9 +697,26 @@ msgstr "Extend Share"
 msgid "Extend share \"%s\""
 msgstr "Extend share \"%s\""
 
+msgid "Extend the size of a share. "
+msgstr "Extend the size of a share. "
+
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Extending Error"
+
+msgid ""
+"Extra spec 'driver_handles_share_servers'  is required and should have "
+"boolean value."
+msgstr ""
+"Extra spec 'driver_handles_share_servers'  is required and should have "
+"boolean value."
+
+msgid ""
+"Extra spec 'driver_handles_share_servers' is required and should have "
+"boolean value."
+msgstr ""
+"Extra spec 'driver_handles_share_servers' is required and should have "
+"boolean value."
 
 msgid "Extra specs"
 msgstr "Extra specs"
@@ -488,14 +724,45 @@ msgstr "Extra specs"
 msgid "Force Host Assisted Migration"
 msgstr "Force Host Assisted Migration"
 
+msgid "From here you can modify name and description of a security service."
+msgstr "From here you can modify name and description of a security service."
+
+msgid ""
+"From here you can modify name and description of a share group snapshot."
+msgstr ""
+"From here you can modify name and description of a share group snapshot."
+
+msgid "From here you can modify name and description of a share network."
+msgstr "From here you can modify name and description of a share network."
+
+msgid "From here you can modify name and description of a snapshot."
+msgstr "From here you can modify name and description of a snapshot."
+
+msgid ""
+"From here you can modify name, description and visibility of a share group."
+msgstr ""
+"From here you can modify name, description and visibility of a share group."
+
+msgid "From here you can modify name, description and visibility of a share."
+msgstr "From here you can modify name, description and visibility of a share."
+
+msgid "From here you can revert the share to its latest snapshot."
+msgstr "From here you can revert the share to its latest snapshot."
+
 msgid "From here you can update share network info. "
 msgstr "From here you can update share network info. "
 
 msgid "From here you can update the default quotas (max limits)."
 msgstr "From here you can update the default quotas (max limits)."
 
+msgid "Get Migration Progress"
+msgstr "Get Migration Progress"
+
 msgid "Get migration progress"
 msgstr "Get migration progress"
+
+msgid "GiB"
+msgstr "GiB"
 
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
@@ -506,6 +773,12 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "Group specs"
+
+msgid "Here can be modified extra-specs for share type."
+msgstr "Here can be modified extra-specs for share type."
+
+msgid "Here can be modified group-specs for share group type."
+msgstr "Here can be modified group-specs for share group type."
 
 msgid "Host"
 msgstr "Host"
@@ -616,8 +889,17 @@ msgstr ""
 "Modified project information and members, but unable to modify project "
 "quotas."
 
+msgid "Mount snapshot support"
+msgstr "Mount snapshot support"
+
 msgid "Name"
 msgstr "Name"
+
+msgid "Net Details"
+msgstr "Net Details"
+
+msgid "Network"
+msgstr "Network"
 
 msgid "Network Type"
 msgstr "Network Type"
@@ -667,11 +949,20 @@ msgstr "Non-disruptive"
 msgid "Nova Net"
 msgstr "Nova Net"
 
+msgid "Number of Share Snapshots"
+msgstr "Number of Share Snapshots"
+
+msgid "Number of Shares"
+msgstr "Number of Shares"
+
 msgid "Obtain Progress"
 msgstr "Obtain Progress"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Obtain migration progress of a Share"
+
+msgid "One line - one action. Empty strings will be ignored."
+msgstr "One line - one action. Empty strings will be ignored."
 
 msgid "Overview"
 msgstr "Overview"
@@ -706,12 +997,18 @@ msgstr "Public"
 msgid "Quota"
 msgstr "Quota"
 
+msgid "Replica Details"
+msgstr "Replica Details"
+
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
 msgstr "Replica Details: %(replica_display_name)s"
 
 msgid "Replica State"
 msgstr "Replica State"
+
+msgid "Replica state"
+msgstr "Replica state"
 
 msgid "Replicas"
 msgstr "Replicas"
@@ -736,6 +1033,12 @@ msgstr "Reset replica state"
 
 msgid "Reset replica status"
 msgstr "Reset replica status"
+
+msgid "Reset share replica's state with ID"
+msgstr "Reset share replica's state with ID"
+
+msgid "Reset share replica's status with ID"
+msgstr "Reset share replica's status with ID"
 
 msgid "Reset state"
 msgstr "Reset state"
@@ -770,6 +1073,9 @@ msgstr "Resync Replica"
 msgid "Resync replica"
 msgstr "Resync replica"
 
+msgid "Resync share replica with ID"
+msgstr "Resync share replica with ID"
+
 #, python-format
 msgid "Resync'ing replica '%s'"
 msgstr "Resync'ing replica '%s'"
@@ -793,6 +1099,9 @@ msgstr "Rules"
 msgid "Save Changes"
 msgstr "Save Changes"
 
+msgid "Security Service Details"
+msgstr "Security Service Details"
+
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Security Service Details: %(service_display_name)s"
@@ -808,6 +1117,18 @@ msgstr "Security services within share network"
 
 msgid "Segmentation Id"
 msgstr "Segmentation Id"
+
+msgid "Select parameters of share group you want to create. "
+msgstr "Select parameters of share group you want to create. "
+
+msgid "Select parameters of share you want to create. "
+msgstr "Select parameters of share you want to create. "
+
+msgid "Selected Networks"
+msgstr "Selected Networks"
+
+msgid "Selected Projects"
+msgstr "Selected Projects"
 
 msgid "Selected projects"
 msgstr "Selected projects"
@@ -827,13 +1148,22 @@ msgstr "Set as Active"
 msgid "Set maximum quotas for the project."
 msgstr "Set maximum quotas for the project."
 
+msgid "Set share replica with ID"
+msgstr "Set share replica with ID"
+
 #, python-format
 msgid "Setting replica \"%s\" as active..."
 msgstr "Setting replica \"%s\" as active..."
 
+msgid "Share"
+msgstr "Share"
+
 #, python-format
 msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
 msgstr "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
+
+msgid "Share Details"
+msgstr "Share Details"
 
 #, python-format
 msgid "Share Details: %(share_display_name)s"
@@ -845,6 +1175,9 @@ msgstr "Share Details: %(share_name)s"
 
 msgid "Share Group"
 msgstr "Share Group"
+
+msgid "Share Group Details"
+msgstr "Share Group Details"
 
 #, python-format
 msgid "Share Group Details: %s"
@@ -858,6 +1191,9 @@ msgstr "Share Group Overview"
 
 msgid "Share Group Snapshot"
 msgstr "Share Group Snapshot"
+
+msgid "Share Group Snapshot Details"
+msgstr "Share Group Snapshot Details"
 
 #, python-format
 msgid "Share Group Snapshot Details: %(sgs_display_name)s"
@@ -881,6 +1217,9 @@ msgstr "Share Groups"
 msgid "Share ID"
 msgstr "Share ID"
 
+msgid "Share Instance Details"
+msgstr "Share Instance Details"
+
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "Share Instance Details: %s"
@@ -891,11 +1230,17 @@ msgstr "Share Instance Overview"
 msgid "Share Instances"
 msgstr "Share Instances"
 
+msgid "Share Limits"
+msgstr "Share Limits"
+
 msgid "Share Name"
 msgstr "Share Name"
 
 msgid "Share Network"
 msgstr "Share Network"
+
+msgid "Share Network Details"
+msgstr "Share Network Details"
 
 #, python-format
 msgid "Share Network Details: %(network_display_name)s"
@@ -916,9 +1261,18 @@ msgstr "Share Overview"
 msgid "Share Protocol"
 msgstr "Share Protocol"
 
+msgid "Share Replica Overview"
+msgstr "Share Replica Overview"
+
+msgid "Share Replicas"
+msgstr "Share Replicas"
+
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
 msgstr "Share Replicas: %(share_display_name)s"
+
+msgid "Share Rules"
+msgstr "Share Rules"
 
 #, python-format
 msgid "Share Rules: %(share_display_name)s"
@@ -926,6 +1280,9 @@ msgstr "Share Rules: %(share_display_name)s"
 
 msgid "Share Server"
 msgstr "Share Server"
+
+msgid "Share Server Details"
+msgstr "Share Server Details"
 
 #, python-format
 msgid "Share Server Details: %(server_name)s"
@@ -939,6 +1296,9 @@ msgstr "Share Server Overview"
 
 msgid "Share Servers"
 msgstr "Share Servers"
+
+msgid "Share Snapshot Details"
+msgstr "Share Snapshot Details"
 
 msgid "Share Snapshot Name"
 msgstr "Share Snapshot Name"
@@ -954,6 +1314,11 @@ msgstr "Share Snapshots"
 
 msgid "Share Snapshots Storage"
 msgstr "Share Snapshots Storage"
+
+msgid ""
+"Share Snapshots are used for storing share changes and creating shares. "
+msgstr ""
+"Share Snapshots are used for storing share changes and creating shares. "
 
 msgid "Share Source"
 msgstr "Share Source"
@@ -987,9 +1352,15 @@ msgstr "Share gigabytes"
 msgid "Share name to be assigned"
 msgstr "Share name to be assigned"
 
+msgid "Share network"
+msgstr "Share network"
+
 #, python-format
 msgid "Share replica %s has been deleted."
 msgstr "Share replica %s has been deleted."
+
+msgid "Share server"
+msgstr "Share server"
 
 #, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
@@ -1001,6 +1372,9 @@ msgstr "Share snapshot gigabytes"
 msgid "Share snapshots"
 msgstr "Share snapshots"
 
+msgid "Share type"
+msgstr "Share type"
+
 msgid "Share types"
 msgstr "Share types"
 
@@ -1009,6 +1383,9 @@ msgstr "Shares"
 
 msgid "Shares Networks"
 msgstr "Shares Networks"
+
+msgid "Shares on this server"
+msgstr "Shares on this server"
 
 msgid "Sid"
 msgstr "Sid"
@@ -1026,6 +1403,12 @@ msgstr "Snapshot"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Snapshot Details: %(snapshot_display_name)s"
 
+msgid "Snapshot ID"
+msgstr "Snapshot ID"
+
+msgid "Snapshot Overview"
+msgstr "Snapshot Overview"
+
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "Snapshot Rules: %(snapshot_display_name)s"
@@ -1033,12 +1416,21 @@ msgstr "Snapshot Rules: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Source"
 
+msgid "Source SG Snapshot"
+msgstr "Source SG Snapshot"
+
+msgid "Source Share Group"
+msgstr "Source Share Group"
+
 msgid "Source Share Group Snapshot"
 msgstr "Source Share Group Snapshot"
 
 msgid "Source Type"
 msgstr "Source Type"
 
+msgid "Source share group snapshot"
+msgstr "Source share group snapshot"
+
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
 "if the migrating share has to be retained within its current share network."
@@ -1052,12 +1444,21 @@ msgid ""
 msgstr ""
 "Specify the new share type for the share. Do not specify this parameter if "
 "the migrating share has to be retained with its current share type."
+
+msgid "Specs"
+msgstr "Specs"
 
 msgid "Start migration"
 msgstr "Start migration"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Subnet"
+msgstr "Subnet"
 
 #, python-format
 msgid "Successfully created security service: %s"
@@ -1107,9 +1508,41 @@ msgstr "Successfully updated group specs for share group type '%s'."
 msgid "Successfully updated security service \"%s\""
 msgstr "Successfully updated security service \"%s\""
 
+msgid "Task state"
+msgstr "Task state"
+
+msgid ""
+"The share group type defines the characteristics of a share group backend."
+msgstr ""
+"The share group type defines the characteristics of a share group backend."
+
 #, python-format
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr "The share size cannot be less than the snapshot size (%sGiB)"
+
+msgid "The share type defines the characteristics of a share backend."
+msgstr "The share type defines the characteristics of a share backend."
+
+msgid "To add extra-specs use:"
+msgstr "To add extra-specs use:"
+
+msgid "To add group-specs use:"
+msgstr "To add group-specs use:"
+
+msgid "To add metadata use:"
+msgstr "To add metadata use:"
+
+msgid "To unset extra-specs use:"
+msgstr "To unset extra-specs use:"
+
+msgid "To unset group-specs use:"
+msgstr "To unset group-specs use:"
+
+msgid "To unset metadata use:"
+msgstr "To unset metadata use:"
+
+msgid "Total Gibibytes"
+msgstr "Total Gibibytes"
 
 msgid "Type"
 msgstr "Type"
@@ -1473,6 +1906,12 @@ msgstr "Update Share Type"
 msgid "Update Share group Type"
 msgstr "Update Share group Type"
 
+msgid "Update share network"
+msgstr "Update share network"
+
+msgid "Updated"
+msgstr "Updated"
+
 msgid "Updated At"
 msgstr "Updated At"
 
@@ -1526,6 +1965,9 @@ msgstr "Visibility"
 
 msgid "Writable"
 msgstr "Writable"
+
+msgid "as Active?"
+msgstr "as Active?"
 
 msgid "key=value pairs per line can be set"
 msgstr "key=value pairs per line can be set"

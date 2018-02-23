@@ -4,9 +4,9 @@
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui 2.10.1.dev16\n"
+"Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-08-18 17:02+0000\n"
+"POT-Creation-Date: 2018-02-22 13:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -843,6 +843,9 @@ msgstr "Setze maximale Kontingente für dieses Projekt."
 msgid "Setting replica \"%s\" as active..."
 msgstr "Setze Replika \"%s\" auf aktiv..."
 
+msgid "Share"
+msgstr "Freigabe"
+
 #, python-format
 msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
 msgstr "Freigabe \"%(s)s\" wurde auf Schattenkkopie \"%(ss)s\" zurückgestellt"
@@ -1039,6 +1042,9 @@ msgstr "Schattenkopie"
 #, python-format
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Schattenkopiedetails: %(snapshot_display_name)s"
+
+msgid "Snapshot Overview"
+msgstr "Übersicht Schattenkopie"
 
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
