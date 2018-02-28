@@ -2,20 +2,29 @@
 # Robert Simai <robert.simai@suse.com>, 2016. #zanata
 # Frank Kloeker <eumel@arcor.de>, 2017. #zanata
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
+# Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-22 13:25+0000\n"
+"POT-Creation-Date: 2018-02-23 12:56+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-20 04:32+0000\n"
-"Last-Translator: Frank Kloeker <eumel@arcor.de>\n"
+"PO-Revision-Date: 2018-02-27 03:46+0000\n"
+"Last-Translator: Reik Keutterling <spielkind@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#, python-format
+msgid "%(used)s of %(quota)s GiB Used"
+msgstr "%(used)s von %(quota)s GiB verwendet"
+
+#, python-format
+msgid "%(used)s of %(quota)s Used"
+msgstr "%(used)s von %(quota)s verwendet"
 
 #, python-format
 msgid "%sGiB"
@@ -104,6 +113,9 @@ msgstr "Verfügbare Projekte"
 msgid "Available security services"
 msgstr "Verfügbare Sicherheitsdienste"
 
+msgid "Cancel"
+msgstr "Abbrechen"
+
 msgid "Cancel Migration"
 msgstr "Migration abbrechen"
 
@@ -172,6 +184,9 @@ msgstr "Erstelle Freigabetyp"
 
 msgid "Create a Share"
 msgstr "Erstelle eine Freigabe"
+
+msgid "Created"
+msgstr "Erstellt"
 
 msgid "Created At"
 msgstr "Erstellt um"
@@ -373,6 +388,9 @@ msgstr "Löschen"
 msgid "Description"
 msgstr "Beschreibung"
 
+msgid "Description:"
+msgstr "Beschreibung:"
+
 msgid "Destination host and pool where share will be migrated to."
 msgstr "Zielhost und Pool, zu dem die Shares migriert werden."
 
@@ -406,6 +424,9 @@ msgstr "Bearbeite Freigabenetzwerk"
 
 msgid "Edit Share Snapshot"
 msgstr "Freigabe Schattenkopie bearbeiten"
+
+msgid "Edit Share network"
+msgstr "Bearbeite Freigabenetzwerk"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -499,6 +520,9 @@ msgstr "Hier können Sie Informationen zum Freigabenetzwerk aktualisieren."
 
 msgid "From here you can update the default quotas (max limits)."
 msgstr "Hier können Sie Standardkontingente (maximale Limits) aktualisieren."
+
+msgid "Get Migration Progress"
+msgstr "Migrationsfortschritt abrufen"
 
 msgid "Get migration progress"
 msgstr "Migrationsfortschritt abrufen"
@@ -627,6 +651,9 @@ msgstr ""
 msgid "Name"
 msgstr "Name"
 
+msgid "Network"
+msgstr "Netzwerk"
+
 msgid "Network Type"
 msgstr "Netzwerktyp"
 
@@ -721,6 +748,9 @@ msgstr "Replika Details: %(replica_display_name)s"
 msgid "Replica State"
 msgstr "Replika Zustand"
 
+msgid "Replica state"
+msgstr "Replika Zustand"
+
 msgid "Replicas"
 msgstr "Replikas"
 
@@ -805,6 +835,9 @@ msgstr "Regeln"
 msgid "Save Changes"
 msgstr "Änderungen speichern"
 
+msgid "Security Service Details"
+msgstr "Sicherheitsdienstdetails"
+
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Sicherheitsdienst-Details: %(service_display_name)s"
@@ -820,6 +853,9 @@ msgstr "Sicherheitsdienste in Freigabenetzwerk"
 
 msgid "Segmentation Id"
 msgstr "Segmentierungs-ID"
+
+msgid "Selected Projects"
+msgstr "Ausgewählte Projekte"
 
 msgid "Selected projects"
 msgstr "Ausgewählte Projekte"
@@ -1002,9 +1038,15 @@ msgstr "Freigabe Gigabyte"
 msgid "Share name to be assigned"
 msgstr "Zuzuweisender Freigabename"
 
+msgid "Share network"
+msgstr "Freigabenetzwerk"
+
 #, python-format
 msgid "Share replica %s has been deleted."
 msgstr "Freigabe Replika %s wurde gelöscht."
+
+msgid "Share server"
+msgstr "Freigabeserver"
 
 #, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
@@ -1017,6 +1059,9 @@ msgstr " Freigabeschattenkopie gigabytes"
 
 msgid "Share snapshots"
 msgstr " Freigabeschattenkopien"
+
+msgid "Share type"
+msgstr "Freigabetyp"
 
 msgid "Share types"
 msgstr "Freigabetypen"
@@ -1043,6 +1088,9 @@ msgstr "Schattenkopie"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Schattenkopiedetails: %(snapshot_display_name)s"
 
+msgid "Snapshot ID"
+msgstr "Schattenkopie ID"
+
 msgid "Snapshot Overview"
 msgstr "Übersicht Schattenkopie"
 
@@ -1058,6 +1106,9 @@ msgstr "Quelle Schattenkopie Gruppenfreigabe"
 
 msgid "Source Type"
 msgstr "Quellentyp"
+
+msgid "Source share group snapshot"
+msgstr "Quelle Schattenkopie Gruppenfreigabe"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1079,6 +1130,12 @@ msgstr "Migration starten"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Submit"
+msgstr "Absenden"
+
+msgid "Subnet"
+msgstr "Subnetz"
 
 #, python-format
 msgid "Successfully created security service: %s"
@@ -1131,11 +1188,17 @@ msgstr "Spezifikationen für Gruppenfreigabe Typ '%s' erfolgreich aktualisiert."
 msgid "Successfully updated security service \"%s\""
 msgstr "Erfolgreiche Aktualisierung des Sicherheitsdienstes \"%s\""
 
+msgid "Task state"
+msgstr "Auftragsstatus"
+
 #, python-format
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr ""
 "Die Größe der Freigabe kann nicht kleiner als die der Schattenkopie sein "
 "(%sGiB)"
+
+msgid "Total Gibibytes"
+msgstr "Gesamt Gibibytes"
 
 msgid "Type"
 msgstr "Typ"
@@ -1508,6 +1571,12 @@ msgstr "Aktualisiere Freigabetyp"
 
 msgid "Update Share group Type"
 msgstr "Freigabengruppe Typ aktualisieren"
+
+msgid "Update share network"
+msgstr "Aktualisiere Freigabenetzwerk"
+
+msgid "Updated"
+msgstr "Aktualisiert"
 
 msgid "Updated At"
 msgstr "Aktualisiert um"
