@@ -1,20 +1,196 @@
 # suhartono <cloudsuhartono@gmail.com>, 2016. #zanata
 # Andreas Jaeger <jaegerandi@gmail.com>, 2017. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
+# suhartono <cloudsuhartono@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-22 13:25+0000\n"
+"POT-Creation-Date: 2018-02-28 14:06+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-13 10:37+0000\n"
-"Last-Translator: Andreas Jaeger <jaegerandi@gmail.com>\n"
+"PO-Revision-Date: 2018-02-28 02:01+0000\n"
+"Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+
+msgid ""
+"\n"
+"      Add policy rule to share, 'ip' rule represents ipv4 address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID.\n"
+"    "
+msgstr ""
+"\n"
+"      Add policy rule to share, 'ip' rule represents ipv4 address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID.\n"
+"    "
+
+msgid ""
+"\n"
+"      Add policy rule to snapshot, 'ip' rule represents ip address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID, and 'cert' rule represents\n"
+"      certificate.\n"
+"    "
+msgstr ""
+"\n"
+"      Add policy rule to snapshot, 'ip' rule represents ip address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID, and 'cert' rule represents\n"
+"      certificate.\n"
+"    "
+
+msgid ""
+"\n"
+"    \"Manage\" an existing share from a Manila host.\n"
+"    This will make the share visible within OpenStack.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila manage'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    \"Manage\" an existing share from a Manila host.\n"
+"    This will make the share visible within OpenStack.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila manage'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Cancel migration of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-cancel'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    Cancel migration of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-cancel'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Complete migration of a migrating share to another Manila host.\n"
+"    This operation is expected to be disruptive.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-complete'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    Complete migration of a migrating share to another Manila host.\n"
+"    This operation is expected to be disruptive.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-complete'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Migrate an existing share to another Manila host.\n"
+"    This will move all your share data from one host to another.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-start'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    Migrate an existing share to another Manila host.\n"
+"    This will move all your share data from one host to another.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-start'</tt> command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Obtains migration progress of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-get-progress'</tt> "
+"command.\n"
+"    "
+msgstr ""
+"\n"
+"    Obtains migration progress of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-get-progress'</tt> "
+"command.\n"
+"    "
+
+msgid ""
+"\n"
+"    Placeholder for description of share group type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"Placeholder untuk deskripsi bentuk pengelolaan akses tipe grup berbagi.    "
+
+msgid ""
+"\n"
+"    Placeholder for description of share type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"Placeholder untuk deskripsi bentuk pengelolaan akses tipe berbagi.    "
+
+msgid ""
+"\n"
+"    Share networks contain network data, that will be used\n"
+"    for creation of service VM, where will be hosted shares.\n"
+"    "
+msgstr ""
+"\n"
+"Jaringan berbagi berisi data jaringan, yang akan digunakan\n"
+"     untuk pembuatan VM layanan, dimana akan menjadi hosted shares.\n"
+"    "
+
+msgid ""
+"\n"
+"    The security service can be used by backend drivers to \n"
+"    configure clients, for more secure using of share.\n"
+"    "
+msgstr ""
+"\n"
+"Layanan keamanan bisa digunakan oleh driver backend\n"
+"     konfigurasikan klien, untuk penggunaan share yang lebih aman.   "
+
+msgid ""
+"\n"
+"    When a share is \"unmanaged\", the share will no longer be visible "
+"within OpenStack.\n"
+"    Note that the share will not be deleted.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila unmanage'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"    When a share is \"unmanaged\", the share will no longer be visible "
+"within OpenStack.\n"
+"    Note that the share will not be deleted.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila unmanage'</tt> command.\n"
+"    "
+
+#, python-format
+msgid "%(used)s of %(quota)s GiB Used"
+msgstr "%(used)s of %(quota)s GiB Used"
+
+#, python-format
+msgid "%(used)s of %(quota)s Used"
+msgstr "%(used)s of %(quota)s Used"
 
 #, python-format
 msgid "%sGiB"
@@ -28,6 +204,9 @@ msgstr "Access Key (kunci akses)"
 
 msgid "Access Level"
 msgstr "Access Level (tingkat akses)"
+
+msgid "Access Rules"
+msgstr "Access Rules"
 
 msgid "Access To"
 msgstr "Access To (akses ke)"
@@ -67,6 +246,15 @@ msgstr "Menambahkan layanan keamanan untuk jaringan berbagi."
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Semua key dan nilai-nilai harus dalam kisaran 1 sampai 255."
 
+msgid "All pairs that are in field for left are set for this metadata."
+msgstr "Semua pasangan yang ada di field kiri ditetapkan untuk metadata ini."
+
+msgid "All pairs that are in field for left are set for this share group type."
+msgstr "Semua pasang yang ada di field kiri ditetapkan untuk tipe share group."
+
+msgid "All pairs that are in field for left are set for this share type."
+msgstr "Semua pasang yang ada di field kiri ditetapkan untuk tipe berbagi ini."
+
 msgid "Allow project access to share group type."
 msgstr "Izinkan akses proyek ke share group type."
 
@@ -97,11 +285,17 @@ msgctxt "Current status of snapshot"
 msgid "Available"
 msgstr "Available (tersedia)"
 
+msgid "Available networks"
+msgstr "Jaringan yang tersedia"
+
 msgid "Available projects"
 msgstr "Proyek yang tersedia"
 
 msgid "Available security services"
 msgstr "Layanan keamanan yang tersedia"
+
+msgid "Cancel"
+msgstr "Cancel"
 
 msgid "Cancel Migration"
 msgstr "Cancel Migration (pembatalan migrasi)"
@@ -146,6 +340,9 @@ msgstr "Confirm Unmanage Share (Konfirmasi share yang tidak dikelola)"
 msgid "Create"
 msgstr "Create (buat)"
 
+msgid "Create Group Share Type"
+msgstr "Create Group Share Type"
+
 msgid "Create Replica"
 msgstr "Create Replica (buat replika)"
 
@@ -167,6 +364,9 @@ msgstr "Membuat Share Group Type"
 msgid "Create Share Network"
 msgstr "Create Share Network (Buat jaringan berbagi)"
 
+msgid "Create Share Replica"
+msgstr "Create Share Replica"
+
 msgid "Create Share Snapshot"
 msgstr "Create Share Snapshot (buat snapshot berbagi)"
 
@@ -175,6 +375,12 @@ msgstr "Create Share Type (membuat tipe share)"
 
 msgid "Create a Share"
 msgstr "Create a Share (Buat share)"
+
+msgid "Create share replica in specific availability zone."
+msgstr "Buat replika berbagi di zona ketersediaan tertentu."
+
+msgid "Created"
+msgstr "Created"
 
 msgid "Created At"
 msgstr "Created At"
@@ -350,6 +556,9 @@ msgstr "Deleting (penghapusan)"
 msgid "Description"
 msgstr "Deskripsi"
 
+msgid "Description:"
+msgstr "Deskripsi:"
+
 msgid "Destination host and pool where share will be migrated to."
 msgstr "Host tujuan dan ke kolam dimana share akan bermigrasi."
 
@@ -383,6 +592,9 @@ msgstr "Edit Share Network (mengedit jaringan berbagi)"
 
 msgid "Edit Share Snapshot"
 msgstr "Edit Share Snapshot"
+
+msgid "Edit Share network"
+msgstr "Edit jaringan berbagi"
 
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -450,6 +662,9 @@ msgstr "Lokasi ekspor"
 msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr "Lokasi ekspor share. misalnya untuk NFS: 1.2.3.4:/path/to/share"
 
+msgid "Export locations"
+msgstr "Lokasi ekspor"
+
 msgid "Extend"
 msgstr "Extend (memperluas)"
 
@@ -460,9 +675,26 @@ msgstr "Extend Share (memperluas share)"
 msgid "Extend share \"%s\""
 msgstr "Memperluas share \"%s\""
 
+msgid "Extend the size of a share. "
+msgstr "Perluas ukuran satu share."
+
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Extending Error (kesalahan meluas)"
+
+msgid ""
+"Extra spec 'driver_handles_share_servers'  is required and should have "
+"boolean value."
+msgstr ""
+"Extra spec 'driver_handles_share_servers' diperlukan dan harus memiliki "
+"nilai boolean."
+
+msgid ""
+"Extra spec 'driver_handles_share_servers' is required and should have "
+"boolean value."
+msgstr ""
+"Ekstra spec 'driver_handles_share_servers' diperlukan dan harus memiliki "
+"nilai boolean."
 
 msgid "Extra specs"
 msgstr "Spesifikasi tambahan"
@@ -470,14 +702,48 @@ msgstr "Spesifikasi tambahan"
 msgid "Force Host Assisted Migration"
 msgstr "Force Host Assisted Migration"
 
+msgid "From here you can modify name and description of a security service."
+msgstr "Dari sini Anda bisa memodifikasi nama dan deskripsi layanan keamanan."
+
+msgid ""
+"From here you can modify name and description of a share group snapshot."
+msgstr ""
+"Dari sini Anda dapat memodifikasi nama dan deskripsi dari sebuah snapshot "
+"kelompok saham."
+
+msgid "From here you can modify name and description of a share network."
+msgstr "Dari sini Anda bisa memodifikasi nama dan deskripsi jaringan berbagi."
+
+msgid "From here you can modify name and description of a snapshot."
+msgstr "Dari sini Anda bisa memodifikasi nama dan deskripsi sebuah snapshot."
+
+msgid ""
+"From here you can modify name, description and visibility of a share group."
+msgstr ""
+"Dari sini Anda dapat memodifikasi nama, deskripsi dan visibilitas grup "
+"berbagi."
+
+msgid "From here you can modify name, description and visibility of a share."
+msgstr ""
+"Dari sini Anda dapat mengubah nama, deskripsi dan visibilitas suatu share."
+
+msgid "From here you can revert the share to its latest snapshot."
+msgstr "Dari sini Anda dapat mengembalikan share ke snapshot terbarunya."
+
 msgid "From here you can update share network info. "
 msgstr "Dari sini Anda dapat memperbarui informasi jaringan berbagi."
 
 msgid "From here you can update the default quotas (max limits)."
 msgstr "Dari sini Anda dapat memperbarui kuota default (batas max)."
 
+msgid "Get Migration Progress"
+msgstr "Get Migration Progress"
+
 msgid "Get migration progress"
 msgstr "Dapatkan kemajuan migrasi"
+
+msgid "GiB"
+msgstr "GiB"
 
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
@@ -488,6 +754,12 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "Group specs"
+
+msgid "Here can be modified extra-specs for share type."
+msgstr "Disini bisa dimodifikasi extra-specs untuk tipe berbagi."
+
+msgid "Here can be modified group-specs for share group type."
+msgstr "Disini bisa dimodifikasi group-specs untuk share group type."
 
 msgid "Host"
 msgstr "Host"
@@ -599,8 +871,17 @@ msgstr ""
 "Informasi proyek dan anggota dimodifikasi, tetapi tidak dapat memodifikasi "
 "kuota proyek."
 
+msgid "Mount snapshot support"
+msgstr "Dukungan mount snapshot"
+
 msgid "Name"
 msgstr "Name (nama)"
+
+msgid "Net Details"
+msgstr "Net Details"
+
+msgid "Network"
+msgstr "Network"
 
 msgid "Network Type"
 msgstr "Network Type (tipe jaringan)"
@@ -651,11 +932,20 @@ msgstr "Nondisruptive"
 msgid "Nova Net"
 msgstr "Nova Net"
 
+msgid "Number of Share Snapshots"
+msgstr "Number of Share Snapshots"
+
+msgid "Number of Shares"
+msgstr "Number of Shares"
+
 msgid "Obtain Progress"
 msgstr "Obtain Progress (mendapatkan kemajuan)"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Mendapatkan kemajuan migrasi share"
+
+msgid "One line - one action. Empty strings will be ignored."
+msgstr "One line - one action. String kosong akan diabaikan."
 
 msgid "Overview"
 msgstr "Overview (ikhtisar)"
@@ -690,12 +980,18 @@ msgstr "Public (publik)"
 msgid "Quota"
 msgstr "Quota (kuota)"
 
+msgid "Replica Details"
+msgstr "Replica Details"
+
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
 msgstr "Rincian replika: %(replica_display_name)s"
 
 msgid "Replica State"
 msgstr "Replica State (keadaan replika)"
+
+msgid "Replica state"
+msgstr "Replica state"
 
 msgid "Replicas"
 msgstr "Replicas (replika)"
@@ -720,6 +1016,12 @@ msgstr "Mengatur ulang keadaan replika"
 
 msgid "Reset replica status"
 msgstr "Mengatur ulang status replika"
+
+msgid "Reset share replica's state with ID"
+msgstr "Setel ulang status replika berbagi dengan ID"
+
+msgid "Reset share replica's status with ID"
+msgstr "Setel ulang status replika berbagi dengan ID"
 
 msgid "Reset state"
 msgstr "Reset state (mengatur slang status)"
@@ -756,6 +1058,9 @@ msgstr "Resync Replica"
 msgid "Resync replica"
 msgstr "Resync replika"
 
+msgid "Resync share replica with ID"
+msgstr "Resync (resinkronkan) replika berbagi dengan ID"
+
 #, python-format
 msgid "Resync'ing replica '%s'"
 msgstr "Resync'ing replika '%s'"
@@ -779,6 +1084,9 @@ msgstr "Rules (aturan)"
 msgid "Save Changes"
 msgstr "Save Changes (simpan perubahan)"
 
+msgid "Security Service Details"
+msgstr "Security Service Details "
+
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Rincian layanan keamanan: %(service_display_name)s"
@@ -794,6 +1102,18 @@ msgstr "layanan keamanan dalam jaringan berbagi"
 
 msgid "Segmentation Id"
 msgstr "Segmentation Id (segmentasi Id)"
+
+msgid "Select parameters of share group you want to create. "
+msgstr "Pilih parameter dari grup berbagi yang ingin Anda buat."
+
+msgid "Select parameters of share you want to create. "
+msgstr "Pilih parameter share yang ingin Anda buat."
+
+msgid "Selected Networks"
+msgstr "Selected Networks"
+
+msgid "Selected Projects"
+msgstr "Selected Projects"
 
 msgid "Selected projects"
 msgstr "Proyek yang dipilih"
@@ -813,6 +1133,9 @@ msgstr "Set as Active (Atur ke aktif)"
 msgid "Set maximum quotas for the project."
 msgstr "Menetapkan kuota maksimum untuk proyek tersebut."
 
+msgid "Set share replica with ID"
+msgstr "Tetapkan replika berbagi dengan ID"
+
 #, python-format
 msgid "Setting replica \"%s\" as active..."
 msgstr "Pengaturan replika \"%s\" aktif ..."
@@ -824,6 +1147,9 @@ msgstr "Share"
 msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
 msgstr "Berbagi \"%(s)s\" has been reverted to \"%(ss)s\" snapshot berhasil"
 
+msgid "Share Details"
+msgstr "Share Details"
+
 #, python-format
 msgid "Share Details: %(share_display_name)s"
 msgstr "Share Details (rincian share): %(share_display_name)s"
@@ -834,6 +1160,9 @@ msgstr "Rincian share: %(share_name)s"
 
 msgid "Share Group"
 msgstr "Share Group"
+
+msgid "Share Group Details"
+msgstr "Share Group Details"
 
 #, python-format
 msgid "Share Group Details: %s"
@@ -847,6 +1176,9 @@ msgstr "Share Group Overview"
 
 msgid "Share Group Snapshot"
 msgstr "Share Group Snapshot"
+
+msgid "Share Group Snapshot Details"
+msgstr "Share Group Snapshot Details"
 
 #, python-format
 msgid "Share Group Snapshot Details: %(sgs_display_name)s"
@@ -870,6 +1202,9 @@ msgstr "Share Groups"
 msgid "Share ID"
 msgstr "Share ID"
 
+msgid "Share Instance Details"
+msgstr "Share Instance Details"
+
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "Share Instance Details (rincian instance berbagai): %s"
@@ -880,11 +1215,17 @@ msgstr "Share Instance Overview"
 msgid "Share Instances"
 msgstr "Share Instances (instance berbagi)"
 
+msgid "Share Limits"
+msgstr "Share Limits"
+
 msgid "Share Name"
 msgstr "Share Name"
 
 msgid "Share Network"
 msgstr "Share Network (jaringan berbagi)"
+
+msgid "Share Network Details"
+msgstr "Share Network Details"
 
 #, python-format
 msgid "Share Network Details: %(network_display_name)s"
@@ -906,9 +1247,18 @@ msgstr "Share Overview"
 msgid "Share Protocol"
 msgstr "Share Protocol (protokol share)"
 
+msgid "Share Replica Overview"
+msgstr "Share Replica Overview"
+
+msgid "Share Replicas"
+msgstr "Share Replicas (replika berbagi)"
+
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
 msgstr " Replika berbagi: %(share_display_name)s"
+
+msgid "Share Rules"
+msgstr "Share Rules"
 
 #, python-format
 msgid "Share Rules: %(share_display_name)s"
@@ -916,6 +1266,9 @@ msgstr "Share Rules (aturan share): %(share_display_name)s"
 
 msgid "Share Server"
 msgstr "Share Server"
+
+msgid "Share Server Details"
+msgstr "Share Server Details"
 
 #, python-format
 msgid "Share Server Details: %(server_name)s"
@@ -929,6 +1282,9 @@ msgstr "Share Server Overview"
 
 msgid "Share Servers"
 msgstr "Share Servers (server berbagi)"
+
+msgid "Share Snapshot Details"
+msgstr "Share Snapshot Details"
 
 msgid "Share Snapshot Name"
 msgstr "Share Snapshot Name"
@@ -944,6 +1300,11 @@ msgstr "Share Snapshots (snapshots bersama)"
 
 msgid "Share Snapshots Storage"
 msgstr "Share Snapshots Storage (penyimpanan snapshot bersama)"
+
+msgid ""
+"Share Snapshots are used for storing share changes and creating shares. "
+msgstr ""
+"Share Snapshots digunakan untuk menyimpan perubahan share dan membuat share."
 
 msgid "Share Source"
 msgstr "Share Source (berbagi sumber)"
@@ -977,9 +1338,15 @@ msgstr "Berbagi gigabyte"
 msgid "Share name to be assigned"
 msgstr "Nama share yang akan ditetapkan"
 
+msgid "Share network"
+msgstr "Bagikan jaringan"
+
 #, python-format
 msgid "Share replica %s has been deleted."
 msgstr "Berbagi replika %s sudah dihapus."
+
+msgid "Share server"
+msgstr "Bagikan server"
 
 #, python-format
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
@@ -993,6 +1360,9 @@ msgstr "Berbagi snapshot gigabyte"
 msgid "Share snapshots"
 msgstr "Berbagi snapshot"
 
+msgid "Share type"
+msgstr "Share type"
+
 msgid "Share types"
 msgstr "Share types"
 
@@ -1001,6 +1371,9 @@ msgstr "Shares"
 
 msgid "Shares Networks"
 msgstr "Shares Networks (jaringan bersama)"
+
+msgid "Shares on this server"
+msgstr "Berbagi di server ini"
 
 msgid "Sid"
 msgstr "Sid"
@@ -1018,6 +1391,9 @@ msgstr "Snapshot"
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "Snapshot Details (rincian snapshot) : %(snapshot_display_name)s"
 
+msgid "Snapshot ID"
+msgstr "Snapshot ID"
+
 msgid "Snapshot Overview"
 msgstr "Snapshot Overview (ikhtisar snapshot)"
 
@@ -1028,11 +1404,20 @@ msgstr "Snapshot Rules (aturan snapshot): %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Source (sumber)"
 
+msgid "Source SG Snapshot"
+msgstr "Source SG Snapshot"
+
+msgid "Source Share Group"
+msgstr "Source Share Group"
+
 msgid "Source Share Group Snapshot"
 msgstr "Source Share Group Snapshot"
 
 msgid "Source Type"
 msgstr "Source Type"
+
+msgid "Source share group snapshot"
+msgstr "Snapshot kelompok berbagi sumber"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1048,11 +1433,20 @@ msgstr ""
 "Tentukan tipe share baru untuk berbagi. Tidak menentukan parameter ini jika "
 "share yang bermigrasi harus dipertahankan dengan tipe share saat ini."
 
+msgid "Specs"
+msgstr "Specs"
+
 msgid "Start migration"
 msgstr "Start migration (memulai migrasi)"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Subnet"
+msgstr "Subnet"
 
 #, python-format
 msgid "Successfully created security service: %s"
@@ -1103,10 +1497,41 @@ msgstr "Spesifikasi grup yang berhasil diperbarui untuk share group type '%s'."
 msgid "Successfully updated security service \"%s\""
 msgstr "layanan keamanan berhasil diperbarui \"%s\""
 
+msgid "Task state"
+msgstr "Status tugas"
+
+msgid ""
+"The share group type defines the characteristics of a share group backend."
+msgstr "Tipe share groupi mendefinisikan karakteristik share group backend."
+
 #, python-format
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr ""
 "Ukuran berbagi (share size) tidak bisa kurang dari ukuran snapshot (%sGiB)"
+
+msgid "The share type defines the characteristics of a share backend."
+msgstr "Tipe share mendefinisikan karakteristik share backend."
+
+msgid "To add extra-specs use:"
+msgstr "Untuk menambahkan penggunaan extra-specs:"
+
+msgid "To add group-specs use:"
+msgstr "Untuk menambahkan penggunaan group-specs:"
+
+msgid "To add metadata use:"
+msgstr "Untuk menambahkan penggunaan metadata:"
+
+msgid "To unset extra-specs use:"
+msgstr "Untuk tidak mengatur penggunaan extra-specs:"
+
+msgid "To unset group-specs use:"
+msgstr "Untuk tak mengatur penggunaan group-specs:"
+
+msgid "To unset metadata use:"
+msgstr "Untuk tanpa mengatur penggunaan metadata:"
+
+msgid "Total Gibibytes"
+msgstr "Total Gibibytes"
 
 msgid "Type"
 msgstr "Type (tipe)"
@@ -1475,6 +1900,12 @@ msgstr "Update Share Type (Memperbarui tipe share)"
 msgid "Update Share group Type"
 msgstr "Update Share group Type"
 
+msgid "Update share network"
+msgstr "Perbarui jaringan berbagi"
+
+msgid "Updated"
+msgstr "Diperbarui"
+
 msgid "Updated At"
 msgstr "Updated At"
 
@@ -1528,6 +1959,9 @@ msgstr "Visibility (keterlihatan)"
 
 msgid "Writable"
 msgstr "Writable (dapat ditulis)"
+
+msgid "as Active?"
+msgstr "as Active?"
 
 msgid "key=value pairs per line can be set"
 msgstr "Pasasngan key=value per baris dapat diatur"
