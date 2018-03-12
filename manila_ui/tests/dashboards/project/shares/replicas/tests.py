@@ -12,7 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import copy
 import ddt
 from django.core.urlresolvers import reverse
 import mock
@@ -205,7 +204,7 @@ class ReplicasTests(test.TestCase):
     @ddt.unpack
     def test_delete_not_allowed(self, replica_list, replica_id,
                                 replication_type):
-        share = copy.copy(self.share)
+        share = test_data.share
         share.replication_type = replication_type
         formData = {"action": "replicas__delete__%s" % replica_id}
         self.mock_object(api_manila, "share_replica_delete")
@@ -237,7 +236,7 @@ class ReplicasTests(test.TestCase):
     )
     @ddt.unpack
     def test_delete_allowed(self, replica_list, replica_id, replication_type):
-        share = copy.copy(self.share)
+        share = test_data.share
         share.replication_type = replication_type
         formData = {"action": "replicas__delete__%s" % replica_id}
         self.mock_object(api_manila, "share_replica_delete")

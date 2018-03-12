@@ -180,15 +180,15 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
 
     def clean(self):
         cleaned_data = super(CreateShareGroupForm, self).clean()
-        errors = [k for k in self.errors.viewkeys()]
+        form_errors = list(self.errors)
 
-        for k in errors:
-            sgt_name = k.split(self.st_field_name_prefix)[-1]
+        for error in form_errors:
+            sgt_name = error.split(self.st_field_name_prefix)[-1]
             chosen_sgt = cleaned_data.get("sgt")
-            if (k.startswith(self.st_field_name_prefix) and
+            if (error.startswith(self.st_field_name_prefix) and
                     sgt_name != chosen_sgt):
-                cleaned_data[k] = "Not set"
-                self.errors.pop(k, None)
+                cleaned_data[error] = "Not set"
+                self.errors.pop(error, None)
 
         source_type = cleaned_data.get("source_type")
         if source_type != "snapshot":

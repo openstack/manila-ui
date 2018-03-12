@@ -6,9 +6,17 @@
         - openstack-tox-lower-constraints:
             required-projects:
               openstack/horizon
+        # TODO(amotoki): Drop this after project-config patch defines it.
+        - openstack-tox-py35:
+            required-projects:
+              openstack/horizon
     gate:
       jobs:
         - openstack-tox-lower-constraints:
+            required-projects:
+              openstack/horizon
+        # TODO(amotoki): Drop this after project-config patch defines it.
+        - openstack-tox-py35:
             required-projects:
               openstack/horizon
 
