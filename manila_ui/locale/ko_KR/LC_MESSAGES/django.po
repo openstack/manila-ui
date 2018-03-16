@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-28 14:06+0000\n"
+"POT-Creation-Date: 2018-03-11 21:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-02-12 10:05+0000\n"
+"PO-Revision-Date: 2018-03-13 02:13+0000\n"
 "Last-Translator: Ian Y. Choi <ianyrchoi@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
 "Language: ko_KR\n"
@@ -176,6 +176,9 @@ msgstr "공유 유형 생성"
 
 msgid "Create a Share"
 msgstr "공유 생성"
+
+msgid "Created"
+msgstr "생성됨"
 
 msgid "Created At"
 msgstr "생성 시점"
@@ -806,6 +809,9 @@ msgstr "규칙"
 msgid "Save Changes"
 msgstr "변경사항 저장"
 
+msgid "Security Service Details"
+msgstr "보안 서비스 상세 정보"
+
 #, python-format
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "보안 서비스 상세정보: %(service_display_name)s"
@@ -878,6 +884,9 @@ msgstr "공유 그룹 개요"
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Share Group Snapshot"
 msgstr "공유 그룹 스냅샷"
+
+msgid "Share Group Snapshot Details"
+msgstr "공유 그룹 스냅샷 상세 정보"
 
 #, python-format
 msgid "Share Group Snapshot Details: %(sgs_display_name)s"
@@ -1068,6 +1077,9 @@ msgstr "스냅샷 규칙: %(snapshot_display_name)s"
 
 msgid "Source"
 msgstr "소스"
+
+msgid "Source Share Group"
+msgstr "공유 그룹 원본"
 
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Source Share Group Snapshot"
