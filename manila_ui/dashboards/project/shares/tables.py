@@ -167,7 +167,7 @@ class RevertShare(tables.LinkAction):
 
     def allowed(self, request, share=None):
         return (
-            share.revert_to_snapshot_support and
+            getattr(share, 'revert_to_snapshot_support', False) and
             share.status.lower() == "available"
         )
 
@@ -255,7 +255,8 @@ class SharesTableBase(tables.DataTable):
         return obj.name or obj.id
 
     def get_share_group_link(share):
-        if features.is_share_groups_enabled() and share.share_group_id:
+        if (features.is_share_groups_enabled() and
+                getattr(share, 'share_group_id', None)):
             return reverse(
                 "horizon:project:share_groups:detail",
                 args=(share.share_group_id,))
