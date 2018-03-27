@@ -39,6 +39,14 @@ MANILA_SERVICE_TYPE = "sharev2"
 SHARE_STATE_AVAILABLE = "available"
 DEFAULT_QUOTA_NAME = 'default'
 
+MANILA_QUOTA_FIELDS = {
+    "shares",
+    "share_gigabytes",
+    "share_snapshots",
+    "share_snapshot_gigabytes",
+    "share_networks",
+}
+
 
 def manilaclient(request):
     insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)

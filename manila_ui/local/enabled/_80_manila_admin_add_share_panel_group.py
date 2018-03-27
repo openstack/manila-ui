@@ -18,3 +18,19 @@ PANEL_GROUP = 'share'
 PANEL_GROUP_NAME = 'Share'
 # The slug of the dashboard the PANEL_GROUP associated with. Required.
 PANEL_GROUP_DASHBOARD = 'admin'
+
+EXTRA_TABS = {
+    'openstack_dashboard.dashboards.admin.defaults.tabs.DefaultsTabs': (
+        'manila_ui.dashboards.admin.defaults.tabs.ShareQuotasTab',
+    ),
+}
+EXTRA_STEPS = {
+    'openstack_dashboard.dashboards.identity.projects.workflows.UpdateQuota': (
+        'manila_ui.dashboards.identity.projects.workflows.UpdateShareQuota',
+    ),
+    'openstack_dashboard.dashboards.admin.defaults.workflows.'
+    'UpdateDefaultQuotas': (
+        'manila_ui.dashboards.admin.defaults.workflows.'
+        'UpdateDefaultShareQuotasStep',
+    ),
+}
