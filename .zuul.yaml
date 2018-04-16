@@ -1,0 +1,18 @@
+- project:
+    check:
+      jobs:
+        - manila-ui-dsvm:
+            voting: false
+
+- job:
+    name: manila-ui-dsvm
+    parent: legacy-dsvm-base
+    run: playbooks/legacy/manila-ui-dsvm/run.yaml
+    post-run: playbooks/legacy/manila-ui-dsvm/post.yaml
+    timeout: 6000
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/manila
+      - openstack/manila-ui
+      - openstack/python-manilaclient
+      - openstack/manila-tempest-plugin
