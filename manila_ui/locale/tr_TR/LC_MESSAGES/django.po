@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-28 14:06+0000\n"
+"POT-Creation-Date: 2018-04-18 02:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -226,9 +226,6 @@ msgstr "Mevcut Boyut (GiB)"
 
 msgid "DNS IP"
 msgstr "DNS IP"
-
-msgid "Default Quotas"
-msgstr "Öntanımlı Kotalar"
 
 msgid "Delete Replica"
 msgid_plural "Delete Replicas"
@@ -493,9 +490,6 @@ msgstr "İstemci Destekli Göçe Zorla"
 msgid "From here you can update share network info. "
 msgstr "Burdan paylaşım ağı bilgisini güncelleyebilirsiniz. "
 
-msgid "From here you can update the default quotas (max limits)."
-msgstr "Buradan öntanımlı kotaları güncelleyebilirsiniz (azami sınırlar)."
-
 msgid "Get migration progress"
 msgstr "Göç ilerlemesini al"
 
@@ -611,12 +605,6 @@ msgstr "Göç konumu"
 msgid "Migration of share %(name)s is at %(progress)s percent."
 msgstr "%(name)s paylaşımının göçü yüzde %(progress)s."
 
-msgid ""
-"Modified project information and members, but unable to modify project "
-"quotas."
-msgstr ""
-"Proje bilgisi ve üyeleri değiştirildi, ama proje kotaları değiştirilemiyor."
-
 msgid "Name"
 msgstr "İsim"
 
@@ -703,9 +691,6 @@ msgstr "İletişim Kuralı"
 
 msgid "Public"
 msgstr "Açık"
-
-msgid "Quota"
-msgstr "Kota"
 
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
@@ -1387,9 +1372,6 @@ msgstr "Birim ayrıntıları alınamıyor."
 
 msgid "Unable to revert share to the snapshot."
 msgstr "Paylaşım anlık görüntüye geri alınamadı."
-
-msgid "Unable to set project quotas."
-msgstr "Proje kotaları ayarlanamıyor."
 
 #, python-format
 msgid "Unable to set replica '%s' as active."

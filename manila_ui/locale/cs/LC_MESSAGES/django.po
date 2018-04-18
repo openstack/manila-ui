@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-22 13:25+0000\n"
+"POT-Creation-Date: 2018-04-18 02:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: Stanislav Ulrych <stanislav.ulrych@ultimum.io>\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
 #, python-format
@@ -259,9 +259,6 @@ msgstr "Vynutit migraci asistovanou hostitelem"
 msgid "From here you can update share network info. "
 msgstr "Zde můžete upravit informace o síti sdílení."
 
-msgid "From here you can update the default quotas (max limits)."
-msgstr "Zde můžete aktualizovat výchozí kvóty (max. limity)."
-
 msgid "Host"
 msgstr "Hostitel"
 
@@ -344,13 +341,6 @@ msgstr "Migrace do"
 msgid "Migration of share %(name)s is at %(progress)s percent."
 msgstr "Migrace sdílení %(name)s je hotová z %(progress)s procent."
 
-msgid ""
-"Modified project information and members, but unable to modify project "
-"quotas."
-msgstr ""
-"Informace o projektu a členové projektu modifikováni, ale modifikace kvót "
-"selhala."
-
 msgid "Name"
 msgstr "Název"
 
@@ -416,9 +406,6 @@ msgstr "Protokol"
 
 msgid "Public"
 msgstr "Veřejný"
-
-msgid "Quota"
-msgstr "Kvóta"
 
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
@@ -792,9 +779,6 @@ msgstr "Nelze získat snapshot."
 
 msgid "Unable to retrieve volume details."
 msgstr "Nelze získat detaily svazku."
-
-msgid "Unable to set project quotas."
-msgstr "Nelze nastavit kvóty projektu."
 
 #, python-format
 msgid "Unable to set replica '%s' as active."

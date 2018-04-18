@@ -1,12 +1,12 @@
 # Akihiro Motoki <amotoki@gmail.com>, 2016. #zanata
-# Shu Muto <shu-mutou@rf.jp.nec.com>, 2016. #zanata
+# Shu Muto <shu.mutow@gmail.com>, 2016. #zanata
 # Kyohei Moriyama <flogofrein@gmail.com>, 2017. #zanata
 # Yuko Katabami <yukokatabami@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-22 13:25+0000\n"
+"POT-Creation-Date: 2018-04-18 02:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Last-Translator: Kyohei Moriyama <flogofrein@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #, python-format
@@ -248,9 +248,6 @@ msgstr "追加スペック"
 msgid "From here you can update share network info. "
 msgstr "ここから、ファイル共有ネットワーク情報を更新できます。"
 
-msgid "From here you can update the default quotas (max limits)."
-msgstr "ここから標準のクォータ (上限) を更新できます。"
-
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
 "key=value."
@@ -329,13 +326,6 @@ msgstr "メタデータ"
 msgid "Migrate a Share"
 msgstr "ファイル共有の移行"
 
-msgid ""
-"Modified project information and members, but unable to modify project "
-"quotas."
-msgstr ""
-"プロジェクトの情報とメンバーを変更しましたが、プロジェクトのクォータを変更で"
-"きません。"
-
 msgid "Name"
 msgstr "名前"
 
@@ -395,9 +385,6 @@ msgstr "プロトコル"
 
 msgid "Public"
 msgstr "パブリック"
-
-msgid "Quota"
-msgstr "クォータ"
 
 #, python-format
 msgid ""
@@ -727,9 +714,6 @@ msgstr "スナップショットを取得できません。"
 
 msgid "Unable to retrieve volume details."
 msgstr "ボリュームの詳細を取得できません。"
-
-msgid "Unable to set project quotas."
-msgstr "プロジェクトのクォータを設定できません。"
 
 msgid "Unable to unmanage share."
 msgstr "ファイル共有の管理を解除できません。"
