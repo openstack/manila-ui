@@ -10,5 +10,5 @@ manila-ui - Manila Management Dashboard
 Team and repository tags
 ------------------------
 
-.. image:: https://governance.openstack.org/badges/manila-ui.svg
-    :target: https://governance.openstack.org/reference/tags/index.html
+.. image:: https://governance.openstack.org/tc/badges/manila-ui.svg
+    :target: https://governance.openstack.org/tc/reference/tags/index.html
