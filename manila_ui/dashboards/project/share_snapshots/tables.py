@@ -12,9 +12,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core.urlresolvers import NoReverseMatch  # noqa
-from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
+from django.urls import NoReverseMatch  # noqa
+from django.urls import reverse
 from django.utils.http import urlencode  # noqa
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import string_concat  # noqa

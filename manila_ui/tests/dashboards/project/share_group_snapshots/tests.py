@@ -14,7 +14,7 @@
 #    under the License.
 
 import ddt
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 import mock
 
 from manila_ui.api import manila as api_manila

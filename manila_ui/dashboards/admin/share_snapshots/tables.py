@@ -11,8 +11,8 @@
 # under the License.
 
 
-from django.core.urlresolvers import reverse
 from django.template.defaultfilters import title  # noqa
+from django.urls import reverse
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy

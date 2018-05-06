@@ -13,7 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from horizon import exceptions as horizon_exceptions
 import mock
 from neutronclient.client import exceptions

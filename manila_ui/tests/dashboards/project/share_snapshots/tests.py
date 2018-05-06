@@ -13,7 +13,7 @@
 #    under the License.
 
 import ddt
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 import mock
 from openstack_dashboard.api import neutron
 from openstack_dashboard.usage import quotas
