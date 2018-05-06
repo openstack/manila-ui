@@ -79,8 +79,7 @@ def metadata_to_str(metadata, meta_visible_limit=4, text_length_limit=25):
         return metadata
 
     meta = []
-    meta_keys = metadata.keys()
-    meta_keys.sort()
+    meta_keys = sorted(metadata.keys())
     meta_keys = meta_keys[:meta_visible_limit]
     for k in meta_keys:
         k_shortenned = k

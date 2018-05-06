@@ -96,7 +96,7 @@ class UpdateShareType(forms.SelfHandlingForm):
         # NOTE(vponomaryov): parse existing extra specs
         #                    to str view for textarea html element
         es_str = ""
-        for k, v in self.initial["extra_specs"].iteritems():
+        for k, v in self.initial["extra_specs"].items():
             es_str += "%s=%s\r\n" % (k, v)
         self.initial["extra_specs"] = es_str
 

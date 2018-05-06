@@ -164,7 +164,7 @@ class CreateForm(forms.SelfHandlingForm):
                     del self.fields['snapshot']
             except Exception:
                 exceptions.handle(request, _("Unable to retrieve "
-                                  "share snapshots."))
+                                             "share snapshots."))
 
             if source_type_choices:
                 choices = ([('no_source_type',
@@ -176,17 +176,17 @@ class CreateForm(forms.SelfHandlingForm):
 
     def clean(self):
         cleaned_data = super(CreateForm, self).clean()
-        errors = [k for k in self.errors.viewkeys()]
+        form_errors = list(self.errors)
 
         # NOTE(vponomaryov): skip errors for share-network fields that are not
         # related to chosen share type.
-        for k in errors:
-            st_name = k.split(self.sn_field_name_prefix)[-1]
+        for error in form_errors:
+            st_name = error.split(self.sn_field_name_prefix)[-1]
             chosen_st = cleaned_data.get('share_type')
-            if (k.startswith(self.sn_field_name_prefix) and
+            if (error.startswith(self.sn_field_name_prefix) and
                     st_name != chosen_st):
-                cleaned_data[k] = 'Not set'
-                self.errors.pop(k, None)
+                cleaned_data[error] = 'Not set'
+                self.errors.pop(error, None)
 
         share_type = cleaned_data.get('share_type')
         if share_type:
@@ -299,7 +299,7 @@ class UpdateMetadataForm(forms.SelfHandlingForm):
     def __init__(self, *args, **kwargs):
         super(UpdateMetadataForm, self).__init__(*args, **kwargs)
         meta_str = ""
-        for k, v in self.initial["metadata"].iteritems():
+        for k, v in self.initial["metadata"].items():
             meta_str += "%s=%s\r\n" % (k, v)
         self.initial["metadata"] = meta_str
 

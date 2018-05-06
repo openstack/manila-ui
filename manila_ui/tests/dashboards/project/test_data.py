@@ -360,6 +360,17 @@ share_type_dhss_true = share_types.ShareType(
      'extra_specs': {'driver_handles_share_servers': True}}
 )
 
+share_type_alt = share_types.ShareType(
+    share_types.ShareTypeManager(FakeAPIClient),
+    {'id': 'share-type-id4',
+     'name': 'test-share-type4',
+     'share_type_access:is_public': True,
+     'extra_specs': {
+         'snapshot_support': True,
+         'driver_handles_share_servers': False}
+     }
+)
+
 share_group_type = share_group_types.ShareGroupType(
     share_group_types.ShareGroupTypeManager(FakeAPIClient),
     {'id': 'fake_share_group_type_id1',
@@ -384,6 +395,15 @@ share_group_type_dhss_true = share_group_types.ShareGroupType(
      'name': 'fake_share_group_type_name',
      'share_types': [share_type_dhss_true.id],
      'group_specs': {'k3': 'v3', 'k4': 'v4'},
+     'is_public': True}
+)
+
+share_group_type_alt = share_group_types.ShareGroupType(
+    share_group_types.ShareGroupTypeManager(FakeAPIClient),
+    {'id': 'fake_share_group_type_id4',
+     'name': 'fake_share_group_type_name',
+     'share_types': [share_type_alt.id],
+     'group_specs': {'k5': 'v5', 'k6': 'v6'},
      'is_public': True}
 )
 
