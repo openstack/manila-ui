@@ -14,7 +14,7 @@
 # under the License.
 
 import ddt
-from django.forms import ValidationError  # noqa
+from django.forms import ValidationError
 
 from manila_ui.dashboards import utils
 from manila_ui.tests import helpers as base

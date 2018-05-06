@@ -11,7 +11,7 @@
 # under the License.
 
 
-from django.template.defaultfilters import title  # noqa
+from django.template.defaultfilters import title
 from django.urls import reverse
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _

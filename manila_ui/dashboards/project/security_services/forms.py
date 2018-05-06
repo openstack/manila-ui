@@ -13,15 +13,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.forms import ValidationError  # noqa
-from django.template.defaultfilters import filesizeformat  # noqa
+from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.debug import sensitive_variables  # noqa
+from django.views.decorators.debug import sensitive_variables
 from horizon import exceptions
 from horizon import forms
 from horizon import messages
-from horizon.utils.memoized import memoized  # noqa
 
 from manila_ui.api import manila
 

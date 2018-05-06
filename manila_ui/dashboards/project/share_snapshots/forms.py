@@ -17,10 +17,7 @@
 Views for managing share snapshots.
 """
 
-from django.forms import ValidationError  # noqa
-from django.template.defaultfilters import filesizeformat  # noqa
 from django.urls import reverse
-from django.utils.http import urlencode  # noqa
 from django.utils.translation import ugettext_lazy as _
 from horizon import exceptions
 from horizon import forms

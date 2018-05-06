@@ -13,7 +13,7 @@
 #    under the License.
 
 
-from django.template.defaultfilters import register  # noqa
+from django.template.defaultfilters import register
 
 
 @register.filter
