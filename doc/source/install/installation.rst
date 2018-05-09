@@ -2,40 +2,27 @@
 Installation
 ============
 
+DevStack Installation
+---------------------
+
+Add this repo as an external repository into your ``local.conf`` file::
+
+    [[local|localrc]]
+    enable_plugin manila-ui git://git.openstack.org/openstack/manila-ui
+
 Manual Installation
 -------------------
 
-For Manila UI installation in RDO, see: :ref:`install-rdo`.
-For other distributions, begin by
-cloning the Horizon and Manila UI repositories::
+Begin by installing Horizon following the `Horizon Manual Installation Guide <https://docs.openstack.org/horizon/latest/install/from-source.html>`__
+and clone Manila UI repository::
 
-    git clone https://github.com/openstack/horizon
-    git clone https://github.com/openstack/manila-ui
+    git clone git://git.openstack.org/openstack/manila-ui
 
-Create a virtual environment and install Horizon dependencies::
+Install Manila UI with all dependencies. From within the horizon folder::
 
-    cd horizon
-    python tools/install_venv.py
+    pip install -e ../manila-ui/
 
-Set up your ``local_settings.py`` file::
-
-    cp openstack_dashboard/local/local_settings.py.example openstack_dashboard/local/local_settings.py
-
-Open up the copied ``local_settings.py`` file in your preferred text
-editor. You will want to customize several settings:
-
--  ``OPENSTACK_HOST`` should be configured with the hostname of your
-   OpenStack server. Verify that the ``OPENSTACK_KEYSTONE_URL`` and
-   ``OPENSTACK_KEYSTONE_DEFAULT_ROLE`` settings are correct for your
-   environment. (They should be correct unless you modified your
-   OpenStack server to change them.)
-
-
-Install Manila UI with all dependencies in your virtual environment::
-
-    tools/with_venv.sh pip install -e ../manila-ui/
-
-And enable it in Horizon::
+And enable it in Horizon.::
 
     cp ../manila-ui/manila_ui/local/enabled/_*.py openstack_dashboard/local/enabled
     cp ../manila-ui/manila_ui/local/local_settings.d/_90_manila_*.py openstack_dashboard/local/local_settings.d
@@ -49,9 +36,9 @@ In order to install Manila UI in `RDO <https://www.rdoproject.org>`__,
 please follow the steps below (you may need to use `sudo` privileges
 if you are not root)::
 
-# yum install -y openstack-manila-ui
-# systemctl restart httpd
-# systemctl restart memcached
+    # yum install -y openstack-manila-ui
+    # systemctl restart httpd
+    # systemctl restart memcached
 
 Manila UI will now be available through OpenStack Horizon; look for
 the Shares tab under Project > Compute. You can access Horizon with
