@@ -3,16 +3,17 @@
 # Frank Kloeker <eumel@arcor.de>, 2017. #zanata
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 # Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
+# Robert Simai <robert.simai@suse.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-04-18 02:02+0000\n"
+"POT-Creation-Date: 2018-05-10 10:15+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-02-27 03:46+0000\n"
-"Last-Translator: Reik Keutterling <spielkind@gmail.com>\n"
+"PO-Revision-Date: 2018-05-11 02:20+0000\n"
+"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -502,6 +503,9 @@ msgstr "Freigabe erweitern"
 msgid "Extend share \"%s\""
 msgstr "Erweitere Freigabe \"%s\""
 
+msgid "Extend the size of a share. "
+msgstr "Größe einer Freigabe erweitern"
+
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Erweiterungsfehler"
@@ -585,6 +589,9 @@ msgstr "Der Schlüssel darf keine Leerzeichen enthalten. Prüfen Sie '%s'."
 #, python-format
 msgid "Keys should not contain spaces. Error in '%s'."
 msgstr "Schlüssel dürfen keine Leerzeichen enthalten. Fehler in '%s'."
+
+msgid "Limit"
+msgstr "Limit"
 
 msgid "Make visible for all"
 msgstr "Für alle sichtbar machen"
@@ -689,6 +696,9 @@ msgstr "Ohne Unterbrechung"
 msgid "Nova Net"
 msgstr "Nova Netz"
 
+msgid "Number of Shares"
+msgstr "Anzahl der Freigaben"
+
 msgid "Obtain Progress"
 msgstr "Erhalte Fortschritt"
 
@@ -724,6 +734,9 @@ msgstr "Protokoll"
 
 msgid "Public"
 msgstr "Öffentlich"
+
+msgid "Quota Name"
+msgstr "Kontingentname"
 
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
@@ -926,6 +939,9 @@ msgstr "Freigegebene Instanzen Übersicht"
 msgid "Share Instances"
 msgstr "Freigabeinstanzen"
 
+msgid "Share Limits"
+msgstr "Freigabenlimits"
+
 msgid "Share Name"
 msgstr "Freigabename"
 
@@ -954,6 +970,9 @@ msgstr "Freigabenprotokoll"
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
 msgstr "Freigaben-Replikas: %(share_display_name)s"
+
+msgid "Share Rules"
+msgstr "Freigabenregeln"
 
 #, python-format
 msgid "Share Rules: %(share_display_name)s"
@@ -1108,6 +1127,9 @@ msgid ""
 msgstr ""
 "Geben Sie den neuen Share-Typ für das Share an. Geben Sie diesen Parameter "
 "nicht an, wenn das Migrations-Share seinen aktuellen Share-Typ behalten soll."
+
+msgid "Specs"
+msgstr "Spezifikationen"
 
 msgid "Start migration"
 msgstr "Migration starten"
