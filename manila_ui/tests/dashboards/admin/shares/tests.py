@@ -14,7 +14,7 @@
 #    under the License.
 
 import ddt
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 import mock
 from openstack_dashboard.api import keystone as api_keystone
 from openstack_dashboard.api import neutron as api_neutron
