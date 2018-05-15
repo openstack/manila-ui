@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-05-10 10:15+0000\n"
+"POT-Creation-Date: 2018-05-14 11:44+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-05-11 02:20+0000\n"
+"PO-Revision-Date: 2018-05-14 02:10+0000\n"
 "Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -39,6 +39,9 @@ msgstr "Zugriffsschlüssel"
 
 msgid "Access Level"
 msgstr "Zugriffsstufe"
+
+msgid "Access Rules"
+msgstr "Zugriffsregeln"
 
 msgid "Access To"
 msgstr "Zugriff auf"
@@ -516,6 +519,21 @@ msgstr "Extra Spezifikationen"
 msgid "Force Host Assisted Migration"
 msgstr "Erzwinge durch Host unterstützte Migration"
 
+msgid "From here you can modify name and description of a share network."
+msgstr ""
+"Hier können Sie Name und Beschreibung eines Freigabe-Netzwerkes ändern."
+
+msgid "From here you can modify name and description of a snapshot."
+msgstr "Hier können Sie Name und Beschreibung einer Schattenkopie ändern."
+
+msgid "From here you can modify name, description and visibility of a share."
+msgstr ""
+"Hier können Sie Name, Beschreibung und Sichtbarkeit einer Freigabe ändern."
+
+msgid "From here you can revert the share to its latest snapshot."
+msgstr ""
+"Hier können Sie die Freigabe auf die letzte Schattenkopie zurücksetzen."
+
 msgid "From here you can update share network info. "
 msgstr "Hier können Sie Informationen zum Freigabenetzwerk aktualisieren."
 
@@ -524,6 +542,9 @@ msgstr "Migrationsfortschritt abrufen"
 
 msgid "Get migration progress"
 msgstr "Migrationsfortschritt abrufen"
+
+msgid "GiB"
+msgstr "GiB"
 
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
@@ -645,6 +666,9 @@ msgstr "Migration der Freigabe %(name)s ist bei %(progress)s Prozent."
 msgid "Name"
 msgstr "Name"
 
+msgid "Net Details"
+msgstr "Netz Details"
+
 msgid "Network"
 msgstr "Netzwerk"
 
@@ -696,6 +720,9 @@ msgstr "Ohne Unterbrechung"
 msgid "Nova Net"
 msgstr "Nova Netz"
 
+msgid "Number of Share Snapshots"
+msgstr "Anzahl der Freigaben-Schattenkopien"
+
 msgid "Number of Shares"
 msgstr "Anzahl der Freigaben"
 
@@ -704,6 +731,9 @@ msgstr "Erhalte Fortschritt"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Erhalte Fortschritt der Migration einer Freigabe"
+
+msgid "One line - one action. Empty strings will be ignored."
+msgstr "Eine Zeile - eine Aktion. Leere Zeichenketten werden ignoriert."
 
 msgid "Overview"
 msgstr "Übersicht"
@@ -883,6 +913,9 @@ msgstr "Freigabe"
 msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
 msgstr "Freigabe \"%(s)s\" wurde auf Schattenkkopie \"%(ss)s\" zurückgestellt"
 
+msgid "Share Details"
+msgstr "Freigabendetails"
+
 #, python-format
 msgid "Share Details: %(share_display_name)s"
 msgstr "Details Freigabe: %(share_display_name)s"
@@ -966,6 +999,9 @@ msgstr "Freigaben Übersicht"
 
 msgid "Share Protocol"
 msgstr "Freigabenprotokoll"
+
+msgid "Share Quotas"
+msgstr "Kontingente teilen"
 
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
@@ -1069,11 +1105,17 @@ msgstr "Freigabetyp"
 msgid "Share types"
 msgstr "Freigabetypen"
 
+msgid "Shared Quotas"
+msgstr "Geteilte Kontingente"
+
 msgid "Shares"
 msgstr "Freigaben"
 
 msgid "Shares Networks"
 msgstr "Freigabenetzwerke"
+
+msgid "Shares on this server"
+msgstr "Freigaben auf diesem Server"
 
 msgid "Sid"
 msgstr "Sid"
@@ -1203,6 +1245,12 @@ msgstr ""
 "Die Größe der Freigabe kann nicht kleiner als die der Schattenkopie sein "
 "(%sGiB)"
 
+msgid "To add metadata use:"
+msgstr "Zum hinzufügen von Metadaten verwenden Sie:"
+
+msgid "To unset metadata use:"
+msgstr "Zum Zurücksetzen von Metadaten verwenden Sie:"
+
 msgid "Total Gibibytes"
 msgstr "Gesamt Gibibytes"
 
@@ -1297,6 +1345,9 @@ msgstr "Konnte Informationen über Freigabetypenzugriff nicht abrufen."
 
 msgid "Unable to get list of projects."
 msgstr "Konnte Projektliste nicht abrufen."
+
+msgid "Unable to get manila default quota."
+msgstr "Manila-Standardkontingent kann nicht abgerufen werden."
 
 msgid "Unable to get the security services hosts"
 msgstr "Konnte die Sicherheitsdienst-Hosts nicht abrufen"
