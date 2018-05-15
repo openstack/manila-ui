@@ -23,6 +23,7 @@ from manila_ui.api import manila as api_manila
 
 
 class ShareQuotaAction(project_workflows.CommonQuotaAction):
+    use_mox = False
     shares = forms.IntegerField(min_value=-1, label=_("Shares"))
     share_gigabytes = forms.IntegerField(
         min_value=-1, label=_("Share gigabytes"))
