@@ -16,7 +16,6 @@ import ddt
 from django.urls import reverse
 import mock
 from openstack_dashboard.api import neutron
-from openstack_dashboard.usage import quotas
 
 from manila_ui.api import manila as api_manila
 from manila_ui.tests.dashboards.project import test_data
@@ -37,7 +36,8 @@ class SnapshotSnapshotViewTests(test.TestCase):
         url = reverse('horizon:project:share_snapshots:share_snapshot_create',
                       args=[share.id])
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, "tenant_absolute_limits",
+            mock.Mock(return_value=usage_limit))
         self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 

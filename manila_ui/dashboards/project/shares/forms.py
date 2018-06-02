@@ -22,7 +22,6 @@ from horizon import exceptions
 from horizon import forms
 from horizon import messages
 from horizon.utils.memoized import memoized  # noqa
-from openstack_dashboard.usage import quotas
 import six
 
 from manila_ui.api import manila
@@ -381,7 +380,7 @@ class ExtendForm(forms.SelfHandlingForm):
             self._errors["new_size"] = self.error_class([message])
             return cleaned_data
 
-        usages = quotas.tenant_limit_usages(self.request)
+        usages = manila.tenant_absolute_limits(self.request)
         availableGB = (usages['maxTotalShareGigabytes'] -
                        usages['totalShareGigabytesUsed'])
         if availableGB < (new_size - orig_size):

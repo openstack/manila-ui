@@ -20,7 +20,6 @@ from horizon import forms
 from horizon import tables
 from horizon import tabs
 from horizon.utils import memoized
-from openstack_dashboard.usage import quotas
 
 from manila_ui.api import manila
 from manila_ui.dashboards.project.share_snapshots import forms as ss_forms
@@ -116,7 +115,7 @@ class CreateShareSnapshotView(forms.ModalFormView):
         context = super(self.__class__, self).get_context_data(**kwargs)
         context['share_id'] = self.kwargs['share_id']
         try:
-            context['usages'] = quotas.tenant_limit_usages(self.request)
+            context['usages'] = manila.tenant_absolute_limits(self.request)
         except Exception:
             exceptions.handle(self.request, _('Unable to retrieve quotas.'))
         return context

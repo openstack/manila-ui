@@ -72,9 +72,6 @@ class ShareViewTests(test.APITestCase):
         self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
-            quotas, "tenant_limit_usages",
-            mock.Mock(return_value=test_data.quota_usage))
-        self.mock_object(
             quotas, "tenant_quota_usages",
             mock.Mock(return_value=test_data.quota_usage))
 
@@ -363,7 +360,8 @@ class ShareViewTests(test.APITestCase):
         }
         url = reverse('horizon:project:shares:extend', args=[share.id])
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, "tenant_absolute_limits",
+            mock.Mock(return_value=usage_limit))
         self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
 
@@ -382,7 +380,8 @@ class ShareViewTests(test.APITestCase):
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, 'tenant_absolute_limits',
+            mock.Mock(return_value=usage_limit))
 
         response = self.client.get(url)
 
@@ -390,7 +389,7 @@ class ShareViewTests(test.APITestCase):
         self.assertTemplateUsed(response, 'project/shares/extend.html')
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
         self.assertFalse(api_manila.share_extend.called)
-        quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        api_manila.tenant_absolute_limits.assert_called_once_with(mock.ANY)
 
     def test_extend_share_get_with_api_exception(self):
         usage_limit = {
@@ -400,7 +399,8 @@ class ShareViewTests(test.APITestCase):
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, 'tenant_absolute_limits',
+            mock.Mock(return_value=usage_limit))
         self.mock_object(
             api_manila, "share_get",
             mock.Mock(return_value=Exception('Fake share NotFound exception')))
@@ -412,7 +412,7 @@ class ShareViewTests(test.APITestCase):
             response, 'project/shares/shares/extend.html')
         self.assertFalse(api_manila.share_extend.called)
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
-        self.assertFalse(quotas.tenant_limit_usages.called)
+        self.assertFalse(api_manila.tenant_absolute_limits.called)
 
     @ddt.data(6, 54, 55)
     def test_extend_share_post_successfully(self, new_size):
@@ -425,7 +425,8 @@ class ShareViewTests(test.APITestCase):
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, 'tenant_absolute_limits',
+            mock.Mock(return_value=usage_limit))
 
         response = self.client.post(url, form_data)
 
@@ -435,7 +436,7 @@ class ShareViewTests(test.APITestCase):
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
         api_manila.share_extend.assert_called_once_with(
             mock.ANY, self.share.id, form_data['new_size'])
-        quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        api_manila.tenant_absolute_limits.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(response, INDEX_URL)
 
     @ddt.data(0, 5, 56)
@@ -449,7 +450,8 @@ class ShareViewTests(test.APITestCase):
         url = reverse('horizon:project:shares:extend', args=[self.share.id])
         self.mock_object(api_manila, "share_extend")
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, 'tenant_absolute_limits',
+            mock.Mock(return_value=usage_limit))
 
         response = self.client.post(url, form_data)
 
@@ -457,7 +459,7 @@ class ShareViewTests(test.APITestCase):
         self.assertTemplateUsed(response, 'project/shares/extend.html')
         self.assertFalse(api_manila.share_extend.called)
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
-        quotas.tenant_limit_usages.assert_called_with(mock.ANY)
+        api_manila.tenant_absolute_limits.assert_called_with(mock.ANY)
 
     def test_extend_share_post_with_api_exception(self):
         self.share.size = 5
@@ -471,7 +473,8 @@ class ShareViewTests(test.APITestCase):
             api_manila, "share_extend",
             mock.Mock(return_value=Exception('Fake API exception')))
         self.mock_object(
-            quotas, "tenant_limit_usages", mock.Mock(return_value=usage_limit))
+            api_manila, 'tenant_absolute_limits',
+            mock.Mock(return_value=usage_limit))
 
         response = self.client.post(url, form_data)
 
@@ -481,7 +484,7 @@ class ShareViewTests(test.APITestCase):
         api_manila.share_extend.assert_called_once_with(
             mock.ANY, self.share.id, form_data['new_size'])
         api_manila.share_get.assert_called_once_with(mock.ANY, self.share.id)
-        quotas.tenant_limit_usages.assert_called_once_with(mock.ANY)
+        api_manila.tenant_absolute_limits.assert_called_once_with(mock.ANY)
         self.assertRedirectsNoFollow(response, INDEX_URL)
 
     def test_revert_to_snapshot_get_success(self):

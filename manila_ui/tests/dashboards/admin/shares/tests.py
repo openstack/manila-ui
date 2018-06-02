@@ -54,9 +54,6 @@ class SharesTests(test.BaseAdminViewTests):
         self.mock_object(
             api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(
-            quotas, "tenant_limit_usages",
-            mock.Mock(return_value=test_data.quota_usage))
-        self.mock_object(
             quotas, "tenant_quota_usages",
             mock.Mock(return_value=test_data.quota_usage))
 

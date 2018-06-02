@@ -26,7 +26,6 @@ from manila_ui.dashboards.project.shares import forms as share_form
 from manila_ui.dashboards.project.shares import tables as shares_tables
 from manila_ui.dashboards.project.shares import tabs as shares_tabs
 from manila_ui.dashboards import utils as ui_utils
-from openstack_dashboard.usage import quotas
 
 
 class ShareTableMixIn(object):
@@ -136,7 +135,7 @@ class CreateView(forms.ModalFormView):
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
         try:
-            context['usages'] = quotas.tenant_limit_usages(self.request)
+            context['usages'] = manila.tenant_absolute_limits(self.request)
         except Exception:
             exceptions.handle(self.request)
         return context
@@ -299,7 +298,7 @@ class ExtendView(forms.ModalFormView):
         args = (self.get_object().id,)
         context['submit_url'] = reverse(self.submit_url, args=args)
         try:
-            context['usages'] = quotas.tenant_limit_usages(self.request)
+            context['usages'] = manila.tenant_absolute_limits(self.request)
             context['usages']['totalShareGigabytesUsed'] -= int(
                 self.get_object().size)
         except Exception:
