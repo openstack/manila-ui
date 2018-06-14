@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-05-14 11:44+0000\n"
+"POT-Creation-Date: 2018-06-14 03:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-05-14 02:10+0000\n"
+"PO-Revision-Date: 2018-06-13 01:42+0000\n"
 "Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -158,6 +158,9 @@ msgstr "Bestätige aufheben der Verwaltung einer Freigabe"
 
 msgid "Create"
 msgstr "Erstellen"
+
+msgid "Create Group Share Type"
+msgstr "Gruppenfreigabe-Typ erstellen"
 
 msgid "Create Replica"
 msgstr "Erstelle Replika"
@@ -556,6 +559,10 @@ msgstr ""
 msgid "Group specs"
 msgstr "Gruppenspezifikationen"
 
+msgid "Here can be modified group-specs for share group type."
+msgstr ""
+"Hier können Sie Gruppen-Spezifikationen für den Freigabegruppentyp ändern."
+
 msgid "Host"
 msgstr "Host"
 
@@ -662,6 +669,9 @@ msgstr "Migriere nach"
 #, python-format
 msgid "Migration of share %(name)s is at %(progress)s percent."
 msgstr "Migration der Freigabe %(name)s ist bei %(progress)s Prozent."
+
+msgid "Mount snapshot support"
+msgstr "Schattenkopie mount-Unterstützung"
 
 msgid "Name"
 msgstr "Name"
@@ -802,6 +812,12 @@ msgstr "Replika Zustand zurücksetzen"
 msgid "Reset replica status"
 msgstr "Replika-Status zurücksetzen"
 
+msgid "Reset share replica's state with ID"
+msgstr "Freigabe-Replika Zustand mit ID zurücksetzen"
+
+msgid "Reset share replica's status with ID"
+msgstr "Freigabe-Replika Status mit ID zurücksetzen"
+
 msgid "Reset state"
 msgstr "Zustand zurücksetzen"
 
@@ -927,6 +943,9 @@ msgstr "Freigabedetails: %(share_name)s"
 msgid "Share Group"
 msgstr "Freigabegruppe"
 
+msgid "Share Group Details"
+msgstr "Freigabegruppe Details"
+
 #, python-format
 msgid "Share Group Details: %s"
 msgstr "Gruppenfreigaben Details: %s"
@@ -962,6 +981,9 @@ msgstr "Gruppenfreigaben"
 msgid "Share ID"
 msgstr "Freigabe-ID"
 
+msgid "Share Instance Details"
+msgstr "Freigabeinstanz Details"
+
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "Details Freigabeinstanz: %s"
@@ -980,6 +1002,9 @@ msgstr "Freigabename"
 
 msgid "Share Network"
 msgstr "Freigabenetzwerk"
+
+msgid "Share Network Details"
+msgstr "Freigabenetzwerk Details"
 
 #, python-format
 msgid "Share Network Details: %(network_display_name)s"
@@ -1003,6 +1028,9 @@ msgstr "Freigabenprotokoll"
 msgid "Share Quotas"
 msgstr "Kontingente teilen"
 
+msgid "Share Replica Overview"
+msgstr "Freigabe-Replikaübersicht"
+
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
 msgstr "Freigaben-Replikas: %(share_display_name)s"
@@ -1016,6 +1044,9 @@ msgstr "Freigaberegeln: %(share_display_name)s"
 
 msgid "Share Server"
 msgstr "Freigabeserver"
+
+msgid "Share Server Details"
+msgstr "Freigabeserver Details"
 
 #, python-format
 msgid "Share Server Details: %(server_name)s"
@@ -1245,8 +1276,17 @@ msgstr ""
 "Die Größe der Freigabe kann nicht kleiner als die der Schattenkopie sein "
 "(%sGiB)"
 
+msgid "To add extra-specs use:"
+msgstr "Zum hinzufügen von extra-Spezifikationen verwenden Sie:"
+
 msgid "To add metadata use:"
 msgstr "Zum hinzufügen von Metadaten verwenden Sie:"
+
+msgid "To unset extra-specs use:"
+msgstr "Zum Zurücksetzen von Extraspezifikationen verwenden Sie:"
+
+msgid "To unset group-specs use:"
+msgstr "Zum zurücksetzen von Gruppen-Spezifikationen verwenden Sie:"
 
 msgid "To unset metadata use:"
 msgstr "Zum Zurücksetzen von Metadaten verwenden Sie:"
@@ -1395,6 +1435,9 @@ msgstr "Konnte die Schattenkopie '%s' der Freigabegruppe nicht zurücksetzen."
 #, python-format
 msgid "Unable to resync replica '%s'."
 msgstr "Resynchronisieren von Replika '%s' nicht möglich ."
+
+msgid "Unable to retrieve default share quotas."
+msgstr "Standard-Freigaben-Kontingente können nicht abgerufen werden."
 
 msgid "Unable to retrieve list of projects."
 msgstr "Konnte Projektliste nicht abrufen"
