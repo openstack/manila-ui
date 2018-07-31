@@ -21,7 +21,6 @@ from django.utils.translation import ungettext_lazy
 from horizon import exceptions
 from horizon import messages
 from horizon import tables
-from openstack_dashboard.usage import quotas
 
 from manila_ui.api import manila
 from manila_ui.dashboards.project.share_snapshots import tables as ss_tables
@@ -87,8 +86,13 @@ class CreateShare(tables.LinkAction):
     policy_rules = (("share", "share:create"),)
 
     def allowed(self, request, share=None):
-        usages = quotas.tenant_quota_usages(request)
-        if usages['shares']['available'] <= 0:
+        usages = manila.tenant_absolute_limits(request)
+        shares_allowed = (usages['maxTotalShares'] >
+                          usages['totalSharesUsed'] and
+                          usages['maxTotalShareGigabytes'] >
+                          usages['totalShareGigabytesUsed'])
+
+        if not shares_allowed:
             if "disabled" not in self.classes:
                 self.classes = [c for c in self.classes] + ['disabled']
                 self.verbose_name = string_concat(self.verbose_name, ' ',
@@ -97,6 +101,7 @@ class CreateShare(tables.LinkAction):
             self.verbose_name = _("Create Share")
             classes = [c for c in self.classes if c != "disabled"]
             self.classes = classes
+
         return True
 
 

@@ -13,7 +13,6 @@
 #    under the License.
 import collections
 
-from manilaclient.v2 import quotas
 from manilaclient.v2 import security_services
 from manilaclient.v2 import share_export_locations
 from manilaclient.v2 import share_group_snapshots
@@ -27,9 +26,6 @@ from manilaclient.v2 import share_snapshot_export_locations
 from manilaclient.v2 import share_snapshots
 from manilaclient.v2 import share_types
 from manilaclient.v2 import shares
-
-from openstack_dashboard import api
-from openstack_dashboard.usage import quotas as usage_quotas
 
 
 class FakeAPIClient(object):
@@ -474,24 +470,23 @@ share_group_snapshot_nameless = share_group_snapshots.ShareGroupSnapshot(
      'members': []}
 )
 
-# Quota Sets
-quota_data = dict(shares='1',
-                  share_snapshots='1',
-                  share_gigabytes='1000')
-quota = quotas.QuotaSet(quotas.QuotaSetManager(FakeAPIClient), quota_data)
-
-# Quota Usages
-quota_usage_data = {'gigabytes': {'used': 0, 'quota': 1000},
-                    'shares': {'used': 0, 'quota': 10},
-                    'snapshots': {'used': 0, 'quota': 10},
-                    'share_networks': {'used': 0, 'quota': 10}}
-quota_usage = usage_quotas.QuotaUsage()
-for k, v in quota_usage_data.items():
-    quota_usage.add_quota(api.base.Quota(k, v['quota']))
-    quota_usage.tally(k, v['used'])
-
 # Manila Limits
-limits = {"absolute": {"totalSharesUsed": 1,
-                       "totalShareGigabytesUsed": 5,
-                       "maxTotalShareGigabytes": 1000,
-                       "maxTotalShares": 10}}
+limits = {"totalSharesUsed": 1,
+          "totalShareSnapshotsUsed": 1,
+          "totalShareGigabytesUsed": 500,
+          "totalSnapshotGigabytesUsed": 500,
+          "maxTotalShares": 10,
+          "maxTotalShareSnapshots": 10,
+          "maxTotalShareGigabytes": 1000,
+          "maxTotalSnapshotGigabytes": 1000,
+          }
+
+limits_negative = {"totalSharesUsed": 10,
+                   "totalShareSnapshotsUsed": 10,
+                   "totalShareGigabytesUsed": 1000,
+                   "totalSnapshotGigabytesUsed": 1000,
+                   "maxTotalShares": 10,
+                   "maxTotalShareSnapshots": 10,
+                   "maxTotalShareGigabytes": 1000,
+                   "maxTotalSnapshotGigabytes": 1000,
+                   }

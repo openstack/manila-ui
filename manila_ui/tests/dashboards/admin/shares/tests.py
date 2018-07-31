@@ -18,7 +18,6 @@ from django.urls import reverse
 import mock
 from openstack_dashboard.api import keystone as api_keystone
 from openstack_dashboard.api import neutron as api_neutron
-from openstack_dashboard.usage import quotas
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.admin import utils
@@ -53,9 +52,6 @@ class SharesTests(test.BaseAdminViewTests):
             api_manila, "share_snapshot_list", mock.Mock(return_value=snaps))
         self.mock_object(
             api_neutron, "is_service_enabled", mock.Mock(return_value=[True]))
-        self.mock_object(
-            quotas, "tenant_quota_usages",
-            mock.Mock(return_value=test_data.quota_usage))
 
         res = self.client.get(INDEX_URL)
 
