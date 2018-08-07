@@ -21,7 +21,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from horizon import exceptions
 from horizon import tables
-from openstack_dashboard.usage import quotas
 
 from manila_ui.api import manila
 
@@ -57,8 +56,13 @@ class CreateShareSnapshot(tables.LinkAction):
         return {"project_id": project_id}
 
     def allowed(self, request, share=None):
-        usages = quotas.tenant_quota_usages(request)
-        if usages['snapshots']['available'] <= 0:
+        usages = manila.tenant_absolute_limits(request)
+        snapshots_allowed = (usages['maxTotalShareSnapshots'] >
+                             usages['totalShareSnapshotsUsed'] and
+                             usages['maxTotalSnapshotGigabytes'] >
+                             usages['totalSnapshotGigabytesUsed'])
+
+        if not snapshots_allowed:
             if "disabled" not in self.classes:
                 self.classes = [c for c in self.classes] + ['disabled']
                 self.verbose_name = string_concat(
@@ -145,6 +149,7 @@ class EditShareSnapshot(tables.LinkAction):
 
 
 class ShareSnapshotShareNameColumn(tables.Column):
+
     def get_link_url(self, snapshot):
         return reverse(self.link, args=(snapshot.share_id,))
 

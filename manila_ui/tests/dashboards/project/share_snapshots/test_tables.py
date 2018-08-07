@@ -17,7 +17,9 @@ import ddt
 from django.core.handlers import wsgi
 import mock
 
+from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.share_snapshots import tables
+from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as base
 
 
@@ -36,23 +38,38 @@ class CreateSnapshotTests(base.APITestCase):
         return type("Share", (object, ), kwargs)()
 
     @ddt.data(True, False)
-    @mock.patch('openstack_dashboard.usage.quotas.tenant_quota_usages')
-    def test_allowed_with_snapshot_support_attr(self, snapshot_support,
-                                                mock_quota_usages):
-        mock_quota_usages.return_value = {'snapshots': {'available': 1}}
+    def test_allowed_with_snapshot_support_attr(self, snapshot_support):
+        self.mock_object(
+            api_manila, "tenant_absolute_limits",
+            mock.Mock(return_value=test_data.limits))
+
         share = self._get_fake_share(snapshot_support=snapshot_support)
 
         result = self.create_snapshot.allowed(self.request, share)
 
         self.assertEqual(snapshot_support, result)
-        mock_quota_usages.assert_called_once_with(self.request)
 
-    @mock.patch('openstack_dashboard.usage.quotas.tenant_quota_usages')
-    def test_allowed_no_snapshot_support_attr(self, mock_quota_usages):
-        mock_quota_usages.return_value = {'snapshots': {'available': 1}}
+    def test_allowed_no_snapshot_support_attr(self):
+        self.mock_object(
+            api_manila, "tenant_absolute_limits",
+            mock.Mock(return_value=test_data.limits))
         share = self._get_fake_share()
 
         result = self.create_snapshot.allowed(self.request, share)
 
+        self.assertNotIn('disabled', self.create_snapshot.classes)
+
         self.assertTrue(result)
-        mock_quota_usages.assert_called_once_with(self.request)
+
+    def test_allowed_no_snapshot_support_attr_no_quota(self):
+        self.mock_object(
+            api_manila, "tenant_absolute_limits",
+            mock.Mock(return_value=test_data.limits_negative))
+
+        share = self._get_fake_share()
+
+        result = self.create_snapshot.allowed(self.request, share)
+
+        self.assertIn('disabled', self.create_snapshot.classes)
+
+        self.assertTrue(result)
