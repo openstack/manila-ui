@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block modal-body-right %}
   <h3>{% trans "Description" %}:</h3>
-  <p>{% blocktrans %}
+  <p>{% blocktrans trimmed %}
       Add policy rule to share, 'ip' rule represents ipv4 address,
       'user' rule represents username or usergroup,
       'cephx' rule represents ceph auth ID.
