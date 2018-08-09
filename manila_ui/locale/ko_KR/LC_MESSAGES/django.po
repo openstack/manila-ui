@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-04-18 02:02+0000\n"
+"POT-Creation-Date: 2018-08-07 06:32+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-04-01 05:19+0000\n"
+"PO-Revision-Date: 2018-08-05 04:08+0000\n"
 "Last-Translator: Sungjin Kang <gang.sungjin@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
 "Language: ko_KR\n"
@@ -29,6 +29,14 @@ msgstr ""
 "    "
 
 #, python-format
+msgid "%(used)s of %(quota)s GiB Used"
+msgstr "%(quota)s 중 %(used)s GIB 사용됨"
+
+#, python-format
+msgid "%(used)s of %(quota)s Used"
+msgstr "%(quota)s 중 %(used)s 사용됨"
+
+#, python-format
 msgid "%sGiB"
 msgstr "%sGiB"
 
@@ -40,6 +48,9 @@ msgstr "접근 키"
 
 msgid "Access Level"
 msgstr "엑세스 레벨"
+
+msgid "Access Rules"
+msgstr "접속 규칙"
 
 msgid "Access To"
 msgstr "에 엑세스"
@@ -83,6 +94,9 @@ msgstr "모든 키와 값은 1 에서 255까지의 범위에 있어야 합니다
 msgid "All pairs that are in field for left are set for this share group type."
 msgstr "왼쪽 필드에 있는 모든 쌍이 공유 그룹 타입으로 설정됩니다."
 
+msgid "All pairs that are in field for left are set for this share type."
+msgstr "왼쪽 필드에 있는 모든 쌍은 공유 타입으로 설정됩니다."
+
 msgid "Allow project access to share group type."
 msgstr "프로젝트가 공유 그룹 유형에 액세스하도록 허용"
 
@@ -112,6 +126,9 @@ msgstr "사용 가능"
 msgctxt "Current status of snapshot"
 msgid "Available"
 msgstr "사용 가능"
+
+msgid "Available networks"
+msgstr "사용가능한 네트워크"
 
 msgid "Available projects"
 msgstr "사용 가능한 프로젝트"
@@ -165,7 +182,7 @@ msgid "Create Group Share Type"
 msgstr "공유 그룹 타입 생성"
 
 msgid "Create Replica"
-msgstr "레프리카 생성"
+msgstr "레플리카 생성"
 
 msgid "Create Security Service"
 msgstr "보안 서비스 생성"
@@ -186,6 +203,9 @@ msgstr "공유 그룹 타입 생성"
 
 msgid "Create Share Network"
 msgstr "공유 네트워크 생성"
+
+msgid "Create Share Replica"
+msgstr "공유 레플리카 생성"
 
 msgid "Create Share Snapshot"
 msgstr "공유 스냅샷 생성"
@@ -223,7 +243,7 @@ msgstr "생성 중"
 
 #, python-format
 msgid "Creating replica for share \"%s\"."
-msgstr "공유 \"%s\"를 위한 레프리카를 생성하는 중. "
+msgstr "공유 \"%s\"를 위한 레플리카를 생성하는 중. "
 
 #, python-format
 msgid "Creating rule for \"%s\""
@@ -261,7 +281,7 @@ msgstr "DNS IP"
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Delete Replica"
 msgid_plural "Delete Replicas"
-msgstr[0] "복제본 삭제"
+msgstr[0] "레플리카 삭제"
 
 msgid "Delete Rule"
 msgid_plural "Delete Rules"
@@ -321,7 +341,7 @@ msgstr[0] "스냅샷 삭제"
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Deleted Replica"
 msgid_plural "Deleted Replicas"
-msgstr[0] "삭제된 복제본"
+msgstr[0] "레플리카 삭제됨"
 
 msgid "Deleted Rule"
 msgid_plural "Deleted Rules"
@@ -388,6 +408,9 @@ msgstr "삭제 중"
 
 msgid "Description"
 msgstr "설명"
+
+msgid "Description:"
+msgstr "설명:"
 
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Destination host and pool where share will be migrated to."
@@ -492,6 +515,9 @@ msgstr "위치 내보내기"
 msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr "공유에 대한 내보내기 위치. NFS 예시: 1.2.3.4:/path/to/share"
 
+msgid "Export locations"
+msgstr "위치 내보내기"
+
 msgid "Extend"
 msgstr "확장"
 
@@ -501,6 +527,9 @@ msgstr "공유 확장"
 #, python-format
 msgid "Extend share \"%s\""
 msgstr "공유 \"%s\" 확장"
+
+msgid "Extend the size of a share. "
+msgstr "공유 크기가 늘어났습니다."
 
 msgctxt "Current status of share"
 msgid "Extending Error"
@@ -515,8 +544,17 @@ msgstr "호스트 지원 마이그레이션 강제"
 msgid "From here you can update share network info. "
 msgstr "여기서 공유 네트워크 정보를 업데이트 할 수 있습니다."
 
+msgid "From here you can update the default share quotas (max limits)."
+msgstr "여기서 기본 공유 quotas (최대 한도)를 업데이트 할 수 있습니다."
+
+msgid "Get Migration Progress"
+msgstr "마이그레이션 진행사항 가져오기"
+
 msgid "Get migration progress"
 msgstr "마이그레이션 진행사항 가져오기"
+
+msgid "GiB"
+msgstr "GiB"
 
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
@@ -584,6 +622,9 @@ msgstr "키는 공백을 포함할 수 없습니다. 문자열 '%s' 를 살펴 �
 msgid "Keys should not contain spaces. Error in '%s'."
 msgstr "키는 공백을 포함하지 않아야 합니다. '%s' 에 오류가 있습니다."
 
+msgid "Limit"
+msgstr "제한"
+
 msgid "Make visible for all"
 msgstr "모든 것을 보이게 합니다."
 
@@ -595,7 +636,7 @@ msgid "Manage Error"
 msgstr "관리 오류"
 
 msgid "Manage Replicas"
-msgstr "복제본 관리"
+msgstr "레플리카 관리"
 
 msgid "Manage Rules"
 msgstr "관리 규칙"
@@ -636,6 +677,12 @@ msgstr "공유 %(name)s 에 대한 마이그레이션이 현재 %(progress)s 퍼
 
 msgid "Name"
 msgstr "이름"
+
+msgid "Net Details"
+msgstr "네트워크 상세 정보"
+
+msgid "Network"
+msgstr "네트워크"
 
 msgid "Network Type"
 msgstr "네트워크 유형"
@@ -687,6 +734,12 @@ msgstr "무중단"
 msgid "Nova Net"
 msgstr "Nova Net"
 
+msgid "Number of Share Snapshots"
+msgstr "공유 스냅샷 갯수"
+
+msgid "Number of Shares"
+msgstr "공유 갯수"
+
 msgid "Obtain Progress"
 msgstr "진행사항 가져오기"
 
@@ -727,21 +780,30 @@ msgstr "프로토콜"
 msgid "Public"
 msgstr "공용"
 
+msgid "Quota Name"
+msgstr "Quota 이름"
+
+msgid "Replica Details"
+msgstr "레플리카 상세 정보"
+
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
-msgstr "레프리카 상세정보: %(replica_display_name)s"
+msgstr "레플리카 상세정보: %(replica_display_name)s"
 
 msgid "Replica State"
-msgstr "Replica 상태"
+msgstr "레플리카 상태"
+
+msgid "Replica state"
+msgstr "레플리카 상태"
 
 msgid "Replicas"
-msgstr "Replicas"
+msgstr "레플리카"
 
 msgid "Reset Replica State"
-msgstr "Replica State 리셋"
+msgstr "레플리카 상태 리셋"
 
 msgid "Reset Replica Status"
-msgstr "Replica Status 리셋"
+msgstr "레플리카 상태 리셋"
 
 msgid "Reset Share Group Snapshot Status"
 msgstr "공유 그룹 스냅샷 상태 재설정"
@@ -754,10 +816,13 @@ msgid "Reset Status"
 msgstr "상태 재설정"
 
 msgid "Reset replica state"
-msgstr "replica state 리셋"
+msgstr "레플리카 상태 초기화"
 
 msgid "Reset replica status"
-msgstr "replica status 리셋"
+msgstr "레플리카 상태 초기화"
+
+msgid "Reset share replica's state with ID"
+msgstr "ID와 공유 레플리카 상태를 초기화"
 
 msgid "Reset state"
 msgstr "state 리셋"
@@ -767,11 +832,11 @@ msgstr "리셋 status"
 
 #, python-format
 msgid "Reseting replica ('%(id)s') state from '%(from)s' to '%(to)s'."
-msgstr "replica ('%(id)s') state를 '%(from)s' 에서 '%(to)s' 로 리셋."
+msgstr "레플리카 ('%(id)s') 상태를 '%(from)s' 에서 '%(to)s' 로 초기화합니다."
 
 #, python-format
 msgid "Reseting replica ('%(id)s') status from '%(from)s' to '%(to)s'."
-msgstr "replica ('%(id)s') status를 '%(from)s' 에서 '%(to)s' 로 리셋."
+msgstr "레플리카 ('%(id)s') 상태를 '%(from)s' 에서 '%(to)s' 로 초기화합니다."
 
 #, python-format
 msgid "Reseting share group ('%(id)s') status from '%(from)s' to '%(to)s'."
@@ -786,14 +851,14 @@ msgid "Resync"
 msgstr "재동기화"
 
 msgid "Resync Replica"
-msgstr "Replica 재동기화"
+msgstr "레플리카 재동기화"
 
 msgid "Resync replica"
-msgstr "replica 재동기화"
+msgstr "레플리카 재동기화"
 
 #, python-format
 msgid "Resync'ing replica '%s'"
-msgstr "replica '%s'  재동기화 중"
+msgstr "레플리카 '%s'  재동기화 중"
 
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Revert Share"
@@ -837,6 +902,9 @@ msgstr "공유 네트워크 내 보안 서비스 "
 msgid "Segmentation Id"
 msgstr "구분 Id"
 
+msgid "Selected Networks"
+msgstr "선택된 네트워크"
+
 msgid "Selected Projects"
 msgstr "선택된 프로젝트"
 
@@ -850,7 +918,7 @@ msgid "Server"
 msgstr "서버"
 
 msgid "Set Replica as Active"
-msgstr "레프리카를 활성화 상태로 설정"
+msgstr "레플리카를 활성화 상태로 설정"
 
 msgid "Set as Active"
 msgstr "활성화 상태로 설정"
@@ -858,9 +926,12 @@ msgstr "활성화 상태로 설정"
 msgid "Set maximum quotas for the project."
 msgstr "프로젝트에대한 최대 quota를 설정합니다."
 
+msgid "Set share replica with ID"
+msgstr "ID와 공유 리플리카 설정"
+
 #, python-format
 msgid "Setting replica \"%s\" as active..."
-msgstr "레프리카 \"%s\"를 활성화 상태로 설정"
+msgstr "레플리카 \"%s\"를 활성화 상태로 설정"
 
 msgid "Share"
 msgstr "공유"
@@ -869,6 +940,9 @@ msgstr "공유"
 #, python-format
 msgid "Share \"%(s)s\" has been reverted to \"%(ss)s\" snapshot successfully"
 msgstr "성공적으로 공유 \"%(s)s\"는 스냅샷 \"%(ss)s\"으로 되돌려졌습니다."
+
+msgid "Share Details"
+msgstr "공유 상세 정보"
 
 #, python-format
 msgid "Share Details: %(share_display_name)s"
@@ -926,6 +1000,9 @@ msgstr "공유 그룹"
 msgid "Share ID"
 msgstr "공유 ID"
 
+msgid "Share Instance Details"
+msgstr "공유 인스턴스 상세 정보"
+
 #, python-format
 msgid "Share Instance Details: %s"
 msgstr "공유 인스턴스 세부 사항: %s"
@@ -937,11 +1014,17 @@ msgstr "공유 인스턴스 개요"
 msgid "Share Instances"
 msgstr "공유 인스턴스"
 
+msgid "Share Limits"
+msgstr "공유 제한"
+
 msgid "Share Name"
 msgstr "공유 이름"
 
 msgid "Share Network"
 msgstr "공유 네트워크"
+
+msgid "Share Network Details"
+msgstr "공유 네트워크 상세 정보"
 
 #, python-format
 msgid "Share Network Details: %(network_display_name)s"
@@ -964,9 +1047,18 @@ msgstr "공유 개요"
 msgid "Share Protocol"
 msgstr "공유 프로토콜"
 
+msgid "Share Quotas"
+msgstr "공유 Quotas"
+
+msgid "Share Replica Overview"
+msgstr "공유 레플리카 개요"
+
+msgid "Share Replicas"
+msgstr "공유 레플리카"
+
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
-msgstr "공유 레프리카들 : %(share_display_name)s"
+msgstr "공유 레플리카 : %(share_display_name)s"
 
 #, python-format
 msgid "Share Rules: %(share_display_name)s"
@@ -974,6 +1066,9 @@ msgstr "공유 규칙들: %(share_display_name)s"
 
 msgid "Share Server"
 msgstr "공유 서버"
+
+msgid "Share Server Details"
+msgstr "공유 서버 상세 정보"
 
 #, python-format
 msgid "Share Server Details: %(server_name)s"
@@ -988,6 +1083,9 @@ msgstr "공유 서버 개요"
 
 msgid "Share Servers"
 msgstr "공유 서버"
+
+msgid "Share Snapshot Details"
+msgstr "공유 스냅샷 상세 정보"
 
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid "Share Snapshot Name"
@@ -1046,7 +1144,7 @@ msgstr "공유 네트워크"
 
 #, python-format
 msgid "Share replica %s has been deleted."
-msgstr "공유 replica %s 를 삭제하였습니다."
+msgstr "공유 레플리카 %s 를 삭제하였습니다."
 
 msgid "Share server"
 msgstr "공유 서버"
@@ -1066,11 +1164,17 @@ msgstr "스냅샷 공유"
 msgid "Share types"
 msgstr "공유 유형"
 
+msgid "Shared Quotas"
+msgstr "공유 Quota"
+
 msgid "Shares"
 msgstr "공유"
 
 msgid "Shares Networks"
 msgstr "네트워크 공유"
+
+msgid "Shares on this server"
+msgstr "서버 공유"
 
 msgid "Sid"
 msgstr "Sid"
@@ -1098,6 +1202,9 @@ msgstr "스냅샷 규칙: %(snapshot_display_name)s"
 
 msgid "Source"
 msgstr "소스"
+
+msgid "Source SG Snapshot"
+msgstr "소스 SG 스냅샷"
 
 msgid "Source Share Group"
 msgstr "공유 그룹 원본"
@@ -1129,6 +1236,9 @@ msgstr ""
 "공유를 위한 새로운 공유 유형을 지정하세요. 만약 마이그레이션 공유가 현재 공"
 "유 유형 내에서 유지되어야 한다면 이 매개변수를 지정하면 안 됩니다."
 
+msgid "Specs"
+msgstr "사양"
+
 msgid "Start migration"
 msgstr "마이그레이션 시작"
 
@@ -1137,6 +1247,9 @@ msgstr "상태"
 
 msgid "Submit"
 msgstr "제출"
+
+msgid "Subnet"
+msgstr "서브넷"
 
 #, python-format
 msgid "Successfully created security service: %s"
@@ -1196,11 +1309,17 @@ msgstr "공유 그룹 타입은 공유 그룹 백엔드 특성을 정의합니�
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr "공유 크기는 스냅샷 크기 (%sGiB)보다 작을 수 없습니다."
 
+msgid "The share type defines the characteristics of a share backend."
+msgstr "공유 타입은 공유 백엔드에대한 특성을 정의합니다."
+
 msgid "To add group-specs use:"
 msgstr "그룹 스펙을 추가하려면 다음을 사용합니다:"
 
 msgid "To unset group-specs use:"
 msgstr "그룹 스펙을 설정 해제하려면 다음을 사용합니다:"
+
+msgid "Total Gibibytes"
+msgstr "총 Gibibytes"
 
 msgid "Type"
 msgstr "유형"
@@ -1238,7 +1357,7 @@ msgid "Unable to create share network."
 msgstr "공유 네트워크를 생성할 수 없습니다."
 
 msgid "Unable to create share replica."
-msgstr "공유 레프리카를 생성할 수 없습니다."
+msgstr "공유 레플리카를 생성할 수 없습니다."
 
 msgid "Unable to create share snapshot."
 msgstr "공유스냅샷을 생성할 수 없습니다"
@@ -1256,7 +1375,7 @@ msgstr "공유 %s를 생성할 수 없습니다."
 
 #, python-format
 msgid "Unable to delete replica \"%s\"."
-msgstr "replica \"%s\" 를 삭제할 수 없습니다."
+msgstr "레플리카 \"%s\" 를 삭제할 수 없습니다."
 
 #, python-format
 msgid "Unable to delete rule \"%s\"."
@@ -1296,6 +1415,9 @@ msgstr "공유 유형 액세스에 관련된 정보를 가져올 수 없습니�
 msgid "Unable to get list of projects."
 msgstr "프로젝트 목록을 가져올 수 없습니다."
 
+msgid "Unable to get manila default quota."
+msgstr "Manila 기본 quota 값을 찾을 수 없습니다."
+
 msgid "Unable to get the security services hosts"
 msgstr "보안 서비스 호스트를 가져올 수 없습니다."
 
@@ -1324,11 +1446,11 @@ msgstr "현재 공유 %s 에 대한 마이그레이션 과정을 가져올 수 �
 
 #, python-format
 msgid "Unable to reset state of replica '%s'."
-msgstr "replica '%s' state를 리셋할 수 없습니다"
+msgstr "레플리카 '%s' 상태를 초기화할 수 없습니다"
 
 #, python-format
 msgid "Unable to reset status of replica '%s'."
-msgstr "replica '%s' status를 리셋할 수 없습니다."
+msgstr "레플리카 '%s' 상태를 초기화할 수 없습니다."
 
 #, python-format
 msgid "Unable to reset status of share group '%s'."
@@ -1340,7 +1462,10 @@ msgstr "공유 그룹 스냅샷 '%s'의 상태를 초기화할 수 없습니다.
 
 #, python-format
 msgid "Unable to resync replica '%s'."
-msgstr "replica '%s' 를 재동기화할 수 없습니다."
+msgstr "레플리카 '%s' 를 재동기화할 수 없습니다."
+
+msgid "Unable to retrieve default share quotas."
+msgstr "기본 공유 quotas 를 찾을 수 없습니다."
 
 msgid "Unable to retrieve list of projects."
 msgstr "프로젝트 목록을 가져올 수 없습니다."
@@ -1350,11 +1475,11 @@ msgstr "쿼터(quota)를 찾을 수 없습니다."
 
 #, python-format
 msgid "Unable to retrieve replica %sdetails."
-msgstr "레프리카 %s의 상세정보를 찾을 수 없습니다."
+msgstr "레플리카 %s 상세정보를 찾을 수 없습니다."
 
 #, python-format
 msgid "Unable to retrieve replica '%s'."
-msgstr "replica '%s' 를 가져올 수 없습니다."
+msgstr "레플리카 '%s' 를 가져올 수 없습니다."
 
 #, python-format
 msgid "Unable to retrieve security service '%s' details."
@@ -1427,7 +1552,7 @@ msgid "Unable to retrieve share networks"
 msgstr "공유 네트워크를 가져올 수 없습니다"
 
 msgid "Unable to retrieve share replicas."
-msgstr "공유 레프리카를 가져올 수 없습니다."
+msgstr "공유 레플리카를 가져올 수 없습니다."
 
 msgid "Unable to retrieve share rules."
 msgstr "공유 규칙을 찾을 수 없습니다."
@@ -1488,7 +1613,7 @@ msgstr "공유를 스냅샷으로 되돌릴 수 없습니다."
 
 #, python-format
 msgid "Unable to set replica '%s' as active."
-msgstr "레프리카 \"%s\"를 활성화 상태로 설정 할 수 없습니다. "
+msgstr "레플리카 \"%s\"를 활성화 상태로 설정 할 수 없습니다. "
 
 msgid "Unable to unmanage share."
 msgstr "공유를 관리 해제할 수 없습니다."
@@ -1583,6 +1708,9 @@ msgstr "공유 유형 업데이트"
 
 msgid "Update Share group Type"
 msgstr "공유 그룹 유형 업데이트"
+
+msgid "Updated"
+msgstr "업데이트됨"
 
 msgid "Updated At"
 msgstr "업데이트"
