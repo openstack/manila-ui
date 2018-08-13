@@ -2,18 +2,19 @@
 # Robert Simai <robert.simai@suse.com>, 2016. #zanata
 # Frank Kloeker <eumel@arcor.de>, 2017. #zanata
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
+# Frank Kloeker <eumel@arcor.de>, 2018. #zanata
 # Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
 # Robert Simai <robert.simai@suse.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-08-09 20:56+0000\n"
+"POT-Creation-Date: 2018-08-11 12:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-08-09 11:50+0000\n"
-"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
+"PO-Revision-Date: 2018-08-12 01:37+0000\n"
+"Last-Translator: Frank Kloeker <eumel@arcor.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -80,6 +81,16 @@ msgstr "Füge Sicherheitsdienst zu Freigabenetzwerk hinzu."
 
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Alle Schlüssel und Werte müssen im Bereich zwischen 1 und 255 liegen."
+
+msgid "All pairs that are in field for left are set for this share group type."
+msgstr ""
+"Alle Paare, die sich im Feld für links befinden, werden für diesen "
+"Freigabegruppentyp festgelegt."
+
+msgid "All pairs that are in field for left are set for this share type."
+msgstr ""
+"Alle Paare, die sich im Feld für links befinden, werden für diesen "
+"Freigabegruppentyp festgelegt."
 
 msgid "Allow project access to share group type."
 msgstr "Erlaube Projektzugriff zum Gruppenfreigabentyp"
@@ -502,6 +513,9 @@ msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr ""
 "Exportiere Lokation der Freigabe. Beispiel für NFS: 1.2.3.4:/path/to/share"
 
+msgid "Export locations"
+msgstr "Lokationen exportieren"
+
 msgid "Extend"
 msgstr "Erweitern"
 
@@ -518,6 +532,20 @@ msgstr "Größe einer Freigabe erweitern"
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Erweiterungsfehler"
+
+msgid ""
+"Extra spec 'driver_handles_share_servers'  is required and should have "
+"boolean value."
+msgstr ""
+"Extra Spezifikation 'driver_handles_share_servers'  ist erforderlich und "
+"sollte einen boolschen Wert haben."
+
+msgid ""
+"Extra spec 'driver_handles_share_servers' is required and should have "
+"boolean value."
+msgstr ""
+"Extra Spezifikation 'driver_handles_share_servers' ist erforderlich und "
+"sollte einen boolschen Wert haben."
 
 msgid "Extra specs"
 msgstr "Extra Spezifikationen"
@@ -543,6 +571,11 @@ msgstr ""
 msgid "From here you can update share network info. "
 msgstr "Hier können Sie Informationen zum Freigabenetzwerk aktualisieren."
 
+msgid "From here you can update the default share quotas (max limits)."
+msgstr ""
+"Von hier aus können Sie die Standard-Share-Kontingente (Höchstgrenzen) "
+"aktualisieren."
+
 msgid "Get Migration Progress"
 msgstr "Migrationsfortschritt abrufen"
 
@@ -561,6 +594,10 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "Gruppenspezifikationen"
+
+msgid "Here can be modified extra-specs for share type."
+msgstr ""
+"Hier können Sie die Extra-Spezifikationen für Share-Typen modifizieren."
 
 msgid "Here can be modified group-specs for share group type."
 msgstr ""
@@ -756,6 +793,12 @@ msgstr "Passwort"
 
 msgid "Passwords do not match."
 msgstr "Passwörter stimmen nicht überein."
+
+msgid "Placeholder for description of share group type access managing form."
+msgstr "Platzhalter für Beschreibung der Share-Gruppentypen-Verwaltungsform."
+
+msgid "Placeholder for description of share type access managing form."
+msgstr "Platzhalter für Beschreibung der Share-Typen-Verwaltungsform."
 
 msgid "Preserve Metadata"
 msgstr "Metadaten behalten"
@@ -967,6 +1010,9 @@ msgstr "Gruppenfreigabe Übersicht"
 
 msgid "Share Group Snapshot"
 msgstr "Freigabegruppe Schattenkopie"
+
+msgid "Share Group Snapshot Details"
+msgstr "Share Gruppe Schattenkopiedetails"
 
 #, python-format
 msgid "Share Group Snapshot Details: %(sgs_display_name)s"
@@ -1189,6 +1235,9 @@ msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Quelle"
 
+msgid "Source Share Group"
+msgstr "Quellen Share Gruppe"
+
 msgid "Source Share Group Snapshot"
 msgstr "Quelle Schattenkopie Gruppenfreigabe"
 
@@ -1282,14 +1331,25 @@ msgstr "Erfolgreiche Aktualisierung des Sicherheitsdienstes \"%s\""
 msgid "Task state"
 msgstr "Auftragsstatus"
 
+msgid ""
+"The share group type defines the characteristics of a share group backend."
+msgstr ""
+"Der Share-Gruppentyp definiert die Merkmale eines Back-End-Share-Gruppe."
+
 #, python-format
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr ""
 "Die Größe der Freigabe kann nicht kleiner als die der Schattenkopie sein "
 "(%sGiB)"
 
+msgid "The share type defines the characteristics of a share backend."
+msgstr "Der Share-Typ definiert die Merkmale eines Share-Backends."
+
 msgid "To add extra-specs use:"
 msgstr "Zum hinzufügen von extra-Spezifikationen verwenden Sie:"
+
+msgid "To add group-specs use:"
+msgstr "Zum Hinzufügen von group-specs benutzen Sie:"
 
 msgid "To add metadata use:"
 msgstr "Zum hinzufügen von Metadaten verwenden Sie:"
