@@ -9,16 +9,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-08-11 12:01+0000\n"
+"POT-Creation-Date: 2018-08-13 11:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-08-12 01:37+0000\n"
+"PO-Revision-Date: 2018-08-13 08:49+0000\n"
 "Last-Translator: Frank Kloeker <eumel@arcor.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid ""
+"\"Manage\" an existing share from a Manila host. This will make the share "
+"visible within OpenStack. <br> <br> This is equivalent to the <tt>'manila "
+"manage'</tt> command."
+msgstr ""
+"\"Verwalten\" einer vorhandenen Freigabe von einem Manila-Host Dadurch wird "
+"die Freigabe in OpenStack sichtbar. <br> <br> Dies entspricht dem Befehl "
+"<tt> 'manila manage' </tt>."
 
 #, python-format
 msgid "%(used)s of %(quota)s GiB Used"
@@ -73,6 +82,24 @@ msgstr "Sicherheitsdienst hinzufügen"
 msgid "Add Share Snapshot Rule"
 msgstr "Freigabe Schattenkopie Regel hinzufügen"
 
+msgid ""
+"Add policy rule to share, 'ip' rule represents ipv4 address, 'user' rule "
+"represents username or usergroup, 'cephx' rule represents ceph auth ID."
+msgstr ""
+"Hinzufügen der Richtlinienregel zur Freigabe, \"ip\"-Regel stellt IPv4-"
+"Adresse dar, \"user\"-Regel stellt Benutzername oder Benutzergruppe dar, "
+"\"cephx\"-Regel stellt Ceph-Authentifizierungs-ID dar."
+
+msgid ""
+"Add policy rule to snapshot, 'ip' rule represents ip address, 'user' rule "
+"represents username or usergroup, 'cephx' rule represents ceph auth ID, and "
+"'cert' rule represents certificate."
+msgstr ""
+"Hinzufügen der Richtlinienregel zum Snapshot, \"ip\"-Regel stellt IP-Adresse "
+"dar, \"user\"-Regel stellt Benutzername oder Benutzergruppe dar, \"cephx\"-"
+"Regel stellt Ceph-Authentifizierungs-ID dar und \"cert\"-Regel stellt "
+"Zertifikat dar."
+
 msgid "Add rule"
 msgstr "Regel hinzufügen"
 
@@ -81,6 +108,11 @@ msgstr "Füge Sicherheitsdienst zu Freigabenetzwerk hinzu."
 
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Alle Schlüssel und Werte müssen im Bereich zwischen 1 und 255 liegen."
+
+msgid "All pairs that are in field for left are set for this metadata."
+msgstr ""
+"Alle Paare, die sich im Feld für Links befinden, werden für diese Metadaten "
+"festgelegt."
 
 msgid "All pairs that are in field for left are set for this share group type."
 msgstr ""
@@ -143,6 +175,13 @@ msgstr "Migration abbrechen"
 msgid "Cancel migration of a Share"
 msgstr "Migration einer Freigabe abbrechen"
 
+msgid ""
+"Cancel migration of a migrating share. <br> <br> This is equivalent to the "
+"<tt>'manila migration-cancel'</tt> command."
+msgstr ""
+"Brechen Sie die Migration einer migrierenden Freigabe ab. <br> <br> Dies "
+"entspricht dem Befehl <tt> 'manila migration-cancel' </tt>."
+
 msgid "Choose a snapshot"
 msgstr "Wählen Sie eine Schattenkopie"
 
@@ -154,6 +193,15 @@ msgstr "Migration abschließen"
 
 msgid "Complete migration of a Share"
 msgstr "Migration einer Freigabe abschliessen"
+
+msgid ""
+"Complete migration of a migrating share to another Manila host. This "
+"operation is expected to be disruptive. <br> <br> This is equivalent to the "
+"<tt>'manila migration-complete'</tt> command."
+msgstr ""
+"Vollständige Migration einer migrierenden Freigabe auf einen anderen Manila-"
+"Host Diese Operation wird voraussichtlich störend sein. <br> <br> Dies "
+"entspricht dem Befehl <tt> 'manila migration-complete' </tt>."
 
 msgid "Confirm Migration Cancelling of Share"
 msgstr "Bestätige Abbruch der Migration einer Freigabe"
@@ -197,6 +245,9 @@ msgstr "Freigabengruppe Typ erstellen"
 msgid "Create Share Network"
 msgstr "Erstelle Freigabenetzwerk"
 
+msgid "Create Share Replica"
+msgstr "Erstellen Share-Replikat"
+
 msgid "Create Share Snapshot"
 msgstr "Erstelle Fraigaben-Schattenkopie"
 
@@ -205,6 +256,10 @@ msgstr "Erstelle Freigabetyp"
 
 msgid "Create a Share"
 msgstr "Erstelle eine Freigabe"
+
+msgid "Create share replica in specific availability zone."
+msgstr ""
+"Erstellen Sie ein Share-Replikat in einer bestimmten Verfügbarkeitszone."
 
 msgid "Created"
 msgstr "Erstellt"
@@ -553,12 +608,29 @@ msgstr "Extra Spezifikationen"
 msgid "Force Host Assisted Migration"
 msgstr "Erzwinge durch Host unterstützte Migration"
 
+msgid "From here you can modify name and description of a security service."
+msgstr ""
+"Von hier aus können Sie den Namen und die Beschreibung eines "
+"Sicherheitsdienstes ändern."
+
+msgid ""
+"From here you can modify name and description of a share group snapshot."
+msgstr ""
+"Von hier aus können Sie den Namen und die Beschreibung eines "
+"Freigabengruppen-Schattenkopie ändern."
+
 msgid "From here you can modify name and description of a share network."
 msgstr ""
 "Hier können Sie Name und Beschreibung eines Freigabe-Netzwerkes ändern."
 
 msgid "From here you can modify name and description of a snapshot."
 msgstr "Hier können Sie Name und Beschreibung einer Schattenkopie ändern."
+
+msgid ""
+"From here you can modify name, description and visibility of a share group."
+msgstr ""
+"Von hier aus können Sie den Namen, Beschreibung  und Sichtbarkeit eier "
+"Freigabegruppe ändern."
 
 msgid "From here you can modify name, description and visibility of a share."
 msgstr ""
@@ -698,6 +770,16 @@ msgstr "Migriere Freigabe"
 msgid "Migrate a Share"
 msgstr "Freigabe migrieren"
 
+msgid ""
+"Migrate an existing share to another Manila host. This will move all your "
+"share data from one host to another. <br> <br> This is equivalent to the "
+"<tt>'manila migration-start'</tt> command."
+msgstr ""
+"Migrieren Sie eine vorhandene Freigabe auf einen anderen Manila-Host. "
+"Dadurch werden alle Ihre Freigabedaten von einem Host auf einen anderen "
+"verschoben. <br> <br> Dies entspricht dem Befehl <tt> 'manila migration-"
+"start' </tt>."
+
 msgctxt "Current status of share"
 msgid "Migrating"
 msgstr "Migrieren"
@@ -781,6 +863,13 @@ msgstr "Erhalte Fortschritt"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Erhalte Fortschritt der Migration einer Freigabe"
+
+msgid ""
+"Obtains migration progress of a migrating share. <br> <br> This is "
+"equivalent to the <tt>'manila migration-get-progress'</tt> command."
+msgstr ""
+"Ruft den Migrationsfortschritt einer migrierenden Freigabe ab. <br> <br> "
+"Dies entspricht dem Befehl <tt> 'manila migration-get-progress' </tt>."
 
 msgid "One line - one action. Empty strings will be ignored."
 msgstr "Eine Zeile - eine Aktion. Leere Zeichenketten werden ignoriert."
@@ -904,6 +993,9 @@ msgstr "Resynchronisiere Replika"
 msgid "Resync replica"
 msgstr "Resynchronisiere Replika"
 
+msgid "Resync share replica with ID"
+msgstr "Resync der Freigabe-Replica mit ID"
+
 #, python-format
 msgid "Resync'ing replica '%s'"
 msgstr "Resynchronisiere Replika '%s'"
@@ -946,6 +1038,13 @@ msgstr "Sicherheitsdienste in Freigabenetzwerk"
 msgid "Segmentation Id"
 msgstr "Segmentierungs-ID"
 
+msgid "Select parameters of share group you want to create. "
+msgstr ""
+"Wählen Sie die Parameter der Freigabegruppe, die Sie erstellen möchten."
+
+msgid "Select parameters of share you want to create. "
+msgstr "Wählen Sie die Parameter der Freigabe, die Sie erstellen möchten."
+
 msgid "Selected Networks"
 msgstr "Ausgewählte Netzwerke"
 
@@ -969,6 +1068,9 @@ msgstr "Setze auf aktiv"
 
 msgid "Set maximum quotas for the project."
 msgstr "Setze maximale Kontingente für dieses Projekt."
+
+msgid "Set share replica with ID"
+msgstr "Setzen des Share-Replikat mit ID"
 
 #, python-format
 msgid "Setting replica \"%s\" as active..."
@@ -1119,6 +1221,9 @@ msgstr "Freigabeserver Übersicht"
 msgid "Share Servers"
 msgstr "Freigabeserver"
 
+msgid "Share Snapshot Details"
+msgstr "Details Freigabe-Schattenkopie"
+
 msgid "Share Snapshot Name"
 msgstr "Freigegebene Schattenkopie Name"
 
@@ -1133,6 +1238,12 @@ msgstr "Freigabe Schattenkopien"
 
 msgid "Share Snapshots Storage"
 msgstr "Freigabe Schattenkopienspeicher"
+
+msgid ""
+"Share Snapshots are used for storing share changes and creating shares. "
+msgstr ""
+"Freigabe Schattenkopien werden benutzt zum Speichern von Freigabeänderungen "
+"und Freigabeerstellungen."
 
 msgid "Share Source"
 msgstr "Freigabequelle"
@@ -1168,6 +1279,13 @@ msgstr "Zuzuweisender Freigabename"
 
 msgid "Share network"
 msgstr "Freigabenetzwerk"
+
+msgid ""
+"Share networks contain network data, that will be used for creation of "
+"service VM, where will be hosted shares."
+msgstr ""
+"Share-Netzwerke enthalten Netzwerkdaten, die für die Erstellung von Service-"
+"VMs verwendet werden, auf denen gehostete Shares gespeichert werden."
 
 #, python-format
 msgid "Share replica %s has been deleted."
@@ -1234,6 +1352,9 @@ msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
 
 msgid "Source"
 msgstr "Quelle"
+
+msgid "Source SG Snapshot"
+msgstr "Quelle SG Schattenkopie"
 
 msgid "Source Share Group"
 msgstr "Quellen Share Gruppe"
@@ -1330,6 +1451,13 @@ msgstr "Erfolgreiche Aktualisierung des Sicherheitsdienstes \"%s\""
 
 msgid "Task state"
 msgstr "Auftragsstatus"
+
+msgid ""
+"The security service can be used by backend drivers to configure clients, "
+"for more secure using of share."
+msgstr ""
+"Der Sicherheitsdienst kann von Back-End-Treibern zum Konfigurieren von "
+"Clients verwendet werden, um die Verwendung von Freigabe sicherer zu machen."
 
 msgid ""
 "The share group type defines the characteristics of a share group backend."
@@ -1798,8 +1926,20 @@ msgstr "Benutzer"
 msgid "Visibility"
 msgstr "Sichtbarkeit"
 
+msgid ""
+"When a share is \"unmanaged\", the share will no longer be visible within "
+"OpenStack. Note that the share will not be deleted. <br> <br> This is "
+"equivalent to the <tt>'manila unmanage'</tt> command."
+msgstr ""
+"Wenn eine Freigabe \"nicht verwaltet\" ist, ist die Freigabe in OpenStack "
+"nicht mehr sichtbar. Beachten Sie, dass die Freigabe nicht gelöscht wird. "
+"<br> <br> Dies entspricht dem Befehl <tt> 'manila unmanage' </tt>."
+
 msgid "Writable"
 msgstr "Beschreibbar"
+
+msgid "as Active?"
+msgstr "als aktiv?"
 
 msgid "key=value pairs per line can be set"
 msgstr "Schlüssel=Wert Paare pro Zeile können gesetzt werden"
