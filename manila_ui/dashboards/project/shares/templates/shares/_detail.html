@@ -70,8 +70,10 @@
     <dd>{{ share.mount_snapshot_support }}</dd>
     <dt>{% trans "Created" %}</dt>
     <dd>{{ share.created_at|parse_date }}</dd>
+    {% if share.host %}
     <dt>{% trans "Host" %}</dt>
     <dd>{{ share.host }}</dd>
+    {% endif %}
     <dt>{% trans "Task state" %}</dt>
     <dd>{{ share.task_state }}</dd>
   </dl>
