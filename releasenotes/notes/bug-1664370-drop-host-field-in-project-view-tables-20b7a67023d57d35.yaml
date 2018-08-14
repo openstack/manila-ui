@@ -1,0 +1,7 @@
+---
+fixes:
+  - |
+    Drop the ``host`` field from project view tables since this information is
+    only visible to administrators.  This is the UI side of `Launchpad bug 1664370
+    <https://bugs.launchpad.net/manila/+bug/1664370>`_ and completes the fix for
+    that bug.
