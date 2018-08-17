@@ -4,19 +4,20 @@
 # Frank Kloeker <eumel@arcor.de>, 2017. #zanata
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
 # Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
+# Robert Simai <robert.simai@suse.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: manila-ui Release Notes\n"
+"Project-Id-Version: manila-ui\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-22 13:25+0000\n"
+"POT-Creation-Date: 2018-08-15 18:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-02-21 07:56+0000\n"
-"Last-Translator: Reik Keutterling <spielkind@gmail.com>\n"
+"PO-Revision-Date: 2018-08-09 11:48+0000\n"
+"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgid "2.2.0"
@@ -82,6 +83,10 @@ msgstr ""
 "Feste Form der Freigabeerstellung aus Schattenkopie. Vorher war es in der "
 "Anfrage eine lose Quell-Schattenkopie-ID und die Freigabe wurden von scratch "
 "anstatt der erwarteten Quell-Schattenkopie-Variante erstellt."
+
+msgid "Fixed missing \"Create Share\" button on the \"Shares\" dashboard."
+msgstr ""
+"Fehlender \"Erstelle Share\" Button auf dem \"Shares\" Dashboard repariert."
 
 msgid ""
 "Fixed quota names overlapping with Cinder's quotas. Now it is possible to "
