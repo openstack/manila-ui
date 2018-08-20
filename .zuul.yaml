@@ -1,0 +1,16 @@
+- project:
+    templates:
+      - check-requirements
+      - openstack-python-jobs-horizon
+      - publish-openstack-sphinx-docs
+      - release-notes-jobs
+    check:
+      jobs:
+        - horizon-openstack-tox-py27dj19
+        - horizon-openstack-tox-py27dj110
+        - openstack-tox-cover:
+            voting: false
+    gate:
+      jobs:
+        - horizon-openstack-tox-py27dj19
+        - horizon-openstack-tox-py27dj110
