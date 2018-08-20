@@ -352,7 +352,7 @@ function run_tests_all {
     echo "Generating coverage reports"
     ${command_wrapper} python -m coverage.__main__ combine
     ${command_wrapper} python -m coverage.__main__ xml -i --omit='/usr*,setup.py,*egg*,.venv/*'
-    ${command_wrapper} python -m coverage.__main__ html -i --omit='/usr*,setup.py,*egg*,.venv/*' -d reports
+    ${command_wrapper} python -m coverage.__main__ html -i --omit='/usr*,setup.py,*egg*,.venv/*' -d cover
   fi
   # Remove the leftover coverage files from the -p flag earlier.
   rm -f .coverage.*
