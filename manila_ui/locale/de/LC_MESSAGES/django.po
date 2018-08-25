@@ -2,22 +2,168 @@
 # Robert Simai <robert.simai@suse.com>, 2016. #zanata
 # Frank Kloeker <eumel@arcor.de>, 2017. #zanata
 # Robert Simai <robert.simai@suse.com>, 2017. #zanata
+# Frank Kloeker <eumel@arcor.de>, 2018. #zanata
 # Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
 # Robert Simai <robert.simai@suse.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-08-07 06:32+0000\n"
+"POT-Creation-Date: 2018-08-25 03:05+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-07-31 12:25+0000\n"
-"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
+"PO-Revision-Date: 2018-08-24 06:31+0000\n"
+"Last-Translator: Frank Kloeker <eumel@arcor.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid ""
+"\n"
+"      Add policy rule to share, 'ip' rule represents ipv4 address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID.\n"
+"    "
+msgstr ""
+"\n"
+"Hinzufügen der Richtlinienregel zur Freigabe, \"ip\"-Regel stellt IPv4-"
+"Adresse dar, \"user\"-Regel stellt Benutzername oder Benutzergruppe dar, "
+"\"cephx\"-Regel stellt Ceph-Authentifizierungs-ID dar."
+
+msgid ""
+"\n"
+"      Add policy rule to snapshot, 'ip' rule represents ip address,\n"
+"      'user' rule represents username or usergroup,\n"
+"      'cephx' rule represents ceph auth ID, and 'cert' rule represents\n"
+"      certificate.\n"
+"    "
+msgstr ""
+"\n"
+"Hinzufügen der Richtlinienregel zum Snapshot, \"ip\"-Regel stellt IP-Adresse "
+"dar, \"user\"-Regel stellt Benutzername oder Benutzergruppe dar, \"cephx\"-"
+"Regel stellt Ceph-Authentifizierungs-ID dar und \"cert\"-Regel stellt "
+"Zertifikat dar."
+
+msgid ""
+"\n"
+"    \"Manage\" an existing share from a Manila host.\n"
+"    This will make the share visible within OpenStack.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila manage'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"\"Verwalten\" einer vorhandenen Freigabe von einem Manila-Host Dadurch wird "
+"die Freigabe in OpenStack sichtbar. <br> <br> Dies entspricht dem Befehl "
+"<tt> 'manila manage' </tt>."
+
+msgid ""
+"\n"
+"    Cancel migration of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-cancel'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"Brechen Sie die Migration einer migrierenden Freigabe ab. <br> <br> Dies "
+"entspricht dem Befehl <tt> 'manila migration-cancel' </tt>."
+
+msgid ""
+"\n"
+"    Complete migration of a migrating share to another Manila host.\n"
+"    This operation is expected to be disruptive.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-complete'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"Vollständige Migration einer migrierenden Freigabe auf einen anderen Manila-"
+"Host Diese Operation wird voraussichtlich störend sein. <br> <br> Dies "
+"entspricht dem Befehl <tt> 'manila migration-complete' </tt>."
+
+msgid ""
+"\n"
+"    Migrate an existing share to another Manila host.\n"
+"    This will move all your share data from one host to another.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-start'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"Migrieren Sie eine vorhandene Freigabe auf einen anderen Manila-Host. "
+"Dadurch werden alle Ihre Freigabedaten von einem Host auf einen anderen "
+"verschoben. <br> <br> Dies entspricht dem Befehl <tt> 'manila migration-"
+"start' </tt>."
+
+msgid ""
+"\n"
+"    Obtains migration progress of a migrating share.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila migration-get-progress'</tt> "
+"command.\n"
+"    "
+msgstr ""
+"\n"
+"Ruft den Migrationsfortschritt einer migrierenden Freigabe ab. <br> <br> "
+"Dies entspricht dem Befehl <tt> 'manila migration-get-progress' </tt>."
+
+msgid ""
+"\n"
+"    Placeholder for description of share group type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"Platzhalter für Beschreibung der Share-Gruppentypen-Verwaltungsform."
+
+msgid ""
+"\n"
+"    Placeholder for description of share type access managing form.\n"
+"    "
+msgstr ""
+"\n"
+"Platzhalter für Beschreibung der Share-Gruppentypen-Verwaltungsform."
+
+msgid ""
+"\n"
+"    Share networks contain network data, that will be used\n"
+"    for creation of service VM, where will be hosted shares.\n"
+"    "
+msgstr ""
+"\n"
+"Share-Netzwerke enthalten Netzwerkdaten, die für die Erstellung von Service-"
+"VMs verwendet werden, auf denen gehostete Shares gespeichert werden."
+
+msgid ""
+"\n"
+"    The security service can be used by backend drivers to \n"
+"    configure clients, for more secure using of share.\n"
+"    "
+msgstr ""
+"\n"
+"Der Sicherheitsdienst kann von Back-End-Treibern zum Konfigurieren von "
+"Clients verwendet werden, um die Verwendung von Freigabe sicherer zu machen."
+
+msgid ""
+"\n"
+"    When a share is \"unmanaged\", the share will no longer be visible "
+"within OpenStack.\n"
+"    Note that the share will not be deleted.\n"
+"    <br>\n"
+"    <br>\n"
+"    This is equivalent to the <tt>'manila unmanage'</tt> command.\n"
+"    "
+msgstr ""
+"\n"
+"Wenn eine Freigabe \"nicht verwaltet\" ist, ist die Freigabe in OpenStack "
+"nicht mehr sichtbar. Beachten Sie, dass die Freigabe nicht gelöscht wird. "
+"<br> <br> Dies entspricht dem Befehl <tt> 'manila unmanage' </tt>."
 
 #, python-format
 msgid "%(used)s of %(quota)s GiB Used"
@@ -80,6 +226,21 @@ msgstr "Füge Sicherheitsdienst zu Freigabenetzwerk hinzu."
 
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Alle Schlüssel und Werte müssen im Bereich zwischen 1 und 255 liegen."
+
+msgid "All pairs that are in field for left are set for this metadata."
+msgstr ""
+"Alle Paare, die sich im Feld für Links befinden, werden für diese Metadaten "
+"festgelegt."
+
+msgid "All pairs that are in field for left are set for this share group type."
+msgstr ""
+"Alle Paare, die sich im Feld für links befinden, werden für diesen "
+"Freigabegruppentyp festgelegt."
+
+msgid "All pairs that are in field for left are set for this share type."
+msgstr ""
+"Alle Paare, die sich im Feld für links befinden, werden für diesen "
+"Freigabegruppentyp festgelegt."
 
 msgid "Allow project access to share group type."
 msgstr "Erlaube Projektzugriff zum Gruppenfreigabentyp"
@@ -186,6 +347,9 @@ msgstr "Freigabengruppe Typ erstellen"
 msgid "Create Share Network"
 msgstr "Erstelle Freigabenetzwerk"
 
+msgid "Create Share Replica"
+msgstr "Erstellen Share-Replikat"
+
 msgid "Create Share Snapshot"
 msgstr "Erstelle Fraigaben-Schattenkopie"
 
@@ -194,6 +358,10 @@ msgstr "Erstelle Freigabetyp"
 
 msgid "Create a Share"
 msgstr "Erstelle eine Freigabe"
+
+msgid "Create share replica in specific availability zone."
+msgstr ""
+"Erstellen Sie ein Share-Replikat in einer bestimmten Verfügbarkeitszone."
 
 msgid "Created"
 msgstr "Erstellt"
@@ -502,6 +670,9 @@ msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr ""
 "Exportiere Lokation der Freigabe. Beispiel für NFS: 1.2.3.4:/path/to/share"
 
+msgid "Export locations"
+msgstr "Lokationen exportieren"
+
 msgid "Extend"
 msgstr "Erweitern"
 
@@ -519,11 +690,36 @@ msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Erweiterungsfehler"
 
+msgid ""
+"Extra spec 'driver_handles_share_servers'  is required and should have "
+"boolean value."
+msgstr ""
+"Extra Spezifikation 'driver_handles_share_servers'  ist erforderlich und "
+"sollte einen boolschen Wert haben."
+
+msgid ""
+"Extra spec 'driver_handles_share_servers' is required and should have "
+"boolean value."
+msgstr ""
+"Extra Spezifikation 'driver_handles_share_servers' ist erforderlich und "
+"sollte einen boolschen Wert haben."
+
 msgid "Extra specs"
 msgstr "Extra Spezifikationen"
 
 msgid "Force Host Assisted Migration"
 msgstr "Erzwinge durch Host unterstützte Migration"
+
+msgid "From here you can modify name and description of a security service."
+msgstr ""
+"Von hier aus können Sie den Namen und die Beschreibung eines "
+"Sicherheitsdienstes ändern."
+
+msgid ""
+"From here you can modify name and description of a share group snapshot."
+msgstr ""
+"Von hier aus können Sie den Namen und die Beschreibung eines "
+"Freigabengruppen-Schattenkopie ändern."
 
 msgid "From here you can modify name and description of a share network."
 msgstr ""
@@ -531,6 +727,12 @@ msgstr ""
 
 msgid "From here you can modify name and description of a snapshot."
 msgstr "Hier können Sie Name und Beschreibung einer Schattenkopie ändern."
+
+msgid ""
+"From here you can modify name, description and visibility of a share group."
+msgstr ""
+"Von hier aus können Sie den Namen, Beschreibung  und Sichtbarkeit eier "
+"Freigabegruppe ändern."
 
 msgid "From here you can modify name, description and visibility of a share."
 msgstr ""
@@ -542,6 +744,11 @@ msgstr ""
 
 msgid "From here you can update share network info. "
 msgstr "Hier können Sie Informationen zum Freigabenetzwerk aktualisieren."
+
+msgid "From here you can update the default share quotas (max limits)."
+msgstr ""
+"Von hier aus können Sie die Standard-Share-Kontingente (Höchstgrenzen) "
+"aktualisieren."
 
 msgid "Get Migration Progress"
 msgstr "Migrationsfortschritt abrufen"
@@ -561,6 +768,10 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "Gruppenspezifikationen"
+
+msgid "Here can be modified extra-specs for share type."
+msgstr ""
+"Hier können Sie die Extra-Spezifikationen für Share-Typen modifizieren."
 
 msgid "Here can be modified group-specs for share group type."
 msgstr ""
@@ -781,6 +992,9 @@ msgstr "Öffentlich"
 msgid "Quota Name"
 msgstr "Kontingentname"
 
+msgid "Replica Details"
+msgstr "Replika Details"
+
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
 msgstr "Replika Details: %(replica_display_name)s"
@@ -858,6 +1072,9 @@ msgstr "Resynchronisiere Replika"
 msgid "Resync replica"
 msgstr "Resynchronisiere Replika"
 
+msgid "Resync share replica with ID"
+msgstr "Resync der Freigabe-Replica mit ID"
+
 #, python-format
 msgid "Resync'ing replica '%s'"
 msgstr "Resynchronisiere Replika '%s'"
@@ -900,6 +1117,16 @@ msgstr "Sicherheitsdienste in Freigabenetzwerk"
 msgid "Segmentation Id"
 msgstr "Segmentierungs-ID"
 
+msgid "Select parameters of share group you want to create. "
+msgstr ""
+"Wählen Sie die Parameter der Freigabegruppe, die Sie erstellen möchten."
+
+msgid "Select parameters of share you want to create. "
+msgstr "Wählen Sie die Parameter der Freigabe, die Sie erstellen möchten."
+
+msgid "Selected Networks"
+msgstr "Ausgewählte Netzwerke"
+
 msgid "Selected Projects"
 msgstr "Ausgewählte Projekte"
 
@@ -920,6 +1147,9 @@ msgstr "Setze auf aktiv"
 
 msgid "Set maximum quotas for the project."
 msgstr "Setze maximale Kontingente für dieses Projekt."
+
+msgid "Set share replica with ID"
+msgstr "Setzen des Share-Replikat mit ID"
 
 #, python-format
 msgid "Setting replica \"%s\" as active..."
@@ -961,6 +1191,9 @@ msgstr "Gruppenfreigabe Übersicht"
 
 msgid "Share Group Snapshot"
 msgstr "Freigabegruppe Schattenkopie"
+
+msgid "Share Group Snapshot Details"
+msgstr "Share Gruppe Schattenkopiedetails"
 
 #, python-format
 msgid "Share Group Snapshot Details: %(sgs_display_name)s"
@@ -1034,6 +1267,9 @@ msgstr "Kontingente teilen"
 msgid "Share Replica Overview"
 msgstr "Freigabe-Replikaübersicht"
 
+msgid "Share Replicas"
+msgstr "Freigaben-Replikas"
+
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
 msgstr "Freigaben-Replikas: %(share_display_name)s"
@@ -1064,6 +1300,9 @@ msgstr "Freigabeserver Übersicht"
 msgid "Share Servers"
 msgstr "Freigabeserver"
 
+msgid "Share Snapshot Details"
+msgstr "Details Freigabe-Schattenkopie"
+
 msgid "Share Snapshot Name"
 msgstr "Freigegebene Schattenkopie Name"
 
@@ -1078,6 +1317,12 @@ msgstr "Freigabe Schattenkopien"
 
 msgid "Share Snapshots Storage"
 msgstr "Freigabe Schattenkopienspeicher"
+
+msgid ""
+"Share Snapshots are used for storing share changes and creating shares. "
+msgstr ""
+"Freigabe Schattenkopien werden benutzt zum Speichern von Freigabeänderungen "
+"und Freigabeerstellungen."
 
 msgid "Share Source"
 msgstr "Freigabequelle"
@@ -1180,6 +1425,12 @@ msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Quelle"
 
+msgid "Source SG Snapshot"
+msgstr "Quelle SG Schattenkopie"
+
+msgid "Source Share Group"
+msgstr "Quellen Share Gruppe"
+
 msgid "Source Share Group Snapshot"
 msgstr "Quelle Schattenkopie Gruppenfreigabe"
 
@@ -1273,14 +1524,25 @@ msgstr "Erfolgreiche Aktualisierung des Sicherheitsdienstes \"%s\""
 msgid "Task state"
 msgstr "Auftragsstatus"
 
+msgid ""
+"The share group type defines the characteristics of a share group backend."
+msgstr ""
+"Der Share-Gruppentyp definiert die Merkmale eines Back-End-Share-Gruppe."
+
 #, python-format
 msgid "The share size cannot be less than the snapshot size (%sGiB)"
 msgstr ""
 "Die Größe der Freigabe kann nicht kleiner als die der Schattenkopie sein "
 "(%sGiB)"
 
+msgid "The share type defines the characteristics of a share backend."
+msgstr "Der Share-Typ definiert die Merkmale eines Share-Backends."
+
 msgid "To add extra-specs use:"
 msgstr "Zum hinzufügen von extra-Spezifikationen verwenden Sie:"
+
+msgid "To add group-specs use:"
+msgstr "Zum Hinzufügen von group-specs benutzen Sie:"
 
 msgid "To add metadata use:"
 msgstr "Zum hinzufügen von Metadaten verwenden Sie:"
@@ -1731,6 +1993,9 @@ msgstr "Sichtbarkeit"
 
 msgid "Writable"
 msgstr "Beschreibbar"
+
+msgid "as Active?"
+msgstr "als aktiv?"
 
 msgid "key=value pairs per line can be set"
 msgstr "Schlüssel=Wert Paare pro Zeile können gesetzt werden"
