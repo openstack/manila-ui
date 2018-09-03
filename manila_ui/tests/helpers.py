@@ -20,10 +20,6 @@ from manila_ui.tests.test_data import utils
 from openstack_dashboard.test import helpers
 
 
-def create_stubs(stubs_to_create={}):
-    return helpers.create_stubs(stubs_to_create)
-
-
 class ManilaTestsMixin(object):
     def _setup_test_data(self):
         super(ManilaTestsMixin, self)._setup_test_data()
