@@ -2,18 +2,19 @@
 # Ian Y. Choi <ianyrchoi@gmail.com>, 2016. #zanata
 # Sungjin Kang <gang.sungjin@gmail.com>, 2017. #zanata
 # minwook-shin <minwook0106@gmail.com>, 2017. #zanata
+# ByungYeol Woo <wby1089@gmail.com>, 2018. #zanata
 # Ian Y. Choi <ianyrchoi@gmail.com>, 2018. #zanata
 # Sungjin Kang <gang.sungjin@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-08-09 20:56+0000\n"
+"POT-Creation-Date: 2018-09-12 21:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-08-05 04:08+0000\n"
-"Last-Translator: Sungjin Kang <gang.sungjin@gmail.com>\n"
+"PO-Revision-Date: 2018-09-12 11:29+0000\n"
+"Last-Translator: ByungYeol Woo <wby1089@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
 "Language: ko_KR\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -81,6 +82,9 @@ msgstr "공유 네트워크에 보안 서비스 추가."
 
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "모든 키와 값은 1 에서 255까지의 범위에 있어야 합니다."
+
+msgid "All pairs that are in field for left are set for this metadata."
+msgstr "왼쪽 필드에 있는 모든 쌍은 이 메타데이터로 설정됩니다."
 
 msgid "All pairs that are in field for left are set for this share group type."
 msgstr "왼쪽 필드에 있는 모든 쌍이 공유 그룹 타입으로 설정됩니다."
@@ -206,6 +210,9 @@ msgstr "공유 유형 생성"
 
 msgid "Create a Share"
 msgstr "공유 생성"
+
+msgid "Create share replica in specific availability zone."
+msgstr "특정 가용 구역 내 공유 레플리카 생성"
 
 msgid "Created"
 msgstr "생성됨"
@@ -439,6 +446,9 @@ msgstr "공유 네트워크 편집"
 msgid "Edit Share Snapshot"
 msgstr "공유 스냅샷 편집"
 
+msgid "Edit Share network"
+msgstr "공유 네트워크 편집"
+
 # auto translated by TM merge from project: manila-ui, version: stable-pike, DocId: manila_ui/locale/django
 msgid ""
 "Enforces migration of the share snapshots to the destination. If set to "
@@ -526,11 +536,48 @@ msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "확장중 에러"
 
+msgid ""
+"Extra spec 'driver_handles_share_servers'  is required and should have "
+"boolean value."
+msgstr ""
+"부가 스펙 'driver_handles_share_servers'가 필요하고 불리언 값이 있어야 합니"
+"다."
+
+msgid ""
+"Extra spec 'driver_handles_share_servers' is required and should have "
+"boolean value."
+msgstr ""
+"부가 스펙 'driver_handles_share_servers'가 필요하고 불리언 값이 있어야 합니"
+"다."
+
 msgid "Extra specs"
 msgstr "부가 스펙"
 
 msgid "Force Host Assisted Migration"
 msgstr "호스트 지원 마이그레이션 강제"
+
+msgid "From here you can modify name and description of a security service."
+msgstr "여기서 보안 서비스의 이름과 설명을 수정할 수 있습니다."
+
+msgid ""
+"From here you can modify name and description of a share group snapshot."
+msgstr "여기서 공유 그룹 스냅샷의 이름과 설명을 수정할 수 있습니다."
+
+msgid "From here you can modify name and description of a share network."
+msgstr "여기서 공유 네트워크의 이름과 설명을 수정할 수 있습니다."
+
+msgid "From here you can modify name and description of a snapshot."
+msgstr "여기서 스냅샷의 이름과 설명을 수정할 수 있습니다."
+
+msgid ""
+"From here you can modify name, description and visibility of a share group."
+msgstr "여기서 공유 그룹의 이름, 설명, 표시 여부를 수정할 수 있습니다."
+
+msgid "From here you can modify name, description and visibility of a share."
+msgstr "여기서 공유의 이름, 설명, 표시 여부를 수정할 수 있습니다."
+
+msgid "From here you can revert the share to its latest snapshot."
+msgstr "여기서 가장 최근의 스냅샷으로 공유를 되돌릴 수 있습니다."
 
 msgid "From here you can update share network info. "
 msgstr "여기서 공유 네트워크 정보를 업데이트 할 수 있습니다."
@@ -556,6 +603,9 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "그룹 사양"
+
+msgid "Here can be modified extra-specs for share type."
+msgstr "여기서 공유 타입에 대한 부가 스펙을 수정할 수 있습니다."
 
 msgid "Here can be modified group-specs for share group type."
 msgstr "여기서 공유 그룹 타입에 대한 그룹 스펙을 수정할 수 있습니다."
@@ -665,6 +715,9 @@ msgstr "로 이전 중"
 #, python-format
 msgid "Migration of share %(name)s is at %(progress)s percent."
 msgstr "공유 %(name)s 에 대한 마이그레이션이 현재 %(progress)s 퍼센트입니다."
+
+msgid "Mount snapshot support"
+msgstr "스냅샷 마운트 지원"
 
 msgid "Name"
 msgstr "이름"
@@ -815,6 +868,9 @@ msgstr "레플리카 상태 초기화"
 msgid "Reset share replica's state with ID"
 msgstr "ID와 공유 레플리카 상태를 초기화"
 
+msgid "Reset share replica's status with ID"
+msgstr "ID로 공유 레플리카 상태를 초기화"
+
 msgid "Reset state"
 msgstr "state 리셋"
 
@@ -846,6 +902,9 @@ msgstr "레플리카 재동기화"
 
 msgid "Resync replica"
 msgstr "레플리카 재동기화"
+
+msgid "Resync share replica with ID"
+msgstr "ID로 공유 레플리카 재동기화"
 
 #, python-format
 msgid "Resync'ing replica '%s'"
@@ -892,6 +951,12 @@ msgstr "공유 네트워크 내 보안 서비스 "
 
 msgid "Segmentation Id"
 msgstr "구분 Id"
+
+msgid "Select parameters of share group you want to create. "
+msgstr "만들고자 하는 공유 그룹의 매개변수를 선택하세요."
+
+msgid "Select parameters of share you want to create. "
+msgstr "만들고자 하는 공유의 매개변수를 선택하세요."
 
 msgid "Selected Networks"
 msgstr "선택된 네트워크"
@@ -1051,6 +1116,9 @@ msgstr "공유 레플리카"
 msgid "Share Replicas: %(share_display_name)s"
 msgstr "공유 레플리카 : %(share_display_name)s"
 
+msgid "Share Rules"
+msgstr "공유 규칙"
+
 #, python-format
 msgid "Share Rules: %(share_display_name)s"
 msgstr "공유 규칙들: %(share_display_name)s"
@@ -1095,6 +1163,10 @@ msgstr "공유 스냅샷"
 
 msgid "Share Snapshots Storage"
 msgstr "공유 스냅샷 저장소"
+
+msgid ""
+"Share Snapshots are used for storing share changes and creating shares. "
+msgstr "스냅샷 공유는 공유 변화내역 저장과 공유 생성에 사용됩니다."
 
 msgid "Share Source"
 msgstr "공유 소스"
@@ -1152,6 +1224,9 @@ msgstr "스냅샷 기가바이트 공유"
 msgid "Share snapshots"
 msgstr "스냅샷 공유"
 
+msgid "Share type"
+msgstr "공유 유형"
+
 msgid "Share types"
 msgstr "공유 유형"
 
@@ -1182,6 +1257,9 @@ msgstr "스냅샷"
 #, python-format
 msgid "Snapshot Details: %(snapshot_display_name)s"
 msgstr "스냅샷 상세정보: %(snapshot_display_name)s"
+
+msgid "Snapshot ID"
+msgstr "스냅샷 ID"
 
 msgid "Snapshot Overview"
 msgstr "스냅샷 개요"
@@ -1292,6 +1370,9 @@ msgstr "공유 그룹 타입 '%s'의 그룹 스펙을 성공적으로 갱신하�
 msgid "Successfully updated security service \"%s\""
 msgstr "시큐리티 서비스 %s를 성공적으로 업데이트 하였습니다."
 
+msgid "Task state"
+msgstr "작업 상태"
+
 msgid ""
 "The share group type defines the characteristics of a share group backend."
 msgstr "공유 그룹 타입은 공유 그룹 백엔드 특성을 정의합니다."
@@ -1303,11 +1384,23 @@ msgstr "공유 크기는 스냅샷 크기 (%sGiB)보다 작을 수 없습니다.
 msgid "The share type defines the characteristics of a share backend."
 msgstr "공유 타입은 공유 백엔드에대한 특성을 정의합니다."
 
+msgid "To add extra-specs use:"
+msgstr "부가 스펙을 추가하기 위해 사용합니다:"
+
 msgid "To add group-specs use:"
 msgstr "그룹 스펙을 추가하려면 다음을 사용합니다:"
 
+msgid "To add metadata use:"
+msgstr "메타데이터를 추가하려면 사용합니다:"
+
+msgid "To unset extra-specs use:"
+msgstr "부가 스펙을 설정 해제하려면 다음을 사용합니다:"
+
 msgid "To unset group-specs use:"
 msgstr "그룹 스펙을 설정 해제하려면 다음을 사용합니다:"
+
+msgid "To unset metadata use:"
+msgstr "메타데이터를 설정 해제하려면 다음을 사용합니다:"
 
 msgid "Total Gibibytes"
 msgstr "총 Gibibytes"
@@ -1700,6 +1793,9 @@ msgstr "공유 유형 업데이트"
 msgid "Update Share group Type"
 msgstr "공유 그룹 유형 업데이트"
 
+msgid "Update share network"
+msgstr "공유 네트워크 업데이트"
+
 msgid "Updated"
 msgstr "업데이트됨"
 
@@ -1760,6 +1856,9 @@ msgstr "가시성"
 
 msgid "Writable"
 msgstr "쓰기가능"
+
+msgid "as Active?"
+msgstr "활성화로?"
 
 msgid "key=value pairs per line can be set"
 msgstr "한 행 당 key=value 쌍을 설정 가능합니다"
