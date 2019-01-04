@@ -124,8 +124,8 @@ class AddSecurityServiceForm(forms.SelfHandlingForm):
             request, *args, **kwargs)
         sec_services_choices = manila.security_service_list(request)
         self.fields['sec_service'].choices = [(' ', ' ')] + \
-                                             [(choice.id, choice.name
-                                              or choice.id) for choice in
+                                             [(choice.id, choice.name or
+                                              choice.id) for choice in
                                               sec_services_choices]
 
     def handle(self, request, data):

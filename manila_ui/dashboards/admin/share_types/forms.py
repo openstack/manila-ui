@@ -69,8 +69,8 @@ class CreateShareType(forms.SelfHandlingForm):
                 msg = _("Expected only pairs of key=value.")
                 raise ValidationError(message=msg)
 
-            is_public = (self.enable_public_share_type_creation
-                         and data["is_public"])
+            is_public = (self.enable_public_share_type_creation and
+                         data["is_public"])
             share_type = manila.share_type_create(
                 request, data["name"], spec_dhss, is_public=is_public)
             if set_dict:
