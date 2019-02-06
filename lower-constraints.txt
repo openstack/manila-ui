@@ -94,6 +94,7 @@ requests==2.18.4
 requestsexceptions==1.4.0
 rfc3986==1.1.0
 rjsmin==1.0.12
+selenium==2.50.1
 semantic-version==2.6.0
 simplejson==3.13.2
 six==1.10.0
@@ -138,3 +139,4 @@ XStatic-smart-table==1.4.13.2
 XStatic-Spin==1.2.5.2
 XStatic-term.js==0.0.7.0
 XStatic-tv4==1.2.7.0
+xvfbwrapper==0.1.3

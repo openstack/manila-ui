@@ -11,6 +11,8 @@
       jobs:
         - manila-ui-dsvm:
             voting: false
+        - manila-ui-integration-tests:
+            voting: false
         - horizon-openstack-tox-python3-django111
         - horizon-openstack-tox-py27dj19
         - horizon-openstack-tox-py27dj110
@@ -33,3 +35,29 @@
       - openstack/manila-ui
       - openstack/python-manilaclient
       - openstack/manila-tempest-plugin
+
+- job:
+    name: manila-ui-integration-tests
+    parent: horizon-integration-tests
+    required-projects:
+      - name: openstack/horizon
+      - name: openstack/manila
+      - name: openstack/python-manilaclient
+      - name: openstack/manila-ui
+      - name: openstack/manila-tempest-plugin
+    roles:
+      - zuul: openstack-infra/devstack
+      - zuul: openstack/horizon
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^releasenotes/.*$
+    vars:
+      devstack_plugins:
+        manila: git://git.openstack.org/openstack/manila
+        manila-ui: git://git.openstack.org/openstack/manila-ui
+      devstack_services:
+        horizon: true
+        tls-proxy: false
+      tox_envlist: integration
+
