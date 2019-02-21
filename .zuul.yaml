@@ -58,6 +58,5 @@
         manila-ui: git://git.openstack.org/openstack/manila-ui
       devstack_services:
         horizon: true
-        tls-proxy: false
       tox_envlist: integration
 
