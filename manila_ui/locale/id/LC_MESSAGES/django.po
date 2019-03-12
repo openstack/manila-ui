@@ -2,20 +2,30 @@
 # Andreas Jaeger <jaegerandi@gmail.com>, 2017. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2018. #zanata
+# suhartono <cloudsuhartono@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-08-09 20:56+0000\n"
+"POT-Creation-Date: 2019-03-01 00:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-05-09 04:37+0000\n"
+"PO-Revision-Date: 2019-03-12 06:14+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+
+msgid ""
+"\"Manage\" an existing share from a Manila host. This will make the share "
+"visible within OpenStack. <br> <br> This is equivalent to the <tt>'manila "
+"manage'</tt> command."
+msgstr ""
+"\"Manage\" bagian yang ada dari Manila host. Ini akan membuat share terlihat "
+"dalam OpenStack. <br> <br> Ini sama dengan perintah <tt> 'manila manage' </"
+"tt>."
 
 #, python-format
 msgid "%(used)s of %(quota)s GiB Used"
@@ -69,6 +79,23 @@ msgstr "Add Security Service (tambah layanan keamanan)"
 
 msgid "Add Share Snapshot Rule"
 msgstr "Menambahkan Share Snapshot Rule"
+
+msgid ""
+"Add policy rule to share, 'ip' rule represents ipv4 address, 'user' rule "
+"represents username or usergroup, 'cephx' rule represents ceph auth ID."
+msgstr ""
+"Tambahkan aturan kebijakan untuk dibagikan, aturan 'ip' mewakili alamat "
+"ipv4, aturan 'user' mewakili nama pengguna atau grup pengguna, aturan "
+"'cephx' mewakili ID autop ceph."
+
+msgid ""
+"Add policy rule to snapshot, 'ip' rule represents ip address, 'user' rule "
+"represents username or usergroup, 'cephx' rule represents ceph auth ID, and "
+"'cert' rule represents certificate."
+msgstr ""
+"Tambahkan aturan kebijakan ke snapshot, aturan 'ip' mewakili alamat ip, "
+"aturan 'user' mewakili nama pengguna atau grup pengguna, aturan 'cephx' "
+"mewakili ID otentikasi ceph, dan aturan 'cert' mewakili sertifikat."
 
 msgid "Add rule"
 msgstr "Tambah aturan"
@@ -139,6 +166,13 @@ msgstr "Membatalkan migrasi"
 msgid "Cancel migration of a Share"
 msgstr "Pembatalan migrasi share "
 
+msgid ""
+"Cancel migration of a migrating share. <br> <br> This is equivalent to the "
+"<tt>'manila migration-cancel'</tt> command."
+msgstr ""
+"Batalkan migrasi dari bagian yang bermigrasi. <br> <br> Ini sama dengan "
+"perintah <tt> 'manila migration-cancel' </tt>."
+
 msgid "Choose a snapshot"
 msgstr "Pilih snapshot"
 
@@ -150,6 +184,15 @@ msgstr "Migrasi lengkap"
 
 msgid "Complete migration of a Share"
 msgstr "Menyelesaikan migrasi share"
+
+msgid ""
+"Complete migration of a migrating share to another Manila host. This "
+"operation is expected to be disruptive. <br> <br> This is equivalent to the "
+"<tt>'manila migration-complete'</tt> command."
+msgstr ""
+"Migrasi lengkap dari bagian yang bermigrasi ke host lain di Manila. Operasi "
+"ini diperkirakan akan mengganggu. <br> <br> Ini sama dengan perintah <tt> "
+"'manila migrasi-complete' </tt>."
 
 msgid "Confirm Migration Cancelling of Share"
 msgstr ""
@@ -685,6 +728,15 @@ msgstr "Migrate Share (migrasi share)"
 msgid "Migrate a Share"
 msgstr "Migrate a Share (memigrasi share)"
 
+msgid ""
+"Migrate an existing share to another Manila host. This will move all your "
+"share data from one host to another. <br> <br> This is equivalent to the "
+"<tt>'manila migration-start'</tt> command."
+msgstr ""
+"Bermigrasi bagian yang ada ke host lain di Manila. Ini akan memindahkan "
+"semua data berbagi Anda dari satu host ke host lain. <br> <br> Ini sama "
+"dengan perintah <tt> 'manila migration-start' </tt>."
+
 msgctxt "Current status of share"
 msgid "Migrating"
 msgstr "Migrating (migrasi)"
@@ -770,6 +822,13 @@ msgstr "Obtain Progress (mendapatkan kemajuan)"
 msgid "Obtain migration progress of a Share"
 msgstr "Mendapatkan kemajuan migrasi share"
 
+msgid ""
+"Obtains migration progress of a migrating share. <br> <br> This is "
+"equivalent to the <tt>'manila migration-get-progress'</tt> command."
+msgstr ""
+"Dapatkan kemajuan migrasi dari bagian yang bermigrasi. <br> <br> Ini sama "
+"dengan perintah <tt> 'manila migration-get-progress' </tt>."
+
 msgid "One line - one action. Empty strings will be ignored."
 msgstr "One line - one action. String kosong akan diabaikan."
 
@@ -781,6 +840,13 @@ msgstr "Password (sandi)"
 
 msgid "Passwords do not match."
 msgstr "Sandi tidak cocok"
+
+msgid "Placeholder for description of share group type access managing form."
+msgstr ""
+"Placeholder untuk deskripsi bentuk pengelolaan akses tipe grup berbagi."
+
+msgid "Placeholder for description of share type access managing form."
+msgstr "Placeholder untuk deskripsi bentuk pengelolaan akses tipe berbagi."
 
 msgid "Preserve Metadata"
 msgstr "Preserve Metadata (pertahankan metadata)"
@@ -1170,6 +1236,13 @@ msgstr "Nama share yang akan ditetapkan"
 msgid "Share network"
 msgstr "Bagikan jaringan"
 
+msgid ""
+"Share networks contain network data, that will be used for creation of "
+"service VM, where will be hosted shares."
+msgstr ""
+"Jaringan berbagi berisi data jaringan, yang akan digunakan untuk pembuatan "
+"VM layanan, tempat berbagi host."
+
 #, python-format
 msgid "Share replica %s has been deleted."
 msgstr "Berbagi replika %s sudah dihapus."
@@ -1331,6 +1404,13 @@ msgstr "layanan keamanan berhasil diperbarui \"%s\""
 
 msgid "Task state"
 msgstr "Status tugas"
+
+msgid ""
+"The security service can be used by backend drivers to configure clients, "
+"for more secure using of share."
+msgstr ""
+"Layanan keamanan dapat digunakan oleh driver backend untuk mengkonfigurasi "
+"klien, untuk penggunaan berbagi yang lebih aman."
 
 msgid ""
 "The share group type defines the characteristics of a share group backend."
@@ -1791,6 +1871,15 @@ msgstr "User (pengguna)"
 
 msgid "Visibility"
 msgstr "Visibility (keterlihatan)"
+
+msgid ""
+"When a share is \"unmanaged\", the share will no longer be visible within "
+"OpenStack. Note that the share will not be deleted. <br> <br> This is "
+"equivalent to the <tt>'manila unmanage'</tt> command."
+msgstr ""
+"Ketika sebuah share  \"unmanaged\", share tersebut tidak akan lagi terlihat "
+"di dalam OpenStack. Perhatikan bahwa pembagian tidak akan dihapus. <br> <br> "
+"Ini sama dengan perintah <tt> 'manila unmanage' </tt>."
 
 msgid "Writable"
 msgstr "Writable (dapat ditulis)"

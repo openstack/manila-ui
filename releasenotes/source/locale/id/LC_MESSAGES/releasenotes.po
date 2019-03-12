@@ -1,20 +1,24 @@
 # suhartono <cloudsuhartono@gmail.com>, 2016. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2018. #zanata
+# suhartono <cloudsuhartono@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-09 02:25+0000\n"
+"POT-Creation-Date: 2019-03-01 00:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-02-21 03:28+0000\n"
+"PO-Revision-Date: 2019-03-12 06:02+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "2.16.0"
+msgstr "2.16.0"
 
 msgid "2.2.0"
 msgstr "2.2.0"
@@ -27,6 +31,9 @@ msgstr "2.7.0"
 
 msgid "2.7.1"
 msgstr "2.7.1"
+
+msgid "2.7.1-12"
+msgstr "2.7.1-12"
 
 msgid "2.8.0"
 msgstr "2.8.0"
@@ -78,6 +85,9 @@ msgstr ""
 "sumber dalam permintaan dan menciptakan share dari awal bukan varian "
 "snapshot yang diharapkan."
 
+msgid "Fixed missing \"Create Share\" button on the \"Shares\" dashboard."
+msgstr "Memperbaiki tombol \"Create Share\"  yang hilang di dasbor \"Shares\"."
+
 msgid ""
 "Fixed quota names overlapping with Cinder's quotas. Now it is possible to "
 "read/write any manila quotas not messing up Cinder's quotas."
@@ -111,6 +121,9 @@ msgstr ""
 
 msgid "Queens Series Release Notes"
 msgstr "Catatan Rilis Seri Queens"
+
+msgid "Rocky Series Release Notes"
+msgstr "Catatan Rilis Seri Rocky"
 
 msgid "Started using release notes to track changes to manila UI."
 msgstr "Mulai menggunakan catatan rilis untuk melacak perubahan manila UI."
