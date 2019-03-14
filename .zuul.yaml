@@ -24,7 +24,6 @@
 
 - job:
     name: manila-ui-dsvm
-    nodeset: openstack-single-node-bionic
     parent: legacy-dsvm-base
     run: playbooks/legacy/manila-ui-dsvm/run.yaml
     post-run: playbooks/legacy/manila-ui-dsvm/post.yaml
