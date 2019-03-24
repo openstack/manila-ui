@@ -53,8 +53,8 @@
       - ^releasenotes/.*$
     vars:
       devstack_plugins:
-        manila: git://git.openstack.org/openstack/manila
-        manila-ui: git://git.openstack.org/openstack/manila-ui
+        manila: https://git.openstack.org/openstack/manila
+        manila-ui: https://git.openstack.org/openstack/manila-ui
       devstack_services:
         horizon: true
       tox_envlist: integration

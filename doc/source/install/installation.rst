@@ -8,7 +8,7 @@ DevStack Installation
 Add this repo as an external repository into your ``local.conf`` file::
 
     [[local|localrc]]
-    enable_plugin manila-ui git://git.openstack.org/openstack/manila-ui
+    enable_plugin manila-ui https://git.openstack.org/openstack/manila-ui
 
 Manual Installation
 -------------------
@@ -16,7 +16,7 @@ Manual Installation
 Begin by installing Horizon following the `Horizon Manual Installation Guide <https://docs.openstack.org/horizon/latest/install/from-source.html>`__
 and clone Manila UI repository::
 
-    git clone git://git.openstack.org/openstack/manila-ui
+    git clone https://git.openstack.org/openstack/manila-ui
 
 Install Manila UI with all dependencies. From within the horizon folder::
 
