@@ -136,10 +136,15 @@ class Detail(tabs.TabView):
             for ss in share_net.sec_services:
                 ss.type = utils.get_nice_security_service_type(ss)
             server_search_opts = {'share_network_id': share_net_id}
-            share_servs = manila.share_server_list(
-                self.request,
-                search_opts=server_search_opts)
-            share_net.share_servers = share_servs
+            try:
+                share_servs = manila.share_server_list(
+                    self.request,
+                    search_opts=server_search_opts)
+            #  Non admins won't be able to get share servers
+            except Exception:
+                share_servs = []
+            if share_servs:
+                share_net.share_servers = share_servs
         except Exception:
             exceptions.handle(self.request,
                               _('Unable to retrieve share network details.'),
