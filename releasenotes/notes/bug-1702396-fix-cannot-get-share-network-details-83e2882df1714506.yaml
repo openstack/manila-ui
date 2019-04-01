@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Fixed an issue where an error message popped up about not being able to
+    retrieve share network details when an ordinary user attempted to see these
+    because the user wasn't authorized for certain admin-only ``share server``
+    information.  In this circumstance we now handle this situation gracefully
+    behind the scenes and display all the share network information for which
+    the end user is authorized.
