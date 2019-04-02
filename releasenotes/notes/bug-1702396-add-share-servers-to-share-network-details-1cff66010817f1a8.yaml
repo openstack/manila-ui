@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Share servers are added to the share network details page. The page has
+    been modified to show share servers and security services only if any
+    exist, or are retrievable from the server.
