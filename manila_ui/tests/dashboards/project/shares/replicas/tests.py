@@ -104,17 +104,22 @@ class ReplicasTests(test.TestCase):
             mock.Mock(side_effect=Exception("Fake exception")))
         self._create_post()
 
-    def test_detail(self):
+    @ddt.data(True, False)
+    def test_detail_with_export_locations_available(self, exports_available):
         url = reverse(
             "horizon:project:shares:replica_detail",
             args=[self.share_replica.id])
-        export_locations = test_data.export_locations
+
+        export_locations_call_behavior = (
+            {'return_value': test_data.export_locations} if exports_available
+            else {'side_effect': Exception("Access denied to this resource")}
+        )
         self.mock_object(
             api_manila, "share_replica_get",
             mock.Mock(return_value=self.share_replica))
         self.mock_object(
             api_manila, "share_instance_export_location_list",
-            mock.Mock(return_value=export_locations))
+            mock.Mock(**export_locations_call_behavior))
 
         res = self.client.get(url)
 
@@ -126,10 +131,12 @@ class ReplicasTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % self.share_replica.id, 1, 200)
         self.assertContains(
             res, "<dd>%s</dd>" % self.share.availability_zone, 1, 200)
-        for el in export_locations:
-            self.assertContains(res, "value=\"%s\"" % el.path, 1, 200)
-            self.assertContains(
-                res, "<div><b>Preferred:</b> %s</div>" % el.preferred, 1, 200)
+        if exports_available:
+            for el in test_data.export_locations:
+                self.assertContains(res, "value=\"%s\"" % el.path, 1, 200)
+                self.assertContains(
+                    res, "<div><b>Preferred:</b> %s</div>" % el.preferred,
+                    1, 200)
             self.assertContains(
                 res, "<div><b>Is admin only:</b> %s</div>" % el.is_admin_only,
                 1, 200)

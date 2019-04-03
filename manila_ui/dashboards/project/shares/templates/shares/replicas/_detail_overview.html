@@ -13,20 +13,22 @@
     <dd>{{ replica.status|capfirst }}</dd>
     <dt>{% trans "Replica state" %}</dt>
     <dd>{{ replica.replica_state|capfirst }}</dd>
-    <dt>{% trans "Export locations" %}</dt>
-    {% for el in replica.export_locations %}
-      <dd><p>
-        <div><b>Path:</b>
-            <input type="text" readonly="true"
-                   value="{{ el.path }}" size="{{ replica.el_size }}"
-                   onClick="this.setSelectionRange(0, this.value.length)">
-        </div>
-        <div><b>Preferred:</b> {{ el.preferred }}</div>
-        {% if el.is_admin_only == True or el.is_admin_only == False %}
-        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
-        {% endif %}
-      </p></dd>
-    {% endfor %}
+    {% if replica.export_locations %}
+        <dt>{% trans "Export locations" %}</dt>
+        {% for el in replica.export_locations %}
+          <dd><p>
+            <div><b>Path:</b>
+                <input type="text" readonly="true"
+                       value="{{ el.path }}" size="{{ replica.el_size }}"
+                       onClick="this.setSelectionRange(0, this.value.length)">
+            </div>
+            <div><b>Preferred:</b> {{ el.preferred }}</div>
+            {% if el.is_admin_only == True or el.is_admin_only == False %}
+            <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+            {% endif %}
+          </p></dd>
+        {% endfor %}
+    {% endif %}
     <dt>{% trans "Availability zone" %}</dt>
     <dd>{{ replica.availability_zone }}</dd>
 

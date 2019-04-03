@@ -87,20 +87,25 @@ class DetailReplicaView(tabs.TabView):
         try:
             replica_id = self.kwargs['replica_id']
             replica = manila.share_replica_get(self.request, replica_id)
-            replica.export_locations = (
-                manila.share_instance_export_location_list(
-                    self.request, replica_id))
-            export_locations = [
-                exp['path'] for exp in replica.export_locations
-            ]
-            replica.el_size = ui_utils.calculate_longest_str_size(
-                export_locations)
+            try:
+                # The default policy for this API does not allow
+                # non-admins to retrieve export locations.
+                replica.export_locations = (
+                    manila.share_instance_export_location_list(
+                        self.request, replica_id))
+                export_locations = [
+                    exp['path'] for exp in replica.export_locations
+                ]
+                replica.el_size = ui_utils.calculate_longest_str_size(
+                    export_locations)
+            except Exception:
+                replica.export_locations = []
         except Exception:
             redirect = reverse(self._redirect_url)
             exceptions.handle(
                 self.request,
-                _('Unable to retrieve replica %sdetails.') % replica_id,
-                redirect=redirect)
+                _('Unable to retrieve details of replica %s') %
+                self.kwargs['replica_id'], redirect=redirect)
         return replica
 
     def get_tabs(self, request, *args, **kwargs):
