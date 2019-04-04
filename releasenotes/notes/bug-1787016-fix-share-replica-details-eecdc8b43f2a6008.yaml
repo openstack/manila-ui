@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    The Share replica details page has been fixed to render correctly for
+    users with non-admin roles.
