@@ -36,7 +36,9 @@
     <dd>{{ replica.created_at|parse_date }}</dd>
     <dt>{% trans "Updated" %}</dt>
     <dd>{{ replica.updated_at|parse_date }}</dd>
+    {% if replica.host %}
     <dt>{% trans "Host" %}</dt>
     <dd>{{ replica.host }}</dd>
+    {% endif %}
   </dl>
 </div>
