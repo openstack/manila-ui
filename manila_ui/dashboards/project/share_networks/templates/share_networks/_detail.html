@@ -16,7 +16,7 @@
 </div>
 
 <div class="detail">
-  <h4>{% trans "Net Details" %}</h4>
+  <h4>{% trans "Network Details" %}</h4>
   <hr class="header_rule">
   <dl class="dl-horizontal">
     <dt>{% trans "Network" %}</dt>
@@ -31,19 +31,38 @@
   </dl>
 </div>
 
-<div class="detail">
-  <h4>{% trans "Security Services" %}</h4>
-  <hr class="header_rule">
-  {% for sec_service in share_network.sec_services %}
-        {% url 'horizon:project:security_services:security_service_detail' sec_service.id as sec_service_url%}
-  <dl class="dl-horizontal">
-        <dt>{% trans "Id" %}</dt>
-        <dd><a href="{{ sec_service_url }}">{{ sec_service.id }}</a></dd>
-        <dt>{% trans "Name" %}</dt>
-        <dd><a href="{{ sec_service_url }}">{{ sec_service.name }}</a></dd>
-        <dt>{% trans "Type" %}</dt>
-        <dd>{{ sec_service.type }}</dd>
-  </dl>
-  <br />
-  {% endfor %}
-</div>
+
+{% if share_network.share_servers %}
+    <div class="detail">
+        <h4>{% trans "Share Servers" %}</h4>
+        <hr class="header_rule">
+        <dl class="dl-horizontal">
+        {% for server in share_network.share_servers %}
+            <ul>
+                {% url 'horizon:admin:share_servers:share_server_detail' server.id as server_url %}
+                <li><a href="{{ server_url }}">{{ server.id }}</a></li>
+            </ul>
+        {% endfor %}
+        </dl>
+    </div>
+{% endif %}
+
+
+{% if share_network.sec_services %}
+    <div class="detail">
+      <h4>{% trans "Security Services" %}</h4>
+      <hr class="header_rule">
+      {% for sec_service in share_network.sec_services %}
+            {% url 'horizon:project:security_services:security_service_detail' sec_service.id as sec_service_url%}
+      <dl class="dl-horizontal">
+            <dt>{% trans "Id" %}</dt>
+            <dd><a href="{{ sec_service_url }}">{{ sec_service.id }}</a></dd>
+            <dt>{% trans "Name" %}</dt>
+            <dd><a href="{{ sec_service_url }}">{{ sec_service.name }}</a></dd>
+            <dt>{% trans "Type" %}</dt>
+            <dd>{{ sec_service.type }}</dd>
+      </dl>
+      <br />
+      {% endfor %}
+    </div>
+{% endif %}
