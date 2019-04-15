@@ -165,7 +165,6 @@ class ReplicasTable(tables.DataTable):
 
     replica_state = tables.Column(
         "replica_state", verbose_name=_("Replica State"))
-    host = tables.Column("host", verbose_name=_("Host"))
     created_at = tables.Column(
         "created_at", verbose_name=_("Created At"),
         filters=(filters.parse_isotime,))
