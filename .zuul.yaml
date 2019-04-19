@@ -30,7 +30,7 @@
     post-run: playbooks/legacy/manila-ui-dsvm/post.yaml
     timeout: 6000
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/manila
       - openstack/manila-ui
       - openstack/python-manilaclient
@@ -54,8 +54,8 @@
       - ^releasenotes/.*$
     vars:
       devstack_plugins:
-        manila: https://git.openstack.org/openstack/manila
-        manila-ui: https://git.openstack.org/openstack/manila-ui
+        manila: https://opendev.org/openstack/manila
+        manila-ui: https://opendev.org/openstack/manila-ui
       devstack_services:
         horizon: true
       tox_envlist: integration
