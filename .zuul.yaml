@@ -33,7 +33,7 @@
     post-run: playbooks/legacy/manila-ui-dsvm/post.yaml
     timeout: 6000
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/manila
       - openstack/manila-ui
       - openstack/python-manilaclient
