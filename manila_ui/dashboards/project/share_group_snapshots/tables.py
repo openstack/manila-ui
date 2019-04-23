@@ -96,7 +96,7 @@ class DeleteShareGroupSnapshot(tables.DeleteAction):
         except Exception:
             msg = _('Unable to delete share group snapshot "%s". '
                     'One or more share groups depend on it.')
-            exceptions.check_message(["snapshots", "dependent"], msg % name)
+            exceptions.handle(self.request, msg % name)
             raise
 
     def allowed(self, request, snapshot=None):

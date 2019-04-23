@@ -65,7 +65,7 @@ class DeleteShareSnapshot(tables.DeleteAction):
         except Exception:
             msg = _('Unable to delete snapshot "%s". One or more shares '
                     'depend on it.')
-            exceptions.check_message(["snapshots", "dependent"], msg % name)
+            exceptions.handle(self.request, msg % name)
             raise
 
     def allowed(self, request, snapshot=None):
