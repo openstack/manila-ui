@@ -41,5 +41,5 @@ if you are not root)::
     # systemctl restart memcached
 
 Manila UI will now be available through OpenStack Horizon; look for
-the Shares tab under Project > Compute. You can access Horizon with
+the Shares tab under Project > Share. You can access Horizon with
 Manila UI using the same URL and port as before.
