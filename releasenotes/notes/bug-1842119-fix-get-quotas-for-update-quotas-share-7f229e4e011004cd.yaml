@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Fixed issue that the saved Share quota data is not shown in Modify
+    Quotas modal dialog.
+

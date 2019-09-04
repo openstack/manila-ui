@@ -10,8 +10,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import logging
+
 from django.utils.translation import ugettext_lazy as _
 
+from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
@@ -20,6 +23,8 @@ from openstack_dashboard.dashboards.identity.projects \
     import workflows as project_workflows
 
 from manila_ui.api import manila as api_manila
+
+LOG = logging.getLogger(__name__)
 
 
 class ShareQuotaAction(project_workflows.CommonQuotaAction):
@@ -49,6 +54,20 @@ class UpdateShareQuota(workflows.Step):
     action_class = ShareQuotaAction
     depends_on = ("project_id", "disabled_quotas")
     contributes = api_manila.MANILA_QUOTA_FIELDS
+
+    def prepare_action_context(self, request, context):
+        try:
+            quotas = api_manila.tenant_quota_get(
+                request, context['project_id'])
+            for field in api_manila.MANILA_QUOTA_FIELDS:
+                # Resolve mismatch UI field names and data field names.
+                data_field = api_manila.MANILA_QUOTA_FIELDS_DATA_MAP[field]
+                context[field] = quotas.get(data_field).limit
+        except Exception as ex:
+            LOG.exception(ex)
+            exceptions.handle(request,
+                              _('Unable to retrieve share quotas.'))
+        return context
 
     def allowed(self, request):
         return base.is_service_enabled(request, 'share')

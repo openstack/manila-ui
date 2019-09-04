@@ -47,6 +47,16 @@ MANILA_QUOTA_FIELDS = {
     "share_networks",
 }
 
+# UI field names do not match data field names returned, have
+# a map to convert them.
+MANILA_QUOTA_FIELDS_DATA_MAP = {
+    "shares": "shares",
+    "share_gigabytes": "gigabytes",
+    "share_snapshots": "snapshots",
+    "share_snapshot_gigabytes": "snapshot_gigabytes",
+    "share_networks": "share_networks"
+}
+
 
 def manilaclient(request):
     insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
