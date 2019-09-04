@@ -15,6 +15,8 @@
 
 import ddt
 
+from openstack_dashboard.api import base as horizon_api
+
 from manila_ui.api import manila as api
 from manila_ui.tests import helpers as base
 
@@ -25,6 +27,7 @@ class ManilaApiTests(base.APITestCase):
     def setUp(self):
         super(self.__class__, self).setUp()
         self.id = "fake_id"
+        self.mock_object(horizon_api, "QuotaSet")
 
     @ddt.data((None, True), ("some_fake_sg_id", False))
     @ddt.unpack
@@ -352,6 +355,31 @@ class ManilaApiTests(base.APITestCase):
 
         self.manilaclient.quota_classes.update.assert_called_once_with(
             api.DEFAULT_QUOTA_NAME, **expected_kwargs)
+
+    def test_tenant_quota_get(self):
+        tenant_id = 'fake_tenant_id'
+        result = api.tenant_quota_get(self.request, tenant_id)
+
+        self.assertIsNotNone(result)
+        self.manilaclient.quotas.get.assert_called_once_with(tenant_id)
+
+    @ddt.data({
+        'shares': 24, 'gigabytes': 333, 'snapshots': 14,
+        'snapshot_gigabytes': 444, 'share_networks': 14
+    })
+    @ddt.unpack
+    def test_ui_data_map(self, **kwargs):
+        expected_result = {
+            'shares': 24, 'share_gigabytes': 333, 'share_snapshots': 14,
+            'share_snapshot_gigabytes': 444, 'share_networks': 14
+        }
+
+        converted_result_for_ui = {}
+        for field in api.MANILA_QUOTA_FIELDS:
+            converted_result_for_ui[field] = (
+                kwargs[api.MANILA_QUOTA_FIELDS_DATA_MAP[field]])
+
+        self.assertEqual(expected_result, converted_result_for_ui)
 
     @ddt.data(
         {},
