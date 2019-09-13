@@ -1,3 +1,11 @@
+Team and repository tags
+------------------------
+
+.. image:: https://governance.openstack.org/tc/badges/manila-ui.svg
+    :target: https://governance.openstack.org/tc/reference/tags/index.html
+
+.. Change things from this point on
+
 =======================================
 manila-ui - Manila Management Dashboard
 =======================================
@@ -7,9 +15,3 @@ manila-ui - Manila Management Dashboard
 * Release notes: https://docs.openstack.org/releasenotes/manila-ui/
 * Source: https://opendev.org/openstack/manila-ui
 * Bugs: https://bugs.launchpad.net/manila-ui
-
-Team and repository tags
-------------------------
-
-.. image:: https://governance.openstack.org/tc/badges/manila-ui.svg
-    :target: https://governance.openstack.org/tc/reference/tags/index.html

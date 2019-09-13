@@ -26,6 +26,7 @@ extensions = [
     'sphinx.ext.autodoc',
     #'sphinx.ext.intersphinx',
     'openstackdocstheme',
+    'sphinx.ext.imgconverter',
 ]
 
 # openstackdocstheme options
@@ -70,15 +71,49 @@ html_theme_path = [openstackdocstheme.get_html_theme_path()]
 # Output file base name for HTML help builder.
 htmlhelp_basename = '%sdoc' % project
 
+# Example configuration for intersphinx: refer to the Python standard library.
+#intersphinx_mapping = {'http://docs.python.org/': None}
+
+# -- Options for LaTeX output -------------------------------------------------
+
+# The paper size ('letter' or 'a4').
+# latex_paper_size = 'letter'
+
+# The font size ('10pt', '11pt' or '12pt').
+# latex_font_size = '10pt'
+
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
     ('index',
-     '%s.tex' % project,
+     'doc-%s.tex' % project,
      u'%s Documentation' % project,
      u'OpenStack Foundation', 'manual'),
 ]
 
-# Example configuration for intersphinx: refer to the Python standard library.
-#intersphinx_mapping = {'http://docs.python.org/': None}
+# The name of an image file (relative to this directory) to place at the top of
+# the title page.
+# latex_logo = None
+
+# For "manual" documents, if this is true, then toplevel headings are parts,
+# not chapters.
+# latex_use_parts = False
+
+# Additional stuff for the LaTeX preamble.
+# latex_preamble = ''
+
+# Documents to append as an appendix to all manuals.
+# latex_appendices = []
+
+# If false, no module index is generated.
+# latex_use_modindex = True
+
+latex_domain_indices = False
+
+latex_elements = {
+    'makeindex': '',
+    'printindex': '',
+    'preamble': r'\setcounter{tocdepth}{3}',
+    'maxlistdepth': 10,
+}
