@@ -4,3 +4,11 @@ xvfb [selenium platform:dpkg]
 # already part of xorg-x11-server on openSUSE
 xorg-x11-server-Xvfb [selenium platform:redhat]
 
+# Dependency for pdf document generation
+latexmk
+texlive-xetex
+texlive-fonts-recommended
+fonts-liberation
+inkscape
+librsvg2-bin
+imagemagick
