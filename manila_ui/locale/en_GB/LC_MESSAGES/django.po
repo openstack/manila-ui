@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-08-10 11:38+0000\n"
+"POT-Creation-Date: 2019-09-16 12:05+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1593,10 +1593,6 @@ msgstr "Unable to retrieve list of projects."
 
 msgid "Unable to retrieve quotas."
 msgstr "Unable to retrieve quotas."
-
-#, python-format
-msgid "Unable to retrieve replica %sdetails."
-msgstr "Unable to retrieve replica %sdetails."
 
 #, python-format
 msgid "Unable to retrieve replica '%s'."
