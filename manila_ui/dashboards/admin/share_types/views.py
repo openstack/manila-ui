@@ -132,8 +132,12 @@ class UpdateShareTypeView(forms.ModalFormView):
 
     def get_initial(self):
         share_type = self.get_object()
-        return {
+        st_info = {
             "id": self.kwargs["share_type_id"],
             "name": share_type.name,
             "extra_specs": share_type.extra_specs,
+            "is_public": share_type.is_public,
         }
+        if hasattr(share_type, 'description'):
+            st_info['description'] = share_type.description
+        return st_info

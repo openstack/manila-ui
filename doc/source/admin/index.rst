@@ -55,6 +55,9 @@ Update share type
 
    :guilabel:`Extra specs`: To add extra specs, use key=value.
    To unset extra specs, use key.
+   :guilabel:`Name`: To update share type name.
+   :guilabel:`Description`: To update share type description.
+   :guilabel:`Public`: To update share type visibility.
 
 #. Click :guilabel:`Update Share Type` button to confirm your changes.
 

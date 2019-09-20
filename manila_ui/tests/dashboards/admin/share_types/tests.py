@@ -76,15 +76,25 @@ class ShareTypeTests(test.BaseAdminViewTests):
 
     def test_update_share_type_post(self):
         data = {
-            'extra_specs': 'driver_handles_share_servers=True'
+            'name': 'share_type_update',
+            'description': 'share_type_description',
+            'is_public': True,
+            'extra_specs': 'fork_key=fork_val'
         }
         form_data = {
-            'extra_specs': {'driver_handles_share_servers': 'True'},
+            'name': 'share_type_update',
+            'description': 'share_type_description',
+            'is_public': True,
+            'extra_specs': {'fork_key': 'fork_val'},
         }
         self.mock_object(api_manila, "share_type_set_extra_specs")
+        self.mock_object(api_manila, "share_type_update")
 
         res = self.client.post(self.url, data)
 
         api_manila.share_type_set_extra_specs.assert_called_once_with(
             mock.ANY, self.share_type.id, form_data['extra_specs'])
+        api_manila.share_type_update.assert_called_once_with(
+            mock.ANY, self.share_type.id, data['name'], data['description'],
+            data['is_public'])
         self.assertRedirectsNoFollow(res, INDEX_URL)

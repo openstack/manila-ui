@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.46"
+MANILA_VERSION = "2.50"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -426,6 +426,17 @@ def share_type_create(request, name, spec_driver_handles_share_servers,
         description=description,
         spec_driver_handles_share_servers=spec_driver_handles_share_servers,
         is_public=is_public)
+
+
+def share_type_update(request, share_type_id, name=None, description=None,
+                      is_public=None):
+    share_type_data = {
+        'name': name,
+        'description': description,
+        'is_public': is_public
+    }
+    return manilaclient(request).share_types.get(
+        share_type_id).update(**share_type_data)
 
 
 def share_type_delete(request, share_type_id):

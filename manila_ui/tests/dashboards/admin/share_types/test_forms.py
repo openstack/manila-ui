@@ -79,7 +79,7 @@ class ManilaDashboardsAdminSharesUpdateShareTypeFormTests(base.APITestCase):
         self.assertTrue(result)
         mock_horizon_messages_success.assert_called_once_with(
             mock.ANY, mock.ANY)
-        self.manilaclient.share_types.get.assert_called_once_with(
+        self.manilaclient.share_types.get.assert_called_with(
             initial['id'])
         self.manilaclient.share_types.get.return_value.set_keys.\
             assert_called_once_with({'foo': 'bar'})
@@ -159,6 +159,42 @@ class ManilaDashboardsAdminSharesUpdateShareTypeFormTests(base.APITestCase):
         self.assertFalse(result)
         mock_horizon_exceptions_handle.assert_called_once_with(
             self.request, mock.ANY)
+
+    @ddt.data(
+        ('name_updated_1', 'description_updated', True),
+        ('name_updated_2', 'description_updated', False),
+        ('name_updated_3', None, True),
+    )
+    @ddt.unpack
+    @mock.patch('horizon.messages.success')
+    def test_update_share_type_name_description_public(
+            self, name, description, is_public,
+            mock_horizon_messages_success):
+        initial = {
+            'id': 'fake_id',
+            'name': 'fake_name',
+            'description': 'fake_description',
+            'is_public': True,
+            'extra_specs': {}
+        }
+        form = self._get_form(initial)
+        data = {
+            'name': name,
+            'description': description,
+            'is_public': is_public,
+            'extra_specs': '',
+        }
+        result = form.handle(self.request, data)
+
+        self.assertIs(True, result)
+        mock_horizon_messages_success.assert_called_once_with(
+            mock.ANY, mock.ANY)
+        self.manilaclient.share_types.get.assert_called_once_with(
+            initial['id'])
+        self.manilaclient.share_types.get.return_value.update.\
+            assert_called_once_with(name=data['name'],
+                                    description=data['description'],
+                                    is_public=data['is_public'])
 
 
 @ddt.ddt

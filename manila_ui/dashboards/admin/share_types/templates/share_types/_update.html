@@ -2,7 +2,8 @@
 {% load i18n %}
 {% block modal-body-right %}
     <h3>{% trans "Description" %}:</h3>
-    <p>
+    <p>{% trans "From here you can modify name, description, extra specs and visibility of a share type." %}
+      <br /><br /><strong>Extra specs</strong> field:<br />
       {% trans "Here can be modified extra-specs for share type." %}<br />
       {% trans "One line - one action. Empty strings will be ignored." %}<br />
       {% trans "To add extra-specs use:" %}
