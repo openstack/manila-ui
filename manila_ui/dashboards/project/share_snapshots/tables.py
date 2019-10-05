@@ -15,8 +15,8 @@
 from django.template.defaultfilters import title
 from django.urls import reverse
 from django.utils.http import urlencode
+from django.utils.text import format_lazy
 from django.utils.translation import pgettext_lazy
-from django.utils.translation import string_concat
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from horizon import exceptions
@@ -65,8 +65,10 @@ class CreateShareSnapshot(tables.LinkAction):
         if not snapshots_allowed:
             if "disabled" not in self.classes:
                 self.classes = [c for c in self.classes] + ['disabled']
-                self.verbose_name = string_concat(
-                    self.verbose_name, ' ', _("(Quota exceeded)"))
+                self.verbose_name = format_lazy(
+                    '{verbose_name} {quota_exceeded}',
+                    verbose_name=self.verbose_name,
+                    quota_exceeded=_("(Quota exceeded)"))
         else:
             self.verbose_name = _("Create Share Snapshot")
             classes = [c for c in self.classes if c != "disabled"]
