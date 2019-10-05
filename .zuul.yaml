@@ -1,6 +1,7 @@
 - project:
     templates:
       - check-requirements
+      - horizon-non-primary-django-jobs
       - openstack-cover-jobs-horizon
       - openstack-lower-constraints-jobs-horizon
       - openstack-python-jobs-horizon
@@ -13,15 +14,6 @@
             voting: false
         - manila-ui-integration-tests:
             voting: false
-        - horizon-openstack-tox-python3-django111
-        - horizon-openstack-tox-py27dj19
-        - horizon-openstack-tox-py27dj110
-    gate:
-      jobs:
-        - horizon-openstack-tox-python3-django111
-        - horizon-openstack-tox-py27dj19
-        - horizon-openstack-tox-py27dj110
-
 - job:
     name: manila-ui-dsvm
     parent: legacy-dsvm-base
