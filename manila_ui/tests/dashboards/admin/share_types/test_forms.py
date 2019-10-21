@@ -180,6 +180,7 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
             'is_public': False,
             'spec_driver_handles_share_servers': 'True',
             'name': 'share',
+            'description': ''
         }
 
         result = form.handle(self.request, data)
@@ -188,17 +189,19 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
         self.manilaclient.share_types.create.assert_called_once_with(
             name=data['name'],
             spec_driver_handles_share_servers='true',
+            description=data['description'],
             is_public=data["is_public"])
         mock_horizon_messages_success.assert_called_once_with(
             self.request, mock.ANY)
 
     @mock.patch('horizon.messages.success')
-    def test_create_share_type_with_extra_specs(self,
-                                                mock_horizon_messages_success):
+    def test_create_share_type_with_extra_specs_and_description(
+            self, mock_horizon_messages_success):
         form = self._get_form()
         data = {'extra_specs': 'a=b \n c=d',
                 'is_public': False,
                 'spec_driver_handles_share_servers': 'True',
+                'description': 'st_description',
                 'name': 'share'}
 
         result = form.handle(self.request, data)
@@ -211,6 +214,7 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
         self.manilaclient.share_types.create.assert_called_once_with(
             name=data['name'],
             spec_driver_handles_share_servers='true',
+            description=data['description'],
             is_public=data["is_public"])
         mock_horizon_messages_success.assert_called_once_with(
             self.request, mock.ANY)
@@ -230,6 +234,7 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
                 'is_public': enable_public_share_type_creation,
                 'spec_driver_handles_share_servers': 'True',
                 'name': 'share',
+                'description': '',
             }
 
             result = form.handle(self.request, data)
@@ -246,6 +251,7 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
             self.manilaclient.share_types.create.assert_called_once_with(
                 name=data['name'],
                 spec_driver_handles_share_servers='true',
+                description=data['description'],
                 is_public=enable_public_share_type_creation)
             mock_horizon_messages_success.assert_called_once_with(
                 self.request, mock.ANY)

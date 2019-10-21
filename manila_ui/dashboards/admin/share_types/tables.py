@@ -83,6 +83,8 @@ class UpdateShareType(tables.LinkAction):
 
 class ShareTypesTable(tables.DataTable):
     name = tables.WrappingColumn("name", verbose_name=_("Name"))
+    description = tables.WrappingColumn(
+        "description", verbose_name=_("Description"))
     extra_specs = tables.Column("extra_specs", verbose_name=_("Extra specs"), )
     visibility = tables.Column(
         "is_public", verbose_name=_("Visibility"),

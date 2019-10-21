@@ -674,24 +674,27 @@ class ManilaApiTests(base.APITestCase):
         self.manilaclient.share_types.create.assert_called_once_with(
             name=name,
             spec_driver_handles_share_servers=dhss,
+            description=None,
             is_public=True)
 
     @ddt.data(
-        (True, True),
-        (False, True),
-        (True, False),
-        (False, False),
+        (True, "fake_description", True),
+        (False, "fake_description", True),
+        (True, "fake_description", False),
+        (False, "fake_description", False),
     )
     @ddt.unpack
     def test_share_type_create_with_custom_values(
-            self, dhss, is_public):
+            self, dhss, description, is_public):
         name = 'fake_share_type_name'
 
         api.share_type_create(
-            self.request, name, dhss, is_public)
+            self.request, name, dhss, description,
+            is_public)
 
         self.manilaclient.share_types.create.assert_called_once_with(
             name=name,
+            description=description,
             spec_driver_handles_share_servers=dhss,
             is_public=is_public)
 

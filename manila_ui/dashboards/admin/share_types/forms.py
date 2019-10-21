@@ -33,6 +33,8 @@ ST_EXTRA_SPECS_FORM_ATTRS = {
 
 class CreateShareType(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Name"), required=True)
+    description = forms.CharField(widget=forms.Textarea, max_length="255",
+                                  label=_("Description"), required=False)
     spec_driver_handles_share_servers = forms.ChoiceField(
         label=_("Driver handles share servers"), required=True,
         choices=(('False', 'False'), ('True', 'True')))
@@ -72,7 +74,8 @@ class CreateShareType(forms.SelfHandlingForm):
             is_public = (self.enable_public_share_type_creation and
                          data["is_public"])
             share_type = manila.share_type_create(
-                request, data["name"], spec_dhss, is_public=is_public)
+                request, data["name"], spec_dhss,
+                description=data["description"], is_public=is_public)
             if set_dict:
                 manila.share_type_set_extra_specs(
                     request, share_type.id, set_dict)
@@ -90,6 +93,9 @@ class CreateShareType(forms.SelfHandlingForm):
 
 
 class UpdateShareType(forms.SelfHandlingForm):
+    extra_specs = forms.CharField(
+        required=False, label=_("Extra specs"),
+        widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
 
     def __init__(self, *args, **kwargs):
         super(UpdateShareType, self).__init__(*args, **kwargs)
@@ -99,10 +105,6 @@ class UpdateShareType(forms.SelfHandlingForm):
         for k, v in self.initial["extra_specs"].items():
             es_str += "%s=%s\r\n" % (k, v)
         self.initial["extra_specs"] = es_str
-
-    extra_specs = forms.CharField(
-        required=False, label=_("Extra specs"),
-        widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
 
     def handle(self, request, data):
         try:

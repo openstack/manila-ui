@@ -50,6 +50,7 @@ class ShareTypeTests(test.BaseAdminViewTests):
         data = {
             'is_public': True,
             'name': 'my_share_type',
+            'description': 'share_type_description',
             'spec_driver_handles_share_servers': 'False'
         }
         form_data = data.copy()
@@ -61,6 +62,7 @@ class ShareTypeTests(test.BaseAdminViewTests):
         api_manila.share_type_create.assert_called_once_with(
             mock.ANY, form_data['name'],
             form_data['spec_driver_handles_share_servers'],
+            description=form_data['description'],
             is_public=form_data['is_public'])
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
