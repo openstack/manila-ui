@@ -1,0 +1,7 @@
+---
+upgrade:
+  - |
+    Python 2.7 support has been dropped. The last release of
+    openstack/manila-ui to support py2.7 is OpenStack Train (2.19.x). The
+    minimum version of Python now supported by openstack/manila-ui is
+    Python 3.6.

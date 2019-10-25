@@ -27,17 +27,11 @@ This is made possible by the dependency in test-requirements.txt upon the
 horizon source, which pulls down all of the horizon and openstack_dashboard
 modules that the plugin uses.
 
-To run only py27 unit tests, use following command::
+To run only py3 unit tests, use following command::
 
-    $ tox -e py27
-
-To run only py34 unit tests, use following command::
-
-    $ tox -e py34
+    $ tox -e py3
 
 To run unit tests using specific Django version use the following::
 
-    $ tox -e py27dj17
-    $ tox -e py27dj18
-    $ tox -e py27dj19
-    $ tox -e py27dj110
+    $ tox -e py3-dj22
+    $ tox -e py3-dj110
