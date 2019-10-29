@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    "snapshot_support" is no longer automatically included as an extra-spec
+    in share types created via manila-ui. If the share type has to match backends
+    that support snapshots, explicitly specify "snapshot_support" in the
+    "Extra specs" field while creating share types.
+    This change does not modify pre-existing share types.

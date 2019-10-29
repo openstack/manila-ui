@@ -188,7 +188,6 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
         self.manilaclient.share_types.create.assert_called_once_with(
             name=data['name'],
             spec_driver_handles_share_servers='true',
-            spec_snapshot_support=True,
             is_public=data["is_public"])
         mock_horizon_messages_success.assert_called_once_with(
             self.request, mock.ANY)
@@ -212,7 +211,6 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
         self.manilaclient.share_types.create.assert_called_once_with(
             name=data['name'],
             spec_driver_handles_share_servers='true',
-            spec_snapshot_support=True,
             is_public=data["is_public"])
         mock_horizon_messages_success.assert_called_once_with(
             self.request, mock.ANY)
@@ -248,7 +246,6 @@ class ManilaDashboardsAdminSharesCreateShareTypeFormTests(base.APITestCase):
             self.manilaclient.share_types.create.assert_called_once_with(
                 name=data['name'],
                 spec_driver_handles_share_servers='true',
-                spec_snapshot_support=True,
                 is_public=enable_public_share_type_creation)
             mock_horizon_messages_success.assert_called_once_with(
                 self.request, mock.ANY)
