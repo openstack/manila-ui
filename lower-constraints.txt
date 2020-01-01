@@ -14,7 +14,7 @@ ddt==1.0.1
 debtcollector==1.19.0
 decorator==4.2.1
 deprecation==2.0
-Django==1.11
+Django==2.2
 django-appconf==1.0.2
 django-babel==0.6.2
 django-compressor==2.0
@@ -28,7 +28,7 @@ fixtures==3.0.0
 flake8==2.5.5
 futurist==1.6.0
 hacking==0.12.0
-horizon==14.0.0.0b3
+horizon==17.1.0
 idna==2.6
 imagesize==1.0.0
 iso8601==0.1.11
