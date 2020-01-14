@@ -23,7 +23,6 @@ from django.conf import settings
 from horizon import exceptions
 import logging
 from openstack_dashboard.api import base
-import six
 
 from manilaclient import client as manila_client
 
@@ -116,8 +115,8 @@ def share_delete(request, share_id, share_group_id=None):
 
 def share_update(request, share_id, name, description, is_public=''):
     share_data = {'display_name': name, 'display_description': description}
-    if not isinstance(is_public, six.string_types):
-        is_public = six.text_type(is_public)
+    if not isinstance(is_public, str):
+        is_public = str(is_public)
     if is_public and is_public.lower() != 'none':
         share_data['is_public'] = is_public
     return manilaclient(request).shares.update(share_id, **share_data)

@@ -13,7 +13,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from horizon import tables
-import six
 
 from manila_ui.api import manila
 
@@ -94,7 +93,7 @@ class ShareTypesTable(tables.DataTable):
         return share_type.name
 
     def get_object_id(self, share_type):
-        return six.text_type(share_type.id)
+        return str(share_type.id)
 
     class Meta(object):
         name = "share_types"

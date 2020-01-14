@@ -16,7 +16,6 @@ from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from horizon import tables
-import six
 
 from manila_ui.api import manila
 
@@ -99,10 +98,10 @@ class ShareServersTable(tables.DataTable):
         display_choices=STATUS_DISPLAY_CHOICES)
 
     def get_object_display(self, share_server):
-        return six.text_type(share_server.id)
+        return str(share_server.id)
 
     def get_object_id(self, share_server):
-        return six.text_type(share_server.id)
+        return str(share_server.id)
 
     class Meta(object):
         name = "share_servers"

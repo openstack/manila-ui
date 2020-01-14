@@ -21,7 +21,6 @@ from horizon import exceptions
 from horizon import forms
 from horizon import messages
 from oslo_utils import strutils
-import six
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
@@ -251,7 +250,7 @@ class ManageShare(forms.SelfHandlingForm):
             driver_options_error_msg = _(
                 "Got improper value for field 'driver_options'. "
                 "Expected only pairs of key=value.")
-            if driver_options and isinstance(driver_options, six.string_types):
+            if driver_options and isinstance(driver_options, str):
                 try:
                     set_dict, unset_list = utils.parse_str_meta(driver_options)
                     if unset_list:

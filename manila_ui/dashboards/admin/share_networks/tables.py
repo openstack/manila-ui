@@ -12,7 +12,6 @@
 
 from django.utils.translation import ugettext_lazy as _
 from horizon import tables
-import six
 
 import manila_ui.dashboards.project.share_networks.tables as sn_tables
 
@@ -32,10 +31,10 @@ class ShareNetworksTable(tables.DataTable):
         "segmentation_id", verbose_name=_("Segmentation Id"))
 
     def get_object_display(self, share_network):
-        return share_network.name or six.text_type(share_network.id)
+        return share_network.name or str(share_network.id)
 
     def get_object_id(self, share_network):
-        return six.text_type(share_network.id)
+        return str(share_network.id)
 
     class Meta(object):
         name = "share_networks"

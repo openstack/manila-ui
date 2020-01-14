@@ -21,7 +21,6 @@ from horizon import exceptions
 from horizon import forms
 from horizon import messages
 from horizon.utils.memoized import memoized
-import six
 
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
@@ -78,8 +77,7 @@ class CreateForm(forms.SelfHandlingForm):
             dhss = extra_specs.get('driver_handles_share_servers')
             # NOTE(vponomaryov): Set and tie share-network field only for
             # share types with enabled handling of share servers.
-            if (isinstance(dhss, six.string_types) and
-                    dhss.lower() in ['true', '1']):
+            if (isinstance(dhss, str) and dhss.lower() in ['true', '1']):
                 sn_choices = (
                     [('', '')] +
                     [(sn.id, sn.name or sn.id) for sn in share_networks])

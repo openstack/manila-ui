@@ -18,7 +18,6 @@ from django.urls import reverse
 from horizon import messages as horizon_messages
 import mock
 from openstack_dashboard.api import neutron
-import six
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import forms
@@ -290,7 +289,7 @@ class ShareViewTests(test.APITestCase):
         self.assertRedirectsNoFollow(res, INDEX_URL)
         api_manila.share_update.assert_called_once_with(
             mock.ANY, self.share, formData['name'], formData['description'],
-            is_public=six.text_type(formData['is_public']))
+            is_public=str(formData['is_public']))
         api_manila.share_get.assert_has_calls(
             [mock.call(mock.ANY, self.share.id) for i in (1, 2)])
 
