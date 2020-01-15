@@ -13,7 +13,6 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from horizon import tables
-import six
 
 
 class ShareInstancesTable(tables.DataTable):
@@ -87,7 +86,7 @@ class ShareInstancesTable(tables.DataTable):
         link=get_share_link)
 
     def get_object_display(self, share_instance):
-        return six.text_type(share_instance.id)
+        return str(share_instance.id)
 
     def get_object_id(self, share_instance):
-        return six.text_type(share_instance.id)
+        return str(share_instance.id)

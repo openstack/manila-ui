@@ -16,7 +16,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from horizon import tables
-import six
 
 from manila_ui.api import manila
 
@@ -94,7 +93,7 @@ class ShareGroupTypesTable(tables.DataTable):
         return share_group_type.name
 
     def get_object_id(self, share_group_type):
-        return six.text_type(share_group_type.id)
+        return str(share_group_type.id)
 
     class Meta(object):
         name = "share_group_types"

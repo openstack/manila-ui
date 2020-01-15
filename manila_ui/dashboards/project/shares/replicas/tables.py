@@ -18,7 +18,6 @@ from django.urls import reverse
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
-import six
 
 from horizon import messages
 from horizon import tables
@@ -176,7 +175,7 @@ class ReplicasTable(tables.DataTable):
         return obj.id
 
     def get_object_id(self, obj):
-        return six.text_type(obj.id)
+        return str(obj.id)
 
     class Meta(object):
         name = "replicas"

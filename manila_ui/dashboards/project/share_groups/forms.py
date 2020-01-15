@@ -20,7 +20,6 @@ from horizon import exceptions
 from horizon import forms
 from horizon import messages
 from horizon.utils import memoized
-import six
 
 from manila_ui.api import manila
 
@@ -197,7 +196,7 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
             if share_group_type:
                 cleaned_data["share_types"] = cleaned_data.get(
                     self.st_field_name_prefix + share_group_type)
-                if isinstance(cleaned_data["share_types"], six.string_types):
+                if isinstance(cleaned_data["share_types"], str):
                     cleaned_data["share_types"] = [cleaned_data["share_types"]]
         else:
             self.errors.pop("sgt", None)

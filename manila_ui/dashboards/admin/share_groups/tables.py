@@ -17,7 +17,6 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from horizon import tables
-import six
 
 from manila_ui.api import manila
 
@@ -108,10 +107,10 @@ class ShareGroupsTable(tables.DataTable):
         link=get_share_server_link)
 
     def get_object_display(self, share_group):
-        return six.text_type(share_group.id)
+        return str(share_group.id)
 
     def get_object_id(self, share_group):
-        return six.text_type(share_group.id)
+        return str(share_group.id)
 
     class Meta(object):
         name = "share_groups"
