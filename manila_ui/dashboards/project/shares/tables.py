@@ -21,6 +21,7 @@ from django.utils.translation import ungettext_lazy
 from horizon import exceptions
 from horizon import messages
 from horizon import tables
+from horizon.utils import filters
 
 from manila_ui.api import manila
 from manila_ui.dashboards.project.share_snapshots import tables as ss_tables
@@ -359,6 +360,10 @@ class RulesTable(tables.DataTable):
         "access_level", verbose_name=_("Access Level"))
     status = tables.Column("state", verbose_name=_("Status"))
     access_key = tables.Column("access_key", verbose_name=_("Access Key"))
+    created_at = tables.Column("created_at", verbose_name=_("Created At"),
+                               filters=(filters.parse_isotime,))
+    updated_at = tables.Column("updated_at", verbose_name=_("Updated At"),
+                               filters=(filters.parse_isotime,))
 
     def get_object_display(self, obj):
         return obj.id
