@@ -1,0 +1,7 @@
+---
+fixes:
+  - |
+    This change updates the Manila API version to 2.33.
+    This means that users can have access to timestamp details in access rules,
+    available since API v2.33
+

@@ -31,7 +31,7 @@ LOG = logging.getLogger(__name__)
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
 # NOTE(vponomaryov): update version to 2.34 when manilaclient is released with
 # its support. It will allow to show 'availability zones' for share groups.
-MANILA_VERSION = "2.32"  # requires manilaclient 1.13.0 or newer
+MANILA_VERSION = "2.33"  # requires manilaclient 1.16.0 or newer
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
