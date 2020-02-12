@@ -1,0 +1,5 @@
+---
+upgrade:
+  - |
+    This version of manila-ui requires `python-manilaclient >= 1.29.0
+    <https://docs.openstack.org/releasenotes/python-manilaclient/train.html#relnotes-1-29-0-stable-train>`_
