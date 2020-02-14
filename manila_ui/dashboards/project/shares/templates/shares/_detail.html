@@ -17,17 +17,17 @@
     <dt>{% trans "Export locations" %}</dt>
     {% for el in share.export_locations %}
       <dd><p>
-        <div><b>Path:</b>
+        <div><b>{% trans "Path:" %}</b>
             <input type="text" readonly="true"
                    value="{{ el.path }}" size="{{ share.el_size }}"
                    onClick="this.setSelectionRange(0, this.value.length)">
         </div>
-        <div><b>Preferred:</b> {{ el.preferred }}</div>
+        <div><b>{% trans "Preferred:" %}</b> {{ el.preferred }}</div>
         {% if el.is_admin_only == True or el.is_admin_only == False %}
-        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+        <div><b>{% trans "Is admin only:" %}</b> {{ el.is_admin_only }}</div>
         {% endif %}
         {% if el.share_instance_id %}
-        <div><b>Share Replica ID:</b> {{ el.share_instance_id }}</div>
+        <div><b>{% trans "Share Replica ID:" %}</b> {{ el.share_instance_id }}</div>
         {% endif %}
       </p></dd>
     {% endfor %}
@@ -52,8 +52,8 @@
     {% if share.share_type %}
     <dt>{% trans "Share type" %}</dt>
     <dd><p>
-      <div><b>Name: </b>{{ share.share_type_name }}</div>
-      <div><b>ID: </b>{{ share.share_type }}</div>
+      <div><b>{% trans "Name:" %} </b>{{ share.share_type_name }}</div>
+      <div><b>{% trans "ID:" %} </b>{{ share.share_type }}</div>
     </p></dd>
     {% endif %}
     {% if share.share_network_id %}
@@ -87,12 +87,12 @@
     <dt>{{ rule.access_type }}</dt>
     <dd>
       <p>
-        <div><b>Access to: </b>{{ rule.access_to }}</div>
-        <div><b>Access Level: </b>{{ rule.access_level }}</div>
-        <div><b>Status: </b>{{ rule.state }}</div>
-        <div><b>Access Key: </b>{{ rule.access_key }}</div>
-        <div><b>Created At: </b>{{ rule.created_at|parse_date }}</div>
-        <div><b>Updated At: </b>{{ rule.updated_at|parse_date }}</div>
+        <div><b>{% trans "Access to:" %} </b>{{ rule.access_to }}</div>
+        <div><b>{% trans "Access Level:" %} </b>{{ rule.access_level }}</div>
+        <div><b>{% trans "Status:" %} </b>{{ rule.state }}</div>
+        <div><b>{% trans "Access Key:" %} </b>{{ rule.access_key }}</div>
+        <div><b>{% trans "Created At:" %} </b>{{ rule.created_at|parse_date }}</div>
+        <div><b>{% trans "Updated At:" %} </b>{{ rule.updated_at|parse_date }}</div>
       </p>
     </dd>
     {% endfor %}

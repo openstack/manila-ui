@@ -21,16 +21,16 @@
     <dt>{% trans "Export locations" %}</dt>
     {% for el in snapshot.export_locations %}
       <dd><p>
-        <div><b>Path:</b>
+        <div><b>{% trans "Path:" %}</b>
             <input type="text" readonly="true"
                    value="{{ el.path }}" size="{{ snapshot.el_size }}"
                    onClick="this.setSelectionRange(0, this.value.length)">
         </div>
         {% if el.is_admin_only != None %}
-        <div><b>Is admin only:</b> {{ el.is_admin_only }}</div>
+        <div><b>{% trans "Is admin only:" %}</b> {{ el.is_admin_only }}</div>
         {% endif %}
         {% if el.share_snapshot_instance_id %}
-        <div><b>Snapshot Replica ID:</b> {{ el.share_snapshot_instance_id }}</div>
+        <div><b>{% trans "Snapshot Replica ID:" %}</b> {{ el.share_snapshot_instance_id }}</div>
         {% endif %}
       </p></dd>
     {% endfor %}
@@ -46,8 +46,8 @@
   {% for rule in snapshot.rules %}
     <dt>{{ rule.access_type }}</dt>
     <dd><p>
-      <div><b>Access to: </b>{{ rule.access_to }}</div>
-      <div><b>Status: </b>{{ rule.state }}</div>
+      <div><b>{% trans "Access to:" %} </b>{{ rule.access_to }}</div>
+      <div><b>{% trans "Status:" %} </b>{{ rule.state }}</div>
     </p></dd>
   {% endfor %}
   </dl>
