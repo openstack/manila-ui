@@ -1,0 +1,4 @@
+---
+fixes:
+  - Availability zone field is now shown for both public and private shares in the dashboard showing
+    detailed share information.
