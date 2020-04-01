@@ -44,7 +44,7 @@ def parse_str_meta(meta_s):
     for string in strings:
         if string.count("=") == 0:
             # Key for unsetting
-            key = string.strip('\"\'\ ')
+            key = string.strip(r'\"\' ')
             if len(key) not in range(1, 256):
                 msg = _("Key '%s' has improper length.") % key
             elif " " in key:
@@ -53,7 +53,7 @@ def parse_str_meta(meta_s):
                 unset_list.append(key)
         else:
             # Key-value pair for setting
-            pair = [p.strip('\"\'\ ') for p in string.split("=", 1)]
+            pair = [p.strip(r'\"\' ') for p in string.split("=", 1)]
             if not all(len(p) in range(1, 256) for p in pair):
                 msg = _("All keys and values must be in range from 1 to 255.")
             elif pair[0] in list(set_dict.keys()):

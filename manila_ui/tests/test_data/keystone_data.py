@@ -25,6 +25,7 @@ def data(TEST):
               "publicURL": "http://public.manila.example.com:8786/v1"}]},
     )
 
+
 projects = [
     type("%sProject" % v, (object, ),
          {'id': '%s_id' % v, 'name': '%s_name' % v})

@@ -635,34 +635,34 @@ class ShareViewTests(test.APITestCase):
             data.update({'is_public': is_public})
 
         with self.settings(OPENSTACK_MANILA_FEATURES={
-            'enable_public_shares': enable_public_shares}):
-                form = _get_form()
-                result = form.handle(self.request, data)
-                self.assertTrue(result)
-                self.assertEqual(
-                    enable_public_shares,
-                    form.enable_public_shares)
-                if enable_public_shares:
-                    self.assertIn("is_public", form.fields)
-                    self.assertTrue(form.fields["is_public"])
-                else:
-                    self.assertNotIn("is_public", form.fields)
-                api_manila.share_create.assert_called_once_with(
-                    self.request,
-                    availability_zone=data['availability_zone'],
-                    description=data['description'],
-                    is_public=is_public,
-                    metadata=utils.parse_str_meta(data['metadata'])[0],
-                    name=data['name'],
-                    proto=data['share_proto'],
-                    share_group_id=None,
-                    share_network=test_data.active_share_network.id,
-                    share_type=data['share_type'],
-                    size=data['size'],
-                    snapshot_id=data['snapshot_id'],
-                )
-                horizon_messages.success.assert_called_once_with(
-                    self.request, mock.ANY)
+                'enable_public_shares': enable_public_shares}):
+            form = _get_form()
+            result = form.handle(self.request, data)
+            self.assertTrue(result)
+            self.assertEqual(
+                enable_public_shares,
+                form.enable_public_shares)
+            if enable_public_shares:
+                self.assertIn("is_public", form.fields)
+                self.assertTrue(form.fields["is_public"])
+            else:
+                self.assertNotIn("is_public", form.fields)
+            api_manila.share_create.assert_called_once_with(
+                self.request,
+                availability_zone=data['availability_zone'],
+                description=data['description'],
+                is_public=is_public,
+                metadata=utils.parse_str_meta(data['metadata'])[0],
+                name=data['name'],
+                proto=data['share_proto'],
+                share_group_id=None,
+                share_network=test_data.active_share_network.id,
+                share_type=data['share_type'],
+                size=data['size'],
+                snapshot_id=data['snapshot_id'],
+            )
+            horizon_messages.success.assert_called_once_with(
+                self.request, mock.ANY)
 
     @ddt.data((True, True), (True, False), (False, False))
     @ddt.unpack
@@ -689,24 +689,24 @@ class ShareViewTests(test.APITestCase):
             data.update({'is_public': is_public})
 
         with self.settings(OPENSTACK_MANILA_FEATURES={
-            'enable_public_shares': enable_public_shares}):
-                form = _get_form(initial)
-                result = form.handle(self.request, data)
-                self.assertTrue(result)
-                self.assertEqual(
-                    enable_public_shares,
-                    form.enable_public_shares)
-                if enable_public_shares:
-                    self.assertIn("is_public", form.fields)
-                    self.assertTrue(form.fields["is_public"])
-                else:
-                    self.assertNotIn("is_public", form.fields)
-                api_manila.share_update.assert_called_once_with(
-                    self.request,
-                    self.share,
-                    data['name'],
-                    data['description'],
-                    is_public=is_public,
-                )
-                horizon_messages.success.assert_called_once_with(
-                    self.request, mock.ANY)
+                'enable_public_shares': enable_public_shares}):
+            form = _get_form(initial)
+            result = form.handle(self.request, data)
+            self.assertTrue(result)
+            self.assertEqual(
+                enable_public_shares,
+                form.enable_public_shares)
+            if enable_public_shares:
+                self.assertIn("is_public", form.fields)
+                self.assertTrue(form.fields["is_public"])
+            else:
+                self.assertNotIn("is_public", form.fields)
+            api_manila.share_update.assert_called_once_with(
+                self.request,
+                self.share,
+                data['name'],
+                data['description'],
+                is_public=is_public,
+            )
+            horizon_messages.success.assert_called_once_with(
+                self.request, mock.ANY)
