@@ -14,7 +14,7 @@
 # under the License.
 
 from django.core.handlers import wsgi
-import mock
+from unittest import mock
 
 from manila_ui.api import manila as api
 from manila_ui.dashboards.admin.shares import forms

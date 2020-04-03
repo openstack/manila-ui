@@ -16,8 +16,8 @@ import ddt
 from django.core.handlers import wsgi
 from django.urls import reverse
 from horizon import messages as horizon_messages
-import mock
 from openstack_dashboard.api import neutron
+from unittest import mock
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.shares import forms

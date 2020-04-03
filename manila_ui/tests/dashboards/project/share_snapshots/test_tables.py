@@ -15,7 +15,7 @@
 
 import ddt
 from django.core.handlers import wsgi
-import mock
+from unittest import mock
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.project.share_snapshots import tables

@@ -17,7 +17,7 @@ import ddt
 from django.core.handlers import wsgi
 from django import forms as django_forms
 from horizon import forms as horizon_forms
-import mock
+from unittest import mock
 
 from manila_ui.dashboards.admin.share_types import forms
 from manila_ui.tests import helpers as base

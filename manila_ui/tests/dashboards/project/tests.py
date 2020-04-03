@@ -14,7 +14,7 @@
 
 from django.urls import reverse
 from django.utils import translation
-import mock
+from unittest import mock
 
 from manila_ui.dashboards.project import shares
 from manila_ui.tests import helpers as test

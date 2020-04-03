@@ -15,8 +15,8 @@
 
 from django.urls import reverse
 from horizon import exceptions as horizon_exceptions
-import mock
 from openstack_dashboard.api import keystone as api_keystone
+from unittest import mock
 
 from manila_ui.api import manila as api_manila
 from manila_ui.tests.dashboards.project import test_data

@@ -13,7 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 from django.urls import reverse
-import mock
+from unittest import mock
 
 from manila_ui.api import manila as api_manila
 from manila_ui.tests.dashboards.project import test_data

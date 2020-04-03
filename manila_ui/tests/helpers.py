@@ -11,9 +11,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import mock
 import os
 import unittest
+from unittest import mock
 
 from manila_ui import api
 from manila_ui.tests.test_data import utils

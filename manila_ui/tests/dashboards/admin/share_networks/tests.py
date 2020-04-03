@@ -15,10 +15,10 @@
 
 from django.urls import reverse
 from horizon import exceptions as horizon_exceptions
-import mock
 from neutronclient.client import exceptions
 from openstack_dashboard.api import keystone as api_keystone
 from openstack_dashboard.api import neutron as api_neutron
+from unittest import mock
 
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.admin import utils

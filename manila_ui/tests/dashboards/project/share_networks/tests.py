@@ -13,10 +13,10 @@
 #    under the License.
 
 from django.urls import reverse
-import mock
 from neutronclient.client import exceptions
 from openstack_auth import policy
 from openstack_dashboard import api
+from unittest import mock
 
 from manila_ui.api import manila as api_manila
 from manila_ui.api import network as api_manila_network
