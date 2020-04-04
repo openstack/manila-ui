@@ -108,7 +108,7 @@ class DeleteReplica(tables.DeleteAction):
             replicas = manila.share_replica_list(request, replica.share_id)
             if share.replication_type is None:
                 return False
-            elif (share.replication_type is 'writable' and
+            elif (share.replication_type == 'writable' and
                   replica.status in DELETABLE_STATUSES and
                   len(replicas) > 1) or (
                       share.replication_type in ('dr', 'readable') and
