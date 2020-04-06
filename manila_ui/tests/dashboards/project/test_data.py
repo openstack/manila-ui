@@ -438,7 +438,7 @@ share_group_dhss_true = share_groups.ShareGroup(
      'share_server_id': 'fake_share_server_id',
      'availability_zone': None,
      'host': 'fake_host_987654321',
-     'consistent_snapshot_support': None,
+     'consistent_snapshot_support': 'pool',
      'created_at': '2017-05-31T23:59:59.000000',
      'project_id': 'fake_project_id_987654321'}
 )

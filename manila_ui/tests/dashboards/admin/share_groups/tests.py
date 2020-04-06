@@ -93,18 +93,27 @@ class ShareGroupTests(test.BaseAdminViewTests):
     def test_share_group_detailed_page_get(self, sg):
         url = reverse('horizon:admin:share_groups:detail', args=[sg.id])
         shares = [test_data.share, test_data.nameless_share]
+        share_types = [test_data.share_type, test_data.share_type_dhss_true]
+        capability_msg = ("Consistent snapshots are supported at storage "
+                          if sg.consistent_snapshot_support else None)
         self.mock_object(
             api_manila, 'share_group_get', mock.Mock(return_value=sg))
         self.mock_object(
             api_manila, 'share_list', mock.Mock(return_value=shares))
-        self.mock_object(
-            api_manila, 'share_type_list', mock.Mock(return_value=[
-                test_data.share_type, test_data.share_type_dhss_true]))
+        self.mock_object(api_manila, 'share_group_type_get',
+                         mock.Mock(return_value=test_data.share_group_type))
+        self.mock_object(api_manila, 'share_type_list',
+                         mock.Mock(return_value=share_types))
 
         res = self.client.get(url)
 
         self.assertTemplateUsed(res, 'admin/share_groups/detail.html')
         self.assertStatusCode(res, 200)
+        self.assertContains(res, '<dt>Capabilities</dt>')
+        self.assertContains(res, capability_msg) if capability_msg else None
+        self.assertContains(res, "<b>Share Group Type Name:</b>")
+        self.assertContains(res, "Share Group Type ID:")
+        self.assertContains(res, "Share Group Type Specs:")
         for share in shares:
             data = {'id': share.id, 'name': share.name or share.id}
             self.assertContains(

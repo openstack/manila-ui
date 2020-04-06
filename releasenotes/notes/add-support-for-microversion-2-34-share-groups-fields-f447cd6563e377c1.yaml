@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    The share groups dashboards now show the share group availability zone,
+    share group type details and share group capabilities.
