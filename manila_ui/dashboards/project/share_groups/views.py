@@ -110,6 +110,7 @@ class ShareGroupCreateView(forms.ModalFormView):
         try:
             # TODO(vponomaryov): add quota logic here when quotas are
             # implemented for share groups.
+            # https://bugs.launchpad.net/manila/+bug/1868644
             pass
         except Exception:
             exceptions.handle(self.request)

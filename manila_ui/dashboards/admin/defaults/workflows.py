@@ -31,6 +31,8 @@ class UpdateDefaultShareQuotasAction(workflows.Action):
         min_value=-1, label=_("Share snapshot gigabytes"))
     share_networks = forms.IntegerField(
         min_value=-1, label=_("Share Networks"))
+    # Share group quotas are missing here because default quota update
+    # for share groups is not possible yet, see LP #1871252
 
     def __init__(self, request, context, *args, **kwargs):
         super(UpdateDefaultShareQuotasAction, self).__init__(
@@ -44,8 +46,16 @@ class UpdateDefaultShareQuotasAction(workflows.Action):
     def handle(self, request, data):
         try:
             if base.is_service_enabled(request, 'share'):
-                manila_data = dict([(key, data[key]) for key in
-                                    api_manila.MANILA_QUOTA_FIELDS])
+                manila_data = {}
+                # Share group quotas are removed here because default
+                # quota update for share groups is not possible yet, see
+                # LP #1871252
+                allowed_updates = (
+                    api_manila.MANILA_QUOTA_FIELDS -
+                    {'share_groups', 'share_group_snapshots'}
+                )
+                for key in allowed_updates:
+                    manila_data[key] = data[key]
                 api_manila.default_quota_update(request, **manila_data)
                 return True
         except Exception:
@@ -70,7 +80,9 @@ class UpdateDefaultShareQuotasStep(workflows.Step):
             quota_defaults = api_manila.default_quota_get(
                 request, request.user.tenant_id)
             for field in api_manila.MANILA_QUOTA_FIELDS:
-                context[field] = quota_defaults.get(field).limit
+                # Resolve mismatch UI field names and data field names.
+                data_field = api_manila.MANILA_QUOTA_FIELDS_DATA_MAP[field]
+                context[field] = quota_defaults.get(data_field).limit
         except Exception:
             exceptions.handle(request,
                               _('Unable to retrieve default share quotas.'))

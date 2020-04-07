@@ -20,9 +20,11 @@ from openstack_dashboard.dashboards.admin.defaults import tables as default_tbl
 MANILA_QUOTA_NAMES = {
     'shares': _('Shares'),
     'gigabytes': _('Share gigabytes'),
-    'snapshots': _('Share snapshots'),
-    'snapshot_gigabytes': _('Share snapshot gigabytes'),
-    'share_networks': _('Shares Networks'),
+    'snapshots': _('Share Snapshots'),
+    'snapshot_gigabytes': _('Share Snapshot gigabytes'),
+    'share_networks': _('Share Networks'),
+    "share_groups": _('Share Groups'),
+    "share_group_snapshots": _('Share Group Snapshots'),
 }
 
 

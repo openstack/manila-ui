@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.38"
+MANILA_VERSION = "2.40"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -41,7 +41,10 @@ MANILA_QUOTA_FIELDS = {
     "share_snapshots",
     "share_snapshot_gigabytes",
     "share_networks",
+    "share_groups",
+    "share_group_snapshots",
 }
+
 
 # UI field names do not match data field names returned, have
 # a map to convert them.
@@ -50,7 +53,9 @@ MANILA_QUOTA_FIELDS_DATA_MAP = {
     "share_gigabytes": "gigabytes",
     "share_snapshots": "snapshots",
     "share_snapshot_gigabytes": "snapshot_gigabytes",
-    "share_networks": "share_networks"
+    "share_networks": "share_networks",
+    "share_groups": "share_groups",
+    "share_group_snapshots": "share_group_snapshots",
 }
 
 

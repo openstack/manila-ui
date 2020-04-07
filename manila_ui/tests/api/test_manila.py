@@ -632,13 +632,15 @@ class ManilaApiTests(base.APITestCase):
 
     @ddt.data({
         'shares': 24, 'gigabytes': 333, 'snapshots': 14,
-        'snapshot_gigabytes': 444, 'share_networks': 14
+        'snapshot_gigabytes': 444, 'share_networks': 14,
+        "share_groups": 30, "share_group_snapshots": 5,
     })
     @ddt.unpack
     def test_ui_data_map(self, **kwargs):
         expected_result = {
             'shares': 24, 'share_gigabytes': 333, 'share_snapshots': 14,
-            'share_snapshot_gigabytes': 444, 'share_networks': 14
+            'share_snapshot_gigabytes': 444, 'share_networks': 14,
+            "share_groups": 30, "share_group_snapshots": 5,
         }
 
         converted_result_for_ui = {}
