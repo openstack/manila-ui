@@ -71,6 +71,8 @@ class ShareGroupDetailView(tabs.TabView):
             members = manila.share_list(
                 self.request, search_opts={"share_group_id": share_group_id})
             share_group.members = members
+            share_group.share_group_type = manila.share_group_type_get(
+                self.request, share_group.share_group_type_id)
             share_types = manila.share_type_list(self.request)
             share_group.share_types = [
                 {"id": st.id,

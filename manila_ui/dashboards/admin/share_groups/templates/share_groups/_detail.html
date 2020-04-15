@@ -20,8 +20,15 @@
     <dt>{% trans "Source share group snapshot" %}</dt>
     <dd>{{ share_group.source_share_group_snapshot_id}}</dd>
     {% endif %}
-    <dt>{% trans "Share Group Type" %}</dt>
-    <dd>{{ share_group.share_group_type_id}}</dd>
+    <dt>{% trans "Capabilities" %}</dt>
+    <dd>
+        {% if share_group.consistent_snapshot_support %}
+            Consistent snapshots are supported at storage <b>
+            {{ share_group.consistent_snapshot_support }} </b> level
+        {% else %}
+            None
+        {% endif %}
+    </dd>
     {% if share_group.availability_zone %}
     <dt>{% trans "Availability Zone" %}</dt>
     <dd>{{ share_group.availability_zone }}</dd>
@@ -36,14 +43,40 @@
     {% url 'horizon:admin:share_servers:share_server_detail' share_group.share_server_id as share_server_url%}
     <dd><a href="{{ share_server_url }}">{{ share_group.share_server_id }}</a></dd>
     {% endif %}
+    {% if share_group.share_group_type %}
+    <dt>{% trans "Share Group Type" %}</dt>
+    {% url 'horizon:admin:share_group_types:index' as sgts_url %}
+    <dd>
+        <div>
+            <b>{% trans "Share Group Type Name:" %}</b>
+            {{ share_group.share_group_type.name }}
+        </div>
+        <div>
+            {% trans "Share Group Type ID:" %}
+            <a href="{{ sgts_url}}">{{ share_group.share_group_type.id }}</a>
+        </div>
+        <div>
+            {% trans "Share Group Type Specs:" %}
+            {{ share_group.share_group_type.group_specs }}
+        </div><p></p>
+    </dd>
+    {%  endif %}
     {% if share_group.share_types %}
     <dt>{% trans "Share Types" %}</dt>
     {% for st in share_group.share_types %}
-      <dd><p>
-        <div><b>Share Type Name:</b> {{ st.name }}</div>
-        <div><b>Share Type Visibility:</b> {% if st.is_public %}Public{% else %}Private{% endif %}</div>
-        <div><b>Network handling enabled:</b> {{ st.dhss }}</div>
-      </p></dd>
+      <dd>
+          <div>
+              <b>{%  trans "Share Type Name:" %}</b>
+              {{ st.name }}
+          </div>
+        <div>
+            {%  trans " Share Type Visibility:" %}
+            {% if st.is_public %}Public{% else %}Private{% endif %}
+        </div>
+        <div>
+            {%  trans "Network handling enabled:" %} {{ st.dhss }}
+        </div>
+      </dd><p></p>
     {% endfor %}
     {% endif %}
     {% if share_group.members %}
