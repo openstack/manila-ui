@@ -6,16 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2020-04-06 13:27+0000\n"
+"POT-Creation-Date: 2020-04-15 19:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2020-04-07 08:20+0000\n"
+"PO-Revision-Date: 2020-04-16 12:28+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid " Share Type Visibility:"
+msgstr " Share Type Visibility:"
 
 msgid ""
 "\"Manage\" an existing share from a Manila host. This will make the share "
@@ -89,11 +92,11 @@ msgid "Add Share Snapshot Rule"
 msgstr "Add Share Snapshot Rule"
 
 msgid ""
-"Add policy rule to share, 'ip' rule represents ipv4 address, 'user' rule "
-"represents username or usergroup, 'cephx' rule represents ceph auth ID."
+"Add policy rule to share, 'ip' rule represents IPv4 or IPv6 address, 'user' "
+"rule represents username or usergroup, 'cephx' rule represents ceph auth ID."
 msgstr ""
-"Add policy rule to share, 'ip' rule represents ipv4 address, 'user' rule "
-"represents username or usergroup, 'cephx' rule represents Ceph auth ID."
+"Add policy rule to share, 'ip' rule represents IPv4 or IPv6 address, 'user' "
+"rule represents username or usergroup, 'cephx' rule represents Ceph auth ID."
 
 msgid ""
 "Add policy rule to snapshot, 'ip' rule represents ip address, 'user' rule "
@@ -180,6 +183,9 @@ msgid ""
 msgstr ""
 "Cancel migration of a migrating share. <br> <br> This is equivalent to the "
 "<tt>'manila migration-cancel'</tt> command."
+
+msgid "Capabilities"
+msgstr "Capabilities"
 
 msgid "Choose a snapshot"
 msgstr "Choose a snapshot"
@@ -803,6 +809,9 @@ msgstr "Network Details"
 msgid "Network Type"
 msgstr "Network Type"
 
+msgid "Network handling enabled:"
+msgstr "Network handling enabled:"
+
 msgid "Networks"
 msgstr "Networks"
 
@@ -1126,6 +1135,15 @@ msgstr "Share Group Snapshots"
 msgid "Share Group Type"
 msgstr "Share Group Type"
 
+msgid "Share Group Type ID:"
+msgstr "Share Group Type ID:"
+
+msgid "Share Group Type Name:"
+msgstr "Share Group Type Name:"
+
+msgid "Share Group Type Specs:"
+msgstr "Share Group Type Specs:"
+
 msgid "Share Group Types"
 msgstr "Share Group Types"
 
@@ -1252,6 +1270,12 @@ msgstr "Share Storage"
 
 msgid "Share Type"
 msgstr "Share Type"
+
+msgid "Share Type Name:"
+msgstr "Share Type Name:"
+
+msgid "Share Type Visibility:"
+msgstr "Share Type Visibility:"
 
 msgid "Share Types"
 msgstr "Share Types"
