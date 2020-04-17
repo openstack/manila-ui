@@ -31,8 +31,6 @@
 
 # -- General configuration ------------------------------------------------
 
-import openstackdocstheme
-
 # If your documentation needs a minimal Sphinx version, state it here.
 # needs_sphinx = '1.0'
 
@@ -48,7 +46,6 @@ extensions = [
 repository_name = 'openstack/manila-ui'
 bug_project = 'manila-ui'
 bug_tag = 'release notes'
-html_last_updated_fmt = '%Y-%m-%d %H:%M'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -120,9 +117,6 @@ html_theme = 'openstackdocs'
 # further.  For a list of options available for each theme, see the
 # documentation.
 # html_theme_options = {}
-
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = [openstackdocstheme.get_html_theme_path()]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
