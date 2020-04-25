@@ -1,6 +1,6 @@
-====================
-Administration Guide
-====================
+===================
+Administrator Guide
+===================
 
 Shares are file storage that instances can access. Users can
 allow or deny a running instance to have access to a share at any time.
