@@ -6,15 +6,16 @@
 # Reik Keutterling <spielkind@gmail.com>, 2018. #zanata
 # Robert Simai <robert.simai@suse.com>, 2018. #zanata
 # Andreas Jaeger <jaegerandi@gmail.com>, 2019. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2020. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-19 17:08+0000\n"
+"POT-Creation-Date: 2020-04-23 12:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-09-26 06:40+0000\n"
+"PO-Revision-Date: 2020-04-26 06:15+0000\n"
 "Last-Translator: Andreas Jaeger <jaegerandi@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -30,8 +31,17 @@ msgstr "2.16.0"
 msgid "2.16.1"
 msgstr "2.16.1"
 
+msgid "2.16.2"
+msgstr "2.16.2"
+
 msgid "2.18.0"
 msgstr "2.18.0"
+
+msgid "2.18.1"
+msgstr "2.18.1"
+
+msgid "2.19.1"
+msgstr "2.19.1"
 
 msgid "2.2.0"
 msgstr "2.2.0"
@@ -50,6 +60,9 @@ msgstr "2.8.0"
 
 msgid "2.9.0"
 msgstr "2.9.0"
+
+msgid "3.0.0"
+msgstr "3.0.0"
 
 msgid "Added native protocol for MapRFS manila share driver"
 msgstr "Natives Protokoll für den MapRFS Manila Share Driver hinzugefügt"
@@ -130,6 +143,15 @@ msgstr ""
 "redundante API Aufrufe, welche wir beim Laden aller Tabs zur selben Zeit "
 "hatten, zu vermeiden."
 
+msgid ""
+"Python 2.7 support has been dropped. The last release of openstack/manila-ui "
+"to support py2.7 is OpenStack Train (2.19.x). The minimum version of Python "
+"now supported by openstack/manila-ui is Python 3.6."
+msgstr ""
+"Python 2.7 Unterstützung wurde beendet. Der letzte Release von manila-ui "
+"welcher Python 2.7 unterstützt ist OpenStack Train. Die minimal Python "
+"Version welche von manila-ui unterstützt wird ist Python 3.6."
+
 msgid "Queens Series Release Notes"
 msgstr "Versionshinweise Queens"
 
@@ -143,6 +165,15 @@ msgstr ""
 
 msgid "Stein Series Release Notes"
 msgstr "Stein Serie Releasenotes"
+
+msgid ""
+"This version of manila-ui requires `python-manilaclient >= 1.29.0 <https://"
+"docs.openstack.org/releasenotes/python-manilaclient/train."
+"html#relnotes-1-29-0-stable-train>`_"
+msgstr ""
+"Diese  Version von manila-ui benötigt `python-manilaclient >= 1.29.0 "
+"<https://docs.openstack.org/releasenotes/python-manilaclient/train."
+"html#relnotes-1-29-0-stable-train>`_"
 
 msgid "Train Series Release Notes"
 msgstr "Train Serie Releasenotes"
