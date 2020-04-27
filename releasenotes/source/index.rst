@@ -7,6 +7,7 @@ manila-ui Release Notes
    :maxdepth: 1
 
    unreleased
+   ussuri
    train
    stein
    rocky
