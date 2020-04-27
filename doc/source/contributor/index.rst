@@ -3,8 +3,8 @@ Contributor Documentation
 =========================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    contributing
-   testing
+   development-environment
    features

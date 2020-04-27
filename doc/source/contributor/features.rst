@@ -1,6 +1,6 @@
-============
-New Features
-============
+===================
+Adding New Features
+===================
 
 When implementing a new feature, you may think about making it optional,
 so it could be enabled or disabled in different deployments.
@@ -31,6 +31,7 @@ the following template:
 
 .. code-block:: none
 
-   manila_ui[/tests]/path/to/directory/tests.py
+   manila_ui/tests/path/to/directory/tests.py
 
-Manila UI tests use the mock library for testing.
+Manila UI tests use the ``mock`` module from the ``unittest`` package for
+unit testing.

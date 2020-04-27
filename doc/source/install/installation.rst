@@ -2,14 +2,6 @@
 Installation
 ============
 
-DevStack Installation
----------------------
-
-Add this repo as an external repository into your ``local.conf`` file::
-
-    [[local|localrc]]
-    enable_plugin manila-ui https://opendev.org/openstack/manila-ui
-
 Manual Installation
 -------------------
 
@@ -26,6 +18,7 @@ And enable it in Horizon.::
 
     cp ../manila-ui/manila_ui/local/enabled/_*.py openstack_dashboard/local/enabled
     cp ../manila-ui/manila_ui/local/local_settings.d/_90_manila_*.py openstack_dashboard/local/local_settings.d
+
 
 .. _install-rdo:
 
