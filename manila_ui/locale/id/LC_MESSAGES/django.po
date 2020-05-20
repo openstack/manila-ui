@@ -3,20 +3,24 @@
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2018. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2019. #zanata
+# suhartono <cloudsuhartono@gmail.com>, 2020. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2020-04-15 19:43+0000\n"
+"POT-Creation-Date: 2020-04-28 14:50+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-03-12 06:13+0000\n"
+"PO-Revision-Date: 2020-05-19 03:27+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+
+msgid " Share Type Visibility:"
+msgstr "Bagikan visibilitas jenis"
 
 msgid ""
 "\"Manage\" an existing share from a Manila host. This will make the share "
@@ -45,8 +49,14 @@ msgstr "(Kuota terlampaui)"
 msgid "Access Key"
 msgstr "Access Key (kunci akses)"
 
+msgid "Access Key:"
+msgstr "Access Key:"
+
 msgid "Access Level"
 msgstr "Access Level (tingkat akses)"
+
+msgid "Access Level:"
+msgstr "Access Level:"
 
 msgid "Access Rules"
 msgstr "Access Rules"
@@ -59,6 +69,9 @@ msgstr "Access Type (tipe akses)"
 
 msgid "Access to"
 msgstr "Access to (akses ke)"
+
+msgid "Access to:"
+msgstr "Access to:"
 
 msgctxt "Current status of share network"
 msgid "Active"
@@ -79,6 +92,14 @@ msgstr "Add Security Service (tambah layanan keamanan)"
 
 msgid "Add Share Snapshot Rule"
 msgstr "Menambahkan Share Snapshot Rule"
+
+msgid ""
+"Add policy rule to share, 'ip' rule represents IPv4 or IPv6 address, 'user' "
+"rule represents username or usergroup, 'cephx' rule represents ceph auth ID."
+msgstr ""
+"Tambahkan aturan kebijakan untuk dibagikan, aturan 'ip' mewakili alamat IPv4 "
+"atau IPv6, aturan 'user' mewakili nama pengguna atau grup pengguna, aturan "
+"'cephx' mewakili ceph auth ID."
 
 msgid ""
 "Add policy rule to snapshot, 'ip' rule represents ip address, 'user' rule "
@@ -164,6 +185,9 @@ msgid ""
 msgstr ""
 "Batalkan migrasi dari bagian yang bermigrasi. <br> <br> Ini sama dengan "
 "perintah <tt> 'manila migration-cancel' </tt>."
+
+msgid "Capabilities"
+msgstr "Kemampuan"
 
 msgid "Choose a snapshot"
 msgstr "Pilih snapshot"
@@ -252,6 +276,9 @@ msgstr "Created"
 
 msgid "Created At"
 msgstr "Created At"
+
+msgid "Created At:"
+msgstr "Created At:"
 
 msgid "Created at"
 msgstr "Dibuat di"
@@ -641,6 +668,9 @@ msgstr "Host dimana share berada, misalnya: some.host@driver[#pool]"
 msgid "ID"
 msgstr "ID"
 
+msgid "ID:"
+msgstr "ID:"
+
 msgid "IP Version"
 msgstr "IP Version"
 
@@ -667,6 +697,9 @@ msgstr "In-use"
 msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "Inactive (tidak aktif)"
+
+msgid "Is admin only:"
+msgstr "Is admin only:"
 
 #, python-format
 msgid "Key '%s' has improper length."
@@ -747,14 +780,23 @@ msgstr "Dukungan mount snapshot"
 msgid "Name"
 msgstr "Name (nama)"
 
+msgid "Name:"
+msgstr "Name:"
+
 msgid "Net Details"
 msgstr "Net Details"
 
 msgid "Network"
 msgstr "Network"
 
+msgid "Network Details"
+msgstr "Rincian jaringan"
+
 msgid "Network Type"
 msgstr "Network Type (tipe jaringan)"
+
+msgid "Network handling enabled:"
+msgstr "Penanganan jaringan diaktifkan:"
 
 msgid "Networks"
 msgstr "Networks (jaringan)"
@@ -833,12 +875,18 @@ msgstr "Password (sandi)"
 msgid "Passwords do not match."
 msgstr "Sandi tidak cocok"
 
+msgid "Path:"
+msgstr "Path:"
+
 msgid "Placeholder for description of share group type access managing form."
 msgstr ""
 "Placeholder untuk deskripsi bentuk pengelolaan akses tipe grup berbagi."
 
 msgid "Placeholder for description of share type access managing form."
 msgstr "Placeholder untuk deskripsi bentuk pengelolaan akses tipe berbagi."
+
+msgid "Preferred:"
+msgstr "Preferred:"
 
 msgid "Preserve Metadata"
 msgstr "Preserve Metadata (pertahankan metadata)"
@@ -1077,6 +1125,15 @@ msgstr "Share Group Snapshots"
 msgid "Share Group Type"
 msgstr "Share Group Type"
 
+msgid "Share Group Type ID:"
+msgstr "Bagikan ID Jenis Grup:"
+
+msgid "Share Group Type Name:"
+msgstr "Bagikan Nama Jenis Grup:"
+
+msgid "Share Group Type Specs:"
+msgstr "Bagikan Spesifikas  Jenis Grup:"
+
 msgid "Share Group Types"
 msgstr "Share Group Types"
 
@@ -1133,6 +1190,9 @@ msgstr "Share Protocol (protokol share)"
 
 msgid "Share Quotas"
 msgstr "Share Quotas"
+
+msgid "Share Replica ID:"
+msgstr "Share Replica ID:"
 
 msgid "Share Replica Overview"
 msgstr "Share Replica Overview"
@@ -1201,6 +1261,12 @@ msgstr "Share Storage (penyimpanan bersama)"
 
 msgid "Share Type"
 msgstr "Share Type (tipe share)"
+
+msgid "Share Type Name:"
+msgstr "Bagikan Nama Jenis:"
+
+msgid "Share Type Visibility:"
+msgstr " Bagikan Visibilitas Jenis:"
 
 msgid "Share Types"
 msgstr "Share Types (tipe share)"
@@ -1294,6 +1360,9 @@ msgstr "Snapshot ID"
 msgid "Snapshot Overview"
 msgstr "Snapshot Overview (ikhtisar snapshot)"
 
+msgid "Snapshot Replica ID:"
+msgstr "ID Replika Snapshot:"
+
 #, python-format
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "Snapshot Rules (aturan snapshot): %(snapshot_display_name)s"
@@ -1338,6 +1407,9 @@ msgstr "Start migration (memulai migrasi)"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Status:"
+msgstr "Status:"
 
 msgid "Submit"
 msgstr "Submit"
@@ -1579,6 +1651,10 @@ msgstr "Tidak dapat resync replika '%s'."
 msgid "Unable to retrieve default share quotas."
 msgstr "Tidak dapat mengambil kuota share default."
 
+#, python-format
+msgid "Unable to retrieve details of replica %s"
+msgstr "Tidak dapat mengambil detail replika %s"
+
 msgid "Unable to retrieve list of projects."
 msgstr "Tidak dapat mengambil daftar proyek."
 
@@ -1654,6 +1730,9 @@ msgstr "Tidak dapat mengambil jaringan berbagi."
 
 msgid "Unable to retrieve share networks"
 msgstr "Tidak dapat mengambil jaringan berbagi"
+
+msgid "Unable to retrieve share quotas."
+msgstr "Tidak dapat mengambil kuota berbagi."
 
 msgid "Unable to retrieve share replicas."
 msgstr "Tidak dapat mengambil replika berbagi."
@@ -1811,6 +1890,9 @@ msgstr "Diperbarui"
 
 msgid "Updated At"
 msgstr "Updated At"
+
+msgid "Updated At:"
+msgstr "Updated At:"
 
 #, python-format
 msgid "Updated access for share group type \"%s\"."
