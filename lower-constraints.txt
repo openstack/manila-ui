@@ -45,7 +45,6 @@ msgpack==0.5.6
 munch==2.2.0
 netaddr==0.7.19
 netifaces==0.10.6
-openstackdocstheme==2.0.0
 openstacksdk==0.12.0
 os-client-config==1.29.0
 os-service-types==1.2.0
@@ -85,7 +84,6 @@ python-swiftclient==3.5.0
 pytz==2018.3
 PyYAML==3.12
 rcssmin==1.0.6
-reno==2.5.0
 requests==2.18.4
 requestsexceptions==1.4.0
 rfc3986==1.1.0
@@ -95,8 +93,6 @@ semantic-version==2.6.0
 simplejson==3.13.2
 six==1.10.0
 snowballstemmer==1.2.1
-Sphinx==2.0.0
-sphinxcontrib-websupport==1.0.1
 stevedore==1.28.0
 testrepository==0.0.18
 testscenarios==0.4

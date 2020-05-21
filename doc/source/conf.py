@@ -28,9 +28,10 @@ extensions = [
 ]
 
 # openstackdocstheme options
-repository_name = 'openstack/manila-ui'
-bug_project = 'manila-ui'
-bug_tag = 'docs'
+openstackdocs_repo_name = 'openstack/manila-ui'
+openstackdocs_pdf_link = True
+openstackdocs_bug_project = 'manila-ui'
+openstackdocs_bug_tag = 'docs'
 
 # autodoc generation is a bit aggressive and a nuisance when doing heavy
 # text edit cycles.
@@ -54,7 +55,7 @@ add_function_parentheses = True
 add_module_names = True
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'native'
 
 # -- Options for HTML output --------------------------------------------------
 
