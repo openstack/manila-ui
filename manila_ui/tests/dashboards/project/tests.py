@@ -48,6 +48,7 @@ class PieChartsTests(test.TestCase):
             "max": 13,
             "text": "fake_text",
         }
+        text = translation.pgettext_lazy('Label in the limit summary', 'Used')
 
         class ParentViewInstance(mock.MagicMock):
             def get_context_data(self, **kwargs):
@@ -67,16 +68,16 @@ class PieChartsTests(test.TestCase):
             existing_chart_name: {
                 "name": existing_chart_name, "used": existing_chart["used"],
                 "max": existing_chart["max"], "text": existing_chart["text"]},
-            "Shares": {"name": "Shares", "used": 1, "max": 6, "text": False},
+            "Shares": {"name": "Shares", "used": 1, "max": 6, "text": text},
             "Share Storage": {
-                "name": "Share Storage", 'used': 2, "max": 7, "text": False},
+                "name": "Share Storage", 'used': 2, "max": 7, "text": text},
             "Share Networks": {
-                "name": "Share Networks", "used": 3, "max": 8, "text": False},
+                "name": "Share Networks", "used": 3, "max": 8, "text": text},
             "Share Snapshots": {
-                "name": "Share Snapshots", "used": 4, "max": 9, "text": False},
+                "name": "Share Snapshots", "used": 4, "max": 9, "text": text},
             "Share Snapshots Storage": {
                 "name": "Share Snapshots Storage", "used": 5, "max": 10,
-                "text": False},
+                "text": text},
         }
         for chart in charts:
             name = chart["name"].title()

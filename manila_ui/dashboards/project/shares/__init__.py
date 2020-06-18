@@ -13,6 +13,7 @@
 import functools
 import sys
 
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 import horizon
@@ -379,12 +380,13 @@ def get_context_data(self, **kwargs):
     )
     for t in types:
         if t[0] in self.usage.limits and t[1] in self.usage.limits:
+            text = pgettext_lazy('Label in the limit summary', 'Used')
             context['charts'].append({
                 'type': t[0],
                 'name': t[2],
                 'used': self.usage.limits[t[0]],
                 'max': self.usage.limits[t[1]],
-                'text': False,
+                'text': text
             })
     return context
 
