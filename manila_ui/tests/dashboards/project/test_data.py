@@ -13,6 +13,7 @@
 #    under the License.
 import collections
 
+from manilaclient.v2 import messages
 from manilaclient.v2 import security_services
 from manilaclient.v2 import share_export_locations
 from manilaclient.v2 import share_group_snapshots
@@ -490,3 +491,50 @@ limits_negative = {"totalSharesUsed": 10,
                    "maxTotalShareGigabytes": 1000,
                    "maxTotalSnapshotGigabytes": 1000,
                    }
+
+# Manila User Messages
+fake_message_1 = messages.Message(
+    messages.MessageManager(FakeAPIClient),
+    {'resource_id': "351cc796-2d79-4a08-b878-a8ed933b6b68",
+     'message_level': 'ERROR',
+     'user_message': 'allocate host: No storage could be allocated for'
+                     ' this share request. Trying again with a different'
+                     ' size or share type may succeed.',
+     'expires_at': '2017-07-10T10:27:43.000000',
+     'id': '4b319d29-d5b7-4b6e-8e7c-8d6e53f3c3d5',
+     'created_at': '2017-07-10T10:26:43.000000',
+     'detail_id': '002',
+     'request_id': 'req-24e7ccb6-a7d5-4ddd-a8e4-d8f72a4509c8',
+     'project_id': '2e3de76b49b444fd9dc7ca9f7048ce6b',
+     'resource_type': 'SHARE',
+     'action_id': '001'})
+
+fake_message_2 = messages.Message(
+    messages.MessageManager(FakeAPIClient),
+    {'resource_id': "25b4c0cc-e711-4c6f-b9fd-72d6b5c62bce",
+     'message_level': 'ERROR',
+     'user_message': 'Driver does not expect share-network to be provided '
+                     'with current configuration.',
+     'expires_at': '2018-09-10T09:37:45.000000',
+     'id': 'd01d03ee-7758-4175-a6b5-853329dd2f4e',
+     'created_at': '2018-09-10T09:36:45.000000',
+     'detail_id': '003',
+     'request_id': 'req-fa568ab0-d6b3-4b32-899d-637ee006fed4',
+     'project_id': '2e3de76b49b444fd9dc7ca9f7048ce6b',
+     'resource_type': 'SHARE',
+     'action_id': '002'})
+
+fake_message_3 = messages.Message(
+    messages.MessageManager(FakeAPIClient),
+    {'resource_id': "4befdc84-2796-44e1-8645-14b651bfb787",
+     'message_level': 'ERROR',
+     'user_message': 'Share has no replica with "replica_state" '
+                     'set to "active"',
+     'expires_at': '2020-09-09T22:37:13.000000',
+     'id': '1e1c493f-d07d-48e9-93a8-ef5ad4b8ca8a',
+     'created_at': '2020-09-09T22:36:13.000000',
+     'detail_id': '004',
+     'request_id': 'req-29449bc8-d0ec-4d6b-b37c-85d0f04251b1',
+     'project_id': '2e3de76b49b444fd9dc7ca9f7048ce6b',
+     'resource_type': 'SHARE_REPLICA',
+     'action_id': '002'})

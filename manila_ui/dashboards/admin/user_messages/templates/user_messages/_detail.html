@@ -1,0 +1,26 @@
+{% load i18n sizeformat parse_date %}
+
+<h3>{% trans "User Messages Overview" %}</h3>
+<div class="detail">
+  <hr class="header_rule">
+  <dl class="dl-horizontal">
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ message.id }}</dd>
+    <dt>{% trans "Action" %}</dt>
+    <dd>{{ message.action_id }}</dd>
+    <dt>{% trans "Message" %}</dt>
+    <dd>{{ message.user_message }}</dd>
+    <dt>{% trans "Message Level" %}</dt>
+    <dd>{{ message.message_level }}</dd>
+    <dt>{% trans "Resource Type" %}</dt>
+    <dd>{{ message.resource_type }}</dd>
+    <dt>{% trans "Resource ID" %}</dt>
+    <dd>{{ message.resource_id }}</dd>
+    <dt>{% trans "Created at" %}</dt>
+    <dd>{{ message.created_at|parse_isotime }}</dd>
+    <dt>{% trans "Expires at" %}</dt>
+    <dd>{{ message.expires_at|parse_isotime }}</dd>
+    <dt>{% trans "Request ID" %}</dt>
+    <dd>{{ message.request_id }}</dd>
+  </dl>
+</div>
