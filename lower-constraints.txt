@@ -3,7 +3,7 @@ appdirs==1.4.3
 asn1crypto==0.24.0
 Babel==2.3.4
 certifi==2018.1.18
-cffi==1.11.5
+cffi==1.14.0
 chardet==3.0.4
 cliff==2.11.0
 cmd2==0.8.1
@@ -26,7 +26,7 @@ extras==1.0.0
 fasteners==0.14.1
 fixtures==3.0.0
 futurist==1.6.0
-horizon==17.1.0
+horizon==18.3.1
 idna==2.6
 imagesize==1.0.0
 iso8601==0.1.11
@@ -82,7 +82,7 @@ python-novaclient==10.1.0
 python-subunit==1.0.0
 python-swiftclient==3.5.0
 pytz==2018.3
-PyYAML==3.12
+PyYAML==3.13
 rcssmin==1.0.6
 requests==2.18.4
 requestsexceptions==1.4.0
