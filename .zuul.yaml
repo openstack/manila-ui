@@ -9,6 +9,8 @@
       - release-notes-jobs-python3
     check:
       jobs:
+        - openstack-tox-cover:
+            voting: false
         - manila-ui-integration-tests
     gate:
       jobs:
