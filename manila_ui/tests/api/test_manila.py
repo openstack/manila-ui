@@ -690,3 +690,39 @@ class ManilaApiTests(base.APITestCase):
             get_method.return_value.get_keys.return_value, result)
         get_method.assert_called_once_with(sgt)
         get_method.return_value.get_keys.assert_called_once_with()
+
+    @ddt.data(None, "some_fake_message_id")
+    def test_share_messages_get(self, message_id):
+        result = api.messages_get(self.request, message_id)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.messages.get.return_value,
+            result)
+        self.manilaclient.messages.get.assert_called_once_with(message_id)
+
+    @ddt.data(
+        {},
+        {'search_opts': 'foo', 'sort_key': 'k', 'sort_dir': 'v'},
+    )
+    def test_messages_list(self, kwargs):
+        result = api.messages_list(self.request, **kwargs)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.messages.list.return_value,
+            result)
+        self.manilaclient.messages.list.assert_called_once_with(
+            search_opts=kwargs.get('search_opts'),
+            sort_key=kwargs.get('sort_key'),
+            sort_dir=kwargs.get('sort_dir'))
+
+    @ddt.data(None, "some_fake_message_id")
+    def test_messages_delete(self, message_id):
+        result = api.messages_delete(self.request, message_id)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(
+            self.manilaclient.messages.delete.return_value,
+            result)
+        self.manilaclient.messages.delete.assert_called_once_with(message_id)

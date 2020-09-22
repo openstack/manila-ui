@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Implements the user messages graphical interface for the project and admin
+    dashboards.
+    [`blueprint ui-user-messages <https://blueprints.launchpad.net/manila-ui/+spec/ui-user-messages>`_]

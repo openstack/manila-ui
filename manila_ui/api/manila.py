@@ -639,3 +639,18 @@ def share_group_type_unset_specs(request, share_group_type, keys):
 def share_group_type_get_specs(request, share_group_type):
     return manilaclient(request).share_group_types.get(
         share_group_type).get_keys()
+
+
+# ####### User Messages # ########
+def messages_get(request, message_id):
+    return manilaclient(request).messages.get(message_id)
+
+
+def messages_list(request, search_opts=None, sort_key=None, sort_dir=None):
+    return manilaclient(request).messages.list(search_opts=search_opts,
+                                               sort_key=sort_key,
+                                               sort_dir=sort_dir)
+
+
+def messages_delete(request, message_id):
+    return manilaclient(request).messages.delete(message_id)

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "User Messages" %}{% endblock %}
+
+{% block main %}
+<div class="row">
+  <div class="col-sm-12">
+  {{ user_messages_table.render }}
+  </div>
+</div>
+{% endblock %}
