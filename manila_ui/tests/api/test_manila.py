@@ -29,6 +29,29 @@ class ManilaApiTests(base.APITestCase):
         self.id = "fake_id"
         self.mock_object(horizon_api, "QuotaSet")
 
+    # Share tests
+
+    @ddt.data(
+        {},
+        {"name": "fake_share"},
+        {"limit": "3"},
+        {"host": "fake_share_host"},
+        {"sort_key": "id", "sort_dir": "asc"},
+    )
+    def test_share_list(self, kwargs):
+        result = api.share_list(self.request, search_opts=kwargs)
+
+        self.assertEqual(
+            self.manilaclient.shares.list.return_value, result)
+
+        self.manilaclient.shares.list.assert_called_once_with(
+            search_opts=kwargs)
+
+    def test_share_get(self):
+        api.share_get(self.request, self.id)
+
+        self.manilaclient.shares.get.assert_called_once_with(self.id)
+
     @ddt.data((None, True), ("some_fake_sg_id", False))
     @ddt.unpack
     def test_share_create(self, sg_id, is_public):
@@ -60,6 +83,30 @@ class ManilaApiTests(base.APITestCase):
         self.manilaclient.shares.delete.assert_called_once_with(
             s_id, share_group_id=sg_id)
 
+    @ddt.data(("", "", "True"), ("share_name", "", "True"),
+              ("share_name", "share_description", "True"),
+              ("", "share_description", "True"),
+              ("", "", "False"), ("share_name", "", "False"),
+              ("share_name", "share_description", "False"),
+              ("", "share_description", "False"))
+    @ddt.unpack
+    def test_share_update(self, name, description, is_public):
+        api.share_update(self.request, self.id, name, description, is_public)
+
+        self.manilaclient.shares.update.assert_called_once_with(
+            self.id, display_name=name, display_description=description,
+            is_public=is_public)
+
+    # Shares ACLs tests
+
+    def test_share_rules_list(self):
+        result = api.share_rules_list(self.request, self.id)
+
+        self.assertEqual(
+            self.manilaclient.shares.access_list.return_value, result)
+
+        self.manilaclient.shares.access_list.assert_called_once_with(self.id)
+
     def test_list_share_export_locations(self):
         api.share_export_location_list(self.request, self.id)
 
@@ -72,6 +119,29 @@ class ManilaApiTests(base.APITestCase):
         client = self.manilaclient
         client.share_instance_export_locations.list.assert_called_once_with(
             self.id)
+
+    @ddt.data(("ip", "10.0.0.13", "rw"), ("ip", "10.0.0.13", None),
+              ("ip", "10.0.0.13", "ro"),
+              ("user", "demo", "rw"),
+              ("user", "demo", None), ("user", "demo", "ro"),
+              ("cephx", "alice", "rw"),
+              ("cephx", "alice", None), ("cephx", "alice", "ro"))
+    @ddt.unpack
+    def test_share_allow(self, access_type, access_to, access_level):
+        api.share_allow(self.request, self.id, access_type,
+                        access_to, access_level)
+
+        self.manilaclient.shares.allow.assert_called_once_with(
+            self.id, access_type, access_to, access_level)
+
+    def test_share_deny(self):
+        fake_rule_id = "fake_rule_id"
+        api.share_deny(self.request, self.id, fake_rule_id)
+
+        self.manilaclient.shares.deny.assert_called_once_with(
+            self.id, fake_rule_id)
+
+    # Share manage/unmanage tests
 
     def test_share_manage(self):
         api.share_manage(
@@ -97,6 +167,50 @@ class ManilaApiTests(base.APITestCase):
             is_public="fake_is_public",
         )
 
+    def test_share_unmanage(self):
+        api.share_unmanage(self.request, self.id)
+
+        self.manilaclient.shares.unmanage.assert_called_once_with(self.id)
+
+    # Share migration tests
+
+    def test_migration_start(self):
+        api.migration_start(self.request, 'fake_share', 'fake_host', False,
+                            True, True, True, True, 'fake_net_id',
+                            'fake_type_id')
+
+        self.manilaclient.shares.migration_start.assert_called_once_with(
+            'fake_share',
+            host='fake_host',
+            force_host_assisted_migration=False,
+            nondisruptive=True,
+            writable=True,
+            preserve_metadata=True,
+            preserve_snapshots=True,
+            new_share_network_id='fake_net_id',
+            new_share_type_id='fake_type_id'
+        )
+
+    def test_migration_complete(self):
+        api.migration_complete(self.request, 'fake_share')
+
+        self.manilaclient.shares.migration_complete.assert_called_once_with(
+            'fake_share')
+
+    def test_migration_cancel(self):
+        api.migration_cancel(self.request, 'fake_share')
+
+        self.manilaclient.shares.migration_cancel.assert_called_once_with(
+            'fake_share')
+
+    def test_migration_get_progress(self):
+        api.migration_get_progress(self.request, 'fake_share')
+
+        (self.manilaclient.shares.migration_get_progress.
+            assert_called_once_with('fake_share'))
+
+    # Share resize tests
+
     def test_share_extend(self):
         new_size = "123"
 
@@ -106,6 +220,8 @@ class ManilaApiTests(base.APITestCase):
             self.id, new_size
         )
 
+    # Share snapshots tests
+
     def test_share_revert(self):
         share = 'fake_share'
         snapshot = 'fake_snapshot'
@@ -114,6 +230,438 @@ class ManilaApiTests(base.APITestCase):
 
         self.manilaclient.shares.revert_to_snapshot.assert_called_once_with(
             share, snapshot)
+
+    def test_share_snapshot_get(self):
+        snapshot = 'fake_snapshot'
+
+        api.share_snapshot_get(self.request, snapshot)
+
+        self.manilaclient.share_snapshots.get.assert_called_once_with(snapshot)
+
+    @ddt.data(("", ""), ("share_name", ""),
+              ("share_name", "share_description"),
+              ("", "share_description"),)
+    @ddt.unpack
+    def test_share_snapshot_update(self, name, description):
+        snapshot = 'fake_snapshot'
+
+        api.share_snapshot_update(self.request, snapshot, name, description)
+
+        self.manilaclient.share_snapshots.update.assert_called_once_with(
+            snapshot, display_name=name, display_description=description)
+
+    @ddt.data(
+        {},
+        {"detailed": True},
+        {"detailed": False},
+        {"search_opts": {"foo": "bar"}},
+        {"sort_key": "id", "sort_dir": "asc"},
+    )
+    def test_share_snapshot_list(self, kwargs):
+        result = api.share_snapshot_list(self.request, **kwargs)
+
+        self.assertEqual(
+            self.manilaclient.share_snapshots.list.return_value, result)
+        self.manilaclient.share_snapshots.list.assert_called_once_with(
+            detailed=kwargs.get("detailed", True),
+            search_opts=kwargs.get("search_opts"),
+            sort_key=kwargs.get("sort_key"),
+            sort_dir=kwargs.get("sort_dir"),
+        )
+
+    @ddt.data(True, False)
+    def test_snapshot_create(self, force):
+        name = 'fake_snapshot_name'
+        description = "fake_snapshot_description"
+
+        api.share_snapshot_create(
+            self.request, self.id, name, description, force)
+
+        self.manilaclient.share_snapshots.create.assert_called_once_with(
+            self.id, name=name, description=description, force=force)
+
+    def test_snapshot_delete(self):
+        snapshot_id = 'fake_snapshot_id'
+
+        api.share_snapshot_delete(self.request, snapshot_id)
+
+        self.manilaclient.share_snapshots.delete.assert_called_once_with(
+            snapshot_id)
+
+    def test_allow_snapshot(self):
+        access_type = "fake_type"
+        access_to = "fake_value"
+
+        api.share_snapshot_allow(self.request, self.id, access_type,
+                                 access_to)
+
+        client = self.manilaclient
+        client.share_snapshots.allow.assert_called_once_with(
+            self.id, access_type, access_to)
+
+    def test_deny_snapshot(self):
+        api.share_snapshot_deny(self.request, self.id, self.id)
+
+        client = self.manilaclient
+        client.share_snapshots.deny.assert_called_once_with(self.id, self.id)
+
+    def test_list_snapshot_rules(self):
+        api.share_snapshot_rules_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_snapshots.access_list.assert_called_once_with(self.id)
+
+    def test_list_snapshot_export_locations(self):
+        api.share_snap_export_location_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_snapshot_export_locations.list.assert_called_once_with(
+            snapshot=self.id)
+
+    def test_list_snapshot_instance_export_locations(self):
+        api.share_snap_instance_export_location_list(self.request, self.id)
+
+        client = self.manilaclient
+        client.share_snapshot_export_locations.list.assert_called_once_with(
+            snapshot_instance=self.id)
+
+    # Share network tests
+
+    @ddt.data(
+        {},
+        {"detailed": True},
+        {"detailed": False},
+        {"detailed": False, "search_opts": {"foo": "bar"}},
+    )
+    def test_share_network_list(self, kwargs):
+        api.share_network_list(self.request, **kwargs)
+
+        self.manilaclient.share_networks.list.assert_called_once_with(
+            detailed=kwargs.get("detailed", False),
+            search_opts=kwargs.get("search_opts", None))
+
+    @ddt.data(
+        {},
+        {"name": "foo_name"},
+        {"description": "foo_desc"},
+        {"neutron_net_id": "foo_neutron_net_id"},
+        {"neutron_subnet_id": "foo_neutron_subnet_id"},
+        {"name": "foo_name", "description": "foo_desc",
+         "neutron_net_id": "foo_neutron_net_id",
+         "neutron_subnet_id": "foo_neutron_subnet_id"},
+    )
+    def test_share_network_create(self, kwargs):
+        expected_kwargs = {
+            "name": None,
+            "description": None,
+            "neutron_net_id": None,
+            "neutron_subnet_id": None,
+        }
+        expected_kwargs.update(**kwargs)
+
+        api.share_network_create(self.request, **kwargs)
+
+        mock_sn_create = self.manilaclient.share_networks.create
+        mock_sn_create.assert_called_once_with(**expected_kwargs)
+
+    def test_share_network_get(self):
+        share_net_id = 'fake_share_net_id'
+
+        api.share_network_get(self.request, share_net_id)
+
+        self.manilaclient.share_networks.get.assert_called_once_with(
+            share_net_id)
+
+    @ddt.data(("", ""), ("share_net_name", ""),
+              ("share_net_name", "share_net_description"),
+              ("", "share_net_description"))
+    @ddt.unpack
+    def test_share_network_update(self, name, description):
+        share_net_id = "fake_share_network"
+
+        api.share_network_update(self.request, share_net_id, name, description)
+
+        self.manilaclient.share_networks.update.assert_called_once_with(
+            share_net_id, name=name, description=description)
+
+    def test_share_network_delete(self):
+        share_network_id = "fake_share_network"
+
+        api.share_network_delete(self.request, share_network_id)
+
+        self.manilaclient.share_networks.delete.assert_called_once_with(
+            share_network_id)
+
+    # Share server tests
+
+    @ddt.data(
+        {},
+        {"name": "fake_share_server"},
+        {"limit": "10"},
+        {"host": "fake_share_server_host"},
+        {"sort_key": "id", "sort_dir": "asc"},
+    )
+    def test_share_server_list(self, kwargs):
+        result = api.share_server_list(self.request, search_opts=kwargs)
+
+        self.assertEqual(
+            self.manilaclient.share_servers.list.return_value, result)
+
+        self.manilaclient.share_servers.list.assert_called_once_with(
+            search_opts=kwargs)
+
+    def test_share_server_get(self):
+        share_serv_id = 'fake_share_server'
+        api.share_server_get(self.request, share_serv_id)
+
+        self.manilaclient.share_servers.get.assert_called_once_with(
+            share_serv_id)
+
+    def test_share_server_delete(self):
+        share_serv_id = "fake_share_server"
+
+        api.share_server_delete(self.request, share_serv_id)
+
+        self.manilaclient.share_servers.delete.assert_called_once_with(
+            share_serv_id)
+
+    # Security service tests
+
+    @ddt.data(
+        {},
+        {"search_opts": {"foo": "bar"}},
+    )
+    def test_security_service_list(self, kwargs):
+        api.security_service_list(self.request, **kwargs)
+
+        self.manilaclient.security_services.list.assert_called_once_with(
+            detailed=True,
+            search_opts=kwargs.get("search_opts", None))
+
+    def test_security_service_get(self):
+        sec_service_id = 'fake_sec_service_id'
+        api.security_service_get(self.request, sec_service_id)
+
+        self.manilaclient.security_services.get.assert_called_once_with(
+            sec_service_id)
+
+    @ddt.data(
+        ("ldap", {}),
+        ("kerberos", {}),
+        ("ldap",
+            {"dns_ip": "8.8.8.8",
+             "name": "my_fake_ldap_security_service",
+             "description": "LDAP security service"}),
+        ("kerberos",
+            {"server": "10.254.0.3",
+             "user": "demo", "password": "s3cr37",
+             "name": "my_fake_kerberos_security_service",
+             "description": "Kerberos security service"})
+    )
+    @ddt.unpack
+    def test_security_service_create(self, ss_type, kwargs):
+        expected_kwargs = {
+            "dns_ip": None,
+            "server": None,
+            "domain": None,
+            "user": None,
+            "password": None,
+            "name": None,
+            "description": None
+        }
+        expected_kwargs.update(**kwargs)
+
+        api.security_service_create(self.request, ss_type, **kwargs)
+
+        mock_sec_service_create = self.manilaclient.security_services.create
+        mock_sec_service_create.assert_called_once_with(
+            ss_type, **expected_kwargs)
+
+    @ddt.data(
+        {"dns_ip": "8.8.4.4",
+         "name": "my_fake_ldap_security_service_2",
+         "description": "LDAP security service 2"},
+        {"server": "10.254.0.10",
+         "user": "demo", "password": "n0_m0r3_s3cr37",
+         "name": "my_fake_kerberos_security_service_2",
+         "description": "Kerberos security service 2"}
+    )
+    def test_security_service_update(self, kwargs):
+        sec_service_id = "fake_sec_service_id"
+
+        expected_kwargs = {
+            "dns_ip": None,
+            "server": None,
+            "domain": None,
+            "user": None,
+            "password": None,
+            "name": None,
+            "description": None
+        }
+        expected_kwargs.update(**kwargs)
+
+        api.security_service_update(self.request, sec_service_id, **kwargs)
+
+        mock_sec_service_update = self.manilaclient.security_services.update
+        mock_sec_service_update.assert_called_once_with(
+            sec_service_id, **expected_kwargs)
+
+    def test_security_service_delete(self):
+        sec_service_id = "fake_sec_service_id"
+
+        api.security_service_delete(self.request, sec_service_id)
+
+        self.manilaclient.security_services.delete.assert_called_once_with(
+            sec_service_id)
+
+    # Share network security service tests
+
+    def test_share_network_security_service_add(self):
+        share_network_id = "fake_share_net_id"
+        sec_service_id = "fake_sec_service_id"
+
+        api.share_network_security_service_add(
+            self.request, share_network_id, sec_service_id)
+
+        mock_sn_sec_service_add = (
+            self.manilaclient.share_networks.add_security_service)
+
+        mock_sn_sec_service_add.assert_called_once_with(
+            share_network_id, sec_service_id)
+
+    def test_share_network_security_service_remove(self):
+        share_network_id = "fake_share_net_id"
+        sec_service_id = "fake_sec_service_id"
+
+        api.share_network_security_service_remove(
+            self.request, share_network_id, sec_service_id)
+
+        mock_sn_sec_service_rm = (
+            self.manilaclient.share_networks.remove_security_service)
+
+        mock_sn_sec_service_rm.assert_called_once_with(
+            share_network_id, sec_service_id)
+
+    def test_share_network_security_service_list(self):
+        share_network_id = "fake_share_net_id"
+
+        api.share_network_security_service_list(
+            self.request, share_network_id)
+
+        search_opts = {"share_network_id": share_network_id}
+
+        self.manilaclient.security_services.list.assert_called_once_with(
+            search_opts=search_opts)
+
+    # Share metadata tests
+
+    def test_share_set_metadata(self):
+        fake_metadata = {
+            "aim": "testing",
+            "project": "my_abc",
+            "deadline": "01/01/2020"
+        }
+
+        api.share_set_metadata(
+            self.request, self.id, fake_metadata)
+
+        self.manilaclient.shares.set_metadata.assert_called_once_with(
+            self.id, fake_metadata)
+
+    def test_share_delete_metadata(self):
+        fake_keys = ["aim", "project", "deadline"]
+
+        api.share_delete_metadata(
+            self.request, self.id, fake_keys)
+
+        self.manilaclient.shares.delete_metadata.assert_called_once_with(
+            self.id, fake_keys)
+
+    # Default quota tests
+
+    def test_default_quota_get(self):
+        project_id = 'fake_project_id'
+
+        api.tenant_quota_get(self.request, project_id)
+
+        self.manilaclient.quotas.get.assert_called_once_with(project_id)
+
+    @ddt.data(
+        ({'share_gigabytes': 333}, {'gigabytes': 333}),
+        ({'share_snapshot_gigabytes': 444}, {'snapshot_gigabytes': 444}),
+        ({'share_snapshots': 14}, {'snapshots': 14}),
+        ({'snapshots': 14}, {'snapshots': 14}),
+        ({'gigabytes': 14}, {'gigabytes': 14}),
+        ({'snapshot_gigabytes': 314}, {'snapshot_gigabytes': 314}),
+        ({'shares': 24}, {'shares': 24}),
+        ({'share_networks': 14}, {'share_networks': 14}),
+    )
+    @ddt.unpack
+    def test_tenant_quota_update(self, provided_kwargs, expected_kwargs):
+        tenant_id = 'fake_tenant_id'
+
+        api.tenant_quota_update(self.request, tenant_id, **provided_kwargs)
+
+        self.manilaclient.quotas.update.assert_called_once_with(
+            tenant_id, **expected_kwargs)
+        self.manilaclient.quota_classes.update.assert_not_called()
+
+    @ddt.data(
+        ({'share_gigabytes': 333}, {'gigabytes': 333}),
+        ({'share_snapshot_gigabytes': 444}, {'snapshot_gigabytes': 444}),
+        ({'share_snapshots': 14}, {'snapshots': 14}),
+        ({'snapshots': 14}, {'snapshots': 14}),
+        ({'gigabytes': 14}, {'gigabytes': 14}),
+        ({'snapshot_gigabytes': 314}, {'snapshot_gigabytes': 314}),
+        ({'shares': 24}, {'shares': 24}),
+        ({'share_networks': 14}, {'share_networks': 14}),
+    )
+    @ddt.unpack
+    def test_default_quota_update(self, provided_kwargs, expected_kwargs):
+        api.default_quota_update(self.request, **provided_kwargs)
+
+        self.manilaclient.quota_classes.update.assert_called_once_with(
+            api.DEFAULT_QUOTA_NAME, **expected_kwargs)
+
+    def test_tenant_quota_get(self):
+        tenant_id = 'fake_tenant_id'
+        result = api.tenant_quota_get(self.request, tenant_id)
+
+        self.assertIsNotNone(result)
+        self.manilaclient.quotas.get.assert_called_once_with(tenant_id)
+
+    @ddt.data({
+        'shares': 24, 'gigabytes': 333, 'snapshots': 14,
+        'snapshot_gigabytes': 444, 'share_networks': 14
+    })
+    @ddt.unpack
+    def test_ui_data_map(self, **kwargs):
+        expected_result = {
+            'shares': 24, 'share_gigabytes': 333, 'share_snapshots': 14,
+            'share_snapshot_gigabytes': 444, 'share_networks': 14
+        }
+
+        converted_result_for_ui = {}
+        for field in api.MANILA_QUOTA_FIELDS:
+            converted_result_for_ui[field] = (
+                kwargs[api.MANILA_QUOTA_FIELDS_DATA_MAP[field]])
+
+        self.assertEqual(expected_result, converted_result_for_ui)
+
+    # Share type tests
+
+    def test_share_type_list(self):
+        api.share_type_list(self.request)
+
+        self.manilaclient.share_types.list.assert_called_once_with()
+
+    def test_share_type_get(self):
+        share_type_id = "fake_share_type_id"
+
+        api.share_type_get(self.request, share_type_id)
+
+        self.manilaclient.share_types.get.assert_called_once_with(
+            share_type_id)
 
     @ddt.data(True, False)
     def test_share_type_create_with_default_values(self, dhss):
@@ -145,6 +693,23 @@ class ManilaApiTests(base.APITestCase):
             spec_driver_handles_share_servers=dhss,
             is_public=is_public)
 
+    def test_share_type_delete(self):
+        share_type_id = "fake_share_type_id"
+
+        api.share_type_delete(self.request, share_type_id)
+
+        self.manilaclient.share_types.delete.assert_called_once_with(
+            share_type_id)
+
+    def test_share_type_get_extra_specs(self):
+        share_type_id = "fake_share_type_id"
+
+        api.share_type_get_extra_specs(self.request, share_type_id)
+
+        share_types_get = self.manilaclient.share_types.get
+        share_types_get.assert_called_once_with(share_type_id)
+        share_types_get.return_value.get_keys.assert_called_once()
+
     def test_share_type_set_extra_specs(self):
         data = {"foo": "bar"}
 
@@ -163,15 +728,39 @@ class ManilaApiTests(base.APITestCase):
         share_types_get.assert_called_once_with(self.id)
         share_types_get.return_value.unset_keys.assert_called_once_with(keys)
 
-    def test_share_instance_list(self):
-        api.share_instance_list(self.request)
+    def test_share_type_access_list(self):
+        share_type_id = "fake_share_type_id"
 
-        self.manilaclient.share_instances.list.assert_called_once_with()
+        api.share_type_access_list(self.request, share_type_id)
 
-    def test_share_instance_get(self):
-        api.share_instance_get(self.request, self.id)
+        self.manilaclient.share_type_access.list.assert_called_once_with(
+            share_type_id)
 
-        self.manilaclient.share_instances.get.assert_called_once_with(self.id)
+    def test_share_type_access_add(self):
+        share_type_id = "fake_share_type_id"
+        project_id = "fake_project_id"
+
+        api.share_type_access_add(self.request, share_type_id, project_id)
+
+        mock_share_type_access_add = (
+            self.manilaclient.share_type_access.add_project_access)
+
+        mock_share_type_access_add.assert_called_once_with(
+            share_type_id, project_id)
+
+    def test_share_type_access_remove(self):
+        share_type_id = "fake_share_type_id"
+        project_id = "fake_project_id"
+
+        api.share_type_access_remove(self.request, share_type_id, project_id)
+
+        mock_share_type_access_rm = (
+            self.manilaclient.share_type_access.remove_project_access)
+
+        mock_share_type_access_rm.assert_called_once_with(
+            share_type_id, project_id)
+
+    # Share replica tests
 
     def test_share_replica_list(self):
         api.share_replica_list(self.request)
@@ -236,169 +825,31 @@ class ManilaApiTests(base.APITestCase):
         mock_reset_state = self.manilaclient.share_replicas.reset_replica_state
         mock_reset_state.assert_called_once_with(replica, state)
 
-    def test_allow_snapshot(self):
-        access_type = "fake_type"
-        access_to = "fake_value"
+    # Share instance tests
 
-        api.share_snapshot_allow(self.request, self.id, access_type,
-                                 access_to)
+    def test_share_instance_list(self):
+        api.share_instance_list(self.request)
 
-        client = self.manilaclient
-        client.share_snapshots.allow.assert_called_once_with(
-            self.id, access_type, access_to)
+        self.manilaclient.share_instances.list.assert_called_once_with()
 
-    def test_deny_snapshot(self):
-        api.share_snapshot_deny(self.request, self.id, self.id)
+    def test_share_instance_get(self):
+        api.share_instance_get(self.request, self.id)
 
-        client = self.manilaclient
-        client.share_snapshots.deny.assert_called_once_with(self.id, self.id)
+        self.manilaclient.share_instances.get.assert_called_once_with(self.id)
 
-    def test_list_snapshot_rules(self):
-        api.share_snapshot_rules_list(self.request, self.id)
-
-        client = self.manilaclient
-        client.share_snapshots.access_list.assert_called_once_with(self.id)
-
-    def test_list_snapshot_export_locations(self):
-        api.share_snap_export_location_list(self.request, self.id)
-
-        client = self.manilaclient
-        client.share_snapshot_export_locations.list.assert_called_once_with(
-            snapshot=self.id)
-
-    def test_list_snapshot_instance_export_locations(self):
-        api.share_snap_instance_export_location_list(self.request, self.id)
-
-        client = self.manilaclient
-        client.share_snapshot_export_locations.list.assert_called_once_with(
-            snapshot_instance=self.id)
-
-    def test_migration_start(self):
-        api.migration_start(self.request, 'fake_share', 'fake_host', False,
-                            True, True, True, True, 'fake_net_id',
-                            'fake_type_id')
-
-        self.manilaclient.shares.migration_start.assert_called_once_with(
-            'fake_share',
-            host='fake_host',
-            force_host_assisted_migration=False,
-            nondisruptive=True,
-            writable=True,
-            preserve_metadata=True,
-            preserve_snapshots=True,
-            new_share_network_id='fake_net_id',
-            new_share_type_id='fake_type_id'
-        )
-
-    def test_migration_complete(self):
-        api.migration_complete(self.request, 'fake_share')
-
-        self.manilaclient.shares.migration_complete.assert_called_once_with(
-            'fake_share')
-
-    def test_migration_cancel(self):
-        api.migration_cancel(self.request, 'fake_share')
-
-        self.manilaclient.shares.migration_cancel.assert_called_once_with(
-            'fake_share')
-
-    def test_migration_get_progress(self):
-        api.migration_get_progress(self.request, 'fake_share')
-
-        (self.manilaclient.shares.migration_get_progress.
-            assert_called_once_with('fake_share'))
+    # Availability zone and pool tests
 
     def test_availability_zone_list(self):
         api.availability_zone_list(self.request)
 
         self.manilaclient.availability_zones.list.assert_called_once_with()
 
-    @ddt.data(
-        ({'share_gigabytes': 333}, {'gigabytes': 333}),
-        ({'share_snapshot_gigabytes': 444}, {'snapshot_gigabytes': 444}),
-        ({'share_snapshots': 14}, {'snapshots': 14}),
-        ({'snapshots': 14}, {'snapshots': 14}),
-        ({'gigabytes': 14}, {'gigabytes': 14}),
-        ({'snapshot_gigabytes': 314}, {'snapshot_gigabytes': 314}),
-        ({'shares': 24}, {'shares': 24}),
-        ({'share_networks': 14}, {'share_networks': 14}),
-    )
-    @ddt.unpack
-    def test_tenant_quota_update(self, provided_kwargs, expected_kwargs):
-        tenant_id = 'fake_tenant_id'
+    @ddt.data({}, {"detailed": True}, {"detailed": False})
+    def test_pool_list(self, kwargs):
+        api.pool_list(self.request, **kwargs)
 
-        api.tenant_quota_update(self.request, tenant_id, **provided_kwargs)
-
-        self.manilaclient.quotas.update.assert_called_once_with(
-            tenant_id, **expected_kwargs)
-        self.manilaclient.quota_classes.update.assert_not_called()
-
-    @ddt.data(
-        ({'share_gigabytes': 333}, {'gigabytes': 333}),
-        ({'share_snapshot_gigabytes': 444}, {'snapshot_gigabytes': 444}),
-        ({'share_snapshots': 14}, {'snapshots': 14}),
-        ({'snapshots': 14}, {'snapshots': 14}),
-        ({'gigabytes': 14}, {'gigabytes': 14}),
-        ({'snapshot_gigabytes': 314}, {'snapshot_gigabytes': 314}),
-        ({'shares': 24}, {'shares': 24}),
-        ({'share_networks': 14}, {'share_networks': 14}),
-    )
-    @ddt.unpack
-    def test_default_quota_update(self, provided_kwargs, expected_kwargs):
-        api.default_quota_update(self.request, **provided_kwargs)
-
-        self.manilaclient.quota_classes.update.assert_called_once_with(
-            api.DEFAULT_QUOTA_NAME, **expected_kwargs)
-
-    def test_tenant_quota_get(self):
-        tenant_id = 'fake_tenant_id'
-        result = api.tenant_quota_get(self.request, tenant_id)
-
-        self.assertIsNotNone(result)
-        self.manilaclient.quotas.get.assert_called_once_with(tenant_id)
-
-    @ddt.data({
-        'shares': 24, 'gigabytes': 333, 'snapshots': 14,
-        'snapshot_gigabytes': 444, 'share_networks': 14
-    })
-    @ddt.unpack
-    def test_ui_data_map(self, **kwargs):
-        expected_result = {
-            'shares': 24, 'share_gigabytes': 333, 'share_snapshots': 14,
-            'share_snapshot_gigabytes': 444, 'share_networks': 14
-        }
-
-        converted_result_for_ui = {}
-        for field in api.MANILA_QUOTA_FIELDS:
-            converted_result_for_ui[field] = (
-                kwargs[api.MANILA_QUOTA_FIELDS_DATA_MAP[field]])
-
-        self.assertEqual(expected_result, converted_result_for_ui)
-
-    @ddt.data(
-        {},
-        {"name": "foo_name"},
-        {"description": "foo_desc"},
-        {"neutron_net_id": "foo_neutron_net_id"},
-        {"neutron_subnet_id": "foo_neutron_subnet_id"},
-        {"name": "foo_name", "description": "foo_desc",
-         "neutron_net_id": "foo_neutron_net_id",
-         "neutron_subnet_id": "foo_neutron_subnet_id"},
-    )
-    @ddt.unpack
-    def test_share_network_create(self, **kwargs):
-        expected_kwargs = {
-            "name": None,
-            "description": None,
-            "neutron_net_id": None,
-            "neutron_subnet_id": None,
-        }
-        expected_kwargs.update(kwargs)
-
-        api.share_network_create(self.request, **kwargs)
-
-        mock_sn_create = self.manilaclient.share_networks.create
-        mock_sn_create.assert_called_once_with(**expected_kwargs)
+        self.manilaclient.pools.list.assert_called_once_with(
+            detailed=kwargs.get("detailed", False))
 
     # Share groups tests
 
