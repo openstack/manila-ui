@@ -289,7 +289,7 @@ class ShareViewTests(test.APITestCase):
         self.assertRedirectsNoFollow(res, INDEX_URL)
         api_manila.share_update.assert_called_once_with(
             mock.ANY, self.share, formData['name'], formData['description'],
-            is_public=str(formData['is_public']))
+            is_public=formData['is_public'])
         api_manila.share_get.assert_has_calls(
             [mock.call(mock.ANY, self.share.id) for i in (1, 2)])
 

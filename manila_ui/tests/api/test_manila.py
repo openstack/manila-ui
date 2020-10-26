@@ -83,12 +83,12 @@ class ManilaApiTests(base.APITestCase):
         self.manilaclient.shares.delete.assert_called_once_with(
             s_id, share_group_id=sg_id)
 
-    @ddt.data(("", "", "True"), ("share_name", "", "True"),
-              ("share_name", "share_description", "True"),
-              ("", "share_description", "True"),
-              ("", "", "False"), ("share_name", "", "False"),
-              ("share_name", "share_description", "False"),
-              ("", "share_description", "False"))
+    @ddt.data(("", "", True), ("share_name", "", True),
+              ("share_name", "share_description", True),
+              ("", "share_description", True),
+              ("", "", False), ("share_name", "", False),
+              ("share_name", "share_description", False),
+              ("", "share_description", False))
     @ddt.unpack
     def test_share_update(self, name, description, is_public):
         api.share_update(self.request, self.id, name, description, is_public)

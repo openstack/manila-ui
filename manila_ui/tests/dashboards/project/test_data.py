@@ -40,6 +40,7 @@ share = shares.Share(
      'size': 40,
      'name': 'Share name',
      'description': 'Share description',
+     'is_public': False,
      'share_proto': 'NFS',
      'metadata': {},
      'created_at': '2014-01-27 10:30:00',

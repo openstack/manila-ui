@@ -172,7 +172,8 @@ class UpdateView(forms.ModalFormView):
         share = self.get_object()
         return {'share_id': self.kwargs["share_id"],
                 'name': share.name,
-                'description': share.description}
+                'description': share.description,
+                'is_public': share.is_public}
 
 
 class UpdateMetadataView(forms.ModalFormView):

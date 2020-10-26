@@ -112,8 +112,8 @@ class CreateForm(forms.SelfHandlingForm):
         if self.enable_public_shares:
             self.fields['is_public'] = forms.BooleanField(
                 label=_("Make visible for all"), required=False,
-                help_text=(
-                    "If set then all tenants will be able to see this share."))
+                help_text=_(
+                    "If set, all projects will be able to see this share."))
 
         self.fields['share_proto'].choices = [(sp, sp) for sp in
                                               self.enabled_share_protocols]
@@ -255,12 +255,9 @@ class UpdateForm(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Share Name"))
     description = forms.CharField(widget=forms.Textarea,
                                   label=_("Description"), required=False)
-    is_public = forms.ChoiceField(
-        choices=((None, 'Do not change share visibility'),
-                 (False, "Make it 'Private'"), (True, "Make it 'Public'")),
-        label=_("Visibility"), required=False,
-        widget=forms.Select(
-            attrs={'class': 'switched', 'data-slug': 'sharetype'}))
+    is_public = forms.BooleanField(
+        label=_("Make visible for all"), required=False,
+        help_text=_("If set, all projects will be able to see this share."))
 
     def __init__(self, request, *args, **kwargs):
         super(UpdateForm, self).__init__(request, *args, **kwargs)
