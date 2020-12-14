@@ -142,12 +142,12 @@ class EditShareMetadata(tables.LinkAction):
         return share.status in ("available", "in-use")
 
 
-class ExtendShare(tables.LinkAction):
-    name = "extend_share"
-    verbose_name = _("Extend Share")
-    url = "horizon:project:shares:extend"
+class ResizeShare(tables.LinkAction):
+    name = "resize_share"
+    verbose_name = _("Resize Share")
+    url = "horizon:project:shares:resize"
     classes = ("ajax-modal", "btn-create")
-    policy_rules = (("share", "share:extend"),)
+    policy_rules = (("share", "share:resize"),)
 
     def get_policy_target(self, request, datum=None):
         project_id = None
@@ -213,6 +213,8 @@ class SharesTableBase(tables.DataTable):
         ("MANAGE_ERROR", False),
         ("UNMANAGE_ERROR", False),
         ("extending_error", False),
+        ("shrinking_error", False),
+        ("shrinking_possible_data_loss_error", False),
         ("reverting_error", False),
     )
     STATUS_DISPLAY_CHOICES = (
@@ -237,6 +239,10 @@ class SharesTableBase(tables.DataTable):
                                          u"Unmanage Error")),
         ("extending_error", pgettext_lazy("Current status of share",
                                           u"Extending Error")),
+        ("shrinking_error", pgettext_lazy("Current status of share",
+                                          u"Shrinking Error")),
+        ("shrinking_possible_data_loss_error", pgettext_lazy(
+            "Current status of share", u"Shrinking Error")),
         ("reverting_error", pgettext_lazy("Current status of share",
                                           u"Reverting Error")),
     )
@@ -411,7 +417,7 @@ class SharesTable(SharesTableBase):
             DeleteShare)
         row_actions = (
             EditShare,
-            ExtendShare,
+            ResizeShare,
             RevertShare,
             ss_tables.CreateShareSnapshot,
             ManageRules,

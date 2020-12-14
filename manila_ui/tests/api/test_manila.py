@@ -210,15 +210,18 @@ class ManilaApiTests(base.APITestCase):
             assert_called_once_with('fake_share'))
 
     # Share resize tests
-
-    def test_share_extend(self):
-        new_size = "123"
-
-        api.share_extend(self.request, self.id, new_size)
-
-        self.manilaclient.shares.extend.assert_called_once_with(
-            self.id, new_size
-        )
+    @ddt.data(("123", "78"), ("2", "5"),
+              ("75", "21"), ("0", "2"),
+              ("18", "62"), ("-1", "3"))
+    @ddt.unpack
+    def test_share_resize(self, new_size, orig_size):
+        api.share_resize(self.request, self.id, new_size, orig_size)
+        if orig_size > new_size:
+            self.manilaclient.shares.shrink.assert_called_once_with(
+                self.id, new_size)
+        else:
+            self.manilaclient.shares.extend.assert_called_once_with(
+                self.id, new_size)
 
     # Share snapshots tests
 

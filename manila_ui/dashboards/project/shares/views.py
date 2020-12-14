@@ -276,16 +276,16 @@ class ManageRulesView(tables.DataTableView):
         return rules
 
 
-class ExtendView(forms.ModalFormView):
-    form_class = share_form.ExtendForm
-    form_id = "extend_share"
-    template_name = 'project/shares/extend.html'
-    modal_header = _("Extend Share")
-    modal_id = "extend_share_modal"
-    submit_label = _("Extend")
-    submit_url = "horizon:project:shares:extend"
+class ResizeView(forms.ModalFormView):
+    form_class = share_form.ResizeForm
+    form_id = "resize_share"
+    template_name = 'project/shares/resize.html'
+    modal_header = _("Resize Share")
+    modal_id = "resize_share_modal"
+    submit_label = _("Resize")
+    submit_url = "horizon:project:shares:resize"
     success_url = reverse_lazy("horizon:project:shares:index")
-    page_title = _('Extend Share')
+    page_title = _('Resize Share')
 
     @memoized.memoized_method
     def get_object(self):
@@ -295,7 +295,7 @@ class ExtendView(forms.ModalFormView):
             exceptions.handle(self.request, _('Unable to retrieve share.'))
 
     def get_context_data(self, **kwargs):
-        context = super(ExtendView, self).get_context_data(**kwargs)
+        context = super(ResizeView, self).get_context_data(**kwargs)
         args = (self.get_object().id,)
         context['submit_url'] = reverse(self.submit_url, args=args)
         try:
@@ -315,7 +315,7 @@ class ExtendView(forms.ModalFormView):
             'share_id': self.kwargs["share_id"],
             'name': share.name or share.id,
             'orig_size': share.size,
-            'new_size': int(share.size) + 1,
+            'new_size': int(share.size),
         }
 
 

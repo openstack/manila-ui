@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Existing "Extend Share" feature in Manila-UI was renamed
+    "Resize Share" and share shrinking feature was added. Now
+    users can both extend and shrink shares.

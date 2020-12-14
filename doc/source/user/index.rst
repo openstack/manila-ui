@@ -112,17 +112,22 @@ Edit share
 
    A message indicates whether the action was successful.
 
-Extend share
+Resize share
 ------------
 
 #. Log in to the dashboard, choose a project, and click :guilabel:`Shares`.
 
-#. Go to the share that you want to edit and choose :guilabel:`Extend Share`
+#. Go to the share that you want to edit and choose :guilabel:`Resize Share`
    from Actions.
 
-#. :guilabel:`New Size (GB)`: Enter new size.
+#. :guilabel:`New Size (GB)`: Enter new size. It can be increased or decreased
+   from the original size. The size of the share cannot be lower than the size
+   of the data stored in the share.
+   
+   If increased, the size of the share will be extended.
+   If decreased, the size of the share will be shrinked.
 
-#. Click :guilabel:`Extend Share`.
+#. Click :guilabel:`Resize Share`.
 
    A message indicates whether the action was successful.
 
