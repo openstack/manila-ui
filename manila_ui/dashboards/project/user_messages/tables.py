@@ -73,6 +73,10 @@ class UserMessagesTable(tables.DataTable):
         "id",
         verbose_name=_("ID"),
         link="horizon:project:user_messages:user_messages_detail")
+    message_level = tables.Column(
+        "message_level",
+        verbose_name=_("Message Level")
+    )
     resource_type = tables.Column(
         "resource_type",
         verbose_name=_("Resource Type"))
