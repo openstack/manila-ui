@@ -119,6 +119,7 @@ class CreateShareGroupSnapshotView(forms.ModalFormView):
         context['share_group_id'] = sg_id
         # TODO(vponomaryov): add support of quotas when it is implemented
         # for share group snapshots on server side.
+        # https://bugs.launchpad.net/manila/+bug/1868644
         return context
 
     def get_initial(self):

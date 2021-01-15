@@ -72,6 +72,7 @@ class CreateShareGroup(tables.LinkAction):
     def allowed(self, request, share=None):
         # TODO(vponomaryov): implement quota restriction when quota support
         # is implemented for share groups.
+        # https://bugs.launchpad.net/manila/+bug/1868644
         return True
 
 

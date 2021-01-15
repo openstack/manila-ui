@@ -37,6 +37,10 @@ class ShareQuotaAction(project_workflows.CommonQuotaAction):
         min_value=-1, label=_("Share snapshot gigabytes"))
     share_networks = forms.IntegerField(
         min_value=-1, label=_("Share Networks"))
+    share_groups = forms.IntegerField(
+        min_value=-1, label=_("Share Groups"))
+    share_group_snapshots = forms.IntegerField(
+        min_value=-1, label=_("Share Group Snapshots"))
 
     _quota_fields = api_manila.MANILA_QUOTA_FIELDS
 
