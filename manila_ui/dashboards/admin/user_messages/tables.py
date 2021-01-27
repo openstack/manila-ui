@@ -42,5 +42,8 @@ class UserMessagesAdminTable(project_tables.UserMessagesTable):
         row_actions = (
             DeleteUserMessage,
         )
-        columns = ('project_name', 'message_id', 'resource_type',
-                   'resource_id', 'user_message', 'created_at',)
+        columns = (
+            'project_name', 'message_id', 'message_level',
+            'resource_type',
+            'resource_id', 'user_message', 'created_at',
+        )
