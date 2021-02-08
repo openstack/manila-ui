@@ -449,7 +449,7 @@ class ManilaApiTests(base.APITestCase):
         ("ldap", {}),
         ("kerberos", {}),
         ("ldap",
-            {"dns_ip": "8.8.8.8",
+            {"dns_ip": "8.8.8.8", "ou": "fakeOU",
              "name": "my_fake_ldap_security_service",
              "description": "LDAP security service"}),
         ("kerberos",
@@ -462,10 +462,11 @@ class ManilaApiTests(base.APITestCase):
     def test_security_service_create(self, ss_type, kwargs):
         expected_kwargs = {
             "dns_ip": None,
+            "ou": None,
             "server": None,
             "domain": None,
-            "user": None,
             "password": None,
+            "user": None,
             "name": None,
             "description": None
         }
@@ -478,33 +479,25 @@ class ManilaApiTests(base.APITestCase):
             ss_type, **expected_kwargs)
 
     @ddt.data(
-        {"dns_ip": "8.8.4.4",
+        {"dns_ip": "8.8.4.4", "ou": "testOU",
+         "server": "10.254.0.3", "domain": "None",
+         "password": "wr67p6", "user": "demo",
          "name": "my_fake_ldap_security_service_2",
          "description": "LDAP security service 2"},
-        {"server": "10.254.0.10",
-         "user": "demo", "password": "n0_m0r3_s3cr37",
+        {"dns_ip": "None", "ou": "None",
+         "server": "10.254.0.10", "domain": "None",
+         "password": "None", "user": "demo",
          "name": "my_fake_kerberos_security_service_2",
          "description": "Kerberos security service 2"}
     )
     def test_security_service_update(self, kwargs):
         sec_service_id = "fake_sec_service_id"
 
-        expected_kwargs = {
-            "dns_ip": None,
-            "server": None,
-            "domain": None,
-            "user": None,
-            "password": None,
-            "name": None,
-            "description": None
-        }
-        expected_kwargs.update(**kwargs)
-
         api.security_service_update(self.request, sec_service_id, **kwargs)
 
         mock_sec_service_update = self.manilaclient.security_services.update
         mock_sec_service_update.assert_called_once_with(
-            sec_service_id, **expected_kwargs)
+            sec_service_id, **kwargs)
 
     def test_security_service_delete(self):
         sec_service_id = "fake_sec_service_id"

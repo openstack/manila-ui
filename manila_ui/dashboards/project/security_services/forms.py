@@ -27,6 +27,10 @@ from manila_ui.api import manila
 class Create(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Name"))
     dns_ip = forms.CharField(max_length="15", label=_("DNS IP"))
+    ou = forms.CharField(
+        max_length="255",
+        label=_("Organizational Unit"),
+        required=False)
     server = forms.CharField(max_length="255", label=_("Server"))
     domain = forms.CharField(max_length="255", label=_("Domain"))
     user = forms.CharField(max_length="255", label=_("User"), required=False)
@@ -36,7 +40,8 @@ class Create(forms.SelfHandlingForm):
         required=False)
     confirm_password = forms.CharField(
         label=_("Confirm Password"),
-        widget=forms.PasswordInput(render_value=False))
+        widget=forms.PasswordInput(render_value=False),
+        required=False)
     type = forms.ChoiceField(choices=(("", ""),
                                       ("active_directory", "Active Directory"),
                                       ("ldap", "LDAP"),
@@ -70,15 +75,52 @@ class Create(forms.SelfHandlingForm):
 
 class Update(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Share Name"))
+    dns_ip = forms.CharField(
+        max_length="15", label=_("DNS IP"), required=False)
+    ou = forms.CharField(
+        max_length="255",
+        label=_("Organizational Unit"),
+        required=False)
+    server = forms.CharField(
+        max_length="255", label=_("Server"), required=False)
+    domain = forms.CharField(
+        max_length="255", label=_("Domain"), required=False)
+    user = forms.CharField(
+        max_length="255", label=_("User"), required=False)
+    password = forms.CharField(
+        label=_("Password"),
+        widget=forms.PasswordInput(render_value=False),
+        required=False)
+    confirm_password = forms.CharField(
+        label=_("Confirm Password"),
+        widget=forms.PasswordInput(render_value=False),
+        required=False)
     description = forms.CharField(
         widget=forms.Textarea, label=_("Description"), required=False)
 
+    def clean(self):
+        '''Check to make sure password fields match.'''
+        cleaned_data = super(forms.Form, self).clean()
+        password = self.cleaned_data.get('password')
+        confirm_password = self.cleaned_data.get('confirm_password')
+        if password != confirm_password:
+            raise ValidationError(_('Passwords do not match.'))
+        return cleaned_data
+
+    @sensitive_variables('data')
     def handle(self, request, data):
         sec_service_id = self.initial['sec_service_id']
         try:
-            manila.security_service_update(request, sec_service_id,
-                                           name=data['name'],
-                                           description=data['description'])
+            manila.security_service_update(
+                request, sec_service_id,
+                dns_ip=data['dns_ip'],
+                ou=data['ou'],
+                server=data['server'],
+                domain=data['domain'],
+                password=data.get('password') or None,
+                user=data['user'],
+                name=data['name'],
+                description=data['description'])
 
             message = _('Successfully updated security service '
                         '"%s"') % data['name']

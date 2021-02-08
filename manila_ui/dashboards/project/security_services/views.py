@@ -73,14 +73,21 @@ class UpdateView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
+        args = (self.kwargs['sec_service_id'],)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         return context
 
     def get_initial(self):
-        self.submit_url = reverse(self.submit_url, kwargs=self.kwargs)
         sec_service = self.get_object()
         return {'sec_service_id': self.kwargs["sec_service_id"],
+                'dns_ip': sec_service.dns_ip,
+                'ou': sec_service.ou,
+                'server': sec_service.server,
+                'domain': sec_service.domain,
+                'user': sec_service.user,
                 'name': sec_service.name,
-                'description': sec_service.description}
+                'description': sec_service.description,
+                }
 
 
 class CreateView(forms.ModalFormView):

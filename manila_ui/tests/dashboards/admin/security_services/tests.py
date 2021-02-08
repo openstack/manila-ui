@@ -56,6 +56,7 @@ class SecurityServicesTests(test.BaseAdminViewTests):
         self.assertContains(res, "<dd>%s</dd>" % sec_service.user, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.server, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.dns_ip, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.ou, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.domain, 1, 200)
         self.assertNoMessages()
         api_manila.security_service_get.assert_called_once_with(
