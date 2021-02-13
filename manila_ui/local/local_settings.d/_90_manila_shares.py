@@ -12,6 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+# Sample
+# settings.LOGGING['loggers'].update({
+#     'manilaclient': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#         'propagate': False,
+#     }
+# })
+
 # The OPENSTACK_MANILA_FEATURES settings can be used to enable or disable
 # the UI for the various services provided by Manila.
 OPENSTACK_MANILA_FEATURES = {
