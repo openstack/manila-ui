@@ -37,7 +37,7 @@ class ShareGroupTypeTests(test.BaseAdminViewTests):
     def test_create_share_group_type(self):
         url = reverse('horizon:admin:share_group_types:create')
         data = {
-            'method': u'CreateShareGroupTypeForm',
+            'method': 'CreateShareGroupTypeForm',
             'is_public': True,
             'name': 'my_share_group_type',
             'share_types': ['foo'],
