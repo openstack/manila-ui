@@ -148,9 +148,7 @@ class ShareViewTests(test.APITestCase):
             'share_source_type': 'snapshot',
             'snapshot': snapshot.id,
             'share-network-choices-fake': share_net.id,
-            'availability_zone': 'fake_az',
         }
-        mock_az_list.return_value = [self.FakeAZ('fake_az'), ]
         self.mock_object(
             api_manila, "share_create", mock.Mock(return_value=share))
         self.mock_object(
@@ -167,7 +165,6 @@ class ShareViewTests(test.APITestCase):
 
         res = self.client.post(url, formData)
 
-        mock_az_list.assert_called_once_with(mock.ANY)
         api_manila.share_snapshot_list.assert_not_called()
         api_manila.share_snapshot_get.assert_called_once_with(
             mock.ANY, snapshot.id)
@@ -179,7 +176,7 @@ class ShareViewTests(test.APITestCase):
             snapshot_id=snapshot.id, is_public=False,
             share_group_id=None, share_network=share_net.id, metadata={},
             share_type=formData['share_type'],
-            availability_zone=formData['availability_zone'])
+            availability_zone=None)
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_share(self):
