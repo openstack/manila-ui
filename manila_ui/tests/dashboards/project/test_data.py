@@ -90,7 +90,7 @@ other_share = shares.Share(
     {'id': "21023e92-8008-1234-8059-7f2293ff3889",
      'status': 'in-use',
      'size': 10,
-     'name': u'my_share',
+     'name': 'my_share',
      'description': '',
      'share_proto': 'NFS',
      'metadata': {},

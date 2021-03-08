@@ -61,8 +61,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'manila-ui Release Notes'
-copyright = u'2016, Manila Developers'
+project = 'manila-ui Release Notes'
+copyright = '2016, Manila Developers'
 
 # Release notes are version independent
 release = ''
@@ -208,8 +208,8 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     ('index', 'ManilaUIReleaseNotes.tex',
-     u'manila-ui Release Notes Documentation',
-     u'Manila Developers', 'manual'),
+     'manila-ui Release Notes Documentation',
+     'Manila Developers', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -239,8 +239,8 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'manilauireleasenotes',
-     u'manila-ui Release Notes Documentation',
-     [u'Manila Developers'], 1)
+     'manila-ui Release Notes Documentation',
+     ['Manila Developers'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -254,8 +254,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'ManilaUIReleaseNotes',
-     u'manila-ui Release Notes Documentation',
-     u'Manila Developers', 'ManilaUIReleaseNotes',
+     'manila-ui Release Notes Documentation',
+     'Manila Developers', 'ManilaUIReleaseNotes',
      'One line description of project.',
      'Miscellaneous'),
 ]

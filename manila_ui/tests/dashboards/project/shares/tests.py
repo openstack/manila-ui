@@ -93,12 +93,12 @@ class ShareViewTests(test.APITestCase):
         share_net = test_data.active_share_network
         share_nets = [share_net]
         formData = {
-            'name': u'new_share',
-            'description': u'This is test share',
-            'method': u'CreateForm',
+            'name': 'new_share',
+            'description': 'This is test share',
+            'method': 'CreateForm',
             'share_network': share_net.id,
             'size': 1,
-            'share_proto': u'NFS',
+            'share_proto': 'NFS',
             'share_type': 'fake',
             'share-network-choices-fake': share_net.id,
             'availability_zone': 'fake_az',
@@ -138,9 +138,9 @@ class ShareViewTests(test.APITestCase):
         snapshot = test_data.snapshot
         url = reverse('horizon:project:shares:create')
         formData = {
-            'name': u'new_share',
-            'description': u'This is test share from snapshot',
-            'method': u'CreateForm',
+            'name': 'new_share',
+            'description': 'This is test share from snapshot',
+            'method': 'CreateForm',
             'share_network': share_net.id,
             'size': snapshot.size,
             'share_proto': 'NFS',
@@ -322,7 +322,7 @@ class ShareViewTests(test.APITestCase):
         self.mock_object(api_manila, "share_allow")
         formData = {
             'access_type': 'user',
-            'method': u'CreateForm',
+            'method': 'CreateForm',
             'access_to': 'someuser',
             'access_level': 'rw',
         }
@@ -619,12 +619,12 @@ class ShareViewTests(test.APITestCase):
             mock.Mock(return_value=[self.FakeAZ('fake_az'), ]))
 
         data = {
-            'name': u'new_share',
-            'description': u'This is test share',
-            'method': u'CreateForm',
+            'name': 'new_share',
+            'description': 'This is test share',
+            'method': 'CreateForm',
             'share_network': test_data.active_share_network.id,
             'size': 1,
-            'share_proto': u'NFS',
+            'share_proto': 'NFS',
             'share_type': 'fake',
             'share-network-choices-fake': test_data.active_share_network.id,
             'availability_zone': 'fake_az',
@@ -682,8 +682,8 @@ class ShareViewTests(test.APITestCase):
             api_manila, "share_update", mock.Mock(return_value=self.share))
 
         data = {
-            'name': u'old_share',
-            'description': u'This is test share',
+            'name': 'old_share',
+            'description': 'This is test share',
         }
         if enable_public_shares:
             data.update({'is_public': is_public})

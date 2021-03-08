@@ -284,7 +284,7 @@ class SnapshotSnapshotViewTests(test.TestCase):
             mock.Mock(side_effect=exc))
         formData = {
             'access_type': 'user',
-            'method': u'CreateForm',
+            'method': 'CreateForm',
             'access_to': 'someuser',
         }
 

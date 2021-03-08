@@ -33,9 +33,9 @@ class SecurityServicesViewTests(test.TestCase):
     def test_create_security_service(self):
         sec_service = test_data.sec_service
         formData = {
-            'name': u'new_sec_service',
-            'description': u'This is test security service',
-            'method': u'CreateForm',
+            'name': 'new_sec_service',
+            'description': 'This is test security service',
+            'method': 'CreateForm',
             'dns_ip': '1.2.3.4',
             'user': 'SomeUser',
             'password': 'safepass',
