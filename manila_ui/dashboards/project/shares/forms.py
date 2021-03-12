@@ -26,6 +26,7 @@ from manila_ui.api import manila
 from manila_ui.dashboards import utils
 from manila_ui import features
 from manilaclient.common.apiclient import exceptions as m_exceptions
+import time
 
 
 class CreateForm(forms.SelfHandlingForm):
@@ -346,7 +347,7 @@ class AddRule(forms.SelfHandlingForm):
                 request, _('Unable to add rule.'), redirect=redirect)
 
 
-class ExtendForm(forms.SelfHandlingForm):
+class ResizeForm(forms.SelfHandlingForm):
     name = forms.CharField(
         max_length="255", label=_("Share Name"),
         widget=forms.TextInput(attrs={'readonly': 'readonly'}),
@@ -360,16 +361,21 @@ class ExtendForm(forms.SelfHandlingForm):
     )
 
     new_size = forms.IntegerField(
-        label=_("New Size (GiB)"),
+        label=_("New Size (GiB)")
     )
 
     def clean(self):
-        cleaned_data = super(ExtendForm, self).clean()
+        cleaned_data = super(ResizeForm, self).clean()
         new_size = cleaned_data.get('new_size')
         orig_size = self.initial['orig_size']
 
-        if new_size <= orig_size:
-            message = _("New size must be greater than current size.")
+        if new_size == orig_size:
+            message = _("New size must be different than the existing size")
+            self._errors["new_size"] = self.error_class([message])
+            return cleaned_data
+
+        if new_size <= 0:
+            message = _("New size should not be less than or equal to zero")
             self._errors["new_size"] = self.error_class([message])
             return cleaned_data
 
@@ -386,16 +392,33 @@ class ExtendForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         share_id = self.initial['share_id']
+        new_size = data['new_size']
+        orig_size = data['orig_size']
         try:
-            manila.share_extend(request, share_id, data['new_size'])
-            message = _('Extend share "%s"') % data['name']
-            messages.success(request, message)
-            return True
+            manila.share_resize(request, share_id, new_size, orig_size)
+            return self.check_size(request, share_id, new_size)
         except Exception:
             redirect = reverse("horizon:project:shares:index")
-            exceptions.handle(request,
-                              _('Unable to extend share.'),
-                              redirect=redirect)
+            exceptions.handle(request, _(
+                'Unable to resize share.'), redirect=redirect)
+
+    def check_size(self, request, share_id, new_size):
+        share = manila.share_get(request, share_id)
+        timeout = 30
+        interval = 0.35
+        time_elapsed = 0
+        while share.status != 'available':
+            time.sleep(interval)
+            time_elapsed += interval
+            share = manila.share_get(request, share_id)
+            if time_elapsed > timeout:
+                break
+
+        if share.size == new_size:
+            message = _('Resized share "%s"') % share.name
+            messages.success(request, message)
+            return True
+        raise Exception
 
 
 class RevertForm(forms.SelfHandlingForm):

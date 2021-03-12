@@ -194,8 +194,11 @@ def share_unmanage(request, share):
     return manilaclient(request).shares.unmanage(share)
 
 
-def share_extend(request, share_id, new_size):
-    return manilaclient(request).shares.extend(share_id, new_size)
+def share_resize(request, share_id, new_size, orig_size):
+    if orig_size > new_size:
+        return manilaclient(request).shares.shrink(share_id, new_size)
+    else:
+        return manilaclient(request).shares.extend(share_id, new_size)
 
 
 def share_revert(request, share, snapshot):

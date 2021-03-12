@@ -49,9 +49,9 @@ urlpatterns = [
         shares_views.UpdateMetadataView.as_view(),
         name='update_metadata'),
     urls.url(
-        r'^(?P<share_id>[^/]+)/extend/$',
-        shares_views.ExtendView.as_view(),
-        name='extend'),
+        r'^(?P<share_id>[^/]+)/resize/$',
+        shares_views.ResizeView.as_view(),
+        name='resize'),
     urls.url(
         r'^(?P<share_id>[^/]+)/revert/$',
         shares_views.RevertView.as_view(),
