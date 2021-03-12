@@ -412,13 +412,16 @@ class ResizeForm(forms.SelfHandlingForm):
             time_elapsed += interval
             share = manila.share_get(request, share_id)
             if time_elapsed > timeout:
-                break
+                raise exceptions.WorkflowError(_(
+                    "The operation timed out while resizing. "
+                    "Please try again."))
 
         if share.size == new_size:
             message = _('Resized share "%s"') % share.name
             messages.success(request, message)
             return True
-        raise Exception
+        raise exceptions.WorkflowError(_(
+            "Unable to resize share. "))
 
 
 class RevertForm(forms.SelfHandlingForm):
