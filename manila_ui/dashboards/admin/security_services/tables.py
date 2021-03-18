@@ -44,8 +44,10 @@ class SecurityServicesTable(tables.DataTable):
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
         link="horizon:admin:security_services:security_service_detail")
+    description = tables.Column("description", verbose_name=_("Description"))
     project = tables.Column("project_name", verbose_name=_("Project"))
     dns_ip = tables.Column("dns_ip", verbose_name=_("DNS IP"))
+    ou = tables.Column("ou", verbose_name=_("Organizational Unit"))
     server = tables.Column("server", verbose_name=_("Server"))
     domain = tables.Column("domain", verbose_name=_("Domain"))
     user = tables.Column("user", verbose_name=_("Sid"))

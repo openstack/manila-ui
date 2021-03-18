@@ -37,6 +37,7 @@ class SecurityServicesViewTests(test.TestCase):
             'description': 'This is test security service',
             'method': 'CreateForm',
             'dns_ip': '1.2.3.4',
+            'ou': 'someOU',
             'user': 'SomeUser',
             'password': 'safepass',
             'confirm_password': 'safepass',
@@ -94,6 +95,7 @@ class SecurityServicesViewTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % sec_service.user, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.server, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.dns_ip, 1, 200)
+        self.assertContains(res, "<dd>%s</dd>" % sec_service.ou, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % sec_service.domain, 1, 200)
         self.assertNoMessages()
         api_manila.security_service_get.assert_called_once_with(
@@ -141,6 +143,13 @@ class SecurityServicesViewTests(test.TestCase):
             'method': 'UpdateForm',
             'name': sec_service.name,
             'description': sec_service.description,
+            'dns_ip': sec_service.dns_ip,
+            'ou': sec_service.ou,
+            'server': sec_service.server,
+            'domain': sec_service.domain,
+            'password': sec_service.password,
+            'confirm_password': sec_service.password,
+            'user': sec_service.user,
         }
         self.mock_object(api_manila, "security_service_update")
         self.mock_object(
@@ -156,4 +165,10 @@ class SecurityServicesViewTests(test.TestCase):
             mock.ANY,
             sec_service.id,
             name=formData['name'],
-            description=formData['description'])
+            description=formData['description'],
+            dns_ip=formData['dns_ip'],
+            ou=formData['ou'],
+            server=formData['server'],
+            domain=formData['domain'],
+            password=formData['password'],
+            user=formData['user'])

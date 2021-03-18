@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.41"
+MANILA_VERSION = "2.44"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -315,22 +315,25 @@ def security_service_get(request, sec_service_id, search_opts=None):
     return manilaclient(request).security_services.get(sec_service_id)
 
 
-def security_service_create(request, type, dns_ip=None, server=None,
+def security_service_create(request, type, dns_ip=None, ou=None, server=None,
                             domain=None, user=None, password=None, name=None,
                             description=None):
     return manilaclient(request).security_services.create(
-        type, dns_ip=dns_ip, server=server, domain=domain, user=user,
+        type, dns_ip=dns_ip, ou=ou, server=server, domain=domain, user=user,
         password=password, name=name, description=description)
 
 
-def security_service_update(request, security_service_id, dns_ip=None,
-                            server=None,
-                            domain=None, user=None, password=None, name=None,
-                            description=None):
+def security_service_update(request, security_service_id,
+                            dns_ip=None, ou=None,
+                            server=None, domain=None,
+                            password=None, user=None,
+                            name=None, description=None):
     return manilaclient(request).security_services.update(
-        security_service_id, dns_ip=dns_ip, server=server, domain=domain,
-        user=user, password=password, name=name, description=description,
-    )
+        security_service_id,
+        dns_ip=dns_ip, ou=ou,
+        server=server, domain=domain,
+        password=password, user=user,
+        name=name, description=description)
 
 
 def security_service_delete(request, security_service_id):

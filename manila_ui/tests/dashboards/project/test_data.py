@@ -260,6 +260,7 @@ sec_service = security_services.SecurityService(
     {'id': '7f3d1c33-8d10-4511-29df-a2def31f3b5d',
      'server': '1.1.1.1',
      'dns_ip': '2.2.2.2',
+     'ou': 'someOU',
      'user': 'someuser',
      'password': 'somepass',
      'type': 'active_directory',

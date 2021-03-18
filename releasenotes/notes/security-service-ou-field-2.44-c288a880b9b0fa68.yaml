@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added ‘ou’ field to ‘security_service’ object. Additionally added options to update dns_ip,
+    ou, server, domain, password and user fields.
