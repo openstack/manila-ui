@@ -81,6 +81,14 @@ class UpdateShareType(tables.LinkAction):
         return {"project_id": project_id}
 
 
+class ShareTypesFilterAction(tables.FilterAction):
+    filter_type = "server"
+    filter_choices = (
+        ('name', _("Name "), True),
+        ('extra_specs', _("Extra Spec "), True),
+    )
+
+
 class ShareTypesTable(tables.DataTable):
     name = tables.WrappingColumn("name", verbose_name=_("Name"))
     description = tables.WrappingColumn(
@@ -101,7 +109,7 @@ class ShareTypesTable(tables.DataTable):
         name = "share_types"
         verbose_name = _("Share Types")
         table_actions = (
-            tables.NameFilterAction,
+            ShareTypesFilterAction,
             CreateShareType,
             DeleteShareType,
         )

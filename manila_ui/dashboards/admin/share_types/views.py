@@ -45,11 +45,33 @@ class ShareTypesView(tables.MultiTableView):
             exceptions.handle(
                 self.request, _('Unable to retrieve share types.'))
             return []
+
         # Convert dict with extra specs to friendly view
         for st in share_types:
             st.extra_specs = common_utils.metadata_to_str(
                 st.extra_specs, 8, 45)
+        share_types = self.get_filters(share_types)
         return share_types
+
+    def get_filters(self, share_types):
+        table = self._tables['share_types']
+        filters = self.get_server_filter_info(table.request, table)
+        filter_string = filters['value']
+        filter_field = filters['field']
+        if filter_string and filter_field:
+            filtered_data = []
+            for st in share_types:
+
+                if filter_field == 'name':
+                    if st.name == filter_string:
+                        filtered_data.append(st)
+
+                if filter_field == 'extra_specs':
+                    if filter_string in st.extra_specs:
+                        filtered_data.append(st)
+            return filtered_data
+        else:
+            return share_types
 
 
 class CreateShareTypeView(forms.ModalFormView):
