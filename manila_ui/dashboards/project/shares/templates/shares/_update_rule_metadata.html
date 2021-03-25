@@ -1,0 +1,13 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% block modal-body-right %}
+  <h3>{% trans "Metadata" %}:</h3>
+    <p>
+      {% trans "One line - one action. Empty strings will be ignored." %}<br />
+      {% trans "To add metadata use:" %}
+      <pre>key=value</pre>
+      {% trans "To unset metadata use:" %}
+      <pre>key</pre>
+      {% trans "All pairs that are in field for left are set for this metadata." %}
+    </p>
+{% endblock %}

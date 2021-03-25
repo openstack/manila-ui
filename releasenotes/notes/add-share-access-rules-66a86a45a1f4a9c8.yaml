@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added access metadata for share access and
+    also introduced the GET /share-access-rules API.

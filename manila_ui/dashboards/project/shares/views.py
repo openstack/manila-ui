@@ -249,6 +249,53 @@ class AddRuleView(forms.ModalFormView):
                        args=[self.kwargs['share_id']])
 
 
+class UpdateRuleMetadataView(forms.ModalFormView):
+    form_class = share_form.UpdateRuleMetadataForm
+    form_id = ""
+    template_name = 'project/shares/update_rule_metadata.html'
+    modal_header = _("Edit Rule Metadata")
+    modal_id = "update_rule_metadata_modal"
+    submit_label = _("Save Changes")
+    submit_url = "horizon:project:shares:update_rule_metadata"
+    success_url = reverse_lazy("horizon:project:shares:index")
+    page_title = _('Edit Rule Metadata')
+
+    def get_object(self):
+        if not hasattr(self, "_object"):
+            rule_id = self.kwargs['rule_id']
+            try:
+                self._object = manila.share_rule_get(self.request, rule_id)
+            except Exception:
+                msg = _('Unable to retrieve share access rule.')
+                url = reverse('horizon:project:shares:manage_rules')
+                exceptions.handle(self.request, msg, redirect=url)
+        return self._object
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateRuleMetadataView, self).\
+            get_context_data(**kwargs)
+        args = (self.get_object().id,)
+        context['submit_url'] = reverse(self.submit_url, args=args)
+        return context
+
+    def get_initial(self):
+        rule = self.get_object()
+        return {'rule_id': self.kwargs["rule_id"],
+                'metadata': rule.metadata}
+
+    # To redirect to Rules Table page, after updating the rule
+    # metadata. Loop is to get the share_id neccessary to display
+    # Rules Table page.
+    def get_success_url(self):
+        shares = manila.share_list(self.request)
+        for share in shares:
+            rules = manila.share_rules_list(self.request, share.id)
+            for rule in rules:
+                if rule.id == self.kwargs["rule_id"]:
+                    return reverse("horizon:project:shares:manage_rules",
+                                   args=[share.id])
+
+
 class ManageRulesView(tables.DataTableView):
     table_class = shares_tables.RulesTable
     template_name = 'project/shares/manage_rules.html'
@@ -257,7 +304,6 @@ class ManageRulesView(tables.DataTableView):
         context = super(ManageRulesView, self).get_context_data(**kwargs)
         share = manila.share_get(self.request, self.kwargs['share_id'])
         context['share_display_name'] = share.name or share.id
-        context["share"] = self.get_data()
         context["page_title"] = _("Share Rules: "
                                   "%(share_display_name)s") % {
             'share_display_name': context['share_display_name']}
@@ -273,6 +319,11 @@ class ManageRulesView(tables.DataTableView):
             exceptions.handle(self.request,
                               _('Unable to retrieve share rules.'),
                               redirect=redirect)
+            return []
+
+        for rule in rules:
+            rule.metadata = ui_utils.metadata_to_str(rule.metadata)
+
         return rules
 
 

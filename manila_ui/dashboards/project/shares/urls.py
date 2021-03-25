@@ -37,6 +37,10 @@ urlpatterns = [
         shares_views.AddRuleView.as_view(),
         name='rule_add'),
     urls.url(
+        r'^rules/(?P<rule_id>[^/]+)/update_rule_metadata/$',
+        shares_views.UpdateRuleMetadataView.as_view(),
+        name='update_rule_metadata'),
+    urls.url(
         r'^(?P<share_id>[^/]+)/$',
         shares_views.DetailView.as_view(),
         name='detail'),

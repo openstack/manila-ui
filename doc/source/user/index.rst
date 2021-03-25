@@ -81,6 +81,21 @@ Deny access
 
    A message indicates whether the action was successful.
 
+Edit share access metadata
+--------------------------
+
+#. Log in to the dashboard, choose a project, and click :guilabel:`Shares`.
+
+#. Go to the share that you want to deny access and choose
+   :guilabel:`Manage Rules` from Actions.
+
+#. Choose the rule you want to edit.
+
+#. Click :guilabel:`Edit Rule Metadata`: To add share access metadata, use key=value.
+To unset metadata, use key.
+
+   A message indicates whether the action was successful.
+
 Edit share metadata
 -------------------
 

@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.44"
+MANILA_VERSION = "2.45"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -125,7 +125,21 @@ def share_update(request, share_id, name, description, is_public=False):
 
 
 def share_rules_list(request, share_id):
-    return manilaclient(request).shares.access_list(share_id)
+    return manilaclient(request).share_access_rules.access_list(share_id)
+
+
+def share_rule_get(request, rule_id):
+    return manilaclient(request).share_access_rules.get(rule_id)
+
+
+def share_rule_set_metadata(request, rule, metadata):
+    return manilaclient(request).share_access_rules.set_metadata(
+        rule, metadata)
+
+
+def share_rule_unset_metadata(request, rule, keys):
+    return manilaclient(request).share_access_rules.unset_metadata(
+        rule, keys)
 
 
 def share_export_location_list(request, share_id):
@@ -137,9 +151,10 @@ def share_instance_export_location_list(request, share_instance_id):
         share_instance_id)
 
 
-def share_allow(request, share_id, access_type, access_to, access_level):
+def share_allow(request, share_id, access_type, access_to, access_level,
+                metadata=None):
     return manilaclient(request).shares.allow(
-        share_id, access_type, access_to, access_level)
+        share_id, access_type, access_to, access_level, metadata)
 
 
 def share_deny(request, share_id, rule_id):
