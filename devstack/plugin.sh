@@ -28,6 +28,8 @@ if is_service_enabled horizon && is_service_enabled manila && is_service_enabled
         echo_summary "Configuring Manila UI"
         cp -a ${MANILA_UI_DIR}/manila_ui/local/enabled/* ${DEST}/horizon/openstack_dashboard/local/enabled/
         cp -a ${MANILA_UI_DIR}/manila_ui/local/local_settings.d/* ${DEST}/horizon/openstack_dashboard/local/local_settings.d/
+        cp -a ${MANILA_UI_DIR}/manila_ui/conf/manila_policy.yaml ${DEST}/horizon/openstack_dashboard/conf/
+        cp -a ${MANILA_UI_DIR}/manila_ui/conf/default_policies/manila.yaml ${DEST}/horizon/openstack_dashboard/conf/default_policies/
     elif [[ "$1" == "stack" && "$2" == "extra" ]]; then
         # no-op
         :

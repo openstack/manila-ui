@@ -1,0 +1,7 @@
+---
+upgrade:
+  - |
+    The default configuration file has been updated and now includes
+    the required parameters to use the new policy-in-code feature in Horizon.
+    Please refer to the release note and documentation of Horizon to find
+    details about this feature.
