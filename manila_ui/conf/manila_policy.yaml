@@ -1,0 +1,1906 @@
+# Intended scope(s): system
+#"system-admin": "role:admin and system_scope:all"
+
+# Intended scope(s): system
+#"system-member": "role:member and system_scope:all"
+
+# Intended scope(s): system
+#"system-reader": "role:reader and system_scope:all"
+
+# Intended scope(s): project
+#"project-admin": "role:admin and project_id:%(project_id)s"
+
+# Intended scope(s): project
+#"project-member": "role:member and project_id:%(project_id)s"
+
+# Intended scope(s): project
+#"project-reader": "role:reader and project_id:%(project_id)s"
+
+# Intended scope(s): system
+#"context_is_admin": "rule:system-admin"
+
+# DEPRECATED
+# "context_is_admin":"role:admin" has been deprecated since W in favor
+# of "context_is_admin":"rule:system-admin".
+# The `context_is_admin` check is superseded by more specific check
+# strings that consume system and project scope attributes from
+# keystone tokens.
+
+#"admin_or_owner": "is_admin:True or project_id:%(project_id)s"
+
+#"default": "rule:admin_or_owner"
+
+#"admin_api": "is_admin:True"
+
+# Get all storage availability zones.
+# GET  /os-availability-zone
+# GET  /availability-zone
+# Intended scope(s): system, project
+#"availability_zone:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "availability_zone:index":"rule:default" has been deprecated since W
+# in favor of "availability_zone:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The availability zone API now supports system scope and default
+# roles.
+
+# Get information regarding backends (and storage pools) known to the
+# scheduler.
+# GET  /scheduler-stats/pools
+# GET  /scheduler-stats/pools?{query}
+# Intended scope(s): system
+#"scheduler_stats:pools:index": "rule:system-reader"
+
+# DEPRECATED
+# "scheduler_stats:pools:index":"rule:admin_api" has been deprecated
+# since W in favor of "scheduler_stats:pools:index":"rule:system-
+# reader".
+# The storage pool statistics API now support system scope and default
+# roles.
+
+# Get detailed information regarding backends (and storage pools)
+# known to the scheduler.
+# GET  /scheduler-stats/pools/detail?{query}
+# GET  /scheduler-stats/pools/detail
+# Intended scope(s): system
+#"scheduler_stats:pools:detail": "rule:system-reader"
+
+# DEPRECATED
+# "scheduler_stats:pools:detail":"rule:admin_api" has been deprecated
+# since W in favor of "scheduler_stats:pools:detail":"rule:system-
+# reader".
+# The storage pool statistics API now support system scope and default
+# roles.
+
+# Create share.
+# POST  /shares
+# Intended scope(s): system, project
+#"share:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:create":"" has been deprecated since W in favor of
+# "share:create":"(rule:system-admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Create shares visible across all projects in the cloud.
+# POST  /shares
+# Intended scope(s): system
+#"share:create_public_share": "rule:system-admin"
+
+# DEPRECATED
+# "share:create_public_share":"rule:admin_api" has been deprecated
+# since W in favor of "share:create_public_share":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# Get share.
+# GET  /shares/{share_id}
+# Intended scope(s): system, project
+#"share:get": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share:get":"rule:default" has been deprecated since W in favor of
+# "share:get":"(rule:system-reader) or (rule:project-reader)".
+# The share API now supports system scope and default roles.
+
+# List shares.
+# GET  /shares
+# GET  /shares/detail
+# Intended scope(s): system, project
+#"share:get_all": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share:get_all":"rule:default" has been deprecated since W in favor
+# of "share:get_all":"(rule:system-reader) or (rule:project-reader)".
+# The share API now supports system scope and default roles.
+
+# Update share.
+# PUT  /shares
+# Intended scope(s): system, project
+#"share:update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:update":"rule:default" has been deprecated since W in favor
+# of "share:update":"(rule:system-admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Update shares to be visible across all projects in the cloud.
+# PUT  /shares
+# Intended scope(s): system
+#"share:set_public_share": "rule:system-admin"
+
+# DEPRECATED
+# "share:set_public_share":"rule:admin_api" has been deprecated since
+# W in favor of "share:set_public_share":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# Delete share.
+# DELETE  /shares/{share_id}
+# Intended scope(s): system, project
+#"share:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:delete":"rule:default" has been deprecated since W in favor
+# of "share:delete":"(rule:system-admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Force Delete a share.
+# DELETE  /shares/{share_id}
+# Intended scope(s): system, project
+#"share:force_delete": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share:force_delete":"rule:admin_api" has been deprecated since W in
+# favor of "share:force_delete":"(rule:system-admin) or (rule:project-
+# admin)".
+# The share API now supports system scope and default roles.
+
+# Manage share.
+# POST  /shares/manage
+# Intended scope(s): system
+#"share:manage": "rule:system-admin"
+
+# DEPRECATED
+# "share:manage":"rule:admin_api" has been deprecated since W in favor
+# of "share:manage":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# Unmanage share.
+# POST  /shares/unmanage
+# Intended scope(s): system
+#"share:unmanage": "rule:system-admin"
+
+# DEPRECATED
+# "share:unmanage":"rule:admin_api" has been deprecated since W in
+# favor of "share:unmanage":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# List share by host.
+# GET  /shares
+# GET  /shares/detail
+# Intended scope(s): system
+#"share:list_by_host": "rule:system-reader"
+
+# DEPRECATED
+# "share:list_by_host":"rule:admin_api" has been deprecated since W in
+# favor of "share:list_by_host":"rule:system-reader".
+# The share API now supports system scope and default roles.
+
+# List share by server id.
+# GET  /shares
+# GET  /shares/detail
+# Intended scope(s): system
+#"share:list_by_share_server_id": "rule:system-reader"
+
+# DEPRECATED
+# "share:list_by_share_server_id":"rule:admin_api" has been deprecated
+# since W in favor of "share:list_by_share_server_id":"rule:system-
+# reader".
+# The share API now supports system scope and default roles.
+
+# Get share access rule, it under deny access operation.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:access_get": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share:access_get":"rule:default" has been deprecated since W in
+# favor of "share:access_get":"(rule:system-reader) or (rule:project-
+# reader)".
+# The share API now supports system scope and default roles.
+
+# List share access rules.
+# GET  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:access_get_all": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share:access_get_all":"rule:default" has been deprecated since W in
+# favor of "share:access_get_all":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share API now supports system scope and default roles.
+
+# Extend share.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:extend": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:extend":"rule:default" has been deprecated since W in favor
+# of "share:extend":"(rule:system-admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Shrink share.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:shrink": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:shrink":"rule:default" has been deprecated since W in favor
+# of "share:shrink":"(rule:system-admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Migrate a share to the specified host.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system
+#"share:migration_start": "rule:system-admin"
+
+# DEPRECATED
+# "share:migration_start":"rule:admin_api" has been deprecated since W
+# in favor of "share:migration_start":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# Invokes 2nd phase of share migration.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system
+#"share:migration_complete": "rule:system-admin"
+
+# DEPRECATED
+# "share:migration_complete":"rule:admin_api" has been deprecated
+# since W in favor of "share:migration_complete":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# Attempts to cancel share migration.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system
+#"share:migration_cancel": "rule:system-admin"
+
+# DEPRECATED
+# "share:migration_cancel":"rule:admin_api" has been deprecated since
+# W in favor of "share:migration_cancel":"rule:system-admin".
+# The share API now supports system scope and default roles.
+
+# Retrieve share migration progress for a given share.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system
+#"share:migration_get_progress": "rule:system-reader"
+
+# DEPRECATED
+# "share:migration_get_progress":"rule:admin_api" has been deprecated
+# since W in favor of "share:migration_get_progress":"rule:system-
+# reader".
+# The share API now supports system scope and default roles.
+
+# Reset task state.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:reset_task_state": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share:reset_task_state":"rule:admin_api" has been deprecated since
+# W in favor of "share:reset_task_state":"(rule:system-admin) or
+# (rule:project-admin)".
+# The share API now supports system scope and default roles.
+
+# Reset status.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:reset_status": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share:reset_status":"rule:admin_api" has been deprecated since W in
+# favor of "share:reset_status":"(rule:system-admin) or (rule:project-
+# admin)".
+# The share API now supports system scope and default roles.
+
+# Revert a share to a snapshot.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:revert_to_snapshot": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:revert_to_snapshot":"rule:default" has been deprecated since
+# W in favor of "share:revert_to_snapshot":"(rule:system-admin) or
+# (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Add share access rule.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:allow_access": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:allow_access":"rule:default" has been deprecated since W in
+# favor of "share:allow_access":"(rule:system-admin) or (rule:project-
+# member)".
+# The share API now supports system scope and default roles.
+
+# Remove share access rule.
+# POST  /shares/{share_id}/action
+# Intended scope(s): system, project
+#"share:deny_access": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:deny_access":"rule:default" has been deprecated since W in
+# favor of "share:deny_access":"(rule:system-admin) or (rule:project-
+# member)".
+# The share API now supports system scope and default roles.
+
+# Update share metadata.
+# PUT  /shares/{share_id}/metadata
+# Intended scope(s): system, project
+#"share:update_share_metadata": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:update_share_metadata":"rule:default" has been deprecated
+# since W in favor of "share:update_share_metadata":"(rule:system-
+# admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Delete share metadata.
+# DELETE  /shares/{share_id}/metadata/{key}
+# Intended scope(s): system, project
+#"share:delete_share_metadata": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:delete_share_metadata":"rule:default" has been deprecated
+# since W in favor of "share:delete_share_metadata":"(rule:system-
+# admin) or (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Get share metadata.
+# GET  /shares/{share_id}/metadata
+# Intended scope(s): system, project
+#"share:get_share_metadata": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share:get_share_metadata":"rule:default" has been deprecated since
+# W in favor of "share:get_share_metadata":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share API now supports system scope and default roles.
+
+# Create share snapshot.
+# POST  /snapshots
+# Intended scope(s): system, project
+#"share:create_snapshot": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:create_snapshot":"rule:default" has been deprecated since W
+# in favor of "share:create_snapshot":"(rule:system-admin) or
+# (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Delete share snapshot.
+# DELETE  /snapshots/{snapshot_id}
+# Intended scope(s): system, project
+#"share:delete_snapshot": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:delete_snapshot":"rule:default" has been deprecated since W
+# in favor of "share:delete_snapshot":"(rule:system-admin) or
+# (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Update share snapshot.
+# PUT  /snapshots/{snapshot_id}/action
+# Intended scope(s): system, project
+#"share:snapshot_update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share:snapshot_update":"rule:default" has been deprecated since W
+# in favor of "share:snapshot_update":"(rule:system-admin) or
+# (rule:project-member)".
+# The share API now supports system scope and default roles.
+
+# Return data about the requested export location.
+# POST  /share_instances/{share_instance_id}/export_locations
+# Intended scope(s): system
+#"share_instance_export_location:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_instance_export_location:index":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_instance_export_location:index":"rule:system-reader".
+# The share instance export location API now supports system scope and
+# default roles.
+
+# Return data about the requested export location.
+# GET  /share_instances/{share_instance_id}/export_locations/{export_location_id}
+# Intended scope(s): system
+#"share_instance_export_location:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_instance_export_location:show":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_instance_export_location:show":"rule:system-reader".
+# The share instance export location API now supports system scope and
+# default roles.
+
+# Create share type.
+# POST  /types
+# Intended scope(s): system
+#"share_type:create": "rule:system-admin"
+
+# DEPRECATED
+# "share_type:create":"rule:admin_api" has been deprecated since W in
+# favor of "share_type:create":"rule:system-admin".
+# The share type API now supports system scope and default roles.
+
+# Update share type.
+# PUT  /types/{share_type_id}
+# Intended scope(s): system
+#"share_type:update": "rule:system-admin"
+
+# DEPRECATED
+# "share_type:update":"rule:admin_api" has been deprecated since W in
+# favor of "share_type:update":"rule:system-admin".
+# The share type API now supports system scope and default roles.
+
+# Get share type.
+# GET  /types/{share_type_id}
+# Intended scope(s): system, project
+#"share_type:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_type:show":"rule:default" has been deprecated since W in
+# favor of "share_type:show":"(rule:system-reader) or (rule:project-
+# reader)".
+# The share type API now supports system scope and default roles.
+
+# List share types.
+# GET  /types
+# GET  /types?is_public=all
+# Intended scope(s): system, project
+#"share_type:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_type:index":"rule:default" has been deprecated since W in
+# favor of "share_type:index":"(rule:system-reader) or (rule:project-
+# reader)".
+# The share type API now supports system scope and default roles.
+
+# Get default share type.
+# GET  /types/default
+# Intended scope(s): system, project
+#"share_type:default": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_type:default":"rule:default" has been deprecated since W in
+# favor of "share_type:default":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share type API now supports system scope and default roles.
+
+# Delete share type.
+# DELETE  /types/{share_type_id}
+# Intended scope(s): system
+#"share_type:delete": "rule:system-admin"
+
+# DEPRECATED
+# "share_type:delete":"rule:admin_api" has been deprecated since W in
+# favor of "share_type:delete":"rule:system-admin".
+# The share type API now supports system scope and default roles.
+
+# List share type project access.
+# GET  /types/{share_type_id}
+# Intended scope(s): system
+#"share_type:list_project_access": "rule:system-reader"
+
+# DEPRECATED
+# "share_type:list_project_access":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_type:list_project_access":"rule:system-reader".
+# The share type API now supports system scope and default roles.
+
+# Add share type to project.
+# POST  /types/{share_type_id}/action
+# Intended scope(s): system
+#"share_type:add_project_access": "rule:system-admin"
+
+# DEPRECATED
+# "share_type:add_project_access":"rule:admin_api" has been deprecated
+# since W in favor of "share_type:add_project_access":"rule:system-
+# admin".
+# The share type API now supports system scope and default roles.
+
+# Remove share type from project.
+# POST  /types/{share_type_id}/action
+# Intended scope(s): system
+#"share_type:remove_project_access": "rule:system-admin"
+
+# DEPRECATED
+# "share_type:remove_project_access":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_type:remove_project_access":"rule:system-admin".
+# The share type API now supports system scope and default roles.
+
+# Create share type extra spec.
+# POST  /types/{share_type_id}/extra_specs
+# Intended scope(s): system
+#"share_types_extra_spec:create": "rule:system-admin"
+
+# DEPRECATED
+# "share_types_extra_spec:create":"rule:admin_api" has been deprecated
+# since W in favor of "share_types_extra_spec:create":"rule:system-
+# admin".
+# The share types extra specs API now supports system scope and
+# default roles.
+
+# Get share type extra specs of a given share type.
+# GET  /types/{share_type_id}/extra_specs
+# Intended scope(s): system
+#"share_types_extra_spec:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_types_extra_spec:show":"rule:admin_api" has been deprecated
+# since W in favor of "share_types_extra_spec:show":"rule:system-
+# reader".
+# The share types extra specs API now supports system scope and
+# default roles.
+
+# Get details of a share type extra spec.
+# GET  /types/{share_type_id}/extra_specs/{extra_spec_id}
+# Intended scope(s): system
+#"share_types_extra_spec:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_types_extra_spec:index":"rule:admin_api" has been deprecated
+# since W in favor of "share_types_extra_spec:index":"rule:system-
+# reader".
+# The share types extra specs API now supports system scope and
+# default roles.
+
+# Update share type extra spec.
+# PUT  /types/{share_type_id}/extra_specs
+# Intended scope(s): system
+#"share_types_extra_spec:update": "rule:system-admin"
+
+# DEPRECATED
+# "share_types_extra_spec:update":"rule:admin_api" has been deprecated
+# since W in favor of "share_types_extra_spec:update":"rule:system-
+# admin".
+# The share types extra specs API now supports system scope and
+# default roles.
+
+# Delete share type extra spec.
+# DELETE  /types/{share_type_id}/extra_specs/{key}
+# Intended scope(s): system
+#"share_types_extra_spec:delete": "rule:system-admin"
+
+# DEPRECATED
+# "share_types_extra_spec:delete":"rule:admin_api" has been deprecated
+# since W in favor of "share_types_extra_spec:delete":"rule:system-
+# admin".
+# The share types extra specs API now supports system scope and
+# default roles.
+
+# Get share snapshot.
+# GET  /snapshots/{snapshot_id}
+# Intended scope(s): system, project
+#"share_snapshot:get_snapshot": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_snapshot:get_snapshot":"rule:default" has been deprecated
+# since W in favor of "share_snapshot:get_snapshot":"(rule:system-
+# reader) or (rule:project-reader)".
+# The share snapshot API now supports system scope and default roles.
+
+# Get all share snapshots.
+# GET  /snapshots
+# GET  /snapshots/detail
+# GET  /snapshots?{query}
+# GET  /snapshots/detail?{query}
+# Intended scope(s): system, project
+#"share_snapshot:get_all_snapshots": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_snapshot:get_all_snapshots":"rule:default" has been
+# deprecated since W in favor of
+# "share_snapshot:get_all_snapshots":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share snapshot API now supports system scope and default roles.
+
+# Force Delete a share snapshot.
+# DELETE  /snapshots/{snapshot_id}
+# Intended scope(s): system, project
+#"share_snapshot:force_delete": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_snapshot:force_delete":"rule:admin_api" has been deprecated
+# since W in favor of "share_snapshot:force_delete":"(rule:system-
+# admin) or (rule:project-admin)".
+# The share snapshot API now supports system scope and default roles.
+
+# Manage share snapshot.
+# POST  /snapshots/manage
+# Intended scope(s): system
+#"share_snapshot:manage_snapshot": "rule:system-admin"
+
+# DEPRECATED
+# "share_snapshot:manage_snapshot":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_snapshot:manage_snapshot":"rule:system-admin".
+# The share snapshot API now supports system scope and default roles.
+
+# Unmanage share snapshot.
+# POST  /snapshots/{snapshot_id}/action
+# Intended scope(s): system
+#"share_snapshot:unmanage_snapshot": "rule:system-admin"
+
+# DEPRECATED
+# "share_snapshot:unmanage_snapshot":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_snapshot:unmanage_snapshot":"rule:system-admin".
+# The share snapshot API now supports system scope and default roles.
+
+# Reset status.
+# POST  /snapshots/{snapshot_id}/action
+# Intended scope(s): system, project
+#"share_snapshot:reset_status": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_snapshot:reset_status":"rule:admin_api" has been deprecated
+# since W in favor of "share_snapshot:reset_status":"(rule:system-
+# admin) or (rule:project-admin)".
+# The share snapshot API now supports system scope and default roles.
+
+# List access rules of a share snapshot.
+# GET  /snapshots/{snapshot_id}/access-list
+# Intended scope(s): system, project
+#"share_snapshot:access_list": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_snapshot:access_list":"rule:default" has been deprecated
+# since W in favor of "share_snapshot:access_list":"(rule:system-
+# reader) or (rule:project-reader)".
+# The share snapshot API now supports system scope and default roles.
+
+# Allow access to a share snapshot.
+# POST  /snapshots/{snapshot_id}/action
+# Intended scope(s): system, project
+#"share_snapshot:allow_access": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_snapshot:allow_access":"rule:default" has been deprecated
+# since W in favor of "share_snapshot:allow_access":"(rule:system-
+# admin) or (rule:project-member)".
+# The share snapshot API now supports system scope and default roles.
+
+# Deny access to a share snapshot.
+# POST  /snapshots/{snapshot_id}/action
+# Intended scope(s): system, project
+#"share_snapshot:deny_access": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_snapshot:deny_access":"rule:default" has been deprecated
+# since W in favor of "share_snapshot:deny_access":"(rule:system-
+# admin) or (rule:project-member)".
+# The share snapshot API now supports system scope and default roles.
+
+# List export locations of a share snapshot.
+# GET  /snapshots/{snapshot_id}/export-locations/
+# Intended scope(s): system, project
+#"share_snapshot_export_location:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_snapshot_export_location:index":"rule:default" has been
+# deprecated since W in favor of
+# "share_snapshot_export_location:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share snapshot location API now supports system scope and
+# default roles.
+
+# Get details of a specified export location of a share snapshot.
+# GET  /snapshots/{snapshot_id}/export-locations/{export_location_id}
+# Intended scope(s): system, project
+#"share_snapshot_export_location:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_snapshot_export_location:show":"rule:default" has been
+# deprecated since W in favor of
+# "share_snapshot_export_location:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share snapshot location API now supports system scope and
+# default roles.
+
+# Get share snapshot instance.
+# GET  /snapshot-instances/{snapshot_instance_id}
+# Intended scope(s): system
+#"share_snapshot_instance:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_snapshot_instance:show":"rule:admin_api" has been deprecated
+# since W in favor of "share_snapshot_instance:show":"rule:system-
+# reader".
+# The share snapshot instance API now supports system scope and
+# default roles.
+
+# Get all share snapshot instances.
+# GET  /snapshot-instances
+# GET  /snapshot-instances?{query}
+# Intended scope(s): system
+#"share_snapshot_instance:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_snapshot_instance:index":"rule:admin_api" has been deprecated
+# since W in favor of "share_snapshot_instance:index":"rule:system-
+# reader".
+# The share snapshot instance API now supports system scope and
+# default roles.
+
+# Get details of share snapshot instances.
+# GET  /snapshot-instances/detail
+# GET  /snapshot-instances/detail?{query}
+# Intended scope(s): system
+#"share_snapshot_instance:detail": "rule:system-reader"
+
+# DEPRECATED
+# "share_snapshot_instance:detail":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_snapshot_instance:detail":"rule:system-reader".
+# The share snapshot instance API now supports system scope and
+# default roles.
+
+# Reset share snapshot instance's status.
+# POST  /snapshot-instances/{snapshot_instance_id}/action
+# Intended scope(s): system
+#"share_snapshot_instance:reset_status": "rule:system-admin"
+
+# DEPRECATED
+# "share_snapshot_instance:reset_status":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_snapshot_instance:reset_status":"rule:system-admin".
+# The share snapshot instance API now supports system scope and
+# default roles.
+
+# List export locations of a share snapshot instance.
+# GET  /snapshot-instances/{snapshot_instance_id}/export-locations
+# Intended scope(s): system
+#"share_snapshot_instance_export_location:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_snapshot_instance_export_location:index":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_snapshot_instance_export_location:index":"rule:system-
+# reader".
+# The share snapshot instance export location API now supports system
+# scope and default roles.
+
+# Show details of a specified export location of a share snapshot
+# instance.
+# GET  /snapshot-instances/{snapshot_instance_id}/export-locations/{export_location_id}
+# Intended scope(s): system
+#"share_snapshot_instance_export_location:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_snapshot_instance_export_location:show":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_snapshot_instance_export_location:show":"rule:system-reader".
+# The share snapshot instance export location API now supports system
+# scope and default roles.
+
+# Get share servers.
+# GET  /share-servers
+# GET  /share-servers?{query}
+# Intended scope(s): system
+#"share_server:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_server:index":"rule:admin_api" has been deprecated since W in
+# favor of "share_server:index":"rule:system-reader".
+# The share server API now supports system scope and default roles.
+
+# Show share server.
+# GET  /share-servers/{server_id}
+# Intended scope(s): system
+#"share_server:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_server:show":"rule:admin_api" has been deprecated since W in
+# favor of "share_server:show":"rule:system-reader".
+# The share server API now supports system scope and default roles.
+
+# Get share server details.
+# GET  /share-servers/{server_id}/details
+# Intended scope(s): system
+#"share_server:details": "rule:system-reader"
+
+# DEPRECATED
+# "share_server:details":"rule:admin_api" has been deprecated since W
+# in favor of "share_server:details":"rule:system-reader".
+# The share server API now supports system scope and default roles.
+
+# Delete share server.
+# DELETE  /share-servers/{server_id}
+# Intended scope(s): system
+#"share_server:delete": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:delete":"rule:admin_api" has been deprecated since W
+# in favor of "share_server:delete":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Manage share server.
+# POST  /share-servers/manage
+# Intended scope(s): system
+#"share_server:manage_share_server": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:manage_share_server":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_server:manage_share_server":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Unmanage share server.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:unmanage_share_server": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:unmanage_share_server":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_server:unmanage_share_server":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Reset the status of a share server.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:reset_status": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:reset_status":"rule:admin_api" has been deprecated
+# since W in favor of "share_server:reset_status":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Migrates a share server to the specified host.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:share_server_migration_start": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:share_server_migration_start":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_server:share_server_migration_start":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Check if can migrates a share server to the specified host.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:share_server_migration_check": "rule:system-reader"
+
+# DEPRECATED
+# "share_server:share_server_migration_check":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_server:share_server_migration_check":"rule:system-reader".
+# The share server API now supports system scope and default roles.
+
+# Invokes the 2nd phase of share server migration.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:share_server_migration_complete": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:share_server_migration_complete":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_server:share_server_migration_complete":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Attempts to cancel share server migration.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:share_server_migration_cancel": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:share_server_migration_cancel":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_server:share_server_migration_cancel":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Retrieves the share server migration progress for a given share
+# server.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:share_server_migration_get_progress": "rule:system-reader"
+
+# DEPRECATED
+# "share_server:share_server_migration_get_progress":"rule:admin_api"
+# has been deprecated since W in favor of
+# "share_server:share_server_migration_get_progress":"rule:system-
+# reader".
+# The share server API now supports system scope and default roles.
+
+# Resets task state.
+# POST  /share-servers/{share_server_id}/action
+# Intended scope(s): system
+#"share_server:share_server_reset_task_state": "rule:system-admin"
+
+# DEPRECATED
+# "share_server:share_server_reset_task_state":"rule:admin_api" has
+# been deprecated since W in favor of
+# "share_server:share_server_reset_task_state":"rule:system-admin".
+# The share server API now supports system scope and default roles.
+
+# Return a list of all running services.
+# GET  /os-services
+# GET  /os-services?{query}
+# GET  /services
+# GET  /services?{query}
+# Intended scope(s): system
+#"service:index": "rule:system-reader"
+
+# DEPRECATED
+# "service:index":"rule:admin_api" has been deprecated since W in
+# favor of "service:index":"rule:system-reader".
+# The service API now supports system scope and default roles.
+
+# Enable/Disable scheduling for a service.
+# PUT  /os-services/disable
+# PUT  /os-services/enable
+# PUT  /services/disable
+# PUT  /services/enable
+# Intended scope(s): system
+#"service:update": "rule:system-admin"
+
+# DEPRECATED
+# "service:update":"rule:admin_api" has been deprecated since W in
+# favor of "service:update":"rule:system-admin".
+# The service API now supports system scope and default roles.
+
+# Update the quotas for a project/user and/or share type.
+# PUT  /quota-sets/{tenant_id}
+# PUT  /quota-sets/{tenant_id}?user_id={user_id}
+# PUT  /quota-sets/{tenant_id}?share_type={share_type_id}
+# PUT  /os-quota-sets/{tenant_id}
+# PUT  /os-quota-sets/{tenant_id}?user_id={user_id}
+# Intended scope(s): system
+#"quota_set:update": "rule:system-admin"
+
+# DEPRECATED
+# "quota_set:update":"rule:admin_api" has been deprecated since W in
+# favor of "quota_set:update":"rule:system-admin".
+# The quota API now supports system scope and default roles.
+
+# List the quotas for a tenant/user.
+# GET  /quota-sets/{tenant_id}/defaults
+# GET  /os-quota-sets/{tenant_id}/defaults
+# Intended scope(s): system, project
+#"quota_set:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "quota_set:show":"rule:default" has been deprecated since W in favor
+# of "quota_set:show":"(rule:system-reader) or (rule:project-reader)".
+# The quota API now supports system scope and default roles.
+
+# Delete quota for a tenant/user or tenant/share-type. The quota will
+# revert back to default (Admin only).
+# DELETE  /quota-sets/{tenant_id}
+# DELETE  /quota-sets/{tenant_id}?user_id={user_id}
+# DELETE  /quota-sets/{tenant_id}?share_type={share_type_id}
+# DELETE  /os-quota-sets/{tenant_id}
+# DELETE  /os-quota-sets/{tenant_id}?user_id={user_id}
+# Intended scope(s): system
+#"quota_set:delete": "rule:system-admin"
+
+# DEPRECATED
+# "quota_set:delete":"rule:admin_api" has been deprecated since W in
+# favor of "quota_set:delete":"rule:system-admin".
+# The quota API now supports system scope and default roles.
+
+# Update quota class.
+# PUT  /quota-class-sets/{class_name}
+# PUT  /os-quota-class-sets/{class_name}
+# Intended scope(s): system
+#"quota_class_set:update": "rule:system-admin"
+
+# DEPRECATED
+# "quota_class_set:update":"rule:admin_api" has been deprecated since
+# W in favor of "quota_class_set:update":"rule:system-admin".
+# The quota class API now supports system scope and default roles.
+
+# Get quota class.
+# GET  /quota-class-sets/{class_name}
+# GET  /os-quota-class-sets/{class_name}
+# Intended scope(s): system, project
+#"quota_class_set:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "quota_class_set:show":"rule:default" has been deprecated since W in
+# favor of "quota_class_set:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The quota class API now supports system scope and default roles.
+
+# Create share group type specs.
+# POST  /share-group-types/{share_group_type_id}/group-specs
+# Intended scope(s): system
+#"share_group_types_spec:create": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_types_spec:create":"rule:admin_api" has been deprecated
+# since W in favor of "share_group_types_spec:create":"rule:system-
+# admin".
+# The share group type specs API now support system scope and default
+# roles.
+
+# Get share group type specs.
+# GET  /share-group-types/{share_group_type_id}/group-specs
+# Intended scope(s): system
+#"share_group_types_spec:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_group_types_spec:index":"rule:admin_api" has been deprecated
+# since W in favor of "share_group_types_spec:index":"rule:system-
+# reader".
+# The share group type specs API now support system scope and default
+# roles.
+
+# Get details of a share group type spec.
+# GET  /share-group-types/{share_group_type_id}/group-specs/{key}
+# Intended scope(s): system
+#"share_group_types_spec:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_group_types_spec:show":"rule:admin_api" has been deprecated
+# since W in favor of "share_group_types_spec:show":"rule:system-
+# reader".
+# The share group type specs API now support system scope and default
+# roles.
+
+# Update a share group type spec.
+# PUT  /share-group-types/{share_group_type_id}/group-specs/{key}
+# Intended scope(s): system
+#"share_group_types_spec:update": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_types_spec:update":"rule:admin_api" has been deprecated
+# since W in favor of "share_group_types_spec:update":"rule:system-
+# admin".
+# The share group type specs API now support system scope and default
+# roles.
+
+# Delete a share group type spec.
+# DELETE  /share-group-types/{share_group_type_id}/group-specs/{key}
+# Intended scope(s): system
+#"share_group_types_spec:delete": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_types_spec:delete":"rule:admin_api" has been deprecated
+# since W in favor of "share_group_types_spec:delete":"rule:system-
+# admin".
+# The share group type specs API now support system scope and default
+# roles.
+
+# Create a new share group type.
+# POST  /share-group-types
+# Intended scope(s): system
+#"share_group_type:create": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_type:create":"rule:admin_api" has been deprecated since
+# W in favor of "share_group_type:create":"rule:system-admin".
+# The share group type API now supports system scope and default
+# roles.
+
+# Get the list of share group types.
+# GET  /share-group-types
+# GET  /share-group-types?is_public=all
+# Intended scope(s): system, project
+#"share_group_type:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group_type:index":"rule:default" has been deprecated since W
+# in favor of "share_group_type:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share group type API now supports system scope and default
+# roles.
+
+# Get details regarding the specified share group type.
+# GET  /share-group-types/{share_group_type_id}
+# Intended scope(s): system, project
+#"share_group_type:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group_type:show":"rule:default" has been deprecated since W
+# in favor of "share_group_type:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share group type API now supports system scope and default
+# roles.
+
+# Get the default share group type.
+# GET  /share-group-types/default
+# Intended scope(s): system, project
+#"share_group_type:default": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group_type:default":"rule:default" has been deprecated since
+# W in favor of "share_group_type:default":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share group type API now supports system scope and default
+# roles.
+
+# Delete an existing group type.
+# DELETE  /share-group-types/{share_group_type_id}
+# Intended scope(s): system
+#"share_group_type:delete": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_type:delete":"rule:admin_api" has been deprecated since
+# W in favor of "share_group_type:delete":"rule:system-admin".
+# The share group type API now supports system scope and default
+# roles.
+
+# Get project access by share group type.
+# GET  /share-group-types/{share_group_type_id}/access
+# Intended scope(s): system
+#"share_group_type:list_project_access": "rule:system-reader"
+
+# DEPRECATED
+# "share_group_type:list_project_access":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_group_type:list_project_access":"rule:system-reader".
+# The share group type API now supports system scope and default
+# roles.
+
+# Allow project to use the share group type.
+# POST  /share-group-types/{share_group_type_id}/action
+# Intended scope(s): system
+#"share_group_type:add_project_access": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_type:add_project_access":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_group_type:add_project_access":"rule:system-admin".
+# The share group type API now supports system scope and default
+# roles.
+
+# Deny project access to use the share group type.
+# POST  /share-group-types/{share_group_type_id}/action
+# Intended scope(s): system
+#"share_group_type:remove_project_access": "rule:system-admin"
+
+# DEPRECATED
+# "share_group_type:remove_project_access":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_group_type:remove_project_access":"rule:system-admin".
+# The share group type API now supports system scope and default
+# roles.
+
+# Create a new share group snapshot.
+# POST  /share-group-snapshots
+# Intended scope(s): system, project
+#"share_group_snapshot:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_group_snapshot:create":"rule:default" has been deprecated
+# since W in favor of "share_group_snapshot:create":"(rule:system-
+# admin) or (rule:project-member)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Get details of a share group snapshot.
+# GET  /share-group-snapshots/{share_group_snapshot_id}
+# Intended scope(s): system, project
+#"share_group_snapshot:get": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group_snapshot:get":"rule:default" has been deprecated since
+# W in favor of "share_group_snapshot:get":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Get all share group snapshots.
+# GET  /share-group-snapshots
+# GET  /share-group-snapshots/detail
+# GET  /share-group-snapshots/{query}
+# GET  /share-group-snapshots/detail?{query}
+# Intended scope(s): system, project
+#"share_group_snapshot:get_all": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group_snapshot:get_all":"rule:default" has been deprecated
+# since W in favor of "share_group_snapshot:get_all":"(rule:system-
+# reader) or (rule:project-reader)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Update a share group snapshot.
+# PUT  /share-group-snapshots/{share_group_snapshot_id}
+# Intended scope(s): system, project
+#"share_group_snapshot:update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_group_snapshot:update":"rule:default" has been deprecated
+# since W in favor of "share_group_snapshot:update":"(rule:system-
+# admin) or (rule:project-member)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Delete a share group snapshot.
+# DELETE  /share-group-snapshots/{share_group_snapshot_id}
+# Intended scope(s): system, project
+#"share_group_snapshot:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_group_snapshot:delete":"rule:default" has been deprecated
+# since W in favor of "share_group_snapshot:delete":"(rule:system-
+# admin) or (rule:project-member)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Force delete a share group snapshot.
+# POST  /share-group-snapshots/{share_group_snapshot_id}/action
+# Intended scope(s): system, project
+#"share_group_snapshot:force_delete": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_group_snapshot:force_delete":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_group_snapshot:force_delete":"(rule:system-admin) or
+# (rule:project-admin)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Reset a share group snapshot's status.
+# POST  /share-group-snapshots/{share_group_snapshot_id}/action
+# Intended scope(s): system, project
+#"share_group_snapshot:reset_status": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_group_snapshot:reset_status":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_group_snapshot:reset_status":"(rule:system-admin) or
+# (rule:project-admin)".
+# The share group snapshots API now supports system scope and default
+# roles.
+
+# Create share group.
+# POST  /share-groups
+# Intended scope(s): system, project
+#"share_group:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_group:create":"rule:default" has been deprecated since W in
+# favor of "share_group:create":"(rule:system-admin) or (rule:project-
+# member)".
+# The share group API now supports system scope and default roles.
+
+# Get details of a share group.
+# GET  /share-groups/{share_group_id}
+# Intended scope(s): system, project
+#"share_group:get": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group:get":"rule:default" has been deprecated since W in
+# favor of "share_group:get":"(rule:system-reader) or (rule:project-
+# reader)".
+# The share group API now supports system scope and default roles.
+
+# Get all share groups.
+# GET  /share-groups
+# GET  /share-groups/detail
+# GET  /share-groups?{query}
+# GET  /share-groups/detail?{query}
+# Intended scope(s): system, project
+#"share_group:get_all": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_group:get_all":"rule:default" has been deprecated since W in
+# favor of "share_group:get_all":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share group API now supports system scope and default roles.
+
+# Update share group.
+# PUT  /share-groups/{share_group_id}
+# Intended scope(s): system, project
+#"share_group:update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_group:update":"rule:default" has been deprecated since W in
+# favor of "share_group:update":"(rule:system-admin) or (rule:project-
+# member)".
+# The share group API now supports system scope and default roles.
+
+# Delete share group.
+# DELETE  /share-groups/{share_group_id}
+# Intended scope(s): system, project
+#"share_group:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_group:delete":"rule:default" has been deprecated since W in
+# favor of "share_group:delete":"(rule:system-admin) or (rule:project-
+# member)".
+# The share group API now supports system scope and default roles.
+
+# Force delete a share group.
+# POST  /share-groups/{share_group_id}/action
+# Intended scope(s): system, project
+#"share_group:force_delete": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_group:force_delete":"rule:admin_api" has been deprecated
+# since W in favor of "share_group:force_delete":"(rule:system-admin)
+# or (rule:project-admin)".
+# The share group API now supports system scope and default roles.
+
+# Reset share group's status.
+# POST  /share-groups/{share_group_id}/action
+# Intended scope(s): system, project
+#"share_group:reset_status": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_group:reset_status":"rule:admin_api" has been deprecated
+# since W in favor of "share_group:reset_status":"(rule:system-admin)
+# or (rule:project-admin)".
+# The share group API now supports system scope and default roles.
+
+# Create share replica.
+# POST  /share-replicas
+# Intended scope(s): system, project
+#"share_replica:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_replica:create":"rule:default" has been deprecated since W in
+# favor of "share_replica:create":"(rule:system-admin) or
+# (rule:project-member)".
+# The share replica API now supports system scope and default roles.
+
+# Get all share replicas.
+# GET  /share-replicas
+# GET  /share-replicas/detail
+# GET  /share-replicas/detail?share_id={share_id}
+# Intended scope(s): system, project
+#"share_replica:get_all": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_replica:get_all":"rule:default" has been deprecated since W
+# in favor of "share_replica:get_all":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share replica API now supports system scope and default roles.
+
+# Get details of a share replica.
+# GET  /share-replicas/{share_replica_id}
+# Intended scope(s): system, project
+#"share_replica:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_replica:show":"rule:default" has been deprecated since W in
+# favor of "share_replica:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share replica API now supports system scope and default roles.
+
+# Delete a share replica.
+# DELETE  /share-replicas/{share_replica_id}
+# Intended scope(s): system, project
+#"share_replica:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_replica:delete":"rule:default" has been deprecated since W in
+# favor of "share_replica:delete":"(rule:system-admin) or
+# (rule:project-member)".
+# The share replica API now supports system scope and default roles.
+
+# Force delete a share replica.
+# POST  /share-replicas/{share_replica_id}/action
+# Intended scope(s): system, project
+#"share_replica:force_delete": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_replica:force_delete":"rule:admin_api" has been deprecated
+# since W in favor of "share_replica:force_delete":"(rule:system-
+# admin) or (rule:project-admin)".
+# The share replica API now supports system scope and default roles.
+
+# Promote a non-active share replica to active.
+# POST  /share-replicas/{share_replica_id}/action
+# Intended scope(s): system, project
+#"share_replica:promote": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_replica:promote":"rule:default" has been deprecated since W
+# in favor of "share_replica:promote":"(rule:system-admin) or
+# (rule:project-member)".
+# The share replica API now supports system scope and default roles.
+
+# Resync a share replica that is out of sync.
+# POST  /share-replicas/{share_replica_id}/action
+# Intended scope(s): system, project
+#"share_replica:resync": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_replica:resync":"rule:admin_api" has been deprecated since W
+# in favor of "share_replica:resync":"(rule:system-admin) or
+# (rule:project-admin)".
+# The share replica API now supports system scope and default roles.
+
+# Reset share replica's replica_state attribute.
+# POST  /share-replicas/{share_replica_id}/action
+# Intended scope(s): system, project
+#"share_replica:reset_replica_state": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_replica:reset_replica_state":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_replica:reset_replica_state":"(rule:system-admin) or
+# (rule:project-admin)".
+# The share replica API now supports system scope and default roles.
+
+# Reset share replica's status.
+# POST  /share-replicas/{share_replica_id}/action
+# Intended scope(s): system, project
+#"share_replica:reset_status": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_replica:reset_status":"rule:admin_api" has been deprecated
+# since W in favor of "share_replica:reset_status":"(rule:system-
+# admin) or (rule:project-admin)".
+# The share replica API now supports system scope and default roles.
+
+# Get all export locations of a given share replica.
+# GET  /share-replicas/{share_replica_id}/export-locations
+# Intended scope(s): system, project
+#"share_replica_export_location:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_replica_export_location:index":"rule:default" has been
+# deprecated since W in favor of
+# "share_replica_export_location:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share replica export location API now supports system scope and
+# default roles.
+
+# Get details about the requested share replica export location.
+# GET  /share-replicas/{share_replica_id}/export-locations/{export_location_id}
+# Intended scope(s): system, project
+#"share_replica_export_location:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_replica_export_location:show":"rule:default" has been
+# deprecated since W in favor of
+# "share_replica_export_location:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share replica export location API now supports system scope and
+# default roles.
+
+# Create share network.
+# POST  /share-networks
+# Intended scope(s): system, project
+#"share_network:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:create":"rule:default" has been deprecated since W in
+# favor of "share_network:create":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Get details of a share network.
+# GET  /share-networks/{share_network_id}
+# Intended scope(s): system, project
+#"share_network:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_network:show":"rule:default" has been deprecated since W in
+# favor of "share_network:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share network API now support system scope and default roles.
+
+# Get all share networks.
+# GET  /share-networks
+# GET  /share-networks?{query}
+# Intended scope(s): system, project
+#"share_network:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_network:index":"rule:default" has been deprecated since W in
+# favor of "share_network:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share network API now support system scope and default roles.
+
+# Get details of share networks .
+# GET  /share-networks/detail?{query}
+# GET  /share-networks/detail
+# Intended scope(s): system, project
+#"share_network:detail": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_network:detail":"rule:default" has been deprecated since W in
+# favor of "share_network:detail":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share network API now support system scope and default roles.
+
+# Update a share network.
+# PUT  /share-networks/{share_network_id}
+# Intended scope(s): system, project
+#"share_network:update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:update":"rule:default" has been deprecated since W in
+# favor of "share_network:update":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Delete a share network.
+# DELETE  /share-networks/{share_network_id}
+# Intended scope(s): system, project
+#"share_network:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:delete":"rule:default" has been deprecated since W in
+# favor of "share_network:delete":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Add security service to share network.
+# POST  /share-networks/{share_network_id}/action
+# Intended scope(s): system, project
+#"share_network:add_security_service": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:add_security_service":"rule:default" has been
+# deprecated since W in favor of
+# "share_network:add_security_service":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Check the feasibility of add security service to a share network.
+# POST  /share-networks/{share_network_id}/action
+# Intended scope(s): system, project
+#"share_network:add_security_service_check": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:add_security_service_check":"rule:default" has been
+# deprecated since W in favor of
+# "share_network:add_security_service_check":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Remove security service from share network.
+# POST  /share-networks/{share_network_id}/action
+# Intended scope(s): system, project
+#"share_network:remove_security_service": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:remove_security_service":"rule:default" has been
+# deprecated since W in favor of
+# "share_network:remove_security_service":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Update security service from share network.
+# POST  /share-networks/{share_network_id}/action
+# Intended scope(s): system, project
+#"share_network:update_security_service": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:update_security_service":"rule:default" has been
+# deprecated since W in favor of
+# "share_network:update_security_service":"(rule:system-admin) or
+# (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Check the feasibility of update a security service from share
+# network.
+# POST  /share-networks/{share_network_id}/action
+# Intended scope(s): system, project
+#"share_network:update_security_service_check": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network:update_security_service_check":"rule:default" has
+# been deprecated since W in favor of
+# "share_network:update_security_service_check":"(rule:system-admin)
+# or (rule:project-member)".
+# The share network API now support system scope and default roles.
+
+# Reset share network`s status.
+# POST  /share-networks/{share_network_id}/action
+# Intended scope(s): system, project
+#"share_network:reset_status": "(rule:system-admin) or (rule:project-admin)"
+
+# DEPRECATED
+# "share_network:reset_status":"rule:admin_api" has been deprecated
+# since W in favor of "share_network:reset_status":"(rule:system-
+# admin) or (rule:project-admin)".
+# The share network API now support system scope and default roles.
+
+# Get share networks belonging to all projects.
+# GET  /share-networks?all_tenants=1
+# GET  /share-networks/detail?all_tenants=1
+# Intended scope(s): system
+#"share_network:get_all_share_networks": "rule:system-reader"
+
+# DEPRECATED
+# "share_network:get_all_share_networks":"rule:admin_api" has been
+# deprecated since W in favor of
+# "share_network:get_all_share_networks":"rule:system-reader".
+# The share network API now support system scope and default roles.
+
+# Create a new share network subnet.
+# POST  /share-networks/{share_network_id}/subnets
+# Intended scope(s): system, project
+#"share_network_subnet:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network_subnet:create":"rule:default" has been deprecated
+# since W in favor of "share_network_subnet:create":"(rule:system-
+# admin) or (rule:project-member)".
+# The share network subnet API now supports system scope and default
+# roles.
+
+# Delete a share network subnet.
+# DELETE  /share-networks/{share_network_id}/subnets/{share_network_subnet_id}
+# Intended scope(s): system, project
+#"share_network_subnet:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_network_subnet:delete":"rule:default" has been deprecated
+# since W in favor of "share_network_subnet:delete":"(rule:system-
+# admin) or (rule:project-member)".
+# The share network subnet API now supports system scope and default
+# roles.
+
+# Shows a share network subnet.
+# GET  /share-networks/{share_network_id}/subnets/{share_network_subnet_id}
+# Intended scope(s): system, project
+#"share_network_subnet:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_network_subnet:show":"rule:default" has been deprecated since
+# W in favor of "share_network_subnet:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share network subnet API now supports system scope and default
+# roles.
+
+# Get all share network subnets.
+# GET  /share-networks/{share_network_id}/subnets
+# Intended scope(s): system, project
+#"share_network_subnet:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_network_subnet:index":"rule:default" has been deprecated
+# since W in favor of "share_network_subnet:index":"(rule:system-
+# reader) or (rule:project-reader)".
+# The share network subnet API now supports system scope and default
+# roles.
+
+# Create security service.
+# POST  /security-services
+# Intended scope(s): system, project
+#"security_service:create": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "security_service:create":"rule:default" has been deprecated since W
+# in favor of "security_service:create":"(rule:system-admin) or
+# (rule:project-member)".
+# The security service API now supports system scope and default
+# roles.
+
+# Get details of a security service.
+# GET  /security-services/{security_service_id}
+# Intended scope(s): system, project
+#"security_service:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "security_service:show":"rule:default" has been deprecated since W
+# in favor of "security_service:show":"(rule:system-reader) or
+# (rule:project-reader)".
+# The security service API now supports system scope and default
+# roles.
+
+# Get details of all security services.
+# GET  /security-services/detail?{query}
+# GET  /security-services/detail
+# Intended scope(s): system, project
+#"security_service:detail": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "security_service:detail":"rule:default" has been deprecated since W
+# in favor of "security_service:detail":"(rule:system-reader) or
+# (rule:project-reader)".
+# The security service API now supports system scope and default
+# roles.
+
+# Get all security services.
+# GET  /security-services
+# GET  /security-services?{query}
+# Intended scope(s): system, project
+#"security_service:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "security_service:index":"rule:default" has been deprecated since W
+# in favor of "security_service:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The security service API now supports system scope and default
+# roles.
+
+# Update a security service.
+# PUT  /security-services/{security_service_id}
+# Intended scope(s): system, project
+#"security_service:update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "security_service:update":"rule:default" has been deprecated since W
+# in favor of "security_service:update":"(rule:system-admin) or
+# (rule:project-member)".
+# The security service API now supports system scope and default
+# roles.
+
+# Delete a security service.
+# DELETE  /security-services/{security_service_id}
+# Intended scope(s): system, project
+#"security_service:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "security_service:delete":"rule:default" has been deprecated since W
+# in favor of "security_service:delete":"(rule:system-admin) or
+# (rule:project-member)".
+# The security service API now supports system scope and default
+# roles.
+
+# Get security services of all projects.
+# GET  /security-services?all_tenants=1
+# GET  /security-services/detail?all_tenants=1
+# Intended scope(s): system
+#"security_service:get_all_security_services": "rule:system-reader"
+
+# DEPRECATED
+# "security_service:get_all_security_services":"rule:admin_api" has
+# been deprecated since W in favor of
+# "security_service:get_all_security_services":"rule:system-reader".
+# The security service API now supports system scope and default
+# roles.
+
+# Get all export locations of a given share.
+# GET  /shares/{share_id}/export_locations
+# Intended scope(s): system, project
+#"share_export_location:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_export_location:index":"rule:default" has been deprecated
+# since W in favor of "share_export_location:index":"(rule:system-
+# reader) or (rule:project-reader)".
+# The share export location API now support system scope and default
+# roles.
+
+# Get details about the requested export location.
+# GET  /shares/{share_id}/export_locations/{export_location_id}
+# Intended scope(s): system, project
+#"share_export_location:show": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_export_location:show":"rule:default" has been deprecated
+# since W in favor of "share_export_location:show":"(rule:system-
+# reader) or (rule:project-reader)".
+# The share export location API now support system scope and default
+# roles.
+
+# Get all share instances.
+# GET  /share_instances
+# GET  /share_instances?{query}
+# Intended scope(s): system
+#"share_instance:index": "rule:system-reader"
+
+# DEPRECATED
+# "share_instance:index":"rule:admin_api" has been deprecated since W
+# in favor of "share_instance:index":"rule:system-reader".
+# The share instances API now supports system scope and default roles.
+
+# Get details of a share instance.
+# GET  /share_instances/{share_instance_id}
+# Intended scope(s): system
+#"share_instance:show": "rule:system-reader"
+
+# DEPRECATED
+# "share_instance:show":"rule:admin_api" has been deprecated since W
+# in favor of "share_instance:show":"rule:system-reader".
+# The share instances API now supports system scope and default roles.
+
+# Force delete a share instance.
+# POST  /share_instances/{share_instance_id}/action
+# Intended scope(s): system
+#"share_instance:force_delete": "rule:system-admin"
+
+# DEPRECATED
+# "share_instance:force_delete":"rule:admin_api" has been deprecated
+# since W in favor of "share_instance:force_delete":"rule:system-
+# admin".
+# The share instances API now supports system scope and default roles.
+
+# Reset share instance's status.
+# POST  /share_instances/{share_instance_id}/action
+# Intended scope(s): system
+#"share_instance:reset_status": "rule:system-admin"
+
+# DEPRECATED
+# "share_instance:reset_status":"rule:admin_api" has been deprecated
+# since W in favor of "share_instance:reset_status":"rule:system-
+# admin".
+# The share instances API now supports system scope and default roles.
+
+# Get details of a given message.
+# GET  /messages/{message_id}
+# Intended scope(s): system, project
+#"message:get": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "message:get":"rule:default" has been deprecated since W in favor of
+# "message:get":"(rule:system-reader) or (rule:project-reader)".
+# The messages API now supports system scope and default roles.
+
+# Get all messages.
+# GET  /messages
+# GET  /messages?{query}
+# Intended scope(s): system, project
+#"message:get_all": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "message:get_all":"rule:default" has been deprecated since W in
+# favor of "message:get_all":"(rule:system-reader) or (rule:project-
+# reader)".
+# The messages API now supports system scope and default roles.
+
+# Delete a message.
+# DELETE  /messages/{message_id}
+# Intended scope(s): system, project
+#"message:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "message:delete":"rule:default" has been deprecated since W in favor
+# of "message:delete":"(rule:system-admin) or (rule:project-member)".
+# The messages API now supports system scope and default roles.
+
+# Get details of a share access rule.
+# GET  /share-access-rules/{share_access_id}
+# Intended scope(s): system, project
+#"share_access_rule:get": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_access_rule:get":"rule:default" has been deprecated since W
+# in favor of "share_access_rule:get":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share access rule API now supports system scope and default
+# roles.
+
+# List access rules of a given share.
+# GET  /share-access-rules?share_id={share_id}&key1=value1&key2=value2
+# Intended scope(s): system, project
+#"share_access_rule:index": "(rule:system-reader) or (rule:project-reader)"
+
+# DEPRECATED
+# "share_access_rule:index":"rule:default" has been deprecated since W
+# in favor of "share_access_rule:index":"(rule:system-reader) or
+# (rule:project-reader)".
+# The share access rule API now supports system scope and default
+# roles.
+
+# Set metadata for a share access rule.
+# PUT  /share-access-rules/{share_access_id}/metadata
+# Intended scope(s): system, project
+#"share_access_metadata:update": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_access_metadata:update":"rule:default" has been deprecated
+# since W in favor of "share_access_metadata:update":"(rule:system-
+# admin) or (rule:project-member)".
+# The share access metadata API now support system scope and default
+# roles.
+
+# Delete metadata for a share access rule.
+# DELETE  /share-access-rules/{share_access_id}/metadata/{key}
+# Intended scope(s): system, project
+#"share_access_metadata:delete": "(rule:system-admin) or (rule:project-member)"
+
+# DEPRECATED
+# "share_access_metadata:delete":"rule:default" has been deprecated
+# since W in favor of "share_access_metadata:delete":"(rule:system-
+# admin) or (rule:project-member)".
+# The share access metadata API now support system scope and default
+# roles.
+

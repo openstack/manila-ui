@@ -15,7 +15,11 @@ from django.conf import settings
 
 
 settings.POLICY_FILES.update({
-    'share': 'manila_policy.json',
+    'share': 'manila_policy.yaml',
+})
+
+settings.DEFAULT_POLICY_FILES.update({
+    'share': 'default_policies/manila.yaml'
 })
 
 # Sample

@@ -1,0 +1,2360 @@
+- check_str: role:admin and system_scope:all
+  description: null
+  name: system-admin
+  operations: []
+  scope_types:
+  - system
+- check_str: role:member and system_scope:all
+  description: null
+  name: system-member
+  operations: []
+  scope_types:
+  - system
+- check_str: role:reader and system_scope:all
+  description: null
+  name: system-reader
+  operations: []
+  scope_types:
+  - system
+- check_str: role:admin and project_id:%(project_id)s
+  description: null
+  name: project-admin
+  operations: []
+  scope_types:
+  - project
+- check_str: role:member and project_id:%(project_id)s
+  description: null
+  name: project-member
+  operations: []
+  scope_types:
+  - project
+- check_str: role:reader and project_id:%(project_id)s
+  description: null
+  name: project-reader
+  operations: []
+  scope_types:
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: role:admin
+    name: context_is_admin
+  deprecated_since: null
+  description: null
+  name: context_is_admin
+  operations: []
+  scope_types:
+  - system
+- check_str: is_admin:True or project_id:%(project_id)s
+  description: null
+  name: admin_or_owner
+  operations: []
+  scope_types: null
+- check_str: rule:admin_or_owner
+  description: null
+  name: default
+  operations: []
+  scope_types: null
+- check_str: is_admin:True
+  description: null
+  name: admin_api
+  operations: []
+  scope_types: null
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: availability_zone:index
+  deprecated_since: null
+  description: Get all storage availability zones.
+  name: availability_zone:index
+  operations:
+  - method: GET
+    path: /os-availability-zone
+  - method: GET
+    path: /availability-zone
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: scheduler_stats:pools:index
+  deprecated_since: null
+  description: Get information regarding backends (and storage pools) known to the
+    scheduler.
+  name: scheduler_stats:pools:index
+  operations:
+  - method: GET
+    path: /scheduler-stats/pools
+  - method: GET
+    path: /scheduler-stats/pools?{query}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: scheduler_stats:pools:detail
+  deprecated_since: null
+  description: Get detailed information regarding backends (and storage pools) known
+    to the scheduler.
+  name: scheduler_stats:pools:detail
+  operations:
+  - method: GET
+    path: /scheduler-stats/pools/detail?{query}
+  - method: GET
+    path: /scheduler-stats/pools/detail
+  scope_types:
+  - system
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: ''
+    name: share:create
+  deprecated_since: null
+  description: Create share.
+  name: share:create
+  operations:
+  - method: POST
+    path: /shares
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:create_public_share
+  deprecated_since: null
+  description: Create shares visible across all projects in the cloud.
+  name: share:create_public_share
+  operations:
+  - method: POST
+    path: /shares
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:get
+  deprecated_since: null
+  description: Get share.
+  name: share:get
+  operations:
+  - method: GET
+    path: /shares/{share_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:get_all
+  deprecated_since: null
+  description: List shares.
+  name: share:get_all
+  operations:
+  - method: GET
+    path: /shares
+  - method: GET
+    path: /shares/detail
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:update
+  deprecated_since: null
+  description: Update share.
+  name: share:update
+  operations:
+  - method: PUT
+    path: /shares
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:set_public_share
+  deprecated_since: null
+  description: Update shares to be visible across all projects in the cloud.
+  name: share:set_public_share
+  operations:
+  - method: PUT
+    path: /shares
+  scope_types:
+  - system
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:delete
+  deprecated_since: null
+  description: Delete share.
+  name: share:delete
+  operations:
+  - method: DELETE
+    path: /shares/{share_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:force_delete
+  deprecated_since: null
+  description: Force Delete a share.
+  name: share:force_delete
+  operations:
+  - method: DELETE
+    path: /shares/{share_id}
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:manage
+  deprecated_since: null
+  description: Manage share.
+  name: share:manage
+  operations:
+  - method: POST
+    path: /shares/manage
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:unmanage
+  deprecated_since: null
+  description: Unmanage share.
+  name: share:unmanage
+  operations:
+  - method: POST
+    path: /shares/unmanage
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:list_by_host
+  deprecated_since: null
+  description: List share by host.
+  name: share:list_by_host
+  operations:
+  - method: GET
+    path: /shares
+  - method: GET
+    path: /shares/detail
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:list_by_share_server_id
+  deprecated_since: null
+  description: List share by server id.
+  name: share:list_by_share_server_id
+  operations:
+  - method: GET
+    path: /shares
+  - method: GET
+    path: /shares/detail
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:access_get
+  deprecated_since: null
+  description: Get share access rule, it under deny access operation.
+  name: share:access_get
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:access_get_all
+  deprecated_since: null
+  description: List share access rules.
+  name: share:access_get_all
+  operations:
+  - method: GET
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:extend
+  deprecated_since: null
+  description: Extend share.
+  name: share:extend
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:shrink
+  deprecated_since: null
+  description: Shrink share.
+  name: share:shrink
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:migration_start
+  deprecated_since: null
+  description: Migrate a share to the specified host.
+  name: share:migration_start
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:migration_complete
+  deprecated_since: null
+  description: Invokes 2nd phase of share migration.
+  name: share:migration_complete
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:migration_cancel
+  deprecated_since: null
+  description: Attempts to cancel share migration.
+  name: share:migration_cancel
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:migration_get_progress
+  deprecated_since: null
+  description: Retrieve share migration progress for a given share.
+  name: share:migration_get_progress
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:reset_task_state
+  deprecated_since: null
+  description: Reset task state.
+  name: share:reset_task_state
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share:reset_status
+  deprecated_since: null
+  description: Reset status.
+  name: share:reset_status
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:revert_to_snapshot
+  deprecated_since: null
+  description: Revert a share to a snapshot.
+  name: share:revert_to_snapshot
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:allow_access
+  deprecated_since: null
+  description: Add share access rule.
+  name: share:allow_access
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:deny_access
+  deprecated_since: null
+  description: Remove share access rule.
+  name: share:deny_access
+  operations:
+  - method: POST
+    path: /shares/{share_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:update_share_metadata
+  deprecated_since: null
+  description: Update share metadata.
+  name: share:update_share_metadata
+  operations:
+  - method: PUT
+    path: /shares/{share_id}/metadata
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:delete_share_metadata
+  deprecated_since: null
+  description: Delete share metadata.
+  name: share:delete_share_metadata
+  operations:
+  - method: DELETE
+    path: /shares/{share_id}/metadata/{key}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:get_share_metadata
+  deprecated_since: null
+  description: Get share metadata.
+  name: share:get_share_metadata
+  operations:
+  - method: GET
+    path: /shares/{share_id}/metadata
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:create_snapshot
+  deprecated_since: null
+  description: Create share snapshot.
+  name: share:create_snapshot
+  operations:
+  - method: POST
+    path: /snapshots
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:delete_snapshot
+  deprecated_since: null
+  description: Delete share snapshot.
+  name: share:delete_snapshot
+  operations:
+  - method: DELETE
+    path: /snapshots/{snapshot_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share:snapshot_update
+  deprecated_since: null
+  description: Update share snapshot.
+  name: share:snapshot_update
+  operations:
+  - method: PUT
+    path: /snapshots/{snapshot_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_instance_export_location:index
+  deprecated_since: null
+  description: Return data about the requested export location.
+  name: share_instance_export_location:index
+  operations:
+  - method: POST
+    path: /share_instances/{share_instance_id}/export_locations
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_instance_export_location:show
+  deprecated_since: null
+  description: Return data about the requested export location.
+  name: share_instance_export_location:show
+  operations:
+  - method: GET
+    path: /share_instances/{share_instance_id}/export_locations/{export_location_id}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_type:create
+  deprecated_since: null
+  description: Create share type.
+  name: share_type:create
+  operations:
+  - method: POST
+    path: /types
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_type:update
+  deprecated_since: null
+  description: Update share type.
+  name: share_type:update
+  operations:
+  - method: PUT
+    path: /types/{share_type_id}
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_type:show
+  deprecated_since: null
+  description: Get share type.
+  name: share_type:show
+  operations:
+  - method: GET
+    path: /types/{share_type_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_type:index
+  deprecated_since: null
+  description: List share types.
+  name: share_type:index
+  operations:
+  - method: GET
+    path: /types
+  - method: GET
+    path: /types?is_public=all
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_type:default
+  deprecated_since: null
+  description: Get default share type.
+  name: share_type:default
+  operations:
+  - method: GET
+    path: /types/default
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_type:delete
+  deprecated_since: null
+  description: Delete share type.
+  name: share_type:delete
+  operations:
+  - method: DELETE
+    path: /types/{share_type_id}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_type:list_project_access
+  deprecated_since: null
+  description: List share type project access.
+  name: share_type:list_project_access
+  operations:
+  - method: GET
+    path: /types/{share_type_id}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_type:add_project_access
+  deprecated_since: null
+  description: Add share type to project.
+  name: share_type:add_project_access
+  operations:
+  - method: POST
+    path: /types/{share_type_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_type:remove_project_access
+  deprecated_since: null
+  description: Remove share type from project.
+  name: share_type:remove_project_access
+  operations:
+  - method: POST
+    path: /types/{share_type_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_types_extra_spec:create
+  deprecated_since: null
+  description: Create share type extra spec.
+  name: share_types_extra_spec:create
+  operations:
+  - method: POST
+    path: /types/{share_type_id}/extra_specs
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_types_extra_spec:show
+  deprecated_since: null
+  description: Get share type extra specs of a given share type.
+  name: share_types_extra_spec:show
+  operations:
+  - method: GET
+    path: /types/{share_type_id}/extra_specs
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_types_extra_spec:index
+  deprecated_since: null
+  description: Get details of a share type extra spec.
+  name: share_types_extra_spec:index
+  operations:
+  - method: GET
+    path: /types/{share_type_id}/extra_specs/{extra_spec_id}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_types_extra_spec:update
+  deprecated_since: null
+  description: Update share type extra spec.
+  name: share_types_extra_spec:update
+  operations:
+  - method: PUT
+    path: /types/{share_type_id}/extra_specs
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_types_extra_spec:delete
+  deprecated_since: null
+  description: Delete share type extra spec.
+  name: share_types_extra_spec:delete
+  operations:
+  - method: DELETE
+    path: /types/{share_type_id}/extra_specs/{key}
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot:get_snapshot
+  deprecated_since: null
+  description: Get share snapshot.
+  name: share_snapshot:get_snapshot
+  operations:
+  - method: GET
+    path: /snapshots/{snapshot_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot:get_all_snapshots
+  deprecated_since: null
+  description: Get all share snapshots.
+  name: share_snapshot:get_all_snapshots
+  operations:
+  - method: GET
+    path: /snapshots
+  - method: GET
+    path: /snapshots/detail
+  - method: GET
+    path: /snapshots?{query}
+  - method: GET
+    path: /snapshots/detail?{query}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot:force_delete
+  deprecated_since: null
+  description: Force Delete a share snapshot.
+  name: share_snapshot:force_delete
+  operations:
+  - method: DELETE
+    path: /snapshots/{snapshot_id}
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot:manage_snapshot
+  deprecated_since: null
+  description: Manage share snapshot.
+  name: share_snapshot:manage_snapshot
+  operations:
+  - method: POST
+    path: /snapshots/manage
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot:unmanage_snapshot
+  deprecated_since: null
+  description: Unmanage share snapshot.
+  name: share_snapshot:unmanage_snapshot
+  operations:
+  - method: POST
+    path: /snapshots/{snapshot_id}/action
+  scope_types:
+  - system
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot:reset_status
+  deprecated_since: null
+  description: Reset status.
+  name: share_snapshot:reset_status
+  operations:
+  - method: POST
+    path: /snapshots/{snapshot_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot:access_list
+  deprecated_since: null
+  description: List access rules of a share snapshot.
+  name: share_snapshot:access_list
+  operations:
+  - method: GET
+    path: /snapshots/{snapshot_id}/access-list
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot:allow_access
+  deprecated_since: null
+  description: Allow access to a share snapshot.
+  name: share_snapshot:allow_access
+  operations:
+  - method: POST
+    path: /snapshots/{snapshot_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot:deny_access
+  deprecated_since: null
+  description: Deny access to a share snapshot.
+  name: share_snapshot:deny_access
+  operations:
+  - method: POST
+    path: /snapshots/{snapshot_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot_export_location:index
+  deprecated_since: null
+  description: List export locations of a share snapshot.
+  name: share_snapshot_export_location:index
+  operations:
+  - method: GET
+    path: /snapshots/{snapshot_id}/export-locations/
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_snapshot_export_location:show
+  deprecated_since: null
+  description: Get details of a specified export location of a share snapshot.
+  name: share_snapshot_export_location:show
+  operations:
+  - method: GET
+    path: /snapshots/{snapshot_id}/export-locations/{export_location_id}
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot_instance:show
+  deprecated_since: null
+  description: Get share snapshot instance.
+  name: share_snapshot_instance:show
+  operations:
+  - method: GET
+    path: /snapshot-instances/{snapshot_instance_id}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot_instance:index
+  deprecated_since: null
+  description: Get all share snapshot instances.
+  name: share_snapshot_instance:index
+  operations:
+  - method: GET
+    path: /snapshot-instances
+  - method: GET
+    path: /snapshot-instances?{query}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot_instance:detail
+  deprecated_since: null
+  description: Get details of share snapshot instances.
+  name: share_snapshot_instance:detail
+  operations:
+  - method: GET
+    path: /snapshot-instances/detail
+  - method: GET
+    path: /snapshot-instances/detail?{query}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot_instance:reset_status
+  deprecated_since: null
+  description: Reset share snapshot instance's status.
+  name: share_snapshot_instance:reset_status
+  operations:
+  - method: POST
+    path: /snapshot-instances/{snapshot_instance_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot_instance_export_location:index
+  deprecated_since: null
+  description: List export locations of a share snapshot instance.
+  name: share_snapshot_instance_export_location:index
+  operations:
+  - method: GET
+    path: /snapshot-instances/{snapshot_instance_id}/export-locations
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_snapshot_instance_export_location:show
+  deprecated_since: null
+  description: Show details of a specified export location of a share snapshot instance.
+  name: share_snapshot_instance_export_location:show
+  operations:
+  - method: GET
+    path: /snapshot-instances/{snapshot_instance_id}/export-locations/{export_location_id}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:index
+  deprecated_since: null
+  description: Get share servers.
+  name: share_server:index
+  operations:
+  - method: GET
+    path: /share-servers
+  - method: GET
+    path: /share-servers?{query}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:show
+  deprecated_since: null
+  description: Show share server.
+  name: share_server:show
+  operations:
+  - method: GET
+    path: /share-servers/{server_id}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:details
+  deprecated_since: null
+  description: Get share server details.
+  name: share_server:details
+  operations:
+  - method: GET
+    path: /share-servers/{server_id}/details
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:delete
+  deprecated_since: null
+  description: Delete share server.
+  name: share_server:delete
+  operations:
+  - method: DELETE
+    path: /share-servers/{server_id}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:manage_share_server
+  deprecated_since: null
+  description: Manage share server.
+  name: share_server:manage_share_server
+  operations:
+  - method: POST
+    path: /share-servers/manage
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:unmanage_share_server
+  deprecated_since: null
+  description: Unmanage share server.
+  name: share_server:unmanage_share_server
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:reset_status
+  deprecated_since: null
+  description: Reset the status of a share server.
+  name: share_server:reset_status
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:share_server_migration_start
+  deprecated_since: null
+  description: Migrates a share server to the specified host.
+  name: share_server:share_server_migration_start
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:share_server_migration_check
+  deprecated_since: null
+  description: Check if can migrates a share server to the specified host.
+  name: share_server:share_server_migration_check
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:share_server_migration_complete
+  deprecated_since: null
+  description: Invokes the 2nd phase of share server migration.
+  name: share_server:share_server_migration_complete
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:share_server_migration_cancel
+  deprecated_since: null
+  description: Attempts to cancel share server migration.
+  name: share_server:share_server_migration_cancel
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:share_server_migration_get_progress
+  deprecated_since: null
+  description: Retrieves the share server migration progress for a given share server.
+  name: share_server:share_server_migration_get_progress
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_server:share_server_reset_task_state
+  deprecated_since: null
+  description: Resets task state.
+  name: share_server:share_server_reset_task_state
+  operations:
+  - method: POST
+    path: /share-servers/{share_server_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: service:index
+  deprecated_since: null
+  description: Return a list of all running services.
+  name: service:index
+  operations:
+  - method: GET
+    path: /os-services
+  - method: GET
+    path: /os-services?{query}
+  - method: GET
+    path: /services
+  - method: GET
+    path: /services?{query}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: service:update
+  deprecated_since: null
+  description: Enable/Disable scheduling for a service.
+  name: service:update
+  operations:
+  - method: PUT
+    path: /os-services/disable
+  - method: PUT
+    path: /os-services/enable
+  - method: PUT
+    path: /services/disable
+  - method: PUT
+    path: /services/enable
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: quota_set:update
+  deprecated_since: null
+  description: Update the quotas for a project/user and/or share type.
+  name: quota_set:update
+  operations:
+  - method: PUT
+    path: /quota-sets/{tenant_id}
+  - method: PUT
+    path: /quota-sets/{tenant_id}?user_id={user_id}
+  - method: PUT
+    path: /quota-sets/{tenant_id}?share_type={share_type_id}
+  - method: PUT
+    path: /os-quota-sets/{tenant_id}
+  - method: PUT
+    path: /os-quota-sets/{tenant_id}?user_id={user_id}
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: quota_set:show
+  deprecated_since: null
+  description: List the quotas for a tenant/user.
+  name: quota_set:show
+  operations:
+  - method: GET
+    path: /quota-sets/{tenant_id}/defaults
+  - method: GET
+    path: /os-quota-sets/{tenant_id}/defaults
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: quota_set:delete
+  deprecated_since: null
+  description: Delete quota for a tenant/user or tenant/share-type. The quota will
+    revert back to default (Admin only).
+  name: quota_set:delete
+  operations:
+  - method: DELETE
+    path: /quota-sets/{tenant_id}
+  - method: DELETE
+    path: /quota-sets/{tenant_id}?user_id={user_id}
+  - method: DELETE
+    path: /quota-sets/{tenant_id}?share_type={share_type_id}
+  - method: DELETE
+    path: /os-quota-sets/{tenant_id}
+  - method: DELETE
+    path: /os-quota-sets/{tenant_id}?user_id={user_id}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: quota_class_set:update
+  deprecated_since: null
+  description: Update quota class.
+  name: quota_class_set:update
+  operations:
+  - method: PUT
+    path: /quota-class-sets/{class_name}
+  - method: PUT
+    path: /os-quota-class-sets/{class_name}
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: quota_class_set:show
+  deprecated_since: null
+  description: Get quota class.
+  name: quota_class_set:show
+  operations:
+  - method: GET
+    path: /quota-class-sets/{class_name}
+  - method: GET
+    path: /os-quota-class-sets/{class_name}
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_types_spec:create
+  deprecated_since: null
+  description: Create share group type specs.
+  name: share_group_types_spec:create
+  operations:
+  - method: POST
+    path: /share-group-types/{share_group_type_id}/group-specs
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_types_spec:index
+  deprecated_since: null
+  description: Get share group type specs.
+  name: share_group_types_spec:index
+  operations:
+  - method: GET
+    path: /share-group-types/{share_group_type_id}/group-specs
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_types_spec:show
+  deprecated_since: null
+  description: Get details of a share group type spec.
+  name: share_group_types_spec:show
+  operations:
+  - method: GET
+    path: /share-group-types/{share_group_type_id}/group-specs/{key}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_types_spec:update
+  deprecated_since: null
+  description: Update a share group type spec.
+  name: share_group_types_spec:update
+  operations:
+  - method: PUT
+    path: /share-group-types/{share_group_type_id}/group-specs/{key}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_types_spec:delete
+  deprecated_since: null
+  description: Delete a share group type spec.
+  name: share_group_types_spec:delete
+  operations:
+  - method: DELETE
+    path: /share-group-types/{share_group_type_id}/group-specs/{key}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_type:create
+  deprecated_since: null
+  description: Create a new share group type.
+  name: share_group_type:create
+  operations:
+  - method: POST
+    path: /share-group-types
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_type:index
+  deprecated_since: null
+  description: Get the list of share group types.
+  name: share_group_type:index
+  operations:
+  - method: GET
+    path: /share-group-types
+  - method: GET
+    path: /share-group-types?is_public=all
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_type:show
+  deprecated_since: null
+  description: Get details regarding the specified share group type.
+  name: share_group_type:show
+  operations:
+  - method: GET
+    path: /share-group-types/{share_group_type_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_type:default
+  deprecated_since: null
+  description: Get the default share group type.
+  name: share_group_type:default
+  operations:
+  - method: GET
+    path: /share-group-types/default
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_type:delete
+  deprecated_since: null
+  description: Delete an existing group type.
+  name: share_group_type:delete
+  operations:
+  - method: DELETE
+    path: /share-group-types/{share_group_type_id}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_type:list_project_access
+  deprecated_since: null
+  description: Get project access by share group type.
+  name: share_group_type:list_project_access
+  operations:
+  - method: GET
+    path: /share-group-types/{share_group_type_id}/access
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_type:add_project_access
+  deprecated_since: null
+  description: Allow project to use the share group type.
+  name: share_group_type:add_project_access
+  operations:
+  - method: POST
+    path: /share-group-types/{share_group_type_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_type:remove_project_access
+  deprecated_since: null
+  description: Deny project access to use the share group type.
+  name: share_group_type:remove_project_access
+  operations:
+  - method: POST
+    path: /share-group-types/{share_group_type_id}/action
+  scope_types:
+  - system
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_snapshot:create
+  deprecated_since: null
+  description: Create a new share group snapshot.
+  name: share_group_snapshot:create
+  operations:
+  - method: POST
+    path: /share-group-snapshots
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_snapshot:get
+  deprecated_since: null
+  description: Get details of a share group snapshot.
+  name: share_group_snapshot:get
+  operations:
+  - method: GET
+    path: /share-group-snapshots/{share_group_snapshot_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_snapshot:get_all
+  deprecated_since: null
+  description: Get all share group snapshots.
+  name: share_group_snapshot:get_all
+  operations:
+  - method: GET
+    path: /share-group-snapshots
+  - method: GET
+    path: /share-group-snapshots/detail
+  - method: GET
+    path: /share-group-snapshots/{query}
+  - method: GET
+    path: /share-group-snapshots/detail?{query}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_snapshot:update
+  deprecated_since: null
+  description: Update a share group snapshot.
+  name: share_group_snapshot:update
+  operations:
+  - method: PUT
+    path: /share-group-snapshots/{share_group_snapshot_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group_snapshot:delete
+  deprecated_since: null
+  description: Delete a share group snapshot.
+  name: share_group_snapshot:delete
+  operations:
+  - method: DELETE
+    path: /share-group-snapshots/{share_group_snapshot_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_snapshot:force_delete
+  deprecated_since: null
+  description: Force delete a share group snapshot.
+  name: share_group_snapshot:force_delete
+  operations:
+  - method: POST
+    path: /share-group-snapshots/{share_group_snapshot_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group_snapshot:reset_status
+  deprecated_since: null
+  description: Reset a share group snapshot's status.
+  name: share_group_snapshot:reset_status
+  operations:
+  - method: POST
+    path: /share-group-snapshots/{share_group_snapshot_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group:create
+  deprecated_since: null
+  description: Create share group.
+  name: share_group:create
+  operations:
+  - method: POST
+    path: /share-groups
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group:get
+  deprecated_since: null
+  description: Get details of a share group.
+  name: share_group:get
+  operations:
+  - method: GET
+    path: /share-groups/{share_group_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group:get_all
+  deprecated_since: null
+  description: Get all share groups.
+  name: share_group:get_all
+  operations:
+  - method: GET
+    path: /share-groups
+  - method: GET
+    path: /share-groups/detail
+  - method: GET
+    path: /share-groups?{query}
+  - method: GET
+    path: /share-groups/detail?{query}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group:update
+  deprecated_since: null
+  description: Update share group.
+  name: share_group:update
+  operations:
+  - method: PUT
+    path: /share-groups/{share_group_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_group:delete
+  deprecated_since: null
+  description: Delete share group.
+  name: share_group:delete
+  operations:
+  - method: DELETE
+    path: /share-groups/{share_group_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group:force_delete
+  deprecated_since: null
+  description: Force delete a share group.
+  name: share_group:force_delete
+  operations:
+  - method: POST
+    path: /share-groups/{share_group_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_group:reset_status
+  deprecated_since: null
+  description: Reset share group's status.
+  name: share_group:reset_status
+  operations:
+  - method: POST
+    path: /share-groups/{share_group_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica:create
+  deprecated_since: null
+  description: Create share replica.
+  name: share_replica:create
+  operations:
+  - method: POST
+    path: /share-replicas
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica:get_all
+  deprecated_since: null
+  description: Get all share replicas.
+  name: share_replica:get_all
+  operations:
+  - method: GET
+    path: /share-replicas
+  - method: GET
+    path: /share-replicas/detail
+  - method: GET
+    path: /share-replicas/detail?share_id={share_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica:show
+  deprecated_since: null
+  description: Get details of a share replica.
+  name: share_replica:show
+  operations:
+  - method: GET
+    path: /share-replicas/{share_replica_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica:delete
+  deprecated_since: null
+  description: Delete a share replica.
+  name: share_replica:delete
+  operations:
+  - method: DELETE
+    path: /share-replicas/{share_replica_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_replica:force_delete
+  deprecated_since: null
+  description: Force delete a share replica.
+  name: share_replica:force_delete
+  operations:
+  - method: POST
+    path: /share-replicas/{share_replica_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica:promote
+  deprecated_since: null
+  description: Promote a non-active share replica to active.
+  name: share_replica:promote
+  operations:
+  - method: POST
+    path: /share-replicas/{share_replica_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_replica:resync
+  deprecated_since: null
+  description: Resync a share replica that is out of sync.
+  name: share_replica:resync
+  operations:
+  - method: POST
+    path: /share-replicas/{share_replica_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_replica:reset_replica_state
+  deprecated_since: null
+  description: Reset share replica's replica_state attribute.
+  name: share_replica:reset_replica_state
+  operations:
+  - method: POST
+    path: /share-replicas/{share_replica_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_replica:reset_status
+  deprecated_since: null
+  description: Reset share replica's status.
+  name: share_replica:reset_status
+  operations:
+  - method: POST
+    path: /share-replicas/{share_replica_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica_export_location:index
+  deprecated_since: null
+  description: Get all export locations of a given share replica.
+  name: share_replica_export_location:index
+  operations:
+  - method: GET
+    path: /share-replicas/{share_replica_id}/export-locations
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_replica_export_location:show
+  deprecated_since: null
+  description: Get details about the requested share replica export location.
+  name: share_replica_export_location:show
+  operations:
+  - method: GET
+    path: /share-replicas/{share_replica_id}/export-locations/{export_location_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:create
+  deprecated_since: null
+  description: Create share network.
+  name: share_network:create
+  operations:
+  - method: POST
+    path: /share-networks
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:show
+  deprecated_since: null
+  description: Get details of a share network.
+  name: share_network:show
+  operations:
+  - method: GET
+    path: /share-networks/{share_network_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:index
+  deprecated_since: null
+  description: Get all share networks.
+  name: share_network:index
+  operations:
+  - method: GET
+    path: /share-networks
+  - method: GET
+    path: /share-networks?{query}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:detail
+  deprecated_since: null
+  description: Get details of share networks .
+  name: share_network:detail
+  operations:
+  - method: GET
+    path: /share-networks/detail?{query}
+  - method: GET
+    path: /share-networks/detail
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:update
+  deprecated_since: null
+  description: Update a share network.
+  name: share_network:update
+  operations:
+  - method: PUT
+    path: /share-networks/{share_network_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:delete
+  deprecated_since: null
+  description: Delete a share network.
+  name: share_network:delete
+  operations:
+  - method: DELETE
+    path: /share-networks/{share_network_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:add_security_service
+  deprecated_since: null
+  description: Add security service to share network.
+  name: share_network:add_security_service
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:add_security_service_check
+  deprecated_since: null
+  description: Check the feasibility of add security service to a share network.
+  name: share_network:add_security_service_check
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:remove_security_service
+  deprecated_since: null
+  description: Remove security service from share network.
+  name: share_network:remove_security_service
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:update_security_service
+  deprecated_since: null
+  description: Update security service from share network.
+  name: share_network:update_security_service
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network:update_security_service_check
+  deprecated_since: null
+  description: Check the feasibility of update a security service from share network.
+  name: share_network:update_security_service_check
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-admin)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_network:reset_status
+  deprecated_since: null
+  description: Reset share network`s status.
+  name: share_network:reset_status
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/action
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_network:get_all_share_networks
+  deprecated_since: null
+  description: Get share networks belonging to all projects.
+  name: share_network:get_all_share_networks
+  operations:
+  - method: GET
+    path: /share-networks?all_tenants=1
+  - method: GET
+    path: /share-networks/detail?all_tenants=1
+  scope_types:
+  - system
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network_subnet:create
+  deprecated_since: null
+  description: Create a new share network subnet.
+  name: share_network_subnet:create
+  operations:
+  - method: POST
+    path: /share-networks/{share_network_id}/subnets
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network_subnet:delete
+  deprecated_since: null
+  description: Delete a share network subnet.
+  name: share_network_subnet:delete
+  operations:
+  - method: DELETE
+    path: /share-networks/{share_network_id}/subnets/{share_network_subnet_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network_subnet:show
+  deprecated_since: null
+  description: Shows a share network subnet.
+  name: share_network_subnet:show
+  operations:
+  - method: GET
+    path: /share-networks/{share_network_id}/subnets/{share_network_subnet_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_network_subnet:index
+  deprecated_since: null
+  description: Get all share network subnets.
+  name: share_network_subnet:index
+  operations:
+  - method: GET
+    path: /share-networks/{share_network_id}/subnets
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: security_service:create
+  deprecated_since: null
+  description: Create security service.
+  name: security_service:create
+  operations:
+  - method: POST
+    path: /security-services
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: security_service:show
+  deprecated_since: null
+  description: Get details of a security service.
+  name: security_service:show
+  operations:
+  - method: GET
+    path: /security-services/{security_service_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: security_service:detail
+  deprecated_since: null
+  description: Get details of all security services.
+  name: security_service:detail
+  operations:
+  - method: GET
+    path: /security-services/detail?{query}
+  - method: GET
+    path: /security-services/detail
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: security_service:index
+  deprecated_since: null
+  description: Get all security services.
+  name: security_service:index
+  operations:
+  - method: GET
+    path: /security-services
+  - method: GET
+    path: /security-services?{query}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: security_service:update
+  deprecated_since: null
+  description: Update a security service.
+  name: security_service:update
+  operations:
+  - method: PUT
+    path: /security-services/{security_service_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: security_service:delete
+  deprecated_since: null
+  description: Delete a security service.
+  name: security_service:delete
+  operations:
+  - method: DELETE
+    path: /security-services/{security_service_id}
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: security_service:get_all_security_services
+  deprecated_since: null
+  description: Get security services of all projects.
+  name: security_service:get_all_security_services
+  operations:
+  - method: GET
+    path: /security-services?all_tenants=1
+  - method: GET
+    path: /security-services/detail?all_tenants=1
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_export_location:index
+  deprecated_since: null
+  description: Get all export locations of a given share.
+  name: share_export_location:index
+  operations:
+  - method: GET
+    path: /shares/{share_id}/export_locations
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_export_location:show
+  deprecated_since: null
+  description: Get details about the requested export location.
+  name: share_export_location:show
+  operations:
+  - method: GET
+    path: /shares/{share_id}/export_locations/{export_location_id}
+  scope_types:
+  - system
+  - project
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_instance:index
+  deprecated_since: null
+  description: Get all share instances.
+  name: share_instance:index
+  operations:
+  - method: GET
+    path: /share_instances
+  - method: GET
+    path: /share_instances?{query}
+  scope_types:
+  - system
+- check_str: rule:system-reader
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_instance:show
+  deprecated_since: null
+  description: Get details of a share instance.
+  name: share_instance:show
+  operations:
+  - method: GET
+    path: /share_instances/{share_instance_id}
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_instance:force_delete
+  deprecated_since: null
+  description: Force delete a share instance.
+  name: share_instance:force_delete
+  operations:
+  - method: POST
+    path: /share_instances/{share_instance_id}/action
+  scope_types:
+  - system
+- check_str: rule:system-admin
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:admin_api
+    name: share_instance:reset_status
+  deprecated_since: null
+  description: Reset share instance's status.
+  name: share_instance:reset_status
+  operations:
+  - method: POST
+    path: /share_instances/{share_instance_id}/action
+  scope_types:
+  - system
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: message:get
+  deprecated_since: null
+  description: Get details of a given message.
+  name: message:get
+  operations:
+  - method: GET
+    path: /messages/{message_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: message:get_all
+  deprecated_since: null
+  description: Get all messages.
+  name: message:get_all
+  operations:
+  - method: GET
+    path: /messages
+  - method: GET
+    path: /messages?{query}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: message:delete
+  deprecated_since: null
+  description: Delete a message.
+  name: message:delete
+  operations:
+  - method: DELETE
+    path: /messages/{message_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_access_rule:get
+  deprecated_since: null
+  description: Get details of a share access rule.
+  name: share_access_rule:get
+  operations:
+  - method: GET
+    path: /share-access-rules/{share_access_id}
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-reader) or (rule:project-reader)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_access_rule:index
+  deprecated_since: null
+  description: List access rules of a given share.
+  name: share_access_rule:index
+  operations:
+  - method: GET
+    path: /share-access-rules?share_id={share_id}&key1=value1&key2=value2
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_access_metadata:update
+  deprecated_since: null
+  description: Set metadata for a share access rule.
+  name: share_access_metadata:update
+  operations:
+  - method: PUT
+    path: /share-access-rules/{share_access_id}/metadata
+  scope_types:
+  - system
+  - project
+- check_str: (rule:system-admin) or (rule:project-member)
+  deprecated_reason: null
+  deprecated_rule:
+    check_str: rule:default
+    name: share_access_metadata:delete
+  deprecated_since: null
+  description: Delete metadata for a share access rule.
+  name: share_access_metadata:delete
+  operations:
+  - method: DELETE
+    path: /share-access-rules/{share_access_id}/metadata/{key}
+  scope_types:
+  - system
+  - project
