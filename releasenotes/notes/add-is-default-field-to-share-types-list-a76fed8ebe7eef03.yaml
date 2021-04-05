@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added ‘is_default’ field to share types list. the Is_default Column will
+    show 'Yes' if the share type is default share type.

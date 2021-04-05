@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.45"
+MANILA_VERSION = "2.46"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
