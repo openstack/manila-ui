@@ -24,7 +24,6 @@ from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
-from manila_ui.api import network
 from manila_ui.dashboards.project.share_networks import forms as sn_forms
 from manila_ui.dashboards.project.share_networks import tables as sn_tables
 from manila_ui.dashboards.project.share_networks import tabs as sn_tabs
@@ -123,12 +122,6 @@ class Detail(tabs.TabView):
                 except (
                     neutron.neutron_client.exceptions.NeutronClientException):
                     share_net.neutron_subnet = _("Unknown")
-            else:
-                try:
-                    share_net.nova_net = network.network_get(
-                        self.request, share_net.nova_net_id).name_or_id
-                except Exception:
-                    share_net.nova_net = _("Unknown")
 
             share_net.sec_services = (
                 manila.share_network_security_service_list(
