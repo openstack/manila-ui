@@ -57,27 +57,18 @@ class Create(forms.SelfHandlingForm):
                 self.fields[subnet_field_name].choices = [
                     (' ', ' ')] + [(choice.id, choice.name_or_id)
                                    for choice in subnet_choices]
-        else:
-            self.fields['nova_net_id'] = forms.ChoiceField(
-                choices=[(' ', ' ')] + [(choice.id, choice.name_or_id)
-                                        for choice in net_choices],
-                label=_("Nova Net"), widget=forms.Select(
-                    attrs={'class': 'switched', 'data-slug': 'net'}))
 
     def handle(self, request, data):
         try:
             send_data = {'name': data['name']}
             if data['description']:
                 send_data['description'] = data['description']
-            share_net_id = data.get('neutron_net_id', data.get('nova_net_id'))
-            share_net_id = share_net_id.strip()
+            share_net_id = data.get('neutron_net_id')
             if self.neutron_enabled and share_net_id:
-                send_data['neutron_net_id'] = share_net_id
+                send_data['neutron_net_id'] = share_net_id.strip()
                 subnet_key = 'subnet-choices-%s' % share_net_id
                 if subnet_key in data:
                     send_data['neutron_subnet_id'] = data[subnet_key]
-            elif not self.neutron_enabled and share_net_id:
-                send_data['nova_net_id'] = data['nova_net_id']
             share_network = manila.share_network_create(request, **send_data)
             messages.success(request, _('Successfully created share'
                                         ' network: %s') % send_data['name'])
