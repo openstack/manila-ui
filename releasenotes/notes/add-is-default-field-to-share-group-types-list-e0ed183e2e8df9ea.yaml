@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Adds ‘is_default’ field to share group types list. the Is_default Column
+    will show 'Yes' if the share group type is default share group type.
