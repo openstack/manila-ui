@@ -22,6 +22,7 @@ from horizon import messages
 from horizon.utils import memoized
 
 from manila_ui.api import manila
+from manila_ui.dashboards import utils
 
 
 class CreateShareGroupForm(forms.SelfHandlingForm):
@@ -126,7 +127,9 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                 }),
                 required=True)
             self.fields["sgt"].choices = (
-                [("", "")] + [(sgt.id, sgt.name) for sgt in share_group_types])
+                [("", "")] + [(utils.transform_dashed_name(sgt.id), sgt.name)
+                              for sgt in share_group_types]
+            )
 
             # NOTE(vponomaryov): create separate set of available share types
             # for each of share group types.
@@ -144,8 +147,8 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                         widget=forms.fields.SelectWidget(attrs={
                             "class": "switched",
                             "data-switch-on": "sgt",
-                            "data-sgt-%s" % sgt.id: _(
-                                "Share Types (one available)"),
+                            "data-sgt-%s" % utils.transform_dashed_name(
+                                sgt.id): _("Share Types (one available)"),
                         }),
                         required=True)
                 else:
@@ -157,8 +160,8 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                             "style": "max-height: %spx;" % height,
                             "class": "switched",
                             "data-switch-on": "sgt",
-                            "data-sgt-%s" % sgt.id: _(
-                                "Share Types (multiple available)"),
+                            "data-sgt-%s" % utils.transform_dashed_name(
+                                sgt.id): _("Share Types (multiple available)"),
                         }),
                         required=False)
                     st_field.initial = st_choices[0]
@@ -220,7 +223,7 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                 request,
                 name=data['name'],
                 description=data['description'],
-                share_group_type=data['sgt'],
+                share_group_type=utils.transform_dashed_name(data['sgt']),
                 share_types=None if snapshot_id else data.get('share_types'),
                 share_network=(
                     None if snapshot_id else data.get('share_network')),

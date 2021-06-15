@@ -23,6 +23,7 @@ from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
 from manila_ui.api import network
+from manila_ui.dashboards import utils
 
 
 class Create(forms.SelfHandlingForm):
@@ -36,20 +37,24 @@ class Create(forms.SelfHandlingForm):
         net_choices = network.network_list(request)
         if self.neutron_enabled:
             self.fields['neutron_net_id'] = forms.ChoiceField(
-                choices=[(' ', ' ')] + [(choice.id, choice.name_or_id)
-                                        for choice in net_choices],
+                choices=[(' ', ' ')] +
+                        [(utils.transform_dashed_name(choice.id),
+                          choice.name_or_id) for choice in net_choices],
                 label=_("Neutron Net"), widget=forms.Select(
                     attrs={'class': 'switchable', 'data-slug': 'net'}))
             for net in net_choices:
                 # For each network create switched choice field with
                 # the its subnet choices
-                subnet_field_name = 'subnet-choices-%s' % net.id
+                subnet_field_name = (
+                    'subnet-choices-%s' % utils.transform_dashed_name(net.id)
+                )
                 subnet_field = forms.ChoiceField(
                     choices=(), label=_("Neutron Subnet"),
                     widget=forms.Select(attrs={
                         'class': 'switched',
                         'data-switch-on': 'net',
-                        'data-net-%s' % net.id: _("Neutron Subnet")
+                        'data-net-%s' % utils.transform_dashed_name(net.id):
+                            _("Neutron Subnet")
                     }))
                 self.fields[subnet_field_name] = subnet_field
                 subnet_choices = neutron.subnet_list(
@@ -63,10 +68,11 @@ class Create(forms.SelfHandlingForm):
             send_data = {'name': data['name']}
             if data['description']:
                 send_data['description'] = data['description']
-            share_net_id = data.get('neutron_net_id')
-            if self.neutron_enabled and share_net_id:
-                send_data['neutron_net_id'] = share_net_id.strip()
-                subnet_key = 'subnet-choices-%s' % share_net_id
+            neutron_net_id = data.get('neutron_net_id')
+            if self.neutron_enabled and neutron_net_id:
+                send_data['neutron_net_id'] = utils.transform_dashed_name(
+                    neutron_net_id.strip())
+                subnet_key = 'subnet-choices-%s' % neutron_net_id
                 if subnet_key in data:
                     send_data['neutron_subnet_id'] = data[subnet_key]
             share_network = manila.share_network_create(request, **send_data)

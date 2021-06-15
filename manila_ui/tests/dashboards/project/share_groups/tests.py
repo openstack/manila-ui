@@ -18,6 +18,7 @@ from django.urls import reverse
 from unittest import mock
 
 from manila_ui.api import manila as api_manila
+from manila_ui.dashboards import utils
 from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 
@@ -264,9 +265,11 @@ class ShareGroupTests(test.TestCase):
             'method': 'CreateShareGroupForm',
             'name': 'fake_sg_name',
             'description': 'fake SG description',
-            'sgt': test_data.share_group_type.id,
-            'share-type-choices-%s' % test_data.share_group_type.id: (
-                test_data.share_group_type.share_types[0]),
+            'sgt': utils.transform_dashed_name(test_data.share_group_type.id),
+            'share-type-choices-%s' % utils.transform_dashed_name(
+                test_data.share_group_type.id): (
+                    test_data.share_group_type.share_types[0]
+            ),
             'availability_zone': '',
             'share_network': test_data.inactive_share_network.id,
             'snapshot': '',
