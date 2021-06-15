@@ -111,3 +111,14 @@ def calculate_longest_str_size(str_list):
         if current_size > size:
             size = current_size
     return size
+
+
+def transform_dashed_name(name):
+    """Add or remove unicode text separators & transformations for hyphens."""
+    if not name:
+        return
+    if '-' in name:
+        name = '__ಠ__' + name.replace('-', '__u2010') + '__ಠ__'
+    elif '__u2010' in name:
+        name = name.replace('__u2010', '-').strip('__ಠ__')
+    return name
