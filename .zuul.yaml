@@ -2,7 +2,6 @@
     templates:
       - check-requirements
       - openstack-cover-jobs-horizon
-      - openstack-lower-constraints-jobs-horizon
       - openstack-python-jobs-horizon
       - openstack-python35-jobs-horizon
       - publish-openstack-docs-pti
@@ -12,14 +11,10 @@
         - manila-ui-integration-tests:
             voting: false
         - horizon-openstack-tox-python3-django111
-        - horizon-openstack-tox-py27dj19
-        - horizon-openstack-tox-py27dj110
     gate:
       jobs:
         - manila-ui-integration-tests
         - horizon-openstack-tox-python3-django111
-        - horizon-openstack-tox-py27dj19
-        - horizon-openstack-tox-py27dj110
 
 - job:
     name: manila-ui-integration-tests
