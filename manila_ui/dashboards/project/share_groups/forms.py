@@ -139,7 +139,10 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                     [(st.id, st.name)
                      for st in share_types if st.id in sgt.share_types])
                 amount_of_choices = len(st_choices)
-                st_field_name = self.st_field_name_prefix + sgt.id
+                st_field_name = (
+                    self.st_field_name_prefix +
+                    utils.transform_dashed_name(sgt.id)
+                )
                 if amount_of_choices < 2:
                     st_field = forms.ChoiceField(
                         label=_("Share Types"),
