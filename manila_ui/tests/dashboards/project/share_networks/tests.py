@@ -20,6 +20,7 @@ from openstack_dashboard import api
 
 from manila_ui.api import manila as api_manila
 from manila_ui.api import network as api_manila_network
+from manila_ui.dashboards import utils
 from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 
@@ -36,10 +37,12 @@ class ShareNetworksViewTests(test.TestCase):
             'name': 'new_share_network',
             'description': 'This is test share network',
             'method': 'CreateForm',
-            'neutron_net_id': neutron_net_id,
+            'neutron_net_id': utils.transform_dashed_name(neutron_net_id),
         }
         for net in self.networks.list():
-            formData['subnet-choices-%s' % net.id] = net.subnets[0].id
+            sanitized_net_id = utils.transform_dashed_name(net.id)
+            subnet_choices_field = 'subnet-choices-%s' % sanitized_net_id
+            formData[subnet_choices_field] = net.subnets[0].id
         self.mock_object(
             api.neutron, "subnet_list",
             mock.Mock(return_value=self.subnets.list()))
@@ -52,9 +55,11 @@ class ShareNetworksViewTests(test.TestCase):
 
         self.client.post(url, formData)
 
-        api_manila.share_network_create.assert_called_with(
+        sanitized_neutron_net_field = formData[
+            'subnet-choices-%s' % utils.transform_dashed_name(neutron_net_id)]
+        api_manila.share_network_create.assert_called_once_with(
             mock.ANY, name=formData['name'], neutron_net_id=neutron_net_id,
-            neutron_subnet_id=formData['subnet-choices-%s' % neutron_net_id],
+            neutron_subnet_id=sanitized_neutron_net_field,
             description=formData['description'])
         api_manila_network.network_list.assert_called_once_with(mock.ANY)
         api.neutron.subnet_list.assert_has_calls([

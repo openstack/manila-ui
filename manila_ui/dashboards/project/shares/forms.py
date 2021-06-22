@@ -58,7 +58,10 @@ class CreateForm(forms.SelfHandlingForm):
         share_networks = manila.share_network_list(request)
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (
-            [("", "")] + [(st.name, st.name) for st in share_types])
+            [("", "")] +
+            [(utils.transform_dashed_name(st.name), st.name)
+             for st in share_types]
+        )
 
         availability_zones = manila.availability_zone_list(request)
         self.fields['availability_zone'].choices = (
@@ -83,14 +86,18 @@ class CreateForm(forms.SelfHandlingForm):
                 sn_choices = (
                     [('', '')] +
                     [(sn.id, sn.name or sn.id) for sn in share_networks])
-                sn_field_name = self.sn_field_name_prefix + st.name
+                sn_field_name = (
+                    self.sn_field_name_prefix +
+                    utils.transform_dashed_name(st.name)
+                )
                 sn_field = forms.ChoiceField(
                     label=_("Share Network"), required=True,
                     choices=sn_choices,
                     widget=forms.Select(attrs={
                         'class': 'switched',
                         'data-switch-on': 'sharetype',
-                        'data-sharetype-%s' % st.name: _("Share Network"),
+                        'data-sharetype-%s' % utils.transform_dashed_name(
+                            st.name): _("Share Network"),
                     }))
                 self.fields[sn_field_name] = sn_field
 
@@ -176,20 +183,19 @@ class CreateForm(forms.SelfHandlingForm):
         cleaned_data = super(CreateForm, self).clean()
         form_errors = list(self.errors)
 
-        # NOTE(vponomaryov): skip errors for share-network fields that are not
-        # related to chosen share type.
-        for error in form_errors:
-            st_name = error.split(self.sn_field_name_prefix)[-1]
-            chosen_st = cleaned_data.get('share_type')
-            if (error.startswith(self.sn_field_name_prefix) and
-                    st_name != chosen_st):
-                cleaned_data[error] = 'Not set'
-                self.errors.pop(error, None)
+        chosen_share_type = cleaned_data.get('share_type')
+        if chosen_share_type:
+            # NOTE(vponomaryov): skip errors for share-network fields that are
+            # not related to chosen share type.
+            for error in form_errors:
+                st_name = error.split(self.sn_field_name_prefix)[-1]
+                if (error.startswith(self.sn_field_name_prefix) and
+                        st_name != chosen_share_type):
+                    cleaned_data[error] = 'Not set'
+                    self.errors.pop(error, None)
 
-        share_type = cleaned_data.get('share_type')
-        if share_type:
             cleaned_data['share_network'] = cleaned_data.get(
-                self.sn_field_name_prefix + share_type)
+                self.sn_field_name_prefix + cleaned_data.get('share_type'))
 
         return cleaned_data
 
@@ -230,7 +236,7 @@ class CreateForm(forms.SelfHandlingForm):
                 proto=data['share_proto'],
                 share_network=share_network,
                 snapshot_id=snapshot_id,
-                share_type=data['share_type'],
+                share_type=utils.transform_dashed_name(data['share_type']),
                 is_public=is_public,
                 metadata=metadata,
                 availability_zone=data['availability_zone'],

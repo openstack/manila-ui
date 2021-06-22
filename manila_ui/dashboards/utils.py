@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -15,6 +16,7 @@
 from django.forms import ValidationError
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+import six
 
 
 html_escape_table = {
@@ -111,3 +113,15 @@ def calculate_longest_str_size(str_list):
         if current_size > size:
             size = current_size
     return size
+
+
+def transform_dashed_name(name):
+    """Add or remove unicode text separators & transformations for hyphens."""
+    if not name:
+        return
+    separator = u'__ಠ__' if six.PY3 else '____'
+    if '-' in name:
+        name = separator + name.replace('-', '__u2010') + separator
+    elif '__u2010' in name:
+        name = name.replace('__u2010', '-').strip(separator)
+    return name
