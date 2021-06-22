@@ -1,0 +1,7 @@
+---
+upgrade:
+  - |
+    Support for nova networking has been removed. Manila and the
+    manilaclient sdk dropped support for nova network in the Ocata release
+    (Feb 2017). So this should not have an impact on deployers running later
+    releases, and this note is only informational.

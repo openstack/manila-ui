@@ -20,7 +20,6 @@ from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
-from manila_ui.api import network
 
 
 DELETABLE_STATES = ("INACTIVE", "ERROR")
@@ -91,9 +90,6 @@ class UpdateRow(tables.Row):
                 request, share_net.neutron_net_id).name_or_id
             share_net.neutron_subnet = neutron.subnet_get(
                 request, share_net.neutron_subnet_id).name_or_id
-        else:
-            share_net.nova_net = network.network_get(
-                request, share_net.nova_net_id).name_or_id
         return share_net
 
 
