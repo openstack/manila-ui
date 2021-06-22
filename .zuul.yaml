@@ -11,10 +11,12 @@
       jobs:
         - openstack-tox-cover:
             voting: false
-        - manila-ui-integration-tests
+        - manila-ui-integration-tests:
+            voting: false
     gate:
       jobs:
-        - manila-ui-integration-tests
+        - manila-ui-integration-tests:
+            voting: false
 
 - job:
     name: manila-ui-integration-tests
