@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Visibility of "switchable" fields in the share creation form involving
+    share types that had hyphens in their names is now fixed. See `Launchpad
+    bug #1931641 <https://launchpad.net/bugs/1931641>`_ for more details.

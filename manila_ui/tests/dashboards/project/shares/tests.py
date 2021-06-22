@@ -92,6 +92,11 @@ class ShareViewTests(test.APITestCase):
         share = test_data.share
         share_net = test_data.active_share_network
         share_nets = [share_net]
+        fake_share_type = mock.Mock()
+        fake_share_type.name = 'fake-type'
+        fake_share_type.id = '5f3f4705-153d-4864-9930-a01c6bbea0bb'
+        fake_share_type.get_keys = mock.Mock(return_value={
+            'driver_handles_share_servers': 'True'})
         formData = {
             'name': u'new_share',
             'description': u'This is test share',
@@ -99,8 +104,9 @@ class ShareViewTests(test.APITestCase):
             'share_network': share_net.id,
             'size': 1,
             'share_proto': u'NFS',
-            'share_type': 'fake',
-            'share-network-choices-fake': share_net.id,
+            'share_type': utils.transform_dashed_name('fake-type'),
+            'share-network-choices-%s' % utils.transform_dashed_name(
+                'fake-type'): share_net.id,
             'availability_zone': 'fake_az',
         }
 
@@ -114,7 +120,7 @@ class ShareViewTests(test.APITestCase):
             mock.Mock(return_value=share_nets))
         self.mock_object(
             api_manila, "share_type_list",
-            mock.Mock(return_value=[self.fake_share_type, ]))
+            mock.Mock(return_value=[fake_share_type, ]))
 
         res = self.client.post(url, formData)
 
@@ -124,7 +130,7 @@ class ShareViewTests(test.APITestCase):
             description=formData['description'], proto=formData['share_proto'],
             snapshot_id=None, is_public=False,
             share_group_id=None, share_network=share_net.id,
-            metadata={}, share_type=formData['share_type'],
+            metadata={}, share_type='fake-type',
             availability_zone=formData['availability_zone'])
         api_manila.share_snapshot_list.assert_called_once_with(mock.ANY)
         api_manila.share_network_list.assert_called_once_with(mock.ANY)
