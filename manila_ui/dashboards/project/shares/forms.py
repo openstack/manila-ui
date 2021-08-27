@@ -135,12 +135,12 @@ class CreateForm(forms.SelfHandlingForm):
                 self.fields['size'].initial = snapshot.size
                 self.fields['snapshot'].choices = ((snapshot.id, snapshot),)
                 try:
-                    # Set the share type from the original share
+                    # Set the share type and az from the original share
                     orig_share = manila.share_get(request, snapshot.share_id)
-                    # NOTE(vponomaryov): we should use share type name, not ID,
-                    # because we use names in our choices above.
                     self.fields['share_type'].initial = (
                         orig_share.share_type_name)
+                    self.fields['availability_zone'].initial = (
+                        orig_share.availability_zone)
                 except Exception:
                     pass
                 self.fields['size'].help_text = _(
@@ -237,7 +237,7 @@ class CreateForm(forms.SelfHandlingForm):
                 share_type=utils.transform_dashed_name(data['share_type']),
                 is_public=is_public,
                 metadata=metadata,
-                availability_zone=data['availability_zone'],
+                availability_zone=data.get('availability_zone') or None,
                 share_group_id=data.get('sg') or None,
             )
             message = _('Creating share "%s"') % data['name']
