@@ -394,7 +394,8 @@ class UpdateRuleMetadataForm(forms.SelfHandlingForm):
             self.api_error(e.messages[0])
             return False
         except Exception:
-            redirect = reverse("horizon:project:shares:manage_rules")
+            redirect = reverse("horizon:project:shares:manage_rules",
+                               args=[self.initial['share_id']])
             exceptions.handle(request,
                               _('Unable to update rule metadata.'),
                               redirect=redirect)

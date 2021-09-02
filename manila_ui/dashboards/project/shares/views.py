@@ -267,7 +267,8 @@ class UpdateRuleMetadataView(forms.ModalFormView):
                 self._object = manila.share_rule_get(self.request, rule_id)
             except Exception:
                 msg = _('Unable to retrieve share access rule.')
-                url = reverse('horizon:project:shares:manage_rules')
+                url = reverse('horizon:project:shares:manage_rules',
+                              args=[self.initial['share_id']])
                 exceptions.handle(self.request, msg, redirect=url)
         return self._object
 
@@ -280,20 +281,27 @@ class UpdateRuleMetadataView(forms.ModalFormView):
 
     def get_initial(self):
         rule = self.get_object()
-        return {'rule_id': self.kwargs["rule_id"],
-                'metadata': rule.metadata}
+        rule_id = self.kwargs["rule_id"]
+        share_id = self.get_share_id(rule_id)
+        return {'rule_id': rule_id,
+                'metadata': rule.metadata,
+                'share_id': share_id}
+
+    def get_success_url(self):
+        rule_id = self.kwargs["rule_id"]
+        share_id = self.get_share_id(rule_id)
+        return reverse("horizon:project:shares:manage_rules", args=[share_id])
 
     # To redirect to Rules Table page, after updating the rule
     # metadata. Loop is to get the share_id neccessary to display
     # Rules Table page.
-    def get_success_url(self):
+    def get_share_id(self, rule_id):
         shares = manila.share_list(self.request)
         for share in shares:
             rules = manila.share_rules_list(self.request, share.id)
             for rule in rules:
-                if rule.id == self.kwargs["rule_id"]:
-                    return reverse("horizon:project:shares:manage_rules",
-                                   args=[share.id])
+                if rule.id == rule_id:
+                    return share.id
 
 
 class ManageRulesView(tables.DataTableView):

@@ -361,10 +361,17 @@ class ShareViewTests(test.APITestCase):
 
     def test_update_share_rule_metadata_get(self):
         rule = test_data.user_rule
+        shares_list = test_data.shares_list
+        rules = test_data.share_access_list
         url = reverse(
             'horizon:project:shares:update_rule_metadata', args=[rule.id])
         self.mock_object(
+            api_manila, "share_rules_list", mock.Mock(return_value=rules))
+        self.mock_object(
             api_manila, "share_rule_get", mock.Mock(return_value=rule))
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(
+                return_value=shares_list))
         res = self.client.get(url)
         api_manila.share_rule_get.assert_called_once_with(mock.ANY, rule.id)
         self.assertNoMessages()
