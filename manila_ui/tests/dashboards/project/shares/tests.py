@@ -297,7 +297,7 @@ class ShareViewTests(test.APITestCase):
             [mock.call(mock.ANY, self.share.id) for i in (1, 2)])
 
     def test_list_rules(self):
-        rules = [test_data.ip_rule, test_data.user_rule, test_data.cephx_rule]
+        rules = test_data.share_access_list
         self.mock_object(
             api_manila, "share_rules_list", mock.Mock(return_value=rules))
         url = reverse(
@@ -328,6 +328,7 @@ class ShareViewTests(test.APITestCase):
             'method': 'CreateForm',
             'access_to': 'someuser',
             'access_level': 'rw',
+            'metadata': {},
         }
 
         res = self.client.post(url, formData)
@@ -335,7 +336,8 @@ class ShareViewTests(test.APITestCase):
         api_manila.share_allow.assert_called_once_with(
             mock.ANY, self.share.id, access_type=formData['access_type'],
             access_to=formData['access_to'],
-            access_level=formData['access_level'])
+            access_level=formData['access_level'],
+            metadata=formData['metadata'])
         self.assertRedirectsNoFollow(
             res,
             reverse('horizon:project:shares:manage_rules',
@@ -356,6 +358,43 @@ class ShareViewTests(test.APITestCase):
         api_manila.share_deny.assert_called_with(
             mock.ANY, self.share.id, rule.id)
         api_manila.share_rules_list.assert_called_with(mock.ANY, self.share.id)
+
+    def test_update_share_rule_metadata_get(self):
+        rule = test_data.user_rule
+        url = reverse(
+            'horizon:project:shares:update_rule_metadata', args=[rule.id])
+        self.mock_object(
+            api_manila, "share_rule_get", mock.Mock(return_value=rule))
+        res = self.client.get(url)
+        api_manila.share_rule_get.assert_called_once_with(mock.ANY, rule.id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(
+            res, 'project/shares/update_rule_metadata.html')
+
+    def test_update_share_rule_metadata_post(self):
+        rule = test_data.user_rule
+        data = {
+            'metadata': 'aaa=ccc',
+        }
+        form_data = {
+            'metadata': {'aaa': 'ccc'},
+        }
+        url = reverse(
+            'horizon:project:shares:update_rule_metadata', args=[rule.id])
+        self.mock_object(
+            api_manila, "share_list", mock.Mock(
+                return_value=test_data.shares_list))
+        self.mock_object(
+            api_manila, "share_rules_list", mock.Mock(
+                return_value=test_data.share_access_list))
+        self.mock_object(
+            api_manila, "share_rule_get", mock.Mock(return_value=rule))
+        self.mock_object(api_manila, "share_rule_set_metadata")
+
+        self.client.post(url, data)
+
+        api_manila.share_rule_set_metadata.assert_called_once_with(
+            mock.ANY, rule, form_data['metadata'])
 
     def test_resize_share_get(self):
         share = test_data.share

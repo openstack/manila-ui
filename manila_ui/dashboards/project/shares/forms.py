@@ -334,15 +334,29 @@ class AddRule(forms.SelfHandlingForm):
         choices=(('rw', 'read-write'), ('ro', 'read-only'),))
     access_to = forms.CharField(
         label=_("Access To"), max_length="255", required=True)
+    metadata = forms.CharField(
+        label=_("Metadata"), required=False,
+        widget=forms.Textarea(attrs={'rows': 4}))
 
     def handle(self, request, data):
         share_id = self.initial['share_id']
+        metadata = {}
+        try:
+            set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+            if unset_list:
+                msg = _("Expected only pairs of key=value.")
+                raise ValidationError(message=msg)
+            metadata = set_dict
+        except ValidationError as e:
+            self.api_error(e.messages[0])
+            return False
         try:
             manila.share_allow(
                 request, share_id,
                 access_to=data['access_to'],
                 access_type=data['access_type'],
-                access_level=data['access_level'])
+                access_level=data['access_level'],
+                metadata=metadata)
             message = _('Creating rule for "%s"') % data['access_to']
             messages.success(request, message)
             return True
@@ -351,6 +365,39 @@ class AddRule(forms.SelfHandlingForm):
                                args=[self.initial['share_id']])
             exceptions.handle(
                 request, _('Unable to add rule.'), redirect=redirect)
+
+
+class UpdateRuleMetadataForm(forms.SelfHandlingForm):
+    metadata = forms.CharField(widget=forms.Textarea,
+                               label=_("Metadata"), required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateRuleMetadataForm, self).__init__(*args, **kwargs)
+        rule_metadata = utils.metadata_to_str(
+            self.initial["metadata"]
+        ).replace('<br/>', '\r\n')
+        self.initial["metadata"] = rule_metadata
+
+    def handle(self, request, data):
+        rule_id = self.initial['rule_id']
+        try:
+            rule = manila.share_rule_get(self.request, rule_id)
+            set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+            if set_dict:
+                manila.share_rule_set_metadata(request, rule, set_dict)
+            if unset_list:
+                manila.share_rule_unset_metadata(request, rule, unset_list)
+            message = _('Updating share access rule metadata ')
+            messages.success(request, message)
+            return True
+        except ValidationError as e:
+            self.api_error(e.messages[0])
+            return False
+        except Exception:
+            redirect = reverse("horizon:project:shares:manage_rules")
+            exceptions.handle(request,
+                              _('Unable to update rule metadata.'),
+                              redirect=redirect)
 
 
 class ResizeForm(forms.SelfHandlingForm):

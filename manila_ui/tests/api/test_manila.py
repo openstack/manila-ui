@@ -103,9 +103,42 @@ class ManilaApiTests(base.APITestCase):
         result = api.share_rules_list(self.request, self.id)
 
         self.assertEqual(
-            self.manilaclient.shares.access_list.return_value, result)
+            self.manilaclient.share_access_rules.
+            access_list.return_value, result)
 
-        self.manilaclient.shares.access_list.assert_called_once_with(self.id)
+        self.manilaclient.share_access_rules.\
+            access_list.assert_called_once_with(self.id)
+
+    def test_share_rule_get(self):
+        result = api.share_rule_get(self.request, self.id)
+
+        self.assertEqual(
+            self.manilaclient.share_access_rules.get.
+            return_value, result)
+
+        self.manilaclient.share_access_rules.get.\
+            assert_called_once_with(self.id)
+
+    def test_share_rule_set_metadata(self):
+        fake_metadata = {
+            "aim": "testing",
+            "project": "test",
+        }
+
+        api.share_rule_set_metadata(
+            self.request, self.id, fake_metadata)
+
+        self.manilaclient.share_access_rules.\
+            set_metadata.assert_called_once_with(self.id, fake_metadata)
+
+    def test_share_rule_unset_metadata(self):
+        fake_key = "test"
+
+        api.share_rule_unset_metadata(
+            self.request, self.id, fake_key)
+
+        self.manilaclient.share_access_rules.\
+            unset_metadata.assert_called_once_with(self.id, fake_key)
 
     def test_list_share_export_locations(self):
         api.share_export_location_list(self.request, self.id)
@@ -120,19 +153,22 @@ class ManilaApiTests(base.APITestCase):
         client.share_instance_export_locations.list.assert_called_once_with(
             self.id)
 
-    @ddt.data(("ip", "10.0.0.13", "rw"), ("ip", "10.0.0.13", None),
-              ("ip", "10.0.0.13", "ro"),
-              ("user", "demo", "rw"),
-              ("user", "demo", None), ("user", "demo", "ro"),
-              ("cephx", "alice", "rw"),
-              ("cephx", "alice", None), ("cephx", "alice", "ro"))
+    @ddt.data(("ip", "10.0.0.13", "rw", {'testkey': "testval"}),
+              ("ip", "10.0.0.13", None, None),
+              ("ip", "10.0.0.13", "ro", {'key1': "val1"}),
+              ("user", "demo", "rw", {'key2': "val2"}),
+              ("user", "demo", None, None),
+              ("user", "demo", "ro", None),
+              ("cephx", "alice", "rw", {'test': "some"}),
+              ("cephx", "alice", None, None),
+              ("cephx", "alice", "ro", None))
     @ddt.unpack
-    def test_share_allow(self, access_type, access_to, access_level):
+    def test_share_allow(self, access_type, access_to, access_level, metadata):
         api.share_allow(self.request, self.id, access_type,
-                        access_to, access_level)
+                        access_to, access_level, metadata)
 
         self.manilaclient.shares.allow.assert_called_once_with(
-            self.id, access_type, access_to, access_level)
+            self.id, access_type, access_to, access_level, metadata)
 
     def test_share_deny(self):
         fake_rule_id = "fake_rule_id"

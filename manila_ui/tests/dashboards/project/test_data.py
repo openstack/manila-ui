@@ -11,10 +11,10 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-import collections
 
 from manilaclient.v2 import messages
 from manilaclient.v2 import security_services
+from manilaclient.v2 import share_access_rules
 from manilaclient.v2 import share_export_locations
 from manilaclient.v2 import share_group_snapshots
 from manilaclient.v2 import share_group_types
@@ -101,6 +101,8 @@ other_share = shares.Share(
      'availability_zone': 'Test AZ',
      'replication_type': 'readable',
      'mount_snapshot_support': False})
+
+shares_list = [share, nameless_share, other_share]
 
 share_replica = share_replicas.ShareReplica(
     share_replicas.ShareReplicaManager(FakeAPIClient),
@@ -207,17 +209,46 @@ user_snapshot_export_locations = [
          'path': '1.1.1.2:/not/too/long/path/to/user/share_snapshot'}
     )
 ]
+ip_rule = share_access_rules.ShareAccessRule(
+    share_access_rules.ShareAccessRuleManager(FakeAPIClient),
+    {'id': 'ca8b755c-fe13-497f-81d0-fd2f13a30a78',
+     'access_level': 'rw',
+     'access_to': '1.1.1.1',
+     'access_type': 'ip',
+     'state': 'active',
+     'access_key': '',
+     'created_at': '2021-03-03T14:29:41.000000',
+     'updated_at': '',
+     "metadata": {},
+     })
 
-rule = collections.namedtuple('Access', ['access_type', 'access_to', 'state',
-                                         'id', 'access_level', 'access_key'])
+user_rule = share_access_rules.ShareAccessRule(
+    share_access_rules.ShareAccessRuleManager(FakeAPIClient),
+    {'id': '0837072-c49e-11e3-bd64-60a44c371189',
+     'access_level': 'rw',
+     'access_to': 'someuser',
+     'access_type': 'user',
+     'state': 'active',
+     'access_key': '',
+     'created_at': '2021-03-03T14:29:41.000000',
+     'updated_at': '',
+     'metadata': {'abc': 'ddd'},
+     })
 
-user_rule = rule('user', 'someuser', 'active',
-                 '10837072-c49e-11e3-bd64-60a44c371189', 'rw', '')
-ip_rule = rule('ip', '1.1.1.1', 'active',
-               '2cc8e2f8-c49e-11e3-bd64-60a44c371189', 'rw', '')
-cephx_rule = rule('cephx', 'alice', 'active',
-                  '235481bc-1a84-11e6-9666-68f728a0492e', 'rw',
-                  'AQAdFCNYDCapMRAANuK/CiEZbog2911a+t5dcQ==')
+cephx_rule = share_access_rules.ShareAccessRule(
+    share_access_rules.ShareAccessRuleManager(FakeAPIClient),
+    {'id': '235481bc-1a84-11e6-9666-68f728a0492e',
+     'access_level': 'rw',
+     'access_to': 'alice',
+     'access_type': 'cephx',
+     'state': 'active',
+     'access_key': 'AQAdFCNYDCapMRAANuK/CiEZbog2911a+t5dcQ==',
+     'created_at': '2021-03-03T14:29:41.000000',
+     'updated_at': '',
+     'metadata': {'test': 'true'},
+     })
+
+share_access_list = [user_rule, cephx_rule, ip_rule]
 
 snapshot = share_snapshots.ShareSnapshot(
     share_snapshots.ShareSnapshotManager(FakeAPIClient),

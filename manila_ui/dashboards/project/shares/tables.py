@@ -347,16 +347,30 @@ class DeleteRule(tables.DeleteAction):
             exceptions.handle(request, msg)
 
 
+class EditRuleMetadata(tables.LinkAction):
+    name = "update_rule_metadata"
+    verbose_name = _("Edit Rule Metadata")
+    url = "horizon:project:shares:update_rule_metadata"
+    classes = ("ajax-modal", "btn-create")
+    policy_rules = (("share_access_metadata", "share_access_metadata:update"),)
+
+    def get_policy_target(self, request, datum=None):
+        project_id = None
+        if datum:
+            project_id = getattr(datum, "os-share-tenant-attr:tenant_id", None)
+        return {"project_id": project_id}
+
+    def allowed(self, request, rule=None):
+        return rule.state == "active"
+
+
 class UpdateRuleRow(tables.Row):
     ajax = True
 
     def get_data(self, request, rule_id):
-        rules = manila.share_rules_list(request, self.table.kwargs['share_id'])
-        if rules:
-            for rule in rules:
-                if rule.id == rule_id:
-                    return rule
-        raise exceptions.NotFound
+        rule = manila.share_rule_get(request, rule_id)
+        rule.metadata = utils.metadata_to_str(rule.metadata)
+        return rule
 
 
 class RulesTable(tables.DataTable):
@@ -364,6 +378,8 @@ class RulesTable(tables.DataTable):
     access_to = tables.Column("access_to", verbose_name=_("Access to"))
     access_level = tables.Column(
         "access_level", verbose_name=_("Access Level"))
+    metadata = tables.Column(
+        "metadata", verbose_name=_("Metadata"))
     status = tables.Column("state", verbose_name=_("Status"))
     access_key = tables.Column("access_key", verbose_name=_("Access Key"))
     created_at = tables.Column("created_at", verbose_name=_("Created At"),
@@ -383,7 +399,8 @@ class RulesTable(tables.DataTable):
             AddRule,
             DeleteRule)
         row_actions = (
-            DeleteRule,)
+            DeleteRule,
+            EditRuleMetadata,)
 
 
 def get_share_network(share):
