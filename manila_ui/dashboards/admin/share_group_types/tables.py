@@ -88,6 +88,10 @@ class ShareGroupTypesTable(tables.DataTable):
         "is_public", verbose_name=_("Visibility"),
         filters=(lambda d: 'public' if d is True else 'private', ),
     )
+    is_default = tables.Column(
+        "is_default", verbose_name=_("Is default"),
+        filters=(lambda d: 'Yes' if d is True else '-', ),
+    )
 
     def get_object_display(self, share_group_type):
         return share_group_type.name
