@@ -94,6 +94,10 @@ class ShareTypesTable(tables.DataTable):
     description = tables.WrappingColumn(
         "description", verbose_name=_("Description"))
     extra_specs = tables.Column("extra_specs", verbose_name=_("Extra specs"), )
+    is_default = tables.Column(
+        "is_default", verbose_name=_("Is default"),
+        filters=(lambda d: 'Yes' if d is True else '-', ),
+    )
     visibility = tables.Column(
         "is_public", verbose_name=_("Visibility"),
         filters=(lambda d: 'public' if d is True else 'private', ),
