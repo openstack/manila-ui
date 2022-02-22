@@ -5,10 +5,13 @@ xvfb [selenium platform:dpkg]
 xorg-x11-server-Xvfb [selenium platform:redhat]
 
 # Dependency for pdf document generation
-latexmk
-texlive-xetex
-texlive-fonts-recommended
-fonts-liberation
 inkscape
-librsvg2-bin
-imagemagick
+imagemagick [platform:dpkg]
+latexmk [platform:dpkg]
+texlive-xetex [platform:dpkg]
+texlive-fonts-recommended [platform:dpkg]
+texlive [platform:rpm]
+fonts-liberation [platform:dpkg]
+liberation-fonts [platform:rpm]
+librsvg2-bin [platform:dpkg]
+librsvg2 [platform:rpm]
