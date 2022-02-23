@@ -1,0 +1,5 @@
+---
+upgrade:
+  - |
+    This version of manila-ui requires `python-manilaclient >= 2.7.0
+    <https://docs.openstack.org/releasenotes/python-manilaclient/xena.html#relnotes-2-7-0-stable-xena>`_
