@@ -75,7 +75,7 @@ python-cinderclient==5.0.0
 python-dateutil==2.7.0
 python-glanceclient==2.9.1
 python-keystoneclient==4.1.1
-python-manilaclient==1.29.0
+python-manilaclient==2.7.0
 python-mimeparse==1.6.0
 python-neutronclient==6.7.0
 python-novaclient==10.1.0
