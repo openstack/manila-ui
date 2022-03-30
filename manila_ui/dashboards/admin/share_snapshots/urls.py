@@ -10,17 +10,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_snapshots import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.ShareSnapshotsView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<snapshot_id>[^/]+)$',
         views.ShareSnapshotDetailView.as_view(),
         name='share_snapshot_detail'),

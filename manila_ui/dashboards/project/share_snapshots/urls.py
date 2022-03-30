@@ -12,33 +12,33 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.project.share_snapshots import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.ShareSnapshotsView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/share_snapshot_create/$',
         views.CreateShareSnapshotView.as_view(),
         name='share_snapshot_create'),
-    urls.url(
+    re_path(
         r'^(?P<snapshot_id>[^/]+)/share_snapshot_edit/$',
         views.UpdateShareSnapshotView.as_view(),
         name='share_snapshot_edit'),
-    urls.url(
+    re_path(
         r'^(?P<snapshot_id>[^/]+)$',
         views.ShareSnapshotDetailView.as_view(),
         name='share_snapshot_detail'),
-    urls.url(
+    re_path(
         r'^(?P<snapshot_id>[^/]+)/share_snapshot_rules/$',
         views.ManageShareSnapshotRulesView.as_view(),
         name='share_snapshot_manage_rules'),
-    urls.url(
+    re_path(
         r'^(?P<snapshot_id>[^/]+)/share_snapshot_rule_add/$',
         views.AddShareSnapshotRuleView.as_view(),
         name='share_snapshot_rule_add'),

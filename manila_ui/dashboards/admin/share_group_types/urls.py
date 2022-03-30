@@ -13,7 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_group_types import views
 from manila_ui import features
@@ -21,19 +21,19 @@ from manila_ui import features
 
 if features.is_share_groups_enabled():
     urlpatterns = [
-        urls.url(
+        re_path(
             r'^$',
             views.ShareGroupTypesView.as_view(),
             name='index'),
-        urls.url(
+        re_path(
             r'^create$',
             views.CreateShareGroupTypeView.as_view(),
             name='create'),
-        urls.url(
+        re_path(
             r'^(?P<share_group_type_id>[^/]+)/update$',
             views.UpdateShareGroupTypeView.as_view(),
             name='update'),
-        urls.url(
+        re_path(
             r'^(?P<share_group_type_id>[^/]+)/manage_access$',
             views.ManageShareGroupTypeAccessView.as_view(),
             name='manage_access'),

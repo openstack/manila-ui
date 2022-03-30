@@ -12,7 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.project.shares.replicas import views as replica_views
 from manila_ui.dashboards.project.shares import views as shares_views
@@ -20,43 +20,43 @@ from manila_ui import features
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         shares_views.SharesView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^create/$',
         shares_views.CreateView.as_view(),
         name='create'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/rules/$',
         shares_views.ManageRulesView.as_view(),
         name='manage_rules'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/rule_add/$',
         shares_views.AddRuleView.as_view(),
         name='rule_add'),
-    urls.url(
+    re_path(
         r'^rules/(?P<rule_id>[^/]+)/update_rule_metadata/$',
         shares_views.UpdateRuleMetadataView.as_view(),
         name='update_rule_metadata'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/$',
         shares_views.DetailView.as_view(),
         name='detail'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/update/$',
         shares_views.UpdateView.as_view(),
         name='update'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/update_metadata/$',
         shares_views.UpdateMetadataView.as_view(),
         name='update_metadata'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/resize/$',
         shares_views.ResizeView.as_view(),
         name='resize'),
-    urls.url(
+    re_path(
         r'^(?P<share_id>[^/]+)/revert/$',
         shares_views.RevertView.as_view(),
         name='revert'),
@@ -64,19 +64,19 @@ urlpatterns = [
 
 if features.is_replication_enabled():
     urlpatterns.extend([
-        urls.url(
+        re_path(
             r'^(?P<share_id>[^/]+)/create_replica/$',
             replica_views.CreateReplicaView.as_view(),
             name='create_replica'),
-        urls.url(
+        re_path(
             r'^(?P<share_id>[^/]+)/replicas/$',
             replica_views.ManageReplicasView.as_view(),
             name='manage_replicas'),
-        urls.url(
+        re_path(
             r'^replica/(?P<replica_id>[^/]+)$',
             replica_views.DetailReplicaView.as_view(),
             name='replica_detail'),
-        urls.url(
+        re_path(
             r'^replica/(?P<replica_id>[^/]+)/set_replica_as_active$',
             replica_views.SetReplicaAsActiveView.as_view(),
             name='set_replica_as_active'),

@@ -10,17 +10,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_servers import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.ShareServersView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<share_server_id>[^/]+)$',
         views.ShareServerDetailView.as_view(),
         name='share_server_detail'),
