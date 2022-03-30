@@ -12,9 +12,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 from django.utils.translation import pgettext_lazy
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
 from horizon import tables
 from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
@@ -40,7 +40,7 @@ class Delete(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Share Network",
             u"Delete Share Networks",
             count
@@ -48,7 +48,7 @@ class Delete(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Share Network",
             u"Deleted Share Networks",
             count

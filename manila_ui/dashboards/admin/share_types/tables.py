@@ -10,8 +10,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 from horizon import tables
 
 from manila_ui.api import manila
@@ -32,7 +32,7 @@ class CreateShareType(tables.LinkAction):
 class DeleteShareType(tables.DeleteAction):
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Share Type",
             u"Delete Share Types",
             count
@@ -40,7 +40,7 @@ class DeleteShareType(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Share Type",
             u"Deleted Share Types",
             count

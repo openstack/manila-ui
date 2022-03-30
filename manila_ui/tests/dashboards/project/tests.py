@@ -39,7 +39,7 @@ class PieChartsTests(test.TestCase):
         }
         existing_chart_name = "Foo"
         existing_chart = {
-            "name": translation.ugettext_lazy(existing_chart_name),
+            "name": translation.gettext_lazy(existing_chart_name),
             "used": 11,
             "max": 13,
             "text": "fake_text",
