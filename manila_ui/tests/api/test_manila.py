@@ -33,6 +33,7 @@ class ManilaApiTests(base.APITestCase):
 
     @ddt.data(
         {},
+        None,
         {"name": "fake_share"},
         {"limit": "3"},
         {"host": "fake_share_host"},
@@ -44,8 +45,9 @@ class ManilaApiTests(base.APITestCase):
         self.assertEqual(
             self.manilaclient.shares.list.return_value, result)
 
+        expected_kwargs = kwargs or {}
         self.manilaclient.shares.list.assert_called_once_with(
-            search_opts=kwargs)
+            search_opts=expected_kwargs)
 
     def test_share_get(self):
         api.share_get(self.request, self.id)
