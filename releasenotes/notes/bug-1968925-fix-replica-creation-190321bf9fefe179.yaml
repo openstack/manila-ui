@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    `Bug #1968925 <https://launchpad.net/bugs/1968925>`_ that was preventing
+    creation of share replicas has been fixed.

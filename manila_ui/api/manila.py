@@ -464,12 +464,10 @@ def share_replica_list(request, share=None):
     return manilaclient(request).share_replicas.list(share)
 
 
-def share_replica_create(request, share, availability_zone,
-                         share_network=None):
+def share_replica_create(request, share, availability_zone):
     return manilaclient(request).share_replicas.create(
         share,
-        availability_zone=availability_zone,
-        share_network=share_network)
+        availability_zone=availability_zone)
 
 
 def share_replica_get(request, replica):
