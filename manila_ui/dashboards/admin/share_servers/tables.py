@@ -12,9 +12,9 @@
 
 from django.template.defaultfilters import title
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 from django.utils.translation import pgettext_lazy
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
 from horizon import tables
 
 from manila_ui.api import manila
@@ -25,7 +25,7 @@ class DeleteShareServer(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Share Server",
             u"Delete Share Server",
             count
@@ -33,7 +33,7 @@ class DeleteShareServer(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Share Server",
             u"Deleted Share Server",
             count

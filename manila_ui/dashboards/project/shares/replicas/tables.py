@@ -15,9 +15,9 @@
 
 from django.template.defaultfilters import title
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 from django.utils.translation import pgettext_lazy
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
 
 from horizon import messages
 from horizon import tables
@@ -78,7 +78,7 @@ class DeleteReplica(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Replica",
             u"Delete Replicas",
             count
@@ -86,7 +86,7 @@ class DeleteReplica(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Replica",
             u"Deleted Replicas",
             count

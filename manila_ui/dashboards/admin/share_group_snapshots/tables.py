@@ -15,9 +15,9 @@
 
 from django.template.defaultfilters import title
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 from django.utils.translation import pgettext_lazy
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
 from horizon import exceptions
 from horizon import tables
 from horizon.utils import filters
@@ -34,7 +34,7 @@ class DeleteShareGroupSnapshot(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Share Group Snapshot",
             u"Delete Share Group Snapshots",
             count
@@ -42,7 +42,7 @@ class DeleteShareGroupSnapshot(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Share Group Snapshot",
             u"Deleted Share Group Snapshots",
             count

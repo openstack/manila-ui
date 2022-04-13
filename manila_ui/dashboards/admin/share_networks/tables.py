@@ -10,7 +10,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from horizon import tables
 
 import manila_ui.dashboards.project.share_networks.tables as sn_tables
