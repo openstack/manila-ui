@@ -811,18 +811,16 @@ class ManilaApiTests(base.APITestCase):
 
         self.manilaclient.share_replicas.list.assert_called_once_with("FOO")
 
-    @ddt.data(None, "foo_share_network")
-    def test_share_replica_create(self, share_network):
+    def test_share_replica_create(self):
         share = "FOO_share"
         availability_zone = "BAR_availability_zone"
 
         api.share_replica_create(
-            self.request, share, availability_zone, share_network)
+            self.request, share, availability_zone)
 
         self.manilaclient.share_replicas.create.assert_called_once_with(
             share,
-            availability_zone=availability_zone,
-            share_network=share_network,
+            availability_zone=availability_zone
         )
 
     def test_share_replica_get(self):
