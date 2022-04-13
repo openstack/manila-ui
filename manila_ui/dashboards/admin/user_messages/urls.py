@@ -12,17 +12,17 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.user_messages import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.UserMessagesAdminView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<message_id>[^/]+)$',
         views.UserMessagesAdminDetailView.as_view(),
         name='user_messages_detail'),

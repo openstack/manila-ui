@@ -10,17 +10,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_networks import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.ShareNetworksView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<share_network_id>[^/]+)$',
         views.ShareNetworkDetailView.as_view(),
         name='share_network_detail'),

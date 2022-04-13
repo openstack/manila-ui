@@ -13,7 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_group_snapshots import views
 from manila_ui import features
@@ -21,15 +21,15 @@ from manila_ui import features
 
 if features.is_share_groups_enabled():
     urlpatterns = [
-        urls.url(
+        re_path(
             r'^$',
             views.ShareGroupSnapshotsView.as_view(),
             name='index'),
-        urls.url(
+        re_path(
             r'^(?P<share_group_snapshot_id>[^/]+)/$',
             views.ShareGroupSnapshotDetailView.as_view(),
             name='detail'),
-        urls.url(
+        re_path(
             r'^(?P<share_group_snapshot_id>[^/]+)/reset_status$',
             views.ResetShareGroupSnapshotStatusView.as_view(),
             name='reset_status'),

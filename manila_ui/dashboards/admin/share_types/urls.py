@@ -10,25 +10,25 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_types import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.ShareTypesView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^create_type$',
         views.CreateShareTypeView.as_view(),
         name='create_type'),
-    urls.url(
+    re_path(
         r'^update_type/(?P<share_type_id>[^/]+)/extra_specs$',
         views.UpdateShareTypeView.as_view(),
         name='update_type'),
-    urls.url(
+    re_path(
         r'^manage_share_type_access/(?P<share_type_id>[^/]+)$',
         views.ManageShareTypeAccessView.as_view(),
         name='manage_share_type_access'),

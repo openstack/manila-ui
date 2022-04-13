@@ -10,17 +10,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.share_instances import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.ShareInstancesView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<share_instance_id>[^/]+)$',
         views.ShareInstanceDetailView.as_view(),
         name='share_instance_detail'),

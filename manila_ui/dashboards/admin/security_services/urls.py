@@ -10,17 +10,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.conf import urls
+from django.urls import re_path
 
 from manila_ui.dashboards.admin.security_services import views
 
 
 urlpatterns = [
-    urls.url(
+    re_path(
         r'^$',
         views.SecurityServicesView.as_view(),
         name='index'),
-    urls.url(
+    re_path(
         r'^(?P<sec_service_id>[^/]+)$',
         views.SecurityServiceDetailView.as_view(),
         name='security_service_detail'),
