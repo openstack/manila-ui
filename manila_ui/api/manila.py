@@ -88,6 +88,7 @@ def manilaclient(request):
 
 
 def share_list(request, search_opts=None):
+    search_opts = search_opts or {}
     return manilaclient(request).shares.list(search_opts=search_opts)
 
 

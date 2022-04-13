@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    `Bug #1967312 <https://launchpad.net/bugs/1967312>`_ that caused the
+    shares dashboard to fail loading has now been fixed.
