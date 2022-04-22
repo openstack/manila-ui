@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Switched share network creation to a two-step
+    workflow. We now allow configuring an availability
+    zone with the initial network subnet associated with
+    the share network. Share network detail panels have
+    been updated accordingly as well

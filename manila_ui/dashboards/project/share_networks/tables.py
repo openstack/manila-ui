@@ -109,14 +109,8 @@ class ShareNetworksTable(tables.DataTable):
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
         link="horizon:project:share_networks:share_network_detail")
-    neutron_net = tables.Column("neutron_net", verbose_name=_("Neutron Net"))
-    neutron_subnet = tables.Column(
-        "neutron_subnet", verbose_name=_("Neutron Subnet"))
-    ip_version = tables.Column("ip_version", verbose_name=_("IP Version"))
-    network_type = tables.Column(
-        "network_type", verbose_name=_("Network Type"))
-    segmentation_id = tables.Column(
-        "segmentation_id", verbose_name=_("Segmentation Id"))
+    description = tables.WrappingColumn(
+        "description", verbose_name=_("Description"))
 
     def get_object_display(self, share_network):
         return share_network.name or str(share_network.id)

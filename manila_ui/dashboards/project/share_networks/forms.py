@@ -22,7 +22,6 @@ from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
-from manila_ui.api import network
 from manila_ui.dashboards import utils
 
 
@@ -34,8 +33,8 @@ class Create(forms.SelfHandlingForm):
     def __init__(self, request, *args, **kwargs):
         super(Create, self).__init__(request, *args, **kwargs)
         self.neutron_enabled = base.is_service_enabled(request, 'network')
-        net_choices = network.network_list(request)
         if self.neutron_enabled:
+            net_choices = neutron.network_list(request)
             self.fields['neutron_net_id'] = forms.ChoiceField(
                 choices=[(' ', ' ')] +
                         [(utils.transform_dashed_name(choice.id),

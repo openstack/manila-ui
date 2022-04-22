@@ -279,12 +279,46 @@ inactive_share_network = share_networks.ShareNetwork(
 
 active_share_network = share_networks.ShareNetwork(
     share_networks.ShareNetworkManager(FakeAPIClient),
-    {'id': '7f3d1c33-8d00-4511-29df-a2def31f3b5d',
-     'name': 'test_share_net',
-     'description': 'test share network',
-     'status': 'ACTIVE',
-     'neutron_net_id': 'fake_neutron_net_id',
-     'neutron_subnet_id': 'fake_neutron_subnet_id'})
+    {
+        "id": "1324e7d3-fba8-45e4-bb37-b59c12eb06dc",
+        "name": "net_my1",
+        "project_id": "16e1ab15c35a457e9c2b2aa189f544e1",
+        "created_at": "2019-10-02T17:49:43.000000",
+        "description": "This is test share network",
+        "security_service_update_support": True,
+        "status": "active",
+        "share_network_subnets": [
+            {
+                "id": "e4db03dc-6041-4c6a-a8f9-80bb4141a1eb",
+                "availability_zone": None,
+                "created_at": "2019-10-02T17:49:43.000000",
+                "updated_at": "2019-10-03T12:17:39.000000",
+                "segmentation_id": None,
+                "neutron_net_id": "62187648-6617-4509-a780-ffc973a7fe43",
+                "neutron_subnet_id": "2276888a-27c1-47c2-82a0-ea33050128b5",
+                "ip_version": 4,
+                "cidr": "172.24.5.0/24",
+                "network_type": "flat",
+                "mtu": 1500,
+                "gateway": "172.24.5.1",
+            },
+            {
+                "id": "e4db03dc-6041-4c6a-a8f9-80bb4141a1en",
+                "availability_zone": "manila-zone-0",
+                "created_at": "2019-10-02T17:49:43.000000",
+                "updated_at": "2019-10-03T12:17:39.000000",
+                "segmentation_id": None,
+                "neutron_net_id": "62187648-6617-4509-a780-ffc973a7f333",
+                "neutron_subnet_id": "2276888a-27c1-47c2-82a0-ea3305012905",
+                "ip_version": 4,
+                "cidr": "172.24.5.0/24",
+                "network_type": "flat",
+                "mtu": 1500,
+                "gateway": "172.24.5.1",
+            },
+        ],
+    }
+)
 
 sec_service = security_services.SecurityService(
     security_services.SecurityServiceManager(FakeAPIClient),

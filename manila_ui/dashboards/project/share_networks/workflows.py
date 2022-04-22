@@ -12,12 +12,160 @@
 
 
 from django.utils.translation import gettext_lazy as _
-
 from horizon import exceptions
 from horizon import forms
+from horizon import messages
 from horizon import workflows
+from openstack_dashboard import api
+from openstack_dashboard.api import base
 
 from manila_ui.api import manila
+from manila_ui.dashboards import utils
+
+
+class CreateShareNetworkInfoAction(workflows.Action):
+    share_network_name = forms.CharField(
+        max_length=255, label=_("Name"), required=True)
+    share_network_description = forms.CharField(
+        widget=forms.Textarea, label=_("Description"), required=False)
+
+    class Meta(object):
+        name = ("Share Network")
+
+
+class CreateShareNetworkInfoStep(workflows.Step):
+    action_class = CreateShareNetworkInfoAction
+    contributes = ("share_network_description",
+                   "share_network_name")
+
+
+class AddShareNetworkSubnetAction(workflows.MembershipAction):
+
+    availability_zone = forms.ChoiceField(
+        required=False,
+        label=_('Availability Zone'),
+        widget=forms.ThemableSelectWidget(attrs={
+            'data-availability_zone': _('Availability Zone')}))
+
+    neutron_net_id = forms.ChoiceField(
+        required=False,
+        label=_('Neutron Net'),
+        widget=forms.ThemableSelectWidget(attrs={
+            'class': 'switchable',
+            'data-slug': 'neutron_net_id',
+            'data-neutron_net_id': _('Neutron Net')}))
+
+    class Meta(object):
+        name = _("Subnet")
+        help_text = _("Specify an Availability Zone or an existing subnet. "
+                      "If no details are specified, "
+                      "then a default subnet with a null Availability "
+                      "Zone will be created automatically.")
+
+    def __init__(self, request, context, *args, **kwargs):
+        super().__init__(request, context, *args, **kwargs)
+
+        self.fields['availability_zone'].choices = (
+            self.get_availability_zone_choices(request)
+        )
+        self.neutron_enabled = base.is_service_enabled(request, 'network')
+        if self.neutron_enabled:
+            try:
+                self.fields['neutron_net_id'].choices, networks = (
+                    self.get_neutron_net_id_choices(request)
+                )
+            except Exception:
+                msg = _('Unable to initialize neutron networks.')
+                exceptions.handle(request, msg)
+            try:
+                self.get_neutron_subnet_id_choices(request, networks)
+            except Exception:
+                msg = _('Unable to initialize neutron subnets.')
+                exceptions.handle(request, msg)
+
+    def get_availability_zone_choices(self, request):
+        availability_zone_choices = [('', _('None'))]
+
+        for availability_zone in manila.availability_zone_list(request):
+            availability_zone_choices.append(
+                (availability_zone.id, availability_zone.name)
+            )
+        return availability_zone_choices
+
+    def get_neutron_net_id_choices(self, request):
+        net_choices = [('', _('None'))]
+
+        networks = api.neutron.network_list(request)
+        for network in networks:
+            net_choices.append((utils.transform_dashed_name(network.id),
+                                network.name_or_id))
+        return net_choices, networks
+
+    def get_neutron_subnet_id_choices(self, request, networks):
+        for net in networks:
+            subnet_field_name = (
+                'subnet-choices-%s' % utils.transform_dashed_name(net.id))
+            data_net_id = (
+                'data-neutron_net_id-%s' % utils.transform_dashed_name(net.id))
+            subnet_field = forms.ChoiceField(
+                required=False,
+                choices=(),
+                label=_('Neutron Subnet'),
+                widget=forms.ThemableSelectWidget(attrs={
+                    'class': 'switched',
+                    'data-switch-on': 'neutron_net_id',
+                    data_net_id: _('Neutron Subnet')}))
+            self.fields[subnet_field_name] = subnet_field
+            subnet_choices = api.neutron.subnet_list(request,
+                                                     network_id=net.id)
+            self.fields[subnet_field_name].choices = [
+                (choice.id, choice.name_or_id)
+                for choice in subnet_choices]
+
+    def hide_neutron_subnet_id_choices(self):
+        self.fields['neutron_subnet_id'].choices = []
+        self.fields['neutron_subnet_id'].widget = forms.HiddenInput()
+
+
+class AddShareNetworkSubnetStep(workflows.Step):
+    action_class = AddShareNetworkSubnetAction
+    contributes = ("neutron_net_id", "neutron_subnet_id", "availability_zone")
+
+
+class CreateShareNetworkWorkflow(workflows.Workflow):
+    slug = "create_share_network"
+    name = _("Create Share Network")
+    finalize_button_name = _("Create Share Network")
+    success_message = _('Created share network "%s".')
+    failure_message = _('Unable to create share network "%s".')
+    success_url = 'horizon:project:share_networks:index'
+    default_steps = (CreateShareNetworkInfoStep, AddShareNetworkSubnetStep)
+    wizard = True
+
+    def handle(self, request, context):
+        try:
+            data = request.POST
+            send_data = {'name': context['share_network_name']}
+            if context['share_network_description']:
+                send_data['description'] = context['share_network_description']
+            neutron_net_id = context.get('neutron_net_id')
+            if neutron_net_id:
+                send_data['neutron_net_id'] = utils.transform_dashed_name(
+                    neutron_net_id.strip())
+                subnet_key = (
+                    'subnet-choices-%s' % neutron_net_id.strip()
+                )
+                if data.get(subnet_key) is not None:
+                    send_data['neutron_subnet_id'] = data.get(subnet_key)
+            if context['availability_zone']:
+                send_data['availability_zone'] = context['availability_zone']
+            share_network = manila.share_network_create(request, **send_data)
+            messages.success(request, _('Successfully created share'
+                                        ' network: %s') % send_data['name'])
+            return share_network
+        except Exception:
+            exceptions.handle(request, _('Unable to create share network.'))
+            return False
 
 
 class UpdateShareNetworkInfoAction(workflows.Action):

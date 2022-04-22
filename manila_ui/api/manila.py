@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.50"
+MANILA_VERSION = "2.51"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -302,10 +302,11 @@ def share_network_list(request, detailed=False, search_opts=None):
 
 
 def share_network_create(request, neutron_net_id=None, neutron_subnet_id=None,
-                         name=None, description=None):
+                         name=None, description=None, availability_zone=None):
     return manilaclient(request).share_networks.create(
         neutron_net_id=neutron_net_id, neutron_subnet_id=neutron_subnet_id,
-        name=name, description=description)
+        name=name, description=description,
+        availability_zone=availability_zone)
 
 
 def share_network_get(request, share_net_id):
