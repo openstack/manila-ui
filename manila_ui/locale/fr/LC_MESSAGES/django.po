@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2021-02-16 07:07+0000\n"
+"POT-Creation-Date: 2022-05-02 19:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -264,16 +264,6 @@ msgstr ""
 "Emplacement de l'export du partage. Par exemple pour NFS : 1.2.3.4:/path/to/"
 "share"
 
-msgid "Extend"
-msgstr "Étendre"
-
-msgid "Extend Share"
-msgstr "Étendre le partage"
-
-#, python-format
-msgid "Extend share \"%s\""
-msgstr "Étendre le partage \"%s\""
-
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Erreur étendue"
@@ -400,9 +390,6 @@ msgid "New share type to be set in migrating share"
 msgstr ""
 "Nouveau type de partage qui doit être appliqué dans la migration de partage"
 
-msgid "New size must be greater than current size."
-msgstr "La nouvelle taille doit être supérieure à la taille en cours."
-
 msgid "No projects found."
 msgstr "Aucun projet trouvé."
 
@@ -420,9 +407,6 @@ msgstr "Aucune source, partage vide"
 
 msgid "Nondisruptive"
 msgstr "Non perturbateur "
-
-msgid "Nova Net"
-msgstr "Nova Net"
 
 msgid "Obtain Progress"
 msgstr ""
@@ -780,9 +764,6 @@ msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr ""
 "Impossible de supprimer l'instantané \"%s\". Un ou plusieurs partages "
 "dépendent de lui."
-
-msgid "Unable to extend share."
-msgstr "Impossible d'étendre le partage."
 
 msgid "Unable to get information about share type access."
 msgstr ""

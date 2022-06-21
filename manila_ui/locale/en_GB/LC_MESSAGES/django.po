@@ -2,15 +2,16 @@
 # Andi Chandler <andi@gowling.com>, 2018. #zanata
 # Andi Chandler <andi@gowling.com>, 2019. #zanata
 # Andi Chandler <andi@gowling.com>, 2020. #zanata
+# Andi Chandler <andi@gowling.com>, 2022. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2021-02-16 07:07+0000\n"
+"POT-Creation-Date: 2022-05-02 19:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2020-11-16 01:38+0000\n"
+"PO-Revision-Date: 2022-05-25 09:25+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
@@ -503,6 +504,9 @@ msgstr "Duplicated keys '%s'."
 msgid "Edit"
 msgstr "Edit"
 
+msgid "Edit Rule Metadata"
+msgstr "Edit Rule Metadata"
+
 msgid "Edit Security Service"
 msgstr "Edit Security Service"
 
@@ -591,22 +595,12 @@ msgstr "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgid "Export locations"
 msgstr "Export locations"
 
-msgid "Extend"
-msgstr "Extend"
-
-msgid "Extend Share"
-msgstr "Extend Share"
-
-#, python-format
-msgid "Extend share \"%s\""
-msgstr "Extend share \"%s\""
-
-msgid "Extend the size of a share. "
-msgstr "Extend the size of a share. "
-
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Extending Error"
+
+msgid "Extra Spec "
+msgstr "Extra Spec "
 
 msgid ""
 "Extra spec 'driver_handles_share_servers'  is required and should have "
@@ -731,6 +725,9 @@ msgstr "Inactive"
 msgid "Is admin only:"
 msgstr "Is admin only:"
 
+msgid "Is default"
+msgstr "Is default"
+
 #, python-format
 msgid "Key '%s' has improper length."
 msgstr "Key '%s' has improper length."
@@ -816,6 +813,9 @@ msgstr "Mount snapshot support"
 msgid "Name"
 msgstr "Name"
 
+msgid "Name "
+msgstr "Name "
+
 msgid "Name:"
 msgstr "Name:"
 
@@ -852,8 +852,11 @@ msgstr "New share network to be set in migrated share"
 msgid "New share type to be set in migrating share"
 msgstr "New share type to be set in migrating share"
 
-msgid "New size must be greater than current size."
-msgstr "New size must be greater than current size."
+msgid "New size must be different than the existing size"
+msgstr "New size must be different than the existing size"
+
+msgid "New size should not be less than or equal to zero"
+msgstr "New size should not be less than or equal to zero"
 
 msgid "No projects found."
 msgstr "No projects found."
@@ -876,9 +879,6 @@ msgstr "No source, empty share group"
 msgid "Nondisruptive"
 msgstr "Non-disruptive"
 
-msgid "Nova Net"
-msgstr "Nova Net"
-
 msgid "Number of Share Snapshots"
 msgstr "Number of Share Snapshots"
 
@@ -900,6 +900,9 @@ msgstr ""
 
 msgid "One line - one action. Empty strings will be ignored."
 msgstr "One line - one action. Empty strings will be ignored."
+
+msgid "Organizational Unit"
+msgstr "Organisational Unit"
 
 msgid "Overview"
 msgstr "Overview"
@@ -1015,6 +1018,19 @@ msgid ""
 "Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
 msgstr ""
 "Reseting share group snapshot ('%(id)s') status from '%(from)s' to '%(to)s'."
+
+msgid "Resize"
+msgstr "Resize"
+
+msgid "Resize Share"
+msgstr "Resize Share"
+
+msgid "Resize the size of a share. "
+msgstr "Resize the size of a share. "
+
+#, python-format
+msgid "Resized share \"%s\""
+msgstr "Resized share \"%s\""
 
 msgid "Resource ID"
 msgstr "Resource ID"
@@ -1282,6 +1298,9 @@ msgstr "Share Snapshot Overview"
 msgid "Share Snapshot Rules"
 msgstr "Share Snapshot Rules"
 
+msgid "Share Snapshot gigabytes"
+msgstr "Share Snapshot gigabytes"
+
 msgid "Share Snapshots"
 msgstr "Share Snapshots"
 
@@ -1372,6 +1391,10 @@ msgstr "Shares"
 
 msgid "Shares on this server"
 msgstr "Shares on this server"
+
+msgctxt "Current status of share"
+msgid "Shrinking Error"
+msgstr "Shrinking Error"
 
 msgid "Sid"
 msgstr "Sid"
@@ -1503,6 +1526,9 @@ msgstr "Successfully updated security service \"%s\""
 msgid "Task state"
 msgstr "Task state"
 
+msgid "The operation timed out while resizing. Please try again."
+msgstr "The operation timed out while resizing. Please try again."
+
 msgid ""
 "The security service can be used by backend drivers to configure clients, "
 "for more secure using of share."
@@ -1623,9 +1649,6 @@ msgstr "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgid "Unable to delete snapshot rule \"%s\"."
 msgstr "Unable to delete snapshot rule \"%s\"."
 
-msgid "Unable to extend share."
-msgstr "Unable to extend share."
-
 msgid "Unable to get information about share group type access."
 msgstr "Unable to get information about share group type access."
 
@@ -1678,6 +1701,12 @@ msgstr "Unable to reset status of share group '%s'."
 msgid "Unable to reset status of share group snapshot '%s'."
 msgstr "Unable to reset status of share group snapshot '%s'."
 
+msgid "Unable to resize share."
+msgstr "Unable to resize share."
+
+msgid "Unable to resize share. "
+msgstr "Unable to resize share. "
+
 #, python-format
 msgid "Unable to resync replica '%s'."
 msgstr "Unable to resync replica '%s'."
@@ -1711,6 +1740,9 @@ msgstr "Unable to retrieve security services"
 
 msgid "Unable to retrieve security_service."
 msgstr "Unable to retrieve security_service."
+
+msgid "Unable to retrieve share access rule."
+msgstr "Unable to retrieve share access rule."
 
 msgid "Unable to retrieve share details."
 msgstr "Unable to retrieve share details."
@@ -1853,6 +1885,9 @@ msgstr "Unable to update extra_specs for share type."
 msgid "Unable to update group_specs for share group type."
 msgstr "Unable to update group_specs for share group type."
 
+msgid "Unable to update rule metadata."
+msgstr "Unable to update rule metadata."
+
 msgid "Unable to update security service."
 msgstr "Unable to update security service."
 
@@ -1948,6 +1983,9 @@ msgstr "Updated share network \"%s\"."
 #, python-format
 msgid "Updating share \"%s\""
 msgstr "Updating share \"%s\""
+
+msgid "Updating share access rule metadata "
+msgstr "Updating share access rule metadata "
 
 #, python-format
 msgid "Updating share group \"%s\""

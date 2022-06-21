@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2021-02-16 07:07+0000\n"
+"POT-Creation-Date: 2022-05-02 19:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -269,16 +269,6 @@ msgstr "Место экспорта"
 msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr "Место экспорта общего ресурса. Пример для NFS: 1.2.3.4:/path/to/share"
 
-msgid "Extend"
-msgstr "Расширить"
-
-msgid "Extend Share"
-msgstr "Расширить общий ресурс"
-
-#, python-format
-msgid "Extend share \"%s\""
-msgstr "Расширить общий ресурс \"%s\""
-
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Ошибка расширения общего ресурса"
@@ -424,9 +414,6 @@ msgid "New share type to be set in migrating share"
 msgstr ""
 "Новый тип общего ресурса, который будет назначен мигрируемому общему ресурсу"
 
-msgid "New size must be greater than current size."
-msgstr "Новый размер должен быть больше чем текущий размер"
-
 msgid "No projects found."
 msgstr "Проекты не найдены."
 
@@ -441,9 +428,6 @@ msgstr "Службы безопасности не выбраны."
 
 msgid "No source, empty share"
 msgstr "Нет источника, пустой общий ресурс"
-
-msgid "Nova Net"
-msgstr "Сеть Nova"
 
 msgid "Obtain Progress"
 msgstr "Получить информацию о прогрессе"
@@ -788,9 +772,6 @@ msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr ""
 "Невозможно удалить снимок \"%s\". Один или несколько общих ресурсов зависят "
 "от него."
-
-msgid "Unable to extend share."
-msgstr "Не удалось расширить общий ресурс."
 
 msgid "Unable to get information about share type access."
 msgstr "Невозможно получить информацию о доступе к типу общего ресурса"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2021-02-16 07:07+0000\n"
+"POT-Creation-Date: 2022-05-02 19:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -523,19 +523,6 @@ msgstr "공유에 대한 내보내기 위치. NFS 예시: 1.2.3.4:/path/to/share
 msgid "Export locations"
 msgstr "위치 내보내기"
 
-msgid "Extend"
-msgstr "확장"
-
-msgid "Extend Share"
-msgstr "공유 확장"
-
-#, python-format
-msgid "Extend share \"%s\""
-msgstr "공유 \"%s\" 확장"
-
-msgid "Extend the size of a share. "
-msgstr "공유 크기가 늘어났습니다."
-
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "확장중 에러"
@@ -758,9 +745,6 @@ msgstr "마이그레이션된 공유에서 설정될 새로운 공유 네트워�
 msgid "New share type to be set in migrating share"
 msgstr "마이그레이션된 공유에서 설정될 새로운 공유 네트워크 타입"
 
-msgid "New size must be greater than current size."
-msgstr "새로 정하는 크기는 현재 크기보다 커야합니다."
-
 msgid "No projects found."
 msgstr "프로젝트를 찾을 수 없습니다."
 
@@ -781,9 +765,6 @@ msgstr "소스가 없음, 빈 공유 그룹"
 
 msgid "Nondisruptive"
 msgstr "무중단"
-
-msgid "Nova Net"
-msgstr "Nova Net"
 
 msgid "Number of Share Snapshots"
 msgstr "공유 스냅샷 갯수"
@@ -1484,9 +1465,6 @@ msgstr ""
 #, python-format
 msgid "Unable to delete snapshot rule \"%s\"."
 msgstr "스냅샷 규칙 \"%s\"를 삭제할 수 없습니다."
-
-msgid "Unable to extend share."
-msgstr "공유를 확장할수 없습니다."
 
 msgid "Unable to get information about share group type access."
 msgstr "공유 그룹 유형 액세스에 관련된 정보를 얻을 수 없습니다."

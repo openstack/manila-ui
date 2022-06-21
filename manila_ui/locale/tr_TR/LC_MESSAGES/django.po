@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2021-02-16 07:07+0000\n"
+"POT-Creation-Date: 2022-05-02 19:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -467,16 +467,6 @@ msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr ""
 "Paylaşımın dışa aktarım konumu. Örneğin NFS için 1.2.3.4:/paylaşım/yolu"
 
-msgid "Extend"
-msgstr "Genişlet"
-
-msgid "Extend Share"
-msgstr "Paylaşımı Büyüt"
-
-#, python-format
-msgid "Extend share \"%s\""
-msgstr "\"%s\" paylaşımını büyüt"
-
 msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Genişletme Hatası"
@@ -626,9 +616,6 @@ msgstr "Göç etmiş paylaşımda yeni paylaşım ağı ayarlanacak"
 msgid "New share type to be set in migrating share"
 msgstr "Göç eden paylaşımda ayarlanacak yeni paylaşım türü"
 
-msgid "New size must be greater than current size."
-msgstr "Yeni boyut mevcut boyuttan büyük olmalı."
-
 msgid "No projects found."
 msgstr "Proje bulunamadı."
 
@@ -649,9 +636,6 @@ msgstr "Kaynak yok, boş paylaşım grubu"
 
 msgid "Nondisruptive"
 msgstr "Aksatmadan"
-
-msgid "Nova Net"
-msgstr "Nova Ağı"
 
 msgid "Obtain Progress"
 msgstr "Süreci Al"
@@ -1174,9 +1158,6 @@ msgstr ""
 #, python-format
 msgid "Unable to delete snapshot rule \"%s\"."
 msgstr "Anlık görüntü kuralı \"%s\" silinemiyor."
-
-msgid "Unable to extend share."
-msgstr "Paylaşım genişletilemedi."
 
 msgid "Unable to get information about share group type access."
 msgstr "Paylaşım grubu tür erişimiyle ilgili bilgi alınamadı."

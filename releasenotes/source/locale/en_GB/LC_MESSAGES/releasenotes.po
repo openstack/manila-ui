@@ -2,15 +2,16 @@
 # Andi Chandler <andi@gowling.com>, 2018. #zanata
 # Andi Chandler <andi@gowling.com>, 2019. #zanata
 # Andi Chandler <andi@gowling.com>, 2020. #zanata
+# Andi Chandler <andi@gowling.com>, 2022. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui Release Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-04 13:54+0000\n"
+"POT-Creation-Date: 2022-05-02 19:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2020-11-04 12:39+0000\n"
+"PO-Revision-Date: 2022-05-25 09:26+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
@@ -51,6 +52,9 @@ msgstr "2.18.1"
 msgid "2.19.1"
 msgstr "2.19.1"
 
+msgid "2.19.2-6"
+msgstr "2.19.2-6"
+
 msgid "2.2.0"
 msgstr "2.2.0"
 
@@ -75,11 +79,48 @@ msgstr "2.9.0"
 msgid "3.0.0"
 msgstr "3.0.0"
 
+msgid "3.1.0"
+msgstr "3.1.0"
+
 msgid "4.0.0"
 msgstr "4.0.0"
 
+msgid "4.1.0"
+msgstr "4.1.0"
+
+msgid "5.0.0"
+msgstr "5.0.0"
+
+msgid "5.1.0"
+msgstr "5.1.0"
+
+msgid "6.0.0"
+msgstr "6.0.0"
+
+msgid "7.0.0"
+msgstr "7.0.0"
+
+msgid "7.0.0-4"
+msgstr "7.0.0-4"
+
+msgid "7.0.0-7"
+msgstr "7.0.0-7"
+
+msgid ""
+"Added access metadata for share access and also introduced the GET /share-"
+"access-rules API."
+msgstr ""
+"Added access metadata for share access and also introduced the GET /share-"
+"access-rules API."
+
+msgid "Added filter search by extra spec for share type list."
+msgstr "Added filter search by extra spec for share type list."
+
 msgid "Added native protocol for MapRFS manila share driver"
 msgstr "Added native protocol for MapRFS Manila share driver"
+
+msgid "Added possibility to create share type with description."
+msgstr "Added possibility to create share type with description."
 
 msgid "Added possibility to revert share to its latest snapshot."
 msgstr "Added possibility to revert share to its latest snapshot."
@@ -89,6 +130,27 @@ msgstr "Added preserve-snapshots option to share migration."
 
 msgid "Added support for the mountable snapshots feature to manila-ui."
 msgstr "Added support for the mountable snapshots feature to Manila-UI."
+
+msgid ""
+"Added ‘is_default’ field to share types list. the Is_default Column will "
+"show 'Yes' if the share type is default share type."
+msgstr ""
+"Added ‘is_default’ field to share types list. the Is_default Column will "
+"show 'Yes' if the share type is the default share type."
+
+msgid ""
+"Added ‘ou’ field to ‘security_service’ object. Additionally added options to "
+"update dns_ip, ou, server, domain, password and user fields."
+msgstr ""
+"Added ‘ou’ field to ‘security_service’ object. Additionally added options to "
+"update dns_ip, ou, server, domain, password and user fields."
+
+msgid ""
+"Adds ‘is_default’ field to share group types list. the Is_default Column "
+"will show 'Yes' if the share group type is default share group type."
+msgstr ""
+"Adds ‘is_default’ field to share group types list. the Is_default Column "
+"will show 'Yes' if the share group type is default share group type."
 
 msgid ""
 "Admin dashboard now has manila-specific panel group called 'share'. All "
@@ -124,6 +186,15 @@ msgstr ""
 "only visible to administrators.  This is the UI side of `Launchpad bug "
 "1664370 <https://bugs.launchpad.net/manila/+bug/1664370>`_ and completes the "
 "fix for that bug."
+
+msgid ""
+"Existing \"Extend Share\" feature in Manila-UI was renamed \"Resize Share\" "
+"and share shrinking feature was added. Now users can both extend and shrink "
+"shares."
+msgstr ""
+"Existing \"Extend Share\" feature in Manila-UI was renamed \"Resize Share\" "
+"and share shrinking feature was added. Now users can both extend and shrink "
+"shares."
 
 msgid "Fixed Manage Replicas button availability."
 msgstr "Fixed Manage Replicas button availability."
@@ -235,11 +306,33 @@ msgid "Stein Series Release Notes"
 msgstr "Stein Series Release Notes"
 
 msgid ""
+"Support for nova networking has been removed. Manila and the manilaclient "
+"sdk dropped support for nova network in the Ocata release (Feb 2017). So "
+"this should not have an impact on deployers running later releases, and this "
+"note is only informational."
+msgstr ""
+"Support for nova networking has been removed. Manila and the manilaclient "
+"SDK dropped support for Nova-Network in the Ocata release (Feb 2017). So "
+"this should not have an impact on deployers running later releases, and this "
+"note is only informational."
+
+msgid ""
 "The Share replica details page has been fixed to render correctly for users "
 "with non-admin roles."
 msgstr ""
 "The Share replica details page has been fixed to render correctly for users "
 "with non-admin roles."
+
+msgid ""
+"The default configuration file has been updated and now includes the "
+"required parameters to use the new policy-in-code feature in Horizon. Please "
+"refer to the release note and documentation of Horizon to find details about "
+"this feature."
+msgstr ""
+"The default configuration file has been updated and now includes the "
+"required parameters to use the new policy-in-code feature in Horizon. Please "
+"refer to the release note and documentation of Horizon to find details about "
+"this feature."
 
 msgid ""
 "The share groups dashboards now show the share group availability zone, "
@@ -265,6 +358,15 @@ msgstr ""
 "This version of manila-ui requires `python-manilaclient >= 1.29.0 <https://"
 "docs.openstack.org/releasenotes/python-manilaclient/train."
 "html#relnotes-1-29-0-stable-train>`_"
+
+msgid ""
+"This version of manila-ui requires `python-manilaclient >= 2.7.0 <https://"
+"docs.openstack.org/releasenotes/python-manilaclient/xena.html#relnotes-2-7-0-"
+"stable-xena>`_"
+msgstr ""
+"This version of Manila-ui requires `python-manilaclient >= 2.7.0 <https://"
+"docs.openstack.org/releasenotes/python-manilaclient/xena.html#relnotes-2-7-0-"
+"stable-xena>`_"
 
 msgid "Train Series Release Notes"
 msgstr "Train Series Release Notes"
@@ -302,6 +404,38 @@ msgstr "Ussuri Series Release Notes"
 
 msgid "Victoria Series Release Notes"
 msgstr "Victoria Series Release Notes"
+
+msgid ""
+"Visibility of \"switchable\" fields in the share creation form involving "
+"share types that had hyphens in their names is now fixed. See `Launchpad bug "
+"#1931641 <https://launchpad.net/bugs/1931641>`_ for more details."
+msgstr ""
+"Visibility of \"switchable\" fields in the share creation form involving "
+"share types that had hyphens in their names is now fixed. See `Launchpad bug "
+"#1931641 <https://launchpad.net/bugs/1931641>`_ for more details."
+
+msgid "Wallaby Series Release Notes"
+msgstr "Wallaby Series Release Notes"
+
+msgid "Xena Series Release Notes"
+msgstr "Xena Series Release Notes"
+
+msgid "Yoga Series Release Notes"
+msgstr "Yoga Series Release Notes"
+
+msgid ""
+"`Bug #1967312 <https://launchpad.net/bugs/1967312>`_ that caused the shares "
+"dashboard to fail loading has now been fixed."
+msgstr ""
+"`Bug #1967312 <https://launchpad.net/bugs/1967312>`_ that caused the shares "
+"dashboard to fail loading has now been fixed."
+
+msgid ""
+"`Bug #1968925 <https://launchpad.net/bugs/1968925>`_ that was preventing "
+"creation of share replicas has been fixed."
+msgstr ""
+"`Bug #1968925 <https://launchpad.net/bugs/1968925>`_ that was preventing "
+"creation of share replicas has been fixed."
 
 msgid "manila-ui Release Notes"
 msgstr "Manila-UI Release Notes"
