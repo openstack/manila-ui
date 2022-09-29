@@ -3,7 +3,7 @@
       - check-requirements
       - horizon-non-primary-django-jobs
       - openstack-cover-jobs-horizon
-      - openstack-python3-zed-jobs-horizon
+      - openstack-python3-jobs-horizon
       - publish-openstack-docs-pti
       - release-notes-jobs-python3
     check:
