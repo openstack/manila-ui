@@ -11,6 +11,9 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
+import base64
+import binascii
+import re
 
 from django.forms import ValidationError
 from django.utils.safestring import mark_safe
@@ -117,8 +120,12 @@ def transform_dashed_name(name):
     """Add or remove unicode text separators & transformations for hyphens."""
     if not name:
         return
-    if '-' in name:
-        name = '__ಠ__' + name.replace('-', '__u2010') + '__ಠ__'
-    elif '__u2010' in name:
-        name = name.replace('__u2010', '-').strip('__ಠ__')
-    return name
+    try:
+        return base64.b32decode(
+            name.replace('_', '=').upper().encode()).decode()
+    except binascii.Error:
+        if re.search(r'^[a-z_\d]+$', name):
+            return name  # leave as-is names without dashes and capitals
+        else:
+            return base64.b32encode(name.encode()).decode().lower().replace(
+                '=', '_')

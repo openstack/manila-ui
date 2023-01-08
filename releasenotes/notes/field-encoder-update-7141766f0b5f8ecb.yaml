@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Fixed an issue when share type with 'dhss=True' option and dash in the 
+    type name doesn't enable 'Share Network' widget at 'Create Share' form.
+
