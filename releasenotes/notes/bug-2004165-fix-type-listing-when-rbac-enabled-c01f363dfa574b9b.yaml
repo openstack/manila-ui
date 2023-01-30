@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Fixed an issue while trying to load share types that had boolean extra
+    specs when RBAC was enabled. For more details, please refer to
+    `Launchpad bug <https://bugs.launchpad.net/manila-ui/+bug/2004165>`_
