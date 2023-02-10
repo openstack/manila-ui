@@ -64,7 +64,8 @@ class SetReplicaAsActive(tables.LinkAction):
     policy_rules = (("share_replica", "share_replica:promote"),)
 
     def allowed(self, request, replica=None):
-        return replica.replica_state == "in_sync"
+        return (replica.status == "available" and
+                replica.replica_state == "in_sync")
 
     def get_policy_target(self, request, datum=None):
         return {"project_id": getattr(datum, "project_id", None)}
