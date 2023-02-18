@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    Visibility of Set as Active button for replicas in transitional states
+    such as Deleting and Replication Change is now fixed.
