@@ -89,6 +89,7 @@ def metadata_to_str(metadata, meta_visible_limit=4, text_length_limit=25):
         if len(k) > text_length_limit:
             k_shortenned = k[:text_length_limit] + '...'
         v = metadata[k]
+        v = v if isinstance(v, str) else str(v)
         if len(v) > text_length_limit:
             v = v[:text_length_limit] + '...'
         meta.append("%s = %s" % (html_escape(k_shortenned), html_escape(v)))
