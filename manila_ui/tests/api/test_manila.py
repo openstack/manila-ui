@@ -237,9 +237,24 @@ class ManilaApiTests(base.APITestCase):
 
     def test_migration_cancel(self):
         api.migration_cancel(self.request, 'fake_share')
-
         self.manilaclient.shares.migration_cancel.assert_called_once_with(
             'fake_share')
+
+    @ddt.data(
+        ('name_updated_1', 'description_updated', True),
+        ('name_updated_2', 'description_updated', False),
+        ('name_updated_3', None, True),
+    )
+    @ddt.unpack
+    def test_share_type_update(
+            self, name, description, is_public):
+        api.share_type_update(self.request, self.id, name,
+                              description, is_public)
+
+        self.manilaclient.share_types.get.return_value.update.\
+            assert_called_once_with(name=name,
+                                    description=description,
+                                    is_public=is_public)
 
     def test_migration_get_progress(self):
         api.migration_get_progress(self.request, 'fake_share')

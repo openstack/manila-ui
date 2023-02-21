@@ -93,6 +93,13 @@ class CreateShareType(forms.SelfHandlingForm):
 
 
 class UpdateShareType(forms.SelfHandlingForm):
+    name = forms.CharField(max_length="255", label=_("Name"), required=True)
+    description = forms.CharField(max_length="255", label=_("Description"),
+                                  required=False)
+    is_public = forms.BooleanField(
+        label=_("Public"), required=False,
+        help_text=("New visibility of the share type. If set to True, share "
+                   "type will be available to all projects in the cloud."))
     extra_specs = forms.CharField(
         required=False, label=_("Extra specs"),
         widget=forms.widgets.Textarea(attrs=ST_EXTRA_SPECS_FORM_ATTRS))
@@ -105,6 +112,11 @@ class UpdateShareType(forms.SelfHandlingForm):
         for k, v in self.initial["extra_specs"].items():
             es_str += "%s=%s\r\n" % (k, v)
         self.initial["extra_specs"] = es_str
+        manila_features = getattr(settings, 'OPENSTACK_MANILA_FEATURES', {})
+        self.enable_public_share_type_creation = manila_features.get(
+            'enable_public_share_type_creation', True)
+        if not self.enable_public_share_type_creation:
+            self.fields.pop('is_public')
 
     def handle(self, request, data):
         try:
@@ -121,7 +133,13 @@ class UpdateShareType(forms.SelfHandlingForm):
                 if to_unset:
                     manila.share_type_unset_extra_specs(
                         request, self.initial["id"], to_unset)
-            msg = _("Successfully updated extra specs for share type '%s'.")
+            name = data.get("name", None)
+            description = data.get("description", None)
+            is_public = (self.enable_public_share_type_creation and
+                         data.get("is_public", True))
+            manila.share_type_update(
+                request, self.initial["id"], name, description, is_public)
+            msg = _("Successfully updated share type '%s'.")
             msg = msg % self.initial['name']
             messages.success(request, msg)
             return True
@@ -130,6 +148,6 @@ class UpdateShareType(forms.SelfHandlingForm):
             self.api_error(e.messages[0])
             return False
         except Exception:
-            msg = _("Unable to update extra_specs for share type.")
+            msg = _("Unable to update share type.")
             exceptions.handle(request, msg)
             return False
