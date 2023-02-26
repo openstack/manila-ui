@@ -58,9 +58,8 @@ class CreateForm(forms.SelfHandlingForm):
         share_networks = manila.share_network_list(request)
         share_types = manila.share_type_list(request)
         self.fields['share_type'].choices = (
-            [("", "")] +
-            [(utils.transform_dashed_name(st.name), st.name)
-             for st in share_types]
+            [(utils.transform_dashed_name(st.name), st.name) for st in
+             share_types]
         )
 
         availability_zones = manila.availability_zone_list(request)
@@ -83,7 +82,6 @@ class CreateForm(forms.SelfHandlingForm):
             # share types with enabled handling of share servers.
             if (isinstance(dhss, str) and dhss.lower() in ['true', '1']):
                 sn_choices = (
-                    [('', '')] +
                     [(sn.id, sn.name or sn.id) for sn in share_networks])
                 sn_field_name = (
                     self.sn_field_name_prefix +

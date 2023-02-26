@@ -127,8 +127,8 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                 }),
                 required=True)
             self.fields["sgt"].choices = (
-                [("", "")] + [(utils.transform_dashed_name(sgt.id), sgt.name)
-                              for sgt in share_group_types]
+                [(utils.transform_dashed_name(sgt.id), sgt.name) for sgt in
+                 share_group_types]
             )
 
             # NOTE(vponomaryov): create separate set of available share types
@@ -180,7 +180,6 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                 required=False)
             share_networks = manila.share_network_list(request)
             self.fields["share_network"].choices = (
-                [("", "")] +
                 [(sn.id, sn.name or sn.id) for sn in share_networks])
 
     def clean(self):
