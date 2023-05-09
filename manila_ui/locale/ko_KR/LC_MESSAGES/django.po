@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2022-05-02 19:10+0000\n"
+"POT-Creation-Date: 2023-03-06 13:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1336,10 +1336,6 @@ msgid "Successfully sent the request to unmanage share: %s"
 msgstr "공유를 관리 해제하기 위해 요청을 성공적으로 전송하였습니다: %s"
 
 #, python-format
-msgid "Successfully updated extra specs for share type '%s'."
-msgstr "공유 유형 '%s' 에 대한 부가 스펙 갱신을 성공하였습니다."
-
-#, python-format
 msgid "Successfully updated group specs for share group type '%s'."
 msgstr "공유 그룹 타입 '%s'의 그룹 스펙을 성공적으로 갱신하였습니다."
 
@@ -1673,9 +1669,6 @@ msgstr "공유 유형 \"%s\" 에 대한 액세스를 업데이트할 수 없습�
 
 msgid "Unable to update default quotas."
 msgstr "기본 할당량을 업데이트할 수 없습니다."
-
-msgid "Unable to update extra_specs for share type."
-msgstr "공유 유형에 대한 extra_specs 을 업데이트할 수 없습니다."
 
 msgid "Unable to update group_specs for share group type."
 msgstr "공유 그룹 유형의 그룹 스펙을 업데이트할 수 없습니다."

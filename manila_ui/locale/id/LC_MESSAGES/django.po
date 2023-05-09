@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2022-05-02 19:10+0000\n"
+"POT-Creation-Date: 2023-03-06 13:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1357,10 +1357,6 @@ msgstr ""
 "Berhasil mengirimkan permintaan untuk tidak mengelola (unmanaged) share: %s"
 
 #, python-format
-msgid "Successfully updated extra specs for share type '%s'."
-msgstr "Berhasil diperbarui spesifikasi tambahan untuk tipe share '%s'."
-
-#, python-format
 msgid "Successfully updated group specs for share group type '%s'."
 msgstr "Spesifikasi grup yang berhasil diperbarui untuk share group type '%s'."
 
@@ -1699,9 +1695,6 @@ msgstr "Tidak dapat memperbarui akses untuk tipe share \"%s\"."
 
 msgid "Unable to update default quotas."
 msgstr "Tidak dapat memperbarui kuota default."
-
-msgid "Unable to update extra_specs for share type."
-msgstr "Tidak dapat memperbarui extra_specsuntuk tipe share."
 
 msgid "Unable to update group_specs for share group type."
 msgstr "Tidak dapat memperbarui group_specs untuk share group type."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2022-05-02 19:10+0000\n"
+"POT-Creation-Date: 2023-03-06 13:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -702,10 +702,6 @@ msgid "Successfully sent the request to unmanage share: %s"
 msgstr "La demande de non-gestion du partage a été envoyée avec succès : %s"
 
 #, python-format
-msgid "Successfully updated extra specs for share type '%s'."
-msgstr "Spécification supplémentaire \"%s\" mise à jour avec succès."
-
-#, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "Service de sécurité \"%s\" mis à jour avec succès"
 
@@ -898,9 +894,6 @@ msgstr "Impossible de mettre à jour le type de partage \"%s\"."
 
 msgid "Unable to update default quotas."
 msgstr "Impossible de mettre à jour les quotas par défaut."
-
-msgid "Unable to update extra_specs for share type."
-msgstr "Impossible de mettre à jour extra_specs pour le type de partage."
 
 msgid "Unable to update security service."
 msgstr "Impossible de mettre à jour le service de sécurité."
