@@ -3,15 +3,16 @@
 # Andi Chandler <andi@gowling.com>, 2019. #zanata
 # Andi Chandler <andi@gowling.com>, 2020. #zanata
 # Andi Chandler <andi@gowling.com>, 2022. #zanata
+# Andi Chandler <andi@gowling.com>, 2023. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2022-05-02 19:10+0000\n"
+"POT-Creation-Date: 2023-03-06 13:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-05-25 09:25+0000\n"
+"PO-Revision-Date: 2023-06-20 11:28+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
@@ -643,6 +644,13 @@ msgstr ""
 
 msgid "From here you can modify name, description and visibility of a share."
 msgstr "From here you can modify name, description and visibility of a share."
+
+msgid ""
+"From here you can modify name, description, extra specs and visibility of a "
+"share type."
+msgstr ""
+"From here you can modify the name, description, extra specs and visibility "
+"of a share type."
 
 msgid "From here you can revert the share to its latest snapshot."
 msgstr "From here you can revert the share to its latest snapshot."
@@ -1512,16 +1520,16 @@ msgid "Successfully sent the request to unmanage share: %s"
 msgstr "Successfully sent the request to unmanage share: %s"
 
 #, python-format
-msgid "Successfully updated extra specs for share type '%s'."
-msgstr "Successfully updated extra specs for share type '%s'."
-
-#, python-format
 msgid "Successfully updated group specs for share group type '%s'."
 msgstr "Successfully updated group specs for share group type '%s'."
 
 #, python-format
 msgid "Successfully updated security service \"%s\""
 msgstr "Successfully updated security service \"%s\""
+
+#, python-format
+msgid "Successfully updated share type '%s'."
+msgstr "Successfully updated share type '%s'."
 
 msgid "Task state"
 msgstr "Task state"
@@ -1878,9 +1886,6 @@ msgstr "Unable to update access for share type \"%s\"."
 
 msgid "Unable to update default quotas."
 msgstr "Unable to update default quotas."
-
-msgid "Unable to update extra_specs for share type."
-msgstr "Unable to update extra_specs for share type."
 
 msgid "Unable to update group_specs for share group type."
 msgstr "Unable to update group_specs for share group type."
