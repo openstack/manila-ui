@@ -12,8 +12,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from io import BytesIO
+
 import ddt
 from django.core.handlers import wsgi
+from django.core.handlers.wsgi import LimitedStream
 from django.urls import reverse
 from horizon import messages as horizon_messages
 from openstack_dashboard.api import neutron
@@ -51,7 +54,8 @@ class ShareViewTests(test.APITestCase):
         self.mock_object(
             neutron, "is_service_enabled", mock.Mock(return_value=[True]))
         self.mock_object(horizon_messages, "success")
-        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': 'fake_input'}
+        stream = LimitedStream(BytesIO(b"test"), 2)
+        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': stream}
         self.request = wsgi.WSGIRequest(FAKE_ENVIRON)
         self.mock_object(
             api_manila, "tenant_absolute_limits",

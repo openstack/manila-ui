@@ -13,7 +13,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from io import BytesIO
+
 from django.core.handlers import wsgi
+from django.core.handlers.wsgi import LimitedStream
 from unittest import mock
 
 from manila_ui.api import manila as api
@@ -25,7 +28,8 @@ class ManilaDashboardsAdminMigrationFormTests(base.APITestCase):
 
     def setUp(self):
         super(self.__class__, self).setUp()
-        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': 'fake_input'}
+        stream = LimitedStream(BytesIO(b"test"), 2)
+        FAKE_ENVIRON = {'REQUEST_METHOD': 'GET', 'wsgi.input': stream}
         self.request = wsgi.WSGIRequest(FAKE_ENVIRON)
 
     def _get_initial(self):
