@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    Fixed error in share creation caused by internal UnicodeDecodeError.
+    `Launchpad bug #2043572 <https://bugs.launchpad.net/manila-ui/+bug/2043572>`_

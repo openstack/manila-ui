@@ -124,7 +124,7 @@ def transform_dashed_name(name):
     try:
         return base64.b32decode(
             name.replace('_', '=').upper().encode()).decode()
-    except binascii.Error:
+    except (binascii.Error, UnicodeDecodeError):
         if re.search(r'^[a-z_\d]+$', name):
             return name  # leave as-is names without dashes and capitals
         else:
