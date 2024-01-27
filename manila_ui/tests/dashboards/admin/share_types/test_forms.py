@@ -53,8 +53,8 @@ class ManilaDashboardsAdminSharesUpdateShareTypeFormTests(base.APITestCase):
         for expected_extra_spec in extra_specs_str_output:
             self.assertIn(expected_extra_spec, form.initial['extra_specs'])
         self.assertIn('extra_specs', list(form.fields.keys()))
-        self.assertTrue(
-            isinstance(form.fields['extra_specs'], horizon_forms.CharField))
+        self.assertIsInstance(form.fields['extra_specs'],
+                              horizon_forms.CharField)
 
     @mock.patch('horizon.messages.success')
     def test_handle_success_no_changes(self, mock_horizon_messages_success):
