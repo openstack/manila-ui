@@ -12,6 +12,7 @@
             voting: false
         - manila-ui-integration-tests:
             voting: false
+        - manila-ui-tox-bandit
     gate:
       jobs:
         - manila-ui-integration-tests:
@@ -87,3 +88,18 @@
       devstack_services:
         horizon: true
       tox_envlist: integration
+
+
+- job:
+  # Security testing for known issues
+    name: manila-ui-tox-bandit
+    parent: openstack-tox
+    timeout: 2400
+    vars:
+      tox_envlist: bandit
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^manila-ui/tests/.*$
+      - ^releasenotes/.*$
+      - ^tox.ini$

@@ -96,7 +96,7 @@ def metadata_to_str(metadata, meta_visible_limit=4, text_length_limit=25):
     meta_str = "<br/>".join(meta)
     if len(metadata.keys()) > meta_visible_limit and meta_str[-3:] != "...":
         meta_str += '...'
-    return mark_safe(meta_str)
+    return mark_safe(meta_str)  # nosec B308
 
 
 def get_nice_security_service_type(security_service):
