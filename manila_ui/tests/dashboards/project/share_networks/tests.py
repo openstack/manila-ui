@@ -16,10 +16,10 @@ from django.urls import reverse
 from neutronclient.client import exceptions
 from openstack_auth import policy
 from openstack_dashboard import api
+from oslo_utils import timeutils
 from unittest import mock
 
 from manila_ui.api import manila as api_manila
-from manila_ui.api import network as api_manila_network
 from manila_ui.dashboards import utils
 from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
@@ -28,40 +28,55 @@ INDEX_URL = reverse('horizon:project:share_networks:index')
 
 
 class ShareNetworksViewTests(test.TestCase):
+    class FakeAZ(object):
+        def __init__(self, name, id):
+            self.name = name
+            self.id = id
+            self.created_at = timeutils.utcnow()
 
     def test_create_share_network(self):
         share_net = test_data.active_share_network
+
         url = reverse('horizon:project:share_networks:share_network_create')
         neutron_net_id = self.networks.first().id
+        sanitized_net_id = utils.transform_dashed_name(neutron_net_id)
         formData = {
-            'name': 'new_share_network',
-            'description': 'This is test share network',
+            'share_network_name': 'new_share_network',
+            'share_network_description': 'This is test share network',
             'method': 'CreateForm',
             'neutron_net_id': utils.transform_dashed_name(neutron_net_id),
+            'availability_zone': 'fake_az',
+            f'subnet-choices-{sanitized_net_id}':
+                self.networks.first().subnets[0].id,
         }
-        for net in self.networks.list():
-            sanitized_net_id = utils.transform_dashed_name(net.id)
-            subnet_choices_field = 'subnet-choices-%s' % sanitized_net_id
-            formData[subnet_choices_field] = net.subnets[0].id
+
         self.mock_object(
             api.neutron, "subnet_list",
             mock.Mock(return_value=self.subnets.list()))
         self.mock_object(
-            api_manila_network, "network_list",
+            api.neutron, "network_list",
             mock.Mock(return_value=self.networks.list()))
         self.mock_object(
             api_manila, "share_network_create",
             mock.Mock(return_value=share_net))
+        self.mock_object(
+            api_manila, "availability_zone_list",
+            mock.Mock(return_value=[self.FakeAZ('fake_az', 'fake_az')])
+        )
 
-        self.client.post(url, formData)
+        res = self.client.post(url, formData)
 
-        sanitized_neutron_net_field = formData[
-            'subnet-choices-%s' % utils.transform_dashed_name(neutron_net_id)]
+        self.assertNoFormErrors(res)
+        self.assertMessageCount(error=0, warning=0)
+        self.assertRedirectsNoFollow(res, INDEX_URL)
         api_manila.share_network_create.assert_called_once_with(
-            mock.ANY, name=formData['name'], neutron_net_id=neutron_net_id,
-            neutron_subnet_id=sanitized_neutron_net_field,
-            description=formData['description'])
-        api_manila_network.network_list.assert_called_once_with(mock.ANY)
+            mock.ANY, name=formData['share_network_name'],
+            neutron_net_id=neutron_net_id,
+            neutron_subnet_id=self.networks.first().subnets[0].id,
+            description=formData['share_network_description'],
+            availability_zone='fake_az')
+        api_manila.availability_zone_list.assert_called_once_with(mock.ANY)
+        api.neutron.network_list.assert_called_once_with(mock.ANY)
         api.neutron.subnet_list.assert_has_calls([
             mock.call(mock.ANY, network_id=network.id)
             for network in self.networks.list()
@@ -75,12 +90,6 @@ class ShareNetworksViewTests(test.TestCase):
             api_manila, "share_network_list",
             mock.Mock(return_value=[
                 test_data.active_share_network, share_network]))
-        self.mock_object(
-            api.neutron, "network_list",
-            mock.Mock(return_value=self.networks.list()))
-        self.mock_object(
-            api.neutron, "subnet_list",
-            mock.Mock(return_value=self.subnets.list()))
 
         res = self.client.post(INDEX_URL, formData)
 
@@ -89,12 +98,11 @@ class ShareNetworksViewTests(test.TestCase):
             mock.ANY, detailed=True)
         api_manila.share_network_delete.assert_called_once_with(
             mock.ANY, share_network.id)
-        api.neutron.network_list.assert_called_once_with(mock.ANY)
-        api.neutron.subnet_list.assert_called_once_with(mock.ANY)
 
     def test_detail_view(self):
         share_net = test_data.active_share_network
         sec_service = test_data.sec_service
+        share_network_subnets = share_net.share_network_subnets
         self.mock_object(
             api_manila, "share_server_list", mock.Mock(return_value=[]))
         self.mock_object(
@@ -104,40 +112,58 @@ class ShareNetworksViewTests(test.TestCase):
             mock.Mock(return_value=[sec_service]))
         network = self.networks.first()
         subnet = self.subnets.first()
+
         self.mock_object(
             api.neutron, "network_get", mock.Mock(return_value=network))
         self.mock_object(
             api.neutron, "subnet_get", mock.Mock(return_value=subnet))
+        self.mock_object(
+            api_manila, "availability_zone_list",
+            mock.Mock(return_value=[self.FakeAZ('fake_az', 'fake_az')])
+        )
         url = reverse('horizon:project:share_networks:share_network_detail',
                       args=[share_net.id])
 
         res = self.client.get(url)
 
+        self.assertNoMessages()
         self.assertContains(res, "<h1>Share Network Details: %s</h1>"
                                  % share_net.name,
                             1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.id, 1, 200)
-        self.assertContains(res, "<dd>%s</dd>" % network.name_or_id, 1, 200)
-        self.assertContains(res, "<dd>%s</dd>" % subnet.name_or_id, 1, 200)
+        for sub in share_network_subnets:
+            self.assertContains(res, "<a href=\"/project/networks"
+                                "/%s/detail\">%s</a>" % (
+                                    sub['neutron_net_id'],
+                                    network.name), 1, 200)
+            self.assertContains(res, "<a href=\"/project/networks/subnets"
+                                     "/%s/detail\">%s</a>" % (
+                                         sub['neutron_subnet_id'],
+                                         subnet['name']), 1, 200)
+        network_get_calls = [mock.call(mock.ANY, sub['neutron_net_id'])
+                             for sub in share_network_subnets]
+        subnet_get_calls = [mock.call(mock.ANY, sub['neutron_subnet_id'])
+                            for sub in share_network_subnets]
+
+        api.neutron.network_get.assert_has_calls(network_get_calls,
+                                                 any_order=True)
+        api.neutron.subnet_get.assert_has_calls(subnet_get_calls,
+                                                any_order=True)
         self.assertContains(res, "<a href=\"/project/security_services"
                                  "/%s\">%s</a>" % (sec_service.id,
                                                    sec_service.name), 1, 200)
-        self.assertNoMessages()
         api_manila.share_network_security_service_list.assert_called_once_with(
             mock.ANY, share_net.id)
         api_manila.share_server_list.assert_called_once_with(
             mock.ANY, search_opts={'share_network_id': share_net.id})
         api_manila.share_network_get.assert_called_once_with(
             mock.ANY, share_net.id)
-        api.neutron.network_get.assert_called_once_with(
-            mock.ANY, share_net.neutron_net_id)
-        api.neutron.subnet_get.assert_called_once_with(
-            mock.ANY, share_net.neutron_subnet_id)
 
     def test_detail_view_network_not_found(self):
         share_net = test_data.active_share_network
         sec_service = test_data.sec_service
+        share_network_subnets = share_net.share_network_subnets
         url = reverse('horizon:project:share_networks:share_network_detail',
                       args=[share_net.id])
         self.mock_object(
@@ -153,7 +179,10 @@ class ShareNetworksViewTests(test.TestCase):
         self.mock_object(
             api.neutron, "subnet_get", mock.Mock(
                 side_effect=exceptions.NeutronClientException('fake', 500)))
-
+        self.mock_object(
+            api_manila, "availability_zone_list",
+            mock.Mock(return_value=[])
+        )
         res = self.client.get(url)
 
         self.assertContains(res, "<h1>Share Network Details: %s</h1>"
@@ -161,10 +190,19 @@ class ShareNetworksViewTests(test.TestCase):
                             1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.id, 1, 200)
-        self.assertContains(res, "<dd>Unknown</dd>", 2, 200)
-        self.assertNotContains(res, "<dd>%s</dd>" % share_net.neutron_net_id)
-        self.assertNotContains(res,
-                               "<dd>%s</dd>" % share_net.neutron_subnet_id)
+        for sub in share_network_subnets:
+            self.assertNotContains(res, "<dd>%s</dd>" % sub['neutron_net_id'])
+            self.assertNotContains(res,
+                                   "<dd>%s</dd>" % sub['neutron_subnet_id'])
+        network_get_calls = [mock.call(mock.ANY, sub['neutron_net_id']
+                                       ) for sub in share_network_subnets]
+        subnet_get_calls = [mock.call(mock.ANY, sub['neutron_subnet_id']
+                                      ) for sub in share_network_subnets]
+
+        api.neutron.network_get.assert_has_calls(network_get_calls,
+                                                 any_order=True)
+        api.neutron.subnet_get.assert_has_calls(subnet_get_calls,
+                                                any_order=True)
         self.assertContains(res, "<a href=\"/project/security_services"
                                  "/%s\">%s</a>" % (sec_service.id,
                                                    sec_service.name), 1, 200)
@@ -175,10 +213,6 @@ class ShareNetworksViewTests(test.TestCase):
             mock.ANY, search_opts={'share_network_id': share_net.id})
         api_manila.share_network_get.assert_called_once_with(
             mock.ANY, share_net.id)
-        api.neutron.network_get.assert_called_once_with(
-            mock.ANY, share_net.neutron_net_id)
-        api.neutron.subnet_get.assert_called_once_with(
-            mock.ANY, share_net.neutron_subnet_id)
 
     def test_update_share_network(self):
         share_net = test_data.inactive_share_network

@@ -412,6 +412,7 @@ class ManilaApiTests(base.APITestCase):
             "description": None,
             "neutron_net_id": None,
             "neutron_subnet_id": None,
+            "availability_zone": None
         }
         expected_kwargs.update(**kwargs)
 

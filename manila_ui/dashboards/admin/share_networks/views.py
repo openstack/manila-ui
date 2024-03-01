@@ -21,8 +21,6 @@ from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
 from horizon import tables
 from horizon.utils import memoized
-from openstack_dashboard.api import base
-from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
 from manila_ui.dashboards.admin.share_networks import tables as sn_tables
@@ -42,19 +40,7 @@ class ShareNetworksView(tables.MultiTableView):
     def get_share_networks_data(self):
         try:
             share_networks = manila.share_network_list(
-                self.request, detailed=True, search_opts={'all_tenants': True})
-            if base.is_service_enabled(self.request, 'network'):
-                neutron_net_names = dict(
-                    (net.id, net.name)
-                    for net in neutron.network_list(self.request))
-                neutron_subnet_names = dict(
-                    (net.id, net.name)
-                    for net in neutron.subnet_list(self.request))
-                for sn in share_networks:
-                    sn.neutron_net = neutron_net_names.get(
-                        sn.neutron_net_id) or sn.neutron_net_id or "-"
-                    sn.neutron_subnet = neutron_subnet_names.get(
-                        sn.neutron_subnet_id) or sn.neutron_subnet_id or "-"
+                self.request, detailed=True, search_opts={"all_tenants": True})
         except Exception:
             share_networks = []
             exceptions.handle(
