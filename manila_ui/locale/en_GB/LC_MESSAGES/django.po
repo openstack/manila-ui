@@ -4,15 +4,16 @@
 # Andi Chandler <andi@gowling.com>, 2020. #zanata
 # Andi Chandler <andi@gowling.com>, 2022. #zanata
 # Andi Chandler <andi@gowling.com>, 2023. #zanata
+# Andi Chandler <andi@gowling.com>, 2024. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2023-03-06 13:24+0000\n"
+"POT-Creation-Date: 2024-03-14 15:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2023-05-08 11:41+0000\n"
+"PO-Revision-Date: 2024-04-18 01:00+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
@@ -281,6 +282,10 @@ msgstr "Created At:"
 
 msgid "Created at"
 msgstr "Created at"
+
+#, python-format
+msgid "Created share network \"%s\"."
+msgstr "Created share network \"%s\"."
 
 msgctxt "Current status of replica"
 msgid "Creating"
@@ -704,9 +709,6 @@ msgstr "ID"
 msgid "ID:"
 msgstr "ID:"
 
-msgid "IP Version"
-msgstr "IP Version"
-
 msgid "Id"
 msgstr "Id"
 
@@ -827,18 +829,6 @@ msgstr "Name "
 msgid "Name:"
 msgstr "Name:"
 
-msgid "Net Details"
-msgstr "Net Details"
-
-msgid "Network"
-msgstr "Network"
-
-msgid "Network Details"
-msgstr "Network Details"
-
-msgid "Network Type"
-msgstr "Network Type"
-
 msgid "Network handling enabled:"
 msgstr "Network handling enabled:"
 
@@ -847,6 +837,9 @@ msgstr "Networks"
 
 msgid "Neutron Net"
 msgstr "Neutron Net"
+
+msgid "Neutron Network"
+msgstr "Neutron Network"
 
 msgid "Neutron Subnet"
 msgstr "Neutron Subnet"
@@ -886,6 +879,9 @@ msgstr "No source, empty share group"
 
 msgid "Nondisruptive"
 msgstr "Non-disruptive"
+
+msgid "None"
+msgstr "None"
 
 msgid "Number of Share Snapshots"
 msgstr "Number of Share Snapshots"
@@ -941,6 +937,9 @@ msgstr "Preserve Snapshots"
 
 msgid "Project"
 msgstr "Project"
+
+msgid "Project ID"
+msgstr "Project ID"
 
 msgid "Projects with access to share group type"
 msgstr "Projects with access to share group type"
@@ -1097,9 +1096,6 @@ msgstr "Security Services"
 msgid "Security services within share network"
 msgstr "Security services within share network"
 
-msgid "Segmentation Id"
-msgstr "Segmentation Id"
-
 msgid "Select parameters of share group you want to create. "
 msgstr "Select parameters of share group you want to create. "
 
@@ -1236,6 +1232,9 @@ msgstr "Share Network Details"
 #, python-format
 msgid "Share Network Details: %(network_display_name)s"
 msgstr "Share Network Details: %(network_display_name)s"
+
+msgid "Share Network ID"
+msgstr "Share Network ID"
 
 msgid "Share Network Info"
 msgstr "Share Network Info"
@@ -1452,6 +1451,15 @@ msgid "Source share group snapshot"
 msgstr "Source share group snapshot"
 
 msgid ""
+"Specify an Availability Zone or an existing subnet. If no details are "
+"specified, then a default subnet with a null Availability Zone will be "
+"created automatically."
+msgstr ""
+"Specify an Availability Zone or an existing subnet. If no details are "
+"specified, then a default subnet with a null Availability Zone will be "
+"created automatically."
+
+msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
 "if the migrating share has to be retained within its current share network."
 msgstr ""
@@ -1482,6 +1490,9 @@ msgstr "Submit"
 
 msgid "Subnet"
 msgstr "Subnet"
+
+msgid "Subnets"
+msgstr "Subnets"
 
 #, python-format
 msgid "Successfully created security service: %s"
@@ -1606,6 +1617,10 @@ msgstr "Unable to create share group type."
 msgid "Unable to create share group."
 msgstr "Unable to create share group."
 
+#, python-format
+msgid "Unable to create share network \"%s\"."
+msgstr "Unable to create share network \"%s\"."
+
 msgid "Unable to create share network."
 msgstr "Unable to create share network."
 
@@ -1675,6 +1690,12 @@ msgstr "Unable to get the security services hosts"
 #, python-format
 msgid "Unable to get the specified share group '%s' for snapshot creation."
 msgstr "Unable to get the specified share group '%s' for snapshot creation."
+
+msgid "Unable to initialize neutron networks."
+msgstr "Unable to initialise Neutron networks."
+
+msgid "Unable to initialize neutron subnets."
+msgstr "Unable to initialise Neutron subnets."
 
 msgid "Unable to load the specified share group snapshot."
 msgstr "Unable to load the specified share group snapshot."

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2023-03-06 13:24+0000\n"
+"POT-Creation-Date: 2024-03-14 15:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -308,9 +308,6 @@ msgstr ""
 msgid "ID"
 msgstr "ID"
 
-msgid "IP Version"
-msgstr "Версия IP"
-
 msgid "Id"
 msgstr "ID"
 
@@ -389,9 +386,6 @@ msgstr "Миграция общего ресурса %(name)s выполнена
 
 msgid "Name"
 msgstr "Имя"
-
-msgid "Network Type"
-msgstr "Тип сети"
 
 msgid "Networks"
 msgstr "Сети"
@@ -523,9 +517,6 @@ msgstr "Службы безопасности"
 
 msgid "Security services within share network"
 msgstr "Службы безопасности сети общего ресурса"
-
-msgid "Segmentation Id"
-msgstr "ID сегмента"
 
 msgid "Selected projects"
 msgstr "Выбранные проекты"
