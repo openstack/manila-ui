@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Added the possibility to filter share networks by their name or
+    description.
+

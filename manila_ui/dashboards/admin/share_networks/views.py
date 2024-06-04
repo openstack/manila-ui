@@ -15,13 +15,13 @@
 """
 Admin views for managing share networks.
 """
+import re
 
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
 from horizon import tables
 from horizon.utils import memoized
-
 from manila_ui.api import manila
 from manila_ui.dashboards.admin.share_networks import tables as sn_tables
 from manila_ui.dashboards.admin.share_networks import tabs as sn_tabs
@@ -46,7 +46,30 @@ class ShareNetworksView(tables.MultiTableView):
             exceptions.handle(
                 self.request, _("Unable to retrieve share networks"))
         utils.set_project_name_to_objects(self.request, share_networks)
+        share_networks = self.get_filters(share_networks)
         return share_networks
+
+    def get_filters(self, share_networks):
+        table = self._tables['share_networks']
+        filters = self.get_server_filter_info(table.request, table)
+        filter_string = filters['value']
+        filter_field = filters['field']
+        if filter_string and filter_field:
+            filtered_data = []
+            for share_network in share_networks:
+                if filter_field == 'name':
+                    if share_network.name == filter_string:
+                        filtered_data.append(share_network)
+
+                if filter_field == 'description':
+                    re_string = re.compile(filter_string)
+                    if (share_network.description and
+                            re.search(re_string,
+                                      share_network.description)):
+                        filtered_data.append(share_network)
+            return filtered_data
+        else:
+            return share_networks
 
 
 class ShareNetworkDetailView(p_views.Detail):

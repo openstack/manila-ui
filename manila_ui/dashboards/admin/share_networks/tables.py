@@ -16,10 +16,20 @@ from horizon import tables
 import manila_ui.dashboards.project.share_networks.tables as sn_tables
 
 
+class ShareNetworksFilterAction(tables.FilterAction):
+    filter_type = "server"
+    filter_choices = (
+        ('name', _("Name "), True),
+        ('description', _("Description "), True),
+    )
+
+
 class ShareNetworksTable(tables.DataTable):
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
         link="horizon:admin:share_networks:share_network_detail")
+    description = tables.WrappingColumn(
+        "description", verbose_name=_("Description"))
     project = tables.Column("project_name", verbose_name=_("Project"))
 
     def get_object_display(self, share_network):
@@ -32,7 +42,7 @@ class ShareNetworksTable(tables.DataTable):
         name = "share_networks"
         verbose_name = _("Share Networks")
         table_actions = (
-            tables.NameFilterAction,
+            ShareNetworksFilterAction,
             sn_tables.Delete,
         )
         row_class = sn_tables.UpdateRow

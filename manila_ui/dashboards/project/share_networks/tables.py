@@ -93,6 +93,14 @@ class UpdateRow(tables.Row):
         return share_net
 
 
+class ShareNetworksFilterAction(tables.FilterAction):
+    filter_type = "server"
+    filter_choices = (
+        ('name', _("Name "), True),
+        ('description', _("Description "), True),
+    )
+
+
 class ShareNetworksTable(tables.DataTable):
     STATUS_CHOICES = (
         ("ACTIVE", True),
@@ -122,7 +130,7 @@ class ShareNetworksTable(tables.DataTable):
         name = "share_networks"
         verbose_name = _("Share Networks")
         table_actions = (
-            tables.NameFilterAction,
+            ShareNetworksFilterAction,
             Create,
             Delete,
         )

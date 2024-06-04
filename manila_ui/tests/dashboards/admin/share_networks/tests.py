@@ -22,12 +22,27 @@ from oslo_utils import timeutils
 from unittest import mock
 
 from manila_ui.api import manila as api_manila
+from manila_ui.dashboards.admin import share_networks
 from manila_ui.dashboards.admin import utils
 from manila_ui.tests.dashboards.project import test_data
 from manila_ui.tests import helpers as test
 from manila_ui.tests.test_data import keystone_data
 
 INDEX_URL = reverse('horizon:admin:share_networks:index')
+
+
+class ShareNetworksTableMock(mock.Mock):
+    def __init__(self, *args, **kwargs):
+        mock.Mock.__init__(self)
+        self.request = {}
+        self.share_networks = {}
+
+
+class ShareNetwork:
+    def __init__(self, id, name, description):
+        self.id = id
+        self.name = name
+        self.description = description
 
 
 class ShareNetworksTests(test.BaseAdminViewTests):
@@ -178,12 +193,70 @@ class ShareNetworksTests(test.BaseAdminViewTests):
             mock.Mock(return_value=[
                 test_data.active_share_network,
                 test_data.inactive_share_network]))
-
         res = self.client.post(INDEX_URL, formData)
-
         self.assertRedirectsNoFollow(res, INDEX_URL)
         api_keystone.tenant_list.assert_called_once_with(mock.ANY)
         api_manila.share_network_delete.assert_called_once_with(
             mock.ANY, share_network.id)
         api_manila.share_network_list.assert_called_once_with(
             mock.ANY, detailed=True, search_opts={'all_tenants': True})
+
+    def test_get_filters(self):
+        share_net = [
+            ShareNetwork('share_net_1', 'share_net_name_1', 'desc1'),
+            ShareNetwork('share_net_2', 'share_net_name_2', 'desc2'),
+            ShareNetwork('share_net_3', 'share_net_name_3', 'desc3'),
+        ]
+        share_networks_view = share_networks.views.ShareNetworksView()
+        share_networks_view._tables = {
+            'share_networks': ShareNetworksTableMock()
+        }
+
+        mock_filters = {
+            'action': '<ShareNetworksFilterAction: filter>',
+            'value_param': 'share_networks__filter__q',
+            'value': '',
+            'field_param': 'share_networks__filter__q_field',
+            'field': None,
+            'changed': False
+        }
+        self.mock_object(share_networks_view, 'get_server_filter_info',
+                         mock.Mock(return_value=mock_filters))
+
+        # Test with empty filter string and no filter field selected
+        filtered_data = share_networks_view.get_filters(share_net)
+        self.assertEqual(len(filtered_data), len(share_net))
+        self.assertEqual(filtered_data, share_net)
+
+        mock_filters_name = {
+            'action': '<ShareNetworksFilterAction: filter>',
+            'value_param': 'share_networks__filter__q',
+            'value': 'share_net_name_1',
+            'field_param': 'share_networks__filter__q_field',
+            'field': 'name',
+            'changed': False
+        }
+        self.mock_object(share_networks_view, 'get_server_filter_info',
+                         mock.Mock(return_value=mock_filters_name))
+
+        # Test with specific filter string ("share_net_name_1") on "name" field
+        filtered_data = share_networks_view.get_filters(share_net)
+        self.assertEqual(len(filtered_data), 1)
+        self.assertEqual(filtered_data[0].name, 'share_net_name_1')
+
+        mock_filters_description = {
+            'action': '<ShareNetworksFilterAction: filter>',
+            'value_param': 'share_networks__filter__q',
+            'value': 'desc1',
+            'field_param': 'share_networks__filter__q_field',
+            'field': 'description',
+            'changed': False
+        }
+
+        self.mock_object(share_networks_view, 'get_server_filter_info',
+                         mock.Mock(return_value=mock_filters_description))
+
+        # Test with specific filter string ("desc1") on "description" field
+        filtered_data = share_networks_view.get_filters(share_net)
+        self.assertEqual(len(filtered_data), 1)
+        self.assertEqual(filtered_data[0].description, 'desc1')

@@ -12,6 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import re
+
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
@@ -45,7 +47,30 @@ class ShareNetworksView(tables.MultiTableView):
             share_networks = []
             exceptions.handle(
                 self.request, _("Unable to retrieve share networks"))
+        share_networks = self.get_filters(share_networks)
         return share_networks
+
+    def get_filters(self, share_networks):
+        table = self._tables['share_networks']
+        filters = self.get_server_filter_info(table.request, table)
+        filter_string = filters['value']
+        filter_field = filters['field']
+        if filter_string and filter_field:
+            filtered_data = []
+            for share_network in share_networks:
+                if filter_field == 'name':
+                    if share_network.name == filter_string:
+                        filtered_data.append(share_network)
+
+                if filter_field == 'description':
+                    re_string = re.compile(filter_string)
+                    if (share_network.description and
+                            re.search(re_string,
+                                      share_network.description)):
+                        filtered_data.append(share_network)
+            return filtered_data
+        else:
+            return share_networks
 
 
 class Update(workflows.WorkflowView):
