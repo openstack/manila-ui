@@ -14,6 +14,8 @@
 
 from django.urls import re_path
 
+from manila_ui.dashboards.project.share_networks.share_network_subnets \
+    import views as subnet_views
 from manila_ui.dashboards.project.share_networks import views
 
 
@@ -34,4 +36,8 @@ urlpatterns = [
         r'^(?P<share_network_id>[^/]+)$',
         views.Detail.as_view(),
         name='share_network_detail'),
+    re_path(
+        r'^(?P<share_network_id>[^/]+)/subnets/create$',
+        subnet_views.CreateSubnet.as_view(),
+        name='share_network_subnet_create'),
 ]

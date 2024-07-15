@@ -322,6 +322,16 @@ def share_network_delete(request, share_network_id):
     return manilaclient(request).share_networks.delete(share_network_id)
 
 
+def share_network_subnet_create(request, share_network_id=None,
+                                neutron_net_id=None, neutron_subnet_id=None,
+                                availability_zone=None):
+    return manilaclient(request).share_network_subnets.create(
+        share_network_id=share_network_id,
+        neutron_net_id=neutron_net_id,
+        neutron_subnet_id=neutron_subnet_id,
+        availability_zone=availability_zone)
+
+
 def security_service_list(request, search_opts=None):
     return manilaclient(request).security_services.list(
         detailed=True,
