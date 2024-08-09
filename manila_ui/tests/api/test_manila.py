@@ -449,6 +449,26 @@ class ManilaApiTests(base.APITestCase):
         self.manilaclient.share_networks.delete.assert_called_once_with(
             share_network_id)
 
+    @ddt.data(
+        {"share_network_id": "some_network_id"},
+        {"share_network_id": "some_network_id",
+         "neutron_net_id": "some_neutron_net_id",
+         "neutron_subnet_id": "some_neutron_subnet_id",
+         "availability_zone": "some_availability_zone"},
+    )
+    def test_share_network_subnet_create(self, kwargs):
+        expected_kwargs = {
+            "share_network_id": None,
+            "neutron_net_id": None,
+            "neutron_subnet_id": None,
+            "availability_zone": None
+        }
+
+        expected_kwargs.update(**kwargs)
+        api.share_network_subnet_create(self.request, **kwargs)
+        self.manilaclient.share_network_subnets.create.assert_called_once_with(
+            **expected_kwargs)
+
     # Share server tests
 
     @ddt.data(

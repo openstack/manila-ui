@@ -20,7 +20,8 @@ from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
 from manila_ui.api import manila
-
+from manila_ui.dashboards.project.share_networks.share_network_subnets \
+    import tables as subnet_tables
 
 DELETABLE_STATES = ("INACTIVE", "ERROR")
 EDITABLE_STATES = ("INACTIVE", )
@@ -138,4 +139,5 @@ class ShareNetworksTable(tables.DataTable):
         row_actions = (
             EditShareNetwork,
             Delete,
+            subnet_tables.CreateShareNetworkSubnet,
         )
