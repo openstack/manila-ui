@@ -1,0 +1,4 @@
+---
+upgrade:
+  - |
+    Now the minimum python version supported is 3.9 .
