@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Fixed a bug where share group could not be created from share group
+    snapshot.
+    `Launchpad bug 2090947 <https://bugs.launchpad.net/manila-ui/+bug/2090947>`_
