@@ -29,7 +29,7 @@ In order to install Manila UI in `RDO <https://www.rdoproject.org>`__,
 please follow the steps below (you may need to use `sudo` privileges
 if you are not root)::
 
-    # yum install -y openstack-manila-ui
+    # dnf install -y openstack-manila-ui
     # systemctl restart httpd
     # systemctl restart memcached
 
