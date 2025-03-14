@@ -217,15 +217,16 @@ class CreateShareGroupForm(forms.SelfHandlingForm):
                 snapshot_id = snapshot.id
                 source_sg = manila.share_group_get(
                     request, snapshot.share_group_id)
-                data['sgt'] = source_sg.share_group_type_id
+                share_group_type = source_sg.share_group_type_id
             else:
                 snapshot_id = None
+                share_group_type = utils.transform_dashed_name(data['sgt'])
 
             share_group = manila.share_group_create(
                 request,
                 name=data['name'],
                 description=data['description'],
-                share_group_type=utils.transform_dashed_name(data['sgt']),
+                share_group_type=share_group_type,
                 share_types=None if snapshot_id else data.get('share_types'),
                 share_network=(
                     None if snapshot_id else data.get('share_network')),
