@@ -21,6 +21,23 @@ from manila_ui.api import manila as api
 from manila_ui.tests import helpers as base
 
 
+class FakeLimit:
+    """Fake object to simulate Manila absolute limits."""
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+
+
+def get_fake_limits():
+    """Returns a list of fake limit objects."""
+    return [
+        FakeLimit("maxTotalShares", 50),
+        FakeLimit("totalSharesUsed", 10),
+        FakeLimit("maxTotalShareGigabytes", -1),  # Unlimited quota
+        FakeLimit("totalShareGigabytesUsed", 200),
+    ]
+
+
 @ddt.ddt
 class ManilaApiTests(base.APITestCase):
 
@@ -898,6 +915,20 @@ class ManilaApiTests(base.APITestCase):
         mock_reset_state = self.manilaclient.share_replicas.reset_replica_state
         mock_reset_state.assert_called_once_with(replica, state)
 
+    def test_tenant_absolute_limits(self):
+        fake_limits = get_fake_limits()
+        # Mock `manilaclient().limits.get().absolute`
+        self.manilaclient.limits.get.return_value.absolute = fake_limits
+        result = api.tenant_absolute_limits(self.request)
+        # Expected dictionary conversion
+        expected_result = {
+            "maxTotalShares": 50,
+            "totalSharesUsed": 10,
+            "maxTotalShareGigabytes": float("inf"),  # will convert -1 to inf
+            "totalShareGigabytesUsed": 200,
+        }
+        self.assertEqual(result, expected_result)
+        self.manilaclient.limits.get.assert_called_once()
     # Share instance tests
 
     def test_share_instance_list(self):
