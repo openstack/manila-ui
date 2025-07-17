@@ -6,16 +6,17 @@
 # Valentin Chikunov <vchikunov@hystax.com>, 2016. #zanata
 # Valeriy Ponomaryov <vponomaryov@mirantis.com>, 2016. #zanata
 # Artem <amikhalev90@gmail.com>, 2017. #zanata
+# Dmitriy Chubinidze <dcu995@gmail.com>, 2025. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2024-05-21 17:10+0000\n"
+"POT-Creation-Date: 2025-07-14 17:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-02-06 02:19+0000\n"
-"Last-Translator: Artem <amikhalev90@gmail.com>\n"
+"PO-Revision-Date: 2025-07-16 09:38+0000\n"
+"Last-Translator: Dmitriy Chubinidze <dcu995@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -201,6 +202,18 @@ msgstr "Текущий размер (ГиБ)"
 msgid "DNS IP"
 msgstr "DNS IP"
 
+msgid "Delete Security Service"
+msgid_plural "Delete Security Services"
+msgstr[0] "Удалить службу безопасности"
+msgstr[1] "Удалить службы безопасности"
+msgstr[2] "Удалить службы безопасности"
+
+msgid "Deleted Security Service"
+msgid_plural "Deleted Security Services"
+msgstr[0] "Удаленная служба безопасности"
+msgstr[1] "Удаленные службы безопасности"
+msgstr[2] "Удаленные службы безопасности"
+
 msgctxt "Current status of replica"
 msgid "Deleting"
 msgstr "Удаление"
@@ -334,15 +347,14 @@ msgstr "Неактивный"
 
 #, python-format
 msgid "Key '%s' has improper length."
-msgstr "Ключ '%s' имеет неподходящую длину"
+msgstr "Ключ '%s' имеет неподходящую длинну"
 
 #, python-format
 msgid "Key can not contain spaces. See string '%s'."
 msgstr "Ключ не может содержать пробелы. Смотри строку '%s'"
 
-#, python-format
-msgid "Keys should not contain spaces. Error in '%s'."
-msgstr "Ключ не может содержать пробелы. Ошибка: '%s'"
+msgid "Limit"
+msgstr "Ограничение"
 
 msgid "Manage"
 msgstr "Управление"
@@ -429,6 +441,9 @@ msgstr "Получить информацию о прогрессе"
 msgid "Obtain migration progress of a Share"
 msgstr "Получить информацию о прогрессе миграции общего ресурса"
 
+msgid "Organizational Unit"
+msgstr "Организационная единица"
+
 msgid "Overview"
 msgstr "Обзор"
 
@@ -452,6 +467,9 @@ msgstr "Протокол"
 
 msgid "Public"
 msgstr "Публичный"
+
+msgid "Quota Name"
+msgstr "Имя квоты"
 
 #, python-format
 msgid "Replica Details: %(replica_display_name)s"
@@ -512,6 +530,9 @@ msgstr "Сохранить изменения"
 msgid "Security Service Details: %(service_display_name)s"
 msgstr "Информация о службе безопасности: %(service_display_name)s"
 
+msgid "Security Service Overview"
+msgstr "Обзор службы безопасности"
+
 msgid "Security Services"
 msgstr "Службы безопасности"
 
@@ -551,6 +572,12 @@ msgstr "Информация об общем ресурсе: %(share_display_nam
 msgid "Share Details: %(share_name)s"
 msgstr "Информация об общем ресурсе: %(share_name)s"
 
+msgid "Share Group Snapshots"
+msgstr "Группы снимков общих ресурсов"
+
+msgid "Share Groups"
+msgstr "Группы общих ресурсов"
+
 msgid "Share ID"
 msgstr "ID общего ресурса"
 
@@ -580,6 +607,9 @@ msgstr "Сети общих ресурсов"
 msgid "Share Protocol"
 msgstr "Протокол общего ресурса"
 
+msgid "Share Quotas"
+msgstr "Общие квоты"
+
 #, python-format
 msgid "Share Replicas: %(share_display_name)s"
 msgstr "Реплики общего ресурса: %(share_display_name)s"
@@ -601,8 +631,11 @@ msgstr "ID сервера общего ресурса"
 msgid "Share Servers"
 msgstr "Сервера общих ресурсов"
 
+msgid "Share Snapshot gigabytes"
+msgstr "Общие снимки (гигабайты)"
+
 msgid "Share Snapshots"
-msgstr "Снимки общего ресурса"
+msgstr "Общие снимки"
 
 msgid "Share Snapshots Storage"
 msgstr "Размер хранилица снимков общих ресурсов"
@@ -627,6 +660,9 @@ msgstr ""
 "Невозможно расширить общий ресурс до %(req)i ГиБ, так как ограничение квоты "
 "составляет %(avail)i ГиБ."
 
+msgid "Share gigabytes"
+msgstr "Общие ресурсы (гигабайты)"
+
 msgid "Share name to be assigned"
 msgstr "Имя общего ресурса, которое будет назначено."
 
@@ -638,6 +674,9 @@ msgstr "Реплика общего ресурса %s была удалена."
 msgid "Share size must be equal to or greater than the snapshot size (%sGiB)"
 msgstr ""
 "Размер общего ресурса должен быть равным или больше размера снимка (%sГиБ)"
+
+msgid "Shared Quotas"
+msgstr "Общие квоты (использовано)"
 
 msgid "Shares"
 msgstr "Общие ресурсы"
@@ -766,6 +805,9 @@ msgstr "Невозможно получить информацию о досту
 msgid "Unable to get list of projects."
 msgstr "Невозможно получить список проектов."
 
+msgid "Unable to get manila default quota."
+msgstr "Не удалось получить квоту Manila по умолчанию."
+
 msgid "Unable to get the security services hosts"
 msgstr "Не удается получить хосты служб безопасности"
 
@@ -797,7 +839,7 @@ msgid "Unable to resync replica '%s'."
 msgstr "Невозможно синхронизировать реплику '%s'."
 
 msgid "Unable to retrieve list of projects."
-msgstr "Невозможно получить список проектов."
+msgstr "Не удалось получить список проектов."
 
 msgid "Unable to retrieve quotas."
 msgstr "Не удается получить квоты."
