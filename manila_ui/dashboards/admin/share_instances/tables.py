@@ -24,11 +24,11 @@ class ShareInstancesTable(tables.DataTable):
         ("error_deleting", False),
     )
     STATUS_DISPLAY_CHOICES = (
-        ("available", u"Available"),
-        ("creating", u"Creating"),
-        ("deleting", u"Deleting"),
-        ("error", u"Error"),
-        ("error_deleting", u"Error deleting"),
+        ("available", "Available"),
+        ("creating", "Creating"),
+        ("deleting", "Deleting"),
+        ("error", "Error"),
+        ("error_deleting", "Error deleting"),
     )
     uuid = tables.Column(
         "id", verbose_name=_("ID"),
@@ -78,7 +78,7 @@ class ShareInstancesTable(tables.DataTable):
         link=get_share_network_link)
     share_server_id = tables.Column(
         "share_server_id",
-        verbose_name=_("Share Server Id"),
+        verbose_name=_("Share Server ID"),
         link=get_share_server_link)
     share_id = tables.Column(
         "share_id",

@@ -38,16 +38,16 @@ class DeleteShareSnapshot(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Snapshot",
-            u"Delete Snapshots",
+            "Delete Snapshot",
+            "Delete Snapshots",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Snapshot",
-            u"Deleted Snapshots",
+            "Deleted Snapshot",
+            "Deleted Snapshots",
             count
         )
 
@@ -82,11 +82,11 @@ class ShareSnapshotsTable(tables.DataTable):
         ("error", False),
     )
     STATUS_DISPLAY_CHOICES = (
-        ("in-use", pgettext_lazy("Current status of snapshot", u"In-use")),
+        ("in-use", pgettext_lazy("Current status of snapshot", "In-use")),
         ("available",
-         pgettext_lazy("Current status of snapshot", u"Available")),
-        ("creating", pgettext_lazy("Current status of snapshot", u"Creating")),
-        ("error", pgettext_lazy("Current status of snapshot", u"Error")),
+         pgettext_lazy("Current status of snapshot", "Available")),
+        ("creating", pgettext_lazy("Current status of snapshot", "Creating")),
+        ("error", pgettext_lazy("Current status of snapshot", "Error")),
     )
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),

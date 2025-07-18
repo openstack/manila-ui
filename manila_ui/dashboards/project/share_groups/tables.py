@@ -37,16 +37,16 @@ class DeleteShareGroup(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Group",
-            u"Delete Share Groups",
+            "Delete Share Group",
+            "Delete Share Groups",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Group",
-            u"Deleted Share Groups",
+            "Deleted Share Group",
+            "Deleted Share Groups",
             count
         )
 
@@ -109,11 +109,11 @@ class ShareGroupsTable(tables.DataTable):
         ("error_deleting", False),
     )
     STATUS_DISPLAY_CHOICES = (
-        ("available", u"Available"),
-        ("creating", u"Creating"),
-        ("deleting", u"Deleting"),
-        ("error", u"Error"),
-        ("error_deleting", u"Error deleting"),
+        ("available", "Available"),
+        ("creating", "Creating"),
+        ("deleting", "Deleting"),
+        ("error", "Error"),
+        ("error_deleting", "Error deleting"),
     )
     name = tables.Column(
         "name",

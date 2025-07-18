@@ -80,16 +80,16 @@ class DeleteReplica(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Replica",
-            u"Delete Replicas",
+            "Delete Replica",
+            "Delete Replicas",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Replica",
-            u"Deleted Replicas",
+            "Deleted Replica",
+            "Deleted Replicas",
             count
         )
 
@@ -140,10 +140,10 @@ class ReplicasTable(tables.DataTable):
     )
     STATUS_DISPLAY_CHOICES = (
         ("available",
-         pgettext_lazy("Current status of replica", u"Available")),
-        ("creating", pgettext_lazy("Current status of replica", u"Creating")),
-        ("deleting", pgettext_lazy("Current status of replica", u"Deleting")),
-        ("error", pgettext_lazy("Current status of replica", u"Error")),
+         pgettext_lazy("Current status of replica", "Available")),
+        ("creating", pgettext_lazy("Current status of replica", "Creating")),
+        ("deleting", pgettext_lazy("Current status of replica", "Deleting")),
+        ("error", pgettext_lazy("Current status of replica", "Error")),
     )
     id = tables.Column(
         "id",
@@ -152,7 +152,7 @@ class ReplicasTable(tables.DataTable):
     )
 
     availability_zone = tables.Column(
-        "availability_zone", verbose_name=_("Availability zone"))
+        "availability_zone", verbose_name=_("Availability Zone"))
 
     status = tables.Column(
         "status",

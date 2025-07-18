@@ -91,16 +91,16 @@ class DeleteShareSnapshot(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Snapshot",
-            u"Delete Share Snapshots",
+            "Delete Share Snapshot",
+            "Delete Share Snapshots",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Snapshot",
-            u"Deleted Share Snapshots",
+            "Deleted Share Snapshot",
+            "Deleted Share Snapshots",
             count
         )
 
@@ -191,16 +191,16 @@ class DeleteShareSnapshotRule(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Snapshot Rule",
-            u"Delete Share Snapshot Rules",
+            "Delete Share Snapshot Rule",
+            "Delete Share Snapshot Rules",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Snapshot Rule",
-            u"Deleted Share Snapshot Rules",
+            "Deleted Share Snapshot Rule",
+            "Deleted Share Snapshot Rules",
             count
         )
 
@@ -256,11 +256,11 @@ class ShareSnapshotsTable(tables.DataTable):
         ("error", False),
     )
     STATUS_DISPLAY_CHOICES = (
-        ("in-use", pgettext_lazy("Current status of snapshot", u"In-use")),
+        ("in-use", pgettext_lazy("Current status of snapshot", "In-use")),
         ("available",
-         pgettext_lazy("Current status of snapshot", u"Available")),
-        ("creating", pgettext_lazy("Current status of snapshot", u"Creating")),
-        ("error", pgettext_lazy("Current status of snapshot", u"Error")),
+         pgettext_lazy("Current status of snapshot", "Available")),
+        ("creating", pgettext_lazy("Current status of snapshot", "Creating")),
+        ("error", pgettext_lazy("Current status of snapshot", "Error")),
     )
     name = tables.Column(
         "name",

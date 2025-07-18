@@ -34,16 +34,16 @@ class Delete(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Security Service",
-            u"Delete Security Services",
+            "Delete Security Service",
+            "Delete Security Services",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Security Service",
-            u"Deleted Security Services",
+            "Deleted Security Service",
+            "Deleted Security Services",
             count
         )
 

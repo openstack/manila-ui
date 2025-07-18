@@ -42,16 +42,16 @@ class Delete(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Network",
-            u"Delete Share Networks",
+            "Delete Share Network",
+            "Delete Share Networks",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Network",
-            u"Deleted Share Networks",
+            "Deleted Share Network",
+            "Deleted Share Networks",
             count
         )
 
@@ -110,10 +110,10 @@ class ShareNetworksTable(tables.DataTable):
     )
     STATUS_DISPLAY_CHOICES = (
         ("ACTIVE", pgettext_lazy("Current status of share network",
-                                 u"Active")),
+                                 "Active")),
         ("INACTIVE", pgettext_lazy("Current status of share network",
-                                   u"Inactive")),
-        ("ERROR", pgettext_lazy("Current status of share network", u"Error")),
+                                   "Inactive")),
+        ("ERROR", pgettext_lazy("Current status of share network", "Error")),
     )
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
