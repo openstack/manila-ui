@@ -41,16 +41,16 @@ class DeleteShare(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share",
-            u"Delete Shares",
+            "Delete Share",
+            "Delete Shares",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share",
-            u"Deleted Shares",
+            "Deleted Share",
+            "Deleted Shares",
             count
         )
 
@@ -218,33 +218,33 @@ class SharesTableBase(tables.DataTable):
         ("reverting_error", False),
     )
     STATUS_DISPLAY_CHOICES = (
-        ("available", pgettext_lazy("Current status of share", u"Available")),
-        ("AVAILABLE", pgettext_lazy("Current status of share", u"Available")),
-        ("creating", pgettext_lazy("Current status of share", u"Creating")),
-        ("CREATING", pgettext_lazy("Current status of share", u"Creating")),
-        ("deleting", pgettext_lazy("Current status of share", u"Deleting")),
-        ("DELETING", pgettext_lazy("Current status of share", u"Deleting")),
-        ("migrating", pgettext_lazy("Current status of share", u"Migrating")),
+        ("available", pgettext_lazy("Current status of share", "Available")),
+        ("AVAILABLE", pgettext_lazy("Current status of share", "Available")),
+        ("creating", pgettext_lazy("Current status of share", "Creating")),
+        ("CREATING", pgettext_lazy("Current status of share", "Creating")),
+        ("deleting", pgettext_lazy("Current status of share", "Deleting")),
+        ("DELETING", pgettext_lazy("Current status of share", "Deleting")),
+        ("migrating", pgettext_lazy("Current status of share", "Migrating")),
         ("migrating_to", pgettext_lazy("Current status of share",
-                                       u"Migrating to")),
-        ("error", pgettext_lazy("Current status of share", u"Error")),
-        ("ERROR", pgettext_lazy("Current status of share", u"Error")),
+                                       "Migrating to")),
+        ("error", pgettext_lazy("Current status of share", "Error")),
+        ("ERROR", pgettext_lazy("Current status of share", "Error")),
         ("error_deleting", pgettext_lazy("Current status of share",
-                                         u"Deleting")),
+                                         "Deleting")),
         ("ERROR_DELETING", pgettext_lazy("Current status of share",
-                                         u"Deleting")),
+                                         "Deleting")),
         ("MANAGE_ERROR", pgettext_lazy("Current status of share",
-                                       u"Manage Error")),
+                                       "Manage Error")),
         ("UNMANAGE_ERROR", pgettext_lazy("Current status of share",
-                                         u"Unmanage Error")),
+                                         "Unmanage Error")),
         ("extending_error", pgettext_lazy("Current status of share",
-                                          u"Extending Error")),
+                                          "Extending Error")),
         ("shrinking_error", pgettext_lazy("Current status of share",
-                                          u"Shrinking Error")),
+                                          "Shrinking Error")),
         ("shrinking_possible_data_loss_error", pgettext_lazy(
-            "Current status of share", u"Shrinking Error")),
+            "Current status of share", "Shrinking Error")),
         ("reverting_error", pgettext_lazy("Current status of share",
-                                          u"Reverting Error")),
+                                          "Reverting Error")),
     )
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
@@ -326,16 +326,16 @@ class DeleteRule(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Rule",
-            u"Delete Rules",
+            "Delete Rule",
+            "Delete Rules",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Rule",
-            u"Deleted Rules",
+            "Deleted Rule",
+            "Deleted Rules",
             count
         )
 

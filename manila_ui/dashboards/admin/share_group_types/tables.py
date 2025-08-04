@@ -32,16 +32,16 @@ class DeleteShareGroupType(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Group Type",
-            u"Delete Share Group Types",
+            "Delete Share Group Type",
+            "Delete Share Group Types",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Group Type",
-            u"Deleted Share Group Types",
+            "Deleted Share Group Type",
+            "Deleted Share Group Types",
             count
         )
 

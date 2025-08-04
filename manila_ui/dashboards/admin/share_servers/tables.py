@@ -26,16 +26,16 @@ class DeleteShareServer(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Server",
-            u"Delete Share Server",
+            "Delete Share Server",
+            "Delete Share Server",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Server",
-            u"Deleted Share Server",
+            "Deleted Share Server",
+            "Deleted Share Server",
             count
         )
 
@@ -69,12 +69,12 @@ class ShareServersTable(tables.DataTable):
         ("error", False),
     )
     STATUS_DISPLAY_CHOICES = (
-        ("in-use", pgettext_lazy("Current status of share server", u"In-use")),
-        ("active", pgettext_lazy("Current status of share server", u"Active")),
+        ("in-use", pgettext_lazy("Current status of share server", "In-use")),
+        ("active", pgettext_lazy("Current status of share server", "Active")),
         ("creating", pgettext_lazy("Current status of share server",
-                                   u"Creating")),
+                                   "Creating")),
         ("error", pgettext_lazy("Current status of share server",
-                                u"Error")),
+                                "Error")),
     )
     uid = tables.Column(
         "id", verbose_name=_("Id"),

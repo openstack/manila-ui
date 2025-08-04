@@ -35,16 +35,16 @@ class DeleteShareGroupSnapshot(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Share Group Snapshot",
-            u"Delete Share Group Snapshots",
+            "Delete Share Group Snapshot",
+            "Delete Share Group Snapshots",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Share Group Snapshot",
-            u"Deleted Share Group Snapshots",
+            "Deleted Share Group Snapshot",
+            "Deleted Share Group Snapshots",
             count
         )
 
@@ -94,9 +94,9 @@ class ShareGroupSnapshotsTable(tables.DataTable):
     )
     STATUS_DISPLAY_CHOICES = (
         ("available",
-         pgettext_lazy("Current status of snapshot", u"Available")),
-        ("creating", pgettext_lazy("Current status of snapshot", u"Creating")),
-        ("error", pgettext_lazy("Current status of snapshot", u"Error")),
+         pgettext_lazy("Current status of snapshot", "Available")),
+        ("creating", pgettext_lazy("Current status of snapshot", "Creating")),
+        ("error", pgettext_lazy("Current status of snapshot", "Error")),
     )
     name = tables.WrappingColumn(
         "name", verbose_name=_("Name"),
@@ -107,7 +107,7 @@ class ShareGroupSnapshotsTable(tables.DataTable):
         truncate=40)
     created_at = tables.Column(
         "created_at",
-        verbose_name=_("Created at"),
+        verbose_name=_("Created At"),
         filters=(
             filters.parse_isotime,
         ))

@@ -93,16 +93,16 @@ class DeleteReplica(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Replica",
-            u"Delete Replicas",
+            "Delete Replica",
+            "Delete Replicas",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Replica",
-            u"Deleted Replicas",
+            "Deleted Replica",
+            "Deleted Replicas",
             count
         )
 

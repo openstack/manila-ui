@@ -32,16 +32,16 @@ class DeleteUserMessage(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete User Message",
-            u"Delete User Messages",
+            "Delete User Message",
+            "Delete User Messages",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted User Message",
-            u"Deleted User Messages",
+            "Deleted User Message",
+            "Deleted User Messages",
             count
         )
 
