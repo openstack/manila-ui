@@ -107,7 +107,7 @@ class UpdateShareGroupTypeView(forms.ModalFormView):
                 self._object = manila.share_group_type_get(
                     self.request, sgt_id)
             except Exception:
-                msg = _("Unable to retrieve share_gruop_type.")
+                msg = _("Unable to retrieve share group type.")
                 url = reverse("horizon:admin:share_group_types:index")
                 exceptions.handle(self.request, msg, redirect=url)
         return self._object

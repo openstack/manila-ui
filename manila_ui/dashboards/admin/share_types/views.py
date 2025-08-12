@@ -119,7 +119,7 @@ class UpdateShareTypeView(forms.ModalFormView):
             try:
                 self._object = manila.share_type_get(self.request, st_id)
             except Exception:
-                msg = _("Unable to retrieve share_type.")
+                msg = _("Unable to retrieve share type.")
                 url = reverse("horizon:admin:share_types:index")
                 exceptions.handle(self.request, msg, redirect=url)
         return self._object

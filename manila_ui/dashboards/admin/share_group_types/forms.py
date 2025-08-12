@@ -136,6 +136,6 @@ class UpdateShareGroupTypeForm(forms.SelfHandlingForm):
             self.api_error(e.messages[0])
             return False
         except Exception:
-            msg = _("Unable to update group_specs for share group type.")
+            msg = _("Unable to update group specs for share group type.")
             exceptions.handle(request, msg)
             return False
