@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2024-03-14 15:01+0000\n"
+"POT-Creation-Date: 2025-08-12 03:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -890,9 +890,6 @@ msgstr "Paylaşım Sunucu"
 #, python-format
 msgid "Share Server Details: %(server_name)s"
 msgstr "Paylaşım Sunucusu Ayrıntıları: %(server_name)s"
-
-msgid "Share Server Id"
-msgstr "Paylaşım Sunucu Kimliği"
 
 msgid "Share Server Overview"
 msgstr "Paylaşım Sunucusu Genel Görünümü"
