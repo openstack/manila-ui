@@ -244,7 +244,7 @@ class CreateForm(forms.SelfHandlingForm):
         except ValidationError as e:
             self.api_error(e.messages[0])
         except m_exceptions.BadRequest as e:
-            self.api_error(_("Unable to create share. %s") % e.message)
+            self.api_error(_("Unable to create share %s.") % e.message)
         except Exception:
             exceptions.handle(request, ignore=True)
             self.api_error(_("Unable to create share."))

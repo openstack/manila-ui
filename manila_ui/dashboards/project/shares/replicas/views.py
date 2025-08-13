@@ -44,7 +44,7 @@ class ManageReplicasView(tables.DataTableView):
             redirect = reverse(self._redirect_url)
             exceptions.handle(
                 self.request,
-                _('Unable to retrieve share. %s') % self.kwargs["share_id"],
+                _('Unable to retrieve share %s.') % self.kwargs["share_id"],
                 redirect=redirect)
         context["share_display_name"] = share.name or share.id
         context["share"] = self.get_data()
