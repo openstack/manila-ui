@@ -38,7 +38,6 @@
       - ^releasenotes/.*$
     vars:
       devstack_localrc:
-        USE_PYTHON3: true
         # Enable manila with a fake driver that supports all capabilities
         MANILA_CONFIGURE_DEFAULT_TYPES: true
         MANILA_OPTGROUP_DEFAULT_quota_share_networks: 50
