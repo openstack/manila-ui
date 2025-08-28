@@ -69,7 +69,7 @@ class ManageShareGroupTypeAccess(tables.LinkAction):
 
 class UpdateShareGroupType(tables.LinkAction):
     name = "update share group type"
-    verbose_name = _("Update Share group Type")
+    verbose_name = _("Update Share Group Type")
     url = "horizon:admin:share_group_types:update"
     classes = ("ajax-modal", "btn-create")
 

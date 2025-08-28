@@ -39,7 +39,7 @@ class Create(forms.SelfHandlingForm):
                 choices=[(' ', ' ')] +
                         [(utils.transform_dashed_name(choice.id),
                           choice.name_or_id) for choice in net_choices],
-                label=_("Neutron Net"), widget=forms.Select(
+                label=_("Neutron Network"), widget=forms.Select(
                     attrs={'class': 'switchable', 'data-slug': 'net'}))
             for net in net_choices:
                 # For each network create switched choice field with

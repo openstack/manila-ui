@@ -15,7 +15,7 @@
     <dt>{% trans "Created" %}</dt>
     <dd>{{ share_group.created_at|parse_date }}</dd>
     {% if share_group.source_share_group_snapshot_id %}
-    <dt>{% trans "Source SG Snapshot" %}</dt>
+    <dt>{% trans "Source Share Group Snapshot" %}</dt>
     {% url 'horizon:project:share_group_snapshots:detail' share_group.source_share_group_snapshot_id as ssgs_url%}
     <dd><a href="{{ ssgs_url }}">{{ share_group.source_share_group_snapshot_id }}</a></dd>
     {% endif %}

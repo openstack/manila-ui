@@ -17,7 +17,7 @@
     <dt>{% trans "Host" %}</dt>
     <dd>{{ share_group.host}}</dd>
     {% if share_group.source_share_group_snapshot_id %}
-    <dt>{% trans "Source share group snapshot" %}</dt>
+    <dt>{% trans "Source Share Group Snapshot" %}</dt>
     <dd>{{ share_group.source_share_group_snapshot_id}}</dd>
     {% endif %}
     <dt>{% trans "Capabilities" %}</dt>
@@ -70,7 +70,7 @@
               {{ st.name }}
           </div>
         <div>
-            {%  trans " Share Type Visibility:" %}
+            {%  trans "Share Type Visibility:" %}
             {% if st.is_public %}Public{% else %}Private{% endif %}
         </div>
         <div>

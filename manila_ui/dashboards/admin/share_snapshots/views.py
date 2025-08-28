@@ -48,7 +48,7 @@ class ShareSnapshotsView(tables.MultiTableView):
             for snapshot in snapshots:
                 snapshot.share = share_names.get(snapshot.share_id)
         except Exception:
-            msg = _("Unable to retrieve share snapshot list.")
+            msg = _("Unable to retrieve share snapshots list.")
             exceptions.handle(self.request, msg)
 
         # Gather our projects to correlate against IDs

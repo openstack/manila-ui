@@ -49,8 +49,8 @@ class MigrationStart(forms.SelfHandlingForm):
     force_host_assisted_migration = forms.BooleanField(
         label=_("Force Host Assisted Migration"),
         required=False, initial=False,
-        help_text=_("Enforces the use of the host-assisted migration approach,"
-                    " which bypasses driver optimizations."))
+        help_text=_("Enforces the use of the host-assisted migration "
+                    "approach, which bypasses driver optimizations."))
     nondisruptive = forms.BooleanField(
         label=_("Nondisruptive"),
         required=False, initial=True,
@@ -69,8 +69,8 @@ class MigrationStart(forms.SelfHandlingForm):
     preserve_snapshots = forms.BooleanField(
         label=_("Preserve Snapshots"), required=False, initial=True,
         help_text=_("Enforces migration of the share snapshots to the "
-                    "destination. If set to True, host-assisted migration will"
-                    " not be attempted."))
+                    "destination. If set to True, host-assisted migration "
+                    "will not be attempted."))
     new_share_network = forms.ChoiceField(
         label=_("New share network to be set in migrated share"),
         required=False,
@@ -143,7 +143,7 @@ class MigrationComplete(MigrationForms):
             messages.success(
                 request,
                 _('Successfully sent the request to complete migration of '
-                  ' share: %s.') % share_name)
+                  'share: %s.') % share_name)
             return True
         except Exception:
             exceptions.handle(request, _("Unable to complete migration "
@@ -180,11 +180,11 @@ class MigrationCancel(MigrationForms):
             messages.success(
                 request,
                 _('Successfully sent the request to cancel migration of '
-                  ' share: %s.') % share_name)
+                  'share: %s.') % share_name)
             return True
         except Exception:
-            exceptions.handle(request, _("Unable to cancel migration of share"
-                                         " %s at this moment.") % share_name)
+            exceptions.handle(request, _("Unable to cancel migration of share "
+                                         "%s at this moment.") % share_name)
         return False
 
 

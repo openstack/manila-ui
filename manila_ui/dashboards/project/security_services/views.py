@@ -66,7 +66,7 @@ class UpdateView(forms.ModalFormView):
                 self._object = manila.security_service_get(
                     self.request, sec_service_id)
             except Exception:
-                msg = _('Unable to retrieve security_service.')
+                msg = _('Unable to retrieve security service.')
                 url = reverse('horizon:project:security_services:index')
                 exceptions.handle(self.request, msg, redirect=url)
         return self._object

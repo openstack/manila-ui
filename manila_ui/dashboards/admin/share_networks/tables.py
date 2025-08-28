@@ -19,8 +19,8 @@ import manila_ui.dashboards.project.share_networks.tables as sn_tables
 class ShareNetworksFilterAction(tables.FilterAction):
     filter_type = "server"
     filter_choices = (
-        ('name', _("Name "), True),
-        ('description', _("Description "), True),
+        ('name', _("Name") + " ", True),
+        ('description', _("Description") + " ", True),
     )
 
 

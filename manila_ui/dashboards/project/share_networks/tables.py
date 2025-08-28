@@ -97,8 +97,8 @@ class UpdateRow(tables.Row):
 class ShareNetworksFilterAction(tables.FilterAction):
     filter_type = "server"
     filter_choices = (
-        ('name', _("Name "), True),
-        ('description', _("Description "), True),
+        ('name', _("Name") + " ", True),
+        ('description', _("Description") + " ", True),
     )
 
 

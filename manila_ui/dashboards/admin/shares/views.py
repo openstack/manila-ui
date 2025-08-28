@@ -209,7 +209,7 @@ class MigrationGetProgressView(forms.ModalFormView):
     modal_header = _("Confirm Obtaining migration progress of Share")
     form_id = "migration_get_progress_share"
     modal_id = "migration_get_progress_share_modal"
-    submit_label = _("Obtain Progress")
+    submit_label = _("Obtain Migration Progress")
     success_url = reverse_lazy('horizon:admin:shares:index')
     submit_url = 'horizon:admin:shares:migration_get_progress'
     cancel_url = reverse_lazy('horizon:admin:shares:index')

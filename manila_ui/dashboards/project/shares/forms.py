@@ -385,7 +385,7 @@ class UpdateRuleMetadataForm(forms.SelfHandlingForm):
                 manila.share_rule_set_metadata(request, rule, set_dict)
             if unset_list:
                 manila.share_rule_unset_metadata(request, rule, unset_list)
-            message = _('Updating share access rule metadata ')
+            message = _('Updating share access rule metadata')
             messages.success(request, message)
             return True
         except ValidationError as e:
@@ -473,7 +473,7 @@ class ResizeForm(forms.SelfHandlingForm):
             messages.success(request, message)
             return True
         raise exceptions.WorkflowError(_(
-            "Unable to resize share. "))
+            "Unable to resize share."))
 
 
 class RevertForm(forms.SelfHandlingForm):

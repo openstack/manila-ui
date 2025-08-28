@@ -66,7 +66,7 @@ class DeleteShare(tables.DeleteAction):
             manila.share_delete(
                 request, share.id, share_group_id=share.share_group_id)
         except Exception:
-            msg = _('Unable to delete share "%s". ') % obj_id
+            msg = _('Unable to delete share "%s".') % obj_id
             messages.error(request, msg)
 
     def allowed(self, request, share=None):

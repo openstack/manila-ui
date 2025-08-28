@@ -49,11 +49,11 @@ class AddShareNetworkSubnetAction(workflows.MembershipAction):
 
     neutron_net_id = forms.ChoiceField(
         required=False,
-        label=_('Neutron Net'),
+        label=_('Neutron Network'),
         widget=forms.ThemableSelectWidget(attrs={
             'class': 'switchable',
             'data-slug': 'neutron_net_id',
-            'data-neutron_net_id': _('Neutron Net')}))
+            'data-neutron_net_id': _('Neutron Network')}))
 
     class Meta(object):
         name = _("Subnet")

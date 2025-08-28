@@ -84,8 +84,8 @@ class UpdateShareType(tables.LinkAction):
 class ShareTypesFilterAction(tables.FilterAction):
     filter_type = "server"
     filter_choices = (
-        ('name', _("Name "), True),
-        ('extra_specs', _("Extra Spec "), True),
+        ('name', _("Name") + " ", True),
+        ('extra_specs', _("Extra Spec") + " ", True),
     )
 
 
