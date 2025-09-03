@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-08-12 03:00+0000\n"
+"POT-Creation-Date: 2025-08-25 22:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -570,12 +570,6 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "그룹 사양"
-
-msgid "Here can be modified extra-specs for share type."
-msgstr "여기서 공유 타입에 대한 부가 스펙을 수정할 수 있습니다."
-
-msgid "Here can be modified group-specs for share group type."
-msgstr "여기서 공유 그룹 타입에 대한 그룹 스펙을 수정할 수 있습니다."
 
 msgid "Host"
 msgstr "호스트"
@@ -1315,12 +1309,6 @@ msgstr "그룹 스펙을 추가하려면 다음을 사용합니다:"
 msgid "To add metadata use:"
 msgstr "메타데이터를 추가하려면 사용합니다:"
 
-msgid "To unset extra-specs use:"
-msgstr "부가 스펙을 설정 해제하려면 다음을 사용합니다:"
-
-msgid "To unset group-specs use:"
-msgstr "그룹 스펙을 설정 해제하려면 다음을 사용합니다:"
-
 msgid "To unset metadata use:"
 msgstr "메타데이터를 설정 해제하려면 다음을 사용합니다:"
 
@@ -1370,10 +1358,6 @@ msgstr "공유 유형을 생성할 수 없습니다."
 
 msgid "Unable to create share."
 msgstr "공유를 생성할 수 없습니다."
-
-#, python-format
-msgid "Unable to create share. %s"
-msgstr "공유 %s를 생성할 수 없습니다."
 
 #, python-format
 msgid "Unable to delete replica \"%s\"."
@@ -1572,16 +1556,6 @@ msgstr "공유 유형을 가져올 수 없습니다."
 msgid "Unable to retrieve share."
 msgstr "공유를 찾을 수 없습니다."
 
-#, python-format
-msgid "Unable to retrieve share. %s"
-msgstr "공유 %s를 가져올 수 없습니다. "
-
-msgid "Unable to retrieve share_gruop_type."
-msgstr "공유 그룹 유형을 가져올 수 없습니다."
-
-msgid "Unable to retrieve share_type."
-msgstr "share_type 을 가져올 수 없습니다."
-
 msgid "Unable to retrieve snapshot details."
 msgstr "스냅샷 상세정보를 찾을 수 없습니다."
 
@@ -1611,9 +1585,6 @@ msgstr "공유 유형 \"%s\" 에 대한 액세스를 업데이트할 수 없습�
 
 msgid "Unable to update default quotas."
 msgstr "기본 할당량을 업데이트할 수 없습니다."
-
-msgid "Unable to update group_specs for share group type."
-msgstr "공유 그룹 유형의 그룹 스펙을 업데이트할 수 없습니다."
 
 msgid "Unable to update security service."
 msgstr "보안 서비스를 업데이트 할 수 없습니다."

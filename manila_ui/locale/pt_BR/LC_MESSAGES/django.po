@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-08-12 03:00+0000\n"
+"POT-Creation-Date: 2025-08-25 22:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -605,15 +605,6 @@ msgstr ""
 
 msgid "Group specs"
 msgstr "Especificações do Grupo"
-
-msgid "Here can be modified extra-specs for share type."
-msgstr ""
-"Aqui podem ser modificadas as extra-specs para o tipo de compartilhamento."
-
-msgid "Here can be modified group-specs for share group type."
-msgstr ""
-"Aqui pode ser modificado o group-specs para o tipo de grupo de "
-"compartilhamento."
 
 msgid "Host"
 msgstr "Host"
@@ -1366,12 +1357,6 @@ msgstr "Para adicionar group-specs utilize:"
 msgid "To add metadata use:"
 msgstr "Para adicionar metadados utilize:"
 
-msgid "To unset extra-specs use:"
-msgstr "Para desconfigurar as extra-specs utilize:"
-
-msgid "To unset group-specs use:"
-msgstr "Para desconfigurar group-specs use:"
-
 msgid "To unset metadata use:"
 msgstr "Para desconfigurar os metadados utilize:"
 
@@ -1422,10 +1407,6 @@ msgstr "Não é possível criar tipo de compartilhamento."
 
 msgid "Unable to create share."
 msgstr "Não foi possível criar o compartilhamento."
-
-#, python-format
-msgid "Unable to create share. %s"
-msgstr "Não é possível criar compartilhamento. %s"
 
 #, python-format
 msgid "Unable to delete replica \"%s\"."
@@ -1636,16 +1617,6 @@ msgstr "Não é possível obter tipos de compartilhamento."
 msgid "Unable to retrieve share."
 msgstr "Não foi possível recuperar compartilhamento."
 
-#, python-format
-msgid "Unable to retrieve share. %s"
-msgstr "Não foi possível recuperar compartilhamento. %s"
-
-msgid "Unable to retrieve share_gruop_type."
-msgstr "Não é possível obter share_group_type."
-
-msgid "Unable to retrieve share_type."
-msgstr "Não foi possível recuperar o share_type."
-
 msgid "Unable to retrieve snapshot details."
 msgstr "Não é possível recuperar detalhes do snapshot."
 
@@ -1678,11 +1649,6 @@ msgstr ""
 
 msgid "Unable to update default quotas."
 msgstr "Não é possível atualizar cotas padrão."
-
-msgid "Unable to update group_specs for share group type."
-msgstr ""
-"Não é possível atualizar group_specs para o tipo de grupo de "
-"compartilhamento."
 
 msgid "Unable to update security service."
 msgstr "Não foi possível atualizar o serviço de segurança."
