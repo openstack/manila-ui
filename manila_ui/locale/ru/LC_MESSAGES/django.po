@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-08-25 22:54+0000\n"
+"POT-Creation-Date: 2025-09-03 23:18+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2025-09-03 12:23+0000\n"
+"PO-Revision-Date: 2025-09-04 03:29+0000\n"
 "Last-Translator: Ivan Anfimov <lazekteam@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -235,9 +235,8 @@ msgstr "Подтвердить получение информации о ход
 msgid "Confirm Password"
 msgstr "Подтвердите пароль"
 
-#, fuzzy
 msgid "Confirm Unmanage Share"
-msgstr "Подтвердить отсоединение файлового хранилища"
+msgstr "Подтвердить отмену управления файловым хранилищем"
 
 msgid "Create"
 msgstr "Создать"
@@ -548,7 +547,7 @@ msgid "Driver handles share servers"
 msgstr "Драйвер управляет серверами файлового хранилища"
 
 msgid "Driver options ('volume_id' for Generic driver, etc...)"
-msgstr "Параметры драйвера (\"volume_id\" для универсального драйвера и т. д.)"
+msgstr "Параметры драйвера ('volume_id' для универсального драйвера и т. д.)"
 
 #, python-format
 msgid "Duplicated keys '%s'."
@@ -822,7 +821,7 @@ msgstr "Управление"
 
 msgctxt "Current status of share"
 msgid "Manage Error"
-msgstr "Ошибка регистрации"
+msgstr "Ошибка управления"
 
 msgid "Manage Replicas"
 msgstr "Управление репликами"
@@ -1254,7 +1253,7 @@ msgid "Share Group Snapshot Overview"
 msgstr "Обзор снимка группы файлового хранилища"
 
 msgid "Share Group Snapshots"
-msgstr "Группа снимков файлового хранилища"
+msgstr "Снимки группы файлового хранилища"
 
 msgid "Share Group Type"
 msgstr "Тип группы файлового хранилища"
@@ -1456,7 +1455,7 @@ msgstr ""
 "(%sГиБ)"
 
 msgid "Share snapshot gigabytes"
-msgstr "Снимки файлового хранилища, гигабайт"
+msgstr "Снимок файлового хранилища, гигабайт"
 
 msgid "Share snapshots"
 msgstr "Снимки файлового хранилища"
@@ -1516,7 +1515,7 @@ msgid "Source SG Snapshot"
 msgstr "Снимок источника группы файлового хранилища"
 
 msgid "Source Share Group"
-msgstr "Группа источника файлового хранилища"
+msgstr "Источник группы файлового хранилища"
 
 msgid "Source Share Group Snapshot"
 msgstr "Снимок источника группы файлового хранилища"
@@ -1610,7 +1609,7 @@ msgstr "Успешно отправлен запрос на управление
 msgid "Successfully sent the request to migrate share: %s."
 msgstr "Успешно отправлен запрос на перенос файлового хранилища: %s."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Successfully sent the request to unmanage share: %s"
 msgstr "Успешно отправлен запрос на отмену управления файловым хранилищем: %s"
 
@@ -1998,7 +1997,6 @@ msgstr "Не удалось вернуть файловое хранилище �
 msgid "Unable to set replica '%s' as active."
 msgstr "Не удалось установить реплику '%s' активной."
 
-#, fuzzy
 msgid "Unable to unmanage share."
 msgstr "Не удалось отменить управление файловым хранилищем."
 
@@ -2054,16 +2052,13 @@ msgstr "Не удалось обновить файловое хранилище
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#, fuzzy
 msgid "Unmanage"
-msgstr "Отсоединить"
+msgstr "Отменить управление"
 
-#, fuzzy
 msgctxt "Current status of share"
 msgid "Unmanage Error"
-msgstr "Ошибка отсоединения"
+msgstr "Ошибка отмены управления"
 
-#, fuzzy
 msgid "Unmanage Share"
 msgstr "Отменить управление файловым хранилищем"
 
@@ -2173,7 +2168,6 @@ msgstr "Обзор пользовательских сообщений"
 msgid "Visibility"
 msgstr "Видимость"
 
-#, fuzzy
 msgid ""
 "When a share is \"unmanaged\", the share will no longer be visible within "
 "OpenStack. Note that the share will not be deleted. <br> <br> This is "
