@@ -1,14 +1,10 @@
-Team and repository tags
-------------------------
-
-.. image:: https://governance.openstack.org/tc/badges/manila-ui.svg
-    :target: https://governance.openstack.org/tc/reference/tags/index.html
-
-.. Change things from this point on
-
 =======================================
 manila-ui - Manila Management Dashboard
 =======================================
+
+.. image:: https://governance.openstack.org/tc/badges/manila-ui.svg
+
+.. Change things from this point on
 
 * Free software: Apache license
 * Documentation: https://docs.openstack.org/manila-ui/latest/
