@@ -47,7 +47,7 @@ class ShareQuotasTable(tables.DataTable):
 
     class Meta(object):
         name = "share_quotas"
-        verbose_name = _("Shared Quotas")
+        verbose_name = _("Share Quotas")
         table_actions = (default_tbl.QuotaFilterAction,
                          UpdateDefaultShareQuotas)
         multi_select = False
