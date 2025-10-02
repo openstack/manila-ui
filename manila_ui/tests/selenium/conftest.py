@@ -10,9 +10,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import pytest
+
 from openstack_dashboard.test.selenium.conftest import config  # noqa: F401
 from openstack_dashboard.test.selenium.conftest import driver  # noqa: F401
 from openstack_dashboard.test.selenium.conftest import login  # noqa: F401
 from openstack_dashboard.test.selenium.conftest import xdisplay  # noqa: F401
 from openstack_dashboard.test.selenium.integration.conftest import \
+    openstack_admin  # noqa: F401
+from openstack_dashboard.test.selenium.integration.conftest import \
     openstack_demo  # noqa: F401
+
+
+@pytest.fixture
+def openstack_client(request):
+    return request.getfixturevalue(request.param)
