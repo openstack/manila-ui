@@ -12,10 +12,9 @@
 
 import time
 
+from openstack_dashboard.test.selenium import widgets
 import pytest
 from selenium.webdriver.support.ui import Select
-
-from openstack_dashboard.test.selenium import widgets
 
 
 def wait_for_steady_state_of_share(openstack, share_name):
@@ -32,6 +31,14 @@ def wait_for_steady_state_of_share(openstack, share_name):
 def wait_for_share_is_deleted(openstack, share_name):
     for attempt in range(120):
         if openstack.shared_file_system.find_share(share_name) is None:
+            break
+        else:
+            time.sleep(3)
+
+
+def wait_for_access_rule_is_deleted(openstack, share_id):
+    for attempt in range(60):
+        if len(list(openstack.shared_file_system.access_rules(share_id))) == 0:
             break
         else:
             time.sleep(3)
@@ -191,3 +198,77 @@ def test_edit_share_metadata(login, driver, openstack_client,
             in messages)
     assert (openstack_client.shared_file_system.get_share(
         new_share.id).metadata == {'test_value': 'integration_tests'})
+
+
+@pytest.mark.parametrize(
+    "new_share, openstack_client, user_type",
+    [
+        ("openstack_demo", "openstack_demo", "user"),
+        ("openstack_admin", "openstack_admin", "admin"),
+    ], indirect=["new_share", "openstack_client"])
+def test_create_share_access_rule(login, driver, config, new_share,
+                                  openstack_client, user_type):
+    test_rule_ip_address = "10.10.0.10"
+    login(user_type)
+    url = '/'.join((
+        config.dashboard.dashboard_url,
+        'project',
+        'shares',
+    ))
+    driver.get(url)
+    rows = driver.find_elements_by_css_selector(
+        f"table#shares tr[data-display='{new_share.name}']")
+    assert len(rows) == 1
+    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    widgets.select_from_dropdown(actions_column, "Manage Rules")
+    driver.find_element_by_link_text("Add rule").click()
+    add_rule_form = driver.find_element_by_css_selector(".modal-content form")
+    access_type_element = add_rule_form.find_element_by_id("id_access_type")
+    Select(access_type_element).select_by_value('ip')
+    access_level_element = add_rule_form.find_element_by_id("id_access_level")
+    Select(access_level_element).select_by_value('rw')
+    add_rule_form.find_element_by_id("id_access_to").send_keys(
+        test_rule_ip_address)
+    add_rule_form.find_element_by_css_selector(
+        ".btn-primary[value='Add']").click()
+    messages = widgets.get_and_dismiss_messages(driver, config)
+    assert (f'Success: Creating rule for "{test_rule_ip_address}"'
+            in messages)
+    assert any(rule.access_to == test_rule_ip_address for rule in
+               openstack_client.shared_file_system.access_rules(new_share.id))
+
+
+@pytest.mark.parametrize(
+    "new_share, openstack_client, user_type, new_access_rule_for_share",
+    [
+        ("openstack_demo", "openstack_demo", "user", "openstack_demo"),
+        ("openstack_admin", "openstack_admin", "admin", "openstack_admin"),
+    ], indirect=["new_share", "openstack_client", "new_access_rule_for_share"])
+def test_delete_share_access_rule(login, driver, config, new_share,
+                                  openstack_client, user_type,
+                                  new_access_rule_for_share):
+    login(user_type)
+    url = '/'.join((
+        config.dashboard.dashboard_url,
+        'project',
+        'shares',
+    ))
+    driver.get(url)
+    rows_shares = driver.find_elements_by_css_selector(
+        f"table#shares tr[data-display='{new_share.name}']")
+    assert len(rows_shares) == 1
+    actions_column = rows_shares[0].find_element_by_css_selector(
+        "td.actions_column")
+    widgets.select_from_dropdown(actions_column, "Manage Rules")
+    rows_rules = driver.find_elements_by_css_selector(
+        f"table#rules tr[data-display='{new_access_rule_for_share.id}']")
+    assert len(rows_rules) == 1
+    rows_rules[0].find_element_by_css_selector("td.actions_column").click()
+    widgets.confirm_modal(driver)
+    messages = widgets.get_and_dismiss_messages(driver, config)
+    assert (f'Success: Deleted Rule: {new_access_rule_for_share.id}'
+            in messages)
+    wait_for_access_rule_is_deleted(openstack_client, new_share.id)
+    assert not any(
+        rule.access_to == new_access_rule_for_share.access_to for rule in
+        openstack_client.shared_file_system.access_rules(new_share.id))

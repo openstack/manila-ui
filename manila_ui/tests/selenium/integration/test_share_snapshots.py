@@ -13,9 +13,8 @@
 import time
 
 import openstack.exceptions as openstack_exception
-import pytest
-
 from openstack_dashboard.test.selenium import widgets
+import pytest
 
 
 def wait_for_steady_state_of_share_snapshot(openstack_client,

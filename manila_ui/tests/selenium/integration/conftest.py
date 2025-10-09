@@ -11,7 +11,6 @@
 #    under the License.
 
 from oslo_utils import uuidutils
-
 import pytest
 
 from manila_ui.tests.selenium.integration import test_share_snapshots
@@ -47,6 +46,19 @@ def clear_share(request, share_name):
     test_shares.wait_for_steady_state_of_share(openstack_client, share_name)
     openstack_client.shared_file_system.delete_share(
         openstack_client.shared_file_system.find_share(share_name).id)
+
+
+@pytest.fixture
+def new_access_rule_for_share(request, new_share):
+    client_fixture_name = request.param
+    openstack_client = request.getfixturevalue(client_fixture_name)
+    share_access_rule = openstack_client.shared_file_system.create_access_rule(
+        share_id=new_share.id,
+        access_type="ip",
+        access_level="rw",
+        access_to="10.0.10.10"
+    )
+    yield share_access_rule
 
 
 # Share Snapshots fixtures:
