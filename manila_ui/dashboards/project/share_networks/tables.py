@@ -17,6 +17,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext_lazy
 from django.utils.translation import pgettext_lazy
 from horizon import tables
+from openstack import exceptions as sdk_exceptions
 from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
@@ -89,10 +90,22 @@ class UpdateRow(tables.Row):
         share_net = manila.share_network_get(request, share_net_id)
         neutron_enabled = base.is_service_enabled(request, 'network')
         if neutron_enabled:
-            share_net.neutron_net = neutron.network_get(
-                request, share_net.neutron_net_id).name_or_id
-            share_net.neutron_subnet = neutron.subnet_get(
-                request, share_net.neutron_subnet_id).name_or_id
+            try:
+                share_net.neutron_net = neutron.network_get(
+                    request, share_net.neutron_net_id).name_or_id
+            except (
+                sdk_exceptions.NotFoundException,
+                sdk_exceptions.SDKException
+                ):
+                share_net.neutron_net = _("Unknown")
+            try:
+                share_net.neutron_subnet = neutron.subnet_get(
+                    request, share_net.neutron_subnet_id).name_or_id
+            except (
+                sdk_exceptions.NotFoundException,
+                sdk_exceptions.SDKException
+                ):
+                share_net.neutron_subnet = _("Unknown")
         return share_net
 
 

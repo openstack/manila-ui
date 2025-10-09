@@ -16,6 +16,7 @@ from horizon import exceptions
 from horizon import forms
 from horizon import messages
 from horizon import workflows
+from openstack import exceptions as sdk_exceptions
 from openstack_dashboard import api
 from openstack_dashboard.api import base
 
@@ -82,12 +83,18 @@ class AddShareNetworkSubnetAction(workflows.MembershipAction):
                 self.fields['neutron_net_id'].choices, networks = (
                     self.get_neutron_net_id_choices(request)
                 )
-            except Exception:
+            except (
+                sdk_exceptions.NotFoundException,
+                sdk_exceptions.SDKException
+                ):
                 msg = _('Unable to initialize neutron networks.')
                 exceptions.handle(request, msg)
             try:
                 self.get_neutron_subnet_id_choices(request, networks)
-            except Exception:
+            except (
+                sdk_exceptions.NotFoundException,
+                sdk_exceptions.SDKException
+                ):
                 msg = _('Unable to initialize neutron subnets.')
                 exceptions.handle(request, msg)
 

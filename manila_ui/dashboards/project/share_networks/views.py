@@ -21,6 +21,7 @@ from horizon import tables
 from horizon import tabs
 from horizon.utils import memoized
 from horizon import workflows
+from openstack import exceptions as sdk_exceptions
 from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
@@ -125,9 +126,9 @@ class Detail(tabs.TabView):
                         subnet["neutron_net"] = neutron.network_get(
                             self.request, subnet["neutron_net_id"]).name_or_id
                     except (
-                        neutron.neutron_client.exceptions
-                        .NeutronClientException
-                        ):
+                        sdk_exceptions.NotFoundException,
+                        sdk_exceptions.SDKException
+                    ):
                         subnet["neutron_net"] = _("Unknown")
                     # Neutron Subnet ID
                     try:
@@ -135,9 +136,9 @@ class Detail(tabs.TabView):
                             self.request,
                             subnet["neutron_subnet_id"]).name_or_id
                     except (
-                        neutron.neutron_client.exceptions
-                        .NeutronClientException
-                        ):
+                        sdk_exceptions.NotFoundException,
+                        sdk_exceptions.SDKException
+                    ):
                         subnet["neutron_subnet"] = _("Unknown")
             # List all azs if availability_zone is None
             availability_zones = manila.availability_zone_list(self.request)

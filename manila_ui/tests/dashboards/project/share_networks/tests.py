@@ -12,8 +12,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import ddt
 from django.urls import reverse
-from neutronclient.client import exceptions
+from openstack import exceptions as sdk_exceptions
 from openstack_auth import policy
 from openstack_dashboard import api
 from oslo_utils import timeutils
@@ -27,6 +28,7 @@ from manila_ui.tests import helpers as test
 INDEX_URL = reverse('horizon:project:share_networks:index')
 
 
+@ddt.ddt
 class ShareNetworksViewTests(test.TestCase):
     class FakeAZ(object):
         def __init__(self, name, id):
@@ -175,11 +177,11 @@ class ShareNetworksViewTests(test.TestCase):
             api_manila, "share_network_security_service_list",
             mock.Mock(return_value=[sec_service]))
         self.mock_object(
-            api.neutron, "network_get", mock.Mock(
-                side_effect=exceptions.NeutronClientException('fake', 500)))
+            api.neutron, "network_get",
+            mock.Mock(side_effect=sdk_exceptions.NotFoundException()))
         self.mock_object(
-            api.neutron, "subnet_get", mock.Mock(
-                side_effect=exceptions.NeutronClientException('fake', 500)))
+            api.neutron, "subnet_get",
+            mock.Mock(side_effect=sdk_exceptions.NotFoundException()))
         self.mock_object(
             api_manila, "availability_zone_list",
             mock.Mock(return_value=[])
@@ -214,6 +216,40 @@ class ShareNetworksViewTests(test.TestCase):
             mock.ANY, search_opts={'share_network_id': share_net.id})
         api_manila.share_network_get.assert_called_once_with(
             mock.ANY, share_net.id)
+
+    @ddt.data(sdk_exceptions.NotFoundException(),
+              sdk_exceptions.SDKException('fake'))
+    def test_detail_view_with_openstacksdk_exceptions(self, exception):
+        """Test that OpenStackSDK exceptions are handled gracefully."""
+        share_net = test_data.active_share_network
+        url = reverse('horizon:project:share_networks:share_network_detail',
+                      args=[share_net.id])
+
+        self.mock_object(
+            api_manila, "share_server_list", mock.Mock(return_value=[]))
+        self.mock_object(
+            api_manila, "share_network_get", mock.Mock(return_value=share_net))
+        self.mock_object(
+            api_manila, "share_network_security_service_list",
+            mock.Mock(return_value=[]))
+        self.mock_object(
+            api.neutron, "network_get",
+            mock.Mock(side_effect=exception))
+        self.mock_object(
+            api.neutron, "subnet_get",
+            mock.Mock(side_effect=exception))
+        self.mock_object(
+            api_manila, "availability_zone_list",
+            mock.Mock(return_value=[]))
+
+        res = self.client.get(url)
+
+        # Should still render successfully with "Unknown" values
+        self.assertContains(res, "<h1>Share Network Details: %s</h1>"
+                                 % share_net.name, 1, 200)
+        # "Unknown" values are intentionally hidden from view
+        self.assertNotContains(res, "Unknown", 200)
+        self.assertNoMessages()
 
     def test_update_share_network(self):
         share_net = test_data.inactive_share_network

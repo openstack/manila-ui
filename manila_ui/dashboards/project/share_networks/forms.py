@@ -18,6 +18,7 @@ from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
 from horizon import forms
 from horizon import messages
+from openstack import exceptions as sdk_exceptions
 from openstack_dashboard.api import base
 from openstack_dashboard.api import neutron
 
@@ -34,33 +35,47 @@ class Create(forms.SelfHandlingForm):
         super(Create, self).__init__(request, *args, **kwargs)
         self.neutron_enabled = base.is_service_enabled(request, 'network')
         if self.neutron_enabled:
-            net_choices = neutron.network_list(request)
-            self.fields['neutron_net_id'] = forms.ChoiceField(
-                choices=[(' ', ' ')] +
-                        [(utils.transform_dashed_name(choice.id),
-                          choice.name_or_id) for choice in net_choices],
-                label=_("Neutron Network"), widget=forms.Select(
-                    attrs={'class': 'switchable', 'data-slug': 'net'}))
+            try:
+                net_choices = neutron.network_list(request)
+            except (
+                sdk_exceptions.NotFoundException,
+                sdk_exceptions.SDKException
+                ):
+                net_choices = []
+            if net_choices:
+                self.fields['neutron_net_id'] = forms.ChoiceField(
+                    choices=[(' ', ' ')] +
+                            [(utils.transform_dashed_name(choice.id),
+                              choice.name_or_id) for choice in net_choices],
+                    label=_("Neutron Network"), widget=forms.Select(
+                        attrs={'class': 'switchable', 'data-slug': 'net'}))
             for net in net_choices:
                 # For each network create switched choice field with
                 # the its subnet choices
                 subnet_field_name = (
-                    'subnet-choices-%s' % utils.transform_dashed_name(net.id)
+                    'subnet-choices-%s' %
+                    utils.transform_dashed_name(net.id)
                 )
                 subnet_field = forms.ChoiceField(
                     choices=(), label=_("Neutron Subnet"),
                     widget=forms.Select(attrs={
                         'class': 'switched',
                         'data-switch-on': 'net',
-                        'data-net-%s' % utils.transform_dashed_name(net.id):
-                            _("Neutron Subnet")
+                        'data-net-%s' % utils.transform_dashed_name(
+                            net.id): _("Neutron Subnet"),
                     }))
                 self.fields[subnet_field_name] = subnet_field
-                subnet_choices = neutron.subnet_list(
-                    request, network_id=net.id)
-                self.fields[subnet_field_name].choices = [
-                    (' ', ' ')] + [(choice.id, choice.name_or_id)
-                                   for choice in subnet_choices]
+                try:
+                    subnet_choices = neutron.subnet_list(
+                        request, network_id=net.id)
+                    self.fields[subnet_field_name].choices = [
+                        (' ', ' ')] + [(choice.id, choice.name_or_id)
+                                       for choice in subnet_choices]
+                except (
+                    sdk_exceptions.NotFoundException,
+                    sdk_exceptions.SDKException
+                    ):
+                    self.fields[subnet_field_name].choices = [(' ', ' ')]
 
     def handle(self, request, data):
         try:
