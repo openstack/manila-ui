@@ -12,41 +12,10 @@
 
 import time
 
-from oslo_utils import uuidutils
 import pytest
 from selenium.webdriver.support.ui import Select
 
 from openstack_dashboard.test.selenium import widgets
-
-
-@pytest.fixture
-def share_name():
-    return 'horizon_share_%s' % uuidutils.generate_uuid(dashed=False)
-
-
-@pytest.fixture
-def new_share(request, share_name):
-    client_fixture_name = request.param
-    openstack_client = request.getfixturevalue(client_fixture_name)
-    share = openstack_client.shared_file_system.create_share(
-        name=share_name,
-        size=1,
-        share_protocol="NFS",
-        wait=True,
-    )
-    wait_for_steady_state_of_share(openstack_client, share_name)
-    yield share
-    openstack_client.shared_file_system.delete_share(share)
-
-
-@pytest.fixture
-def clear_share(request, share_name):
-    client_fixture_name = request.param
-    openstack_client = request.getfixturevalue(client_fixture_name)
-    yield None
-    wait_for_steady_state_of_share(openstack_client, share_name)
-    openstack_client.shared_file_system.delete_share(
-        openstack_client.shared_file_system.find_share(share_name).id)
 
 
 def wait_for_steady_state_of_share(openstack, share_name):
