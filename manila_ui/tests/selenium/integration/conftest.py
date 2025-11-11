@@ -56,7 +56,7 @@ def new_access_rule_for_share(request, new_share):
         share_id=new_share.id,
         access_type="ip",
         access_level="rw",
-        access_to="10.0.10.10"
+        access_to="192.0.2.0/24"
     )
     yield share_access_rule
 
@@ -116,3 +116,31 @@ def clear_share_from_snapshot(request, share_from_snapshot_name,
     openstack_client.shared_file_system.delete_share(
         openstack_client.shared_file_system.find_share(
             share_from_snapshot_name).id)
+
+
+# Share Group Fixtures:
+@pytest.fixture
+def share_group_name():
+    return 'horizon_share_group_%s' % uuidutils.generate_uuid(
+        dashed=False)
+
+
+@pytest.fixture
+def new_share_group(request, share_group_name):
+    client_fixture_name = request.param
+    openstack_client = request.getfixturevalue(client_fixture_name)
+    share_group = openstack_client.shared_file_system.create_share_group(
+        name=share_group_name,
+    )
+    yield share_group
+    openstack_client.shared_file_system.delete_share_group(share_group)
+
+
+@pytest.fixture
+def clear_share_group(request, share_group_name):
+    client_fixture_name = request.param
+    openstack_client = request.getfixturevalue(client_fixture_name)
+    yield None
+    openstack_client.shared_file_system.delete_share_group(
+        openstack_client.shared_file_system.find_share_group(
+            share_group_name).id)

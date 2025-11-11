@@ -213,7 +213,7 @@ def test_edit_share_metadata(login, driver, openstack_client,
     ], indirect=["new_share", "openstack_client"])
 def test_create_share_access_rule(login, driver, config, new_share,
                                   openstack_client, user_type):
-    test_rule_ip_address = "10.10.0.10"
+    test_rule_ip_address = "192.0.2.0/24"
     login(user_type)
     url = '/'.join((
         config.dashboard.dashboard_url,
