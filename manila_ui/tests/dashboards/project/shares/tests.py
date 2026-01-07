@@ -237,16 +237,8 @@ class ShareViewTests(test.APITestCase):
         self.assertContains(
             res, "<dd>%s</dd>" % self.share.availability_zone, 1, 200)
         for el in export_locations:
-            self.assertContains(res, "value=\"%s\"" % el.path, 1, 200)
-            self.assertContains(
-                res, "<div><b>Preferred:</b> %s</div>" % el.preferred, 1, 200)
-            self.assertContains(
-                res, "<div><b>Is admin only:</b> %s</div>" % el.is_admin_only,
-                1, 200)
-        self.assertContains(
-            res, ("<div><b>Share Replica ID:</b> %s</div>" %
-                  export_locations[0].share_instance_id),
-            2, 200)
+            self.assertNotContains(res, "value=\"%s\"" % el.path)
+            self.assertNotContains(res, "<b>Preferred:</b>")
         for rule in rules:
             self.assertContains(res, "<dt>%s</dt>" % rule.access_type, 1, 200)
             self.assertContains(
@@ -265,8 +257,6 @@ class ShareViewTests(test.APITestCase):
             res, "<div><b>Status: </b>active</div>", len(rules), 200)
         self.assertNoMessages()
         api_manila.share_rules_list.assert_called_once_with(
-            mock.ANY, self.share.id)
-        api_manila.share_export_location_list.assert_called_once_with(
             mock.ANY, self.share.id)
 
     def test_update_share_get(self):
@@ -772,3 +762,104 @@ class ShareViewTests(test.APITestCase):
             )
             horizon_messages.success.assert_called_once_with(
                 self.request, mock.ANY)
+
+    def test_update_export_location_metadata_get(self):
+        share = test_data.share
+        el = test_data.export_locations[0]
+        el.metadata = {'key1': 'val1', 'key2': 'val2'}
+        url = reverse('horizon:project:shares:update_export_location_metadata',
+                      args=[share.id, el.id])
+        self.mock_object(api_manila, "export_location_get",
+                         mock.Mock(return_value=el))
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(
+            res, 'project/shares/update_share_export_location_metadata.html')
+        self.assertContains(res, "key1=val1")
+        self.assertContains(res, "key2=val2")
+        api_manila.export_location_get.assert_called_once_with(
+            mock.ANY, share.id, el.id)
+
+    def test_update_export_location_metadata_post(self):
+        share = test_data.share
+        el = test_data.export_locations[0]
+        url = reverse('horizon:project:shares:update_export_location_metadata',
+                      args=[share.id, el.id])
+        formData = {
+            'method': 'UpdateExportLocationMetadata',
+            'share_id': share.id,
+            'el_id': el.id,
+            'metadata': 'new=meta',
+        }
+        self.mock_object(
+            api_manila, "share_get", mock.Mock(return_value=share))
+        self.mock_object(
+            api_manila, "export_location_get", mock.Mock(return_value=el))
+        self.mock_object(api_manila, "export_location_set_metadata")
+        self.mock_object(api_manila, "export_location_delete_metadata")
+        res = self.client.post(url, formData)
+        api_manila.export_location_set_metadata.assert_called_once_with(
+            mock.ANY, share, el.id, {'new': 'meta'})
+        expected_url = reverse(
+            'horizon:project:shares:detail', args=[share.id])
+        expected_url += "?tab=share_details__export_locations_tab"
+        self.assertRedirectsNoFollow(res, expected_url)
+
+    def test_detail_view_export_locations_tab(self):
+        share = self.share
+        el_list = test_data.export_locations
+        rules_list = [test_data.ip_rule]
+        for el in el_list:
+            if not hasattr(el, 'metadata'):
+                el.metadata = {}
+        url = reverse('horizon:project:shares:detail', args=[share.id])
+        url += "?tab=share_details__export_locations_tab"
+        self.mock_object(
+            api_manila, "share_rules_list",
+            mock.Mock(return_value=rules_list))
+        self.mock_object(
+            api_manila, "share_export_location_list",
+            mock.Mock(return_value=el_list))
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        for el in el_list:
+            self.assertContains(res, el.path)
+            if hasattr(el, 'share_instance_id') and el.share_instance_id:
+                self.assertContains(res, el.share_instance_id)
+        edit_url = "horizon:project:shares:update_export_location_metadata"
+        for el in el_list:
+            expected_link = reverse(edit_url, args=[share.id, el.id])
+            self.assertContains(res, expected_link)
+        api_manila.share_export_location_list.assert_called_once_with(
+            mock.ANY, share.id)
+
+    def test_update_export_location_metadata_invalid_format_dash_post(self):
+        share = test_data.share
+        el = test_data.export_locations[0]
+        el_id = el.id
+        mock_el = mock.Mock()
+        mock_el.id = el_id
+        mock_el.metadata = {'key': 'value'}
+        self.mock_object(api_manila, "export_location_get",
+                         mock.Mock(return_value=mock_el))
+        self.mock_object(api_manila, "share_get",
+                         mock.Mock(return_value=share))
+        error = Exception("MetadataItemNotFound: Metadata item not found.")
+        error.code = 404
+        mock_unset = self.mock_object(
+            api_manila, "export_location_delete_metadata",
+            mock.Mock(side_effect=error))
+        url = reverse('horizon:project:shares:update_export_location_metadata',
+                      args=[share.id, el_id])
+        formData = {
+            'method': 'UpdateExportLocationMetadata',
+            'share_id': share.id,
+            'el_id': el_id,
+            'metadata': '1-b'
+        }
+        res = self.client.post(url, formData, follow=True)
+        mock_unset.assert_called_once()
+        msgs = [m.message for m in res.wsgi_request._messages]
+        expected_msg = "Each line must contain a 'key=value' pair"
+        self.assertTrue(any(expected_msg in m for m in msgs),
+                        f"Expected message not found in: {msgs}")

@@ -519,3 +519,45 @@ class RevertForm(forms.SelfHandlingForm):
                 request,
                 _('Unable to revert share to the snapshot.'),
                 redirect=redirect)
+
+
+class UpdateExportLocationMetadata(forms.SelfHandlingForm):
+    share_id = forms.CharField(widget=forms.HiddenInput())
+    el_id = forms.CharField(widget=forms.HiddenInput())
+    metadata = forms.CharField(label=_("Metadata"),
+                               widget=forms.Textarea(),
+                               required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if "metadata" in self.initial:
+            meta_str = ""
+            for k, v in self.initial["metadata"].items():
+                meta_str += "%s=%s\r\n" % (k, v)
+            self.initial["metadata"] = meta_str
+
+    def handle(self, request, data):
+        share_id = self.initial['share_id']
+        el_id = self.initial['el_id']
+        try:
+            share = manila.share_get(request, share_id)
+            set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+            if set_dict:
+                manila.export_location_set_metadata(
+                    request, share, el_id, set_dict)
+            if unset_list:
+                manila.export_location_delete_metadata(
+                    request, share, el_id, unset_list)
+            messages.success(request, _('Export location metadata updated.'))
+            return True
+        except Exception as e:
+            if "MetadataItemNotFound" in str(e) or getattr(
+                e, 'code', None) == 404:
+                msg = _("Invalid format: Each line must contain a 'key=value' "
+                        "pair. If you intended to delete a key, ensure the "
+                        "key exists.")
+                messages.error(request, msg)
+            else:
+                exceptions.handle(
+                    request, _('Unable to update export location metadata.'))
+            return False

@@ -14,23 +14,7 @@
     {% endif %}
     <dt>{% trans "Status" %}</dt>
     <dd>{{ share.status|capfirst }}</dd>
-    <dt>{% trans "Export locations" %}</dt>
-    {% for el in share.export_locations %}
-      <dd><p>
-        <div><b>{% trans "Path:" %}</b>
-            <input type="text" readonly="true"
-                   value="{{ el.path }}" size="{{ share.el_size }}"
-                   onClick="this.setSelectionRange(0, this.value.length)">
-        </div>
-        <div><b>{% trans "Preferred:" %}</b> {{ el.preferred }}</div>
-        {% if el.is_admin_only == True or el.is_admin_only == False %}
-        <div><b>{% trans "Is admin only:" %}</b> {{ el.is_admin_only }}</div>
-        {% endif %}
-        {% if el.share_instance_id %}
-        <div><b>{% trans "Share Replica ID:" %}</b> {{ el.share_instance_id }}</div>
-        {% endif %}
-      </p></dd>
-    {% endfor %}
+
     {% if share.snapshot_id %}
     <dt>{% trans "Snapshot ID" %}</dt>
     {% url 'horizon:project:share_snapshots:share_snapshot_detail' share.snapshot_id as snapshot_url%}

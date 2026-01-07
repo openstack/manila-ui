@@ -28,7 +28,7 @@ from manilaclient import client as manila_client
 LOG = logging.getLogger(__name__)
 
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
-MANILA_VERSION = "2.51"
+MANILA_VERSION = "2.87"
 MANILA_SERVICE_TYPE = "sharev2"
 
 # API static values
@@ -702,3 +702,36 @@ def messages_list(request, search_opts=None, sort_key=None, sort_dir=None):
 
 def messages_delete(request, message_id):
     return manilaclient(request).messages.delete(message_id)
+
+
+def export_location_get(request, share_id, el_id):
+    return manilaclient(
+        request).share_export_locations.get(share_id, el_id)
+
+
+def export_location_metadata_get(request, share_id, el_id):
+    client = manilaclient(request)
+
+    result = client.share_export_locations.get_metadata(share_id, el_id)
+
+    if hasattr(result, 'metadata'):
+        return result.metadata
+    return result
+
+
+def export_location_set_metadata(request, share, el_id, metadata):
+    return manilaclient(
+        request).share_export_locations.set_metadata(
+        share,
+        metadata,
+        subresource=el_id
+    )
+
+
+def export_location_delete_metadata(request, share, el_id, keys):
+    return manilaclient(
+        request).share_export_locations.delete_metadata(
+        share,
+        keys,
+        subresource=el_id
+    )

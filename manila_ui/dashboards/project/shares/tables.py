@@ -448,3 +448,42 @@ class SharesTable(SharesTableBase):
         ]
         if features.is_share_groups_enabled():
             columns.append('share_group_id')
+
+
+class UpdateExportLocationMetadata(tables.LinkAction):
+    name = "update_metadata"
+    verbose_name = _("Edit Metadata")
+    url = "horizon:project:shares:update_export_location_metadata"
+    classes = ("ajax-modal",)
+    icon = "pencil"
+    policy_rules = (("share", "share_export_location:update_metadata"),)
+
+    def get_link_url(self, datum):
+        share_id = self.table.kwargs['share_id']
+        return reverse(self.url, args=(share_id, datum.id))
+
+
+def get_metadata(el):
+    if not getattr(el, 'metadata', None):
+        return "-"
+    return utils.metadata_to_str(el.metadata)
+
+
+class ExportLocationFilterAction(tables.FilterAction):
+    filter_type = "query"
+    filter_choices = (('metadata', _("Metadata"), True),)
+
+
+class ExportLocationsTable(tables.DataTable):
+    path = tables.Column("path", verbose_name=_("Path"))
+    preferred = tables.Column("preferred", verbose_name=_("Preferred"))
+    is_admin = tables.Column("is_admin_only", verbose_name=_("Is admin only"))
+    replica_id = tables.Column("share_instance_id",
+                               verbose_name=_("Share Replica ID"))
+    metadata = tables.Column(get_metadata, verbose_name=_("Metadata"))
+
+    class Meta(object):
+        name = "export_locations"
+        verbose_name = _("Export Locations")
+        table_actions = (ExportLocationFilterAction,)
+        row_actions = (UpdateExportLocationMetadata,)

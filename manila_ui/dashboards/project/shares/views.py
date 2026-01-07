@@ -92,8 +92,7 @@ class DetailView(tabs.TabView):
         share_display_name = share.name or share.id
         context["share"] = share
         context["share_display_name"] = share_display_name
-        context["page_title"] = _("Share Details: "
-                                  "%(share_display_name)s") % {
+        context["page_title"] = _("Share Details: %(share_display_name)s") % {
             'share_display_name': share_display_name}
         return context
 
@@ -103,17 +102,29 @@ class DetailView(tabs.TabView):
             share_id = self.kwargs['share_id']
             share = manila.share_get(self.request, share_id)
             share.rules = manila.share_rules_list(self.request, share_id)
-            share.export_locations = manila.share_export_location_list(
+            all_export_locations = manila.share_export_location_list(
                 self.request, share_id)
-            export_locations = [
+            filter_string = self.request.GET.get(
+                'metadata_filter', '').strip().lower()
+            if filter_string:
+                share.export_locations = [
+                    el for el in all_export_locations
+                    if filter_string in " ".join(
+                        [f"{k}={v}" for k, v in getattr(
+                            el, 'metadata', {}).items()]
+                    ).lower()
+                ]
+            else:
+                share.export_locations = all_export_locations
+            export_locations_paths = [
                 exp['path'] for exp in share.export_locations]
             share.el_size = ui_utils.calculate_longest_str_size(
-                export_locations)
+                export_locations_paths)
         except Exception:
             redirect = reverse('horizon:project:shares:index')
-            exceptions.handle(self.request,
-                              _('Unable to retrieve share details.'),
-                              redirect=redirect)
+            exceptions.handle(
+                self.request, _('Unable to retrieve share details.'),
+                redirect=redirect)
         return share
 
     def get_tabs(self, request, *args, **kwargs):
@@ -410,3 +421,55 @@ class RevertView(forms.ModalFormView):
             'share_id': self.kwargs["share_id"],
             'name': share.name or share.id,
         }
+
+
+class UpdateExportLocationMetadataView(forms.ModalFormView):
+    form_class = share_form.UpdateExportLocationMetadata
+    form_id = "update_export_location_metadata_form"
+    template_name = 'project/shares/update_share_export_location_metadata.html'
+    modal_header = _("Edit Export Location Metadata")
+    modal_id = "update_export_location_metadata_modal"
+    submit_label = _("Save Changes")
+    submit_url = "horizon:project:shares:update_export_location_metadata"
+    page_title = _("Edit Export Location Metadata")
+
+    def get_object(self):
+        if not hasattr(self, "_object"):
+            share_id = self.kwargs['share_id']
+            el_id = self.kwargs['el_id']
+            try:
+                self._object = manila.export_location_get(
+                    self.request, share_id, el_id)
+            except Exception:
+                msg = _('Unable to retrieve the export location.')
+                url = reverse('horizon:project:shares:detail', args=[share_id])
+                exceptions.handle(self.request, msg, redirect=url)
+        return self._object
+
+    def get_cancel_url(self):
+        return reverse("horizon:project:shares:detail",
+                       args=[self.kwargs['share_id']])
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            UpdateExportLocationMetadataView, self).get_context_data(**kwargs)
+
+        context['share_id'] = self.kwargs['share_id']
+
+        args = (self.kwargs['share_id'], self.kwargs['el_id'])
+        context['submit_url'] = reverse(self.submit_url, args=args)
+
+        return context
+
+    def get_initial(self):
+        el = self.get_object()
+        return {
+            'share_id': self.kwargs['share_id'],
+            'el_id': self.kwargs['el_id'],
+            'metadata': getattr(el, 'metadata', {})
+        }
+
+    def get_success_url(self):
+        base_url = reverse("horizon:project:shares:detail",
+                           args=[self.kwargs['share_id']])
+        return f"{base_url}?tab=share_details__export_locations_tab"

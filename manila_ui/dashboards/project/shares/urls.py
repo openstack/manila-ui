@@ -60,6 +60,11 @@ urlpatterns = [
         r'^(?P<share_id>[^/]+)/revert/$',
         shares_views.RevertView.as_view(),
         name='revert'),
+    re_path(
+        r'^(?P<share_id>[^/]+)/(?P<el_id>[^/]+)/'
+        r'update_export_location_metadata/$',
+        shares_views.UpdateExportLocationMetadataView.as_view(),
+        name='update_export_location_metadata'),
 ]
 
 if features.is_replication_enabled():
