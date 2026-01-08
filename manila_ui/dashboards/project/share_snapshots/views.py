@@ -112,8 +112,11 @@ class CreateShareSnapshotView(forms.ModalFormView):
     page_title = _('Create Share Snapshot')
 
     def get_context_data(self, **kwargs):
-        context = super(self.__class__, self).get_context_data(**kwargs)
+        context = super(
+            CreateShareSnapshotView, self).get_context_data(**kwargs)
         context['share_id'] = self.kwargs['share_id']
+        args = (self.kwargs['share_id'],)
+        context['submit_url'] = reverse(self.submit_url, args=args)
         try:
             context['usages'] = manila.tenant_absolute_limits(self.request)
         except Exception:
@@ -121,7 +124,6 @@ class CreateShareSnapshotView(forms.ModalFormView):
         return context
 
     def get_initial(self):
-        self.submit_url = reverse(self.submit_url, kwargs=self.kwargs)
         return {'share_id': self.kwargs["share_id"]}
 
 
@@ -230,3 +232,36 @@ class ManageShareSnapshotRulesView(tables.DataTableView):
                 _('Unable to retrieve share snapshot rules.'),
                 redirect=redirect)
         return rules
+
+
+class UpdateMetadataView(forms.ModalFormView):
+    form_class = ss_forms.UpdateSnapshotMetadataForm
+    form_id = "update_snapshot_metadata_form"
+    template_name = 'project/share_snapshots/update_metadata.html'
+    modal_header = _("Edit Share Snapshot Metadata")
+    modal_id = "update_snapshot_metadata_modal"
+    submit_label = _("Save Changes")
+    submit_url = "horizon:project:share_snapshots:update_metadata"
+    page_title = _("Edit Share Snapshot Metadata")
+    success_url = reverse_lazy("horizon:project:share_snapshots:index")
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateMetadataView, self).get_context_data(**kwargs)
+        args = (self.kwargs['snapshot_id'],)
+        context['submit_url'] = reverse(self.submit_url, args=args)
+        return context
+
+    def get_initial(self):
+        snapshot_id = self.kwargs['snapshot_id']
+        try:
+            snapshot = manila.share_snapshot_get(self.request, snapshot_id)
+            return {
+                'snapshot_id': snapshot_id,
+                'metadata': getattr(snapshot, 'metadata', {}),
+            }
+        except Exception:
+            exceptions.handle(self.request, _('Unable to retrieve snapshot.'))
+            return {'snapshot_id': snapshot_id}
+
+    def get_success_url(self):
+        return self.success_url

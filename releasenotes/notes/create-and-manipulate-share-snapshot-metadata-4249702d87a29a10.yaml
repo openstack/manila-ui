@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Adds the ability to create and manipulate metadata of a share snapshot.
+    Also, share snapshots can be filtered by the metadata.

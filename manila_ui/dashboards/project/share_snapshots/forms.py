@@ -17,6 +17,7 @@
 Views for managing share snapshots.
 """
 
+from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
@@ -24,6 +25,7 @@ from horizon import forms
 from horizon import messages
 
 from manila_ui.api import manila
+from manila_ui.dashboards import utils
 
 
 class CreateShareSnapshotForm(forms.SelfHandlingForm):
@@ -31,6 +33,9 @@ class CreateShareSnapshotForm(forms.SelfHandlingForm):
     description = forms.CharField(
         widget=forms.Textarea,
         label=_("Description"), required=False)
+    metadata = forms.CharField(
+        label=_("Metadata"), required=False,
+        widget=forms.Textarea(attrs={'rows': 4}))
 
     def __init__(self, request, *args, **kwargs):
         super(self.__class__, self).__init__(request, *args, **kwargs)
@@ -40,9 +45,23 @@ class CreateShareSnapshotForm(forms.SelfHandlingForm):
             widget=forms.HiddenInput(), initial=share_id)
 
     def handle(self, request, data):
+        metadata = {}
+        try:
+            set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+            if unset_list:
+                msg = _("Expected only pairs of key=value.")
+                raise ValidationError(message=msg)
+            metadata = set_dict
+        except ValidationError as e:
+            self.api_error(e.messages[0])
+            return False
         try:
             snapshot = manila.share_snapshot_create(
-                request, data['share_id'], data['name'], data['description'])
+                request,
+                data['share_id'],
+                name=data['name'],
+                description=data['description'],
+                metadata=metadata)
             message = _('Creating share snapshot "%s".') % data['name']
             messages.success(request, message)
             return snapshot
@@ -94,3 +113,41 @@ class AddShareSnapshotRule(forms.SelfHandlingForm):
                 args=[self.initial['snapshot_id']])
             exceptions.handle(
                 request, _('Unable to add snapshot rule.'), redirect=redirect)
+
+
+class UpdateSnapshotMetadataForm(forms.SelfHandlingForm):
+    snapshot_id = forms.CharField(widget=forms.HiddenInput())
+    metadata = forms.CharField(label=_("Metadata"),
+                               widget=forms.Textarea(attrs={'rows': 10}),
+                               required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        meta_str = ""
+        for k, v in self.initial["metadata"].items():
+            meta_str += f"{k}={v}\r\n"
+        self.initial["metadata"] = meta_str
+
+    def handle(self, request, data):
+        snapshot_id = data['snapshot_id']
+        try:
+            set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+            if unset_list:
+                manila.share_snapshot_delete_metadata(
+                    request, snapshot_id, unset_list)
+            if set_dict:
+                manila.share_snapshot_set_metadata(
+                    request, snapshot_id, set_dict)
+            messages.success(request, _('Snapshot metadata updated.'))
+            return True
+        except Exception as e:
+            if "MetadataItemNotFound" in str(e) or getattr(
+                e, 'code', None) == 404:
+                msg = _("Invalid format: Each line must contain a 'key=value' "
+                        "pair. If you intended to delete a key, ensure the "
+                        "key exists.")
+                messages.error(request, msg)
+            else:
+                exceptions.handle(
+                    request, _('Unable to update snapshot metadata.'))
+            return False

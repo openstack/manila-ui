@@ -42,4 +42,8 @@ urlpatterns = [
         r'^(?P<snapshot_id>[^/]+)/share_snapshot_rule_add/$',
         views.AddShareSnapshotRuleView.as_view(),
         name='share_snapshot_rule_add'),
+    re_path(
+        r'^(?P<snapshot_id>[^/]+)/update_metadata/$',
+        views.UpdateMetadataView.as_view(),
+        name='update_metadata'),
 ]

@@ -352,7 +352,11 @@ class ManilaApiTests(base.APITestCase):
             self.request, self.id, name, description, force)
 
         self.manilaclient.share_snapshots.create.assert_called_once_with(
-            self.id, name=name, description=description, force=force)
+            self.id,
+            name=name,
+            description=description,
+            force=force,
+            metadata=None)
 
     def test_snapshot_delete(self):
         snapshot_id = 'fake_snapshot_id'
@@ -1302,3 +1306,19 @@ class ManilaApiTests(base.APITestCase):
                 metadata
             )
             self.assertEqual(mock_share_network, result)
+
+    def test_snapshot_create_with_metadata(self):
+        name = 'fake_snapshot_name'
+        description = "fake_snapshot_description"
+        metadata = {'key1': 'value1', 'key2': 'value2'}
+        force = False
+
+        api.share_snapshot_create(
+            self.request, self.id, name, description, force, metadata)
+
+        self.manilaclient.share_snapshots.create.assert_called_once_with(
+            self.id,
+            force=force,
+            name=name,
+            description=description,
+            metadata=metadata)

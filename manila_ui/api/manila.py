@@ -232,6 +232,17 @@ def share_snapshot_get(request, snapshot_id):
     return manilaclient(request).share_snapshots.get(snapshot_id)
 
 
+def share_snapshot_set_metadata(request, snapshot_id, metadata):
+    return manilaclient(request).share_snapshots.set_metadata(
+        snapshot_id, metadata)
+
+
+def share_snapshot_delete_metadata(request, snapshot_id, keys):
+    return manilaclient(
+        request).share_snapshots.delete_metadata(
+        snapshot_id, keys)
+
+
 def share_snapshot_update(request, snapshot_id, name, description):
     snapshot_data = {'display_name': name,
                      'display_description': description}
@@ -252,9 +263,13 @@ def share_snapshot_list(request, detailed=True, search_opts=None,
 
 
 def share_snapshot_create(request, share_id, name=None,
-                          description=None, force=False):
+                          description=None, force=False, metadata=None):
     return manilaclient(request).share_snapshots.create(
-        share_id, force=force, name=name, description=description)
+        share_id,
+        force=force,
+        name=name,
+        description=description,
+        metadata=metadata)
 
 
 def share_snapshot_delete(request, snapshot_id):

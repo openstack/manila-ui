@@ -54,19 +54,20 @@ class SnapshotSnapshotViewTests(test.TestCase):
         formData = {
             'name': 'new_snapshot',
             'description': 'This is test snapshot',
-            'method': 'CreateForm',
-            'size': 1,
-            'type': 'NFS',
+            'method': 'CreateShareSnapshotForm',
             'share_id': share.id,
+            'metadata': ''
         }
         self.mock_object(
             api_manila, "share_snapshot_create",
             mock.Mock(return_value=snapshot))
-
         res = self.client.post(url, formData)
-
         api_manila.share_snapshot_create.assert_called_once_with(
-            mock.ANY, share.id, formData['name'], formData['description'])
+            mock.ANY,
+            share.id,
+            name=formData['name'],
+            description=formData['description'],
+            metadata={})
         self.assertRedirectsNoFollow(res, INDEX_URL)
 
     def test_delete_snapshot(self):
@@ -326,3 +327,117 @@ class SnapshotSnapshotViewTests(test.TestCase):
             mock.ANY, snapshot.id, rule.id)
         api_manila.share_snapshot_rules_list.assert_called_with(
             mock.ANY, snapshot.id)
+
+    def test_update_snapshot_metadata_get(self):
+        snapshot = self.snapshots.first()
+        snapshot_id = str(snapshot.id)
+        snapshot.metadata = {'ro': 'se'}
+        url = reverse('horizon:project:share_snapshots:update_metadata',
+                      args=[snapshot_id])
+        self.mock_object(api_manila, "share_snapshot_get",
+                         mock.Mock(return_value=snapshot))
+        res = self.client.get(url)
+        api_manila.share_snapshot_get.assert_called_once_with(
+            mock.ANY, snapshot_id)
+        self.assertNoMessages()
+        self.assertTemplateUsed(
+            res, 'project/share_snapshots/update_metadata.html')
+        self.assertEqual(res.context['form'].initial['metadata'], "ro=se\r\n")
+
+    def test_update_snapshot_metadata_post(self):
+        snapshot = self.snapshots.first()
+        snapshot_id = str(snapshot.id)
+        snapshot.metadata = {'ro': 'see'}
+        data = {
+            'snapshot_id': snapshot_id,
+            'metadata': 'ro=se\r\nki=mondo',
+        }
+        url = reverse('horizon:project:share_snapshots:update_metadata',
+                      args=[snapshot_id])
+        self.mock_object(api_manila, "share_snapshot_get",
+                         mock.Mock(return_value=snapshot))
+        self.mock_object(api_manila, "share_snapshot_set_metadata")
+        self.mock_object(api_manila, "share_snapshot_delete_metadata")
+        res = self.client.post(url, data)
+        expected_set_dict = {'ro': 'se', 'ki': 'mondo'}
+        api_manila.share_snapshot_set_metadata.assert_called_once_with(
+            mock.ANY, snapshot_id, expected_set_dict)
+        self.assertRedirectsNoFollow(
+            res, reverse('horizon:project:share_snapshots:index'))
+        self.assertMessageCount(success=1)
+
+    def test_update_snapshot_metadata_unset_by_key_only_post(self):
+        snapshot = self.snapshots.first()
+        snapshot_id = str(snapshot.id)
+        snapshot.metadata = {'ro': 'se'}
+        data = {
+            'snapshot_id': snapshot_id,
+            'metadata': 'ro',
+        }
+        url = reverse('horizon:project:share_snapshots:update_metadata',
+                      args=[snapshot_id])
+        self.mock_object(api_manila, "share_snapshot_get",
+                         mock.Mock(return_value=snapshot))
+        self.mock_object(api_manila, "share_snapshot_set_metadata")
+        self.mock_object(api_manila, "share_snapshot_delete_metadata")
+        res = self.client.post(url, data)
+        api_manila.share_snapshot_delete_metadata.assert_called_once_with(
+            mock.ANY, snapshot_id, ['ro'])
+        self.assertFalse(api_manila.share_snapshot_set_metadata.called)
+        self.assertMessageCount(success=1)
+        self.assertRedirectsNoFollow(
+            res, reverse('horizon:project:share_snapshots:index'))
+
+    def test_create_snapshot_post_with_metadata(self):
+        share = test_data.share
+        snapshot = test_data.snapshot
+        url = reverse('horizon:project:share_snapshots:share_snapshot_create',
+                      args=[share.id])
+
+        formData = {
+            'name': 'metadata_snapshot',
+            'description': 'Snapshot with metadata',
+            'method': 'CreateShareSnapshotForm',
+            'share_id': share.id,
+            'metadata': 'project=manila\nenv=testing'
+        }
+        self.mock_object(
+            api_manila, "share_snapshot_create",
+            mock.Mock(return_value=snapshot))
+
+        res = self.client.post(url, formData)
+        api_manila.share_snapshot_create.assert_called_once_with(
+            mock.ANY,
+            share.id,
+            name=formData['name'],
+            description=formData['description'],
+            metadata={'project': 'manila', 'env': 'testing'})
+        self.assertNoFormErrors(res)
+        self.assertRedirectsNoFollow(res, INDEX_URL)
+
+    def test_update_snapshot_metadata_invalid_formats_post(self):
+        snapshot = test_data.snapshot
+        snapshot_id = snapshot.id
+        mock_snapshot = mock.Mock()
+        mock_snapshot.id = snapshot_id
+        mock_snapshot.metadata = {}
+        self.mock_object(api_manila, "share_snapshot_get",
+                         mock.Mock(return_value=mock_snapshot))
+        error_404 = Exception("MetadataItemNotFound: Metadata item not found.")
+        error_404.code = 404
+        mock_delete = self.mock_object(
+            api_manila, "share_snapshot_delete_metadata",
+            mock.Mock(side_effect=error_404))
+        url = reverse('horizon:project:share_snapshots:update_metadata',
+                      args=[snapshot_id])
+        formData = {
+            'method': 'update_metadata_form',
+            'snapshot_id': snapshot_id,
+            'metadata': '1-b'
+        }
+        res = self.client.post(url, formData, follow=True)
+        mock_delete.assert_called_once()
+        msgs = [m.message for m in res.wsgi_request._messages]
+        expected = "Each line must contain a 'key=value' pair"
+        self.assertTrue(any(expected in m for m in msgs),
+                        "Expected message not found in: %s" % msgs)

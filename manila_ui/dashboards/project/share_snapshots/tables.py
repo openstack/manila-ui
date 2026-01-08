@@ -23,6 +23,7 @@ from horizon import exceptions
 from horizon import tables
 
 from manila_ui.api import manila
+from manila_ui.dashboards import utils as project_utils
 
 
 DELETABLE_STATES = ("available", "error")
@@ -248,6 +249,24 @@ class ShareSnapshotRulesTable(tables.DataTable):
         )
 
 
+class UpdateShareSnapshotMetadata(tables.LinkAction):
+    name = "update_metadata"
+    verbose_name = _("Edit Share Snapshot Metadata")
+    url = "horizon:project:share_snapshots:update_metadata"
+    classes = ("ajax-modal", "btn-create")
+    policy_rules = (("share", "share_snapshot:update_metadata"),)
+
+    def allowed(self, request, snapshot=None):
+        return snapshot and snapshot.status in ("available",)
+
+
+def get_metadata(snapshot):
+    meta = getattr(snapshot, 'metadata', {})
+    if not meta:
+        return "-"
+    return project_utils.metadata_to_str(meta)
+
+
 class ShareSnapshotsTable(tables.DataTable):
     STATUS_CHOICES = (
         ("in-use", True),
@@ -270,6 +289,8 @@ class ShareSnapshotsTable(tables.DataTable):
         "description",
         verbose_name=_("Description"),
         truncate=40)
+    metadata = tables.Column(
+        get_metadata, verbose_name=_("Metadata"))
     size = tables.Column(
         get_size,
         verbose_name=_("Size"),
@@ -302,5 +323,9 @@ class ShareSnapshotsTable(tables.DataTable):
             EditShareSnapshot,
             CreateShareFromShareSnapshot,
             ManageShareSnapshotRules,
+            UpdateShareSnapshotMetadata,
             DeleteShareSnapshot,
         )
+        columns = [
+            'name', 'description', 'metadata', 'size', 'status', 'source',
+        ]
