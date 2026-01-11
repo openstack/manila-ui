@@ -24,7 +24,8 @@ from manila_ui.dashboards import utils
 class AddShareNetworkSubnetStep(workflows.Step):
     action_class = sn_workflows.AddShareNetworkSubnetAction
     depends_on = ("share_network_id",)
-    contributes = ("neutron_net_id", "neutron_subnet_id", "availability_zone")
+    contributes = (
+        "neutron_net_id", "neutron_subnet_id", "availability_zone", "metadata")
 
 
 class CreateShareNetworkSubnetsWorkflow(workflows.Workflow):
@@ -43,6 +44,15 @@ class CreateShareNetworkSubnetsWorkflow(workflows.Workflow):
             share_network_name = manila.share_network_get(
                 request, share_network_id).name
             send_data = {'share_network_id': share_network_id}
+
+            if context.get('metadata'):
+                set_dict, unset_list = utils.parse_str_meta(
+                    context['metadata'])
+                if unset_list:
+                    messages.error(
+                        request, _("Expected only pairs of key=value."))
+                    return False
+                send_data['metadata'] = set_dict
 
             neutron_net_id = context.get('neutron_net_id')
             if neutron_net_id:

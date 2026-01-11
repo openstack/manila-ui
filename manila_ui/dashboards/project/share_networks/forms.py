@@ -65,8 +65,14 @@ class Create(forms.SelfHandlingForm):
     def handle(self, request, data):
         try:
             send_data = {'name': data['name']}
-            if data['description']:
+            if data.get('description'):
                 send_data['description'] = data['description']
+            if data.get('metadata'):
+                set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+                if unset_list:
+                    self.api_error(_("Expected only pairs of key=value."))
+                    return False
+                send_data['metadata'] = set_dict
             neutron_net_id = data.get('neutron_net_id')
             if self.neutron_enabled and neutron_net_id:
                 send_data['neutron_net_id'] = utils.transform_dashed_name(

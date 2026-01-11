@@ -10,6 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from django.urls import reverse
 from openstack_dashboard import api
 from oslo_utils import timeutils
 from unittest import mock
@@ -78,3 +79,104 @@ class ShareNetworkSubnetsViewTests(test.TestCase):
             neutron_net_id=neutron_net_id,
             neutron_subnet_id=self.networks.first().subnets[0].id,
             availability_zone='fake_az')
+
+    def test_detail_view_subnets_tab(self):
+        share_net = test_data.active_share_network
+        base_url = reverse(
+            'horizon:project:share_networks:share_network_detail',
+            args=[share_net.id])
+        url = f"{base_url}?tab=share_network_details__subnets_tab"
+        self.mock_object(api_manila, "share_network_get",
+                         mock.Mock(return_value=share_net))
+        self.mock_object(api_manila, "share_network_security_service_list",
+                         mock.Mock(return_value=[]))
+        self.mock_object(api_manila, "share_server_list",
+                         mock.Mock(return_value=[]))
+        self.mock_object(api.neutron, "network_get",
+                         mock.Mock(return_value=self.networks.first()))
+        self.mock_object(api.neutron, "subnet_get",
+                         mock.Mock(return_value=self.subnets.first()))
+        self.mock_object(api_manila, "availability_zone_list",
+                         mock.Mock(return_value=[]))
+        res = self.client.get(url)
+        self.assertTemplateUsed(res, 'project/share_networks/detail.html')
+        self.assertContains(res, "Subnets")
+        api.neutron.network_get.assert_called()
+        api.neutron.subnet_get.assert_called()
+
+    def test_update_subnet_metadata_get(self):
+        share_net = test_data.active_share_network
+        subnet = share_net.share_network_subnets[0]
+        subnet_id = subnet['id']
+        url = reverse('horizon:project:share_networks:update_subnet_metadata',
+                      args=[share_net.id, subnet_id])
+        self.mock_object(api_manila, "share_network_subnet_get",
+                         mock.Mock(
+                             return_value=mock.Mock(metadata={'key': 'val'})))
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(
+            res, 'project/share_networks/update_subnet_metadata.html')
+        self.assertContains(res, 'key=val')
+
+    def test_update_subnet_metadata_post(self):
+        share_net = test_data.active_share_network
+        subnet = share_net.share_network_subnets[0]
+        subnet_id = subnet['id']
+        current_metadata = {'old_key': 'old_value'}
+        mock_subnet = mock.Mock(metadata=current_metadata)
+        mock_subnet.id = subnet_id
+        self.mock_object(api_manila, "share_network_subnet_get",
+                         mock.Mock(return_value=mock_subnet))
+        self.mock_object(api_manila, "share_network_get",
+                         mock.Mock(return_value=share_net))
+        self.mock_object(api_manila, "share_network_subnet_delete_metadata",
+                         mock.Mock(return_value=None))
+        self.mock_object(api_manila, "share_network_subnet_set_metadata",
+                         mock.Mock(return_value={'new_key': 'new_val'}))
+        formData = {
+            'method': 'update_subnet_metadata_form',
+            'share_network_id': share_net.id,
+            'subnet_id': subnet_id,
+            'metadata': 'new_key=new_val\r\n',
+        }
+        url = reverse('horizon:project:share_networks:update_subnet_metadata',
+                      args=[share_net.id, subnet_id])
+        res = self.client.post(url, formData)
+        expected_url = reverse(
+            'horizon:project:share_networks:share_network_detail',
+            args=[share_net.id]) + "?tab=share_network_details__subnets_tab"
+        self.assertNoFormErrors(res)
+        self.assertRedirectsNoFollow(res, expected_url)
+        api_manila.share_network_get.assert_called_once_with(
+            mock.ANY, share_net.id)
+
+    def test_update_subnet_metadata_invalid_format_dash_post(self):
+        share_net = test_data.active_share_network
+        subnet = share_net.share_network_subnets[0]
+        subnet_id = subnet['id']
+        mock_subnet = mock.Mock(metadata={'key': 'val'})
+        mock_subnet.id = subnet_id
+        self.mock_object(api_manila, "share_network_subnet_get",
+                         mock.Mock(return_value=mock_subnet))
+        self.mock_object(api_manila, "share_network_get",
+                         mock.Mock(return_value=share_net))
+        error = Exception("MetadataItemNotFound")
+        error.code = 404
+        mock_delete = self.mock_object(
+            api_manila, "share_network_subnet_delete_metadata",
+            mock.Mock(side_effect=error))
+        url = reverse('horizon:project:share_networks:update_subnet_metadata',
+                      args=[share_net.id, subnet_id])
+        formData = {
+            'method': 'update_subnet_metadata_form',
+            'share_network_id': share_net.id,
+            'subnet_id': subnet_id,
+            'metadata': '1-b',
+        }
+        res = self.client.post(url, formData, follow=True)
+        mock_delete.assert_called_once()
+        msgs = [m.message for m in res.wsgi_request._messages]
+        expected_msg = "Each line must contain a 'key=value' pair"
+        self.assertTrue(any(expected_msg in m for m in msgs),
+                        f"Expected error message not found in {msgs}")

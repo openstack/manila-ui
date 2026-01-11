@@ -133,14 +133,15 @@ class ShareNetworksViewTests(test.TestCase):
         self.assertContains(res, "<dd>%s</dd>" % share_net.name, 1, 200)
         self.assertContains(res, "<dd>%s</dd>" % share_net.id, 1, 200)
         for sub in share_network_subnets:
-            self.assertContains(res, "<a href=\"/project/networks"
-                                "/%s/detail\">%s</a>" % (
-                                    sub['neutron_net_id'],
-                                    network.name), 1, 200)
-            self.assertContains(res, "<a href=\"/project/networks/subnets"
-                                     "/%s/detail\">%s</a>" % (
-                                         sub['neutron_subnet_id'],
-                                         subnet['name']), 1, 200)
+            self.assertNotContains(
+                res, "<a href=\"/project/networks/%s/detail\">%s</a>" % (
+                    sub['neutron_net_id'], network.name),
+                status_code=200)
+
+            self.assertNotContains(
+                res, ("<a href=\"/project/networks/subnets/%s/detail\">%s</a>"
+                      % (sub['neutron_subnet_id'], subnet['name'])),
+                status_code=200)
         network_get_calls = [mock.call(mock.ANY, sub['neutron_net_id'])
                              for sub in share_network_subnets]
         subnet_get_calls = [mock.call(mock.ANY, sub['neutron_subnet_id'])

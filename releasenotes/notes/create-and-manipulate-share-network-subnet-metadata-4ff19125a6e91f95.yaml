@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Adds the ability to create and manipulate metadata of a share
+    network subnet. Also, share network subnets can be filtered
+    by the metadata.

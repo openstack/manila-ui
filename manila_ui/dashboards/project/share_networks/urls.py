@@ -40,4 +40,8 @@ urlpatterns = [
         r'^(?P<share_network_id>[^/]+)/subnets/create$',
         subnet_views.CreateSubnet.as_view(),
         name='share_network_subnet_create'),
+    re_path(r'^(?P<share_network_id>[^/]+)/subnets/'
+            r'(?P<subnet_id>[^/]+)/update_subnet_metadata/$',
+            subnet_views.UpdateShareNetworkSubnetMetadataView.as_view(),
+            name='update_subnet_metadata'),
 ]

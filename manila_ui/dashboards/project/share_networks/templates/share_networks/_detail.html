@@ -23,37 +23,8 @@
   </dl>
 </div>
 <div class="detail">
-  <h4>{% trans "Subnets" %}</h4>
   <hr class="header_rule">
   <dl class="dl-horizontal">
-    <dl class="dl-horizontal">
-      {% for subnet in share_network.share_network_subnets %}
-      <dl class="dl-horizontal">
-        <dt>{% trans "Id" %}</dt>
-        <dd>
-          {{subnet.id}}
-        </dd>
-        {% if subnet.neutron_net != "Unknown" %}
-  {% url 'horizon:project:networks:detail' subnet.neutron_net_id as network_detail_url %}
-          <dt>{% trans "Neutron Network" %}</dt>
-          <dd>
-            <a href="{{ network_detail_url }}">{{subnet.neutron_net}}</a>
-          </dd>
-        {% endif %}
-        {% if subnet.neutron_subnet != "Unknown" %}
-  {% url 'horizon:project:networks:subnets:detail' subnet.neutron_subnet_id as subnet_detail_url %}
-          <dt>{% trans "Neutron Subnet" %}</dt>
-          <dd>
-            <a href="{{ subnet_detail_url }}">{{subnet.neutron_subnet}}</a>
-          </dd>
-        {% endif %}
-        <dt>{% trans "Availability Zone" %}</dt>
-        <dd>
-          {{subnet.availability_zone}}
-        </dd>
-      </dl>
-      {% endfor %}
-    </dl>
   </dl>
 </div>
 {% if share_network.share_servers %}

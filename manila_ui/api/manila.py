@@ -301,12 +301,24 @@ def share_network_list(request, detailed=False, search_opts=None):
                                                      search_opts=search_opts)
 
 
-def share_network_create(request, neutron_net_id=None, neutron_subnet_id=None,
-                         name=None, description=None, availability_zone=None):
-    return manilaclient(request).share_networks.create(
-        neutron_net_id=neutron_net_id, neutron_subnet_id=neutron_subnet_id,
-        name=name, description=description,
-        availability_zone=availability_zone)
+def share_network_create(request, **kwargs):
+    # The Python ManilaClient ShareNetworkManager.create() does not
+    # yet support 'metadata' as a keyword argument (unlike SubnetManager).
+    # We pop it here to prevent a TypeError and apply it manually to
+    # the subnet after the network is successfully created.
+    metadata = kwargs.pop('metadata', None)
+    share_network = manilaclient(request).share_networks.create(**kwargs)
+    if metadata:
+        subnets = getattr(share_network, 'share_network_subnets', [])
+        if subnets:
+            first_subnet = subnets[0]
+            subnet_id = (
+                first_subnet.get('id') if isinstance(first_subnet, dict)
+                else getattr(first_subnet, 'id', None))
+            if subnet_id:
+                share_network_subnet_set_metadata(
+                    request, share_network.id, subnet_id, metadata)
+    return share_network
 
 
 def share_network_get(request, share_net_id):
@@ -324,12 +336,12 @@ def share_network_delete(request, share_network_id):
 
 def share_network_subnet_create(request, share_network_id=None,
                                 neutron_net_id=None, neutron_subnet_id=None,
-                                availability_zone=None):
+                                availability_zone=None, metadata=None):
     return manilaclient(request).share_network_subnets.create(
         share_network_id=share_network_id,
         neutron_net_id=neutron_net_id,
         neutron_subnet_id=neutron_subnet_id,
-        availability_zone=availability_zone)
+        availability_zone=availability_zone, metadata=metadata)
 
 
 def security_service_list(request, search_opts=None):
@@ -702,6 +714,27 @@ def messages_list(request, search_opts=None, sort_key=None, sort_dir=None):
 
 def messages_delete(request, message_id):
     return manilaclient(request).messages.delete(message_id)
+
+
+def share_network_subnet_get(
+        request, share_network_id, subnet_id):
+    return manilaclient(
+        request).share_network_subnets.get(
+        share_network_id, subnet_id)
+
+
+def share_network_subnet_set_metadata(
+        request, share_network, subnet_id, metadata):
+    return manilaclient(
+        request).share_network_subnets.set_metadata(
+        share_network, metadata, subresource=subnet_id)
+
+
+def share_network_subnet_delete_metadata(
+        request, share_network, subnet_id, keys):
+    return manilaclient(
+        request).share_network_subnets.delete_metadata(
+        share_network, keys, subresource=subnet_id)
 
 
 def export_location_get(request, share_id, el_id):

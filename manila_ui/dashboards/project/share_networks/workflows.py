@@ -55,12 +55,20 @@ class AddShareNetworkSubnetAction(workflows.MembershipAction):
             'data-slug': 'neutron_net_id',
             'data-neutron_net_id': _('Neutron Network')}))
 
+    metadata = forms.CharField(
+        label=_("Metadata"),
+        required=False,
+        widget=forms.Textarea(attrs={'rows': 4}))
+
     class Meta(object):
         name = _("Subnet")
         help_text = _("Specify an Availability Zone or an existing subnet. "
-                      "If no details are specified, "
-                      "then a default subnet with a null Availability "
-                      "Zone will be created automatically.")
+                      "If no details are specified, then a default subnet "
+                      "with a null Availability Zone will be created "
+                      "automatically.<br><br>"
+                      "<b>Metadata:</b> Optional metadata keys and values "
+                      "separated by '=', each on a new line. "
+                      "e.g., key1=value1")
 
     def __init__(self, request, context, *args, **kwargs):
         super().__init__(request, context, *args, **kwargs)
@@ -129,7 +137,8 @@ class AddShareNetworkSubnetAction(workflows.MembershipAction):
 
 class AddShareNetworkSubnetStep(workflows.Step):
     action_class = AddShareNetworkSubnetAction
-    contributes = ("neutron_net_id", "neutron_subnet_id", "availability_zone")
+    contributes = (
+        "neutron_net_id", "neutron_subnet_id", "availability_zone", "metadata")
 
 
 class CreateShareNetworkWorkflow(workflows.Workflow):
@@ -148,6 +157,14 @@ class CreateShareNetworkWorkflow(workflows.Workflow):
             send_data = {'name': context['share_network_name']}
             if context['share_network_description']:
                 send_data['description'] = context['share_network_description']
+            if context.get('metadata'):
+                set_dict, unset_list = utils.parse_str_meta(
+                    context['metadata'])
+                if unset_list:
+                    messages.error(
+                        request, _("Expected only pairs of key=value."))
+                    return False
+                send_data['metadata'] = set_dict
             neutron_net_id = context.get('neutron_net_id')
             if neutron_net_id:
                 send_data['neutron_net_id'] = utils.transform_dashed_name(

@@ -19,6 +19,7 @@ from openstack_dashboard.api import base as horizon_api
 
 from manila_ui.api import manila as api
 from manila_ui.tests import helpers as base
+from unittest import mock
 
 
 class FakeLimit:
@@ -424,19 +425,12 @@ class ManilaApiTests(base.APITestCase):
          "neutron_subnet_id": "foo_neutron_subnet_id"},
     )
     def test_share_network_create(self, kwargs):
-        expected_kwargs = {
-            "name": None,
-            "description": None,
-            "neutron_net_id": None,
-            "neutron_subnet_id": None,
-            "availability_zone": None
-        }
-        expected_kwargs.update(**kwargs)
-
         api.share_network_create(self.request, **kwargs)
+        expected_args = kwargs.copy()
 
+        expected_args.pop('metadata', None)
         mock_sn_create = self.manilaclient.share_networks.create
-        mock_sn_create.assert_called_once_with(**expected_kwargs)
+        mock_sn_create.assert_called_once_with(**expected_args)
 
     def test_share_network_get(self):
         share_net_id = 'fake_share_net_id'
@@ -478,7 +472,8 @@ class ManilaApiTests(base.APITestCase):
             "share_network_id": None,
             "neutron_net_id": None,
             "neutron_subnet_id": None,
-            "availability_zone": None
+            "availability_zone": None,
+            "metadata": None,
         }
 
         expected_kwargs.update(**kwargs)
@@ -1281,3 +1276,29 @@ class ManilaApiTests(base.APITestCase):
             self.manilaclient.messages.delete.return_value,
             result)
         self.manilaclient.messages.delete.assert_called_once_with(message_id)
+
+    def test_share_network_create_with_subnet_metadata(self):
+        metadata = {'key1': 'value1'}
+        kwargs = {
+            'name': 'test_net',
+            'metadata': metadata
+        }
+        mock_share_network = mock.MagicMock()
+        mock_share_network.id = 'new_sn_id'
+        mock_share_network.share_network_subnets = [
+            {'id': 'generated_subnet_id'}]
+        self.manilaclient.share_networks.create.return_value = (
+            mock_share_network)
+        with mock.patch.object(
+            api, 'share_network_subnet_set_metadata') as mock_set_meta:
+            result = api.share_network_create(self.request, **kwargs)
+            expected_create_kwargs = {'name': 'test_net'}
+            self.manilaclient.share_networks.create.assert_called_once_with(
+                **expected_create_kwargs)
+            mock_set_meta.assert_called_once_with(
+                self.request,
+                'new_sn_id',
+                'generated_subnet_id',
+                metadata
+            )
+            self.assertEqual(mock_share_network, result)

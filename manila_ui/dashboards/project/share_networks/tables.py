@@ -12,6 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext_lazy
 from django.utils.translation import pgettext_lazy
@@ -22,6 +23,7 @@ from openstack_dashboard.api import neutron
 from manila_ui.api import manila
 from manila_ui.dashboards.project.share_networks.share_network_subnets \
     import tables as subnet_tables
+from manila_ui.dashboards import utils
 
 DELETABLE_STATES = ("INACTIVE", "ERROR")
 EDITABLE_STATES = ("INACTIVE", )
@@ -141,3 +143,82 @@ class ShareNetworksTable(tables.DataTable):
             Delete,
             subnet_tables.CreateShareNetworkSubnet,
         )
+
+
+class UpdateShareNetworkSubnetMetadata(tables.LinkAction):
+    name = "update_metadata"
+    verbose_name = _("Edit Metadata")
+    url = "horizon:project:share_networks:update_subnet_metadata"
+    classes = ("ajax-modal",)
+    icon = "pencil"
+    policy_rules = (("share", "share_network_subnet:update_metadata"),)
+
+    def get_link_url(self, datum):
+        share_network_id = self.table.kwargs['share_network_id']
+        return reverse(self.url, args=(share_network_id, datum['id']))
+
+
+def get_metadata(subnet):
+    metadata = getattr(subnet, 'metadata', subnet.get('metadata', {}))
+    if not metadata:
+        return _("-")
+    return utils.metadata_to_str(metadata)
+
+
+class NetworkSubnetFilterAction(tables.FilterAction):
+    filter_type = "query"
+    filter_choices = (('metadata', _("Metadata"), True),)
+
+
+def get_network_link(datum):
+    net_id = datum.get('neutron_net_id')
+    if net_id and datum.get('neutron_net') != _("Unknown"):
+        try:
+            return reverse("horizon:project:networks:detail", args=(net_id,))
+        except Exception:
+            return None
+    return None
+
+
+def get_subnet_link(datum):
+    sub_id = datum.get('neutron_subnet_id')
+    sub_name = datum.get('neutron_subnet')
+    if sub_id and sub_name != _("Unknown"):
+        try:
+            return reverse("horizon:project:networks:subnets:detail",
+                           args=(sub_id,))
+        except Exception:
+            try:
+                return reverse("horizon:project:networks:subnets:details",
+                               args=(sub_id,))
+            except Exception:
+                return None
+    return None
+
+
+class ShareNetworkSubnetsTable(tables.DataTable):
+    id = tables.Column("id", verbose_name=_("ID"))
+    neutron_net = tables.Column(
+        "neutron_net",
+        verbose_name=_("Neutron Network"),
+        link=get_network_link
+    )
+    neutron_subnet = tables.Column(
+        "neutron_subnet",
+        verbose_name=_("Neutron Subnet"),
+        link=get_subnet_link
+    )
+    availability_zone = tables.Column(
+        "availability_zone",
+        verbose_name=_("Availability Zone")
+    )
+    metadata = tables.Column(get_metadata, verbose_name=_("Metadata"))
+
+    class Meta(object):
+        name = "subnets"
+        verbose_name = _("Subnets")
+        table_actions = (tables.FilterAction,)
+        row_actions = (UpdateShareNetworkSubnetMetadata,)
+
+    def get_object_id(self, datum):
+        return datum.get('id')
