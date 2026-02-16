@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Edit Lock" %}{% endblock %}
+
+{% block main %}
+    {% include 'project/resource_locks/_update_lock.html' %}
+{% endblock %}
