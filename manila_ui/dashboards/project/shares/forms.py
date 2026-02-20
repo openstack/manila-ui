@@ -401,7 +401,7 @@ class UpdateRuleMetadataForm(forms.SelfHandlingForm):
 
 class ResizeForm(forms.SelfHandlingForm):
     name = forms.CharField(
-        max_length="255", label=_("Share Name"),
+        max_length=255, label=_("Share Name"),
         widget=forms.TextInput(attrs={'readonly': 'readonly'}),
         required=False,
     )
@@ -413,33 +413,33 @@ class ResizeForm(forms.SelfHandlingForm):
     )
 
     new_size = forms.IntegerField(
-        label=_("New Size (GiB)")
+        label=_("New Size (GiB)"),
+        min_value=1,
     )
 
     def clean(self):
-        cleaned_data = super(ResizeForm, self).clean()
+        cleaned_data = super().clean()
         new_size = cleaned_data.get('new_size')
         orig_size = self.initial['orig_size']
-
-        if new_size == orig_size:
-            message = _("New size must be different than the existing size")
-            self._errors["new_size"] = self.error_class([message])
+        if new_size is None:
             return cleaned_data
-
-        if new_size <= 0:
-            message = _("New size should not be less than or equal to zero")
-            self._errors["new_size"] = self.error_class([message])
+        if new_size == orig_size:
+            self.add_error(
+                'new_size',
+                _("New size must be different from the existing size"))
             return cleaned_data
 
         usages = manila.tenant_absolute_limits(self.request)
         availableGB = (usages['maxTotalShareGigabytes'] -
                        usages['totalShareGigabytesUsed'])
-        if availableGB < (new_size - orig_size):
-            message = _('Share cannot be extended to %(req)iGiB as '
-                        'you only have %(avail)iGiB of your quota '
-                        'available.')
-            params = {'req': new_size, 'avail': availableGB + orig_size}
-            self._errors["new_size"] = self.error_class([message % params])
+        if new_size - orig_size > availableGB:
+            self.add_error(
+                'new_size',
+                _('Cannot resize to %(new)i GiB. '
+                  'Only %(avail)i GiB available.') % {
+                    'new': new_size, 'avail': availableGB + orig_size
+                }
+            )
         return cleaned_data
 
     def handle(self, request, data):
