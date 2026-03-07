@@ -550,6 +550,9 @@ class UpdateExportLocationMetadata(forms.SelfHandlingForm):
                     request, share, el_id, unset_list)
             messages.success(request, _('Export location metadata updated.'))
             return True
+        except ValidationError as e:
+            self.api_error(e.messages[0])
+            return False
         except Exception as e:
             if "MetadataItemNotFound" in str(e) or getattr(
                 e, 'code', None) == 404:
