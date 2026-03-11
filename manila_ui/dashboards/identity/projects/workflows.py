@@ -18,7 +18,6 @@ from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
-from openstack_dashboard.api import base
 from openstack_dashboard.dashboards.identity.projects \
     import workflows as project_workflows
 
@@ -51,7 +50,9 @@ class ShareQuotaAction(project_workflows.CommonQuotaAction):
         name = _("Share")
         slug = 'update_share_quotas'
         help_text = _("Set maximum quotas for the project.")
-        permissions = ('openstack.roles.admin', 'openstack.services.share')
+        permissions = (
+            ('openstack.roles.admin',) +
+            api_manila.MANILA_SERVICE_PERMISSIONS)
 
 
 class UpdateShareQuota(workflows.Step):
@@ -74,4 +75,4 @@ class UpdateShareQuota(workflows.Step):
         return context
 
     def allowed(self, request):
-        return base.is_service_enabled(request, 'share')
+        return api_manila.is_share_service_enabled(request)

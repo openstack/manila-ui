@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Manila-UI panels now recognize the ``shared-file-system`` and
+    ``sharev2`` service types in the Keystone catalog, in addition
+    to the ``share`` type. This fixes an issue where the Share
+    panels would not appear in Horizon when the Manila service was
+    registered under its official ``shared-file-system`` service
+    type.

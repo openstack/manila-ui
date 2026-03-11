@@ -16,8 +16,6 @@ from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
-from openstack_dashboard.api import base
-
 from manila_ui.api import manila as api_manila
 
 
@@ -45,7 +43,7 @@ class UpdateDefaultShareQuotasAction(workflows.Action):
 
     def handle(self, request, data):
         try:
-            if base.is_service_enabled(request, 'share'):
+            if api_manila.is_share_service_enabled(request):
                 manila_data = {}
                 # Share group quotas are removed here because default
                 # quota update for share groups is not possible yet, see
@@ -89,4 +87,4 @@ class UpdateDefaultShareQuotasStep(workflows.Step):
         return context
 
     def allowed(self, request):
-        return base.is_service_enabled(request, 'share')
+        return api_manila.is_share_service_enabled(request)

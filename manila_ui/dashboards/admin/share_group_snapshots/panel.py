@@ -17,13 +17,13 @@ from django.utils.translation import gettext_lazy as _
 import horizon
 from openstack_dashboard.dashboards.admin import dashboard
 
+from manila_ui.api import manila as api_manila
+
 
 class ShareGroupSnapshots(horizon.Panel):
     name = _("Share Group Snapshots")
     slug = 'share_group_snapshots'
-    permissions = (
-        'openstack.services.share',
-    )
+    permissions = api_manila.MANILA_SERVICE_PERMISSIONS
 
 
 dashboard.Admin.register(ShareGroupSnapshots)

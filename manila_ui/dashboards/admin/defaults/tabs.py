@@ -15,8 +15,6 @@ from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
 from horizon import tabs
 
-from openstack_dashboard import api
-
 from manila_ui.api import manila as api_manila
 from manila_ui.dashboards.admin.defaults import tables
 
@@ -39,4 +37,4 @@ class ShareQuotasTab(tabs.TableTab):
         return data
 
     def allowed(self, request):
-        return api.base.is_service_enabled(request, 'share')
+        return api_manila.is_share_service_enabled(request)
