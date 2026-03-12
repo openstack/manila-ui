@@ -441,3 +441,21 @@ class SnapshotSnapshotViewTests(test.TestCase):
         expected = "Each line must contain a 'key=value' pair"
         self.assertTrue(any(expected in m for m in msgs),
                         "Expected message not found in: %s" % msgs)
+
+    def test_share_snapshot_set_metadata(self):
+        snapshot = test_data.snapshot
+        metadata = {'key1': 'val1', 'key2': 'val2'}
+        self.mock_object(api_manila, "share_snapshot_set_metadata")
+        api_manila.share_snapshot_set_metadata(
+            self.request, snapshot.id, metadata)
+        api_manila.share_snapshot_set_metadata.assert_called_once_with(
+            self.request, snapshot.id, metadata)
+
+    def test_share_snapshot_delete_metadata(self):
+        snapshot = test_data.snapshot
+        keys = ['key1', 'key2']
+        self.mock_object(api_manila, "share_snapshot_delete_metadata")
+        api_manila.share_snapshot_delete_metadata(
+            self.request, snapshot.id, keys)
+        api_manila.share_snapshot_delete_metadata.assert_called_once_with(
+            self.request, snapshot.id, keys)
