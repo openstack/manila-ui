@@ -10,10 +10,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 from horizon import exceptions
 from horizon import forms
 from horizon import messages
+
 from manila_ui.api import manila
 from manila_ui.dashboards import utils
 
@@ -37,8 +39,8 @@ class UpdateShareNetworkSubnetMetadataForm(forms.SelfHandlingForm):
         share_network_id = self.initial['share_network_id']
         subnet_id = self.initial['subnet_id']
         try:
-            share_network = manila.share_network_get(request, share_network_id)
             set_dict, unset_list = utils.parse_str_meta(data['metadata'])
+            share_network = manila.share_network_get(request, share_network_id)
             if set_dict:
                 manila.share_network_subnet_set_metadata(
                     request, share_network, subnet_id, set_dict)
@@ -48,6 +50,9 @@ class UpdateShareNetworkSubnetMetadataForm(forms.SelfHandlingForm):
             messages.success(
                 request, _('Share Network Subnet metadata updated.'))
             return True
+        except ValidationError as e:
+            self.api_error(e.messages[0])
+            return False
         except Exception as e:
             if "MetadataItemNotFound" in str(e) or getattr(
                 e, 'code', None) == 404:

@@ -165,11 +165,6 @@ def get_metadata(subnet):
     return utils.metadata_to_str(metadata)
 
 
-class NetworkSubnetFilterAction(tables.FilterAction):
-    filter_type = "query"
-    filter_choices = (('metadata', _("Metadata"), True),)
-
-
 def get_network_link(datum):
     net_id = datum.get('neutron_net_id')
     if net_id and datum.get('neutron_net') != _("Unknown"):
