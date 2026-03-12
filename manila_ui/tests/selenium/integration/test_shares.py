@@ -14,6 +14,7 @@ import time
 
 from openstack_dashboard.test.selenium import widgets
 import pytest
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
 
@@ -59,16 +60,16 @@ def test_create_share(login, driver, share_name, openstack_client,
         'shares',
     ))
     driver.get(url)
-    driver.find_element_by_link_text("Create Share").click()
-    share_form = driver.find_element_by_css_selector(".modal-content form")
-    share_form.find_element_by_id("id_name").send_keys(share_name)
-    share_form.find_element_by_id("id_size").send_keys("1")
+    driver.find_element(By.LINK_TEXT, "Create Share").click()
+    share_form = driver.find_element(By.CSS_SELECTOR, ".modal-content form")
+    share_form.find_element(By.ID, "id_name").send_keys(share_name)
+    share_form.find_element(By.ID, "id_size").send_keys("1")
 # select share_type required only for UI based on 2023.1 and previous.
 # in newer versions there is set initial non-empty choice.
-    select_element = share_form.find_element_by_id("id_share_type")
+    select_element = share_form.find_element(By.ID, "id_share_type")
     Select(select_element).select_by_value('default')
-    share_form.find_element_by_css_selector(
-        ".btn-primary[value='Create']").click()
+    share_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Create']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert f'Success: Creating share "{share_name}"' in messages
     assert openstack_client.shared_file_system.find_share(
@@ -90,10 +91,11 @@ def test_delete_share(login, driver, config, new_share,
         'shares',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows) == 1
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Delete Share")
     widgets.confirm_modal(driver)
     messages = widgets.get_and_dismiss_messages(driver, config)
@@ -118,15 +120,16 @@ def test_edit_share_description(login, driver, openstack_client,
         'shares',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows) == 1
-    rows[0].find_element_by_css_selector(".data-table-action").click()
-    share_form = driver.find_element_by_css_selector(".modal-content form")
-    share_form.find_element_by_id("id_description").send_keys(
+    rows[0].find_element(By.CSS_SELECTOR, ".data-table-action").click()
+    share_form = driver.find_element(By.CSS_SELECTOR, ".modal-content form")
+    share_form.find_element(By.ID, "id_description").send_keys(
         f"EDITED_Description for: {new_share.name}")
-    share_form.find_element_by_css_selector(
-        ".btn-primary[value='Edit']").click()
+    share_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Edit']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert f'Success: Updating share "{new_share.name}"' in messages
     assert (openstack_client.shared_file_system.get_share(
@@ -149,18 +152,19 @@ def test_resize_share_demo(login, driver, openstack_client,
         'shares',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows) == 1
     assert (openstack_client.shared_file_system.get_share(
         new_share.id).size == 1)
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Resize Share")
-    share_form = driver.find_element_by_css_selector(".modal-content form")
-    share_form.find_element_by_id("id_new_size").clear()
-    share_form.find_element_by_id("id_new_size").send_keys("2")
-    share_form.find_element_by_css_selector(
-        ".btn-primary[value='Resize']").click()
+    share_form = driver.find_element(By.CSS_SELECTOR, ".modal-content form")
+    share_form.find_element(By.ID, "id_new_size").clear()
+    share_form.find_element(By.ID, "id_new_size").send_keys("2")
+    share_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Resize']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert f'Success: Resized share "{new_share.name}"' in messages
     assert (openstack_client.shared_file_system.get_share(
@@ -182,17 +186,18 @@ def test_edit_share_metadata(login, driver, openstack_client,
         'shares',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows) == 1
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Edit Share Metadata")
-    share_form = driver.find_element_by_css_selector(".modal-content form")
-    share_form.find_element_by_id("id_metadata").clear()
-    share_form.find_element_by_id("id_metadata").send_keys(
+    share_form = driver.find_element(By.CSS_SELECTOR, ".modal-content form")
+    share_form.find_element(By.ID, "id_metadata").clear()
+    share_form.find_element(By.ID, "id_metadata").send_keys(
         "test_value=integration_tests")
-    share_form.find_element_by_css_selector(
-        ".btn-primary[value='Save Changes']").click()
+    share_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Save Changes']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert (f'Success: Updating share metadata "{new_share.name}"'
             in messages)
@@ -216,21 +221,25 @@ def test_create_share_access_rule(login, driver, config, new_share,
         'shares',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows) == 1
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Manage Rules")
-    driver.find_element_by_link_text("Add rule").click()
-    add_rule_form = driver.find_element_by_css_selector(".modal-content form")
-    access_type_element = add_rule_form.find_element_by_id("id_access_type")
+    driver.find_element(By.LINK_TEXT, "Add rule").click()
+    add_rule_form = driver.find_element(
+        By.CSS_SELECTOR, ".modal-content form")
+    access_type_element = add_rule_form.find_element(
+        By.ID, "id_access_type")
     Select(access_type_element).select_by_value('ip')
-    access_level_element = add_rule_form.find_element_by_id("id_access_level")
+    access_level_element = add_rule_form.find_element(
+        By.ID, "id_access_level")
     Select(access_level_element).select_by_value('rw')
-    add_rule_form.find_element_by_id("id_access_to").send_keys(
+    add_rule_form.find_element(By.ID, "id_access_to").send_keys(
         test_rule_ip_address)
-    add_rule_form.find_element_by_css_selector(
-        ".btn-primary[value='Add']").click()
+    add_rule_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Add']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert (f'Success: Creating rule for "{test_rule_ip_address}"'
             in messages)
@@ -254,16 +263,18 @@ def test_delete_share_access_rule(login, driver, config, new_share,
         'shares',
     ))
     driver.get(url)
-    rows_shares = driver.find_elements_by_css_selector(
+    rows_shares = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows_shares) == 1
-    actions_column = rows_shares[0].find_element_by_css_selector(
-        "td.actions_column")
+    actions_column = rows_shares[0].find_element(
+        By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Manage Rules")
-    rows_rules = driver.find_elements_by_css_selector(
+    rows_rules = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#rules tr[data-display='{new_access_rule_for_share.id}']")
     assert len(rows_rules) == 1
-    rows_rules[0].find_element_by_css_selector("td.actions_column").click()
+    rows_rules[0].find_element(By.CSS_SELECTOR, "td.actions_column").click()
     widgets.confirm_modal(driver)
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert (f'Success: Deleted Rule: {new_access_rule_for_share.id}'

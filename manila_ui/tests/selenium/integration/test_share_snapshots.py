@@ -15,6 +15,7 @@ import time
 import openstack.exceptions as openstack_exception
 from openstack_dashboard.test.selenium import widgets
 import pytest
+from selenium.webdriver.common.by import By
 
 
 def wait_for_steady_state_of_share_snapshot(openstack_client,
@@ -53,16 +54,18 @@ def test_create_share_snapshot(login, driver, config, new_share, user_type,
         'shares',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#shares tr[data-display='{new_share.name}']")
     assert len(rows) == 1
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Create Share Snapshot")
-    share_snapshot_form = driver.find_element_by_css_selector(
-        ".modal-content form")
-    share_snapshot_form.find_element_by_id("id_name").send_keys(
+    share_snapshot_form = driver.find_element(
+        By.CSS_SELECTOR, ".modal-content form")
+    share_snapshot_form.find_element(By.ID, "id_name").send_keys(
         share_snapshot_name)
-    share_snapshot_form.find_element_by_css_selector(
+    share_snapshot_form.find_element(
+        By.CSS_SELECTOR,
         ".btn-primary[value='Create Share Snapshot']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert (f'Success: Creating share snapshot "{share_snapshot_name}".'
@@ -87,10 +90,11 @@ def test_delete_share_snapshot(login, driver, config, new_share_snapshot,
         'share_snapshots',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#share_snapshots tr[data-display='{new_share_snapshot.name}']")
     assert len(rows) == 1
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Delete Share Snapshot")
     widgets.confirm_modal(driver)
     messages = widgets.get_and_dismiss_messages(driver, config)
@@ -122,18 +126,19 @@ def test_create_share_from_snapshot(login, driver, config, new_share_snapshot,
         'share_snapshots',
     ))
     driver.get(url)
-    rows = driver.find_elements_by_css_selector(
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
         f"table#share_snapshots tr[data-display='{new_share_snapshot.name}']")
     assert len(rows) == 1
-    actions_column = rows[0].find_element_by_css_selector("td.actions_column")
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
     widgets.select_from_dropdown(actions_column, "Create Share")
-    share_snapshot_form = driver.find_element_by_css_selector(
-        ".modal-content form")
-    share_snapshot_form.find_element_by_id("id_name").clear()
-    share_snapshot_form.find_element_by_id("id_name").send_keys(
+    share_snapshot_form = driver.find_element(
+        By.CSS_SELECTOR, ".modal-content form")
+    share_snapshot_form.find_element(By.ID, "id_name").clear()
+    share_snapshot_form.find_element(By.ID, "id_name").send_keys(
         share_from_snapshot_name)
-    share_snapshot_form.find_element_by_css_selector(
-        ".btn-primary[value='Create']").click()
+    share_snapshot_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Create']").click()
     messages = widgets.get_and_dismiss_messages(driver, config)
     assert f'Success: Creating share "{share_from_snapshot_name}"' in messages
     assert openstack_client.shared_file_system.find_share(
