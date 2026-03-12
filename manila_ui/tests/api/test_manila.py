@@ -14,12 +14,11 @@
 #    under the License.
 
 import ddt
-
 from openstack_dashboard.api import base as horizon_api
+from unittest import mock
 
 from manila_ui.api import manila as api
 from manila_ui.tests import helpers as base
-from unittest import mock
 
 
 class FakeLimit:
@@ -1322,3 +1321,50 @@ class ManilaApiTests(base.APITestCase):
             name=name,
             description=description,
             metadata=metadata)
+
+
+class ManilaServiceTypeConstantsTests(base.TestCase):
+
+    def test_manila_service_types(self):
+        self.assertEqual(
+            ("share", "shared-file-system", "sharev2"),
+            api.MANILA_SERVICE_TYPES,
+        )
+
+    def test_manila_service_permissions_structure(self):
+        # Must be a nested tuple: outer AND, inner OR
+        self.assertIsInstance(api.MANILA_SERVICE_PERMISSIONS, tuple)
+        self.assertEqual(1, len(api.MANILA_SERVICE_PERMISSIONS))
+        self.assertIsInstance(api.MANILA_SERVICE_PERMISSIONS[0], tuple)
+
+    def test_manila_service_permissions_values(self):
+        expected = (
+            ('openstack.services.share',
+             'openstack.services.shared-file-system',
+             'openstack.services.sharev2'),
+        )
+        self.assertEqual(expected, api.MANILA_SERVICE_PERMISSIONS)
+
+
+@ddt.ddt
+class IsShareServiceEnabledTests(base.TestCase):
+
+    @ddt.data("share", "shared-file-system", "sharev2")
+    def test_enabled_with_each_service_type(self, service_type):
+        request = mock.Mock()
+
+        def fake_is_service_enabled(req, stype):
+            return stype == service_type
+
+        with mock.patch.object(
+            horizon_api, 'is_service_enabled',
+            side_effect=fake_is_service_enabled,
+        ):
+            self.assertTrue(api.is_share_service_enabled(request))
+
+    def test_disabled_when_no_service_type_matches(self):
+        request = mock.Mock()
+        with mock.patch.object(
+            horizon_api, 'is_service_enabled', return_value=False,
+        ):
+            self.assertFalse(api.is_share_service_enabled(request))

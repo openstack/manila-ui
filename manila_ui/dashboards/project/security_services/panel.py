@@ -16,13 +16,13 @@ from django.utils.translation import gettext_lazy as _
 import horizon
 from openstack_dashboard.dashboards.project import dashboard
 
+from manila_ui.api import manila as api_manila
+
 
 class SecurityServices(horizon.Panel):
     name = _("Security Services")
     slug = 'security_services'
-    permissions = (
-        'openstack.services.share',
-    )
+    permissions = api_manila.MANILA_SERVICE_PERMISSIONS
 
 
 dashboard.Project.register(SecurityServices)

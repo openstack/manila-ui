@@ -18,13 +18,13 @@ import horizon
 
 from openstack_dashboard.dashboards.admin import dashboard
 
+from manila_ui.api import manila as api_manila
+
 
 class ShareTypes(horizon.Panel):
     name = _("Share Types")
     slug = 'share_types'
-    permissions = (
-        'openstack.services.share',
-    )
+    permissions = api_manila.MANILA_SERVICE_PERMISSIONS
 
 
 dashboard.Admin.register(ShareTypes)

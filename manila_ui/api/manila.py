@@ -30,6 +30,17 @@ LOG = logging.getLogger(__name__)
 MANILA_UI_USER_AGENT_REPR = "manila_ui_plugin_for_horizon"
 MANILA_VERSION = "2.87"
 MANILA_SERVICE_TYPE = "sharev2"
+MANILA_SERVICE_TYPES = ("share", "shared-file-system", "sharev2")
+MANILA_SERVICE_PERMISSIONS = (
+    tuple("openstack.services.%s" % t for t in MANILA_SERVICE_TYPES),
+)
+
+
+def is_share_service_enabled(request):
+    return any(
+        base.is_service_enabled(request, t) for t in MANILA_SERVICE_TYPES
+    )
+
 
 # API static values
 SHARE_STATE_AVAILABLE = "available"

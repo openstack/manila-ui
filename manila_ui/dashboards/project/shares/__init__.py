@@ -14,7 +14,6 @@ from django.utils.translation import gettext_lazy as _
 
 from horizon import exceptions
 
-from openstack_dashboard.api import base
 from openstack_dashboard.usage import base as usage
 
 from manila_ui.api import manila
@@ -28,7 +27,7 @@ class ManilaUsage(usage.ProjectUsage):
 
     def get_manila_limits(self):
         """Get share limits if manila is enabled."""
-        if not base.is_service_enabled(self.request, 'share'):
+        if not manila.is_share_service_enabled(self.request):
             return
         try:
             self.limits.update(manila.tenant_absolute_limits(self.request))
