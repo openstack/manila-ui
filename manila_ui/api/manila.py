@@ -784,3 +784,23 @@ def export_location_delete_metadata(request, share, el_id, keys):
         keys,
         subresource=el_id
     )
+
+
+def resource_lock_list(request, search_opts=None):
+    return manilaclient(request).resource_locks.list(
+        search_opts=search_opts)
+
+
+def resource_lock_get(request, lock_id):
+    return manilaclient(request).resource_locks.get(lock_id)
+
+
+def resource_lock_update(request, lock_id, lock_reason):
+    return manilaclient(request).resource_locks.update(
+        lock_id,
+        lock_reason=lock_reason
+    )
+
+
+def resource_lock_delete(request, lock_id):
+    return manilaclient(request).resource_locks.delete(lock_id)

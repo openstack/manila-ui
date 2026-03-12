@@ -1,0 +1,9 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+
+{% block modal-header %}{% trans "Edit Lock Reason" %}{% endblock %}
+
+{% block modal-body-right %}
+    <h3>{% trans "Description" %}:</h3>
+    <p>{% trans "You can update the reason for this resource lock." %}</p>
+{% endblock %}

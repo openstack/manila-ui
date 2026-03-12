@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Added a resource locks panel to view resource locks for shares
+    and access rules. Filtering is allowed and actions are Editing
+    the lock reason and deleting the lock.

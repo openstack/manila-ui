@@ -13,6 +13,7 @@
 #    under the License.
 
 from manilaclient.v2 import messages
+from manilaclient.v2 import resource_locks
 from manilaclient.v2 import security_services
 from manilaclient.v2 import share_access_rules
 from manilaclient.v2 import share_export_locations
@@ -605,3 +606,30 @@ fake_message_3 = messages.Message(
      'project_id': '2e3de76b49b444fd9dc7ca9f7048ce6b',
      'resource_type': 'SHARE_REPLICA',
      'action_id': '002'})
+
+lock_1 = resource_locks.ResourceLock(
+    resource_locks.ResourceLockManager(FakeAPIClient),
+    {'id': "9823e92-8008-4c8b-8059-7f2293ff3001",
+     'resource_id': share.id,
+     'resource_level': 'share',
+     'resource_type': 'share',
+     'resource_action': 'delete',
+     'lock_reason': 'Critical production share.',
+     'user_id': '1',
+     'project_id': '1',
+     'created_at': '2026-02-26 10:00:00'})
+
+lock_2 = resource_locks.ResourceLock(
+    resource_locks.ResourceLockManager(FakeAPIClient),
+    {'id': "9823e92-8008-4c8b-8059-7f2293ff3002",
+     'resource_id': ip_rule.id,
+     'parent_resource_id': share.id,
+     'resource_level': 'access_rule',
+     'resource_type': 'access_rule',
+     'resource_action': 'delete',
+     'lock_reason': 'Compliance requirement.',
+     'user_id': '1',
+     'project_id': '1',
+     'created_at': '2026-02-26 11:00:00'})
+
+resource_locks_list = [lock_1, lock_2]
