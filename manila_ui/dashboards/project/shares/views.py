@@ -102,24 +102,6 @@ class DetailView(tabs.TabView):
             share_id = self.kwargs['share_id']
             share = manila.share_get(self.request, share_id)
             share.rules = manila.share_rules_list(self.request, share_id)
-            all_export_locations = manila.share_export_location_list(
-                self.request, share_id)
-            filter_string = self.request.GET.get(
-                'metadata_filter', '').strip().lower()
-            if filter_string:
-                share.export_locations = [
-                    el for el in all_export_locations
-                    if filter_string in " ".join(
-                        [f"{k}={v}" for k, v in getattr(
-                            el, 'metadata', {}).items()]
-                    ).lower()
-                ]
-            else:
-                share.export_locations = all_export_locations
-            export_locations_paths = [
-                exp['path'] for exp in share.export_locations]
-            share.el_size = ui_utils.calculate_longest_str_size(
-                export_locations_paths)
         except Exception:
             redirect = reverse('horizon:project:shares:index')
             exceptions.handle(

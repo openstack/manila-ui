@@ -768,16 +768,6 @@ def export_location_get(request, share_id, el_id):
         request).share_export_locations.get(share_id, el_id)
 
 
-def export_location_metadata_get(request, share_id, el_id):
-    client = manilaclient(request)
-
-    result = client.share_export_locations.get_metadata(share_id, el_id)
-
-    if hasattr(result, 'metadata'):
-        return result.metadata
-    return result
-
-
 def export_location_set_metadata(request, share, el_id, metadata):
     return manilaclient(
         request).share_export_locations.set_metadata(
