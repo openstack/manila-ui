@@ -129,7 +129,8 @@ class UpdateSnapshotMetadataForm(forms.SelfHandlingForm):
         self.initial["metadata"] = meta_str
 
     def handle(self, request, data):
-        snapshot_id = data['snapshot_id']
+        snapshot_id = self.initial.get(
+            'snapshot_id') or data.get('snapshot_id')
         try:
             set_dict, unset_list = utils.parse_str_meta(data['metadata'])
             if unset_list:
@@ -140,9 +141,12 @@ class UpdateSnapshotMetadataForm(forms.SelfHandlingForm):
                     request, snapshot_id, set_dict)
             messages.success(request, _('Snapshot metadata updated.'))
             return True
+        except forms.ValidationError as e:
+            self.api_error(e.messages[0])
+            return False
         except Exception as e:
             if "MetadataItemNotFound" in str(e) or getattr(
-                e, 'code', None) == 404:
+                    e, 'code', None) == 404:
                 msg = _("Invalid format: Each line must contain a 'key=value' "
                         "pair. If you intended to delete a key, ensure the "
                         "key exists.")

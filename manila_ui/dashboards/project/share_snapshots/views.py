@@ -262,6 +262,3 @@ class UpdateMetadataView(forms.ModalFormView):
         except Exception:
             exceptions.handle(self.request, _('Unable to retrieve snapshot.'))
             return {'snapshot_id': snapshot_id}
-
-    def get_success_url(self):
-        return self.success_url
