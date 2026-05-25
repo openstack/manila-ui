@@ -1,15 +1,7 @@
 # plugin.sh - DevStack plugin.sh dispatch script manila-ui
 
 function install_manila_ui {
-    # NOTE(vponomaryov): workaround for devstack bug: 1540328
-    # where devstack install 'test-requirements' but should not do it
-    # for manila-ui project as it installs Horizon from url.
-    # Remove following two 'mv' commands when mentioned bug is fixed.
-    mv $MANILA_UI_DIR/test-requirements.txt $MANILA_UI_DIR/_test-requirements.txt
-
     setup_develop ${MANILA_UI_DIR}
-
-    mv $MANILA_UI_DIR/_test-requirements.txt $MANILA_UI_DIR/test-requirements.txt
 }
 
 # check for service enabled
