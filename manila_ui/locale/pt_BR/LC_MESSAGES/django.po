@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-08 19:22+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -107,9 +107,6 @@ msgstr "Pelo menos um tipo de compartilhamento deve ser especificado."
 
 msgid "Availability Zone"
 msgstr "Zona de Disponibilidade"
-
-msgid "Availability zone"
-msgstr "Zona de disponibilidade"
 
 msgctxt "Current status of replica"
 msgid "Available"
@@ -717,9 +714,6 @@ msgstr "Nome"
 msgid "Networks"
 msgstr "Redes"
 
-msgid "Neutron Net"
-msgstr "Rede Neutron"
-
 msgid "Neutron Subnet"
 msgstr "Sub-rede Neutron."
 
@@ -761,9 +755,6 @@ msgstr "Número de Snapshots de Compartilhamento"
 
 msgid "Number of Shares"
 msgstr "Número de Compartilhamentos"
-
-msgid "Obtain Progress"
-msgstr "Obter Progresso"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Obter progresso da migração de um Compartilhamento"
@@ -924,13 +915,6 @@ msgstr "Serviços de segurança"
 
 msgid "Security services within share network"
 msgstr "Serviços de segurança dentro da rede de compartilhamento"
-
-msgid "Select parameters of share group you want to create. "
-msgstr ""
-"Selecionar parâmetros do grupo de compartilhamento que você deseja criar."
-
-msgid "Select parameters of share you want to create. "
-msgstr "Selecionar parâmetros de compartilhamento que você deseja criar."
 
 msgid "Selected Networks"
 msgstr "Redes Selecionadas"
@@ -1126,12 +1110,6 @@ msgstr "Snapshots do Compartilhamento"
 msgid "Share Snapshots Storage"
 msgstr "Armazenamento de Snapshots do Compartilhamento"
 
-msgid ""
-"Share Snapshots are used for storing share changes and creating shares. "
-msgstr ""
-"Snapshots de Compartilhamento são usados para armazenamento de mudanças de "
-"compartilhamento e criação de compartilhamentos."
-
 msgid "Share Source"
 msgstr "Origem do Compartilhamento"
 
@@ -1149,14 +1127,6 @@ msgstr "Tipos de Compartilhamento (vários disponíveis)"
 
 msgid "Share Types (one available)"
 msgstr "Tipos de Compartilhamento (um disponível)"
-
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"O compartilhamento não pode ser estendido a %(req)iGiB porque você tem "
-"apenas %(avail)iGiB da sua cota disponível."
 
 msgid "Share gigabytes"
 msgstr "Gigabytes de Compartilhamento"
@@ -1227,9 +1197,6 @@ msgstr "Regras de Snapshot: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Origem"
 
-msgid "Source SG Snapshot"
-msgstr "Snapshot de Origem do Grupo de Compartilhamento"
-
 msgid "Source Share Group"
 msgstr "Grupo de Compartilhamento Fonte"
 
@@ -1238,9 +1205,6 @@ msgstr "Snapshot de Origem do Grupo de Compartilhamento"
 
 msgid "Source Type"
 msgstr "Tipo de Origem"
-
-msgid "Source share group snapshot"
-msgstr "Snapshot fonte do grupo de compartilhamento"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1288,18 +1252,6 @@ msgstr "Rede de compartilhamento criada com sucesso: %s"
 #, python-format
 msgid "Successfully created share type: %s"
 msgstr "Tipo de compartilhamento criado com sucesso: %s"
-
-#, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr ""
-"Enviada com sucesso a requisição de cancelamento da migração do "
-"compartilhamento: %s."
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr ""
-"Enviada com sucesso a requisição para completar a migração do "
-"compartilhamento: %s."
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -1414,10 +1366,6 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "Não foi possível excluir regra \"%s\"."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "Não é possível excluir o compartilhamento \"%s\"."
-
-#, python-format
 msgid ""
 "Unable to delete share group snapshot \"%s\". One or more share groups "
 "depend on it."
@@ -1521,9 +1469,6 @@ msgstr "Não é possível obter os detalhes do serviço de segurança '%s'."
 msgid "Unable to retrieve security services"
 msgstr "Não é possível recuperar serviços de segurança"
 
-msgid "Unable to retrieve security_service."
-msgstr "Não é possível recuperar o security_service."
-
 msgid "Unable to retrieve share details."
 msgstr "Não é possível obter os detalhes do compartilhamento."
 
@@ -1592,9 +1537,6 @@ msgstr "Não foi possível obter os detalhes do servidor de compartilhamento."
 
 msgid "Unable to retrieve share servers"
 msgstr "Não foi possível recuperar servidores de compartilhamento"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "Não é possível obter a lista de snapshot de compartilhamento."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "Não é possível obter as regras de snapshot de compartilhamento."
@@ -1711,9 +1653,6 @@ msgstr "Atualizar Snapshot de Compartilhamento"
 
 msgid "Update Share Type"
 msgstr "Atualizar Tipo de Compartilhamento"
-
-msgid "Update Share group Type"
-msgstr "Atualizar o Tipo do Grupo de Compartilhamento"
 
 msgid "Update share network"
 msgstr "Atualizar rede de compartilhamento."

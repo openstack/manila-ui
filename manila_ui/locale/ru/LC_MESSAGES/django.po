@@ -8,24 +8,23 @@
 # Artem <amikhalev90@gmail.com>, 2017. #zanata
 # Dmitriy Chubinidze <dcu995@gmail.com>, 2025. #zanata
 # Ivan Anfimov <lazekteam@gmail.com>, 2025. #zanata
+# Dmitriy Chubinidze <dcu995@gmail.com>, 2026. #zanata
+# Ivan Anfimov <lazekteam@gmail.com>, 2026. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-08 19:22+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2025-09-04 03:29+0000\n"
-"Last-Translator: Ivan Anfimov <lazekteam@gmail.com>\n"
+"PO-Revision-Date: 2026-05-08 08:25+0000\n"
+"Last-Translator: Dmitriy Chubinidze <dcu995@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-
-msgid " Share Type Visibility:"
-msgstr "Видимость типа файлового хранилища:"
 
 msgid ""
 "\"Manage\" an existing share from a Manila host. This will make the share "
@@ -38,7 +37,7 @@ msgstr ""
 
 #, python-format
 msgid "%(used)s of %(quota)s GiB Used"
-msgstr "использовано %(used)s из %(quota)s GiB"
+msgstr "использовано %(used)s из %(quota)s ГиБ"
 
 #, python-format
 msgid "%(used)s of %(quota)s Used"
@@ -50,6 +49,9 @@ msgstr "%sГиБ"
 
 msgid "(Quota exceeded)"
 msgstr "(Превышена квота)"
+
+msgid "-"
+msgstr "-"
 
 msgid "Access Key"
 msgstr "Ключ доступа"
@@ -125,6 +127,10 @@ msgstr "Добавить правило"
 msgid "Add security services to share network."
 msgstr "Добавить службы безопасности в сеть файлового хранилища."
 
+msgid "All key=value pairs in the input field will be set as the metadata."
+msgstr ""
+"Все пары ключ=значение в поле ввода будут использованы в качестве метаданных."
+
 msgid "All keys and values must be in range from 1 to 255."
 msgstr "Все ключи и значения должны быть в диапазоне от 1 до 255."
 
@@ -154,9 +160,6 @@ msgid "At least one share type must be specified."
 msgstr "Необходимо указать хотя бы один тип файлового хранилища."
 
 msgid "Availability Zone"
-msgstr "Зона доступности"
-
-msgid "Availability zone"
 msgstr "Зона доступности"
 
 msgctxt "Current status of replica"
@@ -198,6 +201,11 @@ msgid ""
 msgstr ""
 "Отменить перенос переносимого файлового хранилища. <br> <br> Это "
 "эквивалентно команде <tt>'openstack share migration cancel'</tt>."
+
+#, python-format
+msgid "Cannot resize to %(new)i GiB. Only %(avail)i GiB available."
+msgstr ""
+"Невозможно изменить размер до %(new)i ГиБ. Доступно только %(avail)i ГиБ."
 
 msgid "Capabilities"
 msgstr "Возможности"
@@ -352,6 +360,12 @@ msgstr "Текущий размер (ГиБ)"
 msgid "DNS IP"
 msgstr "DNS IP"
 
+msgid "Delete Lock"
+msgid_plural "Delete Locks"
+msgstr[0] "Удалить блокировку"
+msgstr[1] "Удалить блокировки"
+msgstr[2] "Удалить блокировки"
+
 msgid "Delete Replica"
 msgid_plural "Delete Replicas"
 msgstr[0] "Удалить реплику"
@@ -435,6 +449,12 @@ msgid_plural "Delete User Messages"
 msgstr[0] "Удалить пользовательское сообщение"
 msgstr[1] "Удалить пользовательские сообщения"
 msgstr[2] "Удалить пользовательские сообщения"
+
+msgid "Deleted Lock"
+msgid_plural "Deleted Locks"
+msgstr[0] "Блокировка удалена"
+msgstr[1] "Блокировки удалены"
+msgstr[2] "Блокировки удалены"
 
 msgid "Deleted Replica"
 msgid_plural "Deleted Replicas"
@@ -531,9 +551,6 @@ msgstr "Удаление"
 msgid "Description"
 msgstr "Описание"
 
-msgid "Description "
-msgstr "Описание"
-
 msgid "Description:"
 msgstr "Описание:"
 
@@ -556,6 +573,18 @@ msgstr "Повторяющиеся ключи '%s'."
 msgid "Edit"
 msgstr "Изменить"
 
+msgid "Edit Export Location Metadata"
+msgstr "Изменить метаданные о расположении экспорта"
+
+msgid "Edit Lock"
+msgstr "Изменить блокировку"
+
+msgid "Edit Lock Reason"
+msgstr "Изменить причину блокировки"
+
+msgid "Edit Metadata"
+msgstr "Изменить метаданные"
+
 msgid "Edit Rule Metadata"
 msgstr "Изменить метаданные правила"
 
@@ -565,14 +594,23 @@ msgstr "Изменить службу безопасности"
 msgid "Edit Share"
 msgstr "Изменить файловое хранилище"
 
+msgid "Edit Share Export Location Metadata"
+msgstr "Изменить метаданные о расположении экспорта"
+
 msgid "Edit Share Metadata"
 msgstr "Изменить метаданные файлового хранилища"
 
 msgid "Edit Share Network"
 msgstr "Изменить сеть файлового хранилища"
 
+msgid "Edit Share Network Subnet Metadata"
+msgstr "Изменить метаданные подсети файлового хранилища"
+
 msgid "Edit Share Snapshot"
 msgstr "Изменить снимок файлового хранилища"
+
+msgid "Edit Share Snapshot Metadata"
+msgstr "Изменить метаданные снимка файлового хранилища"
 
 msgid "Edit Share network"
 msgstr "Изменить сеть файлового хранилища"
@@ -641,8 +679,14 @@ msgstr "Ожидаются только пары ключ=значение."
 msgid "Expires at"
 msgstr "Истекает в"
 
+msgid "Export Locations"
+msgstr "Расположения экспорта"
+
 msgid "Export location"
 msgstr "Расположение экспорта"
+
+msgid "Export location metadata updated."
+msgstr "Метаданные о расположении экспорта обновлены."
 
 msgid "Export location of share. Example for NFS: 1.2.3.4:/path/to/share"
 msgstr ""
@@ -656,8 +700,8 @@ msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Ошибка расширения"
 
-msgid "Extra Spec "
-msgstr "Дополнительные параметры"
+msgid "Extra Spec"
+msgstr "Дополнительные характеристики"
 
 msgid ""
 "Extra spec 'driver_handles_share_servers'  is required and should have "
@@ -728,7 +772,7 @@ msgid "Get migration progress"
 msgstr "Получить ход переноса"
 
 msgid "GiB"
-msgstr "GiB"
+msgstr "ГиБ"
 
 msgid ""
 "Got improper value for field 'driver_options'. Expected only pairs of "
@@ -792,6 +836,16 @@ msgctxt "Current status of share network"
 msgid "Inactive"
 msgstr "Неактивна"
 
+msgid ""
+"Invalid format: Each line must contain a 'key=value' pair. If you intended "
+"to delete a key, ensure the key exists."
+msgstr ""
+"Неверный формат: каждая строка должна содержать пару 'ключ=значение'. Если "
+"вы хотели удалить ключ, убедитесь, что он существует."
+
+msgid "Is admin only"
+msgstr "Только для администратора"
+
 msgid "Is admin only:"
 msgstr "Только для администратора:"
 
@@ -812,6 +866,18 @@ msgstr "Ключи не должны содержать пробелов. Оши
 
 msgid "Limit"
 msgstr "Ограничение"
+
+msgid "Lock Reason"
+msgstr "Причина блокировки"
+
+msgid "Lock reason updated successfully."
+msgstr "Причина блокировки успешно обновлена."
+
+msgid "Locked Access Rules"
+msgstr "Заблокированные правила доступа"
+
+msgid "Locked Shares"
+msgstr "Заблокированные файловые хранилища"
 
 msgid "Make visible to users from all projects"
 msgstr "Сделать видимым для пользователей всех проектов"
@@ -884,9 +950,6 @@ msgstr "Поддержка монтирования снимка"
 msgid "Name"
 msgstr "Имя"
 
-msgid "Name "
-msgstr "Имя"
-
 msgid "Name:"
 msgstr "Имя:"
 
@@ -895,9 +958,6 @@ msgstr "Сетевая обработка включена:"
 
 msgid "Networks"
 msgstr "Сети"
-
-msgid "Neutron Net"
-msgstr "Сеть Neutron"
 
 msgid "Neutron Network"
 msgstr "Сеть Neutron"
@@ -918,11 +978,8 @@ msgstr ""
 "Новый тип файлового хранилища, который будет установлен при переносе "
 "файлового хранилища"
 
-msgid "New size must be different than the existing size"
-msgstr "Новый размер должен отличаться от существующего размера"
-
-msgid "New size should not be less than or equal to zero"
-msgstr "Новый размер не должен быть меньше или равен нулю"
+msgid "New size must be different from the existing size"
+msgstr "Новый размер должен отличаться от существующего"
 
 msgid "No projects found."
 msgstr "Проекты не найдены."
@@ -954,8 +1011,8 @@ msgstr "Количество снимков файлового хранилищ�
 msgid "Number of Shares"
 msgstr "Количество файловых хранилищ"
 
-msgid "Obtain Progress"
-msgstr "Получить информацию о ходе переноса"
+msgid "Obtain Migration Progress"
+msgstr "Проверить прогресс миграции"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Получить информацию о ходе переноса файлового хранилища"
@@ -976,11 +1033,17 @@ msgstr "Организационная единица"
 msgid "Overview"
 msgstr "Обзор"
 
+msgid "Parent Share"
+msgstr "Родительское файловое хранилище"
+
 msgid "Password"
 msgstr "Пароль"
 
 msgid "Passwords do not match."
 msgstr "Пароли не совпадают."
+
+msgid "Path"
+msgstr "Путь"
 
 msgid "Path:"
 msgstr "Путь:"
@@ -993,6 +1056,9 @@ msgstr ""
 msgid "Placeholder for description of share type access managing form."
 msgstr ""
 "Поле для описания формы управления доступом к типу файлового хранилища."
+
+msgid "Preferred"
+msgstr "Предпочтительный"
 
 msgid "Preferred:"
 msgstr "Предпочтительно:"
@@ -1102,15 +1168,21 @@ msgstr "Изменить размер"
 msgid "Resize Share"
 msgstr "Изменить размер файлового хранилища"
 
-msgid "Resize the size of a share. "
+msgid "Resize the size of a share."
 msgstr "Изменить размер файлового хранилища."
 
 #, python-format
 msgid "Resized share \"%s\""
 msgstr "Изменён размер файлового хранилища \"%s\""
 
+msgid "Resource Action"
+msgstr "Действие с ресурсом"
+
 msgid "Resource ID"
 msgstr "ID ресурса"
+
+msgid "Resource Locks"
+msgstr "Блокировки ресурса"
 
 msgid "Resource Type"
 msgstr "Тип ресурса"
@@ -1166,12 +1238,12 @@ msgstr "Службы безопасности"
 msgid "Security services within share network"
 msgstr "Службы безопасности в сети файлового хранилища"
 
-msgid "Select parameters of share group you want to create. "
+msgid "Select parameters of share group you want to create."
 msgstr ""
-"Выберите параметры группы файлового хранилища, которые вы хотите создать."
+"Выберите параметры группы файлового хранилища, которую вы хотите создать."
 
-msgid "Select parameters of share you want to create. "
-msgstr "Выберите параметры файлового хранилища, который вы хотите создать."
+msgid "Select parameters of share you want to create."
+msgstr "Выберите параметры файлового хранилища, которое вы хотите создать."
 
 msgid "Selected Networks"
 msgstr "Выбранные сети"
@@ -1314,6 +1386,9 @@ msgstr "Информация о сети файлового хранилища"
 msgid "Share Network Overview"
 msgstr "Обзор сети файлового хранилища"
 
+msgid "Share Network Subnet metadata updated."
+msgstr "Метаданные подсети файлового хранилища обновлены."
+
 msgid "Share Networks"
 msgstr "Сети файлового хранилища"
 
@@ -1325,6 +1400,9 @@ msgstr "Протокол файлового хранилища"
 
 msgid "Share Quotas"
 msgstr "Квоты файлового хранилища"
+
+msgid "Share Replica ID"
+msgstr "ID копии файлового хранилища"
 
 msgid "Share Replica ID:"
 msgstr "ID реплики файлового хранилища:"
@@ -1386,11 +1464,10 @@ msgstr "Снимки файлового хранилища"
 msgid "Share Snapshots Storage"
 msgstr "Хранилище снимков файлового хранилища"
 
-msgid ""
-"Share Snapshots are used for storing share changes and creating shares. "
+msgid "Share Snapshots are used for storing share changes and creating shares."
 msgstr ""
-"Снимки файлового хранилища используются для хранения изменений файлового "
-"хранилища и создания файловых хранилищ."
+"Снимки файлового хранилища используются для сохранения изменений и создания "
+"хранилищ."
 
 msgid "Share Source"
 msgstr "Источник файлового хранилища"
@@ -1416,14 +1493,6 @@ msgstr "Типы файлового хранилища (доступно нес�
 msgid "Share Types (one available)"
 msgstr "Типы файлового хранилища (доступен один)"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"Файловое хранилище не может быть расширено до %(req)iGiB, поскольку вам "
-"доступно только %(avail)iGiB от вашей квоты."
-
 msgid "Share gigabytes"
 msgstr "Файловое хранилище, гигабайт"
 
@@ -1435,11 +1504,11 @@ msgstr "Сеть файлового хранилища"
 
 msgid ""
 "Share networks contain network data, that will be used for creation of "
-"service VM, where will be hosted shares."
+"service instance, where will be hosted shares."
 msgstr ""
-"Сети файлового хранилища содержат сетевые данные, которые будут "
-"использоваться для создания служебной виртуальной машины, на которой будут "
-"размещаться файловые хранилища."
+"Сети файлового хранилища содержат данные сети, которые будут использоваться "
+"для создания служебного инстанса, на котором будут размещены файловые "
+"хранилища."
 
 #, python-format
 msgid "Share replica %s has been deleted."
@@ -1505,11 +1574,11 @@ msgstr "ID реплики снимка:"
 msgid "Snapshot Rules: %(snapshot_display_name)s"
 msgstr "Снимок правил: %(snapshot_display_name)s"
 
+msgid "Snapshot metadata updated."
+msgstr "Метаданные снимка обновлены."
+
 msgid "Source"
 msgstr "Источник"
-
-msgid "Source SG Snapshot"
-msgstr "Снимок источника группы файлового хранилища"
 
 msgid "Source Share Group"
 msgstr "Источник группы файлового хранилища"
@@ -1520,17 +1589,16 @@ msgstr "Снимок источника группы файлового хран
 msgid "Source Type"
 msgstr "Тип источника"
 
-msgid "Source share group snapshot"
-msgstr "Снимок источника группы файлового хранилища"
-
 msgid ""
 "Specify an Availability Zone or an existing subnet. If no details are "
 "specified, then a default subnet with a null Availability Zone will be "
-"created automatically."
+"created automatically.<br><br><b>Metadata:</b> Optional metadata keys and "
+"values separated by '=', each on a new line. e.g., key1=value1"
 msgstr ""
 "Укажите зону доступности или существующую подсеть. Если данные не указаны, "
-"будет автоматически создана подсеть по умолчанию с отсутствующей зоной "
-"доступности."
+"будет автоматически создана подсеть по умолчанию с пустой зоной доступности."
+"<br><br><b>Метаданные:</b> Опциональные ключи и значения метаданных, "
+"разделенные знаком '=', каждый на новой строке. Например, key1=value1"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1590,13 +1658,13 @@ msgid "Successfully created share type: %s"
 msgstr "Успешно создан тип файлового хранилища: %s"
 
 #, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr "Успешно отправлен запрос на отмену переноса файлового хранилища: %s."
+msgid "Successfully sent the request to cancel migration of share: %s."
+msgstr "Запрос на отмену миграции файлового хранилища %s успешно отправлен."
 
 #, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
+msgid "Successfully sent the request to complete migration of share: %s."
 msgstr ""
-"Успешно отправлен запрос на завершение переноса файлового хранилища: %s."
+"Запрос на завершение миграции файлового хранилища %s успешно отправлен."
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -1747,7 +1815,7 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "Не удалось удалить правило \"%s\"."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
+msgid "Unable to delete share \"%s\"."
 msgstr "Не удалось удалить файловое хранилище \"%s\"."
 
 #, python-format
@@ -1833,12 +1901,13 @@ msgstr "Не удалось сбросить статус снимка груп�
 msgid "Unable to resize share."
 msgstr "Не удалось изменить размер файлового хранилища."
 
-msgid "Unable to resize share. "
-msgstr "Не удалось изменить размер файлового хранилища."
-
 #, python-format
 msgid "Unable to resync replica '%s'."
 msgstr "Не удалось синхронизировать реплику '%s'."
+
+#, python-format
+msgid "Unable to retrieve %s locks."
+msgstr "Не удалось получить блокировки %s."
 
 msgid "Unable to retrieve default share quotas."
 msgstr "Не удалось получить квоты файлового хранилища по умолчанию."
@@ -1847,8 +1916,14 @@ msgstr "Не удалось получить квоты файлового хр�
 msgid "Unable to retrieve details of replica %s"
 msgstr "Не удалось получить подробности реплики %s"
 
+msgid "Unable to retrieve export locations."
+msgstr "Не удалось определить расположения экспорта."
+
 msgid "Unable to retrieve list of projects."
 msgstr "Не удалось получить список проектов."
+
+msgid "Unable to retrieve lock details."
+msgstr "Не удалось получить подробности блокировки."
 
 msgid "Unable to retrieve messages list."
 msgstr "Не удалось получить список сообщений."
@@ -1864,11 +1939,11 @@ msgstr "Не удалось получить реплику '%s'."
 msgid "Unable to retrieve security service '%s' details."
 msgstr "Не удалось получить подробности службы безопасности '%s'."
 
+msgid "Unable to retrieve security service."
+msgstr "Не удалось получить данные о службе безопасности."
+
 msgid "Unable to retrieve security services"
 msgstr "Не удалось получить службы безопасности"
-
-msgid "Unable to retrieve security_service."
-msgstr "Не удалось получить службу безопасности."
 
 #, python-format
 msgid "Unable to retrieve share %s."
@@ -1930,6 +2005,9 @@ msgstr "Не удалось получить список файлового х�
 msgid "Unable to retrieve share network details."
 msgstr "Не удалось получить подробности сети файлового хранилища."
 
+msgid "Unable to retrieve share network subnets."
+msgstr "Не удалось получить подсети файлового хранилища."
+
 msgid "Unable to retrieve share network."
 msgstr "Не удалось получить сеть файлового хранилища."
 
@@ -1950,9 +2028,6 @@ msgstr "Не удалось получить подробности сервер
 
 msgid "Unable to retrieve share servers"
 msgstr "Не удалось получить серверы файлового хранилища"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "Не удалось получить список снимков файлового хранилища."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "Не удалось получить снимок правил файлового хранилища."
@@ -1981,6 +2056,12 @@ msgstr "Не удалось получить подробности снимка
 msgid "Unable to retrieve snapshot."
 msgstr "Не удалось получить снимок."
 
+msgid "Unable to retrieve the export location."
+msgstr "Не удалось получить расположение экспорта."
+
+msgid "Unable to retrieve the share network subnet."
+msgstr "Не удалось получить подсеть файлового хранилища."
+
 msgid "Unable to retrieve user message detail."
 msgstr "Не удалось получить подробности пользовательского сообщения."
 
@@ -2008,9 +2089,18 @@ msgstr "Не удалось обновить доступ для типа фай
 msgid "Unable to update default quotas."
 msgstr "Не удалось обновить квоты по умолчанию."
 
+msgid "Unable to update export location metadata."
+msgstr "Не удалось обновить метаданные о расположении экспорта."
+
 msgid "Unable to update group specs for share group type."
 msgstr ""
 "Не удалось обновить параметры группы для типа группы файлового хранилища."
+
+msgid "Unable to update lock reason."
+msgstr "Не удалось обновить причину блокировки."
+
+msgid "Unable to update network subnet metadata."
+msgstr "Не удалось обновить метаданные подсети."
 
 msgid "Unable to update rule metadata."
 msgstr "Не удалось обновить метаданные правила."
@@ -2046,8 +2136,14 @@ msgstr "Не удалось обновить тип файлового хран�
 msgid "Unable to update share."
 msgstr "Не удалось обновить файловое хранилище."
 
+msgid "Unable to update snapshot metadata."
+msgstr "Не удалось обновить метаданные снимка."
+
 msgid "Unknown"
 msgstr "Неизвестно"
+
+msgid "Unknown Share"
+msgstr "Неизвестное файловое хранилище"
 
 msgid "Unmanage"
 msgstr "Отменить управление"
@@ -2080,11 +2176,11 @@ msgstr "Обновить снимок файлового хранилища"
 msgid "Update Share Type"
 msgstr "Обновить тип файлового хранилища"
 
-msgid "Update Share group Type"
-msgstr "Обновить тип группы файлового хранилища"
-
 msgid "Update share network"
 msgstr "Обновить сеть файлового хранилища"
+
+msgid "Update the reason why this resource is locked."
+msgstr "Обновите причину, по которой этот ресурс заблокирован."
 
 msgid "Updated"
 msgstr "Обновлено"
@@ -2111,8 +2207,8 @@ msgstr "Обновлена сеть файлового хранилища \"%s\"
 msgid "Updating share \"%s\""
 msgstr "Обновление файлового хранилища \"%s\""
 
-msgid "Updating share access rule metadata "
-msgstr "Обновление метаданных правила доступа файлового хранилища"
+msgid "Updating share access rule metadata"
+msgstr "Обновление метаданных правил доступа к файловому хранилищу"
 
 #, python-format
 msgid "Updating share group \"%s\""
@@ -2177,6 +2273,9 @@ msgstr ""
 
 msgid "Writable"
 msgstr "Доступно для записи"
+
+msgid "You can update the reason for this resource lock."
+msgstr "Вы можете изменить причину блокировки этого ресурса."
 
 msgid "as Active?"
 msgstr "активным?"

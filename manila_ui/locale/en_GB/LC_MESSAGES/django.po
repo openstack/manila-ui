@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-08 19:22+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,9 +19,6 @@ msgstr ""
 "Language: en_GB\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-
-msgid " Share Type Visibility:"
-msgstr " Share Type Visibility:"
 
 #, python-format
 msgid "%(used)s of %(quota)s GiB Used"
@@ -137,9 +134,6 @@ msgstr "At least one share type must be specified."
 
 msgid "Availability Zone"
 msgstr "Availability Zone"
-
-msgid "Availability zone"
-msgstr "Availability zone"
 
 msgctxt "Current status of replica"
 msgid "Available"
@@ -580,9 +574,6 @@ msgctxt "Current status of share"
 msgid "Extending Error"
 msgstr "Extending Error"
 
-msgid "Extra Spec "
-msgstr "Extra Spec "
-
 msgid ""
 "Extra spec 'driver_handles_share_servers'  is required and should have "
 "boolean value."
@@ -783,9 +774,6 @@ msgstr "Mount snapshot support"
 msgid "Name"
 msgstr "Name"
 
-msgid "Name "
-msgstr "Name "
-
 msgid "Name:"
 msgstr "Name:"
 
@@ -794,9 +782,6 @@ msgstr "Network handling enabled:"
 
 msgid "Networks"
 msgstr "Networks"
-
-msgid "Neutron Net"
-msgstr "Neutron Net"
 
 msgid "Neutron Network"
 msgstr "Neutron Network"
@@ -812,12 +797,6 @@ msgstr "New share network to be set in migrated share"
 
 msgid "New share type to be set in migrating share"
 msgstr "New share type to be set in migrating share"
-
-msgid "New size must be different than the existing size"
-msgstr "New size must be different than the existing size"
-
-msgid "New size should not be less than or equal to zero"
-msgstr "New size should not be less than or equal to zero"
 
 msgid "No projects found."
 msgstr "No projects found."
@@ -848,9 +827,6 @@ msgstr "Number of Share Snapshots"
 
 msgid "Number of Shares"
 msgstr "Number of Shares"
-
-msgid "Obtain Progress"
-msgstr "Obtain Progress"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Obtain migration progress of a Share"
@@ -985,9 +961,6 @@ msgstr "Resize"
 msgid "Resize Share"
 msgstr "Resize Share"
 
-msgid "Resize the size of a share. "
-msgstr "Resize the size of a share. "
-
 #, python-format
 msgid "Resized share \"%s\""
 msgstr "Resized share \"%s\""
@@ -1048,12 +1021,6 @@ msgstr "Security Services"
 
 msgid "Security services within share network"
 msgstr "Security services within share network"
-
-msgid "Select parameters of share group you want to create. "
-msgstr "Select parameters of share group you want to create. "
-
-msgid "Select parameters of share you want to create. "
-msgstr "Select parameters of share you want to create. "
 
 msgid "Selected Networks"
 msgstr "Selected Networks"
@@ -1264,11 +1231,6 @@ msgstr "Share Snapshots"
 msgid "Share Snapshots Storage"
 msgstr "Share Snapshots Storage"
 
-msgid ""
-"Share Snapshots are used for storing share changes and creating shares. "
-msgstr ""
-"Share Snapshots are used for storing share changes and creating shares. "
-
 msgid "Share Source"
 msgstr "Share Source"
 
@@ -1293,14 +1255,6 @@ msgstr "Share Types (multiple available)"
 msgid "Share Types (one available)"
 msgstr "Share Types (one available)"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-
 msgid "Share gigabytes"
 msgstr "Share gigabytes"
 
@@ -1309,13 +1263,6 @@ msgstr "Share name to be assigned"
 
 msgid "Share network"
 msgstr "Share network"
-
-msgid ""
-"Share networks contain network data, that will be used for creation of "
-"service VM, where will be hosted shares."
-msgstr ""
-"Share networks contain network data, that will be used for creation of "
-"service VM, where will be hosted shares."
 
 #, python-format
 msgid "Share replica %s has been deleted."
@@ -1382,9 +1329,6 @@ msgstr "Snapshot Rules: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Source"
 
-msgid "Source SG Snapshot"
-msgstr "Source SG Snapshot"
-
 msgid "Source Share Group"
 msgstr "Source Share Group"
 
@@ -1393,18 +1337,6 @@ msgstr "Source Share Group Snapshot"
 
 msgid "Source Type"
 msgstr "Source Type"
-
-msgid "Source share group snapshot"
-msgstr "Source share group snapshot"
-
-msgid ""
-"Specify an Availability Zone or an existing subnet. If no details are "
-"specified, then a default subnet with a null Availability Zone will be "
-"created automatically."
-msgstr ""
-"Specify an Availability Zone or an existing subnet. If no details are "
-"specified, then a default subnet with a null Availability Zone will be "
-"created automatically."
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1456,14 +1388,6 @@ msgstr "Successfully created share network: %s"
 #, python-format
 msgid "Successfully created share type: %s"
 msgstr "Successfully created share type: %s"
-
-#, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr "Successfully sent the request to cancel migration of  share: %s."
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr "Successfully sent the request to complete migration of  share: %s."
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -1590,10 +1514,6 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "Unable to delete rule \"%s\"."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "Unable to delete share \"%s\". "
-
-#, python-format
 msgid ""
 "Unable to delete share group snapshot \"%s\". One or more share groups "
 "depend on it."
@@ -1670,9 +1590,6 @@ msgstr "Unable to reset status of share group snapshot '%s'."
 msgid "Unable to resize share."
 msgstr "Unable to resize share."
 
-msgid "Unable to resize share. "
-msgstr "Unable to resize share. "
-
 #, python-format
 msgid "Unable to resync replica '%s'."
 msgstr "Unable to resync replica '%s'."
@@ -1703,9 +1620,6 @@ msgstr "Unable to retrieve security service '%s' details."
 
 msgid "Unable to retrieve security services"
 msgstr "Unable to retrieve security services"
-
-msgid "Unable to retrieve security_service."
-msgstr "Unable to retrieve security_service."
 
 msgid "Unable to retrieve share access rule."
 msgstr "Unable to retrieve share access rule."
@@ -1780,9 +1694,6 @@ msgstr "Unable to retrieve share server details."
 
 msgid "Unable to retrieve share servers"
 msgstr "Unable to retrieve share servers"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "Unable to retrieve share snapshot list."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "Unable to retrieve share snapshot rules."
@@ -1903,9 +1814,6 @@ msgstr "Update Share Snapshot"
 msgid "Update Share Type"
 msgstr "Update Share Type"
 
-msgid "Update Share group Type"
-msgstr "Update Share group Type"
-
 msgid "Update share network"
 msgstr "Update share network"
 
@@ -1933,9 +1841,6 @@ msgstr "Updated share network \"%s\"."
 #, python-format
 msgid "Updating share \"%s\""
 msgstr "Updating share \"%s\""
-
-msgid "Updating share access rule metadata "
-msgstr "Updating share access rule metadata "
 
 #, python-format
 msgid "Updating share group \"%s\""

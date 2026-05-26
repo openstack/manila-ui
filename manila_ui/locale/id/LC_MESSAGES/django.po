@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-08 19:22+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -112,9 +112,6 @@ msgstr "Setidaknya satu share type harus ditentukan."
 
 msgid "Availability Zone"
 msgstr "Availability Zone (zona ketersediaan)"
-
-msgid "Availability zone"
-msgstr "Zona ketersediaan"
 
 msgctxt "Current status of replica"
 msgid "Available"
@@ -691,9 +688,6 @@ msgstr "Name (nama)"
 msgid "Networks"
 msgstr "Networks (jaringan)"
 
-msgid "Neutron Net"
-msgstr "Neutron Net"
-
 msgid "Neutron Subnet"
 msgstr "Neutron Subnet (subnet Neutron)"
 
@@ -732,9 +726,6 @@ msgstr "Number of Share Snapshots"
 
 msgid "Number of Shares"
 msgstr "Number of Shares"
-
-msgid "Obtain Progress"
-msgstr "Obtain Progress (mendapatkan kemajuan)"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Mendapatkan kemajuan migrasi share"
@@ -901,12 +892,6 @@ msgstr "Security Services (layanan keamanan)"
 
 msgid "Security services within share network"
 msgstr "layanan keamanan dalam jaringan berbagi"
-
-msgid "Select parameters of share group you want to create. "
-msgstr "Pilih parameter dari grup berbagi yang ingin Anda buat."
-
-msgid "Select parameters of share you want to create. "
-msgstr "Pilih parameter share yang ingin Anda buat."
 
 msgid "Selected Networks"
 msgstr "Selected Networks"
@@ -1100,11 +1085,6 @@ msgstr "Share Snapshots (snapshots bersama)"
 msgid "Share Snapshots Storage"
 msgstr "Share Snapshots Storage (penyimpanan snapshot bersama)"
 
-msgid ""
-"Share Snapshots are used for storing share changes and creating shares. "
-msgstr ""
-"Share Snapshots digunakan untuk menyimpan perubahan share dan membuat share."
-
 msgid "Share Source"
 msgstr "Share Source (berbagi sumber)"
 
@@ -1123,14 +1103,6 @@ msgstr "Share Types (multiple available)"
 msgid "Share Types (one available)"
 msgstr "Share Types (one available)"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"Share tidak dapat diperpanjang untuk %(req)iGiB karena Anda hanya memiliki "
-"%(avail)iGiB dari kuota Anda yang tersedia."
-
 msgid "Share gigabytes"
 msgstr "Berbagi gigabyte"
 
@@ -1139,13 +1111,6 @@ msgstr "Nama share yang akan ditetapkan"
 
 msgid "Share network"
 msgstr "Bagikan jaringan"
-
-msgid ""
-"Share networks contain network data, that will be used for creation of "
-"service VM, where will be hosted shares."
-msgstr ""
-"Jaringan berbagi berisi data jaringan, yang akan digunakan untuk pembuatan "
-"VM layanan, tempat berbagi host."
 
 #, python-format
 msgid "Share replica %s has been deleted."
@@ -1207,9 +1172,6 @@ msgstr "Snapshot Rules (aturan snapshot): %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Source (sumber)"
 
-msgid "Source SG Snapshot"
-msgstr "Source SG Snapshot"
-
 msgid "Source Share Group"
 msgstr "Source Share Group"
 
@@ -1218,9 +1180,6 @@ msgstr "Source Share Group Snapshot"
 
 msgid "Source Type"
 msgstr "Source Type"
-
-msgid "Source share group snapshot"
-msgstr "Snapshot kelompok berbagi sumber"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1266,14 +1225,6 @@ msgstr "Berhasil menciptakan jaringan bersama (share) :%s"
 #, python-format
 msgid "Successfully created share type: %s"
 msgstr "Berhasil menciptakan tipe share: %s"
-
-#, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr "Berhasil mengirim permintaan untuk membatalkan migrasi share: %s."
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr "Berhasil dikirim permintaan untuk menyelesaikan migrasi share: %s."
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -1386,10 +1337,6 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "Tidak dapat menghapus aturan \"%s\"."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "Tidak dapat menghapus share \"%s\". "
-
-#, python-format
 msgid ""
 "Unable to delete share group snapshot \"%s\". One or more share groups "
 "depend on it."
@@ -1485,9 +1432,6 @@ msgstr "Tidak dapat mengambil layanan keamanan '%s' rincian."
 msgid "Unable to retrieve security services"
 msgstr "Tidak dapat mengambil layanan keamanan"
 
-msgid "Unable to retrieve security_service."
-msgstr "Tidak dapat mengambil security_service."
-
 msgid "Unable to retrieve share details."
 msgstr "Tidak dapat mengambil rincian saham."
 
@@ -1555,9 +1499,6 @@ msgstr "Tidak dapat mengambil rincian server share."
 
 msgid "Unable to retrieve share servers"
 msgstr "Tidak dapat mengambil server berbagi"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "Tidak dapat mengambil daftar share snapshot."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "Tidak dapat mengambil share snapshot rule."
@@ -1672,9 +1613,6 @@ msgstr "Memperbarui Share Snapshot"
 
 msgid "Update Share Type"
 msgstr "Update Share Type (Memperbarui tipe share)"
-
-msgid "Update Share group Type"
-msgstr "Update Share group Type"
 
 msgid "Update share network"
 msgstr "Perbarui jaringan berbagi"

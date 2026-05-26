@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-08-25 22:54+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -80,9 +80,6 @@ msgstr "En az bir paylaşım türü belirtilmelidir."
 
 msgid "Availability Zone"
 msgstr "Kullanılırlık Bölgesi"
-
-msgid "Availability zone"
-msgstr "Kullanılırlık bölgesi"
 
 msgctxt "Current status of replica"
 msgid "Available"
@@ -595,9 +592,6 @@ msgstr "İsim"
 msgid "Networks"
 msgstr "Ağlar"
 
-msgid "Neutron Net"
-msgstr "Neutron Ağı"
-
 msgid "Neutron Subnet"
 msgstr "Neutron Alt Ağı"
 
@@ -630,9 +624,6 @@ msgstr "Kaynak yok, boş paylaşım grubu"
 
 msgid "Nondisruptive"
 msgstr "Aksatmadan"
-
-msgid "Obtain Progress"
-msgstr "Süreci Al"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Bir Paylaşımın göç sürecini al"
@@ -930,14 +921,6 @@ msgstr "Paylaşım Türleri (birden çok kullanılabilir)"
 msgid "Share Types (one available)"
 msgstr "Paylaşım Türleri (biri kullanılabilir)"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"Kotanızda yalnız %(avail)iGiB olduğundan paylaşım %(req)iGiB olarak "
-"büyütülemedi."
-
 msgid "Share gigabytes"
 msgstr "Paylaşım gigabayt"
 
@@ -1035,14 +1018,6 @@ msgid "Successfully created share type: %s"
 msgstr "Paylaşım türü başarıyla oluşturuldu: %s"
 
 #, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr "Paylaşımın göç iptali için istek başarıyla gönderildi: %s."
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr "Paylaşım göçünün tamamlanması isteği başarıyla gönderildi: %s."
-
-#, python-format
 msgid "Successfully sent the request to manage share: %s"
 msgstr "Paylaşımı yönetme isteği başarıyla gönderildi: %s"
 
@@ -1117,10 +1092,6 @@ msgstr "Kopya \"%s\" silinemedi."
 #, python-format
 msgid "Unable to delete rule \"%s\"."
 msgstr "\"%s\" kuralı silinemedi."
-
-#, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "\"%s\" paylaşımı silinemedi. "
 
 #, python-format
 msgid ""
@@ -1210,9 +1181,6 @@ msgstr "Güvenlik servisi '%s' ayrıntıları alınamıyor."
 msgid "Unable to retrieve security services"
 msgstr "Güvenlik servisleri alınamadı"
 
-msgid "Unable to retrieve security_service."
-msgstr "security_service alınamadı."
-
 msgid "Unable to retrieve share details."
 msgstr "Paylaşım ayrıntıları alınamadı."
 
@@ -1280,9 +1248,6 @@ msgstr "Paylaşım sunucusu ayrıntıları alınamıyor."
 
 msgid "Unable to retrieve share servers"
 msgstr "Paylaşım sunucuları alınamadı"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "Paylaşım anlık görüntü listesi alınamadı."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "Paylaşım anlık görüntü kuralları alınamadı."
@@ -1396,9 +1361,6 @@ msgstr "Paylaşım Anlık Görüntüsünü Güncelle"
 
 msgid "Update Share Type"
 msgstr "Paylaşım Türünü Güncelle"
-
-msgid "Update Share group Type"
-msgstr "Paylaşım grubu Türünü Güncelle"
 
 msgid "Updated At"
 msgstr "Güncelleme Zamanı"
