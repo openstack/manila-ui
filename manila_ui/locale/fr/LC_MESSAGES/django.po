@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-08-25 22:54+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,9 +70,6 @@ msgid "At least one security service must be specified."
 msgstr "Au moins un service de sécurité doit être indiqué."
 
 msgid "Availability Zone"
-msgstr "Zone de disponibilité"
-
-msgid "Availability zone"
 msgstr "Zone de disponibilité"
 
 msgctxt "Current status of replica"
@@ -368,9 +365,6 @@ msgstr "Nom"
 msgid "Networks"
 msgstr "Réseaux"
 
-msgid "Neutron Net"
-msgstr "Neutron Net"
-
 msgid "Neutron Subnet"
 msgstr "Sous-réseau Neutron"
 
@@ -401,11 +395,6 @@ msgstr "Aucune source, partage vide"
 
 msgid "Nondisruptive"
 msgstr "Non perturbateur "
-
-msgid "Obtain Progress"
-msgstr ""
-"\t\n"
-"Voir l'avancement"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Voir l'avancement de la migration d'un partage"
@@ -602,14 +591,6 @@ msgstr "Type de partage"
 msgid "Share Types"
 msgstr "Types de partage"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"Le partage ne peut pas être étendu à %(req)iGio car vous avez disposez "
-"uniquement d'un quota de %(avail)iGio."
-
 msgid "Share name to be assigned"
 msgstr "Nom du partage à donner"
 
@@ -665,17 +646,6 @@ msgstr "Partage réseau créé avec succès : %s"
 #, python-format
 msgid "Successfully created share type: %s"
 msgstr "Le type de partage a été créé : %s"
-
-#, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr ""
-"La demande pour annuler la migration du partage a été envoyée avec succès : "
-"%s"
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr ""
-"La demande pour finir la migration du partage a été envoyée avec succès : %s"
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -740,10 +710,6 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "Impossible de supprimer la règle  \"%s\"."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "Impossible de supprimer le partage \"%s\""
-
-#, python-format
 msgid "Unable to delete snapshot \"%s\". One or more shares depend on it."
 msgstr ""
 "Impossible de supprimer l'instantané \"%s\". Un ou plusieurs partages "
@@ -804,9 +770,6 @@ msgstr "Impossible de récupérer les détails du service de sécurité \"%s\"."
 
 msgid "Unable to retrieve security services"
 msgstr "Impossible de récupérer les services de sécurité."
-
-msgid "Unable to retrieve security_service."
-msgstr "Impossible de récupérer security_service."
 
 msgid "Unable to retrieve share details."
 msgstr "Impossible de récupérer les détails du partage."

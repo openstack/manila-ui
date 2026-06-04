@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-08 19:22+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -128,9 +128,6 @@ msgid "At least one share type must be specified."
 msgstr "Es muss mindestens ein Freigabetyp angegeben werden."
 
 msgid "Availability Zone"
-msgstr "Verfügbarkeitszone"
-
-msgid "Availability zone"
 msgstr "Verfügbarkeitszone"
 
 msgctxt "Current status of replica"
@@ -751,9 +748,6 @@ msgstr "Name:"
 msgid "Networks"
 msgstr "Netzwerke"
 
-msgid "Neutron Net"
-msgstr "Neutron Netz"
-
 msgid "Neutron Subnet"
 msgstr "Neutron Subnetz"
 
@@ -792,9 +786,6 @@ msgstr "Anzahl der Freigaben-Schattenkopien"
 
 msgid "Number of Shares"
 msgstr "Anzahl der Freigaben"
-
-msgid "Obtain Progress"
-msgstr "Erhalte Fortschritt"
 
 msgid "Obtain migration progress of a Share"
 msgstr "Erhalte Fortschritt der Migration einer Freigabe"
@@ -965,13 +956,6 @@ msgstr "Sicherheitsdienste"
 
 msgid "Security services within share network"
 msgstr "Sicherheitsdienste in Freigabenetzwerk"
-
-msgid "Select parameters of share group you want to create. "
-msgstr ""
-"Wählen Sie die Parameter der Freigabegruppe, die Sie erstellen möchten."
-
-msgid "Select parameters of share you want to create. "
-msgstr "Wählen Sie die Parameter der Freigabe, die Sie erstellen möchten."
 
 msgid "Selected Networks"
 msgstr "Ausgewählte Netzwerke"
@@ -1164,12 +1148,6 @@ msgstr "Freigabe Schattenkopien"
 msgid "Share Snapshots Storage"
 msgstr "Freigabe Schattenkopienspeicher"
 
-msgid ""
-"Share Snapshots are used for storing share changes and creating shares. "
-msgstr ""
-"Freigabe Schattenkopien werden benutzt zum Speichern von Freigabeänderungen "
-"und Freigabeerstellungen."
-
 msgid "Share Source"
 msgstr "Freigabequelle"
 
@@ -1188,14 +1166,6 @@ msgstr "Freigabetypen (mehrere verfügbar)"
 msgid "Share Types (one available)"
 msgstr "Freigabetypen (eine verfügbar)"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"Die Freigabe kann nicht auf %(req)iGiB erweitert werden, da nur %(avail)iGiB "
-"in Ihrem Kontingent verfügbar sind."
-
 msgid "Share gigabytes"
 msgstr "Freigabe Gigabyte"
 
@@ -1204,13 +1174,6 @@ msgstr "Zuzuweisender Freigabename"
 
 msgid "Share network"
 msgstr "Freigabenetzwerk"
-
-msgid ""
-"Share networks contain network data, that will be used for creation of "
-"service VM, where will be hosted shares."
-msgstr ""
-"Share-Netzwerke enthalten Netzwerkdaten, die für die Erstellung von Service-"
-"VMs verwendet werden, auf denen gehostete Shares gespeichert werden."
 
 #, python-format
 msgid "Share replica %s has been deleted."
@@ -1272,9 +1235,6 @@ msgstr "Schattenkopie-Regeln: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "Quelle"
 
-msgid "Source SG Snapshot"
-msgstr "Quelle SG Schattenkopie"
-
 msgid "Source Share Group"
 msgstr "Quellen Share Gruppe"
 
@@ -1283,9 +1243,6 @@ msgstr "Quelle Schattenkopie Gruppenfreigabe"
 
 msgid "Source Type"
 msgstr "Quellentyp"
-
-msgid "Source share group snapshot"
-msgstr "Quelle Schattenkopie Gruppenfreigabe"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1335,16 +1292,6 @@ msgstr "Freigabenetzwerk erfolgreich erstellt: %s"
 #, python-format
 msgid "Successfully created share type: %s"
 msgstr "Freigabetyp erfolgreich erstellt: %s"
-
-#, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr ""
-"Anfrage zum Abbruch der Migration der Freigabe erfolgreich gesendet: %s"
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr ""
-"Anfrage zum Abschließen der Migration der Freigabe erfolgreich gesendet: %s"
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -1459,10 +1406,6 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "Konnte Regel \"%s\" nicht löschen."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "Konnte Freigabe \"%s\" nicht löschen."
-
-#, python-format
 msgid ""
 "Unable to delete share group snapshot \"%s\". One or more share groups "
 "depend on it."
@@ -1565,9 +1508,6 @@ msgstr "Konnte Details zu Sicherheitsdienst '%s' nicht abrufen."
 msgid "Unable to retrieve security services"
 msgstr "Konnte Sicherheitsdienste nicht abrufen"
 
-msgid "Unable to retrieve security_service."
-msgstr "Konnte Sicherheitsdienst nicht abrufen."
-
 msgid "Unable to retrieve share details."
 msgstr "Konnte Freigabendetails nicht abrufen."
 
@@ -1639,9 +1579,6 @@ msgstr "Konnte Details zum Freigabeserver nicht abrufen."
 
 msgid "Unable to retrieve share servers"
 msgstr "Konnte Freigabeserver nicht abrufen"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "Konnte Liste der geteilten Schattenkopien nicht abrufen."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "Konnte Regeln für  Freigabeschattenkopie nicht abrufen."
@@ -1756,9 +1693,6 @@ msgstr "Aktualisiere  Freigabeschattenkopie"
 
 msgid "Update Share Type"
 msgstr "Aktualisiere Freigabetyp"
-
-msgid "Update Share group Type"
-msgstr "Freigabengruppe Typ aktualisieren"
 
 msgid "Update share network"
 msgstr "Aktualisiere Freigabenetzwerk"

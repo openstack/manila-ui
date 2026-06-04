@@ -1,20 +1,20 @@
 # Eunseop Shin <kairos9603@khu.ac.kr>, 2016. #zanata
 # Ian Y. Choi <ianyrchoi@gmail.com>, 2016. #zanata
-# Sungjin Kang <gang.sungjin@gmail.com>, 2017. #zanata
+# Sungjin Kang <ujuc@ujuc.me>, 2017. #zanata
 # minwook-shin <minwook0106@gmail.com>, 2017. #zanata
 # ByungYeol Woo <wby1089@gmail.com>, 2018. #zanata
 # Ian Y. Choi <ianyrchoi@gmail.com>, 2018. #zanata
-# Sungjin Kang <gang.sungjin@gmail.com>, 2018. #zanata
+# Sungjin Kang <ujuc@ujuc.me>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: manila-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-08 19:22+0000\n"
+"POT-Creation-Date: 2026-05-25 06:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2018-10-21 07:06+0000\n"
-"Last-Translator: Sungjin Kang <gang.sungjin@gmail.com>\n"
+"Last-Translator: Sungjin Kang <ujuc@ujuc.me>\n"
 "Language-Team: Korean (South Korea)\n"
 "Language: ko_KR\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -114,9 +114,6 @@ msgstr "적어도 하나의 공유 유형이 지정되어야 합니다."
 
 msgid "Availability Zone"
 msgstr "가용 구역"
-
-msgid "Availability zone"
-msgstr "가용성 존"
 
 msgctxt "Current status of replica"
 msgid "Available"
@@ -679,9 +676,6 @@ msgstr "이름"
 msgid "Networks"
 msgstr "네트워크"
 
-msgid "Neutron Net"
-msgstr "Neutron Net"
-
 msgid "Neutron Subnet"
 msgstr "Neutron 서브넷"
 
@@ -720,9 +714,6 @@ msgstr "공유 스냅샷 갯수"
 
 msgid "Number of Shares"
 msgstr "공유 갯수"
-
-msgid "Obtain Progress"
-msgstr "진행사항 가져오기"
 
 msgid "Obtain migration progress of a Share"
 msgstr "공유에 대한 마이그레이션 진행사항 가져오기"
@@ -885,12 +876,6 @@ msgstr "보안 서비스"
 
 msgid "Security services within share network"
 msgstr "공유 네트워크 내 보안 서비스 "
-
-msgid "Select parameters of share group you want to create. "
-msgstr "만들고자 하는 공유 그룹의 매개변수를 선택하세요."
-
-msgid "Select parameters of share you want to create. "
-msgstr "만들고자 하는 공유의 매개변수를 선택하세요."
 
 msgid "Selected Networks"
 msgstr "선택된 네트워크"
@@ -1083,10 +1068,6 @@ msgstr "공유 스냅샷"
 msgid "Share Snapshots Storage"
 msgstr "공유 스냅샷 저장소"
 
-msgid ""
-"Share Snapshots are used for storing share changes and creating shares. "
-msgstr "스냅샷 공유는 공유 변화내역 저장과 공유 생성에 사용됩니다."
-
 msgid "Share Source"
 msgstr "공유 소스"
 
@@ -1105,13 +1086,6 @@ msgstr "공유 유형 (복수 사용 가능)"
 msgid "Share Types (one available)"
 msgstr "공유 유형 (단일 사용 가능)"
 
-#, python-format
-msgid ""
-"Share cannot be extended to %(req)iGiB as you only have %(avail)iGiB of your "
-"quota available."
-msgstr ""
-"사용가능한 quota의 %(avail)iGiB에서 %(req)iGiB로 공유를 확장하지 못했습니다."
-
 msgid "Share gigabytes"
 msgstr "기가바이트 공유"
 
@@ -1120,13 +1094,6 @@ msgstr "할당될 공유 이름"
 
 msgid "Share network"
 msgstr "공유 네트워크"
-
-msgid ""
-"Share networks contain network data, that will be used for creation of "
-"service VM, where will be hosted shares."
-msgstr ""
-"공유 네트워크에는 공유 데이터가 있는 서비스 VM을 만드는데 사용되는 네트워크 "
-"데이터가 포함됩니다."
 
 #, python-format
 msgid "Share replica %s has been deleted."
@@ -1186,9 +1153,6 @@ msgstr "스냅샷 규칙: %(snapshot_display_name)s"
 msgid "Source"
 msgstr "소스"
 
-msgid "Source SG Snapshot"
-msgstr "소스 SG 스냅샷"
-
 msgid "Source Share Group"
 msgstr "공유 그룹 원본"
 
@@ -1197,9 +1161,6 @@ msgstr "공유 그룹 스냅샷 소스"
 
 msgid "Source Type"
 msgstr "소스 유형"
-
-msgid "Source share group snapshot"
-msgstr "소스 공유 그룹 스냅샷"
 
 msgid ""
 "Specify the new share network for the share. Do not specify this parameter "
@@ -1245,16 +1206,6 @@ msgstr "공유 네트워크: %s 를 성공적으로 생성하였습니다"
 #, python-format
 msgid "Successfully created share type: %s"
 msgstr "공유 유형: %s 를 성공적으로 생성하였습니다"
-
-#, python-format
-msgid "Successfully sent the request to cancel migration of  share: %s."
-msgstr "공유 %s 에 대한 마이그레이션 취소 요청을 성공적으로 전송하였습니다."
-
-#, python-format
-msgid "Successfully sent the request to complete migration of  share: %s."
-msgstr ""
-"공유 %s 에 대한 마이그레이션을 완료하기 위해 요청을 성공적으로 전송하였습니"
-"다."
 
 #, python-format
 msgid "Successfully sent the request to manage share: %s"
@@ -1365,10 +1316,6 @@ msgid "Unable to delete rule \"%s\"."
 msgstr "규칙 \"%s\" 를 삭제 할 수 없습니다."
 
 #, python-format
-msgid "Unable to delete share \"%s\". "
-msgstr "공유 %s를 제거할 수 없습니다. "
-
-#, python-format
 msgid ""
 "Unable to delete share group snapshot \"%s\". One or more share groups "
 "depend on it."
@@ -1461,9 +1408,6 @@ msgstr "보안 서비스 '%s'의 상세정보를 가져올 수 없습니다."
 msgid "Unable to retrieve security services"
 msgstr "보안 서비스를 가져올 수 없습니다"
 
-msgid "Unable to retrieve security_service."
-msgstr "security_service를 찾지 못했습니다."
-
 msgid "Unable to retrieve share details."
 msgstr "공유 세부 사항을 가져올 수 없습니다."
 
@@ -1531,9 +1475,6 @@ msgstr "공유 서버 세부 사항을 가져올 수 없습니다."
 
 msgid "Unable to retrieve share servers"
 msgstr "공유 서버를 가져올 수 없습니다"
-
-msgid "Unable to retrieve share snapshot list."
-msgstr "공유 스냅샷 목록을 가져올 수 없습니다."
 
 msgid "Unable to retrieve share snapshot rules."
 msgstr "공유 스냅샷 규칙을 가져올 수 없습니다."
@@ -1647,9 +1588,6 @@ msgstr "공유 스냅샷 업데이트"
 
 msgid "Update Share Type"
 msgstr "공유 유형 업데이트"
-
-msgid "Update Share group Type"
-msgstr "공유 그룹 유형 업데이트"
 
 msgid "Update share network"
 msgstr "공유 네트워크 업데이트"
