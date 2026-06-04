@@ -77,3 +77,37 @@ def test_delete_share_group(login, driver, config, user_type,
     assert f"Success: Deleted Share Group: {new_share_group.id}" in messages
     assert openstack_client.shared_file_system.find_share_group(
         new_share_group.name) is None
+
+
+@pytest.mark.parametrize(
+    "openstack_client, user_type, new_share_group",
+    [
+        ("openstack_demo", "user", "openstack_demo"),
+        ("openstack_admin", "admin", "openstack_admin"),
+    ], indirect=["openstack_client", "new_share_group"])
+def test_update_share_group(login, driver, config, user_type,
+                            openstack_client, new_share_group):
+    login(user_type)
+    url = '/'.join((
+        config.dashboard.dashboard_url,
+        'project',
+        'share_groups',
+    ))
+    driver.get(url)
+    rows = driver.find_elements(
+        By.CSS_SELECTOR,
+        f"table#share_groups tr[data-display='{new_share_group.id}']")
+    assert len(rows) == 1
+    actions_column = rows[0].find_element(By.CSS_SELECTOR, "td.actions_column")
+    widgets.select_from_dropdown(actions_column, "Update")
+    update_form = driver.find_element(By.CSS_SELECTOR, ".modal-content form")
+    update_form.find_element(By.ID, "id_description").send_keys(
+        f"EDITED_Description for: {new_share_group.name}")
+    update_form.find_element(
+        By.CSS_SELECTOR, ".btn-primary[value='Update']").click()
+    messages = widgets.get_and_dismiss_messages(driver, config)
+    assert (f'Success: Updating share group "{new_share_group.name}"'
+            in messages)
+    assert (openstack_client.shared_file_system.get_share_group(
+        new_share_group.id).description ==
+        f"EDITED_Description for: {new_share_group.name}")
