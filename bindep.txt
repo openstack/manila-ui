@@ -1,4 +1,5 @@
 # selenium tests
+ffmpeg [selenium]
 firefox [selenium platform:ubuntu]
 firefox-esr [selenium platform:debian]
 xvfb [selenium platform:dpkg]

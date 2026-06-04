@@ -97,6 +97,8 @@
       - openstack/manila
       - openstack/manila-ui
     vars:
+      extra_selenium_artifacts_src: "{{ zuul.project.src_dir }}/manila_ui/tests/selenium/test_reports"
+      extra_selenium_artifacts_dest: test_reports
       devstack_services:
         manila: true
         manila-ui: true
